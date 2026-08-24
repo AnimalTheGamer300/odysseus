@@ -352,6 +352,33 @@ class UploadHandler:
             return True
             
         return False
+
+    def is_video_file(self, filename: str, content_type: str = None) -> bool:
+        """Check if a file is a video based on extension or content type.
+
+        `.webm` is ambiguous (audio/webm exists) — when a content type is
+        provided it has the final say, so video/webm lands here and
+        audio/webm stays in the audio branch.
+        """
+        video_extensions = {'.mp4', '.mov', '.webm', '.mkv', '.m4v', '.avi'}
+        video_mime_types = {
+            'video/mp4', 'video/quicktime', 'video/webm', 'video/x-matroska',
+            'video/x-m4v', 'video/x-msvideo', 'video/mpeg'
+        }
+
+        # Content type has the final say when it's unambiguous: an audio/webm
+        # should stay audio even though `.webm` is in the video extension set.
+        if content_type:
+            if content_type in video_mime_types:
+                return True
+            if content_type.startswith('audio/'):
+                return False
+
+        _, ext = os.path.splitext(filename.lower())
+        if ext in video_extensions:
+            return True
+
+        return False
     
     def is_safe_file_type(self, content_type: str, filename: str) -> bool:
         """Check if file type is safe to store and serve."""
@@ -1168,12 +1195,6 @@ class UploadHandler:
         
         if file_size == 0:
             raise HTTPException(400, "File is empty")
-            
-        if file_size > self.max_upload_size:
-            raise HTTPException(
-                status_code=400,
-                detail=f"File size exceeds {format_byte_limit(self.max_upload_size)} limit"
-            )
         
         # Get original filename and sanitize it
         original_filename = u.filename or f"upload_{int(time.time())}"
@@ -1187,6 +1208,20 @@ class UploadHandler:
             raise HTTPException(
                 status_code=400,
                 detail=f"File type not allowed: {content_type}"
+            )
+
+        # Videos ride a higher cap (get_chat_video_upload_max_bytes) — a phone
+        # clip blows past the default 10MB chat limit in seconds. Everything
+        # else keeps the normal chat upload cap.
+        max_size = self.max_upload_size
+        if self.is_video_file(safe_filename, content_type):
+            from src.upload_limits import get_chat_video_upload_max_bytes
+            max_size = get_chat_video_upload_max_bytes()
+            
+        if file_size > max_size:
+            raise HTTPException(
+                status_code=400,
+                detail=f"File size exceeds {format_byte_limit(max_size)} limit"
             )
         
         # Calculate file hash for deduplication

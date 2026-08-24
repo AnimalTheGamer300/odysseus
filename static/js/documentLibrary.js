@@ -6,9 +6,9 @@
 
 import { topPortalZ } from './toolWindowZOrder.js';
 import uiModule from './ui.js';
-import sessionModule from './sessions.js';
+import sessionModule from './sessions.js?v=20260806autotitle1';
 import spinnerModule from './spinner.js';
-import markdownModule from './markdown.js';
+import markdownModule from './markdown.js?v=20260806thinkfix1';
 import { makeWindowDraggable } from './windowDrag.js';
 import { langIcon } from './langIcons.js';
 import { registerMenuDismiss, dismissOrRemove } from './escMenuStack.js';

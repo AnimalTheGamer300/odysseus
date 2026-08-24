@@ -143,11 +143,10 @@ async def test_scheduled_task_honors_global_disabled_tools(monkeypatch):
     assert passed_disabled is not None
     assert set(global_off) <= set(passed_disabled)
 
-    # Offer side: globally-disabled tools are gone from relevant_tools, but the
-    # rest of the shell/file defaults and the RAG hit survive.
+    # Offer side (RAG permanently disabled 2026-08-07): scheduled tasks pass
+    # relevant_tools=None so the agent loop ships the FULL enabled catalog
+    # every round. Disabling is enforced downstream — the agent loop strips
+    # disabled_tools from the prompt catalog and the per-round schema list,
+    # so the global_off tools are still never offered.
     offered = captured["relevant_tools"]
-    assert "bash" not in offered
-    assert "python" not in offered
-    assert "read_file" not in offered
-    assert "edit_file" in offered   # shell default NOT globally disabled
-    assert "web_fetch" in offered   # RAG-selected tool preserved
+    assert offered is None

@@ -60,6 +60,38 @@ def _content_to_text(content) -> str:
     return ""
 
 
+# Phrases that mean the utility model echoed the instruction instead of
+# producing a title (small/agentic models do this). Any hit → treat the
+# output as garbage and fall back to first-message derivation.
+_ECHO_PHRASES = (
+    "6 words", "words or fewer", "reply with only", "no quotes", "no prefix",
+    "no commentary", "short, descriptive", "descriptive title",
+    "you are titling", "based on the messages", "captures the current topic",
+    "we need answer", "need infer", "conversation about", "the user asks",
+    "we need to", "name this conversation",
+)
+
+
+def _clean_title(raw: str) -> str:
+    """Extract a usable chat title from a utility-model response.
+
+    Returns "" when the response is empty, too long (>12 words), or echoes the
+    naming instruction — the caller falls back to first-message derivation.
+    """
+    if not raw:
+        return ""
+    text = raw.strip().splitlines()[0].strip()
+    text = text.strip("`").strip().strip('"').strip("'").strip()
+    if text.startswith("```"):
+        text = text.replace("```", "").strip()
+    low = text.lower()
+    if not text or len(text.split()) > 12:
+        return ""
+    if any(ph in low for ph in _ECHO_PHRASES):
+        return ""
+    return text
+
+
 def _message_role(message) -> str:
     if isinstance(message, ChatMessage):
         return message.role or ""
@@ -535,6 +567,86 @@ def setup_session_routes(
             result["model"] = model
             result["endpoint_url"] = endpoint_url
         return result
+
+    @router.post("/session/{sid}/retitle")
+    async def retitle_session(request: Request, sid: str):
+        """Regenerate the chat title from conversation context via the utility
+        model (falls back to the session's own endpoint). Returns the new name.
+
+        Context = first 2 + last 12 non-summary messages, so the title tracks
+        where the topic actually went — not just the opener. Output goes
+        through `_clean_title`; on garbage/echo it falls back to the first
+        user message's first few words so a rename always happens.
+        """
+        _verify_session_owner(request, sid)
+        try:
+            session = session_manager.get_session(sid)
+        except KeyError:
+            raise HTTPException(404, f"Session {sid} not found")
+
+        history = getattr(session, "history", None) or []
+        convo = []
+        for m in history:
+            role = _message_role(m)
+            text = _content_to_text(getattr(m, "content", ""))
+            text = (text or "").strip()
+            if not text:
+                continue
+            if role == "system" and "summary" in text[:200].lower():
+                continue
+            convo.append(f"{role}: {text[:400]}")
+        if not convo:
+            raise HTTPException(400, "No conversation content to title")
+
+        convo_text = "\n".join(convo[:2] + convo[-12:])
+        if len(convo_text) > 6000:
+            convo_text = convo_text[-6000:]
+
+        from src.llm_core import llm_call_async
+        from src.endpoint_resolver import resolve_endpoint
+
+        util_url, util_model, util_headers = resolve_endpoint("utility")
+        target_url = util_url or getattr(session, "endpoint_url", "") or ""
+        target_model = util_model or getattr(session, "model", "") or ""
+        headers = util_headers if util_url else getattr(session, "headers", {}) or {}
+        if not target_url or not target_model:
+            raise HTTPException(400, "No endpoint configured for session")
+
+        try:
+            title = await llm_call_async(
+                target_url,
+                target_model,
+                [
+                    {"role": "system", "content": "You are an assistant that names chat conversations. Reply with ONLY a short, descriptive title of 6 words or fewer. No quotes, no punctuation, no commentary, no prefix."},
+                    {"role": "user", "content": "Name this conversation:\n\n" + convo_text},
+                ],
+                temperature=0.3,
+                max_tokens=200,
+                headers=headers,
+                timeout=30,
+            )
+        except Exception as e:
+            logger.error(f"Retitle failed for {sid}: {e}")
+            raise HTTPException(502, f"Utility model call failed: {e}")
+
+        # Strip <think>/<thinking> blocks (reasoning models narrate before
+        # the actual title), then run the echo/word-count guard.
+        from src.text_helpers import strip_think
+        name = _clean_title(strip_think(title or "", prose=False, prompt_echo=False))
+        if not name:
+            # Fallback: first few words of the first user message.
+            first_user = ""
+            for m in history:
+                if _message_role(m) == "user":
+                    first_user = _content_to_text(getattr(m, "content", ""))
+                    break
+            raw = (first_user or "").strip()
+            name = " ".join(str(raw).split()[:5]) if raw else "Untitled"
+        if name.lower().startswith("chat:"):
+            name = name[5:].strip() or "Untitled"
+        name = name[:80]
+        session_manager.update_session_name(sid, name)
+        return {"id": sid, "name": name}
     
     @router.post("/session/{sid}/inject_messages")
     async def inject_messages(request: Request, sid: str):
@@ -992,9 +1104,15 @@ def setup_session_routes(
         if not older:
             raise HTTPException(400, "Nothing old enough to compact")
 
-        from src.context_compactor import SELF_SUMMARY_SYSTEM_PROMPT
+        from src.context_compactor import (
+            SELF_SUMMARY_SYSTEM_PROMPT,
+            SUMMARY_MAX_TOKENS,
+            _build_convo_text,
+            normalize_compaction_summary,
+        )
         from src.endpoint_resolver import resolve_endpoint
         from src.llm_core import llm_call_async
+        from src.model_context import get_context_length
 
         owner = getattr(session, "owner", None) or effective_user(request)
         url, model, headers = resolve_endpoint("utility", owner=owner)
@@ -1012,23 +1130,31 @@ def setup_session_routes(
         ).replace(
             "{n}", str(prior_compactions + 1)
         )
-        convo_text = "\n".join(
-            f"{_message_role(m).upper()}: {_message_text(m)[:2000]}"
-            for m in older
-        )
+        # Cap the summarizer's INPUT to its own context window (reserve ~45%
+        # for the prompt + generated summary; chars ≈ tokens / 0.3).
+        _ctx = get_context_length(url, model)
+        _input_budget_chars = int(_ctx * 0.55 / 0.3)
+        convo_text = _build_convo_text(older, max_chars=_input_budget_chars)
         try:
             summary = await llm_call_async(
                 url,
                 model,
                 [{"role": "system", "content": prompt}, {"role": "user", "content": convo_text}],
                 temperature=0.2,
-                max_tokens=1024,
+                max_tokens=SUMMARY_MAX_TOKENS,
                 headers=headers,
                 timeout=60,
+                # Summaries must never be chain-of-thought: force thinking off
+                # and suppress the reasoning_content fallback (2026-08-09).
+                disable_thinking=True,
             )
         except Exception as e:
             logger.error("Manual compaction failed: %s", e)
             raise HTTPException(500, "Compaction failed")
+        summary = normalize_compaction_summary(summary)
+        if not summary.strip():
+            logger.error("Manual compaction produced an empty summary (model %s)", model)
+            raise HTTPException(500, "Compaction produced no summary")
 
         summary_msg = ChatMessage(
             role="system",

@@ -3,7 +3,7 @@
  */
 
 import uiModule from './ui.js';
-import markdownModule from './markdown.js';
+import markdownModule from './markdown.js?v=20260806thinkfix1';
 import * as spinnerModule from './spinner.js';
 import { makeWindowDraggable } from './windowDrag.js';
 import { topPortalZ } from './toolWindowZOrder.js';

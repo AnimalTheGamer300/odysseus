@@ -5,8 +5,8 @@
 import uiModule from './ui.js';
 import Storage from './storage.js';
 import themeModule from './theme.js';
-import markdownModule from './markdown.js';
-import sessionModule from './sessions.js';
+import markdownModule from './markdown.js?v=20260806thinkfix1';
+import sessionModule from './sessions.js?v=20260806autotitle1';
 import documentModule from './document.js?v=20260722emailfastindex1';
 
 /**
@@ -161,7 +161,7 @@ export function handleUIControl(uiData) {
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'sessions') {
-        import('./sessions.js').then(function(mod) {
+        import('./sessions.js?v=20260806autotitle1').then(function(mod) {
           var fn = mod.openLibrary || (mod.default && mod.default.openLibrary);
           if (fn) fn();
         }).catch(function(){});

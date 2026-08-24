@@ -473,3 +473,114 @@ def test_guide_only_skips_teacher_escalation(monkeypatch):
     )
 
     assert any("Could you tell me" in chunk for chunk in chunks)
+
+
+def test_local_model_excludes_disabled_mcp_schemas(monkeypatch):
+    """Local (textual-tool) models must not receive schemas for disabled MCP
+    tools. The API branch filters all_tool_schemas, but the local-model branch
+    used to ship every MCP schema unfiltered (all-tools mode, RAG disabled) —
+    so a UI-toggled-off MCP tool still reached the LLM as a native schema."""
+    sent_tools = []
+
+    class _FakeMcpMgr:
+        def get_all_openai_schemas(self, disabled_map=None):
+            return [
+                {"type": "function", "function": {
+                    "name": "mcp__browser__navigate", "description": "go", "parameters": {}}},
+                {"type": "function", "function": {
+                    "name": "mcp__browser__click", "description": "click", "parameters": {}}},
+                {"type": "function", "function": {
+                    "name": "mcp__email__send_email", "description": "send", "parameters": {}}},
+            ]
+
+        def get_tool_descriptions_for_prompt(self, disabled_map=None, disabled_tools=None):
+            return "You also have access to external MCP tool servers."
+
+        def plan_mode_blocked_mcp(self):
+            return {}, set()
+
+    monkeypatch.setattr(al, "get_setting", lambda key, default=None: default, raising=False)
+    monkeypatch.setattr(al, "get_mcp_manager", lambda: _FakeMcpMgr(), raising=False)
+    monkeypatch.setattr(al, "estimate_tokens", lambda *a, **k: 10, raising=False)
+    monkeypatch.setattr(al, "blocked_tools_for_owner", lambda owner: set(), raising=False)
+    monkeypatch.setattr(al, "_load_mcp_disabled_map", lambda: {}, raising=False)
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        sent_tools.append(kwargs.get("tools"))
+        yield _delta_chunk("ok")
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+
+    _collect(
+        al.stream_agent_loop(
+            "http://127.0.0.1:9876/v1",
+            "local-test-model",
+            [{"role": "user", "content": "Please open the browser at https://example.com and report the title."}],
+            max_rounds=1,
+            disabled_tools={"mcp__email__send_email"},
+        )
+    )
+
+    assert sent_tools
+    names = _schema_names(sent_tools[0])
+    assert "mcp__browser__navigate" in names
+    assert "mcp__browser__click" in names
+    assert "mcp__email__send_email" not in names, (
+        f"disabled MCP tool leaked into local-model schema list: {sorted(names)}"
+    )
+
+
+def test_global_disabled_tools_setting_filters_schemas_and_catalog(monkeypatch):
+    """Tools toggled off in settings.json:disabled_tools must never reach the
+    LLM, even when the caller doesn't pass disabled_tools itself (skills
+    tests, teacher escalation, and bg-monitor follow-ups all call
+    stream_agent_loop without it). The loop merges the global list at its
+    single chokepoint so only enabled tools are shipped in the schema list
+    AND the prompt catalog."""
+    sent_tools = []
+    sent_messages = []
+
+    def _fake_get_setting(key, default=None):
+        if key == "disabled_tools":
+            return ["bash", "web_search", "create_document"]
+        return default
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        sent_messages.append(messages)
+        sent_tools.append(kwargs.get("tools"))
+        yield _delta_chunk("ok")
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "get_setting", _fake_get_setting, raising=False)
+    monkeypatch.setattr(al, "get_mcp_manager", lambda: None, raising=False)
+    monkeypatch.setattr(al, "estimate_tokens", lambda *a, **k: 10, raising=False)
+    monkeypatch.setattr(al, "blocked_tools_for_owner", lambda owner: set(), raising=False)
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+
+    # No disabled_tools argument — exactly what skills_routes,
+    # teacher_escalation, and bg_monitor do today.
+    _collect(
+        al.stream_agent_loop(
+            "https://api.openai.com/v1",
+            "gpt-test",
+            [{"role": "user", "content": "please look up the latest CVEs"}],
+            max_rounds=1,
+            relevant_tools=set(),
+        )
+    )
+
+    assert sent_tools
+    names = _schema_names(sent_tools[0])
+    for tool in ("bash", "web_search", "create_document"):
+        assert tool not in names, (
+            f"globally-disabled tool {tool} leaked into schema list: {sorted(names)}"
+        )
+    assert "read_file" in names, "enabled tools must still be shipped"
+
+    sysp = str(sent_messages[0][0].get("content", ""))
+    for tool in ("bash", "web_search", "create_document"):
+        assert f"- `{tool}`" not in sysp, (
+            f"globally-disabled tool {tool} leaked into prompt catalog"
+        )
+    assert "- `ask_user`" in sysp, "enabled tools must stay in the prompt catalog"

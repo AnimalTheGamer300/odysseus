@@ -60,21 +60,7 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "web_search",
-            "description": "Quick single web lookup for a fact or current event mid-task. NOT for 'research X' / 'do research on X' — those are deep-research jobs; use trigger_research instead.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string", "description": "Search query"},
-                    "time_filter": {"type": "string", "enum": ["day", "week", "month", "year"], "description": "Optional freshness filter for news/latest/today queries"}
-                },
-                "required": ["query"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"web_search","description":"Quick single web lookup for a fact or current event mid-task.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"Search query"},"time_filter":{"type":"string","description":"Optional freshness filter for news/latest/today queries","enum":["day","week","month","year"]}},"required":["query"]}}},
     {
         "type": "function",
         "function": {
@@ -106,53 +92,9 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "grep",
-            "description": "Search file contents for a regular expression across a directory tree (uses ripgrep when available, respecting .gitignore). Returns file:line:match. PREFER this over `bash grep/rg` for code search — confined to the allowed roots, structured output.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "pattern": {"type": "string", "description": "Regular expression to search for"},
-                    "path": {"type": "string", "description": "Directory or file to search (optional; defaults to the project root)"},
-                    "glob": {"type": "string", "description": "Only search files matching this glob, e.g. '*.py' (optional)"},
-                    "ignore_case": {"type": "boolean", "description": "Case-insensitive match (optional)"},
-                    "max_results": {"type": "integer", "description": "Max matches to return (optional)"}
-                },
-                "required": ["pattern"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "glob",
-            "description": "Find files by glob pattern (recursive), newest first. e.g. '**/*.py'. PREFER this over `bash find/ls` for locating files — confined to the allowed roots.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "pattern": {"type": "string", "description": "Glob pattern, e.g. '**/*.ts' or 'src/**/test_*.py'"},
-                    "path": {"type": "string", "description": "Base directory (optional; defaults to the project root)"}
-                },
-                "required": ["pattern"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "ls",
-            "description": "List the entries of a directory (folders first, then files with sizes). PREFER this over `bash ls` — confined to the allowed roots.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "path": {"type": "string", "description": "Directory to list (optional; defaults to the project root)"}
-                },
-                "required": []
-            }
-        }
-    },
+    {"type":"function","function":{"name":"grep","description":"Search file contents for a regular expression across a directory tree (uses ripgrep when available,","parameters":{"type":"object","properties":{"pattern":{"type":"string","description":"Regular expression to search for"},"path":{"type":"string","description":"Directory or file to search (optional; defaults to the project root)"},"glob":{"type":"string","description":"Only search files matching this glob, e.g. '*.py' (optional)"},"ignore_case":{"type":"boolean","description":"Case-insensitive match (optional)"},"max_results":{"type":"integer","description":"Max matches to return (optional)"}},"required":["pattern"]}}},
+    {"type":"function","function":{"name":"glob","description":"Find files by glob pattern (recursive), newest first. e.g. '**/*.py'.","parameters":{"type":"object","properties":{"pattern":{"type":"string","description":"Glob pattern, e.g. '**/*.ts' or 'src/**/test_*.py'"},"path":{"type":"string","description":"Base directory (optional; defaults to the project root)"}},"required":["pattern"]}}},
+    {"type":"function","function":{"name":"ls","description":"List the entries of a directory (folders first, then files with sizes).","parameters":{"type":"object","properties":{"path":{"type":"string","description":"Directory to list (optional; defaults to the project root)"}},"required":[]}}},
     {
         "type": "function",
         "function": {
@@ -176,23 +118,7 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "edit_file",
-            "description": "Edit a file ON DISK by exact string replacement (home folder, project files, any real path like ~/sweden.txt or /path/to/file). This is the right tool for files on disk — NOT edit_document (that's for editor-panel documents). PREFER this over bash (sed/echo) — it shows a diff. old_string must match the file exactly and be unique (or set replace_all). Use write_file to create a new file.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "path": {"type": "string", "description": "File path to edit"},
-                    "old_string": {"type": "string", "description": "Exact text to replace (must match the file, including indentation)"},
-                    "new_string": {"type": "string", "description": "Replacement text"},
-                    "replace_all": {"type": "boolean", "description": "Replace all occurrences instead of requiring a unique match"}
-                },
-                "required": ["path", "old_string", "new_string"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"edit_file","description":"Edit a file ON DISK by exact string replacement (home folder, project files, any real path like ~/sweden.","parameters":{"type":"object","properties":{"path":{"type":"string","description":"File path to edit"},"old_string":{"type":"string","description":"Exact text to replace (must match the file, including indentation)"},"new_string":{"type":"string","description":"Replacement text"},"replace_all":{"type":"boolean","description":"Replace all occurrences instead of requiring a unique match"}},"required":["path","old_string","new_string"]}}},
     {
         "type": "function",
         "function": {
@@ -252,129 +178,13 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "edit_document",
-            "description": "Edit a document OPEN IN THE EDITOR PANEL (created via create_document) — NOT a file on disk. For files on disk (home folder, project files, anything with a path like ~/x.txt or /path/to/file) use edit_file instead. Targeted find-and-replace with multiple FIND/REPLACE pairs per call; use for any edit smaller than a full rewrite. Do NOT send the whole file back via update_document for small edits.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "edits": {
-                        "type": "array",
-                        "description": "List of find/replace edits (first match only per edit)",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "find": {"type": "string", "description": "Exact text to find in the document"},
-                                "replace": {"type": "string", "description": "Text to replace it with"}
-                            },
-                            "required": ["find", "replace"]
-                        }
-                    }
-                },
-                "required": ["edits"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "suggest_document",
-            "description": "Suggest improvements to the active document WITHOUT editing it. Creates inline comment bubbles the user can accept or reject. Use when the user asks for suggestions, review, improvements, or feedback.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "suggestions": {
-                        "type": "array",
-                        "description": "List of suggested changes with reasons",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "find": {"type": "string", "description": "Exact text in the document to suggest changing"},
-                                "replace": {"type": "string", "description": "Suggested replacement text"},
-                                "reason": {"type": "string", "description": "Brief explanation of why this change helps"}
-                            },
-                            "required": ["find", "replace", "reason"]
-                        }
-                    }
-                },
-                "required": ["suggestions"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "update_document",
-            "description": "Replace the ENTIRE active document. ONLY use for genuine full rewrites (>50% of lines changed). For any smaller change, use edit_document — echoing back the whole file for small edits is wasteful.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "content": {"type": "string", "description": "Complete new document content"}
-                },
-                "required": ["content"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "search_chats",
-            "description": "Search the user's past session transcripts by keyword. Use when the user asks about previous chats, past conversations, or when direct transcript evidence is better than persistent memory. Returns matching sessions with clickable links and nearby context.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string", "description": "Search keyword(s) to find in past conversations"}
-                },
-                "required": ["query"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "chat_with_model",
-            "description": "Send a message to another AI model and get its response. Use for getting a second opinion, delegating subtasks, or AI-to-AI communication.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "model": {"type": "string", "description": "Model name (e.g. 'qwen3-32b') or model@endpoint_name"},
-                    "message": {"type": "string", "description": "The message to send to the model"}
-                },
-                "required": ["model", "message"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "create_session",
-            "description": "Create a new chat for ongoing conversations with a specific model. (The UI calls these 'chats'; 'session' is the internal term.)",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "name": {"type": "string", "description": "Name for the new chat"},
-                    "model": {"type": "string", "description": "Model name or model@endpoint_name"}
-                },
-                "required": ["name", "model"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "list_sessions",
-            "description": "List the user's chats (the UI calls them 'chats') as clickable markdown links. Use this to enumerate chats before opening, renaming, archiving, or deleting them. When replying to the user, preserve the returned [title](#session-id) links; do not strip them into plain text. Optionally filter by keyword.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "filter": {"type": "string", "description": "Optional keyword to filter chats by name"}
-                },
-                "required": []
-            }
-        }
-    },
+    {"type":"function","function":{"name":"edit_document","description":"Edit a document OPEN IN THE EDITOR PANEL (created via create_document) — NOT a file on disk.","parameters":{"type":"object","properties":{"edits":{"type":"array","description":"List of find/replace edits (first match only per edit)","items":{"type":"object","properties":{"find":{"type":"string","description":"Exact text to find in the document"},"replace":{"type":"string","description":"Text to replace it with"}},"required":["find","replace"]}}},"required":["edits"]}}},
+    {"type":"function","function":{"name":"suggest_document","description":"Suggest improvements to the active document WITHOUT editing it.","parameters":{"type":"object","properties":{"suggestions":{"type":"array","description":"List of suggested changes with reasons","items":{"type":"object","properties":{"find":{"type":"string","description":"Exact text in the document to suggest changing"},"replace":{"type":"string","description":"Suggested replacement text"},"reason":{"type":"string","description":"Brief explanation of why this change helps"}},"required":["find","replace","reason"]}}},"required":["suggestions"]}}},
+    {"type":"function","function":{"name":"update_document","description":"Replace the ENTIRE active document. ONLY use for genuine full rewrites (>50% of lines changed).","parameters":{"type":"object","properties":{"content":{"type":"string","description":"Complete new document content"}},"required":["content"]}}},
+    {"type":"function","function":{"name":"search_chats","description":"Search the user's past session transcripts by keyword.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"Search keyword(s) to find in past conversations"}},"required":["query"]}}},
+    {"type":"function","function":{"name":"chat_with_model","description":"Send a message to another AI model and get its response.","parameters":{"type":"object","properties":{"model":{"type":"string","description":"Model name (e.g. 'qwen3-32b') or model@endpoint_name"},"message":{"type":"string","description":"The message to send to the model"}},"required":["model","message"]}}},
+    {"type":"function","function":{"name":"create_session","description":"Create a new chat for ongoing conversations with a specific model.","parameters":{"type":"object","properties":{"name":{"type":"string","description":"Name for the new chat"},"model":{"type":"string","description":"Model name or model@endpoint_name"}},"required":["name","model"]}}},
+    {"type":"function","function":{"name":"list_sessions","description":"List the user's chats (the UI calls them 'chats') as clickable markdown links.","parameters":{"type":"object","properties":{"filter":{"type":"string","description":"Optional keyword to filter chats by name"}},"required":[]}}},
     {
         "type": "function",
         "function": {
@@ -415,42 +225,8 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_session",
-            "description": "Manage a chat: rename, archive, unarchive, delete, mark important, truncate history, or fork it. (The UI calls these 'chats'; 'session' is the internal term.) For destructive actions like delete, call list_sessions first and pass the exact id returned there; never invent ids.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["rename", "archive", "unarchive", "delete", "important", "unimportant", "truncate", "fork"],
-                               "description": "The action to perform"},
-                    "session_id": {"type": "string", "description": "Exact target chat id from list_sessions, or 'current' for the active chat where supported"},
-                    "value": {"type": "string", "description": "Action parameter: new name (rename), keep_count (truncate/fork)"}
-                },
-                "required": ["action", "session_id"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_memory",
-            "description": "Manage the user's memory system: list, add, edit, delete, or search memories. Memories persist across sessions.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["list", "add", "edit", "delete", "search"],
-                               "description": "The action to perform"},
-                    "text": {"type": "string", "description": "Memory text (for add/edit) or search query (for search)"},
-                    "memory_id": {"type": "string", "description": "Memory ID (for edit/delete)"},
-                    "category": {"type": "string", "enum": ["fact", "event", "contact", "preference"],
-                                 "description": "Memory category (for add/list filter)"}
-                },
-                "required": ["action"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"manage_session","description":"Manage a chat: rename, archive, unarchive, delete, mark important, truncate history, or fork it.","parameters":{"type":"object","properties":{"action":{"type":"string","description":"The action to perform","enum":["rename","archive","unarchive","delete","important","unimportant","truncate","fork"]},"session_id":{"type":"string","description":"Exact target chat id from list_sessions, or 'current' for the active chat where supported"},"value":{"type":"string","description":"Action parameter: new name (rename), keep_count (truncate/fork)"}},"required":["action","session_id"]}}},
+    {"type":"function","function":{"name":"manage_memory","description":"Manage the user's memory system: list, add, edit, delete, or search memories.","parameters":{"type":"object","properties":{"action":{"type":"string","description":"The action to perform","enum":["list","add","edit","delete","search"]},"text":{"type":"string","description":"Memory text (for add/edit) or search query (for search)"},"memory_id":{"type":"string","description":"Memory ID (for edit/delete)"},"category":{"type":"string","description":"Memory category (for add/list filter)","enum":["fact","event","contact","preference"]}},"required":["action"]}}},
     {
         "type": "function",
         "function": {
@@ -538,57 +314,8 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "update_plan",
-            "description": "Write back to the ACTIVE PLAN: mark steps done or revise them. Use this while executing an approved plan — after you finish a step, call update_plan with the full checklist and that step marked `- [x]`; when the user asks to change the plan, call it with the revised checklist. The user's docked plan window updates live. Pass the COMPLETE checklist every time (not a diff). No effect if there is no active plan.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "plan": {"type": "string", "description": "The full updated plan as a GitHub-style markdown checklist — one step per line, `- [ ]` for pending and `- [x]` for done. Always send the whole list."}
-                },
-                "required": ["plan"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_tasks",
-            "description": "Manage scheduled/automated tasks: list, create, edit, delete, pause, resume, or run tasks. Use this for ANY recurring/scheduled request ('every morning…', 'each day at 7:30', 'daily summarize…') — create a task rather than doing it once. Task types: llm (AI runs a prompt), research (runs the deep-research pipeline on a question), or action (built-in automation). Triggers can be time-based or event-based.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["list", "create", "edit", "delete", "pause", "resume", "run"],
-                               "description": "The action to perform"},
-                    "task_id": {"type": "string", "description": "Task ID (for edit/delete/pause/resume/run)"},
-                    "name": {"type": "string", "description": "Task name"},
-                    "prompt": {"type": "string", "description": "The instruction (for task_type=llm) or the research question (for task_type=research). Required for both."},
-                    "task_type": {"type": "string", "enum": ["llm", "research", "action"],
-                                  "description": "llm = AI runs your prompt; research = runs the deep-research pipeline on the prompt as a question; action = direct built-in function"},
-                    "action_name": {"type": "string", "enum": [
-                        "tidy_sessions", "tidy_documents", "consolidate_memory", "tidy_research",
-                        "summarize_emails", "draft_email_replies", "extract_email_events",
-                        "classify_events", "learn_sender_signatures",
-                        "test_skills", "audit_skills", "check_email_urgency"
-                    ],
-                                    "description": "Built-in action (for task_type=action)"},
-                    "trigger_type": {"type": "string", "enum": ["schedule", "event"],
-                                     "description": "schedule = time-based, event = count-based"},
-                    "schedule": {"type": "string", "enum": ["once", "daily", "weekly", "monthly"],
-                                 "description": "Schedule frequency (for trigger_type=schedule)"},
-                    "scheduled_time": {"type": "string", "description": "HH:MM in UTC (for schedule triggers). Convert the user's stated local time using the UTC offset given in the 'Current date and time' context."},
-                    "scheduled_day": {"type": "integer", "description": "Day of week 0=Mon (weekly) or day of month (monthly)"},
-                    "trigger_event": {"type": "string", "enum": ["session_created", "message_sent", "document_created", "memory_added", "research_completed", "email_received", "skill_added"],
-                                      "description": "Event name (for trigger_type=event)"},
-                    "trigger_count": {"type": "integer", "description": "Fire every N events (for trigger_type=event)"},
-                    "output_target": {"type": "string", "description": "Where results go. Defaults to 'session' (results land in a dedicated chat session the user reads) — this is the right choice for 'summarize for me' / 'send to me'. Do NOT go hunting for the user's email address; only use an email MCP tool name here if the user explicitly asked to be emailed AND an address is already known."}
-                },
-                "required": ["action"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"update_plan","description":"Write back to the ACTIVE PLAN: mark steps done or revise them.","parameters":{"type":"object","properties":{"plan":{"type":"string","description":"The full updated plan as a GitHub-style markdown checklist — one step per line, `- [ ]` for pending and `-"}},"required":["plan"]}}},
+    {"type":"function","function":{"name":"manage_tasks","description":"Manage scheduled/automated tasks: list, create, edit, delete, pause, resume, run.","parameters":{"type":"object","properties":{"action":{"type":"string","description":"The action to perform","enum":["list","create","edit","delete","pause","resume","run"]},"task_id":{"type":"string","description":"Task ID (for edit/delete/pause/resume/run)"},"name":{"type":"string","description":"Task name"},"prompt":{"type":"string","description":"The instruction (for task_type=llm) or the research question (for task_type=research). Required for both."},"task_type":{"type":"string","description":"llm = AI runs prompt; research = deep-research on prompt; action = built-in function","enum":["llm","research","action"]},"action_name":{"type":"string","description":"Built-in action (for task_type=action)","enum":["tidy_sessions","tidy_documents","consolidate_memory","tidy_research","summarize_emails","draft_email_replies","extract_email_events","classify_events","learn_sender_signatures","test_skills","audit_skills","check_email_urgency"]},"trigger_type":{"type":"string","description":"schedule = time-based, event = count-based","enum":["schedule","event"]},"schedule":{"type":"string","description":"Schedule frequency (for trigger_type=schedule)","enum":["once","daily","weekly","monthly"]},"scheduled_time":{"type":"string","description":"HH:MM in UTC (for schedule triggers)."},"scheduled_day":{"type":"integer","description":"Day of week 0=Mon (weekly) or day of month (monthly)"},"trigger_event":{"type":"string","description":"Event name (for trigger_type=event)","enum":["session_created","message_sent","document_created","memory_added","research_completed","email_received","skill_added"]},"trigger_count":{"type":"integer","description":"Fire every N events (for trigger_type=event)"},"output_target":{"type":"string","description":"Where results go."}},"required":["action"]}}},
     {
         "type": "function",
         "function": {
@@ -656,81 +383,9 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "api_call",
-            "description": "Call a registered API integration (RSS reader, git forge, bookmark manager, smart home, etc.). Check the system context for available integrations and their endpoints.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "integration": {"type": "string", "description": "Integration name or ID (e.g. 'Miniflux', 'Gitea')"},
-                    "method": {"type": "string", "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"], "description": "HTTP method"},
-                    "path": {"type": "string", "description": "API endpoint path (e.g. '/v1/entries?status=unread&limit=20')"},
-                    "body": {"type": "object", "description": "JSON request body (for POST/PUT/PATCH)"}
-                },
-                "required": ["integration", "method", "path"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "ask_teacher",
-            "description": "Ask a more capable AI model for help when stuck on a difficult problem. The teacher provides guidance that can be saved as a learned skill.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "model": {"type": "string", "description": "Teacher model name (e.g. 'claude-sonnet-4') or 'auto' for configured default"},
-                    "problem": {"type": "string", "description": "Describe the problem or question you need help with"}
-                },
-                "required": ["problem"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_skills",
-            "description": (
-                "Read or modify the user's skill library. Skills are SKILL.md files "
-                "(YAML frontmatter + structured body: When to Use / Procedure / "
-                "Pitfalls / Verification) and follow a draft → published lifecycle. "
-                "Use progressive disclosure: 'list' to see what exists, 'view' to "
-                "load full content for a single skill, 'view_ref' for sub-files. "
-                "Use 'patch' for surgical text edits and 'edit' for full rewrites. "
-                "'publish' once you've verified the procedure works. For add, "
-                "always provide an explicit name slug and only tell the user the "
-                "exact name returned by the tool."
-            ),
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["list", "view", "view_ref", "add", "edit", "patch", "publish", "delete", "search"], "description": "list = name+description summary; view = full SKILL.md; view_ref = sub-file under the skill dir; add = create; edit = full rewrite (content); patch = old_string→new_string; publish = flip status; delete; search = relevance match on published skills."},
-                    "name": {"type": "string", "description": "Slug/name of the skill. Required for add/view/view_ref/edit/patch/publish/delete. For add, choose the exact kebab-case name the user should see and report only the returned name."},
-                    "path": {"type": "string", "description": "Sub-path under the skill directory for view_ref (e.g. 'references/example.md')."},
-                    "description": {"type": "string", "description": "One-line summary surfaced in the skills index (for add)."},
-                    "category": {"type": "string", "description": "Organizational grouping like 'dev', 'email', 'system' (for add)."},
-                    "when_to_use": {"type": "string", "description": "Trigger conditions in plain English (for add)."},
-                    "procedure": {"type": "array", "items": {"type": "string"}, "description": "Numbered steps (for add)."},
-                    "pitfalls": {"type": "array", "items": {"type": "string"}, "description": "Known failure modes + recovery (for add)."},
-                    "verification": {"type": "array", "items": {"type": "string"}, "description": "How to confirm the procedure succeeded (for add)."},
-                    "tags": {"type": "array", "items": {"type": "string"}, "description": "Keyword tags (for add)."},
-                    "platforms": {"type": "array", "items": {"type": "string"}, "description": "Restrict to OSes (for add)."},
-                    "requires_toolsets": {"type": "array", "items": {"type": "string"}, "description": "Hide unless these toolsets are active (for add)."},
-                    "fallback_for_toolsets": {"type": "array", "items": {"type": "string"}, "description": "Hide when these toolsets are active (for add)."},
-                    "status": {"type": "string", "enum": ["draft", "published"], "description": "Defaults to 'draft' on add."},
-                    "version": {"type": "string", "description": "Semver-ish, e.g. '1.0.0' (for add)."},
-                    "confidence": {"type": "number", "description": "0-1 (for add/publish)."},
-                    "content": {"type": "string", "description": "Full SKILL.md text (for edit)."},
-                    "old_string": {"type": "string", "description": "Exact substring to replace (for patch). Must appear exactly once."},
-                    "new_string": {"type": "string", "description": "Replacement text (for patch)."},
-                    "query": {"type": "string", "description": "Search query (for search)."}
-                },
-                "required": ["action"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"api_call","description":"Call a registered API integration (RSS reader, git forge, bookmark manager, smart home, etc.).","parameters":{"type":"object","properties":{"integration":{"type":"string","description":"Integration name or ID (e.g. 'Miniflux', 'Gitea')"},"method":{"type":"string","description":"HTTP method","enum":["GET","POST","PUT","PATCH","DELETE"]},"path":{"type":"string","description":"API endpoint path (e.g. '/v1/entries?status=unread&limit=20')"},"body":{"type":"object","description":"JSON request body (for POST/PUT/PATCH)"}},"required":["integration","method","path"]}}},
+    {"type":"function","function":{"name":"ask_teacher","description":"Ask a more capable AI model for help when stuck on a difficult problem.","parameters":{"type":"object","properties":{"model":{"type":"string","description":"Teacher model name (e.g. 'claude-sonnet-4') or 'auto' for configured default"},"problem":{"type":"string","description":"Describe the problem or question you need help with"}},"required":["problem"]}}},
+    {"type":"function","function":{"name":"manage_skills","description":"Read or modify the user's skill library (SKILL.","parameters":{"type":"object","properties":{"action":{"type":"string","description":"list = name+description summary; view = full SKILL.","enum":["list","view","view_ref","add","edit","patch","publish","delete","search"]},"name":{"type":"string","description":"Skill slug/name. Required for add/view/view_ref/edit/patch/publish/delete."},"path":{"type":"string","description":"Sub-path under the skill directory for view_ref (e.g. 'references/example.md')."},"description":{"type":"string","description":"One-line summary surfaced in the skills index (for add)."},"category":{"type":"string","description":"Organizational grouping like 'dev', 'email', 'system' (for add)."},"when_to_use":{"type":"string","description":"Trigger conditions in plain English (for add)."},"procedure":{"type":"array","description":"Numbered steps (for add).","items":{"type":"string"}},"pitfalls":{"type":"array","description":"Known failure modes + recovery (for add).","items":{"type":"string"}},"verification":{"type":"array","description":"How to confirm the procedure succeeded (for add).","items":{"type":"string"}},"tags":{"type":"array","description":"Keyword tags (for add).","items":{"type":"string"}},"platforms":{"type":"array","description":"Restrict to OSes (for add).","items":{"type":"string"}},"requires_toolsets":{"type":"array","description":"Hide unless these toolsets are active (for add).","items":{"type":"string"}},"fallback_for_toolsets":{"type":"array","description":"Hide when these toolsets are active (for add).","items":{"type":"string"}},"status":{"type":"string","description":"Defaults to 'draft' on add.","enum":["draft","published"]},"version":{"type":"string","description":"Semver-ish, e.g. '1.0.0' (for add)."},"confidence":{"type":"number","description":"0-1 (for add/publish)."},"content":{"type":"string","description":"Full SKILL.md text (for edit)."},"old_string":{"type":"string","description":"Exact substring to replace (for patch). Must appear exactly once."},"new_string":{"type":"string","description":"Replacement text (for patch)."},"query":{"type":"string","description":"Search query (for search)."}},"required":["action"]}}},
     {
         "type": "function",
         "function": {
@@ -749,25 +404,7 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_mcp",
-            "description": "Manage MCP (Model Context Protocol) tool servers: list servers and their tools, add new servers, delete, enable/disable, reconnect, or list all available tools.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["list", "add", "delete", "enable", "disable", "reconnect", "list_tools"]},
-                    "server_id": {"type": "string", "description": "Server ID (for delete/enable/disable/reconnect)"},
-                    "name": {"type": "string", "description": "Server name (for add)"},
-                    "command": {"type": "string", "description": "Command to run e.g. npx (for add)"},
-                    "args": {"type": "array", "items": {"type": "string"}, "description": "Command arguments (for add)"},
-                    "env": {"type": "object", "description": "Environment variables (for add)"}
-                },
-                "required": ["action"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"manage_mcp","description":"Manage MCP (Model Context Protocol) tool servers: list servers and their tools, add new servers, delete,","parameters":{"type":"object","properties":{"action":{"type":"string","enum":["list","add","delete","enable","disable","reconnect","list_tools"]},"server_id":{"type":"string","description":"Server ID (for delete/enable/disable/reconnect)"},"name":{"type":"string","description":"Server name (for add)"},"command":{"type":"string","description":"Command to run e.g. npx (for add)"},"args":{"type":"array","description":"Command arguments (for add)","items":{"type":"string"}},"env":{"type":"object","description":"Environment variables (for add)"}},"required":["action"]}}},
     {
         "type": "function",
         "function": {
@@ -802,58 +439,9 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_documents",
-            "description": "Manage documents: list all documents (with optional search/language filter), delete documents, or run tidy cleanup.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["list", "delete", "tidy"]},
-                    "document_id": {"type": "string", "description": "Document ID (for delete)"},
-                    "search": {"type": "string", "description": "Search query (for list)"},
-                    "language": {"type": "string", "description": "Filter by language (for list)"},
-                    "limit": {"type": "integer", "description": "Max results (for list, default 50)"}
-                },
-                "required": ["action"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "manage_settings",
-            "description": "Manage user preferences and settings. Use `disable_tool`/`enable_tool`/`list_tools` to turn individual tools on or off globally (e.g. shell, search, browser, documents, memory, skills, images, tasks, notes, calendar, email). Use list/get/set/delete for free-form preferences.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["list", "get", "set", "delete", "disable_tool", "enable_tool", "list_tools"]},
-                    "key": {"type": "string", "description": "Setting key (for get/set/delete)"},
-                    "value": {"description": "Setting value (for set) — can be string, number, boolean, or object"},
-                    "tool": {"type": "string", "description": "Tool name to disable/enable (for disable_tool/enable_tool). Accepts aliases: shell, search, browser, documents, memory, skills, images, tasks, notes, calendar, email — or a raw tool name like 'bash' or 'web_search'."}
-                },
-                "required": ["action"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "download_model",
-            "description": "Download a HuggingFace model to a server. If `host` is omitted, defaults to the cookbook's currently-selected server (NOT localhost) — call list_cookbook_servers first if you're unsure where it should go.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "repo_id": {"type": "string", "description": "HuggingFace repo (e.g. 'Qwen/Qwen3-8B')"},
-                    "host": {"type": "string", "description": "Target server — use the friendly NAME from list_cookbook_servers (e.g. 'gpu-box', 'workstation') or a raw user@host. Omit to use the cookbook's selected default server."},
-                    "local": {"type": "boolean", "description": "Force download to THIS machine (localhost) instead of the default remote server."},
-                    "include": {"type": "string", "description": "Glob filter for specific files (e.g. '*Q4_K_M*')"},
-                },
-                "required": ["repo_id"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"manage_documents","description":"Manage documents: list all documents (with optional search/language filter), delete documents, or run tidy","parameters":{"type":"object","properties":{"action":{"type":"string","enum":["list","delete","tidy"]},"document_id":{"type":"string","description":"Document ID (for delete)"},"search":{"type":"string","description":"Search query (for list)"},"language":{"type":"string","description":"Filter by language (for list)"},"limit":{"type":"integer","description":"Max results (for list, default 50)"}},"required":["action"]}}},
+    {"type":"function","function":{"name":"manage_settings","description":"Manage user preferences and settings.","parameters":{"type":"object","properties":{"action":{"type":"string","enum":["list","get","set","delete","disable_tool","enable_tool","list_tools"]},"key":{"type":"string","description":"Setting key (for get/set/delete)"},"value":{"type":"string","description":"Setting value (for set) — can be string, number, boolean, or object"},"tool":{"type":"string","description":"Tool name to disable/enable (for disable_tool/enable_tool)."}},"required":["action"]}}},
+    {"type":"function","function":{"name":"download_model","description":"Download a HuggingFace model to a server.","parameters":{"type":"object","properties":{"repo_id":{"type":"string","description":"HuggingFace repo (e.g. 'Qwen/Qwen3-8B')"},"host":{"type":"string","description":"Target server — use the friendly NAME from list_cookbook_servers (e.g."},"local":{"type":"boolean","description":"Force download to THIS machine (localhost) instead of the default remote server."},"include":{"type":"string","description":"Glob filter for specific files (e.g. '*Q4_K_M*')"}},"required":["repo_id"]}}},
     {
         "type": "function",
         "function": {
@@ -871,14 +459,7 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "list_served_models",
-            "description": "List currently running model servers with status, model name, port, throughput, and structured Cookbook diagnoses. If a serve failed, this includes recent logs plus retry suggestions/adjusted commands the agent can use with serve_model.",
-            "parameters": {"type": "object", "properties": {}}
-        }
-    },
+    {"type":"function","function":{"name":"list_served_models","description":"List currently running model servers with status, model name, port, throughput, and structured Cookbook","parameters":{"type":"object","properties":{}}}},
     {
         "type": "function",
         "function": {
@@ -893,66 +474,11 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "tail_serve_output",
-            "description": "Read the last N lines of a cookbook serve/download task's tmux pane. Use ONLY in this exact sequence: (1) the user asked to serve a model, (2) you launched it via serve_model, (3) list_served_models reports the NEW task as crashed/error, (4) call tail_serve_output on the new sessionId to find the root cause, (5) call serve_model again with adjusted flags. DO NOT call this on old stopped/completed download tasks — they are historical and won't tell you anything about the current attempt. DO NOT investigate past failures before launching; the environment may have changed since.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "session_id": {"type": "string", "description": "Tmux session id from list_served_models (e.g. 'serve-abc12345', 'cookbook-a1b2c3d4')."},
-                    "tail": {"type": "integer", "description": "How many lines of pane scrollback to fetch (default 300, max 4000). Bump this if the error in the visible tail references an earlier line ('see root cause above')."},
-                },
-                "required": ["session_id"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "list_downloads",
-            "description": "List in-progress model downloads in the Cookbook. Shows each download's model name, phase, percent (if available), session ID, and remote host.",
-            "parameters": {"type": "object", "properties": {}}
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "cancel_download",
-            "description": "Cancel an in-progress model download by killing its tmux session. Use list_downloads first to get the session_id.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "session_id": {"type": "string", "description": "Tmux session ID from list_downloads (e.g. 'cookbook-a1b2c3d4')"},
-                },
-                "required": ["session_id"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "search_hf_models",
-            "description": "Search HuggingFace for models matching a query. Returns a ranked list of repo IDs, sizes (when available), and download counts. Use this when the user wants to find a model to download.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string", "description": "Search terms (e.g. 'Qwen 8B', 'flux', 'llama-3 instruct')"},
-                    "limit": {"type": "integer", "description": "Max results (default 10)"},
-                },
-                "required": []
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "list_cookbook_servers",
-            "description": "List the cookbook's configured servers (remote GPU boxes + local) and the current default host. Call this before download_model/serve_model when the user didn't specify a host, so models go to the right machine (where the GPUs and model cache are) instead of localhost. If multiple servers and intent is ambiguous, show them and ask the user which.",
-            "parameters": {"type": "object", "properties": {}}
-        }
-    },
+    {"type":"function","function":{"name":"tail_serve_output","description":"Read the last N lines of a cookbook serve/download task's tmux pane.","parameters":{"type":"object","properties":{"session_id":{"type":"string","description":"Tmux session id from list_served_models (e.g. 'serve-abc12345', 'cookbook-a1b2c3d4')."},"tail":{"type":"integer","description":"How many lines of pane scrollback to fetch (default 300, max 4000)."}},"required":["session_id"]}}},
+    {"type":"function","function":{"name":"list_downloads","description":"List in-progress model downloads in the Cookbook.","parameters":{"type":"object","properties":{}}}},
+    {"type":"function","function":{"name":"cancel_download","description":"Cancel an in-progress model download by killing its tmux session.","parameters":{"type":"object","properties":{"session_id":{"type":"string","description":"Tmux session ID from list_downloads (e.g. 'cookbook-a1b2c3d4')"}},"required":["session_id"]}}},
+    {"type":"function","function":{"name":"search_hf_models","description":"Search HuggingFace for models matching a query.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"Search terms (e.g. 'Qwen 8B', 'flux', 'llama-3 instruct')"},"limit":{"type":"integer","description":"Max results (default 10)"}},"required":[]}}},
+    {"type":"function","function":{"name":"list_cookbook_servers","description":"List the cookbook's configured servers (remote GPU boxes + local) and the current default host.","parameters":{"type":"object","properties":{}}}},
     {
         "type": "function",
         "function": {
@@ -961,39 +487,8 @@ FUNCTION_TOOL_SCHEMAS = [
             "parameters": {"type": "object", "properties": {}}
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "adopt_served_model",
-            "description": "Register an existing tmux model server (started manually or outside the cookbook flow) into Cookbook tracking, AND add it as a chat endpoint. Use when the user (or you) launched something via ssh+tmux and now want it visible in the UI / stoppable via stop_served_model / usable in the model picker. Verifies the tmux session + port respond before adding.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "host": {"type": "string", "description": "Remote host in user@host form (e.g. 'user@192.0.2.10'). Omit for localhost."},
-                    "tmux_session": {"type": "string", "description": "Existing tmux session name (e.g. 'minimax-m27')"},
-                    "model": {"type": "string", "description": "Model repo_id or display name (e.g. 'cyankiwi/MiniMax-M2.7-AWQ-4bit')"},
-                    "port": {"type": "integer", "description": "Port the server is listening on (default 8000)"},
-                    "name": {"type": "string", "description": "Optional display name (defaults to model basename)"},
-                    "add_endpoint": {"type": "boolean", "description": "Also register as a chat endpoint (default true)"}
-                },
-                "required": ["tmux_session", "model"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "serve_preset",
-            "description": "Launch a saved Cookbook serve preset by name. Reuses the exact tmux command + host the user saved before. This is the preferred way to start a known model (SD3.5, vLLM presets, etc.) — don't fabricate launch commands when a preset exists.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "name": {"type": "string", "description": "Preset name (exact or case-insensitive substring of one returned by list_serve_presets)"},
-                },
-                "required": ["name"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"adopt_served_model","description":"Register an existing tmux model server (started manually or outside the cookbook flow) into Cookbook","parameters":{"type":"object","properties":{"host":{"type":"string","description":"Remote host in user@host form (e.g. 'user@192.0.2.10'). Omit for localhost."},"tmux_session":{"type":"string","description":"Existing tmux session name (e.g. 'minimax-m27')"},"model":{"type":"string","description":"Model repo_id or display name (e.g. 'cyankiwi/MiniMax-M2.7-AWQ-4bit')"},"port":{"type":"integer","description":"Port the server is listening on (default 8000)"},"name":{"type":"string","description":"Optional display name (defaults to model basename)"},"add_endpoint":{"type":"boolean","description":"Also register as a chat endpoint (default true)"}},"required":["tmux_session","model"]}}},
+    {"type":"function","function":{"name":"serve_preset","description":"Launch a saved Cookbook serve preset by name. Reuses the exact tmux command + host the user saved before.","parameters":{"type":"object","properties":{"name":{"type":"string","description":"Preset name (exact or case-insensitive substring of one returned by list_serve_presets)"}},"required":["name"]}}},
     {
         "type": "function",
         "function": {
@@ -1096,68 +591,10 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "list_email_accounts",
-            "description": "List configured email accounts. Use this before checking mail when the user names a mailbox/account such as Gmail, work, or a custom domain, then pass the returned account name/email/id to the other email tools.",
-            "parameters": {
-                "type": "object",
-                "properties": {},
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "send_email",
-            "description": "Send a new email. Use resolve_contact first if you only have a name and need to find the email address. If multiple accounts exist, pass account from list_email_accounts.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "to": {"type": "string", "description": "Recipient email address"},
-                    "subject": {"type": "string", "description": "Email subject line"},
-                    "body": {"type": "string", "description": "Email body text"},
-                    "account": {"type": "string", "description": "Optional account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"},
-                },
-                "required": ["to", "subject", "body"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "list_emails",
-            "description": "List emails from an account/folder, newest first. Returns subject, sender, date, UID, and account for each email. Use list_email_accounts first when the user mentions Gmail/work/a custom mailbox. For last/latest/newest email requests, use max_results=1 and unread_only=false.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
-                    "max_results": {"type": "integer", "description": "Max emails to return (default: 20)"},
-                    "limit": {"type": "integer", "description": "Backward-compatible alias for max_results"},
-                    "unread_only": {"type": "boolean", "description": "Only show unread emails. Default false; set true only when the user asks for unread emails."},
-                    "unresponded_only": {"type": "boolean", "description": "Only show unanswered emails. Default false."},
-                    "account": {"type": "string", "description": "Optional account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"},
-                },
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "read_email",
-            "description": "Read the full content of a specific email by UID.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "uid": {"type": "string", "description": "Email UID to read"},
-                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
-                    "account": {"type": "string", "description": "Optional account name/email/id from list_email_accounts, especially when the UID came from a non-default mailbox"},
-                },
-                "required": ["uid"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"list_email_accounts","description":"List configured email accounts.","parameters":{"type":"object","properties":{}}}},
+    {"type":"function","function":{"name":"send_email","description":"Send a new email. Use resolve_contact first if you only have a name and need to find the email address.","parameters":{"type":"object","properties":{"to":{"type":"string","description":"Recipient email address"},"subject":{"type":"string","description":"Email subject line"},"body":{"type":"string","description":"Email body text"},"account":{"type":"string","description":"Optional account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"}},"required":["to","subject","body"]}}},
+    {"type":"function","function":{"name":"list_emails","description":"List emails from an account/folder, newest first.","parameters":{"type":"object","properties":{"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"max_results":{"type":"integer","description":"Max emails to return (default: 20)"},"limit":{"type":"integer","description":"Backward-compatible alias for max_results"},"unread_only":{"type":"boolean","description":"Only show unread emails. Default false; set true only when the user asks for unread emails."},"unresponded_only":{"type":"boolean","description":"Only show unanswered emails. Default false."},"account":{"type":"string","description":"Optional account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"}}}}},
+    {"type":"function","function":{"name":"read_email","description":"Read the full content of a specific email by UID.","parameters":{"type":"object","properties":{"uid":{"type":"string","description":"Email UID to read"},"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"account":{"type":"string","description":"Optional account name/email/id from list_email_accounts, especially when the UID came from a non-default"}},"required":["uid"]}}},
     {
         "type": "function",
         "function": {
@@ -1209,75 +646,10 @@ FUNCTION_TOOL_SCHEMAS = [
             }
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "bulk_email",
-            "description": "Perform one action on many emails at once. Use this for 'delete all those', 'archive these', 'mark all read', or any bulk operation after list_emails. Always pass account when the listed emails came from a named account such as Gmail.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "action": {"type": "string", "enum": ["mark_read", "mark_unread", "archive", "delete", "junk"], "description": "Bulk action to perform"},
-                    "uids": {"type": "array", "items": {"type": "string"}, "description": "UIDs from the latest list_emails result"},
-                    "all_unread": {"type": "boolean", "description": "Operate on all unread messages in folder instead of explicit UIDs"},
-                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
-                    "permanent": {"type": "boolean", "description": "For delete: hard-delete instead of moving to Trash"},
-                    "account": {"type": "string", "description": "Account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"},
-                },
-                "required": ["action"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "delete_email",
-            "description": "Delete one email by UID. For multiple messages, use bulk_email instead. Always pass account when the email came from a named account such as Gmail.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "uid": {"type": "string", "description": "Email UID from list_emails/read_email"},
-                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
-                    "permanent": {"type": "boolean", "description": "Hard-delete instead of moving to Trash"},
-                    "account": {"type": "string", "description": "Account name/email/id from list_email_accounts"},
-                },
-                "required": ["uid"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "archive_email",
-            "description": "Archive one email by UID. For multiple messages, use bulk_email instead. Always pass account when the email came from a named account such as Gmail.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "uid": {"type": "string", "description": "Email UID from list_emails/read_email"},
-                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
-                    "account": {"type": "string", "description": "Account name/email/id from list_email_accounts"},
-                },
-                "required": ["uid"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "mark_email_read",
-            "description": "Mark one email as read or unread by UID. For multiple messages, use bulk_email instead. Always pass account when the email came from a named account such as Gmail.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "uid": {"type": "string", "description": "Email UID from list_emails/read_email"},
-                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
-                    "read": {"type": "boolean", "description": "True marks read; false marks unread"},
-                    "account": {"type": "string", "description": "Account name/email/id from list_email_accounts"},
-                },
-                "required": ["uid"]
-            }
-        }
-    },
+    {"type":"function","function":{"name":"bulk_email","description":"Perform one action on many emails at once.","parameters":{"type":"object","properties":{"action":{"type":"string","description":"Bulk action to perform","enum":["mark_read","mark_unread","archive","delete","junk"]},"uids":{"type":"array","description":"UIDs from the latest list_emails result","items":{"type":"string"}},"all_unread":{"type":"boolean","description":"Operate on all unread messages in folder instead of explicit UIDs"},"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"permanent":{"type":"boolean","description":"For delete: hard-delete instead of moving to Trash"},"account":{"type":"string","description":"Account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"}},"required":["action"]}}},
+    {"type":"function","function":{"name":"delete_email","description":"Delete one email by UID. For multiple messages, use bulk_email instead.","parameters":{"type":"object","properties":{"uid":{"type":"string","description":"Email UID from list_emails/read_email"},"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"permanent":{"type":"boolean","description":"Hard-delete instead of moving to Trash"},"account":{"type":"string","description":"Account name/email/id from list_email_accounts"}},"required":["uid"]}}},
+    {"type":"function","function":{"name":"archive_email","description":"Archive one email by UID. For multiple messages, use bulk_email instead.","parameters":{"type":"object","properties":{"uid":{"type":"string","description":"Email UID from list_emails/read_email"},"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"account":{"type":"string","description":"Account name/email/id from list_email_accounts"}},"required":["uid"]}}},
+    {"type":"function","function":{"name":"mark_email_read","description":"Mark one email as read or unread by UID. For multiple messages, use bulk_email instead.","parameters":{"type":"object","properties":{"uid":{"type":"string","description":"Email UID from list_emails/read_email"},"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"read":{"type":"boolean","description":"True marks read; false marks unread"},"account":{"type":"string","description":"Account name/email/id from list_email_accounts"}},"required":["uid"]}}},
     {
         "type": "function",
         "function": {

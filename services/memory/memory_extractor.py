@@ -68,6 +68,66 @@ def _save_tidy_state(memory_manager, owner: Optional[str], fingerprint: str) -> 
     except OSError as e:
         logger.warning(f"Could not persist tidy fingerprint: {e}")
 
+
+_EXTRACT_STATE_FILE = "memory_extract_state.json"
+
+
+def _extract_state_path(memory_manager) -> Optional[str]:
+    """Sidecar JSON next to memory.json that remembers, per session, how many
+    messages extraction already consumed (the novelty gate) and, per owner,
+    how many new memories have accumulated since the last auto-audit. Both
+    counters previously lived only in process memory — the audit counter
+    silently reset on every restart, starving the auto-audit forever."""
+    memory_file = getattr(memory_manager, "memory_file", None)
+    if not memory_file:
+        return None
+    return os.path.join(os.path.dirname(memory_file), _EXTRACT_STATE_FILE)
+
+
+def _load_extract_state(memory_manager) -> dict:
+    path = _extract_state_path(memory_manager)
+    if not path:
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def _save_extract_state(memory_manager, state: dict) -> None:
+    path = _extract_state_path(memory_manager)
+    if not path:
+        return
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(state, f, indent=2)
+    except OSError as e:
+        logger.warning(f"Could not persist memory extract state: {e}")
+
+
+def _last_extracted_count(memory_manager, session_id: str) -> int:
+    state = _load_extract_state(memory_manager)
+    return int(state.get("sessions", {}).get(session_id, {}).get("last_count", 0))
+
+
+def _set_last_extracted_count(memory_manager, session_id: str, count: int) -> None:
+    state = _load_extract_state(memory_manager)
+    state.setdefault("sessions", {})[session_id] = {"last_count": count}
+    _save_extract_state(memory_manager, state)
+
+
+def _pending_audit_count(memory_manager, owner: Optional[str]) -> int:
+    state = _load_extract_state(memory_manager)
+    return int(state.get("counters", {}).get(owner or "", 0))
+
+
+def _set_pending_audit_count(memory_manager, owner: Optional[str], count: int) -> None:
+    state = _load_extract_state(memory_manager)
+    state.setdefault("counters", {})[owner or ""] = count
+    _save_extract_state(memory_manager, state)
+
 EXTRACT_SYSTEM_PROMPT = (
     "You are a memory extraction assistant. Analyze the conversation and extract ONLY "
     "durable personal facts about the user that would be useful across many future conversations.\n\n"
@@ -75,9 +135,14 @@ EXTRACT_SYSTEM_PROMPT = (
     "Bad examples: what they asked about today, temporary moods, generic statements, "
     "things the assistant said, one-off tasks, opinions on the current topic.\n\n"
     "Rules:\n"
-    "- MAX 2 facts per conversation — only the most important\n"
+    "- MAX 3 facts per conversation — only the most important\n"
     "- Only extract facts the USER stated or clearly implied\n"
-    "- Each fact must be a single short sentence (under 15 words)\n"
+    "- Each fact must make sense ALONE, to someone who was NOT in this conversation: "
+    "name the subject fully, never use unexplained abbreviations or pronouns, and "
+    "include the context needed to stand on its own (one or two sentences, 15-50 words)\n"
+    "- Only extract facts that would still be useful in a DIFFERENT future conversation — "
+    "durable preferences, projects, possessions, life details. Skip transient statements, "
+    "passing opinions, or anything that only matters in this exact chat\n"
     "- If a fact is similar to something likely already known, skip it\n"
     "- If nothing durable was revealed, return []\n\n"
     "Return a JSON array of objects with 'text' and 'category' fields.\n"
@@ -102,7 +167,11 @@ AUDIT_SYSTEM_PROMPT = (
     "(not the user), empty, or meaningless. Do NOT drop a real fact just "
     "because it seems minor or niche.\n"
     "3. Keep the original wording. Only lightly trim obvious redundancy — do "
-    "NOT aggressively rewrite or shorten.\n"
+    "NOT aggressively rewrite or shorten. EXCEPTION: if an entry is a fragment "
+    "that cannot stand alone (missing subject, unexplained abbreviation, dangling "
+    "pronoun, e.g. \"User prefers DRLs too\"), rewrite it into a self-contained "
+    "sentence. Restore clarity — never invent facts; if the meaning is "
+    "genuinely unknowable, leave it unchanged.\n"
     "4. Preserve the 'id' of the entry you keep when merging.\n"
     "5. Never invent facts. When unsure, KEEP.\n\n"
     "Return a JSON array of objects with fields: id, text, category.\n"
@@ -110,7 +179,12 @@ AUDIT_SYSTEM_PROMPT = (
 )
 
 AUDIT_INTERVAL = 5  # audit every N new memories added
-_extractions_since_audit = 0
+
+# How many NEW messages must a session accumulate since the last extraction
+# run before it is looked at again. The cadence trigger fires on message
+# count alone; without this gate every run re-analyzes a sliding window that
+# overlaps the previous run and re-extracts the same facts rephrased.
+NOVELTY_MIN_MESSAGES = 2
 
 
 def _message_text(message) -> str:
@@ -137,7 +211,7 @@ def _message_role(message) -> str:
     return str(role or "").lower()
 
 
-def _clean_memory_value(value: str, max_len: int = 80) -> str:
+def _clean_memory_value(value: str, max_len: int = 200) -> str:
     value = re.sub(r"\s+", " ", value or "").strip(" .,!?:;\"'`“”‘’")
     value = re.sub(r"^(?:the|a|an)\s+", "", value, flags=re.I)
     if not value or len(value) > max_len:
@@ -145,6 +219,51 @@ def _clean_memory_value(value: str, max_len: int = 80) -> str:
     if re.search(r"https?://|@|[{}<>]", value):
         return ""
     return value
+
+
+# Deictic / discourse-dependent tokens that make a captured "preference"
+# non-durable. "I like THAT idea", "I like how you…", "I like this approach"
+# are about the current conversation; "I like pizza" is a lasting preference.
+# Bare pronouns ("I like it") and empty shells ("the idea", "the plan",
+# "the vibe") fall in the same bucket.
+_DEICTIC_TOKENS = {
+    "that", "this", "these", "those", "it", "them", "they",
+    "here", "there", "so", "such", "then", "now",
+    "you", "your", "yours", "yourself", "me", "my", "mine", "myself",
+    "i", "we", "our", "ours", "us", "ourselves",
+    "when", "how", "whether", "whatever", "whichever", "whoever",
+    "idea", "ideas", "suggestion", "suggestions", "approach",
+    "plan", "plans", "option", "options", "choice", "choices",
+    "thing", "things", "bit", "stuff", "vibe", "vibes", "look", "feel",
+}
+
+
+def _is_deictic_preference(text: str) -> bool:
+    """True when a captured preference object is discourse-dependent — about
+    the current conversation rather than a lasting preference. Keeps "I like
+    that idea"-style junk out of the store without dropping real preferences.
+    """
+    tokens = set(re.findall(r"[a-z']+", text.lower()))
+    return bool(tokens & _DEICTIC_TOKENS)
+
+
+_CORE_IDENTITY_RE = re.compile(
+    r"\b(?:"
+    r"name|names|called|call me|goes by|"
+    r"lives? in|lives? at|from|"
+    r"works? at|works? for|works? as|job|occupation|profession|"
+    r"age|years old|born|birthday|pronouns"
+    r")\b",
+    re.I,
+)
+
+
+def _is_pinnable_identity(text: str) -> bool:
+    """True when an 'identity'-category fact states a CORE identity fact
+    (name, location, job, age, pronouns) that belongs in always-injected
+    context. Vague identity guesses ("User identifies as X", "User is into
+    Y") stay unpinned and live in normal retrieval instead."""
+    return bool(_CORE_IDENTITY_RE.search(text))
 
 
 def _fallback_memory_candidates(messages) -> list[dict]:
@@ -192,19 +311,30 @@ def _fallback_memory_candidates(messages) -> list[dict]:
             if place:
                 add(f"User lives in {place}.", "identity")
 
-        m = re.search(r"\bi (prefer|like|love|hate|do not like|don't like)\s+([^.!?\n]{4,100})", text, re.I)
+        m = re.search(r"\bi\s+(prefer|like|love|hate|do not like|don't like|enjoy)\s+([^.!?\n]{4,200})", text, re.I)
         if m:
-            preference = _clean_memory_value(m.group(2), 100)
+            verb = m.group(1).lower()
+            # All positives normalize to "prefers", all negatives to
+            # "dislikes" — raw verb forms ("likes"/"hates") made near-duplicate
+            # facts ("User likes X" vs "User prefers X") dodge the fuzzy dedup.
+            verb_map = {
+                "prefer": "prefers",
+                "like": "prefers",
+                "love": "prefers",
+                "enjoy": "prefers",
+                "hate": "dislikes",
+                "do not like": "dislikes",
+                "don't like": "dislikes",
+            }
+            preference = _clean_memory_value(m.group(2), 200)
+            # Strip first/second-person possessives ("my new keyboard" ->
+            # "new keyboard") so the stored fact reads like a fact about the
+            # user instead of a quote with the wrong pronoun.
             if preference:
-                # The same pattern catches likes and dislikes; keep the stored
-                # sentiment faithful instead of recording every match as a
-                # preference ("I hate cilantro" must not become "User prefers
-                # cilantro").
-                verb = m.group(1).lower()
-                if verb in ("hate", "do not like", "don't like"):
-                    add(f"User dislikes {preference}.", "preference")
-                else:
-                    add(f"User prefers {preference}.", "preference")
+                preference = re.sub(r"\b(?:my|mine|our|ours|your|yours)\b", " ", preference)
+                preference = _clean_memory_value(preference, 200)
+            if preference and not _is_deictic_preference(preference):
+                add(f"User {verb_map.get(verb, 'prefers')} {preference}.", "preference")
 
         m = re.search(
             r"\bi (?:(?:want|would like|plan|hope) to|wanna) "
@@ -220,13 +350,32 @@ def _fallback_memory_candidates(messages) -> list[dict]:
     return candidates[:2]
 
 
-def _is_text_duplicate(new_text: str, existing: list, threshold: float = 0.6) -> bool:
+# Tokens too cheap to count in similarity: "prefers the dark theme" vs
+# "prefers dark theme" should match. Kept minimal so real distinctions
+# (positive vs negative objects) still register.
+_DEDUP_STOPWORDS = {
+    "the", "a", "an", "and", "or", "of", "to", "in", "for", "on",
+    "with", "at", "by", "is", "are", "was", "were",
+}
+
+
+def _dedup_tokens(text: str) -> set:
+    """Normalized token set for Jaccard: lowercase, punctuation stripped
+    (periods, commas, possessives), stopwords dropped — so rephrased
+    duplicates of the same fact land above threshold instead of slipping past
+    as separate memories."""
+    text = re.sub(r"'s\b", "", (text or "").lower())  # user's -> user
+    tokens = re.findall(r"[a-z0-9]+", text)
+    return {t for t in tokens if t not in _DEDUP_STOPWORDS}
+
+
+def _is_text_duplicate(new_text: str, existing: list, threshold: float = 0.55) -> bool:
     """Check if new_text is too similar to any existing memory (Jaccard similarity)."""
-    new_tokens = set(new_text.lower().split())
+    new_tokens = _dedup_tokens(new_text)
     if not new_tokens:
         return False
     for entry in _memory_dicts(existing):
-        old_tokens = set(entry.get("text", "").lower().split())
+        old_tokens = _dedup_tokens(entry.get("text", ""))
         if not old_tokens:
             continue
         intersection = new_tokens & old_tokens
@@ -300,6 +449,24 @@ async def extract_and_store(
         if len(recent) < 2:
             return  # Need at least a user message and assistant response
 
+        # Novelty gate: never re-analyze a window we already consumed. The
+        # cadence trigger fires on message count alone, so without this every
+        # run re-sees 2-4 of the previous run's messages and re-extracts the
+        # same facts rephrased. The baseline clamps to the current length so
+        # context compaction (which shrinks history) can't wedge the gate shut.
+        _session_id = (
+            getattr(session, "session_id", None)
+            or getattr(session, "name", None)
+            or "default"
+        )
+        _baseline = min(_last_extracted_count(memory_manager, _session_id), len(messages))
+        if len(messages) - _baseline < NOVELTY_MIN_MESSAGES:
+            logger.debug(
+                f"[memory-extract] session {_session_id}: "
+                f"{len(messages) - _baseline} new messages since last run — skipping"
+            )
+            return
+
         # Strip media (images/audio) from messages — background memory extraction
         # only needs the text. The VL-generated descriptions are already in the
         # text content of the messages. This avoids sending image tokens to
@@ -318,8 +485,6 @@ async def extract_and_store(
 
         if not stripped_recent:
             return
-
-        fallback_facts = _fallback_memory_candidates(stripped_recent)
 
         # Flatten the window into a SINGLE user message instead of appending the
         # raw alternating role messages. Passed as raw chat messages, the model
@@ -367,17 +532,30 @@ async def extract_and_store(
                 headers=headers,
             )
 
+            # The model saw this window — advance the novelty baseline so the
+            # next cadence tick doesn't re-analyze the same messages. Only on
+            # success: a raised call leaves the window un-consumed so a later
+            # trigger retries it.
+            _set_last_extracted_count(memory_manager, _session_id, len(messages))
+
             # Parse JSON, tolerating reasoning-model noise (<think> blocks, a
             # ```json fence, and leading/trailing commentary). See
             # _parse_extraction_json — returns [] rather than raising.
             facts = _parse_extraction_json(raw)
         except Exception as e:
-            logger.warning(f"LLM memory extraction failed; using fallback candidates if available: {e}")
+            logger.warning(f"LLM memory extraction failed: {e}")
 
         if not isinstance(facts, list):
             facts = []
 
-        if fallback_facts:
+        # The regex fallback is the LAST resort, not a second opinion: it only
+        # gets a chance when the LLM path produced nothing (a raised call, an
+        # unparseable reply, or a deliberate "nothing durable here"). It is
+        # never stacked on top of facts the LLM already extracted — that
+        # double-standard append is what flooded the store with "I like that
+        # idea"-style junk the model had just rejected.
+        if not facts:
+            fallback_facts = _fallback_memory_candidates(stripped_recent)
             facts = list(facts) + fallback_facts
 
         if not facts:
@@ -438,8 +616,11 @@ async def extract_and_store(
                 continue
 
             entry = memory_manager.add_entry(fact_text, source="auto", category=category, owner=_owner)
-            # Auto-pin identity facts (name, job, location) — core context
-            if category == "identity":
+            # Auto-pin CORE identity facts (name, location, job, age,
+            # pronouns) — always-injected context. A bare category guess of
+            # "identity" is not enough to permanently pin something into
+            # every prompt; the fact text has to actually state a core fact.
+            if category == "identity" and _is_pinnable_identity(fact_text):
                 entry["pinned"] = True
             if hasattr(session, "session_id"):
                 entry["session_id"] = session.session_id
@@ -469,14 +650,16 @@ async def extract_and_store(
                 logger.debug("memory_added event dispatch failed", exc_info=True)
             logger.info(f"Auto-extracted {added} memories from session")
 
-            global _extractions_since_audit
-            _extractions_since_audit += added
-            if _extractions_since_audit >= AUDIT_INTERVAL:
-                _extractions_since_audit = 0
+            # Persisted across restarts — the old process-global counter
+            # reset on every restart, silently starving the auto-audit forever.
+            _pending = _pending_audit_count(memory_manager, _owner) + added
+            if _pending >= AUDIT_INTERVAL:
+                _pending = 0
                 logger.info("Audit threshold reached, running memory audit")
                 await audit_memories(
                     memory_manager, memory_vector, endpoint_url, model, headers, owner=_owner
                 )
+            _set_pending_audit_count(memory_manager, _owner, _pending)
         else:
             logger.info("Auto memory extraction ran: 0 added")
 

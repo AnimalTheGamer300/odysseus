@@ -2,11 +2,11 @@
 // Extracted from chat.js — message rendering, sources, images, metrics
 
 import uiModule from './ui.js';
-import markdownModule from './markdown.js';
-import { svgifyEmoji } from './markdown.js';
+import markdownModule from './markdown.js?v=20260806thinkfix1';
+import { svgifyEmoji } from './markdown.js?v=20260806thinkfix1';
 import { addAITTSButton } from './tts-ai.js';
 import { providerLogo, providerLabel } from './providers.js';
-import settingsModule from './settings.js';
+import settingsModule from './settings.js?v=20260723compareicon1';
 import spinnerModule from './spinner.js';
 import { bindMenuDismiss } from './escMenuStack.js';
 import { matchModelKey } from './model/matchKey.js';
@@ -1188,7 +1188,7 @@ document.addEventListener('click', function(e) {
       a.classList.add('is-loading');
       a.setAttribute('aria-busy', 'true');
     } catch {}
-    import('./sessions.js').then(mod => {
+    import('./sessions.js?v=20260806autotitle1').then(mod => {
       const fn = mod.selectSession || (mod.default && mod.default.selectSession);
       if (fn) return fn(id, { showLoading: true, immediateLoading: true });
     }).finally(() => {
@@ -1525,18 +1525,24 @@ export function showWelcomeScreen() {
   }
 }
 
-// ── Dynamic action buttons (show 3 most recent, rest under ···) ──
-const _ACTION_RECENTS_KEY = 'odysseus-msg-actions-recent';
-const _MAX_VISIBLE = 2;
+// ── Dynamic action buttons (all actions permanently pinned, no overflow) ──
 
-function _getRecentActions() {
-  try { return JSON.parse(localStorage.getItem(_ACTION_RECENTS_KEY) || '[]'); } catch { return []; }
-}
-function _trackAction(id) {
-  let recent = _getRecentActions().filter(x => x !== id);
-  recent.unshift(id);
-  if (recent.length > 10) recent.length = 10;
-  localStorage.setItem(_ACTION_RECENTS_KEY, JSON.stringify(recent));
+/**
+ * True when an AI message still has its own user prompt directly before it —
+ * i.e. no other standalone AI response sits between them. Continuations and
+ * agent tool bubbles belong to the response and don't count as foreign.
+ * Used to hide "Regenerate" on orphaned responses whose user message was
+ * deleted (2026-08-08, Finding B).
+ */
+function _hasAdjacentUserPrompt(msgElement) {
+  if (!msgElement || !msgElement.parentNode) return false;
+  let el = msgElement.previousElementSibling;
+  while (el) {
+    if (el.classList.contains('msg-user')) return true;
+    if (el.classList.contains('msg-ai') && !el.classList.contains('msg-continuation')) return false;
+    el = el.previousElementSibling;
+  }
+  return false;
 }
 
 /**
@@ -1562,9 +1568,33 @@ export function createMsgFooter(msgElement) {
       e.stopPropagation();
       if (window.chatModule?.editAIMessage) window.chatModule.editAIMessage(msgElement);
     }},
-    { id: 'regen', icon: '\u21BB', title: 'Regenerate from here', cls: 'msg-action-btn', handler(e) {
+    { id: 'regen', icon: '\u21BB', title: 'Regenerate from here', cls: 'msg-action-btn',
+      // Hide when the response's own user prompt is gone (deleted): regen
+      // would walk back to an earlier turn and wipe everything between.
+      // (2026-08-08, Finding B)
+      available: () => _hasAdjacentUserPrompt(msgElement),
+      handler(e) {
+        e.stopPropagation();
+        if (window.chatModule?.regenerateFrom) window.chatModule.regenerateFrom(msgElement);
+      }},
+    { id: 'continue', icon: '\u25B8', title: 'Continue', cls: 'msg-action-btn', handler(e) {
       e.stopPropagation();
-      if (window.chatModule?.regenerateFrom) window.chatModule.regenerateFrom(msgElement);
+      const cm = window.chatModule;
+      if (!cm?.setPendingContinue || !cm?.setHideUserBubble) return;
+      // Same resume flow as the "[Message interrupted]" button: merge the next
+      // streamed response into this bubble, hide the handshake user bubble.
+      cm.setHideUserBubble();
+      cm.setPendingContinue(msgElement);
+      // Prefer the clean raw text; fall back to the rendered body. Strip a
+      // trailing error note so an errored message continues from its real
+      // cutoff instead of the "[Error: ...]" suffix.
+      let cutoffText = (msgElement.dataset.raw || msgElement.querySelector('.body')?.textContent || '').trim();
+      cutoffText = cutoffText.replace(/\s*\[?Error: [^\]]*\]?\s*$/i, '').trim();
+      const msgInput = document.getElementById('message');
+      if (!msgInput) return;
+      msgInput.value = 'Your previous response ended with:\n\n' + cutoffText.slice(-500) + '\n\nDo NOT repeat what you already said. Continue exactly from where you left off.';
+      const sb = document.querySelector('.send-btn');
+      if (sb) sb.click();
     }},
     { id: 'shorten', icon: '\u2702', title: 'Rewrite shorter', cls: 'msg-action-btn', handler(e) {
       e.stopPropagation();
@@ -1587,35 +1617,23 @@ export function createMsgFooter(msgElement) {
   // Filter out unavailable actions (e.g. TTS when not enabled)
   const availableActions = allActions.filter(a => !a.available || a.available());
 
-  // Determine which 3 to show: use recent order, fallback to defaults
-  const recent = _getRecentActions();
-  const defaults = ['copy', 'delete', 'fork'];
-  const order = recent.length > 0 ? recent : defaults;
-  const sorted = [...availableActions].sort((a, b) => {
-    const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
-    if (ai >= 0 && bi >= 0) return ai - bi;
-    if (ai >= 0) return -1;
-    if (bi >= 0) return 1;
-    return 0;
-  });
-  const visible = sorted.slice(0, _MAX_VISIBLE);
-  const overflow = sorted.slice(_MAX_VISIBLE);
+  // Actions pinned straight to the footer row, in exactly this order; anything
+  // else gets tucked under the "···" overflow menu.
+  const PINNED_ACTION_IDS = ['continue', 'regen', 'copy', 'delete'];
+  const pinnedActions = PINNED_ACTION_IDS.map(id => availableActions.find(a => a.id === id)).filter(Boolean);
+  const menuActions = availableActions.filter(a => !PINNED_ACTION_IDS.includes(a.id));
 
-  // Render visible buttons
-  function _addBtn(action, container) {
-    const btn = _makeActionBtn(action.cls, action.title, action.html ? '' : action.icon, (e) => {
-      _trackAction(action.id);
-      action.handler(e);
+  pinnedActions.forEach(a => {
+    const btn = _makeActionBtn(a.cls, a.title, a.html ? '' : a.icon, (e) => {
+      a.handler(e);
     });
-    if (action.html) btn.innerHTML = action.icon;
-    btn.dataset.action = action.id;
-    container.appendChild(btn);
-  }
+    if (a.html) btn.innerHTML = a.icon;
+    btn.dataset.action = a.id;
+    actions.appendChild(btn);
+  });
 
-  visible.forEach(a => _addBtn(a, actions));
-
-  // Overflow "···" button
-  if (overflow.length > 0) {
+  // Overflow "···" button for the tucked-away actions.
+  if (menuActions.length > 0) {
     const moreBtn = document.createElement('button');
     moreBtn.className = 'msg-action-btn msg-more-btn';
     moreBtn.type = 'button';
@@ -1634,7 +1652,7 @@ export function createMsgFooter(msgElement) {
       const menu = document.createElement('div');
       menu.className = 'msg-overflow-menu';
       let closeMenu = () => menu.remove();
-      overflow.forEach(a => {
+      menuActions.forEach(a => {
         const item = document.createElement('button');
         item.className = 'msg-overflow-item';
         item.type = 'button';
@@ -1642,7 +1660,6 @@ export function createMsgFooter(msgElement) {
         item.innerHTML = `<span class="overflow-icon">${a.icon}</span> ${a.title}`;
         item.addEventListener('click', (ev) => {
           ev.stopPropagation();
-          _trackAction(a.id);
           closeMenu();
           a.handler(ev);
         });
@@ -1661,7 +1678,8 @@ export function createMsgFooter(msgElement) {
       if (mr.right > window.innerWidth - 8) menu.style.left = (window.innerWidth - mr.width - 8) + 'px';
       // Close on outside click or Escape. The trigger button is treated as
       // "inside" so its own click toggles rather than double-fires.
-      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);    });
+      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);
+    });
     actions.appendChild(moreBtn);
   }
 
@@ -1740,19 +1758,8 @@ export function createMsgFooter(msgElement) {
 }
 
 /**
- * Create a footer row for a user message with action buttons (same system as AI footer).
+ * Create a footer row for a user message with action buttons (all pinned, no overflow).
  */
-const _USER_ACTION_RECENTS_KEY = 'odysseus-user-actions-recent';
-
-function _getUserRecentActions() {
-  try { return JSON.parse(localStorage.getItem(_USER_ACTION_RECENTS_KEY) || '[]'); } catch { return []; }
-}
-function _trackUserAction(id) {
-  let recent = _getUserRecentActions().filter(x => x !== id);
-  recent.unshift(id);
-  if (recent.length > 10) recent.length = 10;
-  localStorage.setItem(_USER_ACTION_RECENTS_KEY, JSON.stringify(recent));
-}
 
 export function createUserMsgFooter(msgElement) {
   const footer = document.createElement('div');
@@ -1783,22 +1790,13 @@ export function createUserMsgFooter(msgElement) {
     }},
   ];
 
-  const recent = _getUserRecentActions();
-  const defaults = ['edit', 'delete', 'copy'];
-  const order = recent.length > 0 ? recent : defaults;
-  const sorted = [...allActions].sort((a, b) => {
-    const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
-    if (ai >= 0 && bi >= 0) return ai - bi;
-    if (ai >= 0) return -1;
-    if (bi >= 0) return 1;
-    return 0;
-  });
-  const visible = sorted.slice(0, _MAX_VISIBLE);
-  const overflow = sorted.slice(_MAX_VISIBLE);
+  // Edit / Resend / Copy pinned in this order; Delete lives under "···".
+  const PINNED_ACTION_IDS = ['edit', 'resend', 'copy'];
+  const pinnedActions = PINNED_ACTION_IDS.map(id => allActions.find(a => a.id === id)).filter(Boolean);
+  const menuActions = allActions.filter(a => !PINNED_ACTION_IDS.includes(a.id));
 
-  visible.forEach(a => {
+  pinnedActions.forEach(a => {
     const btn = _makeActionBtn(a.cls, a.title, a.html ? '' : a.icon, (ev) => {
-      _trackUserAction(a.id);
       a.handler(ev);
     });
     if (a.html) btn.innerHTML = a.icon;
@@ -1806,7 +1804,8 @@ export function createUserMsgFooter(msgElement) {
     actions.appendChild(btn);
   });
 
-  if (overflow.length > 0) {
+  // Overflow "···" button for the tucked-away actions.
+  if (menuActions.length > 0) {
     const moreBtn = document.createElement('button');
     moreBtn.className = 'msg-action-btn msg-more-btn';
     moreBtn.type = 'button';
@@ -1814,6 +1813,8 @@ export function createUserMsgFooter(msgElement) {
     moreBtn.textContent = '\u00B7\u00B7\u00B7';
     moreBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      // Toggle overflow menu — close any existing one first (through its own
+      // dismiss so the Escape registry entry goes with it).
       const existing = document.querySelector('.msg-overflow-menu');
       if (existing) {
         if (typeof existing._dismiss === 'function') existing._dismiss(); else existing.remove();
@@ -1823,7 +1824,7 @@ export function createUserMsgFooter(msgElement) {
       const menu = document.createElement('div');
       menu.className = 'msg-overflow-menu';
       let closeMenu = () => menu.remove();
-      overflow.forEach(a => {
+      menuActions.forEach(a => {
         const item = document.createElement('button');
         item.className = 'msg-overflow-item';
         item.type = 'button';
@@ -1831,7 +1832,6 @@ export function createUserMsgFooter(msgElement) {
         item.innerHTML = `<span class="overflow-icon">${a.icon}</span> ${a.title}`;
         item.addEventListener('click', (ev) => {
           ev.stopPropagation();
-          _trackUserAction(a.id);
           closeMenu();
           a.handler(ev);
         });
@@ -1839,13 +1839,19 @@ export function createUserMsgFooter(msgElement) {
       });
       menu._trigger = moreBtn;
       document.body.appendChild(menu);
+      // Position fixed relative to the ··· button
       const btnRect = moreBtn.getBoundingClientRect();
       menu.style.top = (btnRect.top - menu.offsetHeight - 4) + 'px';
       menu.style.left = btnRect.left + 'px';
+      // Flip down if above viewport
       if (parseFloat(menu.style.top) < 8) menu.style.top = (btnRect.bottom + 4) + 'px';
+      // Keep within right edge
       const mr = menu.getBoundingClientRect();
       if (mr.right > window.innerWidth - 8) menu.style.left = (window.innerWidth - mr.width - 8) + 'px';
-      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);    });
+      // Close on outside click or Escape. The trigger button is treated as
+      // "inside" so its own click toggles rather than double-fires.
+      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);
+    });
     actions.appendChild(moreBtn);
   }
 
@@ -2559,8 +2565,17 @@ export function addMessage(role, content, modelName, metadata) {
     // If thinking is stored in metadata (not in text), reconstruct the full display
     if (role === 'assistant' && metadata?.thinking) {
       const thinkTime = metadata.thinking_time || null;
+      // The stored reasoning is genuine thinking — but it can itself QUOTE a
+      // think tag (the model reasoning ABOUT think tags). Wrapping it raw lets
+      // a quoted close tag terminate the rebuilt block early and leak the
+      // reasoning tail + reply out of the box ("breaks open with a little
+      // leakage"). Neutralize literal tags inside the stored reasoning BEFORE
+      // wrapping, exactly like the live delta layer does — the wrapper's own
+      // tags are the only boundary, and quoted tags render literally inside
+      // the box.
+      const safeThinking = markdownModule.neutralizeStrayThinkTags(String(metadata.thinking || ''), true);
       const thinkHtml = markdownModule.processWithThinking(
-        '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + metadata.thinking + '</think>\n\n' + text
+        '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</think>\n\n' + text
       );
       b.innerHTML = sourcesPrefix + thinkHtml + findingsSuffix;
 	    } else {

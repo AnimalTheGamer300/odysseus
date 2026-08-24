@@ -329,7 +329,26 @@ const _ROUTE_FAVICON_SHAPES = {
     "<rect x='21' y='8' width='6' height='19' rx='1' fill='none' stroke='__C__' stroke-width='2.5' transform='rotate(8 24 17)'/>",
 };
 
+let _faviconColor = '#e06c75';
+let _faviconBusy = false;
+
+// Gecko (Firefox/Floorp) refuses to repaint a favicon when only `href`
+// changes on an existing <link> node — mutating it is a no-op unless `type`
+// also changes. Canonical fix: replace the node entirely (remove + fresh
+// append) every time. PNG frames get a unique fragment so Gecko never treats
+// a busy frame as a cached URL and skips the repaint.
+function _setFavicon(href, type) {
+  const old = document.querySelectorAll("link[rel='icon']");
+  for (const el of old) el.remove();
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = type;
+  link.href = type === 'image/png' ? href + '#t=' + Date.now() : href;
+  document.head.appendChild(link);
+}
+
 function _updateFavicon(fg) {
+  _faviconColor = fg;
   const path = (window.location.pathname || '').toLowerCase();
   const routeShape = _ROUTE_FAVICON_SHAPES[path];
   let svg;
@@ -339,14 +358,7 @@ function _updateFavicon(fg) {
     svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 4L16 22L6 22Z' fill='${fg}'/><path d='M16 8L16 22L24 22Z' fill='${fg}' opacity='0.6'/><path d='M4 24Q10 20 16 24Q22 28 28 24' stroke='${fg}' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>`;
   }
   const href = 'data:image/svg+xml,' + encodeURIComponent(svg);
-  let link = document.querySelector("link[rel='icon']");
-  if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    link.type = 'image/svg+xml';
-    document.head.appendChild(link);
-  }
-  link.href = href;
+  _setFavicon(href, 'image/svg+xml');
   let apple = document.querySelector("link[rel='apple-touch-icon']");
   if (!apple) {
     apple = document.createElement('link');
@@ -354,7 +366,145 @@ function _updateFavicon(fg) {
     document.head.appendChild(apple);
   }
   apple.href = href;
+  // Re-apply the busy overlay if a stream is in flight (theme changed mid-turn)
+  if (_faviconBusy) _renderBusyFavicon();
 }
+
+// Streaming indicator: rotating arc around the current route icon.
+// ── Busy (streaming) favicon ────────────────────────────────────────────────
+// Two hard-won lessons from the field:
+//  1. Browsers repaint SVG data-URI favicons unreliably when swapped rapidly,
+//     but PNG data-URIs rendered from a <canvas> update reliably — the
+//     favico.js-proven path. Busy frames are therefore canvas → PNG.
+//  2. The frame cycle must not be a near-multiple of the browser's ~1s timer
+//     throttle or throttled ticks alias onto the same frame forever (8x120ms
+//     = 960ms did exactly that). 5 frames x 160ms = 800ms: a throttled 1s
+//     tick advances exactly 1 step — always visibly marching, never frozen.
+const _BUSY_FRAME_MS = 160;
+const _BUSY_FRAMES = 5;
+let _faviconBusyTimer = null;
+let _faviconBusyStart = 0;    // wall-clock epoch; frames are a pure function of time
+let _faviconBusyCanvas = null;
+let _faviconBusyCtx = null;
+let _faviconBusyIconImg = null;  // preloaded Image of the static route icon
+let _faviconBusyIconSrc = '';    // data-URI the cached Image was built from
+
+function _busyFrameNow() {
+  if (!_faviconBusyStart) return 0;
+  return Math.floor((Date.now() - _faviconBusyStart) / _BUSY_FRAME_MS) % _BUSY_FRAMES;
+}
+
+function _busyIconDataURI() {
+  const fg = _faviconColor;
+  const path = (window.location.pathname || '').toLowerCase();
+  const routeShape = _ROUTE_FAVICON_SHAPES[path];
+  const inner = routeShape
+    ? routeShape.split('__C__').join(fg)
+    : "<path d='M16 4L16 22L6 22Z' fill='" + fg + "'/><path d='M16 8L16 22L24 22Z' fill='" + fg + "' opacity='0.6'/><path d='M4 24Q10 20 16 24Q22 28 28 24' stroke='" + fg + "' stroke-width='2.5' fill='none' stroke-linecap='round'/>";
+  return 'data:image/svg+xml,' + encodeURIComponent(
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>" + inner + '</svg>');
+}
+
+function _loadBusyIcon() {
+  const src = _busyIconDataURI();
+  if (_faviconBusyIconImg && _faviconBusyIconSrc === src) return;
+  _faviconBusyIconSrc = src;
+  const img = new Image();
+  img.src = src;
+  _faviconBusyIconImg = img;
+}
+
+function _renderBusyFavicon() {
+  if (typeof document === 'undefined') return;
+  if (!_faviconBusyCanvas) {
+    _faviconBusyCanvas = document.createElement('canvas');
+    _faviconBusyCanvas.width = 32;
+    _faviconBusyCanvas.height = 32;
+    _faviconBusyCtx = _faviconBusyCanvas.getContext('2d');
+  }
+  _loadBusyIcon();
+  const ctx = _faviconBusyCtx;
+  const fg = _faviconColor;
+  ctx.clearRect(0, 0, 32, 32);
+
+  // Static route icon as the base layer (once its Image has decoded).
+  const img = _faviconBusyIconImg;
+  if (img && img.complete && img.naturalWidth > 0) {
+    ctx.drawImage(img, 0, 0, 32, 32);
+  } else {
+    ctx.globalAlpha = 0.35;
+    ctx.fillStyle = fg;
+    ctx.beginPath();
+    ctx.arc(16, 16, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+
+  // Rotating chunky arc (90 degrees, stepped 72 degrees per frame).
+  const angle = _busyFrameNow() * (360 / _BUSY_FRAMES);
+  const a0 = (angle - 45) * Math.PI / 180;
+  ctx.strokeStyle = fg;
+  ctx.lineWidth = 4;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.arc(16, 16, 13, a0, a0 + Math.PI / 2);
+  ctx.stroke();
+
+  // Anchor dot so the eye tracks the rotation.
+  ctx.globalAlpha = 0.3;
+  ctx.fillStyle = fg;
+  ctx.beginPath();
+  ctx.arc(16, 16, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+
+  _setFavicon(_faviconBusyCanvas.toDataURL('image/png'), 'image/png');
+}
+
+function _startBusyTimer() {
+  if (_faviconBusyTimer) {
+    clearInterval(_faviconBusyTimer);
+    _faviconBusyTimer = null;
+  }
+  _faviconBusyTimer = setInterval(() => _renderBusyFavicon(), _BUSY_FRAME_MS);
+}
+
+function _stopBusyTimer() {
+  if (_faviconBusyTimer) {
+    clearInterval(_faviconBusyTimer);
+    _faviconBusyTimer = null;
+  }
+}
+
+// Hidden tabs get timer-throttled: Chrome/Firefox drop a sub-second interval
+// to ~1s in the background. Time-based frames keep every render on the
+// correct phase even when ticks are coalesced (so a 1s tick visibly advances
+// one step), and re-creating the interval on focus shakes off stale throttle
+// state so the spin snaps back to full speed immediately.
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && _faviconBusy) {
+      _renderBusyFavicon();
+      _startBusyTimer();
+    }
+  });
+}
+
+export function setFaviconBusy(on) {
+  _faviconBusy = !!on;
+  if (_faviconBusy) {
+    _faviconBusyStart = Date.now();
+    _renderBusyFavicon();
+    _startBusyTimer();
+  } else {
+    _stopBusyTimer();
+    _faviconBusyStart = 0;
+    _faviconBusyIconImg = null;
+    _faviconBusyIconSrc = '';
+    _updateFavicon(_faviconColor);
+  }
+}
+
 
 // Cache of discovered custom fonts: { "Family Name": [ {file, url, format} ] }
 let _customFonts = {};

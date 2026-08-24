@@ -10,23 +10,23 @@ import modelsModule from './js/models.js?v=20260715startupcalm2';
 import ragModule from './js/rag.js';
 import presetsModule from './js/presets.js';
 import searchModule from './js/search.js';
-import chatModule from './js/chat.js?v=20260722ctxheader4';
+import chatModule from './js/chat.js?v=20260807historyrecall';
 import compareModule from './js/compare/index.js?v=20260723compareicon2';
 import documentModule from './js/document.js?v=20260722emailfastindex1';
 import searchChatModule from './js/search-chat.js';
 import { makeWindowDraggable } from './js/windowDrag.js';
-import markdownModule from './js/markdown.js';
-import chatRenderer from './js/chatRenderer.js?v=20260722emailfastindex1';
-import sessionModule from './js/sessions.js?v=20260722ctxheader4';
+import markdownModule from './js/markdown.js?v=20260806thinkfix1';
+import chatRenderer from './js/chatRenderer.js?v=20260806thinkfix1';
+import sessionModule from './js/sessions.js?v=20260806autotitle1';
 import memoryModule from './js/memory.js?v=20260722memoryloading1';
 import voiceRecorderModule from './js/voiceRecorder.js';
 import censorModule from './js/censor.js';
-import galleryModule from './js/gallery.js';
-import tasksModule from './js/tasks.js?v=20260723tasksbulkfeedback1';
+import galleryModule from './js/gallery.js?v=20260708match1';
+import tasksModule from './js/tasks.js?v=20260805ghostfix1';
 import calendarModule from './js/calendar.js';
 import notesModule from './js/notes.js';
 import adminModule from './js/admin.js?v=20260716openrouter3';
-import settingsModule from './js/settings.js?v=20260722emailfastindex1';
+import settingsModule from './js/settings.js?v=20260723compareicon1';
 // Eagerly bind unified minimize/restore behavior across all tool modals.
 import './js/modalManager.js?v=20260723compareicon2';
 // Desktop window tiling — drag a modal near an edge/corner to snap.
@@ -833,6 +833,17 @@ function initializeEventListeners() {
       console.warn('fresh chat stream detach failed:', e);
     }
     if (sessionModule) sessionModule.setCurrentSessionId(null);
+    // IRIS fix 2026-08-05: clear the stale "last selected session" trap so the
+    // send path's _adoptOpenedSessionBeforeAutoCreate() can't silently re-select
+    // the OLD chat when the user clicked New Chat. Without this: New Chat -> type
+    // -> send dumps the message into the previous session (no new chat is ever
+    // created, refresh shows nothing). Mirrors createDirectChat's cleanup.
+    try { window.__odysseusLastSelectedSessionId = ''; } catch (_) {}
+    try { localStorage.removeItem('lastSessionId'); } catch (_) {}
+    history.replaceState(null, '', window.location.pathname);
+    document.querySelectorAll('.list-item.active-session, .session-item.active').forEach(el => {
+      el.classList.remove('active-session', 'active');
+    });
     const box = el('chat-history');
     if (box) box.innerHTML = '';
     if (chatModule && chatModule.showWelcomeScreen) {
@@ -3339,6 +3350,14 @@ function initializeEventListeners() {
       if (!sessionModule) return;
       if (_closeCompareIfActive()) return;
       _deactivateIncognito();
+      // IRIS fix 2026-08-05 (ghost-message): the user EXPLICITLY asked for a new chat.
+      // Kill the stale-session trap + hash BEFORE the prefer-model shortcut, because
+      // that path returns early and skips _startFreshChat() (the only full reset).
+      // Otherwise the next send's _adoptOpenedSessionBeforeAutoCreate() resurrects the
+      // OLD session via hash/lastSelected and the message lands in the previous chat.
+      try { window.__odysseusLastSelectedSessionId = ''; } catch (_) {}
+      try { window.__odysseusNewChatIntent = true; } catch (_) {}
+      try { history.replaceState(null, '', window.location.pathname); } catch (_) {}
       // Clear character on new chat
       if (presetsModule && presetsModule.deactivateCharacter) presetsModule.deactivateCharacter();
       // Clear research mode if active
@@ -3908,85 +3927,9 @@ function startOdysseusApp() {
   const messageInput = el('message');
   const modelPickerWrap = document.getElementById('model-picker-wrap');
 
-  function _readComposerPromptHistory() {
-    const chatBox = document.getElementById('chat-history');
-    if (!chatBox) return [];
-    return Array.from(chatBox.querySelectorAll('.msg-user'))
-      .reverse()
-      .map(msg => {
-        const body = msg.querySelector('.body');
-        return msg.dataset?.raw || (body ? body.textContent : '') || '';
-      })
-      .filter(Boolean);
-  }
-
-  if (messageInput && !messageInput._odysseusPromptRecallCapture) {
-    messageInput._odysseusPromptRecallCapture = true;
-    let recallHistory = [];
-    let recallIndex = -1;
-    let lastRecalled = '';
-    const norm = (v) => String(v || '').replace(/\r\n/g, '\n').trimEnd();
-    messageInput.addEventListener('input', () => {
-      if (norm(messageInput.value) === norm(lastRecalled)) return;
-      recallHistory = [];
-      recallIndex = -1;
-      lastRecalled = '';
-      try { delete messageInput.dataset.odysseusRecallIndex; } catch {}
-    }, true);
-    messageInput.addEventListener('keydown', (e) => {
-      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
-      if (e.shiftKey || e.altKey || e.ctrlKey || e.metaKey || e.isComposing) return;
-      if (window._ghostAutocomplete?.isActive?.()) return;
-      const fresh = _readComposerPromptHistory();
-      const history = fresh.length ? fresh : recallHistory;
-      if (!history.length) return;
-      const current = norm(messageInput.value);
-      let currentIndex = current ? history.findIndex(item => norm(item) === current) : -1;
-      if (current && currentIndex < 0 && current === norm(lastRecalled)) currentIndex = recallIndex;
-      if (current && currentIndex < 0) {
-        const markedIndex = Number(messageInput.dataset.odysseusRecallIndex);
-        if (Number.isInteger(markedIndex) && markedIndex >= 0 && markedIndex < history.length) {
-          currentIndex = markedIndex;
-        }
-      }
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      if (e.key === 'ArrowDown') {
-        if (currentIndex < 0) return;
-        const nextIndex = currentIndex - 1;
-        if (nextIndex < 0) {
-          recallHistory = history;
-          recallIndex = -1;
-          lastRecalled = '';
-          try { delete messageInput.dataset.odysseusRecallIndex; } catch {}
-          messageInput.value = '';
-          try { messageInput.selectionStart = messageInput.selectionEnd = 0; } catch {}
-          try { uiModule.autoResize(messageInput); } catch {}
-          return;
-        }
-        const recalled = history[nextIndex];
-        recallHistory = history;
-        recallIndex = nextIndex;
-        lastRecalled = recalled;
-        try { messageInput.dataset.odysseusRecallIndex = String(nextIndex); } catch {}
-        messageInput.value = recalled;
-        try { messageInput.selectionStart = messageInput.selectionEnd = recalled.length; } catch {}
-        try { uiModule.autoResize(messageInput); } catch {}
-        return;
-      }
-      const nextIndex = currentIndex >= 0 ? Math.min(currentIndex + 1, history.length - 1) : 0;
-      const recalled = history[nextIndex];
-      if (!recalled) return;
-      recallHistory = history;
-      recallIndex = nextIndex;
-      lastRecalled = recalled;
-      try { messageInput.dataset.odysseusRecallIndex = String(nextIndex); } catch {}
-      messageInput.value = recalled;
-      try { messageInput.selectionStart = messageInput.selectionEnd = recalled.length; } catch {}
-      try { uiModule.autoResize(messageInput); } catch {}
-    }, true);
-  }
+  // Prompt-history recall lives in static/js/composerHistoryRecall.js now
+  // (↑/↓ buttons beside the chatbox, draft-preserving). All arrow keys are
+  // fully native — no keydown interception on the composer.
 
   const _sendIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
   const _micIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>';

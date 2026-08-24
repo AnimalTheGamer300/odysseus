@@ -14,9 +14,6 @@ from src.auth_helpers import effective_user
 from src.topic_analyzer import analyze_topics
 from src.upload_handler import reserve_message_upload_references
 from routes.session_routes import (
-    _message_role,
-    _message_text,
-    _reject_compact_during_active_run,
     _verify_session_owner,
 )
 
@@ -80,14 +77,26 @@ def _history_display_content(content: Any) -> Any:
     return content
 
 
+# Continue/auto-recover handshake user messages that must be removed when the
+# two assistant rows around them merge. These are deliberately hidden from the
+# live UI (no user bubble) yet persisted, so without removal they ghost back on
+# refresh (2026-08-08 sync audit). Matches user-stop Continue, the auto-recover
+# handshake, and the step-limit Continue.
+_CONTINUE_HANDSHAKE_MARKERS = (
+    "previous response was interrupted",
+    "stream dropped before you finished",
+    "hit the step limit before finishing",
+)
+
+
 def _merge_continue_rows_to_delete(db_messages, db1, db2):
     """DB rows to delete when merging the last two assistant messages.
 
     Always the second assistant message (db2), plus ONLY the single
-    intervening "continue" user message (the one carrying "previous response
-    was interrupted") — matching the in-memory merge. The previous code
-    deleted the whole index range between the two assistant rows, destroying
-    any tool/system/user messages in between and desyncing the DB from the
+    intervening "continue" user message (one of the hidden handshake texts)
+    — matching the in-memory merge. The previous code deleted the whole
+    index range between the two assistant rows, destroying any
+    tool/system/user messages in between and desyncing the DB from the
     in-memory history.
     """
     to_delete = [db2]
@@ -95,7 +104,12 @@ def _merge_continue_rows_to_delete(db_messages, db1, db2):
     i2 = next((i for i, m in enumerate(db_messages) if m is db2), None)
     if i1 is not None and i2 is not None and i2 - 1 > i1:
         between = db_messages[i2 - 1]
-        if getattr(between, "role", "") == "user" and            "previous response was interrupted" in (getattr(between, "content", "") or ""):
+        between_content = getattr(between, "content", "") or ""
+        if (
+            getattr(between, "role", "") == "user"
+            and isinstance(between_content, str)
+            and any(_m in between_content.lower() for _m in _CONTINUE_HANDSHAKE_MARKERS)
+        ):
             to_delete.append(between)
     return to_delete
 
@@ -147,6 +161,63 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
         if m.timestamp and "timestamp" not in meta:
             meta["timestamp"] = m.timestamp.isoformat() + "Z"
         return meta
+
+    def _draft_is_live(session_id: str) -> bool:
+        """True when a chat completion is actively streaming for this session
+        (a draft row for it is being checkpointed, not orphaned)."""
+        try:
+            from routes.chat_routes import _active_streams
+            rec = _active_streams.get(session_id)
+        except Exception:
+            return False
+        return bool(rec and rec.get("status") == "streaming")
+
+    def _finalize_or_hide_draft(m: DbChatMessage) -> bool:
+        """Draft-row policy for DB-served history (2026-08-08
+        draft-checkpoint audit).
+
+        Draft rows are the progressive checkpoint of an in-flight reply:
+        - a live draft (an active stream is still writing it) is HIDDEN so a
+          refresh mid-stream doesn't render a half-written reply — the resume
+          path re-attaches and replays it;
+        - an orphaned draft (no active stream — the server died mid-turn) is
+          FINALIZED to a stopped partial and kept, so a crashed turn survives
+          as a visible, resumable "[Message interrupted]" message instead of
+          vanishing or masquerading as a finished reply.
+        Returns True when the row should appear in history.
+        """
+        meta = _db_message_metadata(m)
+        if not meta.get("draft"):
+            return True
+        if _draft_is_live(m.session_id):
+            return False
+        meta.pop("draft", None)
+        meta["stopped"] = True
+        try:
+            session_manager.finalize_orphan_draft(m.session_id, m.id)
+        except Exception as e:
+            logger.error("Failed to finalize orphan draft %s: %s", m.id, e)
+        return True
+
+    def _entry_or_none(m: DbChatMessage) -> Optional[Dict[str, Any]]:
+        """History entry for a DB row, applying draft policy. Returns None
+        for live drafts (hidden); orphan drafts are finalized to stopped
+        partials first so their entry carries the post-finalize metadata
+        (the in-memory row object predates the DB update)."""
+        meta = _db_message_metadata(m)
+        if meta.get("draft"):
+            if _draft_is_live(m.session_id):
+                return None
+            meta.pop("draft", None)
+            meta["stopped"] = True
+            try:
+                session_manager.finalize_orphan_draft(m.session_id, m.id)
+            except Exception as e:
+                logger.error("Failed to finalize orphan draft %s: %s", m.id, e)
+        entry = {"role": m.role, "content": _history_display_content(m.content)}
+        if meta:
+            entry["metadata"] = meta
+        return entry
 
     def _hydrate_session_history_from_db(session_id: str, rows: list[DbChatMessage]) -> None:
         """Rebuild in-memory context from raw DB rows after a history load.
@@ -213,10 +284,16 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                         .order_by(DbChatMessage.timestamp)
                         .all()
                     )
+                    # Draft policy applies to hydration too: live drafts must
+                    # never enter the model's context, and orphan drafts are
+                    # finalized so a crashed partial stays part of context
+                    # (2026-08-08 draft-checkpoint audit).
+                    full_rows = [m for m in full_rows if _finalize_or_hide_draft(m)]
                     _hydrate_session_history_from_db(session_id, full_rows)
                 history_dict = [
-                    entry for entry in (_db_history_entry(m) for m in rows)
-                    if not (entry.get("metadata") or {}).get("hidden")
+                    entry for entry in (_entry_or_none(m) for m in rows)
+                    if entry is not None
+                    and not (entry.get("metadata") or {}).get("hidden")
                 ]
                 return {
                     "history": history_dict,
@@ -270,7 +347,9 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 )
                 db_history = []
                 for m in db_messages:
-                    db_history.append(_db_history_entry(m))
+                    _entry = _entry_or_none(m)
+                    if _entry is not None:
+                        db_history.append(_entry)
                 if db_history:
                     # Rebuild in-memory history from the full set so hidden
                     # messages (e.g. compaction summaries) are kept for AI context.
@@ -298,6 +377,31 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
         try:
             body = await request.json()
             keep_count = body.get("keep_count", 0)
+            keep_through_id = body.get("keep_through_id")
+            if keep_through_id:
+                # Id-based truncate: keep every row through the given message
+                # id (exact — no DOM counting, immune to hidden rows and
+                # unstamped bubbles). Used by regenerate so the user message
+                # row survives and is reused instead of deleted + re-sent
+                # (2026-08-08, see changelog). Falls back to keep_count when
+                # the id is unknown.
+                db = SessionLocal()
+                try:
+                    db_msgs = db.query(DbChatMessage).filter(
+                        DbChatMessage.session_id == session_id
+                    ).order_by(DbChatMessage.timestamp).all()
+                    ids = [m.id for m in db_msgs]
+                    if keep_through_id in ids:
+                        keep_count = ids.index(keep_through_id) + 1
+                    else:
+                        logger.warning(
+                            "keep_through_id %s not found in session %s — falling back to keep_count=%s",
+                            keep_through_id, session_id, keep_count,
+                        )
+                finally:
+                    db.close()
+            if not isinstance(keep_count, int) or keep_count < 0:
+                raise HTTPException(400, "keep_count must be a non-negative integer")
             result = session_manager.truncate_messages(session_id, keep_count)
             return {"status": "ok", "kept": keep_count, "truncated": result}
         except KeyError:
@@ -337,9 +441,20 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             db = SessionLocal()
             try:
                 if msg_ids:
-                    # New ID-based delete
+                    # ID-based delete: removes EXACTLY the given message ids —
+                    # no pair resolution, no turn-partner walking. Deleting an
+                    # AI message must NOT wipe the user message before it; each
+                    # message is deleted on its own terms (Sir's spec,
+                    # 2026-08-08). The frontend stamps every bubble with its
+                    # DB id (user_message_saved event / history render), so it
+                    # always sends precise ids.
+                    def _get_db_id(m):
+                        meta = m.metadata if isinstance(m, ChatMessage) else (m.get('metadata') if isinstance(m, dict) else None)
+                        return meta.get('_db_id') if isinstance(meta, dict) else None
+
+                    ids_to_delete = set(msg_ids)
                     deleted = 0
-                    for mid in msg_ids:
+                    for mid in ids_to_delete:
                         db_msg = db.query(DbChatMessage).filter(
                             DbChatMessage.id == mid,
                             DbChatMessage.session_id == session_id,
@@ -349,10 +464,7 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                             deleted += 1
 
                     # Remove from in-memory history by matching _db_id
-                    def _get_db_id(m):
-                        meta = m.metadata if isinstance(m, ChatMessage) else (m.get('metadata') if isinstance(m, dict) else None)
-                        return meta.get('_db_id') if isinstance(meta, dict) else None
-                    session.history = [m for m in session.history if _get_db_id(m) not in msg_ids]
+                    session.history = [m for m in session.history if _get_db_id(m) not in ids_to_delete]
                 elif indices:
                     # Legacy index-based delete
                     indices = sorted(indices, reverse=True)
@@ -595,11 +707,22 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 between = session.history[idx2 - 1]
                 between_role = between.role if isinstance(between, ChatMessage) else between.get('role', '')
                 between_content = between.content if isinstance(between, ChatMessage) else between.get('content', '')
-                if between_role == 'user' and 'previous response was interrupted' in between_content:
+                # A continue/auto-recover handshake user message sits between
+                # the split reply and its continuation. It is deliberately
+                # hidden from the live UI (no bubble), so when the two
+                # assistant rows merge it must go too — otherwise it ghosts
+                # back on refresh (2026-08-08 sync audit). Same marker set as
+                # the DB-side _merge_continue_rows_to_delete.
+                if (
+                    between_role == 'user'
+                    and isinstance(between_content, str)
+                    and any(_m in between_content.lower() for _m in _CONTINUE_HANDSHAKE_MARKERS)
+                ):
                     remove_indices.insert(0, idx2 - 1)
 
             for ri in sorted(remove_indices, reverse=True):
                 session.history.pop(ri)
+            session.message_count = len(session.history)
 
             # Update DB
             db = SessionLocal()
@@ -625,6 +748,16 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                     # messages, desyncing the DB from the in-memory history.
                     for _row in _merge_continue_rows_to_delete(db_messages, db1, db2):
                         db.delete(_row)
+
+                    # Keep message_count in sync: the merge removed rows from
+                    # both memory and DB, but nothing updated the count — a stale
+                    # count (11 with 10 rows) is what left the session
+                    # bookkeeping desynced after a continue-merge.
+                    from datetime import datetime, timezone
+                    db_session = db.query(DbSession).filter(DbSession.id == session_id).first()
+                    if db_session:
+                        db_session.message_count = len(session.history)
+                        db_session.updated_at = datetime.now(timezone.utc)
 
                     db.commit()
             finally:
@@ -746,142 +879,6 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             }
         except Exception as e:
             logger.error(f"Context usage error {session_id}: {e}")
-            raise HTTPException(500, str(e))
-
-    @router.post("/api/session/{session_id}/compact")
-    async def compact_session(request: Request, session_id: str):
-        """Manually trigger context compaction for a session."""
-        _verify_session_owner(request, session_id)
-        from src.auth_helpers import effective_user
-        owner = effective_user(request)
-        try:
-            session = session_manager.get_session(session_id)
-        except KeyError:
-            raise HTTPException(404, "Session not found")
-        _reject_compact_during_active_run(session_id)
-
-        try:
-            from src.model_context import estimate_tokens, get_context_length
-            from src.llm_core import llm_call_async
-            from src.endpoint_resolver import resolve_endpoint
-
-            if len(session.history) < 6:
-                return {"status": "ok", "message": "Not enough messages to compact"}
-
-            ctx_len = get_context_length(session.endpoint_url, session.model)
-            messages_before = session.get_context_messages()
-            used_before = estimate_tokens(messages_before)
-            pct_before = round((used_before / ctx_len) * 100, 1) if ctx_len else 0
-            msg_count_before = len(session.history)
-
-            # Keep only last 4 messages, summarize the rest
-            keep_count = 4
-            older = session.history[:-keep_count]
-            recent = session.history[-keep_count:]
-
-            # Build text to summarize
-            convo_text = "\n".join(
-                f"{_message_role(m).upper()}: "
-                f"{_message_text(m)[:2000]}"
-                for m in older
-            )
-
-            # Use utility model if available
-            util_url, util_model, util_headers = resolve_endpoint("utility", owner=owner or None)
-            compact_url = util_url or session.endpoint_url
-            compact_model = util_model or session.model
-            compact_headers = util_headers if util_url else session.headers
-
-            from src.context_compactor import SELF_SUMMARY_SYSTEM_PROMPT, normalize_compaction_summary
-            compaction_count = sum(1 for m in session.history if isinstance(m, ChatMessage) and "[Conversation summary" in (m.content or ""))
-            sys_prompt = SELF_SUMMARY_SYSTEM_PROMPT.replace("{count}", str(len(older))).replace("{n}", str(compaction_count + 1))
-            summary = await llm_call_async(
-                compact_url, compact_model,
-                [
-                    {"role": "system", "content": sys_prompt},
-                    {"role": "user", "content": convo_text},
-                ],
-                temperature=0.2, max_tokens=1024,
-                headers=compact_headers, timeout=30,
-            )
-            summary = normalize_compaction_summary(summary)
-
-            # Replace session history: summary as system message + recent messages
-            # System message holds the full summary for AI context
-            system_summary = ChatMessage(
-                role="system",
-                content=f"[Conversation summary — {len(older)} earlier messages were compacted]\n\n{summary}",
-                metadata={"compacted": True, "hidden": True},
-            )
-            # Visible assistant message just shows stats
-            summary_msg = ChatMessage(
-                role="assistant",
-                content=f"**Conversation compacted** — {len(older)} messages summarized, {len(recent)} kept.",
-                metadata={"compacted": True, "messages_removed": len(older)},
-            )
-            new_history = [system_summary, summary_msg] + list(recent)
-            session.history = new_history
-            session.message_count = len(session.history)
-            logger.info(f"Compact: session {session_id} history now has {len(session.history)} messages (was {msg_count_before})")
-
-            # Update DB: delete old messages, insert summary
-            db = SessionLocal()
-            try:
-                db_msgs = db.query(DbChatMessage).filter(
-                    DbChatMessage.session_id == session_id
-                ).order_by(DbChatMessage.timestamp).all()
-
-                # Delete all but the last keep_count
-                for m in db_msgs[:-keep_count]:
-                    db.delete(m)
-
-                # Insert system summary (hidden, for AI context) and visible summary
-                import json as _json
-                import uuid
-                from datetime import datetime, timezone
-                now = datetime.now(timezone.utc)
-                db_sys_summary = DbChatMessage(
-                    id=str(uuid.uuid4()),
-                    session_id=session_id,
-                    role="system",
-                    content=system_summary.content,
-                    meta_data=_json.dumps(system_summary.metadata),
-                    timestamp=now,
-                )
-                db.add(db_sys_summary)
-                db_summary = DbChatMessage(
-                    id=str(uuid.uuid4()),
-                    session_id=session_id,
-                    role="assistant",
-                    content=summary_msg.content,
-                    meta_data=_json.dumps(summary_msg.metadata),
-                    timestamp=now,
-                )
-                db.add(db_summary)
-
-                # Update session record
-                db_session = db.query(DbSession).filter(DbSession.id == session_id).first()
-                if db_session:
-                    db_session.message_count = len(session.history)
-                    db_session.updated_at = datetime.now(timezone.utc)
-                db.commit()
-            finally:
-                db.close()
-
-            session_manager.save_sessions()
-
-            used_after = estimate_tokens(session.get_context_messages())
-            pct_after = round((used_after / ctx_len) * 100, 1) if ctx_len else 0
-
-            return {
-                "status": "ok",
-                "message": f"Compacted: {msg_count_before} msgs → {len(session.history)} msgs ({pct_before}% → {pct_after}%)",
-                "before": pct_before,
-                "after": pct_after,
-            }
-
-        except Exception as e:
-            logger.error(f"Manual compact error {session_id}: {e}")
             raise HTTPException(500, str(e))
 
     return router

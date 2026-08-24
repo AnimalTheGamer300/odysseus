@@ -146,6 +146,11 @@ KNOWN_CONTEXT_WINDOWS = {
     'deepseek-reasoner': 64000,
     'deepseek-r1': 64000,
     'deepseek-v3': 64000,
+    'deepseek-v4': 1048576,
+    # The free flash variant is actually served with a 200K window even though
+    # the endpoint advertises 1M (substring longest-match wins over
+    # 'deepseek-v4', so this entry is the one that resolves — 2026-08-09).
+    'deepseek-v4-flash-free': 200000,
     'deepseek-v2': 64000,
 
     # --- Google ---
@@ -238,9 +243,39 @@ KNOWN_CONTEXT_WINDOWS = {
 _context_cache: Dict[Tuple[str, str], Tuple[int, bool]] = {}
 
 
+def _context_length_override(endpoint_url: str, model: str) -> Optional[int]:
+    """User-pinned context window from settings (key ``model_context_overrides``).
+
+    Keys are exact model ids, or ``model@endpoint`` / ``endpoint@model`` pairs.
+    A user override beats the known-models table and the endpoint's own /models
+    claim, which can be wrong — a free proxy can advertise a 1M window for a
+    model that is actually served with 200K, which stops the compactor from
+    ever firing before the real window is exceeded (2026-08-09). Returns None
+    when no override is set.
+    """
+    try:
+        from src.settings import load_settings
+        overrides = load_settings().get("model_context_overrides") or {}
+    except Exception:
+        return None
+    if not isinstance(overrides, dict):
+        return None
+    for key in (model, f"{model}@{endpoint_url}", f"{endpoint_url}@{model}"):
+        val = overrides.get(key)
+        if isinstance(val, (int, float)) and val > 0:
+            return int(val)
+    return None
+
+
 def _get_context_length_cached(endpoint_url: str, model: str) -> Tuple[int, bool]:
     """Return (context_length, known). ``known`` is False only when the value is a
     bare DEFAULT_CONTEXT fallback (no endpoint report and not in the known table)."""
+    # User-pinned override wins over the cache, the known table, and the
+    # endpoint's /models claim (see _context_length_override).
+    override = _context_length_override(endpoint_url, model)
+    if override is not None:
+        logger.info(f"Using user-configured context window for {model}: {override}")
+        return override, True
     configured_kind = _configured_endpoint_kind(endpoint_url)
     is_local = is_local_endpoint(endpoint_url)
     # Key on (endpoint_url, model): the same model id can be served by two
@@ -517,4 +552,21 @@ def estimate_tokens(messages: List[Dict]) -> int:
                     args = str(args)  # some shapes store arguments as a dict
                 total += 4  # per tool-call overhead (id, type, wrapper)
                 total += int((len(str(name)) + len(args)) * 0.3)
+        # Reasoning pass-backs (metadata.thinking → reasoning_content) are
+        # re-sent to the provider on EVERY request and count toward the real
+        # input window, but were invisible to this estimate — a thinking-heavy
+        # session measured ~1/8 of its true size, so the compaction/trim gates
+        # fired far too late and the model's real window was exceeded before
+        # the compactor ever ran (2026-08-09).
+        reasoning = msg.get("reasoning_content")
+        if reasoning is None:
+            _meta = msg.get("metadata")
+            if isinstance(_meta, dict):
+                reasoning = _meta.get("reasoning_content") or _meta.get("thinking")
+        if isinstance(reasoning, str):
+            total += int(len(reasoning) * 0.3)
+        elif isinstance(reasoning, list):
+            for item in reasoning:
+                if isinstance(item, dict) and item.get("type") == "text":
+                    total += int(len(item.get("text", "")) * 0.3)
     return total

@@ -68,11 +68,22 @@ def is_self_hosted(endpoint_url: str) -> bool:
 
 # Patterns that show up in tool RESULTS when the call failed.
 _TOOL_ERROR_PATTERNS = [
+    # NOTE: patterns are matched against the START of each line of tool
+    # output (re.MULTILINE), never mid-text. Unanchored patterns like the
+    # old \berror:\s would match the literal string "error: " ANYWHERE —
+    # including inside source code that a tool (grep/sed/read) returned,
+    # which falsely flagged a healthy turn as failed and hijacked the
+    # conversation with a teacher takeover. Only scan for real error
+    # *shapes*, not occurrences of the word "error".
     re.compile(r"^Unknown action\b", re.IGNORECASE),
     re.compile(r"^Failed to\b", re.IGNORECASE),
-    re.compile(r"\bnot found\b", re.IGNORECASE),
     re.compile(r"^Invalid\b", re.IGNORECASE),
-    re.compile(r"\berror:\s", re.IGNORECASE),
+    re.compile(r"^(?:error|Error|ERROR):\s", re.MULTILINE),
+    re.compile(r"^Traceback \(most recent call last\):", re.MULTILINE),
+    re.compile(r"^(?:ModuleNotFoundError|ImportError|FileNotFoundError|PermissionError|KeyError|ValueError|TypeError|OSError|RuntimeError|TimeoutError|ConnectionError)\b", re.MULTILINE),
+    re.compile(r"^bash:\s.*(?:not found|command not found)", re.MULTILINE),
+    re.compile(r"^No such file or directory", re.MULTILINE),
+    re.compile(r"^Permission denied", re.MULTILINE),
 ]
 
 # Patterns that show up in the AGENT'S REPLY when it gave up or
@@ -233,7 +244,14 @@ async def _call_teacher(teacher_model_spec: str, prompt: str,
                         owner: Optional[str] = None) -> Optional[str]:
     """Call the configured teacher endpoint with the escalation prompt."""
     from src.llm_core import llm_call_async
-    from src.ai_interaction import _resolve_model, _TEACHER_SYSTEM_PROMPT
+    from src.ai_interaction import _resolve_model
+    try:
+        # Post-#3629 home: the tool->registry migration moved the model-
+        # interaction tools (and this constant) out of src.ai_interaction.
+        from src.agent_tools.model_interaction_tools import _TEACHER_SYSTEM_PROMPT
+    except ImportError:
+        # Pre-#3629 home (parity with .old): fall back to ai_interaction.
+        from src.ai_interaction import _TEACHER_SYSTEM_PROMPT
     try:
         url, model, headers = await asyncio.to_thread(_resolve_model, teacher_model_spec, owner=owner)
     except Exception as e:

@@ -224,6 +224,13 @@ def _resolve_tool_path_in_workspace(workspace: str, raw_path: str) -> str:
             if os.path.commonpath([os.path.normcase(resolved), nbase]) != nbase:
                 raise ValueError
         except ValueError:
+            # User-nominated path bypass: if the raw path appears VERBATIM in
+            # the user's own message, trust it (they pasted an absolute path).
+            # The sensitive-file deny list above still applies — this only
+            # relaxes containment, never the deny list.
+            user_text = _active_user_text.get()
+            if user_text and str(raw_path).strip() in user_text:
+                return resolved
             raise ValueError(f"path '{raw_path}' is outside the workspace ({workspace})")
     return resolved
 
@@ -241,6 +248,20 @@ def _resolve_tool_path_in_workspace(workspace: str, raw_path: str) -> str:
 _active_workspace: contextvars.ContextVar = contextvars.ContextVar(
     "agent_active_workspace", default=None
 )
+
+# User-nominated path bypass: verbatim last user message, bound per-turn.
+# _resolve_tool_path_in_workspace consults it so a path the USER explicitly
+# typed (e.g. an absolute path pasted into chat) is trusted even when it
+# escapes the workspace. Only ever matched verbatim against real user text —
+# the model cannot nominate paths on its own.
+_active_user_text: contextvars.ContextVar = contextvars.ContextVar(
+    "agent_active_user_text", default=None
+)
+
+
+def get_active_user_text() -> Optional[str]:
+    """The verbatim last user message for this turn, or None."""
+    return _active_user_text.get()
 
 
 def get_active_workspace() -> Optional[str]:

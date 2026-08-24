@@ -10,7 +10,7 @@ import re
 import os
 from contextlib import asynccontextmanager
 from fastapi import HTTPException
-from typing import Optional, Dict, List, Tuple
+from typing import Optional, Dict, List, Tuple, Union
 from src.model_context import get_context_length, DEFAULT_CONTEXT, is_local_endpoint
 from urllib.parse import urlparse
 
@@ -617,6 +617,7 @@ def _build_ollama_payload(
     stream: bool = False,
     tools: Optional[List[Dict]] = None,
     num_ctx: Optional[int] = None,
+    disable_thinking: bool = False,
 ) -> Dict:
     """Build the JSON payload for Ollama's /api/chat endpoint.
 
@@ -628,12 +629,18 @@ def _build_ollama_payload(
     the value is trusted (not the ``DEFAULT_CONTEXT`` fallback), so we
     don't guess for unknown models but do tell Ollama the real window
     when we know it — even if it's smaller than 2048.
+
+    ``disable_thinking=True`` sets Ollama's top-level ``think: false`` so
+    reasoning models answer without emitting chain-of-thought (used by
+    compaction/summary callers).
     """
     payload: Dict = {
         "model": model,
         "messages": _ollama_normalize_messages(messages),
         "stream": stream,
     }
+    if disable_thinking:
+        payload["think"] = False
     options: Dict = {}
     if temperature is not None:
         options["temperature"] = temperature
@@ -1253,9 +1260,33 @@ def _anthropic_rejects_temperature(model: str) -> bool:
 # ODYSSEUS_MISTRAL_REASONING_EFFORT (e.g. set to "medium" for cheaper chat).
 _MISTRAL_REASONING_EFFORT = os.getenv("ODYSSEUS_MISTRAL_REASONING_EFFORT", "high")
 
+# DeepSeek V4 models (deepseek-v4 / deepseek-v4-flash via OpenCode Zen or the
+# DeepSeek API) enable thinking BY DEFAULT. Per DeepSeek's docs, the only way to
+# turn it off per-request is an explicit "thinking": {"type": "disabled"} - merely
+# omitting the field leaves thinking ON. Default here: thinking DISABLED. Set
+# ODYSSEUS_DEEPSEEK_V4_THINKING=1 to leave the upstream default (thinking on).
+_DEEPSEEK_V4_THINKING = os.getenv("ODYSSEUS_DEEPSEEK_V4_THINKING", "0").strip().lower()
+
+def _disable_deepseek_v4_thinking(payload: dict, model: str, force: bool = False) -> None:
+    """Inject DeepSeek V4's thinking-off switch unless the user opted back in.
+
+    ``force=True`` disables thinking even when ODYSSEUS_DEEPSEEK_V4_THINKING=1.
+    Compaction/summary calls pass force=True: a summary generated from
+    chain-of-thought is worse than useless, and a thinking model burns the
+    summary's whole max_tokens budget on reasoning before the real summary is
+    ever written (the "summary is a cut-off internal monologue" bug).
+    """
+    if not payload or not model:
+        return
+    if "deepseek-v4" not in model.lower():
+        return
+    if not force and _DEEPSEEK_V4_THINKING in ("1", "true", "yes", "on", "enabled"):
+        return  # leave upstream default (thinking on)
+    payload["thinking"] = {"type": "disabled"}
+
 # Models that support structured thinking — may output </think> without opening tag
 _THINKING_MODEL_PATTERNS = (
-    "qwen3", "qwq", "deepseek-r1", "deepseek-reasoner", "minimax",
+    "qwen3", "qwq", "deepseek-r1", "deepseek-reasoner", "deepseek-v4", "minimax",
     "m2-reap", "gemma", "stepfun", "step-3", "step3",
     "magistral", "mistral-small", "mistral-medium",
 )
@@ -1488,7 +1519,7 @@ def _is_untrusted_context_content(content) -> bool:
 _REFERENCE_CONTEXT_BOUNDARY = "Reference context received."
 
 
-def _sanitize_llm_messages(messages: List[Dict]) -> List[Dict]:
+def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[Dict]:
     """Strip Odysseus-only metadata before sending messages to providers.
 
     Per the OpenAI chat format: user/system messages must have content; a tool
@@ -1499,7 +1530,11 @@ def _sanitize_llm_messages(messages: List[Dict]) -> List[Dict]:
     (content=None, since Gemini/Ollama reject tool_calls alongside ""). Dropping
     it leaves the tool result dangling and breaks the next round.
     """
-    allowed = {"role", "content", "name", "tool_call_id", "tool_calls", "function_call", "reasoning_content"}
+    # Groq does not support reasoning_content for assistant role messages
+    if provider != "groq":
+        allowed = {"role", "content", "name", "tool_call_id", "tool_calls", "function_call", "reasoning_content"}
+    else:
+        allowed = {"role", "content", "name", "tool_call_id", "tool_calls", "function_call"}
     cleaned = []
     for msg in messages or []:
         if not isinstance(msg, dict):
@@ -1850,6 +1885,7 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
         _apply_local_generation_stability(payload, target_url, model)
         if provider == "mistral" and _supports_thinking(model):
             payload["reasoning_effort"] = _MISTRAL_REASONING_EFFORT
+        _disable_deepseek_v4_thinking(payload, model)
     try:
         note_model_activity(target_url, model)
         r = httpx_post_kimi_aware(target_url, h, json=payload, timeout=timeout)
@@ -1929,6 +1965,28 @@ def llm_call_with_fallback(candidates, messages, **kwargs) -> str:
     raise last_err if last_err else HTTPException(503, "All fallback candidates failed")
 
 
+def _extract_finish_reason(provider: str, data: dict) -> Optional[str]:
+    """Best-effort finish_reason extraction across provider response shapes.
+
+    OpenAI-compatible endpoints put it at ``choices[0].finish_reason``
+    ("length" when the output hit ``max_tokens``), Anthropic at top-level
+    ``stop_reason`` ("max_tokens"), Ollama at top-level ``done_reason``
+    ("length"). Returns None when absent or unparseable — callers treat
+    that as "not truncated" rather than guessing.
+    """
+    try:
+        if provider == "anthropic":
+            return data.get("stop_reason")
+        if provider == "ollama":
+            return data.get("done_reason")
+        choices = data.get("choices") or []
+        if choices and isinstance(choices[0], dict):
+            return choices[0].get("finish_reason")
+    except Exception:
+        pass
+    return None
+
+
 async def llm_call_async_with_fallback(candidates, messages, **kwargs) -> str:
     """Async variant of `llm_call_with_fallback` — same semantics."""
     cands = _dedupe_candidates(candidates)
@@ -1958,10 +2016,25 @@ async def llm_call_async(
     prompt_type: Optional[str] = None,
     session_id: Optional[str] = None,
     workload: str = "foreground",
-) -> str:
-    """Asynchronous LLM call using httpx with connection pooling, timeout, retry logic, and performance logging."""
+    disable_thinking: bool = False,
+    return_finish_reason: bool = False,
+) -> Union[str, Tuple[str, Optional[str]]]:
+    """Asynchronous LLM call using httpx with connection pooling, timeout, retry logic, and performance logging.
+
+    ``disable_thinking=True`` forces thinking off for known reasoning-model
+    families (DeepSeek V4, Mistral, Ollama) and suppresses the
+    reasoning_content response fallback — compaction/summary callers use this
+    so a thinking model's chain-of-thought can never be returned as the
+    summary (and can't burn the summary's max_tokens budget on reasoning).
+
+    With ``return_finish_reason=True``, returns ``(text, finish_reason)``
+    instead of plain ``text`` — finish_reason is ``"length"`` /
+    ``"max_tokens"`` when the output was cut at ``max_tokens`` (callers like
+    the context compactor use this to detect silently truncated summaries).
+    Cached responses carry no finish_reason and return None.
+    """
     provider = _detect_provider(url)
-    messages_copy = _sanitize_llm_messages(messages)
+    messages_copy = _sanitize_llm_messages(messages, provider=provider)
 
     # Consolidate multiple system messages into one at the start.
     sys_parts = []
@@ -1980,6 +2053,9 @@ async def llm_call_async(
     cached_response = _get_cached_response(cache_key)
     if cached_response:
         logger.debug(f"Returning cached response for key: {cache_key}")
+        if return_finish_reason:
+            # Cached responses don't store finish_reason — treat as untruncated.
+            return cached_response, None
         return cached_response
 
     if provider == "chatgpt-subscription":
@@ -2010,6 +2086,8 @@ async def llm_call_async(
                 if raw == "[DONE]":
                     response = "".join(parts)
                     _set_cached_response(cache_key, response)
+                    if return_finish_reason:
+                        return response, None
                     return response
                 try:
                     data = json.loads(raw)
@@ -2024,6 +2102,8 @@ async def llm_call_async(
                     parts.append(delta)
         response = "".join(parts)
         _set_cached_response(cache_key, response)
+        if return_finish_reason:
+            return response, None
         return response
 
     if provider == "anthropic":
@@ -2038,6 +2118,7 @@ async def llm_call_async(
         payload = _build_ollama_payload(
             model, messages_copy, temperature, max_tokens,
             stream=False, num_ctx=get_context_length(url, model),
+            disable_thinking=disable_thinking,
         )
     else:
         target_url = _normalize_openai_chat_url(url)
@@ -2059,7 +2140,8 @@ async def llm_call_async(
         if _is_ollama_openai_compat_url(url) and _supports_thinking(model):
             payload["think"] = False
         if provider == "mistral" and _supports_thinking(model):
-            payload["reasoning_effort"] = _MISTRAL_REASONING_EFFORT
+            payload["reasoning_effort"] = "minimal" if disable_thinking else _MISTRAL_REASONING_EFFORT
+        _disable_deepseek_v4_thinking(payload, model, force=disable_thinking)
         _apply_local_cache_affinity(payload, url, session_id)
         _apply_local_generation_stability(payload, target_url, model)
 
@@ -2097,8 +2179,13 @@ async def llm_call_async(
                     response = _parse_ollama_response(data)
                 else:
                     msg = data["choices"][0]["message"]
-                    response = msg.get("content") or msg.get("reasoning_content") or ""
+                    # Never fall back to reasoning_content for summary/compact
+                    # callers: a thinking model's chain-of-thought is not a
+                    # summary (and with thinking forced off there is none).
+                    response = msg.get("content") or ("" if disable_thinking else (msg.get("reasoning_content") or ""))
                 _set_cached_response(cache_key, response)
+                if return_finish_reason:
+                    return response, _extract_finish_reason(provider, data)
                 return response
             except Exception:
                 raise HTTPException(502, f"Unexpected schema from {target_url}: {str(data)[:400]}")
@@ -2228,6 +2315,7 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
         # <think> blocks. Ollama /v1 accepts "think": false as a top-level param.
         if _is_ollama_openai_compat_url(url) and _supports_thinking(model):
             payload["think"] = False
+        _disable_deepseek_v4_thinking(payload, model)
         _apply_local_cache_affinity(payload, url, session_id)
         _apply_local_generation_stability(payload, target_url, model)
         _scrub_openai_chat_tool_reasoning(payload, target_url, model)

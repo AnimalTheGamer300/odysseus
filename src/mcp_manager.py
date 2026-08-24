@@ -656,10 +656,21 @@ class McpManager:
     _cached_prompt_desc = None
     _cached_prompt_desc_key = None
 
-    def get_tool_descriptions_for_prompt(self, disabled_map: Optional[Dict[str, set]] = None) -> str:
-        """Generate text describing MCP tools for the agent system prompt. Cached."""
+    def get_tool_descriptions_for_prompt(
+        self,
+        disabled_map: Optional[Dict[str, set]] = None,
+        disabled_tools: Optional[Set[str]] = None,
+    ) -> str:
+        """Generate text describing MCP tools for the agent system prompt. Cached.
+
+        disabled_map filters per-server by bare tool name; disabled_tools
+        additionally filters by fully-qualified name (mcp__server__tool) so
+        globally disabled tools never appear in the prompt prose either.
+        """
+        disabled_tools = set(disabled_tools or [])
         cache_key = (
             frozenset((k, frozenset(v)) for k, v in (disabled_map or {}).items()),
+            frozenset(disabled_tools),
             len(self._tools),
             self._generation,
         )
@@ -677,6 +688,8 @@ class McpManager:
             if self.is_builtin(t["server_id"]) and t["server_id"] != "builtin_browser":
                 continue
             if t.get("is_disabled"):
+                continue
+            if t["qualified_name"] in disabled_tools:
                 continue
             sn = t["server_name"]
             if sn not in by_server:

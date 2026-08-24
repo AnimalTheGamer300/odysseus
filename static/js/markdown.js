@@ -153,6 +153,111 @@ export function sanitizeAllowedHtml(html) {
 /**
  * Check if text has unclosed think tag
  */
+export function neutralizeStrayThinkTags(text, force) {
+  if (!text) return text;
+  // Quick exit: nothing think-like in this text (openers AND closers).
+  if (!force && !/<(?:\/)?(?:mm:)?(?:think|thinking|thought)|<\|channel>|<channel\|>/i.test(text)) return text;
+
+  // A genuine thinking block always OPENS at a block boundary (start of the
+  // message or start of a line, optional indent). An opener embedded mid-line
+  // — e.g. the model QUOTING the tag in prose like "each round's <think> from
+  // x" — is content, not control. And a closer is only real when it closes a
+  // real opener; an orphan/quoted closer (or a quoted pair) is content too.
+  //
+  // Without this, a quoted tag flips the parser into "unclosed thinking block"
+  // mode and the rest of the message gets swallowed (live stream shows a bare
+  // "Thinking" box; final render drops everything from the tag onward).
+  // Nothing-lost rule: quoted tags become unique placeholder tokens so the
+  // think machinery never sees them as control boundaries. They're restored to
+  // literal tags AFTER extraction but BEFORE markdown rendering (restoreThinkTags),
+  // so the renderer escapes them exactly once — the browser shows real
+  // brackets, not double-escaped entities.
+  //
+  // Fenced code blocks are escaped too: a tag inside a fence is code, and
+  // placeholder-escaping it (then restoring) keeps extractThinkingBlocks from
+  // eating it as a real thinking block while the code renderer still displays
+  // it literally.
+  const TOKEN_RE = /<(?:mm:)?(?:think|thinking|thought)(?:\s+[^>]*)?>|<\/(?:mm:)?(?:think|thinking|thought)>|<\|channel>(?:thought|response)|<channel\|>/gi;
+  const OPEN_RE = /^<(?:mm:)?(?:think|thinking|thought)(?:\s|>)/i;
+  const CLOSE_RE = /^<\/(?:mm:)?(?:think|thinking|thought)>/i;
+  const CH_THOUGHT_RE = /^<\|channel>thought/i;
+  const CH_END_RE = /^<channel\|>/i;
+  const CH_RESPONSE_RE = /^<\|channel>response/i;
+  const esc = (m) => {
+    const hex = Array.from(m).map((ch) => ch.charCodeAt(0).toString(16).padStart(2, '0')).join('');
+    return `__THINKPH_${hex}__`;
+  };
+
+  if (force) {
+    // CONTENT mode: the caller knows this text is model REPLY content — it can
+    // never contain genuine thinking tags (the UI inserts those itself), so
+    // EVERY think-family tag here is quoted content. Escape them all, fences
+    // included, plus a trailing partial tag prefix so a tag split across stream
+    // deltas can never reform into a control boundary.
+    let out = String(text).replace(TOKEN_RE, (m) => esc(m));
+    const tail = out.match(/<[a-zA-Z:|/]*$/);
+    if (tail) {
+      out = out.slice(0, tail.index) + esc('<') + out.slice(tail.index + 1);
+    }
+    return out;
+  }
+
+  const lines = String(text).split('\n');
+  let inFence = null;
+  let inBlock = false; // we have an open, real thinking block pending
+
+  const out = lines.map((line, lineIndex) => {
+    const fenceMatch = line.match(/^\s*(```|~~~)/);
+    if (fenceMatch) {
+      if (!inFence) inFence = fenceMatch[1];
+      else if (inFence === fenceMatch[1]) inFence = null;
+      return line;
+    }
+    if (inFence) {
+      // Inside a code fence the tags are CODE, not control — but escaping them
+      // to placeholders (rather than leaving them raw) stops extractThinkingBlocks
+      // from eating them as a real thinking block. They're restored to literal
+      // tags before markdown rendering, so the code block displays them correctly.
+      return line.replace(TOKEN_RE, (m) => esc(m));
+    }
+
+    return line.replace(TOKEN_RE, (m, offset) => {
+      const atBoundary = /^\s*$/.test(line.slice(0, offset));
+      // Genuine thinking is MARKED by the UI (<think real="1">, from
+      // json.thinking deltas) or sits at the very START of the stream
+      // (backend auto-detected / repaired content tags). Anything else —
+      // including a quoted line-start tag mid-reply — is content.
+      const isMarked = /real="1"/i.test(m);
+      const isTextStart = lineIndex === 0 && offset === 0;
+      if (OPEN_RE.test(m) || CH_THOUGHT_RE.test(m)) {
+        if (isMarked || isTextStart) { inBlock = true; return m; }   // real opener
+        return esc(m);                                                // quoted opener
+      }
+      if (CLOSE_RE.test(m) || CH_END_RE.test(m)) {
+        if (inBlock) { inBlock = false; return m; }      // real closer
+        return esc(m);                                   // orphan/quoted closer
+      }
+      // <|channel>response or anything else: keep only at a boundary
+      if (CH_RESPONSE_RE.test(m) && atBoundary) return m;
+      return esc(m);
+    });
+  });
+
+  return out.join('\n');
+}
+
+/**
+ * Restore placeholder tokens produced by neutralizeStrayThinkTags back into
+ * their literal tags. Call this AFTER think extraction but BEFORE the markdown
+ * renderer runs, so the renderer escapes each tag exactly once and the browser
+ * displays real brackets instead of a double-escaped entity.
+ */
+export function restoreThinkTags(text) {
+  if (!text || !/__THINKPH_[0-9a-f]+__/.test(text)) return text;
+  return text.replace(/__THINKPH_([0-9a-f]+)__/g, (_m, hex) =>
+    (hex.match(/../g) || []).map((b) => String.fromCharCode(parseInt(b, 16))).join(''));
+}
+
 export function hasUnclosedThinkTag(text) {
   text = normalizeThinkingMarkup(text || '');
   const openCount =
@@ -170,6 +275,9 @@ export function startsWithReasoningPrefix(text) {
 
 export function normalizeThinkingMarkup(text) {
   if (!text) return text;
+  // Neutralize quoted/embedded think tags FIRST so the tag normalization and
+  // the unclosed-tag parser below never see them as control boundaries.
+  text = neutralizeStrayThinkTags(text);
   let normalized = text;
   // MiniMax M-series can emit namespaced reasoning tags like
   // <mm:think>...</mm:think>. Normalize them into the shared thinking parser.
@@ -254,7 +362,10 @@ export function extractThinkingBlocks(text) {
   let normalized = normalizePlainThinking(text);
   // Collapse <think>short</think>...real thinking...</think> into one block
   // Models sometimes emit a trivial first block then continue thinking outside tags
-  normalized = normalized.replace(/<think(?:ing)?(?:\s+[^>]*)?>.{0,30}<\/think(?:ing)?>\s*([\s\S]*?)<\/think(?:ing)?>/gi, (m, content) => {
+  // The middle section must NOT contain another <think> opener — otherwise
+  // legitimate consecutive blocks (<think>a</think>\n\n<think>b</think>) get
+  // their second opener swallowed into the captured content and lost.
+  normalized = normalized.replace(/<think(?:ing)?(?:\s+[^>]*)?>.{0,30}<\/think(?:ing)?>\s*((?:(?!<think(?:ing)?(?:\s+[^>]*)?>)[\s\S])*?)<\/think(?:ing)?>/gi, (m, content) => {
     return '<think>' + content.trim() + '</think>';
   });
 
@@ -302,7 +413,13 @@ export function extractThinkingBlocks(text) {
       if (strayOpener) {
         cleanContent = strayOpener[1];
       } else {
-        cleanContent = cleanContent.replace(/<think(?:ing)?(?:\s+[^>]*)?>[\s\S]*$/gi, '');
+        // Mid-message unclosed opener. Old behavior dropped everything from the
+        // tag onward ("it's truncated thinking") — which destroyed replies that
+        // merely QUOTED a think tag. Nothing-lost rule: strip the opener(s) and
+        // keep the tail as content. A genuinely cut-off thinking tail leaking
+        // into the reply as text beats vanishing entirely.
+        cleanContent = cleanContent.replace(/<think(?:ing)?(?:\s+[^>]*)?>[\s\S]*$/gi, (m) =>
+          m.replace(/<think(?:ing)?(?:\s+[^>]*)?>/gi, ''));
       }
     }
   }
@@ -323,8 +440,8 @@ export function extractThinkingBlocks(text) {
     : thinkingBlocks;
 
   return {
-    thinkingBlocks: mergedBlocks,
-    content: cleanContent.trim(),
+    thinkingBlocks: mergedBlocks.map((b) => restoreThinkTags(b)),
+    content: restoreThinkTags(cleanContent.trim()),
     thinkingTime,
   };
 }
@@ -482,6 +599,128 @@ export function processWithThinking(text) {
   return _useSvgEmoji() ? svgifyEmoji(html) : html;
 }
 
+// ── List / blockquote builders ────────────────────────────────────────────────
+// These replace the old flat list & quote passes in mdToHtml. They run on the
+// line-split string AFTER inline formatting (bold/italic/headers/hr) has been
+// applied, and emit final <ul>/<ol>/<blockquote> HTML that the paragraph pass
+// skips (its exclusion list already covers <ul>/<ol>/<li>/<blockquote>).
+
+function _listItem(line) {
+  const m = /^(\s*)([-*]|\d+\.)\s+(.*)$/.exec(line);
+  if (!m) return null;
+  const marker = m[2];
+  return {
+    indent: m[1].replace(/\t/g, '  ').length,
+    type: /^\d+\.$/.test(marker) ? 'ol' : 'ul',
+    content: m[3],
+  };
+}
+
+function _listItemHtml(content) {
+  const task = /^\[([ xX])\]\s+(.*)$/.exec(content);
+  if (task) {
+    const done = task[1].toLowerCase() === 'x';
+    return {
+      cls: ` class="task-item${done ? ' task-done' : ''}"`,
+      inner: `<span class="task-check" aria-hidden="true"></span><span class="task-text">${task[2]}</span>`,
+    };
+  }
+  return { cls: '', inner: content };
+}
+
+function _collectList(lines, start, baseIndent) {
+  let i = start;
+  let type = null;
+  const items = [];
+  let lastIdx = -1;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (line.trim() === '') {
+      // Blank line: keep the list going only if the next non-blank line is a
+      // list item at or below this list's indent (loose list).
+      let j = i;
+      while (j < lines.length && lines[j].trim() === '') j++;
+      if (j < lines.length) {
+        const m = _listItem(lines[j]);
+        if (m && m.indent >= baseIndent) { i = j; continue; }
+      }
+      break;
+    }
+    const m = _listItem(line);
+    if (!m) break;
+    if (m.indent < baseIndent) break;
+    if (m.indent === baseIndent) {
+      // Sibling item. A marker-type change (ul→ol or vice versa) at the same
+      // indent ends this list; the outer loop starts a fresh one.
+      if (type && m.type !== type) break;
+      type = m.type;
+      items.push({ content: m.content, children: '' });
+      lastIdx = items.length - 1;
+      i++;
+      continue;
+    }
+    // Deeper indent → nested list under the previous item.
+    if (lastIdx < 0) break;
+    const child = _collectList(lines, i, m.indent);
+    items[lastIdx].children = child.html;
+    i = child.next;
+  }
+  const tag = type === 'ol' ? 'ol' : 'ul';
+  const html = `<${tag}>${items.map((it) => {
+    const t = _listItemHtml(it.content);
+    return `<li${t.cls}>${t.inner}${it.children}</li>`;
+  }).join('')}</${tag}>`;
+  return { html, next: i };
+}
+
+function _buildNestedLists(s) {
+  const lines = s.split('\n');
+  const out = [];
+  let i = 0;
+  while (i < lines.length) {
+    const item = _listItem(lines[i]);
+    if (!item) { out.push(lines[i]); i++; continue; }
+    const res = _collectList(lines, i, item.indent);
+    out.push(res.html);
+    i = res.next;
+  }
+  return out.join('\n');
+}
+
+function _buildNestedQuotes(s) {
+  const lines = s.split('\n');
+  const out = [];
+  let i = 0;
+  while (i < lines.length) {
+    const t = /^(<bq\d+>)(.*)(<\/bq\d+>)$/.exec(lines[i]);
+    if (!t) { out.push(lines[i]); i++; continue; }
+    let block = '';
+    let open = 0;
+    while (i < lines.length) {
+      const tok = /^(<bq\d+>)(.*)(<\/bq\d+>)$/.exec(lines[i]);
+      if (tok) {
+        const lv = parseInt(tok[1].slice(3, -1), 10);
+        while (open < lv) { block += '<blockquote>'; open++; }
+        while (open > lv) { block += '</blockquote>'; open--; }
+        block += `<p>${tok[2]}</p>`;
+        i++;
+        continue;
+      }
+      if (lines[i].trim() === '') {
+        // Blank line inside a quote region: keep going if the next non-blank
+        // line is still a quote.
+        let j = i;
+        while (j < lines.length && lines[j].trim() === '') j++;
+        if (j < lines.length && /^<bq\d+>/.test(lines[j])) { i = j; continue; }
+      }
+      break;
+    }
+    while (open > 0) { block += '</blockquote>'; open--; }
+    out.push(block);
+  }
+  return out.join('\n');
+}
+
 /**
  * Convert markdown to HTML
  */
@@ -497,7 +736,8 @@ export function mdToHtml(src, opts) {
   // ___ALLOWED_HTML_0___) can leak into quoted HTML/JS samples, because the
   // placeholder gets captured as literal code content and never restored inside
   // the final <pre><code> block.
-  s = s.replace(/```(\w+)?\n([\s\S]*?)```/g, (_, lang, code) => {
+  s = s.replace(/(^|\n)([ \t]*)(`{3,})(?!`)[ \t]*([^\n]*)\n([\s\S]*?)(?:\n\2\3[`]*[ \t]*)(?=\n|$)/g, (_m, _lead, _indent, fence, info, code) => {
+    const lang = (info || '').trim().split(/\s+/)[0] || '';
     const cleaned = code
       .replace(/\r\n/g, '\n')
       .replace(/[ \t]+$/gm, '')
@@ -518,11 +758,15 @@ export function mdToHtml(src, opts) {
 
     const langClass = lang ? ` class="language-${lang}"` : '';
     const runnableLangs = ['python','py','javascript','js','html','bash','sh','shell','zsh'];
+    // data-code rides inside a double-quoted attribute: escape quotes and
+    // newlines so code like print("x") or multi-line snippets can't break out
+    // of the attribute (browsers decode &#10; back to \n when read via dataset).
+    const attrCode = escapeHtml(escaped).replace(/"/g, '&quot;').replace(/\n/g, '&#10;');
     const runBtn = (lang && runnableLangs.includes(lang.toLowerCase()))
-      ? `<button type="button" class="run-code" data-code="${escapeHtml(escaped)}" data-lang="${lang}" title="Run code"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>`
+      ? `<button type="button" class="run-code" data-code="${attrCode}" data-lang="${lang}" title="Run code"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>`
       : '';
     const editBtn = `<button type="button" class="edit-code" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>`;
-    codeBlocks.push(`<pre><code${langClass} data-lang="${lang || ''}">${escapeHtml(escaped)}</code>${runBtn}${editBtn}<button type="button" class="copy-code" data-code="${escapeHtml(escaped)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></pre>`);
+    codeBlocks.push(`<pre><code${langClass} data-lang="${lang || ''}">${escapeHtml(escaped)}</code>${runBtn}${editBtn}<button type="button" class="copy-code" data-code="${attrCode}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></pre>`);
 
     return placeholder;
   });
@@ -533,10 +777,36 @@ export function mdToHtml(src, opts) {
   // autolink matches it, wraps it in an <a> tag, and swaps that for an
   // ___ALLOWED_HTML_ placeholder — corrupting the command. The old inline-code
   // pass ran after those passes, too late to protect it.
-  s = s.replace(/`([^`]+?)`/g, (match, code) => {
+  //
+  // Backtick runs are matched as a unit (CommonMark code spans): ``x`` is one
+  // two-backtick span, not two single spans, and a run only counts as a
+  // delimiter when it is not part of a longer run. The old single-backtick
+  // regex paired backticks one at a time, so `` `code` `` came out as
+  // `<code> </code>code<code> </code>` — code content stranded outside the
+  // span and stray backticks left behind (the "flipped" rendering).
+  s = s.replace(/(?<!`)(`+)(?!`)([\s\S]*?)(?<!`)\1(?!`)/g, (match, delim, code) => {
     if (code.startsWith('___CODE_BLOCK_') || code.startsWith('___MERMAID_BLOCK_')) return match;
+    let cleaned = code.replace(/\r\n/g, '\n').replace(/\n/g, ' ');
+    // CommonMark: if the content both begins and ends with a space and is not
+    // all spaces, strip one space from each end. This is what makes the
+    // `` `code` `` show-a-literal-backtick trick render as one code span.
+    if (cleaned.length >= 2 && cleaned.startsWith(' ') && cleaned.endsWith(' ') && cleaned.trim() !== '') {
+      cleaned = cleaned.slice(1, -1);
+    }
     const placeholder = `___INLINE_CODE_${inlineCodeBlocks.length}___`;
-    inlineCodeBlocks.push(`<code>${escapeHtml(code)}</code>`);
+    inlineCodeBlocks.push(`<code>${escapeHtml(cleaned)}</code>`);
+    return placeholder;
+  });
+
+  // Backslash escapes: \X (X = any markdown-significant char) becomes a
+  // placeholder so no later pass can treat it as syntax; the literal char is
+  // restored at the very end (entity-encoded where needed). This is the escape
+  // hatch: \*literal\*, \[not a link](url), \# not a heading, \$5 not math, etc.
+  // Runs after code extraction so backslashes inside code stay untouched.
+  const escapeBlocks = [];
+  s = s.replace(/\\([\\`*_~#<>\-+.!\[\]()^$=|&])/g, (_m, ch) => {
+    const placeholder = `___ESC_${escapeBlocks.length}___`;
+    escapeBlocks.push(ch);
     return placeholder;
   });
 
@@ -634,12 +904,12 @@ export function mdToHtml(src, opts) {
   if (window.katex) {
     // Display math: \[ ... \]  — GPT-style delimiter (gpt-5.x, Claude, etc.).
     // Handle before $$/$ so all common delimiters render.
-    s = s.replace(/\\\[([\s\S]*?)\\\]/g, (match, math) => {
+    s = s.replace(/(^|\n)[ \t]*\\\[([\s\S]*?)\\\][ \t]*(?=\n|$)/g, (match, lead, math) => {
       try {
         const raw = math.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
         const placeholder = `___MATH_BLOCK_${mathBlocks.length}___`;
         mathBlocks.push(katex.renderToString(raw.trim(), { displayMode: true, throwOnError: false }));
-        return placeholder;
+        return `${lead}${placeholder}`;
       } catch (e) { return match; }
     });
     // Inline math: \( ... \)  — GPT-style inline delimiter. Single-line only
@@ -652,20 +922,24 @@ export function mdToHtml(src, opts) {
         return placeholder;
       } catch (e) { return match; }
     });
-    // Display math: $$...$$
-    s = s.replace(/\$\$([\s\S]*?)\$\$/g, (match, math) => {
+    // Display math: $$...$$ — block-level only. The delimiters must sit on
+    // their own lines (leading/trailing whitespace allowed), so a stray "$$"
+    // in prose (shell PIDs, doubled prices) can't swallow the whole message
+    // as math the way the old unanchored /$$...$$/ did across paragraphs.
+    s = s.replace(/(^|\n)[ \t]*\$\$([\s\S]*?)\$\$[ \t]*(?=\n|$)/g, (match, lead, math) => {
       try {
         const raw = math.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
         const placeholder = `___MATH_BLOCK_${mathBlocks.length}___`;
         mathBlocks.push(katex.renderToString(raw.trim(), { displayMode: true, throwOnError: false }));
-        return placeholder;
+        return `${lead}${placeholder}`;
       } catch (e) { return match; }
     });
     // Inline math: $...$ — single line only, and Pandoc-style delimiter rules so
     // currency doesn't render as math ("$5 to $10"): the opening $ must be
     // immediately followed by a non-space, the closing $ must be immediately
-    // preceded by a non-space and not followed by a digit.
-    s = s.replace(/(?<![\$\d])\$(?!\$)(?=\S)([^\$\n]+?)(?<=\S)\$(?!\$|\d)/g, (match, math) => {
+    // preceded by a non-space and not followed by a word character (digits
+    // protect currency, letters protect glued prose like "$5 and total$x").
+    s = s.replace(/(?<![\$\d])\$(?!\$)(?=\S)([^\$\n]+?)(?<=\S)\$(?![\$\w])/g, (match, math) => {
       try {
         const raw = math.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
         const placeholder = `___MATH_BLOCK_${mathBlocks.length}___`;
@@ -713,6 +987,15 @@ export function mdToHtml(src, opts) {
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
   s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
 
+  // Highlight ==text== → <mark> (code/links are already placeholders by now)
+  s = s.replace(/==([^=]+)==/g, '<mark>$1</mark>');
+
+  // Superscript ^text^ → <sup> (single line, no nested carets)
+  s = s.replace(/\^([^\s^][^^]*?)\^/g, '<sup>$1</sup>');
+
+  // Subscript ~text~ → <sub> (single line; ~~strike~~ already handled above)
+  s = s.replace(/~([^\s~][^~\s]*?)~/g, '<sub>$1</sub>');
+
   // Headers
   s = s.replace(/^###### (.*)$/gm, '<h6>$1</h6>')
        .replace(/^##### (.*)$/gm, '<h5>$1</h5>')
@@ -721,32 +1004,25 @@ export function mdToHtml(src, opts) {
        .replace(/^## (.*)$/gm, '<h2>$1</h2>')
        .replace(/^# (.*)$/gm, '<h1>$1</h1>');
 
-  // Ordered lists (1. 2. 3. etc.)
-  s = s.replace(/^(\d+)\. (.*)$/gm, '<oli>$2</oli>');
-  s = s.replace(/(?:^|\n)(<oli>[\s\S]*?)(?=\n(?!<oli>)|$)/g, m => `<ol>${m.trim().replace(/<\/?oli>/g, (t) => t === '<oli>' ? '<li>' : '</li>')}</ol>`);
+  // Lists (unordered, ordered, task, nested, loose). One recursive builder
+  // handles everything the old flat passes did, plus:
+  //   - blank lines between items no longer split the list (loose lists) —
+  //     previously "1. a\n\n2. b" became two single-item <ol>s (1. 1.)
+  //   - indented items (2+ spaces) nest into child lists
+  //   - task items (- [ ] / - [x]) work at any depth
+  s = _buildNestedLists(s);
 
-  // GitHub-style task lists (- [ ] / - [x]) → checkbox items. Must run before
-  // the generic unordered-list rule so the "- " prefix isn't consumed first.
-  // Emits <uli> (with a class) so the unordered-list wrapper below treats it
-  // as a list item. Used by plan mode: plan + progress render as a checklist.
-  s = s.replace(/^(?:- |\* )\[([ xX])\] (.*)$/gm, (_m, mark, text) => {
-    const done = mark.toLowerCase() === 'x';
-    return `<uli class="task-item${done ? ' task-done' : ''}"><span class="task-check" aria-hidden="true"></span><span class="task-text">${text}</span></uli>`;
+  // Blockquotes — tokenize each line by depth (> / >> / >>> ...), then build
+  // nested <blockquote>s so multi-level quotes actually nest. Blank lines
+  // inside a quote region keep it as one block (loose), like CommonMark.
+  s = s.replace(/^((?:&gt;)+)\s?(.*)$/gm, (_m, marks, content) => {
+    const level = (marks.match(/&gt;/g) || []).length;
+    return `<bq${level}>${content}</bq${level}>`;
   });
-
-  // Unordered lists. <uli> may carry attributes (task-item class), so the
-  // wrapper preserves them when converting <uli ...> → <li ...>.
-  s = s.replace(/^(?:- |\* )(.*)$/gm, '<uli>$1</uli>');
-  s = s.replace(/(^|\n)((?:<uli\b[^>]*>[^\n]*<\/uli>(?:\n|$))+)/g, (_, prefix, block) =>
-    `${prefix}<ul>${block.trim().replace(/<uli\b([^>]*)>/g, '<li$1>').replace(/<\/uli>/g, '</li>')}</ul>`);
-
-  // Blockquotes
-  s = s.replace(/^&gt; (.*)$/gm, '<bq>$1</bq>');
-  s = s.replace(/(?:^|\n)(<bq>[\s\S]*?)(?=\n(?!<bq>)|$)/g, m =>
-    `<blockquote>${m.trim().replace(/<\/?bq>/g, (t) => t === '<bq>' ? '<p>' : '</p>')}</blockquote>`);
+  s = _buildNestedQuotes(s);
 
   // Paragraphs - but NOT for code block placeholders or allowed HTML
-  s = s.replace(/^(?!<h\d|<ul>|<ol>|<li|<oli>|<\/li>|<pre>|<blockquote>|<bq>|<hr>|___CODE_BLOCK_|___ALLOWED_HTML_|___MATH_BLOCK_|___MERMAID_BLOCK_)([^\n]+)$/gm, '<p>$1</p>');
+  s = s.replace(/^(?!<h\d|<ul>|<ol>|<li|<oli>|<\/li>|<pre>|<blockquote>|<bq\d?>|<hr>|___CODE_BLOCK_|___ALLOWED_HTML_|___MATH_BLOCK_|___MERMAID_BLOCK_)([^\n]+)$/gm, '<p>$1</p>');
 
   // Line breaks within paragraphs
   s = s.replace(/<p>([\s\S]*?)<\/p>/g, (match, content) => {
@@ -786,6 +1062,13 @@ export function mdToHtml(src, opts) {
     s = s.replace(`___INLINE_CODE_${index}___`, () => block);
   });
 
+  // Restore backslash-escaped characters last of all — resolves any escape
+  // placeholders that landed inside restored code/HTML blocks too.
+  escapeBlocks.forEach((ch, index) => {
+    const encoded = ch === '&' ? '&amp;' : ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch;
+    s = s.replace(`___ESC_${index}___`, () => encoded);
+  });
+
   return _useSvgEmoji() ? svgifyEmoji(s, opts) : s;
 }
 
@@ -794,14 +1077,20 @@ export function mdToHtml(src, opts) {
  */
 export function squashOutsideCode(s) {
   if (!s) return "";
-  const parts = String(s).split(/```/);
+  // Split on backtick fence runs (3+), keeping the delimiters in the parts
+  // array. Text between two fences (code-block content) sits at i % 4 === 2
+  // and is left untouched; everything else gets whitespace-squashed. Matching
+  // whole runs instead of a bare /```/ means a four-backtick outer fence no
+  // longer splits at its third backtick and squashes the code inside it.
+  const parts = String(s).split(/(`{3,})/);
   for (let i = 0; i < parts.length; i += 2) {
+    if (i % 4 === 2) continue; // between two fences = code block content
     parts[i] = parts[i]
       .replace(/\r\n/g, '\n')
       .replace(/[ \t]+\n/g, '\n')
       .replace(/\n{3,}/g, '\n\n');
   }
-  return parts.join('```');
+  return parts.join('');
 }
 
 /**
@@ -840,6 +1129,8 @@ const markdownModule = {
   mdToHtml,
   sanitizeAllowedHtml,
   squashOutsideCode,
+  neutralizeStrayThinkTags,
+  restoreThinkTags,
   renderContent,
   processWithThinking,
   createCollapsible,
@@ -847,7 +1138,13 @@ const markdownModule = {
   extractThinkingBlocks,
   normalizeThinkingMarkup,
   startsWithReasoningPrefix,
-  renderMermaid
+  renderMermaid,
+  // Exposed for the streaming UI (chat.js): preserving an open thinking box
+  // across the final static re-render (and reloads).
+  hashThinkingContent: _hashThinkingContent,
+  setThinkingExpanded: _setThinkingExpanded,
+  loadExpandedSet: _loadExpandedSet,
+  saveExpandedSet: _saveExpandedSet
 };
 
 export default markdownModule;

@@ -12,7 +12,7 @@ import json
 import re
 import time
 import logging
-from typing import AsyncGenerator, List, Dict, Optional, Set
+from typing import AsyncGenerator, Any, List, Dict, Optional, Set
 from urllib.parse import urlparse
 
 from src.llm_core import (
@@ -30,6 +30,7 @@ from src.agent_tools import (
     parse_tool_blocks,
     strip_tool_blocks,
     execute_tool_block,
+    _active_user_text,
     format_tool_result,
     set_active_document,
     set_active_model,
@@ -277,7 +278,7 @@ def _load_mcp_disabled_map() -> Dict[str, set]:
 # System prompt that tells the LLM about available tools.
 # Always injected — the LLM decides whether to use them.
 _AGENT_PREAMBLE = """\
-You are an AI assistant with tool access. You can run shell commands, execute Python, search the web, \
+You have tool access in this session. You can run shell commands, execute Python, search the web, \
 read/write files, create and edit documents, generate images, manage memories, and more. \
 To use a tool, write a fenced code block with the tool name as the language tag. \
 The block executes automatically and you see the output."""
@@ -395,7 +396,7 @@ _API_AGENT_RULES = """\
   - Listing sessions: "1. [Big Chat](#session-abc123) — 2h ago, 2. [Code Review](#session-def456) — 5h ago\""""
 
 _AGENT_PREAMBLE = """\
-You are an AI assistant with tool access. Only the tools listed below are available for this turn.
+You have tool access in this session. Only the tools listed below are available for this turn.
 To use a tool, write a fenced code block with the tool name as the language tag. The block executes automatically and you see the output."""
 
 _AGENT_RULES = """\
@@ -790,79 +791,145 @@ def _section_text(name: str, default: str) -> str:
     return val if isinstance(val, str) and val.strip() else default
 
 
-def _compact_tool_line(name: str, section: str) -> str:
-    """One-line fenced-tool usage hint for compact/local prompts."""
+_SCHEMA_BY_NAME: dict = {}
+
+
+def _schema_map() -> dict:
+    """Lazy name -> schema lookup for FUNCTION_TOOL_SCHEMAS."""
+    global _SCHEMA_BY_NAME
+    if not _SCHEMA_BY_NAME:
+        for _s in FUNCTION_TOOL_SCHEMAS:
+            _fn = _s.get("function") or {}
+            if _fn.get("name"):
+                _SCHEMA_BY_NAME[_fn["name"]] = _s
+    return _SCHEMA_BY_NAME
+
+
+def _schema_usage_sketch(schema: dict) -> str:
+    """Compact `{"param": "<param>"}` usage sketch from a schema."""
+    fn = schema.get("function") or {}
+    params = fn.get("parameters") or {}
+    props = params.get("properties") or {}
+    if not props:
+        return ""
+    req = params.get("required") or list(props)[:3]
+    parts = []
+    for p in list(req)[:4]:
+        if p in props:
+            parts.append(f'"{p}": "<{p}>"')
+    return "{" + ", ".join(parts) + "}" if parts else ""
+
+
+def _tool_one_liner(name: str, section: str) -> str:
+    """Short 'what it does + how to use' line for the always-on catalog."""
     text = (section or "").strip()
     if not text:
         return f"- `{name}`"
     if text.startswith("- "):
-        return text
+        # Already a one-liner (shipped defaults and user overrides in that
+        # style). Normalize the leading name marker so the catalog line reads
+        # `- `name` — ...` consistently regardless of the source formatting.
+        rest = text[2:].strip()
+        _m = re.match(r"`{1,3}[^`]+`{1,3}\s*(?:—|-)\s*", rest)
+        if _m:
+            rest = rest[_m.end():].strip()
+        return f"- `{name}` — {rest}"
     lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
-    usage = []
+    what = ""
+    usage = ""
     in_fence = False
+    fence_no = 0
     for ln in lines:
         if ln.startswith("```"):
-            usage.append(ln)
+            if not in_fence:
+                fence_no += 1
             in_fence = not in_fence
-            if len(usage) >= 3:
-                break
             continue
-        if in_fence and len(usage) < 3:
-            usage.append(ln)
+        if in_fence:
+            # First non-placeholder usage line from the FIRST example block
+            # only (later fences may be alternate formats).
+            if fence_no == 1 and not usage and ln and not ln.startswith("<"):
+                usage = re.sub(r"\s+", " ", ln).strip()
+            continue
+        if not what and ln:
+            # First sentence of the prose (what it does). Split on '. ' only
+            # when followed by a capital so "e.g. 'x'" doesn't cut mid-abbrev.
+            if ln.endswith(":"):
+                # Label line ("Or with JSON for fresh news:") — skip to the
+                # first real prose sentence.
+                continue
+            _m = re.split(r"\.\s+(?=[A-Z])", ln, maxsplit=1)
+            what = _m[0].strip()[:160]
+            if what and not what.endswith("."):
+                what += "."
     if usage:
-        return f"- `{name}` — " + " ".join(usage)
-    return f"- `{name}` — " + lines[0][:160]
+        if len(usage) > 150:
+            usage = usage[:147] + "..."
+        return f"- `{name}` — {what} Usage: `{name}` {usage}"
+    return f"- `{name}` — {what}"
+
+
+def _schema_one_liner(name: str, schema: dict) -> str:
+    """One-liner for tools that ship only as a schema (no prompt section)."""
+    fn = schema.get("function") or {}
+    desc = (fn.get("description") or "").strip()
+    _m = re.split(r"\.\s+(?=[A-Z])", desc, maxsplit=1)
+    what = _m[0].strip()[:160]
+    if what and not what.endswith("."):
+        what += "."
+    usage = _schema_usage_sketch(schema)
+    if usage:
+        return f"- `{name}` — {what} Usage: `{name}` {usage}"
+    return f"- `{name}` — {what}"
 
 
 def _assemble_prompt(tool_names: set, disabled_tools: set = None, compact: bool = False) -> str:
-    """Build the system prompt with only the specified tools included."""
+    """Build the system prompt with the always-on tool catalog.
+
+    Every enabled tool gets a one-line 'what it does + how to use' entry, plus
+    a pointer to the full reference file (data/TOOLS.md). No RAG filtering.
+    """
     disabled = disabled_tools or set()
     included = tool_names - disabled
 
+    # Ordered catalog: TOOL_SECTIONS order first, then schema-only tools.
+    catalog = []
+    seen = set()
+    for name, default_section in TOOL_SECTIONS.items():
+        if name not in included:
+            continue
+        seen.add(name)
+        catalog.append(_tool_one_liner(name, _section_text(name, default_section)))
+    _sm = _schema_map()
+    for name in sorted(included - seen):
+        schema = _sm.get(name)
+        catalog.append(_schema_one_liner(name, schema) if schema else f"- `{name}`")
+
+    try:
+        from src.tools_doc import tools_doc_pointer
+        _pointer = "\n\n" + tools_doc_pointer()
+    except Exception:
+        _pointer = ""
+
+    catalog_block = "## Available tools\n" + "\n".join(catalog) + _pointer
+
     if compact:
-        tool_lines = []
-        for name, _default_section in TOOL_SECTIONS.items():
-            if name in included:
-                tool_lines.append(f"- `{name}`")
         parts = [
-            "You are an AI assistant with native tool/function calling. "
-            "Only the tool schemas provided by the API are available for this turn. "
-            "Use native tool calls when action is needed; do not write tool syntax or tool instructions in chat.",
-            "## Available tools\n" + ("\n".join(tool_lines) if tool_lines else "none"),
+            "You have tool access in this session. Only the tools listed below are "
+            "available for this turn. Use native tool calls when action is needed; "
+            "do not write tool syntax or tool instructions in chat.",
+            catalog_block,
             _API_AGENT_RULES,
         ]
         parts.extend(_domain_rules_for_tools(included))
         return "\n\n".join(parts)
 
-    parts = [_AGENT_PREAMBLE]
-
-    # Collect full-block tool sections (with examples)
-    full_blocks = []
-    # Collect one-liner tool sections
-    one_liners = []
-
-    for name, _default_section in TOOL_SECTIONS.items():
-        if name not in included:
-            continue
-        section = _section_text(name, _default_section)
-        if section.startswith("```") or section.startswith("-"):
-            if section.startswith("- "):
-                one_liners.append(section)
-            else:
-                full_blocks.append(section)
-
-    if full_blocks:
-        parts.append("\n\n".join(full_blocks))
-
-    if one_liners:
-        parts.append("## Additional tools\n" + "\n".join(one_liners))
-
-    parts.append(_AGENT_RULES)
+    parts = [_AGENT_PREAMBLE, catalog_block, _AGENT_RULES]
     parts.extend(_domain_rules_for_tools(included))
     return "\n\n".join(parts)
 
 
-# Legacy: full prompt with all tools (fallback when RAG unavailable)
+# Full catalog with all tools (one-liners + docs pointer).
 AGENT_SYSTEM_PROMPT = _assemble_prompt(set(TOOL_SECTIONS.keys()))
 
 
@@ -1916,6 +1983,91 @@ def _looks_like_success_claim(text: str) -> bool:
     return bool(_FAKE_SUCCESS_RE.search(text or ""))
 
 
+# ── Tool-hallucination guard (generalized, passive) ─────────────────────────
+# A reply that NARRATES completed tool actions ("Reading the exact text...",
+# "Backup confirmed", "Applied", "Auditing the invariants") while ZERO tools
+# actually executed this turn is a tool hallucination: the model reproduced
+# the work-log shape of prior tool-using rounds without ever firing the tool
+# channel (2026-08-09 Round-7 failure mode). The legacy finetune guard above
+# only covers odysseus-qwen3 + destructive requests; these helpers generalize
+# detection to every model. Detection requires >=2 DISTINCT claim verbs with
+# at least one STRONG (world-action) verb — the shape of a work-log — so
+# ordinary prose ("checked and verified", "it's fixed", "updated and saved")
+# never trips it.
+
+_EFFECTFUL_REQUEST_RE = re.compile(
+    r"\b(?:delete|remove|archive|trash|send|reply|unsubscribe|mark|edit|update|create|"
+    r"write|read|check|look|backup|apply|audit|fix|fetch|download|search|find|install|"
+    r"convert|rename|move|copy|scan|patch|review|summarize|translate|investigate|inspect|"
+    r"open|close|run|execute|save|upload|clean|organize|refactor|test|verify|add|change|"
+    r"modify|generate|repair|troubleshoot|build|compile|compare|diff|restore|migrate|"
+    r"deploy|merge|clone|query|retrieve|set\s+up|compress|cut|trim|shorten|tighten|slim|"
+    r"reduce|minimize)\b",
+    re.IGNORECASE,
+)
+
+# Strong = claims of EXTERNAL/world actions (file, mail, web, system) that have
+# no in-head use. Detection requires >=2 DISTINCT strong verbs — the shape of a
+# work-log — so honest openers ("I read your message and checked the details",
+# "it's fixed", "I created a summary") never trip it: they carry at most one
+# world-action claim. Round-7-style narrations carry several ("Reading the
+# exact text... captured... backup confirmed... applied... auditing").
+_TOOL_CLAIM_STRONG_RE = re.compile(
+    r"\b(?:read|reading|captured|capturing|backed|backup|backing|applied|applying|edited|"
+    r"editing|sent|sending|deleted|deleting|removed|removing|archived|archiving|"
+    r"unsubscribed|fetched|fetching|downloaded|downloading|executed|executing|ran|running|"
+    r"opened|opening|closed|closing|renamed|renaming|moved|moving|copied|copying|patched|"
+    r"patching|installed|installing|converted|converting|uploaded|uploading|audited|"
+    r"auditing|scanned|scanning|parsed|parsing|replaced|replacing|queried|querying|cloned|"
+    r"cloning|merged|merging|deployed|deploying|searched|searching)\b",
+    re.IGNORECASE,
+)
+
+
+def _looks_like_effectful_request(text: str) -> bool:
+    """True when the user request asked for an action that would need tools."""
+    return bool(_EFFECTFUL_REQUEST_RE.search(text or ""))
+
+
+def _looks_like_tool_claim_narration(text: str) -> bool:
+    """True when prose narrates >=2 DISTINCT performed world actions."""
+    text = text or ""
+    if len(text) < 24:
+        return False
+    strong = {m.lower() for m in _TOOL_CLAIM_STRONG_RE.findall(text)}
+    return len(strong) >= 2
+
+
+def _recent_user_request_is_effectful(messages: list, depth: int = 8) -> bool:
+    """True when a recent substantive user message asked for tool work.
+
+    The IMMEDIATE user message is often a bare nod ("sure", "continue",
+    "go") approving a sub-step — the actual effectful task can sit a dozen
+    turns back (Round-7 case: 13 nod-style user messages preceded the
+    "compress it" task). Scan back over SUBSTANTIVE messages (>=20 chars,
+    which filters the nods) so a nod inherits the task's intent. Mirrors the
+    access pattern of `_extract_last_user_message`.
+    """
+    seen = 0
+    for msg in reversed(messages or []):
+        if msg.get("role") != "user":
+            continue
+        content = msg.get("content", "")
+        if isinstance(content, list):
+            content = " ".join(
+                b.get("text", "") for b in content if isinstance(b, dict)
+            )
+        content = str(content)
+        if len(content) < 20:
+            continue  # nod ("sure", "ye", "sur") — not the task
+        seen += 1
+        if seen > depth:
+            break
+        if _looks_like_effectful_request(content):
+            return True
+    return False
+
+
 _DOC_TOOL_TRUNCATED_FENCE_RE = re.compile(
     r"```(create|update|edit|edi|suggest)_documen(?!t)(?=\s|\n|```)",
     re.IGNORECASE,
@@ -2086,6 +2238,17 @@ def _build_system_prompt(
     mcp_schemas = []
     if mcp_mgr:
         mcp_schemas = mcp_mgr.get_all_openai_schemas(mcp_disabled_map or {})
+        # Disabled tools must never reach the LLM in ANY schema path. The API
+        # branch of the round loop re-filters all_tool_schemas below, but the
+        # local-model branch ships these MCP schemas as-is — filter once here
+        # so every consumer (API, local, RAG-path, external callers) gets the
+        # enabled-only set.
+        if disabled_tools:
+            mcp_schemas = [
+                s for s in mcp_schemas
+                if s.get("function", {}).get("name") not in disabled_tools
+                and s.get("name") not in disabled_tools
+            ]
 
     set_active_model(model)
 
@@ -2458,7 +2621,7 @@ def _build_system_prompt(
                 relevant_skills = sm.get_relevant_skills(
                     last_user,
                     skills=sm.load(owner=owner),
-                    threshold=0.25,
+                    threshold=0.3,  # 0.25 → 0.3 (2026-08-07, stricter matching)
                     max_items=_skill_max_injected,
                     min_confidence=_skill_min_conf,
                 ) if _skill_max_injected > 0 else []
@@ -2534,7 +2697,9 @@ def _build_system_prompt(
     # MCP tool descriptions — sourced from external servers, must not be in system role.
     if mcp_mgr:
         try:
-            _mcp_desc = mcp_mgr.get_tool_descriptions_for_prompt(mcp_disabled_map or {})
+            _mcp_desc = mcp_mgr.get_tool_descriptions_for_prompt(
+                mcp_disabled_map or {}, disabled_tools=disabled_tools,
+            )
             if _mcp_desc:
                 _mcp_desc_message = untrusted_context_message("MCP tools", _mcp_desc)
         except Exception as _mcp_err:
@@ -2597,6 +2762,12 @@ def _build_system_prompt(
     return merged, mcp_schemas
 
 
+# Agentic messages append tool results to the SAME request with no between-round
+# trim, so a long task can balloon far past the per-message budget (70k+ seen).
+# When the accumulated buffer crosses this, the older half is summarized via the
+# existing compactor (dense summary, recent half verbatim) instead of growing.
+MID_MESSAGE_COMPACT_TRIGGER_TOKENS = 30000
+
 _ADMIN_TOOLS = {
     "manage_session", "manage_skills", "manage_tasks",
     "manage_endpoints", "manage_mcp", "manage_webhooks", "manage_tokens",
@@ -2615,10 +2786,12 @@ def _build_base_prompt(
     suppress_local_context: bool = False,
     suppress_skills: bool = False,
 ):
-    """Build the agent prompt with only relevant tools included.
+    """Build the agent prompt with the always-on tool catalog.
 
-    If relevant_tools is provided (from RAG retrieval), only those tools
-    are shown with full descriptions. Otherwise falls back to full prompt.
+    RAG tool selection is permanently disabled (2026-08-07): every enabled
+    tool is always included, one short 'what + how' line each, with a pointer
+    to the full reference file. `relevant_tools` is accepted for signature
+    compatibility (guide_only / tests) but no longer restricts the catalog.
     """
     from src.tool_index import ALWAYS_AVAILABLE
 
@@ -2626,23 +2799,29 @@ def _build_base_prompt(
     if not get_setting("image_gen_enabled", False):
         disabled.add("generate_image")
 
+    # Keep the full tool reference file fresh (cheap: content hash compare).
+    try:
+        from src.tools_doc import ensure_tools_doc
+        ensure_tools_doc(
+            TOOL_SECTIONS,
+            FUNCTION_TOOL_SCHEMAS,
+            get_builtin_overrides(),
+            mcp_mgr,
+            mcp_disabled_map,
+        )
+    except Exception as _doc_err:
+        logger.debug("[tools-doc] refresh failed (non-fatal): %s", _doc_err)
+
     if relevant_tools is not None:
-        # RAG mode: trust the relevant_tools set as already-composed.
-        # get_tools_for_query starts from ALWAYS_AVAILABLE and may
-        # *discard* tools that conflict with the query's intent (e.g.
-        # drop manage_memory for clear contact-save patterns). Unioning
-        # ALWAYS_AVAILABLE back in here used to silently undo those
-        # drops. Only force-include the irreducible loop primitives
-        # (ask_user, update_plan) as belt-and-suspenders.
+        # Legacy RAG path (kept for guide_only / tests): trust the set as-is,
+        # forcing in the irreducible loop primitives as belt-and-suspenders.
         tool_names = set(relevant_tools) | {"ask_user", "update_plan"}
         if needs_admin:
             tool_names |= _ADMIN_TOOLS
         agent_prompt = _assemble_prompt(tool_names, disabled, compact=compact)
     else:
-        # Fallback: full prompt (RAG unavailable)
-        agent_prompt = AGENT_SYSTEM_PROMPT
+        # All-tools catalog: every enabled tool, one line each.
         if not needs_admin:
-            # At least strip the management section
             mgmt_tools = set(TOOL_SECTIONS.keys()) - set(ALWAYS_AVAILABLE) - {
                 "generate_image", "suggest_document",
                 "chat_with_model", "ask_teacher", "list_models",
@@ -2650,7 +2829,7 @@ def _build_base_prompt(
             agent_prompt = _assemble_prompt(
                 set(TOOL_SECTIONS.keys()) - mgmt_tools, disabled, compact=compact
             )
-        elif compact:
+        else:
             agent_prompt = _assemble_prompt(set(TOOL_SECTIONS.keys()), disabled, compact=True)
 
     # Inject the Level-0 skill index — one line per skill so the agent
@@ -2768,15 +2947,20 @@ def _append_tool_results(
 
     NOTE: it is NOT universally ignored. Nemotron's chat template re-injects
     EVERY prior `reasoning_content` as a <think> block, and this agent loop is
-    trimmed only once (before the loop), so across rounds the reasoning piles
-    up unbounded — bloating context and feeding the model its own prior
-    reasoning, which reinforces repetition/looping. So keep reasoning_content
-    on the MOST RECENT assistant turn only: enough for DeepSeek continuity,
-    without the per-round accumulation.
+    trimmed only once (before the loop), so reasoning on plain-prose turns
+    would pile up unbounded — bloating context and feeding the model its own
+    prior reasoning, which reinforces repetition/looping. So keep
+    reasoning_content on assistant turns that carry tool_calls (the follow-up
+    request references them; DeepSeek/Moonshot thinking mode requires them
+    passed back), and strip it from plain-prose assistant turns (Nemotron's
+    bloat vector). Bounded: at most one reasoning blob per tool round.
     """
-    # Strip reasoning_content from earlier assistant turns; only the newest keeps it.
+    # Strip reasoning_content from earlier PLAIN-PROSE assistant turns; assistant
+    # turns that carry tool_calls keep theirs (DeepSeek/Moonshot thinking mode
+    # requires the prior reasoning_content passed back on the follow-up request),
+    # while prose turns are the vector Nemotron re-injects as <think> blocks.
     for _m in messages:
-        if _m.get("role") == "assistant":
+        if _m.get("role") == "assistant" and not _m.get("tool_calls"):
             _m.pop("reasoning_content", None)
     if used_native and native_tool_calls:
         assistant_msg = {"role": "assistant"}
@@ -3117,6 +3301,20 @@ async def stream_agent_loop(
     mcp_mgr = get_mcp_manager()
     prep_timings: Dict[str, float] = {}
     disabled_tools = set(disabled_tools or [])
+    # Global tool toggles (settings.json:disabled_tools — written by
+    # `manage_settings disable_tool` and the Settings panel) must apply to
+    # EVERY agent run, not just the ones whose callers happen to merge the
+    # list themselves (chat_routes and task_scheduler do; skills tests,
+    # teacher escalation, and bg-monitor follow-ups don't). Enforce it here
+    # at the loop's single chokepoint so only enabled tools ever reach the
+    # prompt catalog, the per-round schema filter, or the execution gate —
+    # caller-side merges stay harmless since set union is idempotent.
+    try:
+        _global_disabled = get_setting("disabled_tools", [])
+        if isinstance(_global_disabled, list):
+            disabled_tools.update(_global_disabled)
+    except Exception as _gd_err:  # settings hiccup must never break the loop
+        logger.debug("[agent_loop] failed to read global disabled_tools: %s", _gd_err)
     if tool_policy:
         disabled_tools.update(tool_policy.all_disabled_names())
         if tool_policy.disable_mcp:
@@ -3306,89 +3504,19 @@ async def stream_agent_loop(
         disabled_tools.update(_mcp_block_q)
     prep_timings["request_setup"] = time.time() - _t0
 
-    # RAG-based tool selection: retrieve relevant tools for this query.
-    # If caller provided a pre-computed set (e.g. task_scheduler), use that.
-    _relevant_tools = relevant_tools
+    # ── Tool selection: RAG permanently disabled (user directive 2026-08-07) ──
+    # The LLM always sees EVERY enabled tool (builtin + MCP) every round — no
+    # retrieval/keyword/domain filtering based on what the user said. Caller-
+    # provided `relevant_tools` (task_scheduler's old RAG path) is ignored:
+    # forcing None makes _build_base_prompt emit the full catalog and the
+    # per-round schema assembly ship every schema. The downstream branches
+    # keyed off `_relevant_tools is not None` below are therefore inert; kept
+    # for guide_only / teacher tool_policy compat and a potential future opt-in.
+    _relevant_tools = None
+    if relevant_tools:
+        logger.info("[tool-rag] caller relevant_tools=%d ignored — all-tools mode is permanent", len(relevant_tools))
     _t1 = time.time()
-    if _relevant_tools:
-        logger.info(f"[tool-rag] Using caller-provided relevant_tools ({len(_relevant_tools)} tools)")
-    if not guide_only and not _relevant_tools and _low_signal_turn:
-        from src.tool_index import ALWAYS_AVAILABLE
-        if workspace:
-            # An active workspace IS the file-work signal: a vague "look at the
-            # project" means explore this folder. Surface only the READ-ONLY file
-            # tools (intersection with the plan-mode read-only allowlist) so the
-            # agent can investigate; write/shell tools stay out until the request
-            # actually calls for them (RAG retrieval adds those on a real ask).
-            _relevant_tools = set(ALWAYS_AVAILABLE)
-            from src.tool_security import PLAN_MODE_READONLY_TOOLS
-            _relevant_tools |= (_DOMAIN_TOOL_MAP["files"] & PLAN_MODE_READONLY_TOOLS)
-            logger.info("[tool-rag] Low-signal but workspace active; including read-only file tools")
-        else:
-            # Don't short-circuit: fall through to RAG retrieval below.
-            # Non-English queries are flagged low_signal by the English-only
-            # intent classifier, but fastembed retrieval works across languages.
-            logger.info("[tool-rag] Low-signal query; will run RAG retrieval")
-    if not guide_only and not _relevant_tools:
-        try:
-            from src.tool_index import get_tool_index, ALWAYS_AVAILABLE
-            try:
-                tool_idx = await asyncio.wait_for(
-                    asyncio.to_thread(get_tool_index),
-                    timeout=_TOOL_SELECTION_TIMEOUT_SECONDS,
-                )
-            except asyncio.TimeoutError:
-                logger.warning(
-                    "[tool-rag] Tool index init exceeded %.1fs; falling back to always-available tools",
-                    _TOOL_SELECTION_TIMEOUT_SECONDS,
-                )
-                tool_idx = None
-                _relevant_tools = set(ALWAYS_AVAILABLE)
-            if tool_idx:
-                if mcp_mgr:
-                    try:
-                        await asyncio.wait_for(
-                            asyncio.to_thread(tool_idx.index_mcp_tools, mcp_mgr, _mcp_disabled_map),
-                            timeout=_TOOL_SELECTION_TIMEOUT_SECONDS,
-                        )
-                    except asyncio.TimeoutError:
-                        logger.warning(
-                            "[tool-rag] MCP tool indexing exceeded %.1fs; continuing without reindex",
-                            _TOOL_SELECTION_TIMEOUT_SECONDS,
-                        )
-                if _retrieval_query:
-                    try:
-                        _relevant_tools = await asyncio.wait_for(
-                            asyncio.to_thread(tool_idx.get_tools_for_query, _retrieval_query, 8),
-                            timeout=_TOOL_SELECTION_TIMEOUT_SECONDS,
-                        )
-                        logger.info(f"[tool-rag] Retrieved tools for query: {sorted(_relevant_tools - ALWAYS_AVAILABLE)}")
-                    except asyncio.TimeoutError:
-                        # Leave _relevant_tools unset so the keyword fallback
-                        # below still runs. Hard-coding ALWAYS_AVAILABLE here
-                        # skipped the deterministic keyword hints whenever the
-                        # embedding backend was slow (e.g. a remote endpoint
-                        # cold-loading its model), silently stripping email/
-                        # calendar tools from queries that named them outright.
-                        logger.warning(
-                            "[tool-rag] Retrieval exceeded %.1fs; falling back to keyword tool selection",
-                            _TOOL_SELECTION_TIMEOUT_SECONDS,
-                        )
-                        _relevant_tools = None
-        except Exception as e:
-            logger.warning(f"[tool-rag] Retrieval failed, using keyword fallback: {e}")
-            _relevant_tools = None
-
-    # Fallback: if RAG unavailable, use keyword-based tool selection
-    # instead of sending ALL tools (which overwhelms the model).
-    if not guide_only and not _relevant_tools and _retrieval_query:
-        from src.tool_index import ALWAYS_AVAILABLE, ToolIndex
-        _relevant_tools = set(ALWAYS_AVAILABLE)
-        ql = _retrieval_query.lower()
-        for keywords, tools in ToolIndex._KEYWORD_HINTS.items():
-            if any(kw in ql for kw in keywords):
-                _relevant_tools.update(tools)
-        logger.info(f"[tool-rag] Keyword fallback selected: {sorted(_relevant_tools - ALWAYS_AVAILABLE)}")
+    logger.info("[tool-rag] all-tools mode: RAG tool selection disabled, full catalog every round")
 
     # If deterministic domain detection fired, seed the corresponding domain
     # tools into the selected tool set. This is not direct prompt-pack
@@ -3453,24 +3581,9 @@ async def stream_agent_loop(
                 _relevant_tools.difference_update(_email_fetch_tools)
                 logger.info("[agent-intent] active email draft pruned fetch tools=%s", removed)
 
-    # Current-turn chat uploads are real files under the upload/data root. Make
-    # the read-side file/document tools visible immediately so the agent can
-    # inspect files whose inline text was truncated or omitted.
-    if not guide_only and uploaded_files:
-        if _relevant_tools is None:
-            from src.tool_index import ALWAYS_AVAILABLE
-            _relevant_tools = set(ALWAYS_AVAILABLE)
-        _relevant_tools.update({"read_file", "grep", "ls", "manage_documents"})
-
-    # Per-request forced tools are stronger than retrieval. Explicit search
-    # settings make web tools visible even when tool RAG misses them;
-    # route-level disabled_tools decides what remains allowed.
-    if not guide_only and forced_tools:
-        forced_set = {t for t in forced_tools if t not in disabled_tools}
-        if _relevant_tools is None:
-            from src.tool_index import ALWAYS_AVAILABLE
-            _relevant_tools = set(ALWAYS_AVAILABLE)
-        _relevant_tools.update(forced_set)
+    # Current-turn chat uploads and per-request forced_tools used to re-seed
+    # the RAG-selected subset — with the full catalog every round they are
+    # already visible, so nothing needs to be re-added here.
 
     if not guide_only and _relevant_tools is not None:
         _relevant_tools = _expand_browser_mcp_tools(_relevant_tools, mcp_mgr)
@@ -3504,7 +3617,7 @@ async def stream_agent_loop(
                     _known = known_tool_names()
                     for _sk in _sm.get_relevant_skills(
                         _retrieval_query, skills=_owner_skills,
-                        threshold=0.25, max_items=3,
+                        threshold=0.3, max_items=3,
                     ):
                         _relevant_tools.update(
                             t for t in (_sk.get("requires_toolsets") or [])
@@ -3669,7 +3782,15 @@ async def stream_agent_loop(
     ):
         _is_api_model = False
     else:
-        _is_api_model = any(h in endpoint_url for h in _API_HOSTS) or _model_supports_tools
+        # Optimistic default: unknown/new models are assumed to speak
+        # OpenAI-style function calling instead of getting tools stripped
+        # to MCP-only fenced blocks. Blocklist + Ollama rules above still win,
+        # and an explicit endpoint supports_tools flag outranks everything.
+        _is_api_model = (
+            get_setting("assume_unknown_models_support_tools", True)
+            or any(h in endpoint_url for h in _API_HOSTS)
+            or _model_supports_tools
+        )
     _compact_agent_prompt = _is_api_model or _is_ollama_native or _ollama_openai_compat
     messages, mcp_schemas = _build_system_prompt(
         messages, model, _prompt_active_document, mcp_mgr, disabled_tools,
@@ -3743,11 +3864,11 @@ async def stream_agent_loop(
 
     _t3 = time.time()
     try:
-        from src.context_compactor import trim_for_context
+        from src.context_compactor import trim_for_context, maybe_compact
         from src.context_budget import compute_input_token_budget, DEFAULT_HARD_MAX, DEFAULT_BUDGET, budget_is_explicit as _budget_is_explicit
         from src.model_context import budget_context_for_model
 
-        soft_budget = int(get_setting("agent_input_token_budget", DEFAULT_BUDGET) or 0)
+        soft_budget = int(get_setting("agent_input_token_budget", 600000) or 0)
         if soft_budget > 0:
             before_trim_tokens = estimate_tokens(messages)
             reserve_tokens = min(max(max_tokens or 1024, 512), 2048)
@@ -3795,6 +3916,21 @@ async def stream_agent_loop(
 
     # Strip internal metadata keys before sending to the LLM API
     messages = [{k: v for k, v in msg.items() if k != "_protected"} for msg in messages]
+
+    # Mid-message compaction: tool results from every round pile onto the SAME
+    # request with no between-round trim, so a long task can balloon far past
+    # the per-message budget (70k+ seen). When the accumulated buffer crosses
+    # this, compact via the existing compactor (dense summary, recent half
+    # verbatim) instead of growing. Measures the conversation portion only -
+    # the system prompt is constant for the whole message; this targets
+    # accumulated tool-round growth specifically.
+    _acc_tokens = estimate_tokens([m for m in messages if m.get("role") != "system"])
+    if _acc_tokens > MID_MESSAGE_COMPACT_TRIGGER_TOKENS:
+        logger.info("[agent] mid-message compaction at %d tokens", _acc_tokens)
+        messages, _, _ = await maybe_compact(
+            None, endpoint_url, model, messages, headers,
+            force_threshold_tokens=MID_MESSAGE_COMPACT_TRIGGER_TOKENS,
+        )
 
     agent_prompt_tokens = estimate_tokens(messages)
     logger.info(
@@ -3938,10 +4074,19 @@ async def stream_agent_loop(
                     and t.get("name") not in disabled_tools
                 ]
         else:
-            # Local: only MCP schemas when message suggests MCP tool usage
-            _last_content = _last_user.lower()
-            _wants_mcp = any(kw in _last_content for kw in _MCP_KEYWORDS)
-            all_tool_schemas = mcp_schemas if (_wants_mcp and mcp_schemas) else []
+            # Local models: ship every ENABLED MCP schema every round (all-tools
+            # mode is permanent). Native function schemas stay prompt-only for
+            # local models, which call tools via fenced code blocks /
+            # <tool_code>. _build_system_prompt already dropped disabled tools
+            # from mcp_schemas, but filter again here so this branch is correct
+            # on its own if the schema source ever changes.
+            all_tool_schemas = mcp_schemas or []
+            if disabled_tools:
+                all_tool_schemas = [
+                    t for t in all_tool_schemas
+                    if t.get("function", {}).get("name") not in disabled_tools
+                    and t.get("name") not in disabled_tools
+                ]
         agent_stream_timeout = int(get_setting("agent_stream_timeout_seconds", 300) or 300)
 
         _tool_names_sent = [t.get("function", {}).get("name") for t in (all_tool_schemas or []) if t.get("function")]
@@ -4604,6 +4749,12 @@ async def stream_agent_loop(
         tool_results = []
         tool_result_texts = []  # plain text for native tool role messages
         budget_hit = False
+        # Bind the verbatim last user message so file-tool path resolution can
+        # honor user-nominated absolute paths (see _resolve_tool_path_in_workspace).
+        try:
+            _active_user_text.set(_extract_last_user_message(messages))
+        except Exception:
+            pass
         for i, block in enumerate(tool_blocks):
             # --- Tool budget check ---
             if max_tool_calls > 0 and total_tool_calls >= max_tool_calls:
@@ -5031,18 +5182,24 @@ async def stream_agent_loop(
                 full_response = (full_response.rstrip() + _anchor).strip()
                 yield 'data: ' + json.dumps({"delta": _anchor}) + '\n\n'
 
-            # Save for history persistence
+            # Save for history persistence. Cap the persisted transcript: the live
+            # stream renders full output from `result`, but the metadata copy rides
+            # the session JSON — a 500KB bash dump would bloat every reload and
+            # FTS reindex. Mirrors the .old 4000-char output cap.
+            _persisted_output = output_text
+            if isinstance(_persisted_output, str) and len(_persisted_output) > 4000:
+                _persisted_output = _persisted_output[:4000] + "\u2026[truncated]"
             tool_event = {
                 "round": round_num,
                 "tool": _resolved_tool_event_name({
                     "tool": block.tool_type,
                     "desc": desc,
                     "command": cmd_display,
-                    "output": output_text,
+                    "output": _persisted_output,
                 }),
                 "desc": desc,
                 "command": cmd_display,
-                "output": output_text,
+                "output": _persisted_output,
                 "exit_code": result.get("exit_code"),
             }
             if result.get("image_url"):
@@ -5062,6 +5219,8 @@ async def stream_agent_loop(
                 # message removes it as answered.
                 tool_event["ask_user"] = _pending_ask_user_event
             tool_events.append(tool_event)
+            if len(tool_events) > 200:  # cap persisted transcript size (.old port)
+                tool_events.pop(0)
             if block.tool_type in _VERIFIER_EFFECTFUL_TOOLS:
                 _effectful_used = True
 
@@ -5162,6 +5321,33 @@ async def stream_agent_loop(
             and _looks_like_success_claim(full_response)
         ):
             full_response = "I couldn't make that change because no matching tool action completed."
+
+    # Generalized tool-hallucination guard — ALL models, passive labeling only.
+    # When the reply narrates >=2 distinct performed tool actions but ZERO
+    # tools executed this turn, the model reproduced a work-log it never
+    # performed (2026-08-09 Round-7 failure mode: pure narration, 0 fences,
+    # 0 tool_events). The finetune branch above REPLACES the reply for
+    # destructive requests; here we stamp the metadata flag (rides the metrics
+    # event into the saved message) and append a visible note so the unverified
+    # claim never silently stands. Passive by design: we never fabricate
+    # results, never re-run tools, never loop a correction.
+    _tool_claims_unverified = (
+        not tool_events
+        and _recent_user_request_is_effectful(messages)
+        and _looks_like_tool_claim_narration(full_response)
+    )
+    if _tool_claims_unverified:
+        logger.warning(
+            "[agent] tool-hallucination guard: reply narrates tool actions but 0 tools ran "
+            "(model=%s, request=%.100r)",
+            actual_model, _last_user,
+        )
+        _tool_claim_note = (
+            "\n\n---\n⚠ Described tool actions did not execute — no tool ran this turn. "
+            "Flagged by the tool-verification guard."
+        )
+        full_response = (full_response or "").strip() + _tool_claim_note
+        yield f"data: {json.dumps({'delta': _tool_claim_note})}\n\n"
     _response_before_tool_summary = full_response
     if tool_events:
         for _ev in reversed(tool_events):
@@ -5224,6 +5410,8 @@ async def stream_agent_loop(
         backend_prefill_tps=backend_prefill_tps,
     )
     metrics["requested_model"] = requested_model
+    if _tool_claims_unverified:
+        metrics["tool_claims_unverified"] = True
     yield f"data: {json.dumps({'type': 'metrics', 'data': metrics})}\n\n"
 
     # Teacher-escalation: inline takeover visible in the chat stream.

@@ -451,17 +451,43 @@ export function showError(msg) {
 
 /**
  * Smooth-scroll chat history to bottom using rAF lerp.
- * Throttled during streaming so it doesn't fight user scrolling.
+ * No throttle: restarts on every flush while the user is at the bottom;
+ * manual-scroll protection comes from _userScrolledAway intent tracking.
  */
-let _scrollThrottleTimer = null;
+// Real user-intent tracking for auto-scroll. Once the user scrolls away from
+// the bottom, we stop forcing the lerp until they come back near it. This
+// replaces the old `diff > 300` bail, which misread streaming content growth
+// (300px+ per flush) as a manual scroll-up and froze the chat mid-think.
+let _userScrolledAway = false;
+let _scrollIntentBound = false;
+let _lastProgrammaticScrollTop = -1; // last scrollTop we wrote ourselves
+
+function _bindScrollIntent() {
+  if (_scrollIntentBound) return;
+  const box = document.getElementById('chat-history');
+  if (!box) return;
+  _scrollIntentBound = true;
+  box.addEventListener('scroll', () => {
+    // Ignore the echo of our own programmatic writes (fires async after
+    // box.scrollTop is set — it matches what we last wrote).
+    if (Math.abs(box.scrollTop - _lastProgrammaticScrollTop) < 1) return;
+    const nearBottom = box.scrollHeight - box.clientHeight - box.scrollTop < 80;
+    _userScrolledAway = !nearBottom;
+  }, { passive: true });
+}
+
 export function scrollHistory() {
   if (!autoScrollEnabled) return;
   if (!_scrollBox) {
     _scrollBox = document.getElementById('chat-history');
   }
-  // Throttle: only start a new scroll animation every 500ms
-  if (_scrollThrottleTimer) return;
-  _scrollThrottleTimer = setTimeout(() => { _scrollThrottleTimer = null; }, 500);
+  _bindScrollIntent();
+  // User scrolled away from the bottom — don't fight them.
+  if (_userScrolledAway) return;
+  // No throttle: restart the lerp on every flush while the user is at the
+  // bottom. The old 500ms gate let content outgrow the scroll window mid-
+  // think (sticks, then unsticks when the window cleared). Manual-scroll
+  // protection is handled by _userScrolledAway above, not by throttling.
   if (!_scrollRafId) {
     _scrollRafId = requestAnimationFrame(_smoothScrollStep);
   }
@@ -469,7 +495,7 @@ export function scrollHistory() {
 
 function _smoothScrollStep() {
   const box = _scrollBox;
-  if (!box || !autoScrollEnabled) {
+  if (!box || !autoScrollEnabled || _userScrolledAway) {
     _scrollRafId = null;
     return;
   }
@@ -477,21 +503,18 @@ function _smoothScrollStep() {
   const current = box.scrollTop;
   const diff = target - current;
 
-  // If user scrolled up significantly, don't force them down
-  if (diff > 300) {
-    _scrollRafId = null;
-    return;
-  }
-
   if (diff <= 1) {
+    _lastProgrammaticScrollTop = target;
     box.scrollTop = target;
     _scrollRafId = null;
     return;
   }
 
-  // Lerp: gentle catch-up
+  // Lerp: gentle catch-up. No diff>300 bail — user intent is tracked via the
+  // scroll listener above, so stream growth can never freeze the lerp.
   const factor = window.innerWidth <= 768 ? 0.4 : 0.2;
-  box.scrollTop = current + diff * factor;
+  _lastProgrammaticScrollTop = current + diff * factor;
+  box.scrollTop = _lastProgrammaticScrollTop;
   _scrollRafId = requestAnimationFrame(_smoothScrollStep);
 }
 

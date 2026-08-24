@@ -22,6 +22,7 @@ from src.context_compactor import (
     COMPACT_THRESHOLD,
     SELF_SUMMARY_SYSTEM_PROMPT,
     SUMMARY_MAX_TOKENS,
+    SUMMARY_MAX_TOKENS_HARD,
     _content_as_text,
     maybe_compact,
     trim_for_context,
@@ -33,7 +34,19 @@ class TestCompactThreshold:
         assert COMPACT_THRESHOLD == 0.85
 
     def test_summary_max_tokens(self):
-        assert SUMMARY_MAX_TOKENS == 1024
+        # 2048 (was 1024): 1024 left no room for a dense multi-turn summary —
+        # and with a thinking model, the whole budget burned on chain-of-thought.
+        assert SUMMARY_MAX_TOKENS == 2048
+
+    def test_summary_hard_cap(self):
+        # The ceiling bounds how much freed context a summary may re-consume.
+        # Cranked 4096 -> 16384 on request (2026-08-09): free/self-hosted
+        # models make big summaries costless, so let big compactions breathe.
+        assert SUMMARY_MAX_TOKENS_HARD == 16384
+
+    def test_budget_placeholder(self):
+        # The prompt announces the adaptive token budget to the summarizer.
+        assert "{budget}" in SELF_SUMMARY_SYSTEM_PROMPT
 
 
 class TestSelfSummaryPrompt:
@@ -110,6 +123,173 @@ class TestContentAsText:
 
     def test_unknown_type_returns_empty(self):
         assert _content_as_text(42) == ""
+
+
+class TestStripThinkBlocks:
+    def test_strips_think_tags(self):
+        text = "Some real summary.\n<think>I need to produce a summary...</think>\nFinal."
+        out = cc._strip_think_blocks(text)
+        assert "<think>" not in out
+        assert "I need to produce" not in out
+        assert "Some real summary." in out and "Final." in out
+
+    def test_strips_mm_think_tags(self):
+        text = "<mm:think attr=1>reasoning here</mm:think>Actual content"
+        out = cc._strip_think_blocks(text)
+        assert "reasoning here" not in out
+        assert "Actual content" in out
+
+    def test_no_think_tags_unchanged(self):
+        text = "Plain summary text."
+        assert cc._strip_think_blocks(text) == "Plain summary text."
+
+    def test_empty_input(self):
+        assert cc._strip_think_blocks("") == ""
+        assert cc._strip_think_blocks(None) is None
+
+
+class TestNormalizeCompactionSummary:
+    def test_strips_think_blocks_from_summary(self):
+        # Regression: a gateway serving CoT as <think> content tags must not
+        # leak the reasoning into the persisted summary.
+        raw = "<think>We need to produce the conversation summary. We're at turn 52?</think>\n## Conversation Summary\n**Turns summarized:** 52"
+        out = cc.normalize_compaction_summary(raw)
+        assert "We need to produce" not in out
+        assert "Turns summarized:** 52" in out
+
+
+class TestMessageExcerpt:
+    def test_short_message_untouched(self):
+        assert cc._message_excerpt("hello") == "hello"
+
+    def test_long_message_keeps_head_and_tail(self):
+        long_text = ("A" * 1000) + ("Z" * 1000)
+        out = cc._message_excerpt(long_text, max_chars=800)
+        assert len(out) < 2000
+        assert out.startswith("A")
+        # The tail (where decisions usually land) is preserved.
+        assert out.rstrip().endswith("Z")
+
+    def test_non_string_returns_empty(self):
+        assert cc._message_excerpt(None) == ""
+        assert cc._message_excerpt(42) == ""
+
+
+class TestBuildConvoText:
+    def test_global_budget_drops_oldest_with_notice(self):
+        older = [
+            {"role": "user", "content": f"message-{i} " + ("x" * 200)}
+            for i in range(10)
+        ]
+        out = cc._build_convo_text(older, max_chars=900)
+        assert "omitted" in out
+        # Oldest dropped, newest present.
+        assert "message-0" not in out
+        assert "message-9" in out
+
+    def test_no_budget_keeps_all(self):
+        older = [{"role": "user", "content": f"m{i}"} for i in range(5)]
+        out = cc._build_convo_text(older)
+        for i in range(5):
+            assert f"m{i}" in out
+
+
+class TestMaybeCompactReasoningRegression:
+    """Compaction summary must never contain chain-of-thought.
+
+    Root cause (2026-08-09): the session model deepseek-v4-flash-free runs
+    with thinking ON (ODYSSEUS_DEEPSEEK_V4_THINKING=1). llm_call_async fell
+    back to reasoning_content when content was empty, so the compactor
+    persisted the model's cut-off internal monologue ("We need to produce the
+    conversation summary. We're at turn 52? ...") as the [Conversation
+    summary] — and the 1024-token cap sliced it mid-thought before any real
+    summary was written.
+    """
+
+    def _make_harness(self, fake_summary):
+        """Return (run, captured_kwargs) with llm_call_async stubbed."""
+        orig_ctx = cc.get_context_length
+        orig_call = cc.llm_call_async
+        orig_resolve = cc.resolve_endpoint
+        orig_update = cc._update_session_history
+        captured = {}
+
+        async def _fake(*a, **k):
+            captured.update(k)
+            return fake_summary
+
+        cc.get_context_length = lambda url, model: 1000  # crosses the 85% threshold with the test convo
+        cc.llm_call_async = _fake
+        cc.resolve_endpoint = lambda which, owner=None: (None, None, None)
+        cc._update_session_history = lambda *a, **k: None
+
+        def run(messages):
+            return asyncio.run(
+                maybe_compact(
+                    session=None,
+                    endpoint_url="http://local/v1/chat/completions",
+                    model="deepseek-v4-flash-free",
+                    messages=list(messages),
+                    headers={},
+                )
+            )
+
+        def restore():
+            cc.get_context_length = orig_ctx
+            cc.llm_call_async = orig_call
+            cc.resolve_endpoint = orig_resolve
+            cc._update_session_history = orig_update
+
+        return run, captured, restore
+
+    def _convo(self):
+        return [
+            {"role": "system", "content": "You are helpful. " * 100},
+        ] + [
+            {"role": "user" if i % 2 == 0 else "assistant", "content": f"turn {i} " + ("x" * 100)}
+            for i in range(10)
+        ]
+
+    def test_summary_call_forces_thinking_off(self):
+        run, captured, restore = self._make_harness("## Conversation Summary\n**Turns summarized:** 5")
+        try:
+            result = run(self._convo())
+        finally:
+            restore()
+        assert result[2] is True
+        assert captured.get("disable_thinking") is True
+        assert captured.get("max_tokens") == SUMMARY_MAX_TOKENS
+
+    def test_empty_summary_skips_compaction_gracefully(self):
+        # A thinking model that ignores thinking-off returns content="";
+        # compaction must NOT proceed (it would persist an empty/CoT summary
+        # and drop the older half).
+        messages = self._convo()
+        run, _, restore = self._make_harness("")
+        try:
+            compacted, _, was_compacted = run(messages)
+        finally:
+            restore()
+        assert was_compacted is False
+        assert len(compacted) == len(messages)  # history untouched
+
+    def test_chain_of_thought_never_persisted(self):
+        # Even if a gateway returns CoT in content (defense-in-depth), the
+        # think blocks are stripped and the raw monologue is not the summary.
+        cot = (
+            "<think>We need to produce the conversation summary. We're at turn 52? "
+            "The prompt says Turns summarized: 52.</think>\n"
+            "## Conversation Summary\n**Turns summarized:** 5\n### User Goal\nship it"
+        )
+        run, _, restore = self._make_harness(cot)
+        try:
+            compacted, _, was_compacted = run(self._convo())
+        finally:
+            restore()
+        assert was_compacted is True
+        joined = " ".join(m.get("content", "") for m in compacted)
+        assert "We need to produce" not in joined
+        assert "### User Goal" in joined
 
 
 class TestMaybeCompactFourthMessage:
@@ -192,6 +372,140 @@ class TestMaybeCompactFourthMessage:
         ]}
         result = self._run(messages)
         assert len(result) == 3 and result[2] is True
+
+
+class TestMaybeCompactTruncationAndBudget:
+    """Adaptive summary budget + finish_reason truncation detection (2026-08-09).
+
+    - max_tokens scales with the size of the summarized half (older//8,
+      clamped to [2048, 16384]) so a big coding-session compaction
+      legitimately gets more room while a small chat stays cheap.
+    - a "length"/"max_tokens" finish_reason (output hit the cap) triggers one
+      retry at the 16384 ceiling when the budget was below it; if it still
+      truncates, the summary is visibly marked instead of silently amputating
+      its tail (usually the "Pending / Next Steps" section).
+    """
+
+    def _harness(self, fake_summary, *, est_tokens=10000):
+        """Return (run, calls, restore); calls records max_tokens per call."""
+        orig_ctx = cc.get_context_length
+        orig_est = cc.estimate_tokens
+        orig_call = cc.llm_call_async
+        orig_resolve = cc.resolve_endpoint
+        orig_update = cc._update_session_history
+        calls = []
+
+        async def _fake(*a, **k):
+            calls.append(k.get("max_tokens"))
+            if callable(fake_summary):
+                return fake_summary(k.get("max_tokens"))
+            return fake_summary
+
+        cc.get_context_length = lambda url, model: 1000
+        cc.estimate_tokens = (
+            est_tokens if callable(est_tokens) else (lambda msgs: est_tokens)
+        )
+        cc.llm_call_async = _fake
+        cc.resolve_endpoint = lambda which, owner=None: (None, None, None)
+        cc._update_session_history = lambda *a, **k: None
+
+        def run(messages):
+            return asyncio.run(
+                maybe_compact(
+                    session=None,
+                    endpoint_url="http://local/v1/chat/completions",
+                    model="deepseek-v4-flash-free",
+                    messages=list(messages),
+                    headers={},
+                )
+            )
+
+        def restore():
+            cc.get_context_length = orig_ctx
+            cc.estimate_tokens = orig_est
+            cc.llm_call_async = orig_call
+            cc.resolve_endpoint = orig_resolve
+            cc._update_session_history = orig_update
+
+        return run, calls, restore
+
+    def _convo(self):
+        return [
+            {"role": "system", "content": "You are helpful. " * 100},
+        ] + [
+            {"role": "user" if i % 2 == 0 else "assistant", "content": f"turn {i} " + ("x" * 100)}
+            for i in range(10)
+        ]
+
+    def test_budget_scales_with_older_half(self):
+        # 20000 freed tokens -> 2500 budget (12.5%), inside [2048, 4096].
+        run, calls, restore = self._harness(("summary", "stop"), est_tokens=20000)
+        try:
+            run(self._convo())
+        finally:
+            restore()
+        assert calls == [2500]
+
+    def test_budget_capped_at_ceiling(self):
+        # 200000 freed tokens -> 25000 raw -> capped at 16384, no more.
+        run, calls, restore = self._harness(("summary", "stop"), est_tokens=200000)
+        try:
+            run(self._convo())
+        finally:
+            restore()
+        assert calls == [SUMMARY_MAX_TOKENS_HARD]
+
+    def test_budget_floor_for_small_compaction(self):
+        # Tiny older half -> the 2048 floor, not a tiny budget. (used must still
+        # exceed the 85% trigger — only the older half being summarized is small.)
+        est = lambda msgs: 10000 if len(msgs) >= 10 else 500
+        run, calls, restore = self._harness(("summary", "stop"), est_tokens=est)
+        try:
+            run(self._convo())
+        finally:
+            restore()
+        assert calls == [SUMMARY_MAX_TOKENS]
+
+    def test_truncation_retries_once_at_ceiling_then_marks(self):
+        # Truncated at 2048 -> retry at 16384; still truncated -> marked.
+        est = lambda msgs: 10000 if len(msgs) >= 10 else 500
+        run, calls, restore = self._harness(
+            lambda mk: ("summary-b", "length"), est_tokens=est
+        )
+        try:
+            compacted, _, was_compacted = run(self._convo())
+        finally:
+            restore()
+        assert calls == [SUMMARY_MAX_TOKENS, SUMMARY_MAX_TOKENS_HARD]
+        assert was_compacted is True
+        joined = " ".join(m.get("content", "") for m in compacted)
+        assert "summary-b" in joined
+        assert "truncated" in joined.lower()
+
+    def test_truncation_at_ceiling_marked_without_retry(self):
+        # Already at the ceiling: no second call, still visibly marked.
+        run, calls, restore = self._harness(
+            lambda mk: ("summary-c", "length"), est_tokens=200000
+        )
+        try:
+            compacted, _, _ = run(self._convo())
+        finally:
+            restore()
+        assert calls == [SUMMARY_MAX_TOKENS_HARD]
+        joined = " ".join(m.get("content", "") for m in compacted)
+        assert "summary-c" in joined
+        assert "truncated" in joined.lower()
+
+    def test_untruncated_summary_single_call_no_marker(self):
+        run, calls, restore = self._harness(("summary-ok", "stop"), est_tokens=20000)
+        try:
+            compacted, _, _ = run(self._convo())
+        finally:
+            restore()
+        assert calls == [2500]
+        joined = " ".join(m.get("content", "") for m in compacted)
+        assert "summary-ok" in joined
+        assert "truncated" not in joined.lower()
 
 
 class TestResearchPrimerPreserved:

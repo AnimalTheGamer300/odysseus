@@ -2,8 +2,8 @@
 // Group Chat — multi-model conversations (parallel or round-robin)
 
 import uiModule from './ui.js';
-import markdownModule from './markdown.js';
-import chatRenderer from './chatRenderer.js';
+import markdownModule from './markdown.js?v=20260806thinkfix1';
+import chatRenderer from './chatRenderer.js?v=20260806thinkfix1';
 import spinnerModule from './spinner.js';
 import { providerLogo } from './providers.js';
 import { PROMPT_TEMPLATES, getUserTemplates } from './presets.js';

@@ -144,6 +144,20 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     if isinstance(dbapi_connection, sqlite3.Connection):
         cursor = dbapi_connection.cursor()
         cursor.execute("PRAGMA foreign_keys=ON")
+        # Wait up to 30s for a contended write lock instead of failing
+        # instantly with 'database is locked' (sqlite3's default is 0 — the
+        # app runs several concurrent agent streams that checkpoint drafts
+        # every ~4s, so collisions are normal, not exceptional).
+        cursor.execute("PRAGMA busy_timeout=30000")
+        # WAL-safe: 1 fsync per commit instead of 3 (FULL). Paired with WAL
+        # (set once in init_db) this keeps commit hold-time short under
+        # concurrent writers. NORMAL is durable against app crashes; only a
+        # full OS crash can lose the last commit or two. Only applied once the
+        # connection actually sees WAL active — a pre-WAL connection (e.g.
+        # during init_db's create_all) keeps FULL for rollback-journal safety.
+        journal_mode = cursor.execute("PRAGMA journal_mode").fetchone()
+        if journal_mode and str(journal_mode[0]).lower() == "wal":
+            cursor.execute("PRAGMA synchronous=NORMAL")
         cursor.close()
 
 
@@ -1884,11 +1898,39 @@ def _migrate_seed_email_account():
 # Any future migrations or schema changes that temporarily violate foreign-key
 # constraints will fail. To perform such operations, foreign_keys must be
 # temporarily disabled around the migration workflow.
+def _enable_sqlite_wal() -> None:
+    """Switch the SQLite DB to WAL journal mode (idempotent, every startup).
+
+    Rollback-journal mode (the default) takes an EXCLUSIVE lock at every
+    commit, which blocks concurrent readers AND writers. With several agent
+    streams checkpointing drafts every ~4s, one slow transaction starves the
+    rest and streams die with 'database is locked' (the 'sqlite3.OperationalError
+    database is locked' crashes in agent_runs/chat_routes). WAL lets readers
+    run concurrently with the single writer and makes commits a fast append to
+    the -wal file instead of an exclusive-lock dance. No-op for Postgres /
+    in-memory URLs. Runs in AUTOCOMMIT because journal_mode cannot be changed
+    inside a transaction (SQLAlchemy would otherwise autobegin one).
+    """
+    db_path = _sqlite_db_path(engine.url)
+    if db_path is None:
+        return
+    try:
+        with engine.connect().execution_options(isolation_level="AUTOCOMMIT") as conn:
+            mode = conn.execute(text("PRAGMA journal_mode=WAL")).scalar()
+        if mode and str(mode).lower() != "wal":
+            logger.warning("SQLite journal_mode is %r, expected 'wal'", mode)
+    except Exception as e:
+        # Non-fatal: the app still works on rollback journal, just with worse
+        # concurrency. Don't take the server down over a PRAGMA.
+        logger.warning("Could not enable SQLite WAL mode: %s", e)
+
+
 def init_db():
     """
     Initialize the database by creating all tables.
     Should be called when starting the application.
     """
+    _enable_sqlite_wal()
     _migrate_model_endpoints()
     Base.metadata.create_all(bind=engine)
     # Lock the DB file (and any SQLite sidecars) to 0o600 — it holds bearer-token

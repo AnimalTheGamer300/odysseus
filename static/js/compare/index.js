@@ -34,11 +34,11 @@ import { showScoreboard } from './scoreboard.js';
 // ── External dependency imports ──
 import Storage from '../storage.js';
 import uiModule from '../ui.js';
-import sessionModule from '../sessions.js';
+import sessionModule from '../sessions.js?v=20260806autotitle1';
 import spinnerModule from '../spinner.js';
 import themeModule from '../theme.js';
 import presetsModule from '../presets.js';
-import markdownModule from '../markdown.js';
+import markdownModule from '../markdown.js?v=20260806thinkfix1';
 import { bindMenuDismiss } from '../escMenuStack.js';
 
 var escapeHtml = uiModule.esc;

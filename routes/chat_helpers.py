@@ -152,6 +152,11 @@ class ChatContext:
     # Uploads attached to this user turn, resolved and owner-checked for the
     # agent's private context. This is not emitted to the browser.
     uploaded_files: list = field(default_factory=list)
+    # DB id of the user message persisted for this turn (None for incognito,
+    # reuse_last_user failures, or soft-dropped sessions). The stream route
+    # emits it as a `user_message_saved` SSE event so the frontend can stamp
+    # the optimistic user bubble with its row id (2026-08-08, see changelog).
+    user_message_id: Optional[str] = None
 
 
 # ── Helpers ────────────────────────────────────────────────────────────── #
@@ -226,26 +231,43 @@ def needs_auto_name(name: str) -> bool:
 
 
 async def auto_name_session(session_manager, sess):
-    """Generate a short title for a session from its first user message."""
+    """Generate a short title for a session from its conversation context.
+
+    Uses a head+tail excerpt (first 2 + last 12 non-summary messages) so the
+    title tracks where the topic actually went, not just the opener — same
+    context shape the retitle button uses. New sessions still work: the first
+    message IS the whole excerpt.
+    """
     try:
         from src.llm_core import llm_call_async
         from src.task_endpoint import resolve_task_endpoint
 
-        # Find first user message
-        first_msg = ""
-        for msg in sess.history:
-            if msg.role == "user":
-                content = msg.content
-                if isinstance(content, list):
-                    content = next(
-                        (i.get("text", "") for i in content if isinstance(i, dict) and i.get("type") == "text"),
-                        "",
-                    )
-                first_msg = str(content)[:500]
-                break
-
-        if not first_msg:
+        # Build a compact conversation excerpt: skip system summaries, cap
+        # each message, take head (2) + tail (12).
+        convo = []
+        for msg in getattr(sess, "history", None) or []:
+            role = getattr(msg, "role", None) or "user"
+            content = getattr(msg, "content", "")
+            if isinstance(content, list):
+                text = " ".join(
+                    str(p.get("text") or p.get("content") or p) if isinstance(p, dict) else str(p)
+                    for p in content
+                )
+            elif isinstance(content, dict):
+                text = str(content.get("text") or content.get("content") or content)
+            else:
+                text = str(content)
+            text = text.strip()
+            if not text:
+                continue
+            if role == "system" and "summary" in text[:200].lower():
+                continue
+            convo.append(f"{role}: {text[:400]}")
+        if not convo:
             return
+        convo_text = "\n".join(convo[:2] + convo[-12:])
+        if len(convo_text) > 6000:
+            convo_text = convo_text[-6000:]
 
         owner = getattr(sess, "owner", None)
         t_url, t_model, t_headers = resolve_task_endpoint(
@@ -264,8 +286,8 @@ async def auto_name_session(session_manager, sess):
             t_url,
             t_model,
             [
-                {"role": "system", "content": "Generate a short title (3-6 words, no quotes) for a conversation that starts with this message. Reply with ONLY the title, nothing else. Do NOT include any thinking, reasoning, or explanation — just the title."},
-                {"role": "user", "content": first_msg},
+                {"role": "system", "content": "Generate a short title (3-6 words, no quotes) for this conversation. Reply with ONLY the title, nothing else. Do NOT include any thinking, reasoning, or explanation — just the title."},
+                {"role": "user", "content": "Name this conversation:\n\n" + convo_text},
             ],
             temperature=0.3,
             max_tokens=4096,
@@ -273,11 +295,24 @@ async def auto_name_session(session_manager, sess):
             timeout=60,
         )
 
-        title = title.strip().strip('"\'').strip()
+        title = (title or "").strip().strip('"\'').strip()
         # Strip <think>/<thinking> blocks (closed, dangling, or stray tags)
         # via the central helper.
         from src.text_helpers import strip_think
         title = strip_think(title, prose=False, prompt_echo=False)
+        # Echo guard: a model that parrots the instruction ("We need answer
+        # with title 6 words or fewer...") must never become the chat name.
+        if title:
+            low = title.lower()
+            if (len(title.split()) > 12
+                    or any(ph in low for ph in (
+                        "6 words", "words or fewer", "reply with only",
+                        "no quotes", "no prefix", "short, descriptive",
+                        "descriptive title", "we need answer", "need infer",
+                        "conversation about", "the user asks", "we need to",
+                        "name this conversation",
+                    ))):
+                title = ""
         if title and len(title) < 80:
             session_manager.update_session_name(sess.id, title)
             logger.info(f"Auto-named session {sess.id}: {title}")
@@ -687,11 +722,18 @@ async def build_chat_context(
     use_enhanced_message: bool = False,
     agent_mode: bool = False,
     allow_tool_preprocessing: bool = True,
+    reuse_last_user: bool = False,
 ) -> ChatContext:
     """Build the full context (preface + messages) for an LLM call.
 
     This is the shared logic between /chat and /chat_stream — preset extraction,
     message preprocessing, memory/RAG/web injection, compaction, normalization.
+
+    `reuse_last_user` (regenerate flow): the user message row already sits at
+    the tail of session.history (kept by a keep_through_id truncate). The turn
+    is NOT persisted again — the existing row is reused so its DB id/timestamp
+    stay stable. Falls back to a fresh add if the history tail isn't the
+    matching user message.
     """
     # Preset
     preset = extract_preset(chat_handler, preset_id)
@@ -710,14 +752,43 @@ async def build_chat_context(
     # Add user message to history. Nobody/incognito uses a request-local
     # transcript store instead of session history so stale saved chats cannot
     # bleed into context and the turn is not persisted.
+    # Regenerate (reuse_last_user) skips the add entirely: the user message row
+    # was kept by the truncate (keep_through_id) and is reused as-is so its DB
+    # id/timestamp stay stable instead of being deleted + re-inserted on every
+    # regen (2026-08-08, see changelog). Falls back to a fresh add when the
+    # history tail isn't the matching user message (e.g. a count-based truncate
+    # deleted it, or the content drifted).
+    user_message_id = None
     if incognito:
         user_meta = {"attachments": preprocessed.attachment_meta} if preprocessed.attachment_meta else None
         _append_incognito_message(session_id, "user", preprocessed.user_content, user_meta)
+    elif reuse_last_user:
+        _tail = sess.history[-1] if getattr(sess, "history", None) else None
+        _tail_matches = (
+            _tail is not None
+            and getattr(_tail, "role", None) == "user"
+            and str(_tail.content or "").strip() == str(preprocessed.user_content or "").strip()
+        )
+        if _tail_matches:
+            user_message_id = (_tail.metadata or {}).get("_db_id")
+        else:
+            logger.warning(
+                "reuse_last_user requested for session %s but history tail is not the matching user message — adding a fresh row",
+                session_id,
+            )
+            add_user_message(sess, chat_handler, preprocessed, incognito=False)
+            _last = sess.history[-1] if sess.history else None
+            if _last is not None and _last.role == "user":
+                user_message_id = (_last.metadata or {}).get("_db_id")
     else:
         add_user_message(sess, chat_handler, preprocessed, incognito=False)
+        _last = sess.history[-1] if sess.history else None
+        if _last is not None and _last.role == "user":
+            user_message_id = (_last.metadata or {}).get("_db_id")
 
-    # Fire events
-    if not incognito:
+    # Fire events. A regenerate reuses the existing user message — it is not a
+    # NEW message, so don't re-fire webhook/event_bus "new message" events.
+    if not incognito and not reuse_last_user:
         fire_message_event(request, webhook_manager, session_id, sess, message, compare_mode)
 
     # Resolve owner-scoped prefs/context. Browser requests keep the cookie user;
@@ -860,6 +931,7 @@ async def build_chat_context(
         context_tokens_after_trim=_after_trim_tokens,
         auto_opened_docs=auto_opened_docs,
         uploaded_files=uploaded_files,
+        user_message_id=user_message_id,
     )
 
 
@@ -1073,6 +1145,7 @@ def save_assistant_response(
     do_research: bool = False,
     tool_events: list = None,
     incognito: bool = False,
+    draft_id: str | None = None,
 ):
     """Add assistant response to session history.
 
@@ -1122,7 +1195,17 @@ def save_assistant_response(
     if incognito:
         _append_incognito_message(session_id, "assistant", _content, md)
         return None
-    sess.add_message(ChatMessage("assistant", _content, metadata=md))
+    if draft_id:
+        # Checkpointed draft row exists for this turn — promote it IN PLACE
+        # (same row id, no duplicate). The frontend already stamped the
+        # bubble with this id via the draft_saved event, so delete/regenerate
+        # mid-stream keeps targeting the same row (2026-08-08
+        # draft-checkpoint audit).
+        session_manager.promote_draft(
+            session_id, draft_id, ChatMessage("assistant", _content, metadata=md)
+        )
+    else:
+        sess.add_message(ChatMessage("assistant", _content, metadata=md))
 
     from core.database import update_session_last_accessed
     update_session_last_accessed(session_id)
@@ -1227,9 +1310,11 @@ def run_post_response_tasks(
     """
     _extraction_jobs: list = []
 
-    # Memory extraction — only every 4th message pair to avoid excess LLM calls
+    # Memory extraction — only every 8th message pair to avoid excess LLM
+    # calls. The extractor's novelty gate then skips runs where the session
+    # hasn't gained new messages since the last extraction.
     _msg_count = len(sess.history) if hasattr(sess, 'history') else 0
-    _should_extract = (_msg_count >= 4) and (_msg_count % 4 == 0)
+    _should_extract = (_msg_count >= 8) and (_msg_count % 8 == 0)
     if allow_background_extraction and not incognito and not compare_mode and _should_extract and uprefs.get("auto_memory", True):
         from services.memory.memory_extractor import extract_and_store
         from src.task_endpoint import resolve_task_endpoint

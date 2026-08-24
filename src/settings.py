@@ -89,7 +89,7 @@ DEFAULT_SETTINGS = {
     "research_endpoint_id": "",
     "research_model": "",
     "research_search_provider": "",
-    "research_max_tokens": 16384,
+    "research_max_tokens": 163840,
     "research_extraction_timeout_seconds": 90,
     # Lightweight planning/query LLM calls happen before any search starts.
     # Keep them separately tunable so slow local backends are not capped by
@@ -115,7 +115,7 @@ DEFAULT_SETTINGS = {
     # default is treated as auto because the settings-save path materializes
     # defaults, so a persisted 6000 can't be told apart from a deliberate 6000 —
     # to pin a budget near the default, use a nearby value (e.g. 5999).
-    "agent_input_token_budget": 6000,
+    "agent_input_token_budget": 200000,
     # Ceiling on the *auto-derived* input budget; a configurable setting since #1273
     # (the merged #1230 left it a module constant). No effect on an explicit budget
     # — a deliberate value is honoured (#1230). Default matches
@@ -125,6 +125,14 @@ DEFAULT_SETTINGS = {
     # `compute_input_token_budget`.
     "agent_input_token_hard_max": 200_000,
     "agent_stream_timeout_seconds": 300,
+    # 24/7 all-tools mode: when True, agent mode skips RAG/keyword tool
+    # selection entirely and always sends the FULL tool catalog (prompt
+    # sections + native schemas) every round. Default ON.
+    "agent_list_all_tools": True,
+    # Optimistic tool support: unknown model names get native OpenAI-style
+    # tool schemas instead of the MCP-only fenced-block fallback. Set False
+    # to restore old keyword-whitelist behavior.
+    "assume_unknown_models_support_tools": True,
     # Extra directory roots that read_file / write_file may access, in
     # addition to the built-in project data/ and system temp dirs. Each
     # entry is an absolute path. Sensitive subpaths (.ssh, .gnupg, shell

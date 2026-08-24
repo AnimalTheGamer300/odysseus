@@ -1613,20 +1613,11 @@ class TaskScheduler:
         except Exception:
             pass
 
-        # RAG-select relevant tools for this prompt + always-available assistant tools.
-        # Without this, all 40+ tools get sent and models hit their tool limit.
+        # RAG tool selection is permanently disabled (2026-08-07 user
+        # directive): scheduled/proactive tasks get the FULL enabled catalog
+        # every time, same as interactive agent rounds.
         relevant_tools = None
-        try:
-            from src.tool_index import get_tool_index, ASSISTANT_ALWAYS_AVAILABLE
-            tool_idx = get_tool_index()
-            if tool_idx:
-                rag_tools = tool_idx.get_tools_for_query(task.prompt or "", k=8)
-                relevant_tools = compose_task_relevant_tools(
-                    rag_tools, ASSISTANT_ALWAYS_AVAILABLE, disabled_tools
-                )
-                logger.info(f"[assistant] RAG selected {len(rag_tools)} tools + {len(ASSISTANT_ALWAYS_AVAILABLE)} always-available + shell/file defaults = {len(relevant_tools)} total for '{task.name}'")
-        except Exception as e:
-            logger.warning(f"[assistant] RAG tool selection failed, using all: {e}")
+        logger.info("[assistant] all-tools mode: full catalog for '%s' (RAG disabled)", task.name)
 
         # Try using the agent loop for full tool access
         try:

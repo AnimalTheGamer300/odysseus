@@ -5,6 +5,10 @@ import os
 import logging
 import mimetypes
 import base64
+import io
+import math
+import shutil
+import subprocess
 import tempfile
 from typing import List, Dict, Any
 
@@ -14,6 +18,8 @@ logger = logging.getLogger(__name__)
 
 MAX_INLINE_ATTACHMENT_CHARS = 24000
 MIN_INLINE_ATTACHMENT_SLICE = 500
+
+VIDEO_EXTENSIONS = {'.mp4', '.mov', '.webm', '.mkv', '.m4v', '.avi'}
 
 
 def _is_text_file(path: str) -> bool:
@@ -344,19 +350,56 @@ def analyze_image_with_vl_result(image_path: str, owner: str | None = None) -> d
         except ValueError:
             return {"text": "[No vision model configured — set one in Settings → Vision]", "model": vl_model or ""}
 
-        with open(image_path, "rb") as f:
-            img_data = base64.b64encode(f.read()).decode("utf-8")
-
         ext = os.path.splitext(image_path)[1].lower()
-        mime_map = {".jpg": "jpeg", ".jpeg": "jpeg", ".png": "png", ".gif": "gif", ".webp": "webp"}
-        img_format = mime_map.get(ext, "jpeg")
+
+        # Animated GIFs / videos: split into frames and send them ALL so the
+        # VL model sees the motion, not one frozen first frame.
+        media_frames = None
+        if ext == ".gif":
+            media_frames = _gif_frames_as_jpeg(image_path)
+        elif ext in VIDEO_EXTENSIONS:
+            media_frames = _video_frames_as_jpeg(image_path)
+
+        if media_frames:
+            image_blocks = [
+                {"type": "image_url",
+                 "image_url": {"url": f"data:image/jpeg;base64,{base64.b64encode(b).decode('utf-8')}"}}
+                for b in media_frames
+            ]
+            img_format = "jpeg"
+        else:
+            with open(image_path, "rb") as f:
+                img_data = base64.b64encode(f.read()).decode("utf-8")
+
+            mime_map = {".jpg": "jpeg", ".jpeg": "jpeg", ".png": "png", ".gif": "gif", ".webp": "webp"}
+            img_format = mime_map.get(ext, "jpeg")
+
+            # LM Studio's OpenAI-compatible endpoint only accepts JPEG/PNG data
+            # URLs — webp/gif get rejected with "'url' field must be a base64
+            # encoded image." Re-encode anything else to JPEG before sending.
+            if ext not in (".jpg", ".jpeg", ".png"):
+                try:
+                    from PIL import Image
+                    with Image.open(image_path) as im:
+                        buf = io.BytesIO()
+                        im.convert("RGB").save(buf, format="JPEG", quality=92)
+                    img_data = base64.b64encode(buf.getvalue()).decode("utf-8")
+                    img_format = "jpeg"
+                except Exception as _conv_err:
+                    logger.warning("Image re-encode to JPEG failed (%s); sending raw bytes", _conv_err)
+                    with open(image_path, "rb") as f:
+                        img_data = base64.b64encode(f.read()).decode("utf-8")
+            image_blocks = [
+                {"type": "image_url",
+                 "image_url": {"url": f"data:image/{img_format};base64,{img_data}"}}
+            ]
 
         vl_messages = [
             {
                 "role": "user",
                 "content": [
                     {"type": "text", "text": "Describe this image in detail"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/{img_format};base64,{img_data}"}},
+                    *image_blocks,
                 ],
             }
         ]
@@ -390,6 +433,199 @@ def analyze_image_with_vl_result(image_path: str, owner: str | None = None) -> d
 def analyze_image_with_vl(image_path: str, owner: str | None = None) -> str:
     """Analyze an image using the admin-configured Vision-Language model."""
     return analyze_image_with_vl_result(image_path, owner=owner).get("text", "")
+
+
+def _gif_sample_config() -> tuple:
+    """Resolve GIF sampling from env:
+      GIF_SAMPLE_MODE  = "fps" (default) | "fixed"
+      GIF_FPS          = frames per second of real playback (fps mode, default 1)
+      GIF_MAX_FRAMES   = hard cap on frames sent (both modes, default 6)
+    """
+    mode = os.environ.get("GIF_SAMPLE_MODE", "fps").strip().lower()
+    if mode not in ("fps", "fixed"):
+        mode = "fps"
+    try:
+        fps = float(os.environ.get("GIF_FPS", "1"))
+        if not math.isfinite(fps) or fps <= 0:
+            fps = 1.0
+    except ValueError:
+        fps = 1.0
+    try:
+        cap = int(os.environ.get("GIF_MAX_FRAMES", "6"))
+        if cap < 1:
+            cap = 6
+    except ValueError:
+        cap = 6
+    return mode, fps, cap
+
+
+def _gif_frames_as_jpeg(image_path: str, max_frames: int | None = None) -> list[bytes] | None:
+    """Split an animated GIF into JPEG frames for VL consumption.
+
+    Sampling is env-driven (_gif_sample_config): "fps" mode uses the GIF's
+    real per-frame timing to grab ~GIF_FPS frames per second of playback
+    (1 FPS default); "fixed" mode strides evenly to up to GIF_MAX_FRAMES.
+    Returns None (caller falls back to raw GIF) if static or undecodable.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    try:
+        with Image.open(image_path) as im:
+            if not (getattr(im, "is_animated", False) and getattr(im, "n_frames", 1) > 1):
+                return None
+            mode, fps, cap = _gif_sample_config()
+            cap = max(cap, max_frames or 0)
+            total = im.n_frames
+            if mode == "fps" and total > 1:
+                # real timing: cumulative per-frame durations (ms)
+                cum = []
+                t = 0.0
+                for i in range(total):
+                    im.seek(i)
+                    t += float(im.info.get("duration") or 40)
+                    cum.append(t)
+                step_ms = 1000.0 / fps
+                indices = []
+                target = 0.0
+                ci = 0
+                while target < cum[-1] and len(indices) < cap:
+                    while ci < total - 1 and cum[ci] < target:
+                        ci += 1
+                    if not indices or indices[-1] != ci:
+                        indices.append(ci)
+                    target += step_ms
+                if len(indices) < 2:
+                    indices = [0, total - 1]
+                indices = indices[:cap]
+            else:
+                step = max(1, round(total / cap))
+                indices = sorted({i for i in range(0, total, step)})[:cap]
+            frames = []
+            for i in indices:
+                im.seek(i)
+                buf = io.BytesIO()
+                im.convert("RGB").save(buf, format="JPEG", quality=88)
+                frames.append(buf.getvalue())
+            return frames
+    except Exception as e:
+        logger.warning("GIF frame split failed (%s); sending raw GIF", e)
+        return None
+    return None
+
+
+def _video_sample_config() -> tuple:
+    """Resolve video sampling from env:
+      VIDEO_SAMPLE_MODE  = "fps" (default) | "fixed"
+      VIDEO_FPS          = frames per second of real playback (fps mode, default 1)
+      VIDEO_MAX_FRAMES   = hard cap on frames sent (both modes, default 6)
+    """
+    mode = os.environ.get("VIDEO_SAMPLE_MODE", "fps").strip().lower()
+    if mode not in ("fps", "fixed"):
+        mode = "fps"
+    try:
+        fps = float(os.environ.get("VIDEO_FPS", "1"))
+        if not math.isfinite(fps) or fps <= 0:
+            fps = 1.0
+    except ValueError:
+        fps = 1.0
+    try:
+        cap = int(os.environ.get("VIDEO_MAX_FRAMES", "6"))
+        if cap < 1:
+            cap = 6
+    except ValueError:
+        cap = 6
+    return mode, fps, cap
+
+
+def _probe_video_duration(video_path: str) -> float | None:
+    """Best-effort video duration in seconds via ffprobe (None on failure)."""
+    ffprobe = shutil.which("ffprobe")
+    if not ffprobe:
+        return None
+    try:
+        out = subprocess.run(
+            [ffprobe, "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", video_path],
+            capture_output=True, text=True, timeout=30,
+        )
+        if out.returncode == 0 and out.stdout.strip():
+            return float(out.stdout.strip())
+    except Exception as e:
+        logger.warning("ffprobe duration probe failed (%s)", e)
+    return None
+
+
+def _split_jpeg_stream(data: bytes) -> list[bytes]:
+    """Split a concatenated MJPEG byte stream (image2pipe) into individual JPEGs."""
+    frames = []
+    i = 0
+    n = len(data)
+    while i < n - 1:
+        if data[i] == 0xFF and data[i + 1] == 0xD8:
+            # find the end marker FFD9
+            j = i + 2
+            end = -1
+            while j < n - 1:
+                if data[j] == 0xFF and data[j + 1] == 0xD9:
+                    end = j + 2
+                    break
+                j += 1
+            if end == -1:
+                break
+            frames.append(data[i:end])
+            i = end
+        else:
+            i += 1
+    return frames
+
+
+def _video_frames_as_jpeg(video_path: str, max_frames: int | None = None) -> list[bytes] | None:
+    """Extract evenly-sampled JPEG frames from a video for VL consumption.
+
+    Env-driven (_video_sample_config): "fps" mode grabs ~VIDEO_FPS frames per
+    second of real playback (1 FPS default); "fixed" mode strides evenly
+    through the clip to up to VIDEO_MAX_FRAMES. Requires ffmpeg/ffprobe on
+    PATH. Returns None if ffmpeg is missing or extraction fails (caller falls
+    back to a text note).
+    """
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        logger.warning("ffmpeg not found; video frames unavailable")
+        return None
+    try:
+        mode, fps, cap = _video_sample_config()
+        cap = max(cap, max_frames or 0)
+        duration = _probe_video_duration(video_path)
+
+        if mode == "fps" or not duration:
+            # ~fps frames per second of real playback; -frames:v stops early
+            vf = f"fps={fps}"
+        else:
+            # fixed: stride cap frames evenly across the whole clip
+            vf = f"fps={cap / duration:.6f}"
+
+        cmd = [
+            ffmpeg, "-v", "error", "-i", video_path,
+            "-vf", vf,
+            "-frames:v", str(cap),
+            "-an", "-sn",
+            "-f", "image2pipe", "-c:v", "mjpeg", "-q:v", "5", "-",
+        ]
+        proc = subprocess.run(cmd, capture_output=True, timeout=180)
+        if proc.returncode != 0 or not proc.stdout:
+            logger.warning("ffmpeg video frame extraction failed: %s",
+                           proc.stderr.decode(errors="replace")[:300])
+            return None
+        frames = _split_jpeg_stream(proc.stdout)
+        if not frames:
+            logger.warning("ffmpeg produced no decodable frames for %s", video_path)
+            return None
+        return frames[:cap]
+    except Exception as e:
+        logger.warning("Video frame split failed (%s); skipping frames", e)
+        return None
 
 
 def build_user_content(
@@ -438,22 +674,58 @@ def build_user_content(
 
         if upload_handler.is_image_file(display_name, mime):
             try:
-                with open(path, "rb") as image_file:
-                    encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
-                # Extensionless uploads (e.g. a pasted screenshot) have no ext,
-                # so fall back to the resolved MIME subtype rather than emitting
-                # an invalid "data:image/;base64," with an empty subtype.
-                image_format = ext[1:] or (mime.split("/", 1)[1] if mime.startswith("image/") else "png")
-                content.append({
-                    "type": "image_url",
-                    "image_url": {"url": f"data:image/{image_format};base64,{encoded_string}"},
-                })
+                _, _ext = os.path.splitext(path.lower())
+
+                # Animated GIFs: split into frames so the VL model sees the
+                # motion, not one frozen first frame. Falls back to raw GIF
+                # bytes if the split fails or the GIF is static.
+                gif_frames = None
+                if _ext == ".gif":
+                    gif_frames = _gif_frames_as_jpeg(path)
+                if gif_frames:
+                    for _frame_data in gif_frames:
+                        content.append({
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{base64.b64encode(_frame_data).decode('utf-8')}"},
+                        })
+                else:
+                    with open(path, "rb") as image_file:
+                        encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
+                    # Extensionless uploads (e.g. a pasted screenshot) have no ext,
+                    # so fall back to the resolved MIME subtype rather than emitting
+                    # an invalid "data:image/;base64," with an empty subtype.
+                    image_format = _ext[1:] or (mime.split("/", 1)[1] if mime.startswith("image/") else "png")
+                    content.append({
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/{image_format};base64,{encoded_string}"},
+                    })
             except Exception as e:
                 logger.error(f"Failed to encode image {fid}: {e}")
                 if content and content[0]["type"] == "text":
                     content[0]["text"] += "\n\n[Image attached but could not be processed]"
                 else:
                     content.insert(0, {"type": "text", "text": "[Image attached but could not be processed]"})
+
+        elif getattr(upload_handler, "is_video_file", None) and upload_handler.is_video_file(display_name, mime):
+            try:
+                video_frames = _video_frames_as_jpeg(path)
+                if video_frames:
+                    for _frame_data in video_frames:
+                        content.append({
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{base64.b64encode(_frame_data).decode('utf-8')}"},
+                        })
+                else:
+                    if content and content[0]["type"] == "text":
+                        content[0]["text"] += f"\n\n[Video attached: {display_name} — could not extract frames]"
+                    else:
+                        content.insert(0, {"type": "text", "text": f"[Video attached: {display_name} — could not extract frames]"})
+            except Exception as e:
+                logger.error(f"Failed to extract video frames {fid}: {e}")
+                if content and content[0]["type"] == "text":
+                    content[0]["text"] += "\n\n[Video attached but could not be processed]"
+                else:
+                    content.insert(0, {"type": "text", "text": "[Video attached but could not be processed]"})
 
         elif upload_handler.is_audio_file(display_name, mime):
             try:

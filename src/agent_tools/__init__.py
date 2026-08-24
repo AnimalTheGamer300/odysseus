@@ -141,6 +141,8 @@ from src.tool_schemas import (  # noqa: E402, F401
 from src.tool_execution import (  # noqa: E402, F401
     execute_tool_block,
     format_tool_result,
+    _active_user_text,
+    get_active_user_text,
 )
 
 # Document functions

@@ -7,9 +7,9 @@
 
 
 import uiModule from './ui.js';
-import sessionModule from './sessions.js';
+import sessionModule from './sessions.js?v=20260806autotitle1';
 import emojiPicker from './emojiPicker.js';
-import markdownModule from './markdown.js';
+import markdownModule from './markdown.js?v=20260806thinkfix1';
 import codeRunnerModule from './codeRunner.js';
 import { langIcon } from './langIcons.js';
 import spinnerModule from './spinner.js';

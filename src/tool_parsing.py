@@ -9,6 +9,7 @@ import ast
 import bisect
 import json
 import logging
+import os
 import re
 from typing import List, Optional, Tuple
 
@@ -16,6 +17,11 @@ from src.agent_tools import ToolBlock, TOOL_TAGS
 from src.tool_security import BUILTIN_EMAIL_TOOLS
 
 logger = logging.getLogger(__name__)
+
+# Escape hatch: restore pre-patch behavior where ANY fenced tool block in a
+# reply executes, even mid-prose. Default: only trailing fences execute.
+_ALLOW_MID_REPLY_FENCES = os.environ.get("ODYSSEUS_ALLOW_MID_REPLY_FENCES", "").lower() in ("1", "true", "yes")
+
 
 # ---------------------------------------------------------------------------
 # Regex patterns
@@ -1269,7 +1275,30 @@ def parse_tool_blocks(text: str, skip_fenced: bool = False) -> List[ToolBlock]:
 
     # Pattern 1: fenced code blocks (skipped when `skip_fenced` — see docstring).
     if not skip_fenced:
-        for m in _TOOL_BLOCK_RE.finditer(text):
+        # A real tool call is always the LAST thing in an agent round. Fenced
+        # blocks sitting in the middle of prose are almost always the model
+        # SHOWING code (examples, quoted snippets) - executing those is what
+        # turned replies into runaway command loops. So only the trailing run
+        # of contiguous tool fences counts as tool calls; earlier fences are
+        # display text and never execute.
+        _fence_matches = list(_TOOL_BLOCK_RE.finditer(text))
+        if _ALLOW_MID_REPLY_FENCES:
+            _trailing_start = 0
+        else:
+            _trailing_start = len(_fence_matches)
+            # Find the last fence with only whitespace after it...
+            _last = len(_fence_matches) - 1
+            while _last >= 0 and text[_fence_matches[_last].end():].strip():
+                _last -= 1
+            if _last >= 0:
+                # ...then walk back while the gaps between fences are whitespace-only.
+                _start = _last
+                while _start > 0 and not text[_fence_matches[_start - 1].end():_fence_matches[_start].start()].strip():
+                    _start -= 1
+                _trailing_start = _start
+        for idx, m in enumerate(_fence_matches):
+            if idx < _trailing_start:
+                continue
             call = _fenced_tool_call(m)
             if call is None:
                 continue

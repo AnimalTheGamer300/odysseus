@@ -44,6 +44,19 @@ def initialize_managers(base_dir: str, rag_manager=None) -> Dict[str, Any]:
     # Create directories first
     create_directories()
 
+    # Full tool reference file (data/TOOLS.md + docs/TOOLS.md mirror). The
+    # agent prompt points the model at it for details beyond the one-liners;
+    # regenerated lazily on prompt builds too, this just guarantees it exists
+    # from boot. RAG tool selection is permanently disabled, so this file is
+    # the model's on-demand source for full tool descriptions.
+    try:
+        from src.agent_loop import TOOL_SECTIONS, FUNCTION_TOOL_SCHEMAS
+        from src.tools_doc import ensure_tools_doc
+        ensure_tools_doc(TOOL_SECTIONS, FUNCTION_TOOL_SCHEMAS, {})
+        logger.info("TOOLS.md reference ensured")
+    except Exception as e:  # pragma: no cover - defensive
+        logger.warning("TOOLS.md generation skipped at init: %s", e)
+
     # Initialize core managers
     memory_manager = MemoryManager(DATA_DIR)
     skills_manager = SkillsManager(DATA_DIR)

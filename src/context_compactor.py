@@ -38,7 +38,19 @@ def _content_as_text(content: Any) -> str:
 
 
 COMPACT_THRESHOLD = 0.85  # Trigger compaction at 85% of context window
-SUMMARY_MAX_TOKENS = 1024
+SUMMARY_MAX_TOKENS = 2048  # Floor: small compactions stay cheap and tight.
+# Ceiling: the summary must never re-consume a large share of the context it
+# just freed. 16384 tokens ≈ 64KB ≈ 12k words — beyond any session's genuinely
+# non-redundant state (file paths, decisions, todos); past that the marginal
+# bullets are mostly rephrasing. Cranked from 4096 on request 2026-08-09.
+SUMMARY_MAX_TOKENS_HARD = 16384
+# Adaptive budget: scales with how much context the summary replaces, capped at
+# 12.5% of the freed tokens (older // 8) and clamped to [floor, ceiling].
+# A big coding-session compaction legitimately gets more room; a small chat
+# stays cheap. Cost is moot (free models), but determinism isn't — an uncapped
+# summary would re-fill the window it just emptied and skew the next
+# compaction's split math.
+SUMMARY_REPLACE_FRACTION = 8
 SMALL_CONTEXT_LIMIT = 8192  # Models with context <= this get aggressive trimming
 
 # Cursor-style self-summarization prompt — produces structured, dense summaries
@@ -68,12 +80,84 @@ What is the system/code/task state right now? What was the last thing discussed?
 - Important constraints, preferences, or decisions that must not be forgotten
 - Specific values: model names, ports, paths, credentials references, versions
 
-Keep the summary under 1000 tokens. Be dense — every token should carry information. Do not include pleasantries or meta-commentary."""
+Use the token budget available ({budget} tokens max) — be dense, every token should carry information. Spend more of the budget when the session was long or high-stakes (file paths, function names, decisions, config values); spend less when little happened. Do not include pleasantries or meta-commentary."""
+
+
+_THINK_BLOCK_RE = re.compile(
+    r"<mm:think[^>]*>.*?</mm:think>|<think>.*?</think>",
+    re.DOTALL | re.IGNORECASE,
+)
+
+
+def _strip_think_blocks(text: str) -> str:
+    """Remove visible reasoning blocks (<think>…</think>, <mm:think>…</mm:think>).
+
+    Some gateways serve a thinking model's chain-of-thought as content tags
+    instead of a reasoning_content field; those blocks must never land in a
+    persisted compaction summary. Defense-in-depth on top of the compactor's
+    disable_thinking=True summary call.
+    """
+    if not text:
+        return text
+    return _THINK_BLOCK_RE.sub("", text).strip()
+
+
+def _message_excerpt(text: str, max_chars: int = 1600) -> str:
+    """Keep head+tail of a long message so decisions at the END aren't lost.
+
+    The old compactor cut every message at its first 2000 chars — for a long
+    user paste or a big tool result, the resolution/result at the bottom was
+    silently dropped from the summary input. Head+tail keeps both ends with a
+    visible ellipsis marker.
+    """
+    if not isinstance(text, str) or not text:
+        return ""
+    if len(text) <= max_chars:
+        return text
+    head = max(200, int(max_chars * 0.65))
+    tail = max(120, max_chars - head)
+    return (
+        text[:head].rstrip()
+        + "\n…[middle truncated]…\n"
+        + text[-tail:].lstrip()
+    )
+
+
+def _build_convo_text(older: List[Dict], max_chars: Optional[int] = None,
+                      per_msg_chars: int = 1600) -> str:
+    """Flatten the older half into the summarizer's input text.
+
+    Each message is head+tail truncated (``_message_excerpt``). When
+    ``max_chars`` is set, messages are dropped from the OLDEST end once the
+    total exceeds it, with a visible notice — so a huge conversation can't
+    blow the summary model's own context window, and the most recent (most
+    relevant) context is the last to go.
+    """
+    lines = []
+    total = 0
+    for msg in older:
+        line = f"{msg.get('role', 'user').upper()}: {_message_excerpt(_content_as_text(msg.get('content')), per_msg_chars)}"
+        lines.append(line)
+        total += len(line) + 1
+    if max_chars is not None and max_chars > 0 and total > max_chars:
+        # Drop from the OLDEST end: recent context matters more than old.
+        dropped = 0
+        while lines and total > max_chars:
+            removed = lines.pop(0)
+            total -= len(removed) + 1
+            dropped += 1
+        if dropped:
+            lines.insert(
+                0,
+                f"…[{dropped} earliest message(s) omitted — summary input budget reached]…",
+            )
+    return "\n".join(lines)
 
 
 def normalize_compaction_summary(summary: str) -> str:
     """Remove redundant leading title text before adding our wrapper."""
     text = (summary or "").strip()
+    text = _strip_think_blocks(text)
     text = re.sub(r"^(?:#{1,3}\s*)?Conversation Summary\s*", "", text, flags=re.IGNORECASE)
     text = re.sub(r"^\*\*Conversation Summary\*\*\s*", "", text, flags=re.IGNORECASE)
     return text.lstrip()
@@ -324,9 +408,14 @@ async def maybe_compact(
     model: str,
     messages: List[Dict],
     headers: Optional[Dict] = None,
+    force_threshold_tokens: Optional[int] = None,
     owner: Optional[str] = None,
 ) -> tuple:
     """Check context usage and compact if above threshold.
+
+    With `force_threshold_tokens` set, compaction triggers on the absolute
+    accumulated token count instead of a percentage of the model context
+    window (used by the agent loop to bound a single multi-round request).
 
     Returns (messages, context_length, was_compacted).
     """
@@ -334,12 +423,18 @@ async def maybe_compact(
     used = estimate_tokens(messages)
     pct = (used / context_length) * 100 if context_length else 0
 
-    if pct < COMPACT_THRESHOLD * 100:
-        return messages, context_length, False
-
-    logger.info(
-        f"Context at {pct:.1f}% ({used}/{context_length} tokens) — compacting"
-    )
+    if force_threshold_tokens is not None:
+        if used < force_threshold_tokens:
+            return messages, context_length, False
+        logger.info(
+            f"Context at {used} tokens — force-compacting (threshold={force_threshold_tokens})"
+        )
+    else:
+        if pct < COMPACT_THRESHOLD * 100:
+            return messages, context_length, False
+        logger.info(
+            f"Context at {pct:.1f}% ({used}/{context_length} tokens) — compacting"
+        )
 
     # Split into system preface and conversation
     system_msgs = []
@@ -359,10 +454,19 @@ async def maybe_compact(
     recent = convo_msgs[split_point:]
 
     # Build the text to summarize
-    convo_text = "\n".join(
-        f"{msg.get('role', 'user').upper()}: {_content_as_text(msg.get('content'))[:2000]}"
-        for msg in older
-    )
+    # Use utility model if configured, otherwise fall back to session model
+    util_url, util_model, util_headers = resolve_endpoint("utility", owner=owner)
+    compact_url = util_url or endpoint_url
+    compact_model = util_model or model
+    compact_headers = util_headers if util_url else headers
+
+    # Cap the summarizer's INPUT so a huge older half can't blow the summary
+    # model's own context window (which would 400 or silently truncate).
+    # Reserve ~45% of the window for the summary prompt + the generated
+    # summary itself; chars ≈ tokens / 0.3 under our estimate.
+    _summary_ctx = get_context_length(compact_url, compact_model)
+    _input_budget_chars = int(_summary_ctx * 0.55 / 0.3)
+    convo_text = _build_convo_text(older, max_chars=_input_budget_chars)
 
     # Count prior compactions from existing summary messages
     compaction_count = sum(
@@ -370,16 +474,23 @@ async def maybe_compact(
         if "[Conversation summary" in m.get("content", "")
     )
 
-    # Use utility model if configured, otherwise fall back to session model
-    util_url, util_model, util_headers = resolve_endpoint("utility", owner=owner)
-    compact_url = util_url or endpoint_url
-    compact_model = util_model or model
-    compact_headers = util_headers if util_url else headers
+    # Adaptive summary budget: scale with the size of what's being replaced, so
+    # a big coding-session compaction legitimately gets more room while a small
+    # chat stays cheap. Clamped to [SUMMARY_MAX_TOKENS, SUMMARY_MAX_TOKENS_HARD]
+    # so the summary can never re-consume more than ~12.5% of the context it
+    # just freed.
+    older_tokens = estimate_tokens(older)
+    summary_budget = max(
+        SUMMARY_MAX_TOKENS,
+        min(SUMMARY_MAX_TOKENS_HARD, older_tokens // SUMMARY_REPLACE_FRACTION),
+    )
 
     prompt = SELF_SUMMARY_SYSTEM_PROMPT.replace(
         "{count}", str(len(older))
     ).replace(
         "{n}", str(compaction_count + 1)
+    ).replace(
+        "{budget}", str(summary_budget)
     )
     summary_messages = [
         {"role": "system", "content": prompt},
@@ -387,15 +498,53 @@ async def maybe_compact(
     ]
 
     try:
-        summary = await llm_call_async(
-            compact_url,
-            compact_model,
-            summary_messages,
-            temperature=0.2,
-            max_tokens=SUMMARY_MAX_TOKENS,
-            headers=compact_headers,
-            timeout=30,
-        )
+        # finish_reason detection: a summary cut at max_tokens silently
+        # amputates the tail — usually the "Pending / Next Steps" section,
+        # exactly what the next turn needs. Detect it, retry once at the
+        # ceiling when the budget was below it, and if it still truncates,
+        # mark the summary so the incompleteness is visible downstream.
+        async def _summarize(max_tok):
+            _r = await llm_call_async(
+                compact_url,
+                compact_model,
+                summary_messages,
+                temperature=0.2,
+                max_tokens=max_tok,
+                headers=compact_headers,
+                timeout=30,
+                # Never let the summarizer reason: a thinking model emits
+                # chain-of-thought into reasoning_content (content stays
+                # empty), which the old code returned as the "summary" — a
+                # cut-off internal monologue instead of a summary — and it
+                # burns the whole max_tokens budget on thinking before the
+                # real summary is written
+                # (ODYSSEUS_DEEPSEEK_V4_THINKING=1 + reasoning_content
+                # fallback; fixed 2026-08-09).
+                disable_thinking=True,
+                return_finish_reason=True,
+            )
+            if isinstance(_r, tuple):
+                return _r
+            # Defensive: a stubbed/cached caller may return bare text —
+            # treat it as untruncated.
+            return _r, None
+
+        summary, finish_reason = await _summarize(summary_budget)
+        if finish_reason in ("length", "max_tokens") and summary_budget < SUMMARY_MAX_TOKENS_HARD:
+            logger.info(
+                f"Summary truncated at {summary_budget} tokens (finish_reason="
+                f"{finish_reason}) — retrying once at the "
+                f"{SUMMARY_MAX_TOKENS_HARD}-token ceiling"
+            )
+            summary, finish_reason = await _summarize(SUMMARY_MAX_TOKENS_HARD)
+        if finish_reason in ("length", "max_tokens"):
+            logger.warning(
+                f"Compaction summary truncated at {SUMMARY_MAX_TOKENS_HARD} tokens "
+                f"(finish_reason={finish_reason}) — summary may be incomplete"
+            )
+            summary = summary.rstrip() + (
+                "\n\n[Summary truncated at max tokens — some details may be missing]"
+            )
     except Exception as e:
         logger.error(f"Compaction summary failed: {e}")
         # Degrade gracefully: keep the conversation intact rather than
@@ -403,6 +552,13 @@ async def maybe_compact(
         # caller nothing was summarized; trim_for_context handles length.
         return messages, context_length, False
     summary = normalize_compaction_summary(summary)
+    if not summary.strip():
+        logger.error(
+            "Compaction summary empty (model %s returned no content with "
+            "thinking disabled) — skipping compaction instead of persisting "
+            "an empty summary", compact_model,
+        )
+        return messages, context_length, False
 
     summary_msg = {
         "role": "system",
@@ -411,12 +567,17 @@ async def maybe_compact(
 
     compacted = system_msgs + [summary_msg] + recent
 
-    # Update session history to match. Pass len(system_msgs) so the
-    # recent_history slice in _update_session_history uses the correct
-    # offset — session.history INCLUDES the system messages, but
-    # split_point is indexed against convo_msgs which does NOT. Without
-    # this, the slice drops the leading system message(s).
-    _update_session_history(session, split_point, summary, system_msg_count=len(system_msgs))
+    # Update session history to match. split_point is indexed against
+    # convo_msgs, which mixes ephemeral preface injections (memory, RAG,
+    # search context, date context) into the conversation — the old
+    # system_msg_count offset assumed the message list mirrored history and
+    # shifted the slice, permanently dropping recent turns from the
+    # persisted transcript (2026-08-08, see changelog). Map the split onto
+    # session.history properly; if the mapping can't be established, leave
+    # history untouched rather than risk corrupting it.
+    history_split = _map_convo_split_to_history(session, messages, split_point)
+    if history_split is not None:
+        _update_session_history(session, history_split, summary)
 
     new_used = estimate_tokens(compacted)
     logger.info(
@@ -427,35 +588,109 @@ async def maybe_compact(
     return compacted, context_length, True
 
 
-def _update_session_history(session, split_point: int, summary: str,
-                            system_msg_count: int = 0):
-    """Update the in-memory session history after compaction.
+def _map_convo_split_to_history(session, messages, split_point):
+    """Map a convo_msgs split index back to an index into session.history.
 
-    `split_point` is the index in `convo_msgs` (system-stripped). The
-    in-memory `session.history` includes leading system messages, so the
-    actual recent-history slice starts at `system_msg_count + split_point`.
-    Prepending `session.history[:system_msg_count]` to the new history
-    preserves persona, preset, and RAG system messages that would
-    otherwise be dropped.
+    `messages` = ephemeral preface (system prompts + user-role injections
+    like search context / date context) + the persisted history, so the
+    split computed on convo_msgs does not translate directly to
+    session.history. History messages are matched by ``_db_id`` metadata
+    (falling back to role+content for never-persisted messages) and
+    counted in order across the summarized range; leading system messages
+    in history (prior compaction summaries) fold into the summarized
+    portion.
+
+    Returns None when the mapping can't be established — the caller then
+    leaves history untouched (safe) instead of corrupting it.
+    """
+    if not session or not getattr(session, "history", None):
+        return None
+    convo_msgs = [m for m in messages if m.get("role") != "system"]
+    if split_point <= 0 or split_point >= len(convo_msgs):
+        return None
+
+    hist_msgs = [
+        m for m in session.history
+        if (m.metadata or {}).get("source") != "slash"
+    ]
+    if not hist_msgs:
+        return None
+
+    anchor_idx = next(
+        (i for i, m in enumerate(hist_msgs) if m.role != "system"), None
+    )
+    if anchor_idx is None:
+        return None
+    anchor = hist_msgs[anchor_idx]
+
+    def _same_message(hist_msg, convo_msg):
+        hid = (hist_msg.metadata or {}).get("_db_id")
+        cid = (convo_msg.get("metadata") or {}).get("_db_id")
+        if hid and cid:
+            return hid == cid
+        return (
+            hist_msg.role == convo_msg.get("role")
+            and hist_msg.content == convo_msg.get("content")
+        )
+
+    # Locate the first history message inside convo_msgs
+    start = None
+    for i, cm in enumerate(convo_msgs):
+        if _same_message(anchor, cm):
+            start = i
+            break
+    if start is None:
+        return None
+
+    # Walk the summarized range, counting history messages it covers.
+    # Ephemeral wedges (date context, etc.) don't match and don't advance.
+    idx = anchor_idx
+    count = 0
+    for k in range(start, split_point):
+        if idx >= len(hist_msgs):
+            break
+        if _same_message(hist_msgs[idx], convo_msgs[k]):
+            count += 1
+            idx += 1
+    if count == 0:
+        return None
+
+    # Leading system messages (prior compaction summaries) are replaced by
+    # this summary, so they count toward the summarized portion too.
+    return anchor_idx + count
+
+
+def _update_session_history(session, history_split: int, summary: str):
+    """Replace the older portion of session.history with the summary.
+
+    `history_split` is an index into session.history: everything before it
+    is summarized away, everything from it on is kept verbatim. The
+    summary is prepended so the transcript reads [summary, recent…] — the
+    same layout as the manual compact path.
     """
     if not session or not hasattr(session, "history"):
         return
-
-    effective_split = system_msg_count + split_point
-    if effective_split >= len(session.history):
+    if history_split <= 0 or history_split >= len(session.history):
+        logger.warning(
+            "Compaction: skipping history rewrite (history_split=%s, history_len=%s)",
+            history_split, len(session.history),
+        )
         return
 
-    # Keep the recent messages, prepend summary AND the leading system
-    # messages so the system prompt survives compaction.
-    system_prefix = list(session.history[:system_msg_count])
-    recent_history = session.history[effective_split:]
     summary = normalize_compaction_summary(summary)
     summary_msg = ChatMessage(
         role="system",
         content=f"[Conversation summary]\n{summary}",
-        metadata={"compacted": True, "summarized_count": split_point},
+        metadata={"compacted": True, "summarized_count": history_split},
     )
-    new_history = system_prefix + [summary_msg] + recent_history
+    new_history = [summary_msg] + list(session.history[history_split:])
+    if len(new_history) >= len(session.history):
+        logger.warning(
+            "Compaction: refusing non-shrinking history rewrite "
+            "(history_split=%s, history_len=%s)",
+            history_split, len(session.history),
+        )
+        return
     try:
         from core.models import get_session_manager_instance
         manager = get_session_manager_instance()

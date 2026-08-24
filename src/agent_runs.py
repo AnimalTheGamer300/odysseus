@@ -41,6 +41,11 @@ _RUNS: Dict[str, _Run] = {}
 # it, every session that ever streamed kept its entire event log forever.
 _EVICT_GRACE_S = 180
 
+# Hard cap on live subscribers per run. A re-attach loop or a tab storm on one
+# session must not spawn unbounded per-subscriber replay queues; beyond the cap
+# a client gets the buffered replay only, no live queue.
+_MAX_SUBSCRIBERS = 4
+
 
 def _publish(run: _Run, ev: str) -> None:
     """Append one SSE event and fan it out to every live subscriber."""
@@ -163,6 +168,18 @@ async def subscribe(session_id: str) -> AsyncGenerator[str, None]:
         return
     q: asyncio.Queue = asyncio.Queue()
     run.subscribers.add(q)            # register BEFORE replaying so nothing is missed
+    # Live-subscriber cap: beyond the limit, replay the buffer and leave (no
+    # live queue). Bounds memory when a re-attach loop or a tab storm hammers
+    # one session - every extra subscriber otherwise holds the whole buffer.
+    if len(run.subscribers) > _MAX_SUBSCRIBERS:
+        try:
+            next_seq = 0
+            while next_seq < len(run.buffer):
+                yield run.buffer[next_seq]
+                next_seq += 1
+            return
+        finally:
+            run.subscribers.discard(q)
     # A live subscriber is connected — don't let a pending grace timer evict
     # the run out from under it mid-replay.
     if run.evict_task and not run.evict_task.done():

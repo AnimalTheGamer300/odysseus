@@ -56,7 +56,7 @@ class PresetUpdateRequest(BaseModel):
     """Request model for updating custom preset configuration."""
     name: str = Field(
         "",
-        max_length=50,
+        max_length=100,
         description="Character display name (shown next to model name)"
     )
     enabled: bool = Field(
@@ -77,17 +77,17 @@ class PresetUpdateRequest(BaseModel):
     )
     system_prompt: str = Field(
         "",
-        max_length=10000,
+        max_length=100000,
         description="System prompt to guide assistant behavior (empty = default)"
     )
     inject_prefix: str = Field(
         "",
-        max_length=5000,
+        max_length=50000,
         description="Text to prepend to each outgoing user message"
     )
     inject_suffix: str = Field(
         "",
-        max_length=5000,
+        max_length=50000,
         description="Text to append to each outgoing user message"
     )
 

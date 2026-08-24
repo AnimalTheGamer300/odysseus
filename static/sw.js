@@ -7,7 +7,7 @@
 //   - Other static assets (images/fonts/libs): cache-first with bg refresh.
 //   - API / non-GET: never cached.
 // Bump CACHE_NAME whenever the precache list or SW logic changes.
-const CACHE_NAME = 'odysseus-v376-settings-title-icons';
+const CACHE_NAME = 'odysseus-v391-autotitle1';
 
 // Core shell precached on install so repeat opens are instant without any
 // network wait. Keep this list in sync with the <script type="module"> tags
@@ -18,9 +18,9 @@ const PRECACHE = [
   '/static/app.js',
   '/static/js/storage.js',
   '/static/js/ui.js',
-  '/static/js/markdown.js',
+  '/static/js/markdown.js?v=20260806thinkfix1',
   '/static/js/dragSort.js',
-  '/static/js/sessions.js',
+  '/static/js/sessions.js?v=20260806autotitle1',
   '/static/js/memory.js',
   '/static/js/skills.js',
   '/static/js/tourHints.js',
@@ -33,17 +33,17 @@ const PRECACHE = [
   '/static/js/spinner.js',
   '/static/js/tts-ai.js',
   '/static/js/document.js',
-  '/static/js/gallery.js',
-  '/static/js/chatRenderer.js',
+  '/static/js/gallery.js?v=20260708match1',
+  '/static/js/chatRenderer.js?v=20260806thinkfix1',
   '/static/js/codeRunner.js',
-  '/static/js/chatStream.js',
-  '/static/js/chat.js',
+  '/static/js/chatStream.js?v=20260722emailfastindex1',
+  '/static/js/chat.js?v=20260807historyrecall',
   '/static/js/cookbook.js',
   '/static/js/search-chat.js',
   '/static/js/compare/index.js',
   '/static/js/theme.js',
   '/static/js/censor.js',
-  '/static/js/settings.js',
+  '/static/js/settings.js?v=20260723compareicon1',
   '/static/js/admin.js',
   '/static/js/init.js',
   '/static/js/slashCommands.js',

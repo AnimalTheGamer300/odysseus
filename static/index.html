@@ -248,12 +248,12 @@
       }, { once: true });
     })();
   </script>
-  <link rel="stylesheet" href="/static/style.css?v=20260723tasksbulkfeedback1">
-  <link rel="modulepreload" href="/static/app.js?v=20260723tasksbulkfeedback1">
-  <link rel="modulepreload" href="/static/js/chat.js?v=20260722ctxheader4">
+  <link rel="stylesheet" href="/static/style.css?v=20260808historynav">
+  <link rel="modulepreload" href="/static/app.js?v=20260808draftfix">
+  <link rel="modulepreload" href="/static/js/chat.js?v=20260808thinkclose">
   <link rel="modulepreload" href="/static/js/ui.js">
-  <link rel="modulepreload" href="/static/js/sessions.js?v=20260722ctxheader4">
-  <link rel="modulepreload" href="/static/js/markdown.js">
+  <link rel="modulepreload" href="/static/js/sessions.js?v=20260806autotitle1">
+  <link rel="modulepreload" href="/static/js/markdown.js?v=20260806thinkfix1">
 </head>
 <body>
   <!-- Loading overlay — hides all flashing until app is ready -->
@@ -1575,10 +1575,10 @@
               <div id="set-imgSettingsMsg" style="font-size:11px;color:color-mix(in srgb, var(--fg) 45%, transparent);"></div>
             </div>
           </div>
-          <!-- TTS panel hidden — user opted out of read-aloud entirely. Kept
-               in DOM so the JS that wires set-ttsProviderSelect etc. doesn't
-               throw on missing nodes; not visible to anyone. -->
-          <div class="admin-card" hidden style="display:none">
+          <!-- TTS panel: re-shown 2026-08-07 (IRIS) — was hidden with no UI
+               path to re-enable it. Wire-up was always intact; the card just
+               never rendered. -->
+          <div class="admin-card">
             <h2 style="display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;opacity:0.6"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>Text to Speech<span style="flex:1"></span><label class="admin-switch"><input type="checkbox" id="set-ttsEnabledToggle" checked><span class="admin-slider"></span></label></h2>
             <div class="admin-toggle-sub" style="margin-bottom:8px">Configure TTS provider for assistant message read-aloud.</div>
             <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -1629,12 +1629,25 @@
               <div id="set-ttsSettingsMsg" style="font-size:11px;color:color-mix(in srgb, var(--fg) 45%, transparent);"></div>
             </div>
           </div>
-          <!-- Teacher Model settings card hidden as part of the 2.0
-               "harden the core" pass. The escalation flow is dormant when
-               `teacher_model` is unset (its default), so the backend keeps
-               working for anyone who wired it via `manage_settings` /
-               settings backup. Re-add this card to surface the toggle
-               again once the core experience is faster. -->
+          <!-- Teacher Model settings card: re-added 2026-08-07 (IRIS) after the
+               2.0 "harden the core" pass removed it from the DOM. The escalation
+               flow stays dormant while `teacher_enabled` is off; the card just
+               surfaces the toggle + endpoint/model picker again. -->
+          <div class="admin-card">
+            <h2 style="display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;opacity:0.6"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg>Teacher Model<span style="flex:1"></span><label class="admin-switch"><input type="checkbox" id="set-teacherEnabledToggle"><span class="admin-slider"></span></label></h2>
+            <div class="admin-toggle-sub" style="margin-bottom:8px">SOTA model called automatically when the student model fails an agent-mode task. Leave off unless you want escalation.</div>
+            <div class="settings-col" style="display:flex;flex-direction:column;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <label class="settings-label">Endpoint</label>
+                <select id="set-teacherEpSelect" class="settings-select" style="flex:1"></select>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <label class="settings-label">Model</label>
+                <select id="set-teacherModelSelect" class="settings-select" style="flex:1"></select>
+              </div>
+              <div id="set-teacherChatMsg" style="font-size:11px;color:color-mix(in srgb, var(--fg) 45%, transparent);"></div>
+            </div>
+          </div>
           <div class="admin-card">
             <h2><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;opacity:0.6"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Writing Style</h2>
             <div class="admin-toggle-sub" style="margin-bottom:8px">Used when AI drafts email replies. Keep this email-specific: greetings, sign-off, tone, and length.</div>
@@ -2502,9 +2515,9 @@
 <!-- Load modules in this order -->
 <script type="module" src="/static/js/storage.js"></script>
 <script type="module" src="/static/js/ui.js"></script>
-<script type="module" src="/static/js/markdown.js"></script>
+<script type="module" src="/static/js/markdown.js?v=20260806thinkfix1"></script>
 <script type="module" src="/static/js/dragSort.js"></script>
-<script type="module" src="/static/js/sessions.js?v=20260722ctxheader4"></script>
+<script type="module" src="/static/js/sessions.js?v=20260806autotitle1"></script>
 <script type="module" src="/static/js/memory.js?v=20260722memoryloading1"></script>
 <script type="module" src="/static/js/skills.js"></script>
 <script type="module" src="/static/js/tourHints.js"></script>
@@ -2519,10 +2532,10 @@
 <script type="module" src="/static/js/tts-ai.js"></script>
 <script type="module" src="/static/js/document.js?v=20260722emailfastindex1"></script>
 <script type="module" src="/static/js/gallery.js?v=20260708match1"></script>
-<script type="module" src="/static/js/chatRenderer.js?v=20260722emailfastindex1"></script>
+<script type="module" src="/static/js/chatRenderer.js?v=20260806thinkfix1"></script>
 <script type="module" src="/static/js/codeRunner.js"></script>
 <script type="module" src="/static/js/chatStream.js?v=20260722emailfastindex1"></script>
-  <script type="module" src="/static/js/chat.js?v=20260722ctxheader4"></script>
+  <script type="module" src="/static/js/chat.js?v=20260808thinkclose"></script>
 <script type="module" src="/static/js/cookbook.js"></script>
 <script src="/static/js/cookbookSchedule.js"></script>
 <script type="module" src="/static/js/search-chat.js"></script>
@@ -2530,7 +2543,7 @@
 <script type="module" src="/static/js/censor.js"></script>
 <script type="module" src="/static/js/settings.js?v=20260723compareicon1"></script>
 <script type="module" src="/static/js/assistant.js"></script>
-<script type="module" src="/static/app.js?v=20260723tasksbulkfeedback1"></script>  <!-- app.js must be LAST -->
+<script type="module" src="/static/app.js?v=20260808draftfix"></script>  <!-- app.js must be LAST -->
   <script type="module" src="/static/js/init.js?v=20260715freshroot3"></script>
 <script type="module" src="/static/js/a11y.js"></script>
 <script nonce="{{CSP_NONCE}}">if('serviceWorker' in navigator){navigator.serviceWorker.register('/static/sw.js').catch(()=>{});}</script>

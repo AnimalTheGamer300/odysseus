@@ -3,7 +3,7 @@
 
 import Storage from './storage.js';
 import uiModule, { autoResize, styledPrompt } from './ui.js';
-import chatRenderer from './chatRenderer.js?v=20260722ctxheader1';
+import chatRenderer from './chatRenderer.js?v=20260806thinkfix1';
 import { providerLogo } from './providers.js';
 import { initModelPicker, updateModelPicker } from './modelPicker.js?v=20260722ctxheader1';
 import themeModule from './theme.js';
@@ -18,6 +18,26 @@ let _skipAutoSelect = false;
 let _suppressNextSessionLoading = false;
 let _rootFreshChatApplied = false;
 const HISTORY_DISPLAY_CHAR_LIMIT = 160000;
+
+// --- Tab title mirror (IRIS 2026-08-06) ------------------------------------
+// Mirror the active chat name (#current-meta) into the browser tab title so
+// you can tell which tab holds which chat. One MutationObserver covers every
+// writer (selectSession, rename, retitle, new-chat, archive peek, ...).
+// Pathname-guarded to the chat route (/) so /calendar, /notes, etc. keep
+// their own per-route titles.
+(function _mirrorTabTitle() {
+  const meta = document.getElementById('current-meta');
+  if (!meta) return;
+  const apply = () => {
+    try {
+      if (window.location.pathname !== '/') return;
+      const t = (meta.textContent || '').trim();
+      document.title = t ? t + ' — Odysseus' : 'Odysseus Chat';
+    } catch (_) {}
+  };
+  apply();
+  new MutationObserver(apply).observe(meta, { childList: true, subtree: true, characterData: true });
+})();
 const HISTORY_DISPLAY_TAIL_CHARS = 20000;
 const HISTORY_PAGE_LIMIT_MOBILE = 8;
 const HISTORY_PAGE_LIMIT_DESKTOP = 24;
@@ -697,6 +717,45 @@ function createSessionItem(s) {
 
 
   dropdown.appendChild(renameItem);
+
+  // Auto-title (AI): regenerate the chat name from conversation context via
+  // the utility model (POST /api/session/{id}/retitle).
+  const _autoTitleIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.7L19 10l-5.1 1.3L12 17l-1.9-5.7L5 10l5.1-1.3L12 3z"/><path d="M19 15l.9 2.6L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.4L19 15z"/></svg>';
+  const autoTitleItem = document.createElement('div');
+  autoTitleItem.className = 'dropdown-item-compact';
+  autoTitleItem.innerHTML = _icon(_autoTitleIcon) + '<span>Auto-title (AI)</span>';
+  autoTitleItem.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    dropdown.style.display = 'none';
+    autoTitleItem.style.pointerEvents = 'none';
+    autoTitleItem.style.opacity = '.5';
+    const _origHtml = autoTitleItem.innerHTML;
+    autoTitleItem.innerHTML = _icon('<span style="font-size:14px;line-height:1;">…</span>') + '<span>…</span>';
+    try {
+      const res = await fetch(`${API_BASE}/api/session/${s.id}/retitle`, { method: 'POST' });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j.detail || `HTTP ${res.status}`);
+      }
+      const d = await res.json();
+      s.name = d.name;
+      renderSessionList();
+      if (s.id === currentSessionId) {
+        const _metaEl = document.getElementById('current-meta');
+        if (_metaEl) _metaEl.textContent = d.name;
+        document.title = d.name ? d.name + ' — Odysseus' : 'Odysseus Chat';
+      }
+      uiModule.showToast('Auto-titled: ' + d.name);
+    } catch (err) {
+      console.error('Auto-title failed:', err);
+      uiModule.showError('Auto-title failed: ' + err.message);
+    } finally {
+      autoTitleItem.innerHTML = _origHtml;
+      autoTitleItem.style.pointerEvents = '';
+      autoTitleItem.style.opacity = '';
+    }
+  });
+  dropdown.appendChild(autoTitleItem);
 
   // Star/Unstar item
   if (!isOpenClaw) {
@@ -1819,6 +1878,10 @@ export async function selectSession(id, { keepSidebar = false, showLoading = tru
     window.compareModule.deactivate(true);
     return; // deactivate does a page reload
   }
+  // IRIS fix 2026-08-05 (ghost-message): user clicked an EXISTING session — their
+  // intent is no longer "new chat". Clear the flag so the next send's adopt can
+  // target this row instead of force-creating a fresh session.
+  try { window.__odysseusNewChatIntent = false; } catch (_) {}
   try {
     const navToken = ++_sessionNavToken;
     const prevSessionId = currentSessionId;
@@ -1847,6 +1910,16 @@ export async function selectSession(id, { keepSidebar = false, showLoading = tru
     const _isTransientChat = !!_meta && (_meta.folder === 'Assistant' || _meta.folder === 'Tasks');
     if (!_isTransientChat) {
       Storage.set('lastSessionId', id);
+      // Persist the session id in the URL hash so a refresh / new tab
+      // restores the same chat. The load path (targetId = hashId) and the
+      // hashchange listener already read it — the write side was simply
+      // never implemented. replaceState avoids firing hashchange, so no
+      // recursion into this handler.
+      try {
+        if (window.location.hash !== '#' + id) {
+          history.replaceState(null, '', '#' + id);
+        }
+      } catch (_) {}
     }
     // Restore character preset for persistent chats
     try {
