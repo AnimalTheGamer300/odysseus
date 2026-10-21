@@ -901,6 +901,25 @@ async def build_chat_context(
         except Exception:
             logger.debug("Failed to add current date/time context", exc_info=True)
 
+    # Prior-turn tool output replay (2026-10-21): persisted history keeps tool
+    # executions as metadata.tool_events but never replays them across turns,
+    # so models re-ran commands purely to re-verify earlier outputs (or
+    # second-guessed accurate recall they could no longer check). Inject the
+    # persisted outputs as a tail context message — same slot reasoning as the
+    # datetime message above: the text changes as events accumulate, so it
+    # must stay OUT of the byte-stable preface+history prefix or local
+    # backends lose their KV-cache every request.
+    try:
+        from src.tool_replay import prior_tool_outputs_context_message
+        _replay_msg = prior_tool_outputs_context_message(messages)
+        if _replay_msg is not None:
+            if messages and messages[-1].get("role") == "user":
+                messages.insert(len(messages) - 1, _replay_msg)
+            else:
+                messages.append(_replay_msg)
+    except Exception:
+        logger.debug("Failed to add prior tool outputs context", exc_info=True)
+
     # Auto-compact
     messages, context_length, was_compacted = await maybe_compact(
         sess, sess.endpoint_url, sess.model, messages, sess.headers, owner=user,
