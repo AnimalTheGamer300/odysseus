@@ -61,6 +61,12 @@ _VISION_MODEL_KEYWORDS = (
     "phi-4", "phi4",
     # zhipu / glm (glm-4.5v, glm-4.6v, glm-5v-turbo, etc.)
     "glm-4.5v", "glm-4.6v", "glm-5v",
+    # GLM 5.3 dropped the "-v" suffix for its multimodal flash tier:
+    # glm-5.3-flash is native multimodal (text+image+video -> text) while the
+    # flagship glm-5.3 is text-only (text -> text), per Z.ai's published model
+    # metadata. Without this, "z-ai/glm-5.3-flash" matched no keyword and its
+    # images were silently swapped for a VLM caption.
+    "glm-5.3-flash",
 )
 # Catches the "*-VL-*" / "*VL*" family not covered by a literal keyword above
 # (e.g. Qwen2.5-VL and various tags): a standalone "vl" token, plus "vlm".
@@ -156,10 +162,136 @@ def lmstudio_supports_vision(url: str, model: str) -> Optional[bool]:
     return None
 
 
+# ── Generic /models modality probe ─────────────────────────────────────
+# Many OpenAI-compatible providers advertise per-model input modalities on
+# their standard GET /models list (OpenRouter: architecture.input_modalities;
+# Ollama-compatible servers: capabilities[]; vLLM-ish servers: various).
+# Reading that beats name-guessing for models whose names carry no vision
+# hint. TTL-cached per endpoint; failures cached briefly so a dead endpoint
+# doesn't add a multi-second stall to every message.
+_MODALITY_MODELS_TTL = 900.0
+_MODALITY_FAILURE_TTL = 60.0
+_MODELS_MODALITY_CACHE: dict = {}  # (scheme, host, port, path) -> (list | None, expiry)
+
+# Tail segments of a chat-completions URL — stripped before appending /models.
+_COMPLETIONS_SUFFIXES = (
+    "/chat/completions", "/completions", "/messages", "/responses", "/embeddings",
+)
+
+
+def _models_list_url(endpoint_url: str) -> str:
+    """Derive the models-list URL from a chat-completions (or base) URL."""
+    u = (endpoint_url or "").strip().rstrip("/")
+    for suf in _COMPLETIONS_SUFFIXES:
+        if u.endswith(suf):
+            u = u[: -len(suf)]
+            break
+    return u + "/models"
+
+
+def _fetch_models_with_modality(endpoint_url: str) -> Optional[list]:
+    """GET the endpoint's OpenAI-style /models list, or None when unreachable.
+    Successes cached 15 min, failures 60 s (transient errors shouldn't stick)."""
+    parsed = urlparse(endpoint_url)
+    key = (parsed.scheme, parsed.hostname, parsed.port, parsed.path)
+    now = time.time()
+    cached = _MODELS_MODALITY_CACHE.get(key)
+    if cached is not None and cached[1] > now:
+        return cached[0]
+    models = None
+    try:
+        r = httpx.get(_models_list_url(endpoint_url), timeout=2.0)
+        if r.is_success:
+            data = r.json()
+        else:
+            data = {}
+        if isinstance(data, dict) and isinstance(data.get("data"), list):
+            models = data["data"]
+        elif isinstance(data, list):
+            models = data
+    except Exception:
+        models = None
+    _MODELS_MODALITY_CACHE[key] = (
+        models,
+        now + (_MODALITY_MODELS_TTL if models is not None else _MODALITY_FAILURE_TTL),
+    )
+    return models
+
+
+def _model_entry_supports_vision(entry: dict) -> Optional[bool]:
+    """Extract image-input capability from one /models entry, or None when the
+    entry carries no modality metadata we understand."""
+    arch = entry.get("architecture") if isinstance(entry.get("architecture"), dict) else {}
+    # OpenRouter style: architecture.input_modalities: ["text", "image", ...]
+    mods = arch.get("input_modalities") or entry.get("input_modalities")
+    if isinstance(mods, list) and mods:
+        return "image" in [str(m).lower() for m in mods]
+    # architecture.modality: "text+image+video->text"
+    modality = arch.get("modality") or entry.get("modality")
+    if isinstance(modality, str) and "->" in modality:
+        return "image" in modality.split("->", 1)[0].lower()
+    # Ollama style: capabilities: ["vision", ...] or {"vision": true}
+    caps = entry.get("capabilities")
+    if isinstance(caps, dict) and "vision" in caps:
+        return bool(caps.get("vision"))
+    if isinstance(caps, list) and caps:
+        return "vision" in [str(c).lower() for c in caps]
+    return None
+
+
+def _entry_matches_model(entry_id: str, model: str) -> bool:
+    """Loose id match: exact, or equal ignoring an Ollama-style :tag
+    ("z-ai/glm-5.3-flash:free" matches "z-ai/glm-5.3-flash")."""
+    a = (entry_id or "").strip().lower()
+    b = (model or "").strip().lower()
+    if not a or not b:
+        return False
+    return a == b or a.split(":", 1)[0] == b.split(":", 1)[0]
+
+
+def advertised_supports_vision(endpoint_url: str, model: str) -> Optional[bool]:
+    """Best-effort read of a model's image-input capability from the endpoint's
+    own /models metadata. True/False when the endpoint definitively advertises
+    it, None when there's nothing usable (unknown model, no metadata, error)."""
+    if not endpoint_url or not model:
+        return None
+    models = _fetch_models_with_modality(endpoint_url)
+    if not models:
+        return None
+    want = model.strip().lower()
+    for entry in models:
+        if not isinstance(entry, dict):
+            continue
+        ids = {
+            str(entry[k]).lower()
+            for k in ("id", "model", "key")
+            if entry.get(k)
+        }
+        if not any(_entry_matches_model(i, want) for i in ids):
+            continue
+        cap = _model_entry_supports_vision(entry)
+        if cap is not None:
+            return cap
+    return None
+
+
 def model_supports_vision(model_name: str, endpoint_url: str = "") -> bool:
     """Whether a model accepts images, using the endpoint's reported
     capability when available (LM Studio) and falling back to name-based
     detection otherwise."""
+    # Operator overrides win over every heuristic. `text_only_models` forces
+    # the caption path even for a vision-named model; `vision_capable_models`
+    # rescues multimodal models whose names carry no vision/vl hint (the
+    # keyword list can't cover every family). Both accept a list or a
+    # comma-separated string of case-insensitive substrings.
+    try:
+        from src.settings import get_setting
+        if _matches_override_pattern(get_setting("text_only_models", []), model_name):
+            return False
+        if _matches_override_pattern(get_setting("vision_capable_models", []), model_name):
+            return True
+    except Exception:
+        pass
     if endpoint_url:
         try:
             advertised = lmstudio_supports_vision(endpoint_url, model_name or "")
@@ -167,7 +299,32 @@ def model_supports_vision(model_name: str, endpoint_url: str = "") -> bool:
             advertised = None
         if advertised is not None:
             return advertised
+        try:
+            advertised = advertised_supports_vision(endpoint_url, model_name or "")
+        except Exception:
+            advertised = None
+        if advertised is not None:
+            return advertised
     return is_vision_model(model_name)
+
+
+def _matches_override_pattern(patterns, model_name: str) -> bool:
+    """True when `model_name` contains any of the configured substrings.
+    Accepts a list or a comma-separated string; blank entries ignored."""
+    if not patterns or not model_name:
+        return False
+    if isinstance(patterns, str):
+        patterns = patterns.split(",")
+    m = model_name.strip().lower()
+    if not m:
+        return False
+    for pat in patterns:
+        if not isinstance(pat, str):
+            continue
+        p = pat.strip().lower()
+        if p and p in m:
+            return True
+    return False
 
 
 def validate_message(message: str) -> str:

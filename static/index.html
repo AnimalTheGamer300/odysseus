@@ -1532,6 +1532,13 @@
                   <button type="button" class="settings-fallback-add" id="set-visionAddFallback" title="Add a vision model to try if the one above fails">+ Add fallback</button>
                 </div>
               </div>
+              <div class="settings-row" style="align-items:flex-start;">
+                <label class="settings-label" style="margin-top:6px;" title="Vision-capable main models get image attachments directly instead of a written description">Main-model images</label>
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+                  <input type="text" id="set-visionCapableModels" class="settings-select" placeholder="Always send images to (comma-separated), e.g. z-ai/glm-5.3-flash" title="Model names that natively accept images. Detection is automatic; list names here only when the model is multimodal but not detected.">
+                  <input type="text" id="setTextOnlyModels" class="settings-select" placeholder="Never send images to (comma-separated)" title="Force the vision-model caption path for these models, even if they look vision-capable.">
+                </div>
+              </div>
               <div id="set-visionSettingsMsg" style="font-size:11px;color:color-mix(in srgb, var(--fg) 45%, transparent);"></div>
             </div>
           </div>
@@ -1628,6 +1635,17 @@
               <button type="button" id="set-ttsPreviewBtn" class="admin-btn-sm" style="margin-top:4px;padding:5px 16px;font-size:12px;">Preview</button>
               <div id="set-ttsSettingsMsg" style="font-size:11px;color:color-mix(in srgb, var(--fg) 45%, transparent);"></div>
             </div>
+          </div>
+          <!-- Thinking toggle card: master switch for reasoning/"thinking"
+               mode on models that support it (Ollama think, DeepSeek V4,
+               Mistral reasoning_effort, vLLM/NIM chat_template_kwargs,
+               OpenRouter reasoning). Added 2026-10-16 (IRIS). Internal
+               utility calls (compaction, summaries, titles) always run
+               with thinking off regardless of this switch. -->
+          <div class="admin-card">
+            <h2 style="display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;opacity:0.6"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg>Thinking<span style="flex:1"></span><label class="admin-switch"><input type="checkbox" id="set-thinkingEnabledToggle"><span class="admin-slider"></span></label></h2>
+            <div class="admin-toggle-sub" style="margin-bottom:8px">Let models reason before answering (Ollama think, DeepSeek, Mistral, vLLM/NIM, OpenRouter). Off = every backend is asked to answer directly — faster, no chain-of-thought.</div>
+            <div id="set-thinkingMsg" style="font-size:11px;color:color-mix(in srgb, var(--fg) 45%, transparent);"></div>
           </div>
           <!-- Teacher Model settings card: re-added 2026-08-07 (IRIS) after the
                2.0 "harden the core" pass removed it from the DOM. The escalation

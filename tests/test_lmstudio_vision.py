@@ -98,7 +98,111 @@ class TestModelSupportsVision:
         assert chat_helpers.model_supports_vision("mistral-7b", "") is False
 
     def test_falls_back_to_name_when_endpoint_unknown(self, monkeypatch):
-        # Endpoint doesn't advertise (None) → name heuristic decides.
+        # Neither probe advertises (None) → name heuristic decides.
         monkeypatch.setattr(chat_helpers, "lmstudio_supports_vision", lambda url, m: None)
+        monkeypatch.setattr(chat_helpers, "advertised_supports_vision", lambda url, m: None)
         assert chat_helpers.model_supports_vision("qwen2-vl-7b", "http://host/v1") is True
         assert chat_helpers.model_supports_vision("plain-llm", "http://host/v1") is False
+
+
+# ══════════════════════════════════════════════════════════
+# advertised_supports_vision — generic /models modality probe
+# ══════════════════════════════════════════════════════════
+
+class TestAdvertisedSupportsVision:
+    """OpenAI-compatible endpoints that advertise input modalities on their
+    standard /models list (OpenRouter-style architecture fields, Ollama-style
+    capabilities) let multimodal-but-plainly-named models keep their images."""
+
+    PAYLOAD = {"data": [
+        {"id": "z-ai/glm-5.3-flash",
+         "architecture": {"input_modalities": ["text", "image", "video"]}},
+        {"id": "z-ai/glm-5.3",
+         "architecture": {"input_modalities": ["text"]}},
+        {"id": "modality-string-model",
+         "architecture": {"modality": "text+image->text"}},
+        {"id": "ollama-vision", "capabilities": ["completion", "vision"]},
+        {"id": "no-metadata"},
+    ]}
+    URL = "https://integrate.api.nvidia.com/v1/chat/completions"
+
+    @pytest.fixture(autouse=True)
+    def _clear_cache(self):
+        chat_helpers._MODELS_MODALITY_CACHE.clear()
+        yield
+        chat_helpers._MODELS_MODALITY_CACHE.clear()
+
+    def _serve(self, monkeypatch, payload, ok=True):
+        monkeypatch.setattr(chat_helpers.httpx, "get",
+                            lambda url, timeout=None: _FakeResponse(payload, ok=ok))
+
+    def test_openrouter_style_input_modalities(self, monkeypatch):
+        self._serve(monkeypatch, self.PAYLOAD)
+        assert chat_helpers.advertised_supports_vision(self.URL, "z-ai/glm-5.3-flash") is True
+
+    def test_text_only_modalities_advertise_false(self, monkeypatch):
+        self._serve(monkeypatch, self.PAYLOAD)
+        assert chat_helpers.advertised_supports_vision(self.URL, "z-ai/glm-5.3") is False
+
+    def test_modality_string_parsed(self, monkeypatch):
+        self._serve(monkeypatch, self.PAYLOAD)
+        assert chat_helpers.advertised_supports_vision(self.URL, "modality-string-model") is True
+
+    def test_ollama_style_capabilities_list(self, monkeypatch):
+        self._serve(monkeypatch, self.PAYLOAD)
+        assert chat_helpers.advertised_supports_vision(self.URL, "ollama-vision") is True
+
+    def test_entry_without_metadata_returns_none(self, monkeypatch):
+        self._serve(monkeypatch, self.PAYLOAD)
+        assert chat_helpers.advertised_supports_vision(self.URL, "no-metadata") is None
+
+    def test_unknown_model_returns_none(self, monkeypatch):
+        self._serve(monkeypatch, self.PAYLOAD)
+        assert chat_helpers.advertised_supports_vision(self.URL, "not-listed") is None
+
+    def test_http_failure_returns_none(self, monkeypatch):
+        self._serve(monkeypatch, {}, ok=False)
+        assert chat_helpers.advertised_supports_vision(self.URL, "z-ai/glm-5.3-flash") is None
+
+    def test_models_url_derivation(self):
+        assert chat_helpers._models_list_url(
+            "https://integrate.api.nvidia.com/v1/chat/completions") == \
+            "https://integrate.api.nvidia.com/v1/models"
+        assert chat_helpers._models_list_url("http://localhost:1234/v1") == \
+            "http://localhost:1234/v1/models"
+
+
+# ══════════════════════════════════════════════════════════
+# model_supports_vision — operator overrides win over everything
+# ══════════════════════════════════════════════════════════
+
+class TestVisionOverrides:
+    """vision_capable_models / text_only_models settings are the final word."""
+
+    @staticmethod
+    def _settings(monkeypatch, capable=None, text_only=None):
+        table = {"vision_capable_models": capable or [], "text_only_models": text_only or []}
+        monkeypatch.setattr("src.settings.get_setting", lambda k, d=None: table.get(k, d))
+
+    def test_vision_capable_override_rescues_plain_name(self, monkeypatch):
+        self._settings(monkeypatch, capable=["my-custom-multimodal"])
+        assert chat_helpers.model_supports_vision("my-custom-multimodal", "") is True
+
+    def test_text_only_override_forces_caption_path(self, monkeypatch):
+        # Name screams vision; the operator says the deployment is text-only.
+        self._settings(monkeypatch, text_only=["llava-broken"])
+        assert chat_helpers.model_supports_vision("llava-broken:7b", "") is False
+
+    def test_text_only_wins_over_vision_override(self, monkeypatch):
+        self._settings(monkeypatch, capable=["dual"], text_only=["dual"])
+        assert chat_helpers.model_supports_vision("dual-model", "") is False
+
+    def test_override_wins_over_endpoint_advertisement(self, monkeypatch):
+        self._settings(monkeypatch, text_only=["z-ai/glm-5.3-flash"])
+        monkeypatch.setattr(chat_helpers, "lmstudio_supports_vision", lambda url, m: True)
+        assert chat_helpers.model_supports_vision(
+            "z-ai/glm-5.3-flash", "http://localhost:1234/v1") is False
+
+    def test_comma_separated_string_accepted(self, monkeypatch):
+        self._settings(monkeypatch, capable="a-model, b-model")
+        assert chat_helpers.model_supports_vision("B-Model-xl", "") is True

@@ -44,6 +44,15 @@ DEFAULT_SETTINGS = {
     "vision_enabled": True,
     # Ordered fallback chain for the Vision model (image analysis, OCR, tagging).
     "vision_model_fallbacks": [],
+    # Vision pass-through overrides for the MAIN chat model. When the main
+    # model natively accepts images it gets the attachment directly instead
+    # of a VLM-written caption. Detection is automatic (endpoint capability
+    # metadata + name heuristics); these lists force the outcome when both
+    # fail. Case-insensitive substrings, list or comma-separated string.
+    #   vision_capable_models — always pass images to these models.
+    #   text_only_models      — never pass images (always caption instead).
+    "vision_capable_models": [],
+    "text_only_models": [],
     # Public base URL used to build clickable deep-links in outgoing alerts
     # (e.g., urgency alert email). Example: "https://chat.example.com"
     "app_public_url": "",
@@ -160,6 +169,14 @@ DEFAULT_SETTINGS = {
     # Ordered fallback chain for the Utility model (summarization, naming,
     # tidy actions, etc.).
     "utility_model_fallbacks": [],
+    # Master switch for reasoning/"thinking" mode on models that support it.
+    # False = every chat request asks the backend to skip chain-of-thought
+    # (Ollama `think:false`, DeepSeek `thinking:disabled`, Mistral
+    # `reasoning_effort:minimal`, NVIDIA NIM / vLLM
+    # `chat_template_kwargs.enable_thinking:false`, OpenRouter
+    # `reasoning.enabled:false`). Internal utility calls (compaction,
+    # summaries, titles) always run thinking-off regardless of this flag.
+    "thinking_enabled": True,
     "teacher_model": "",
     "teacher_enabled": False,
     "teacher_tier2_enabled": False,

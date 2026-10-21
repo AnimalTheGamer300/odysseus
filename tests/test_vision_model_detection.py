@@ -46,3 +46,18 @@ def test_new_keywords_do_not_overmatch_text_models():
     # The added families must not flag their text-only siblings.
     for name in ["gemma2:9b", "gemma:7b", "llama3.3", "mistral-small", "phi-3-mini"]:
         assert not is_vision_model(name), f"{name!r} should not be flagged as vision"
+
+
+def test_glm_5_3_flash_is_multimodal():
+    # GLM 5.3 dropped the "-v" suffix on its multimodal flash tier
+    # (text+image+video -> text). "z-ai/glm-5.3-flash" used to match no
+    # keyword, so its images were swapped for a VLM caption.
+    for name in ["z-ai/glm-5.3-flash", "glm-5.3-flash", "GLM-5.3-Flash"]:
+        assert is_vision_model(name), f"{name!r} should be detected as vision-capable"
+
+
+def test_glm_5_3_flagship_is_text_only():
+    # The non-flash glm-5.3 is text-only (text -> text) — it must stay on
+    # the VLM-caption path even though its name resembles the flash tier.
+    for name in ["z-ai/glm-5.3", "glm-5.3", "glm-4.6", "glm-4.5-air", "glm-4-32b-0414", "z-ai/glm-5"]:
+        assert not is_vision_model(name), f"{name!r} should not be flagged as vision"
