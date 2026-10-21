@@ -80,6 +80,8 @@ def _persist_stream_partial(
     requested_model: str = "",
     extra: dict | None = None,
     draft_id: str | None = None,
+    tool_events: list | None = None,
+    round_texts: list | None = None,
 ) -> bool:
     """Persist a partial assistant response (client disconnect / stream error).
 
@@ -92,6 +94,11 @@ def _persist_stream_partial(
       can't vanish from the DB;
     - `stopped: True` rides along so chatRenderer's refresh rebuild shows the
       "[Message interrupted]" + Continue affordance.
+    - tool_events/round_texts (agent mode) are preserved so a stopped agent
+      turn keeps the tool calls that already executed instead of saving
+      narration-without-calls — which both rendered as one glued blob and
+      taught the next model a fabricated house style (2026-10-11
+      defenestration fix).
     When a checkpointed draft row exists (draft_id), it is promoted IN PLACE
     so the partial keeps the id the frontend stamped via draft_saved and no
     duplicate row appears (2026-08-08 draft-checkpoint audit).
@@ -106,6 +113,10 @@ def _persist_stream_partial(
     }
     if extra:
         md.update(extra)
+    if tool_events:
+        md["tool_events"] = list(tool_events)
+    if round_texts:
+        md["round_texts"] = list(round_texts)
     thinking = (thinking_response or "").strip()
     if thinking:
         md["thinking"] = thinking
@@ -118,6 +129,24 @@ def _persist_stream_partial(
         sess.add_message(ChatMessage("assistant", content, metadata=md))
     session_manager.save_sessions()
     return True
+
+
+def _sink_tool_state(sink: dict | None) -> tuple[list, list]:
+    """Snapshot (tool_events, round_texts) from the agent loop's partial_sink.
+
+    The in-flight round's raw partial text is appended to round_texts so the
+    rebuilt stopped turn also shows what the model was writing when it was
+    cut off. Returns ([], []) when the sink is empty (chat mode, or a stop
+    before the loop published its handles).
+    """
+    if not sink:
+        return [], []
+    events = list(sink.get("tool_events") or [])
+    texts = list(sink.get("round_texts") or [])
+    current = (sink.get("current_round_text") or "").strip()
+    if current:
+        texts.append(current)
+    return events, texts
 
 
 def _checkpoint_draft(
@@ -1485,6 +1514,10 @@ def setup_chat_routes(
             _draft_id: str | None = None
             _draft_meta: dict | None = None
             _last_ckpt = 0.0
+            # Live tool-state mirror published by the agent loop (agent mode
+            # only) so stopped/checkpointed turns keep executed tool calls
+            # instead of narration-without-calls (2026-10-11 defenestration fix).
+            _partial_sink: dict = {}
 
             def _checkpoint():
                 """Throttled checkpoint of the in-flight reply. Returns the
@@ -1513,6 +1546,11 @@ def setup_chat_routes(
                     _draft_meta["thinking"] = _think
                 elif "thinking" in _draft_meta:
                     _draft_meta.pop("thinking", None)
+                _ev, _rt = _sink_tool_state(_partial_sink)
+                if _ev:
+                    _draft_meta["tool_events"] = _ev
+                if _rt:
+                    _draft_meta["round_texts"] = _rt
                 _new_id = _checkpoint_draft(session_manager, session, _draft_id, full_response, _draft_meta)
                 if _new_id and _new_id != _draft_id:
                     _draft_id = _new_id
@@ -1931,6 +1969,7 @@ def setup_chat_routes(
                         workspace=workspace or None,
                         forced_tools=_forced_tools,
                         uploaded_files=ctx.uploaded_files,
+                        partial_sink=_partial_sink,
                     ):
                         if chunk.startswith("data: ") and not chunk.startswith("data: [DONE]"):
                             try:
@@ -2083,6 +2122,7 @@ def setup_chat_routes(
                             "Agent stream for session %s ended without [DONE] — persisting partial (%d chars)",
                             session, len(full_response),
                         )
+                        _ev, _rt = _sink_tool_state(_partial_sink)
                         try:
                             _persist_stream_partial(
                                 sess, session_manager, session, full_response, thinking_response,
@@ -2090,6 +2130,8 @@ def setup_chat_routes(
                                 requested_model=_requested_model,
                                 extra={"stream_error": "stream ended without completion"},
                                 draft_id=_draft_id,
+                                tool_events=_ev,
+                                round_texts=_rt,
                             )
                         except Exception as _persist_err:
                             logger.error("Failed to persist no-done partial for session %s: %s", session, _persist_err)
@@ -2103,12 +2145,15 @@ def setup_chat_routes(
                     # _active_streams with a stale entry).
                     if not _saved_this_turn and not incognito and (full_response or thinking_response.strip()):
                         logger.info("Client disconnected mid-stream for session %s, saving partial response (%d chars)", session, len(full_response))
+                        _ev, _rt = _sink_tool_state(_partial_sink)
                         try:
                             _persist_stream_partial(
                                 sess, session_manager, session, full_response, thinking_response,
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
                                 draft_id=_draft_id,
+                                tool_events=_ev,
+                                round_texts=_rt,
                             )
                         except Exception:
                             logger.exception("Failed to save partial response on disconnect (session %s)", session)
@@ -2119,6 +2164,7 @@ def setup_chat_routes(
                     # client shows the error over the preserved partial.
                     logger.warning("Agent stream error for session %s: %s", session, _upstream_err)
                     if not _saved_this_turn and not incognito and (full_response or thinking_response.strip()):
+                        _ev, _rt = _sink_tool_state(_partial_sink)
                         try:
                             _persist_stream_partial(
                                 sess, session_manager, session, full_response, thinking_response,
@@ -2126,6 +2172,8 @@ def setup_chat_routes(
                                 requested_model=_requested_model,
                                 extra={"stream_error": str(_upstream_err)[:300]},
                                 draft_id=_draft_id,
+                                tool_events=_ev,
+                                round_texts=_rt,
                             )
                         except Exception as _persist_err:
                             logger.error("Failed to persist error partial for session %s: %s", session, _persist_err)
