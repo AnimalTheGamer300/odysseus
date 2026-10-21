@@ -26,6 +26,8 @@ _REQUIRED_NATIVE_TOOL_ARGS = {
     "write_file": ("path",),
     "edit_file": ("path",),
     "apply_patch": ("patch_text", "patchText", "patch"),
+    "spawn_agent": ("task",),
+    "check_agents": (),
 }
 
 # ---------------------------------------------------------------------------
@@ -183,6 +185,8 @@ FUNCTION_TOOL_SCHEMAS = [
     {"type":"function","function":{"name":"update_document","description":"Replace the ENTIRE active document. ONLY use for genuine full rewrites (>50% of lines changed).","parameters":{"type":"object","properties":{"content":{"type":"string","description":"Complete new document content"}},"required":["content"]}}},
     {"type":"function","function":{"name":"search_chats","description":"Search the user's past session transcripts by keyword.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"Search keyword(s) to find in past conversations"}},"required":["query"]}}},
     {"type":"function","function":{"name":"chat_with_model","description":"Send a message to another AI model and get its response.","parameters":{"type":"object","properties":{"model":{"type":"string","description":"Model name (e.g. 'qwen3-32b') or model@endpoint_name"},"message":{"type":"string","description":"The message to send to the model"}},"required":["model","message"]}}},
+    {"type":"function","function":{"name":"check_agents","description":"Check on background sub-agents you launched with spawn_agent(background=true). With no agent_id: lists all agent jobs (running/finished) and returns the full reports of any finished-but-not-yet-delivered results. With agent_id: returns that agent's status and report. Finished results are marked delivered when returned, so you don't see the same report twice.","parameters":{"type":"object","properties":{"agent_id":{"type":"string","description":"Optional id of a specific background agent (e.g. 'ag-ab12cd34') to check."}}}}},
+    {"type":"function","function":{"name":"spawn_agent","description":"Spawn a sub-agent — a fresh AI agent with full tool access — to autonomously execute a self-contained task and return its final report. Unlike chat_with_model (a bare completion, no tools), the sub-agent can use tools (bash, web_search, files, etc.). Use for delegating self-contained subtasks or isolating context-heavy work. The sub-agent cannot see this conversation or ask the user questions — put everything it needs in `task`. Blocking spawns run one at a time and park this conversation until the report returns — for anything slow, or several agents at once, set background=true.","parameters":{"type":"object","properties":{"task":{"type":"string","description":"The complete, self-contained task for the sub-agent, including all context it needs."},"model":{"type":"string","description":"Optional model spec ('model' or 'model@endpoint'). Omit to use the configured subagent_model, or the current model."},"system_prompt":{"type":"string","description":"Optional persona/system prompt for the sub-agent."},"max_rounds":{"type":"number","description":"Optional max tool rounds (default 15, max 30)."},"timeout_minutes":{"type":"number","description":"Optional timeout in minutes (default 10, max 30)."},"background":{"type":"boolean","description":"Launch asynchronously: returns an agent id immediately and the report is delivered to this conversation when it finishes (or poll with check_agents). Prefer true for long-running tasks or several agents at once; keep false only for quick lookups. Default false."}},"required":["task"]}}},
     {"type":"function","function":{"name":"create_session","description":"Create a new chat for ongoing conversations with a specific model.","parameters":{"type":"object","properties":{"name":{"type":"string","description":"Name for the new chat"},"model":{"type":"string","description":"Model name or model@endpoint_name"}},"required":["name","model"]}}},
     {"type":"function","function":{"name":"list_sessions","description":"List the user's chats (the UI calls them 'chats') as clickable markdown links.","parameters":{"type":"object","properties":{"filter":{"type":"string","description":"Optional keyword to filter chats by name"}},"required":[]}}},
     {
@@ -857,6 +861,10 @@ def function_call_to_tool_block(name: str, arguments: str) -> Optional[ToolBlock
         content = args.get("query", "")
     elif tool_type == "chat_with_model":
         content = args.get("model", "") + "\n" + args.get("message", "")
+    elif tool_type == "spawn_agent":
+        content = json.dumps(args)
+    elif tool_type == "check_agents":
+        content = str(args.get("agent_id", "") or "")
     elif tool_type == "create_session":
         content = args.get("name", "Untitled") + "\n" + args.get("model", "")
     elif tool_type == "list_sessions":

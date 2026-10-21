@@ -26,6 +26,7 @@ from .coding_tools import TodoWriteTool
 from .document_tools import CreateDocumentTool, UpdateDocumentTool, EditDocumentTool, SuggestDocumentTool, ManageDocumentTool
 from .interaction_tools import AskUserTool, UpdatePlanTool
 from .model_interaction_tools import ChatWithModelTool, AskTeacherTool, ListModelsTool
+from .spawn_agent_tools import SpawnAgentTool, CheckAgentsTool
 from .bg_job_tools import ManageBgJobsTool
 from .session_tools import CreateSessionTool, ListSessionsTool, SendToSessionTool, ManageSessionTool
 from .admin_tools import (
@@ -58,6 +59,8 @@ TOOL_HANDLERS = {
     "chat_with_model": ChatWithModelTool().execute,
     "ask_teacher": AskTeacherTool().execute,
     "list_models": ListModelsTool().execute,
+    "spawn_agent": SpawnAgentTool().execute,
+    "check_agents": CheckAgentsTool().execute,
     "manage_bg_jobs": ManageBgJobsTool().execute,
     "create_session": CreateSessionTool().execute,
     "list_sessions": ListSessionsTool().execute,
@@ -87,6 +90,8 @@ TOOL_TAGS = {"bash", "python", "web_search", "web_fetch", "read_file", "write_fi
              "manage_session", "manage_memory", "list_models",
              "ui_control", "generate_image", "ask_user", "update_plan",
              "manage_tasks", "api_call", "ask_teacher", "manage_skills",
+             "spawn_agent",
+            "check_agents",
              "suggest_document",
              "manage_endpoints", "manage_mcp", "manage_webhooks",
              "manage_tokens", "manage_documents", "manage_settings",

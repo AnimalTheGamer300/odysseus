@@ -86,6 +86,8 @@ BUILTIN_TOOL_DESCRIPTIONS: Dict[str, str] = {
     "suggest_document": "Suggest changes to the active document with explanations. For code review, proofreading, feedback requests.",
     "generate_image": "Generate an AI image from a text prompt. Specify model, size, and quality. Art, illustrations, photos.",
     "chat_with_model": "Send a message to a different AI model. Compare responses, get specialized help, delegate tasks.",
+    "spawn_agent": "Spawn a sub-agent — a fresh AI agent with full tool access — to autonomously complete a self-contained task and report back. For delegating subtasks or isolating context-heavy work; use background=true for long-running or parallel work. Unlike chat_with_model, the sub-agent can use tools.",
+    "check_agents": "Check background sub-agents launched with spawn_agent(background=true): list their status and collect finished reports. Use after launching background agents, or when the user asks about delegated tasks.",
     "ask_teacher": "Ask a more capable model for help with a difficult problem. Escalate complex tasks.",
     "pipeline": "Run a multi-step AI pipeline with multiple models. Chain tasks together in sequence.",
     "list_models": "List all available AI models and their endpoints.",
@@ -406,7 +408,7 @@ class ToolIndex:
                    "what does", "what would", "second opinion", "other model",
                    "different model", "compare answers", "compare models",
                    "delegate to", "have model"}):
-            {"chat_with_model", "ask_teacher", "list_models"},
+            {"chat_with_model", "ask_teacher", "list_models", "spawn_agent", "check_agents"},
         # Deep research intent (incl. common typo "reserach")
         frozenset({"web search", "search the web", "search online", "look up",
                    "find info online", "find information online",

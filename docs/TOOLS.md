@@ -249,6 +249,27 @@ Required: `problem`
 **Parameters:**
 - `filter` (string) — Optional keyword to filter models
 
+### spawn_agent
+
+- ```spawn_agent``` — Spawn a sub-agent (a fresh AI agent WITH tool access) to autonomously execute a self-contained task and return its final report. Args (JSON): {"task": "...", "model": "model@endpoint (optional)", "system_prompt": "persona (optional)", "max_rounds": 15, "timeout_minutes": 10, "background": false}. Unlike chat_with_model (bare completion), the sub-agent can use tools. Use for delegating subtasks or parallel multi-model work. With "background": true you get an agent id back IMMEDIATELY and the report is delivered to this conversation when it finishes — launch several background agents, keep working, and collect with ```check_agents```. The sub-agent cannot see this conversation or ask the user questions — put everything it needs in `task`.
+
+**Parameters:**
+- `task` (string) — The complete, self-contained task for the sub-agent, including all context it needs.
+- `model` (string) — Optional model spec ('model' or 'model@endpoint'). Omit to use the configured subagent_model, or the current model.
+- `system_prompt` (string) — Optional persona/system prompt for the sub-agent.
+- `max_rounds` (number) — Optional max tool rounds (default 15, max 30).
+- `timeout_minutes` (number) — Optional timeout in minutes (default 10, max 30).
+- `background` (boolean) — Launch asynchronously: returns an agent id immediately and the report is delivered to this conversation when it finishes (or poll with check_agents). Default false (block until the report is ready).
+
+Required: `task`
+
+### check_agents
+
+- ```check_agents``` — Check background sub-agents launched with spawn_agent(background=true). No args: list all agent jobs (id/status/task/age) and collect the full reports of any finished-but-undelivered ones. Optional arg: an agent id for just that one. Finished reports are delivered once and marked collected.
+
+**Parameters:**
+- `agent_id` (string) — Optional id of a specific background agent (e.g. 'ag-ab12cd34') to check.
+
 ### manage_session
 
 - ```manage_session``` — Rename, archive, delete, fork, switch, or `list` chats (the UI calls them 'chats'; 'session' is internal). Line 1 = action (list/switch/rename/archive/unarchive/delete/important/unimportant/truncate/fork), Line 2 = exact chat id from `list_sessions` (or `current` where supported). For delete/archive/truncate, always list first and reuse the exact id; never invent placeholder ids. `switch`/`open` returns a clickable anchor link the user can tap to open the chat — use for "open my X chat".
@@ -922,6 +943,502 @@ Required: `uid`
 
 ## MCP tools
 
+### Server: Amazon
+
+#### hasdata_amazon_product_getProductDetails (`mcp__7f459a3a__hasdata_amazon_product_getProductDetails`)
+
+Get Amazon Product Details
+
+Fetches a single Amazon product page by ASIN on a chosen Amazon domain (amazon.com, .co.uk, .de, .jp, etc.). Returns title, brand, current/list/deal price, currency, availability, Buy Box seller, Prime eligibility, bullet points, A+ description, rating and review count, images, category breadcrumbs, variants/sibling ASINs, and the other-sellers offers block (when otherSellers=true), plus delivery-zone-aware pricing when a shipping zip/location is set. Use for product research agents, price/stock monitoring, catalog enrichment, listing QA, Buy Box tracking, and cross-locale competitive analysis.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "asin": {
+      "type": "string",
+      "description": "The Amazon Standard Identification Number (ASIN) of the product."
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "www.amazon.com",
+        "www.amazon.de",
+        "www.amazon.co.uk",
+        "www.amazon.ae",
+        "www.amazon.com.au",
+        "www.amazon.com.be",
+        "www.amazon.com.br",
+        "www.amazon.ca",
+        "www.amazon.eg",
+        "www.amazon.es",
+        "www.amazon.fr",
+        "www.amazon.ie",
+        "www.amazon.in",
+        "www.amazon.it",
+        "www.amazon.co.jp",
+        "www.amazon.com.mx",
+        "www.amazon.nl",
+        "www.amazon.pl",
+        "www.amazon.sa",
+        "www.amazon.se",
+        "www.amazon.sg",
+        "www.amazon.com.tr",
+        "www.amazon.co.za"
+      ],
+      "description": "Amazon domain to use. Default is www.amazon.com."
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "AR",
+        "BN",
+        "CS",
+        "DA",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JP",
+        "KN",
+        "ML",
+        "MR",
+        "NL",
+        "PL",
+        "PT",
+        "SV",
+        "TA",
+        "TE",
+        "TR",
+        "ZH"
+      ],
+      "description": "Optional Amazon language code. Supported values depend on the selected domain."
+    },
+    "deliveryZip": {
+      "type": "string",
+      "description": "Postal code of the delivery location."
+    },
+    "shippingLocation": {
+      "type": "string",
+      "description": "The two-letter country code to define the country of the delivery address. Provide one exact documented value (238 allowed), e.g. `AU`, `CA`."
+    },
+    "otherSellers": {
+      "type": "boolean",
+      "description": "Also collect the offers of other sellers competing for this item. This takes an extra request to Amazon and costs 5 credits on top of the base. Default is false."
+    }
+  },
+  "required": [
+    "asin"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
+```
+
+#### hasdata_amazon_reviews_getProductReviews (`mcp__7f459a3a__hasdata_amazon_reviews_getProductReviews`)
+
+Get Amazon Product Reviews
+
+Paginated fetch of customer reviews for an Amazon ASIN with filters for star rating (1-5, positive, critical), reviewer type (all vs verified purchase), media-only reviews, current-variant vs all-formats, keyword search, and sort (helpful/recent). Returns per-review title, body, star rating, author name and profile, review date, helpful-vote count, variant/format attributes, and attached media URLs, plus aggregate rating histogram. Use for voice-of-customer analysis, sentiment and theme extraction, feature-request mining, competitor review benchmarking, and feeding review-summarization or Q&A agents.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "asin": {
+      "type": "string",
+      "description": "The Amazon Standard Identification Number (ASIN) of the product."
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "www.amazon.com",
+        "www.amazon.de",
+        "www.amazon.co.uk",
+        "www.amazon.ae",
+        "www.amazon.com.au",
+        "www.amazon.com.be",
+        "www.amazon.com.br",
+        "www.amazon.ca",
+        "www.amazon.eg",
+        "www.amazon.es",
+        "www.amazon.fr",
+        "www.amazon.ie",
+        "www.amazon.in",
+        "www.amazon.it",
+        "www.amazon.co.jp",
+        "www.amazon.com.mx",
+        "www.amazon.nl",
+        "www.amazon.pl",
+        "www.amazon.sa",
+        "www.amazon.se",
+        "www.amazon.sg",
+        "www.amazon.com.tr",
+        "www.amazon.co.za"
+      ],
+      "description": "Amazon domain to use. Default is www.amazon.com."
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "AR",
+        "BN",
+        "CS",
+        "DA",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JP",
+        "KN",
+        "ML",
+        "MR",
+        "NL",
+        "PL",
+        "PT",
+        "SV",
+        "TA",
+        "TE",
+        "TR",
+        "ZH"
+      ],
+      "description": "Optional Amazon language code. Supported values depend on the selected domain."
+    },
+    "page": {
+      "type": "number",
+      "description": "The page number to retrieve."
+    },
+    "searchTerm": {
+      "type": "string",
+      "description": "A term to search within the reviews."
+    },
+    "reviewerType": {
+      "type": "string",
+      "enum": [
+        "allReviews",
+        "verifiedPurchaseReviews"
+      ],
+      "description": "The type of reviewers to filter."
+    },
+    "stars": {
+      "type": "string",
+      "enum": [
+        "allStars",
+        "fiveStar",
+        "fourStar",
+        "threeStar",
+        "twoStar",
+        "oneStar",
+        "positive",
+        "critical"
+      ],
+      "description": "The star ratings to filter reviews."
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "allFormats",
+        "currentFormat"
+      ],
+      "description": "The format type to filter reviews. Include reviews of any product format/variant or specifically to the current format/variant."
+    },
+    "mediaType": {
+      "type": "string",
+      "enum": [
+        "allReviews",
+        "mediaReviews"
+      ],
+      "description": "The media type to filter reviews."
+    },
+    "sortBy": {
+      "type": "string",
+      "enum": [
+        "helpful",
+        "recent"
+      ],
+      "description": "The criterion to sort reviews."
+    }
+  },
+  "required": [
+    "asin"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
+```
+
+#### hasdata_amazon_search_getSearchResults (`mcp__7f459a3a__hasdata_amazon_search_getSearchResults`)
+
+Get Amazon Search Results
+
+Runs a keyword search on a chosen Amazon domain with pagination, delivery zip/location scoping, and sort order (featured, price low-to-high, price high-to-low, avg-customer-review, newest). Returns the organic results list with ASIN, title, thumbnail, product URL, price and list price, currency, star rating, review count, Prime/sponsored flags, and position. Use for SERP monitoring, keyword/share-of-shelf tracking, competitor discovery, ASIN harvesting to feed downstream product/reviews endpoints, and building product-research or price-comparison agents.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "q": {
+      "type": "string",
+      "description": "The search term for which to get the search results."
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "www.amazon.com",
+        "www.amazon.de",
+        "www.amazon.co.uk",
+        "www.amazon.ae",
+        "www.amazon.com.au",
+        "www.amazon.com.be",
+        "www.amazon.com.br",
+        "www.amazon.ca",
+        "www.amazon.eg",
+        "www.amazon.es",
+        "www.amazon.fr",
+        "www.amazon.ie",
+        "www.amazon.in",
+        "www.amazon.it",
+        "www.amazon.co.jp",
+        "www.amazon.com.mx",
+        "www.amazon.nl",
+        "www.amazon.pl",
+        "www.amazon.sa",
+        "www.amazon.se",
+        "www.amazon.sg",
+        "www.amazon.com.tr",
+        "www.amazon.co.za"
+      ],
+      "description": "Amazon domain to use. Default is www.amazon.com."
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "AR",
+        "BN",
+        "CS",
+        "DA",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JP",
+        "KN",
+        "ML",
+        "MR",
+        "NL",
+        "PL",
+        "PT",
+        "SV",
+        "TA",
+        "TE",
+        "TR",
+        "ZH"
+      ],
+      "description": "Optional Amazon language code. Supported values depend on the selected domain."
+    },
+    "page": {
+      "type": "number",
+      "description": "Page number for pagination (e.g., 1 for the first page, 2 for the second page, etc.)."
+    },
+    "deliveryZip": {
+      "type": "string",
+      "description": "Postal code of the delivery location."
+    },
+    "shippingLocation": {
+      "type": "string",
+      "description": "The two-letter country code to define the country of the delivery address. Provide one exact documented value (238 allowed), e.g. `AU`, `CA`."
+    },
+    "sortBy": {
+      "type": "string",
+      "enum": [
+        "featured",
+        "priceLowToHigh",
+        "priceHighToLow",
+        "avgCustomerReview",
+        "newestArrivals",
+        "bestSellers"
+      ],
+      "description": "Parameter used for sorting results"
+    }
+  },
+  "required": [
+    "q"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
+```
+
+#### hasdata_amazon_seller_getSellerDetails (`mcp__7f459a3a__hasdata_amazon_seller_getSellerDetails`)
+
+Get Amazon Seller Details
+
+Fetches the public storefront profile for an Amazon seller by sellerId on the chosen domain/language. Returns business name, seller logo, About-this-seller text, overall feedback rating and lifetime/12-month/90-day/30-day rating breakdown, feedback count, business address and contact details, and customer service info. Use for seller due-diligence and vetting, counterfeit/brand-protection workflows, MAP-violation investigations, building seller leaderboards, and enriching marketplace seller directories.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "sellerId": {
+      "type": "string",
+      "description": "The unique Amazon seller ID."
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "www.amazon.com",
+        "www.amazon.de",
+        "www.amazon.co.uk",
+        "www.amazon.ae",
+        "www.amazon.com.au",
+        "www.amazon.com.be",
+        "www.amazon.com.br",
+        "www.amazon.ca",
+        "www.amazon.eg",
+        "www.amazon.es",
+        "www.amazon.fr",
+        "www.amazon.ie",
+        "www.amazon.in",
+        "www.amazon.it",
+        "www.amazon.co.jp",
+        "www.amazon.com.mx",
+        "www.amazon.nl",
+        "www.amazon.pl",
+        "www.amazon.sa",
+        "www.amazon.se",
+        "www.amazon.sg",
+        "www.amazon.com.tr",
+        "www.amazon.co.za"
+      ],
+      "description": "Amazon domain to use. Default is www.amazon.com."
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "AR",
+        "BN",
+        "CS",
+        "DA",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JP",
+        "KN",
+        "ML",
+        "MR",
+        "NL",
+        "PL",
+        "PT",
+        "SV",
+        "TA",
+        "TE",
+        "TR",
+        "ZH"
+      ],
+      "description": "Optional Amazon language code. Supported values depend on the selected domain."
+    }
+  },
+  "required": [
+    "sellerId"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
+```
+
+#### hasdata_amazon_seller_products_getSellerProducts (`mcp__7f459a3a__hasdata_amazon_seller_products_getSellerProducts`)
+
+Get Amazon Seller Products
+
+Paginated listing of the storefront catalog offered by a given Amazon sellerId on the chosen domain. Returns each product row with ASIN, title, image, product URL, price and list price, currency, star rating, and review count. Use to map a competitor's or 3P seller's full assortment, detect new SKU launches, build brand-protection watchlists, drive price-intelligence pipelines, and seed per-ASIN deep-dives against the product and reviews endpoints.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "sellerId": {
+      "type": "string",
+      "description": "The unique Amazon seller ID."
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "www.amazon.com",
+        "www.amazon.de",
+        "www.amazon.co.uk",
+        "www.amazon.ae",
+        "www.amazon.com.au",
+        "www.amazon.com.be",
+        "www.amazon.com.br",
+        "www.amazon.ca",
+        "www.amazon.eg",
+        "www.amazon.es",
+        "www.amazon.fr",
+        "www.amazon.ie",
+        "www.amazon.in",
+        "www.amazon.it",
+        "www.amazon.co.jp",
+        "www.amazon.com.mx",
+        "www.amazon.nl",
+        "www.amazon.pl",
+        "www.amazon.sa",
+        "www.amazon.se",
+        "www.amazon.sg",
+        "www.amazon.com.tr",
+        "www.amazon.co.za"
+      ],
+      "description": "Amazon domain to use. Default is www.amazon.com."
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "AR",
+        "BN",
+        "CS",
+        "DA",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JP",
+        "KN",
+        "ML",
+        "MR",
+        "NL",
+        "PL",
+        "PT",
+        "SV",
+        "TA",
+        "TE",
+        "TR",
+        "ZH"
+      ],
+      "description": "Optional Amazon language code. Supported values depend on the selected domain."
+    },
+    "page": {
+      "type": "number",
+      "description": "Page number for pagination (e.g., 1 for the first page, 2 for the second page, etc.)."
+    }
+  },
+  "required": [
+    "sellerId"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
+```
+
 ### Server: Built-in: Browser
 
 #### browser_close (`mcp__builtin_browser__browser_close`)
@@ -988,7 +1505,7 @@ Returns all console messages
       "type": "boolean"
     },
     "filename": {
-      "description": "Filename to save the console messages to. If not provided, messages are returned as text.",
+      "description": "File name to save the console messages to. Relative file names are resolved against the workspace root. If not provided, messages are returned as text.",
       "type": "string"
     }
   },
@@ -1024,6 +1541,95 @@ Handle a dialog
 }
 ```
 
+#### browser_emulate_media (`mcp__builtin_browser__browser_emulate_media`)
+
+Emulate CSS media features for the page, for example switch between the light and dark color scheme. Omitted parameters are left unchanged; null clears an override.
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "colorScheme": {
+      "description": "Emulates the prefers-color-scheme media feature",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "light",
+            "dark"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reducedMotion": {
+      "description": "Emulates the prefers-reduced-motion media feature",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "reduce",
+            "no-preference"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "forcedColors": {
+      "description": "Emulates the forced-colors media feature",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "active",
+            "none"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "contrast": {
+      "description": "Emulates the prefers-contrast media feature",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "more",
+            "no-preference"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "media": {
+      "description": "Changes the CSS media type of the page",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "screen",
+            "print"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}
+```
+
 #### browser_evaluate (`mcp__builtin_browser__browser_evaluate`)
 
 Evaluate JavaScript expression on page or element
@@ -1046,7 +1652,7 @@ Evaluate JavaScript expression on page or element
       "description": "() => { /* code */ } or (element) => { /* code */ } when element is provided"
     },
     "filename": {
-      "description": "Filename to save the result to. If not provided, result is returned as text.",
+      "description": "File name to save the result to. Relative file names are resolved against the workspace root. If not provided, result is returned as text.",
       "type": "string"
     }
   },
@@ -1135,6 +1741,10 @@ Search the accessibility snapshot of the current page for text or a regular expr
     },
     "regex": {
       "description": "Regular expression to search for in the page snapshot. Matching is case-sensitive by default; wrap the pattern in slashes to add flags, e.g. \"/error/i\" for case-insensitive. Provide either text or regex, not both.",
+      "type": "string"
+    },
+    "filename": {
+      "description": "Save results to a file instead of returning them in the response. Relative file names are resolved against the workspace root.",
       "type": "string"
     }
   },
@@ -1493,7 +2103,7 @@ Returns a numbered list of network requests since loading the page. Use browser_
       "type": "string"
     },
     "filename": {
-      "description": "Filename to save the network requests to. If not provided, requests are returned as text.",
+      "description": "File name to save the network requests to. Relative file names are resolved against the workspace root. If not provided, requests are returned as text.",
       "type": "string"
     }
   },
@@ -1530,7 +2140,7 @@ Returns full details (headers and body) of a single network request, or a single
       ]
     },
     "filename": {
-      "description": "Filename to save the result to. If not provided, output is returned as text.",
+      "description": "File name to save the result to. Relative file names are resolved against the workspace root. If not provided, output is returned as text.",
       "type": "string"
     }
   },
@@ -1555,7 +2165,7 @@ Run a Playwright code snippet. Unsafe: executes arbitrary JavaScript in the Play
       "type": "string"
     },
     "filename": {
-      "description": "Load code from the specified file. If both code and filename are provided, code will be ignored.",
+      "description": "Load code from the specified file. Relative file names are resolved against the workspace root. If both code and filename are provided, code will be ignored.",
       "type": "string"
     }
   },
@@ -1590,7 +2200,7 @@ Take a screenshot of the current page. You can't perform actions based on the sc
       ]
     },
     "filename": {
-      "description": "File name to save the screenshot to. Defaults to `page-{timestamp}.{png|jpeg|webp}` if not specified. Prefer relative file names to stay within the output directory.",
+      "description": "File name to save the screenshot to. Relative file names are resolved against the workspace root. If not specified, the screenshot is saved into the output directory as `page-{timestamp}.{png|jpeg|webp}`.",
       "type": "string"
     },
     "fullPage": {
@@ -1628,7 +2238,7 @@ Capture accessibility snapshot of the current page, this is better than screensh
       "type": "string"
     },
     "filename": {
-      "description": "Save snapshot to markdown file instead of returning it in the response.",
+      "description": "Save snapshot to a file instead of returning it in the response. Relative file names are resolved against the workspace root.",
       "type": "string"
     },
     "depth": {
@@ -1833,7 +2443,7 @@ Wait for text to appear or disappear or a specified time to pass
   "type": "object",
   "properties": {
     "time": {
-      "description": "The time to wait in seconds",
+      "description": "The time to wait in seconds, at most 30",
       "type": "number"
     },
     "text": {

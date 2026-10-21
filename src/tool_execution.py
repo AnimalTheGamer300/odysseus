@@ -575,10 +575,13 @@ async def _document_tool_dispatch(
     content: str,
     session_id: Optional[str] = None,
     owner: Optional[str] = None,
+    extra_ctx: Optional[Dict] = None,
 ) -> Optional[Dict]:
     """Route a document tool through TOOL_HANDLERS with the right ctx shape."""
     from src.agent_tools import TOOL_HANDLERS
     ctx = {"session_id": session_id, "owner": owner}
+    if extra_ctx:
+        ctx.update(extra_ctx)
     if tool in TOOL_HANDLERS:
         return await TOOL_HANDLERS[tool](content, ctx)
     return None
@@ -596,6 +599,7 @@ async def execute_tool_block(
     progress_cb: Optional[Callable[[Dict], Awaitable[None]]] = None,
     workspace: Optional[str] = None,
     tool_policy: Optional[Any] = None,
+    extra_ctx: Optional[Dict] = None,
 ) -> Tuple[str, Dict]:
     """Execute a single tool block. Returns (description, result_dict).
 
@@ -612,6 +616,7 @@ async def execute_tool_block(
             owner=owner,
             progress_cb=progress_cb,
             tool_policy=tool_policy,
+            extra_ctx=extra_ctx,
         )
         return output
     finally:
@@ -625,6 +630,7 @@ async def _execute_tool_block_impl(
     owner: Optional[str] = None,
     progress_cb: Optional[Callable[[Dict], Awaitable[None]]] = None,
     tool_policy: Optional[Any] = None,
+    extra_ctx: Optional[Dict] = None,
 ) -> Tuple[str, Dict]:
     """Execute a single tool block. Returns (description, result_dict).
 
@@ -803,6 +809,22 @@ async def _execute_tool_block_impl(
         desc = f"{tool}: {first_line}" if first_line else tool
         result = await _document_tool_dispatch(tool, content, session_id, owner) \
             or {"error": f"{tool}: execution failed", "exit_code": 1}
+    elif tool == "spawn_agent":
+        # Tier-1 multi-agent primitive: run a full sub-agent loop (with tool
+        # access) headless and return its report. extra_ctx carries the
+        # parent's endpoint/model/headers + subagent_depth so the handler can
+        # default to the parent's brain and enforce the recursion guard.
+        first_line = content.split(chr(10))[0].strip()[:60]
+        desc = f"spawn_agent: {first_line}" if first_line else "spawn_agent"
+        result = await _document_tool_dispatch(tool, content, session_id, owner, extra_ctx=extra_ctx) \
+            or {"error": "spawn_agent: execution failed", "exit_code": 1}
+    elif tool == "check_agents":
+        # Tier-2 multi-agent: status/collection for background sub-agents
+        # (spawn_agent background=true). extra_ctx unused today, kept for parity.
+        first_line = content.split(chr(10))[0].strip()[:60]
+        desc = f"check_agents: {first_line}" if first_line else "check_agents"
+        result = await _document_tool_dispatch(tool, content, session_id, owner, extra_ctx=extra_ctx) \
+            or {"error": "check_agents: execution failed", "exit_code": 1}
     elif tool in ("create_session", "list_sessions", "send_to_session", "manage_session"):
         # Migrated to the agent_tools registry (#3629): dispatched through
         # TOOL_HANDLERS with the owner/session ctx these tools need. The impls

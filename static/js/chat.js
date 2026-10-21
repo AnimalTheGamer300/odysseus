@@ -2384,33 +2384,8 @@ import { setFaviconBusy } from './theme.js';
 
       // Tool-aware thinking spinner
       let _lastToolName = '';
-      const _searchIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:-2px;margin-right:4px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
-      const _toolLabels = {
-        'web_search': 'Searching',
-        'bash': 'Running',
-        'python': 'Running',
-        'read_document': 'Reading',
-        'edit_file': 'Editing',
-        'read_file': 'Reading',
-        'write_file': 'Writing',
-        'create_document': 'Writing',
-        'edit_document': 'Editing',
-        'update_document': 'Rewriting',
-        'suggest_document': 'Reviewing',
-        'list_files': 'Browsing',
-        'image_gen': 'Generating',
-        'generate_image': 'Generating',
-        'manage_memory': 'Remembering',
-        'save_memory': 'Remembering',
-        'search_memory': 'Recalling',
-        'manage_session': 'Organizing',
-        'deep_research': 'Researching',
-        'list_models': 'Browsing',
-        'ui_control': 'Adjusting',
-      };
-      const _toolIcons = {
-        'web_search': _searchIcon,
-      };
+      // (_searchIcon/_toolLabels/_toolIcons hoisted to module scope 2026-10-12 —
+      // the resume path's live tool cards reuse the same maps.)
       function _thinkingLabel() {
         if (!_lastToolName) {
           return 'Thinking';
@@ -5006,13 +4981,44 @@ import { setFaviconBusy } from './theme.js';
    * reloaded from the DB so its full render stays faithful. Returns true if it
    * attached, false to let the caller fall back to spinner+poll.
    */
+  // Tool label/icon maps for agent-thread cards — shared by the live send
+  // path and the resume path (hoisted from the send handler 2026-10-12).
+  const _searchIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:-2px;margin-right:4px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+  const _toolLabels = {
+    'web_search': 'Searching',
+    'bash': 'Running',
+    'python': 'Running',
+    'read_document': 'Reading',
+    'edit_file': 'Editing',
+    'read_file': 'Reading',
+    'write_file': 'Writing',
+    'create_document': 'Writing',
+    'edit_document': 'Editing',
+    'update_document': 'Rewriting',
+    'suggest_document': 'Reviewing',
+    'list_files': 'Browsing',
+    'image_gen': 'Generating',
+    'generate_image': 'Generating',
+    'manage_memory': 'Remembering',
+    'save_memory': 'Remembering',
+    'search_memory': 'Recalling',
+    'manage_session': 'Organizing',
+    'deep_research': 'Researching',
+    'list_models': 'Browsing',
+    'ui_control': 'Adjusting',
+  };
+  const _toolIcons = {
+    'web_search': _searchIcon,
+  };
+
   export async function resumeStream(sessionId) {
     if (!sessionId) return false;
     if (hasActiveStream(sessionId)) return false;
 
+    const abortCtrl = new AbortController();
     let res;
     try {
-      res = await fetch(`${API_BASE}/api/chat/resume/${sessionId}`);
+      res = await fetch(`${API_BASE}/api/chat/resume/${sessionId}`, { signal: abortCtrl.signal });
     } catch (e) {
       return false;
     }
@@ -5043,6 +5049,24 @@ import { setFaviconBusy } from './theme.js';
     spinner.start();
     uiModule.scrollHistory();
 
+    // Arm the foreground stream state + stop button for the re-attached run
+    // (2026-10-12: the resume path never registered in _activeStreams, so
+    // isStreaming stayed false, the send button never flipped to stop mode,
+    // and a turn re-opened mid-stream was unstoppable without killing the
+    // server).
+    const _resumeSubmitBtn = document.querySelector('.send-btn');
+    _activeStreams.set(sessionId, {
+      abortCtrl,
+      holder,
+      query: '',
+      startedAt: Date.now(),
+      lastActivity: Date.now(),
+    });
+    if (_resumeSubmitBtn && sessionModule.getCurrentSessionId &&
+        sessionModule.getCurrentSessionId() === sessionId) {
+      updateSubmitButton('streaming', _resumeSubmitBtn);
+    }
+
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
     let buffer = '';
@@ -5055,10 +5079,25 @@ import { setFaviconBusy } from './theme.js';
     // full canonical render, which is rebuilt from the saved DB record on reload.
     // Plain text replies can be finalized in place without a reload.
     let rich = false;
+    let _thinkOpen = false;          // stateful <think> wrapper across reasoning deltas
+    let _renderQueued = false;       // coalesced-render pending flag
+    let _resumeClosed = false;       // set by cleanup — kills queued renders
+    let _lastTabSyncPost = 0;        // tab-sync mirror throttle (ms)
+    let _toolThread = null;          // live tool card container (resume)
+    let _toolNode = null;            // live tool card node (resume)
 
     const cleanup = () => {
+      _resumeClosed = true;
       try { spinner.destroy(); } catch (_) {}
       _resumingStreams.delete(sessionId);
+      _activeStreams.delete(sessionId);
+      _finishToolNode();
+      // Disarm the stop button only when the user is still viewing this
+      // session — after a switch away, the new session's flow owns it.
+      if (sessionModule.getCurrentSessionId &&
+          sessionModule.getCurrentSessionId() === sessionId) {
+        if (_resumeSubmitBtn) updateSubmitButton('idle', _resumeSubmitBtn);
+      }
     };
 
     // Incremental renderer: a takeover replays the run's ENTIRE accumulated
@@ -5078,6 +5117,34 @@ import { setFaviconBusy } from './theme.js';
         replayRenderer.update(dt);
       }
       uiModule.scrollHistory();
+    };
+
+    // Coalesced rendering: a takeover replays the run's whole buffer as
+    // per-token events, so per-delta full-text work (normalize + tab-sync
+    // post + scroll) is O(n²) in the buffer size and jammed the main thread
+    // — the known "freeze-to-halt on mid-stream chat open". Queue at most
+    // one render per ~34ms; the tail paths below always render final state.
+    const queueRender = () => {
+      if (_renderQueued || _resumeClosed) return;
+      _renderQueued = true;
+      setTimeout(() => {
+        _renderQueued = false;
+        if (_resumeClosed) return;
+        renderDelta();
+      }, 34);
+    };
+
+    // Finalize the live tool card (stop wave + elapsed ticker). The node's
+    // visual done/failed state is set by the tool_output handler before this
+    // runs; this just stops the animations and unregisters.
+    const _finishToolNode = () => {
+      if (!_toolNode) return;
+      try {
+        if (_toolNode._waveInterval) { clearInterval(_toolNode._waveInterval); _toolNode._waveInterval = null; }
+        if (_toolNode._elapsedTicker) { clearInterval(_toolNode._elapsedTicker); _toolNode._elapsedTicker = null; }
+      } catch (_) {}
+      _toolNode = null;
+      if (_toolThread) _toolThread.classList.remove('streaming');
     };
 
     try {

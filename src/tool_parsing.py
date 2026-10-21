@@ -690,6 +690,10 @@ def _raw_openai_tool_call_to_block(value) -> Optional[ToolBlock]:
         content = args.get("query", "")
     elif tool_type == "chat_with_model":
         content = args.get("model", "") + "\n" + args.get("message", "")
+    elif tool_type == "spawn_agent":
+        content = json.dumps(args)
+    elif tool_type == "check_agents":
+        content = str(args.get("agent_id", "") or "")
     elif tool_type == "create_session":
         content = args.get("name", "Untitled") + "\n" + args.get("model", "")
     elif tool_type == "list_sessions":

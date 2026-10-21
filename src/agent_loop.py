@@ -661,6 +661,8 @@ Generate an image. Line 1 = description, line 2 = model name, line 3 = WxH (e.g.
     "chat_with_model": "- ```chat_with_model``` — Ask a DIFFERENT AI model and relay its answer. Line 1 = model name (or 'model@endpoint'), rest = your message. Use when the user says 'ask <model>', 'what does <model> think', or wants to compare/their answer from another model.",
     "ask_teacher": "- ```ask_teacher``` — Escalate a hard question to a more capable model. Line 1 = model name or 'auto', rest = the question. Use when stuck or need expert knowledge.",
     "list_models": "- ```list_models``` — Show all available AI models across all endpoints. Use when user asks what models are available.",
+    "spawn_agent": "- ```spawn_agent``` — Spawn a sub-agent (a fresh AI agent WITH tool access) to autonomously execute a self-contained task and return its final report. Args (JSON): {\"task\": \"...\", \"model\": \"model@endpoint (optional)\", \"system_prompt\": \"persona (optional)\", \"max_rounds\": 15, \"timeout_minutes\": 10, \"background\": false}. Unlike chat_with_model (bare completion), the sub-agent can use tools. Use for delegating subtasks or isolating context-heavy work. Blocking spawns run one at a time and park the conversation until the report returns — use \"background\": true for anything slow or for several agents at once: you get an agent id back IMMEDIATELY, the report is delivered to this conversation when it finishes, and you collect with ```check_agents```. The sub-agent cannot see this conversation or ask the user questions — put everything it needs in `task`.",
+    "check_agents": "- ```check_agents``` — Check background sub-agents launched with spawn_agent(background=true). No args: list all agent jobs (id/status/task/age) and collect the full reports of any finished-but-undelivered ones. Optional arg: an agent id for just that one. Finished reports are delivered once and marked collected.",
     "manage_session": "- ```manage_session``` — Rename, archive, delete, fork, switch, or `list` chats (the UI calls them 'chats'; 'session' is internal). Line 1 = action (list/switch/rename/archive/unarchive/delete/important/unimportant/truncate/fork), Line 2 = exact chat id from `list_sessions` (or `current` where supported). For delete/archive/truncate, always list first and reuse the exact id; never invent placeholder ids. `switch`/`open` returns a clickable anchor link the user can tap to open the chat — use for \"open my X chat\".",
     "manage_memory": "- ```manage_memory``` — Manage the user's persistent memory (facts about the USER themselves, their preferences, context that persists across chats). Line 1 = action (list/add/edit/delete/search), rest = content. Use when user says 'remember this' about themselves, states identity facts like 'my name is <name>' / 'call me <name>' / 'I live in <place>', or asks about stored memories. DO NOT use for info about another person (their address, phone, email, birthday) — that goes in `manage_contact`. If the user pastes an address/phone with a name and says 'save this for <person>', use `manage_contact add` with the address arg, NOT manage_memory.",
     "manage_skills": "- ```manage_skills``` — Skill registry (SKILL.md format). Args (JSON): {\"action\": \"list|view|view_ref|search|add|edit|patch|publish|delete\", ...}. `list` returns the index of available skills (published + teacher-escalation drafts); `view name=foo` fetches the full SKILL.md; `view_ref name=foo path=...` loads a reference file under the skill directory. For `add`, provide an explicit kebab-case `name` and only report the exact returned name, because storage may normalize or dedupe it. Use this BEFORE doing domain work — there may already be a procedure (published or draft) that prescribes the correct steps. Drafts written by the teacher loop are authoritative guidance even though they're not yet published.",
@@ -2766,6 +2768,8 @@ def _build_system_prompt(
 # trim, so a long task can balloon far past the per-message budget (70k+ seen).
 # When the accumulated buffer crosses this, the older half is summarized via the
 # existing compactor (dense summary, recent half verbatim) instead of growing.
+# Overridable at runtime via the "agent_mid_message_compact_trigger" setting
+# (0 disables); this constant is only the default when the setting is absent.
 MID_MESSAGE_COMPACT_TRIGGER_TOKENS = 30000
 
 _ADMIN_TOOLS = {
@@ -2824,7 +2828,7 @@ def _build_base_prompt(
         if not needs_admin:
             mgmt_tools = set(TOOL_SECTIONS.keys()) - set(ALWAYS_AVAILABLE) - {
                 "generate_image", "suggest_document",
-                "chat_with_model", "ask_teacher", "list_models",
+                "chat_with_model", "ask_teacher", "list_models", "spawn_agent", "check_agents",
             }
             agent_prompt = _assemble_prompt(
                 set(TOOL_SECTIONS.keys()) - mgmt_tools, disabled, compact=compact
@@ -3286,6 +3290,8 @@ async def stream_agent_loop(
     uploaded_files: Optional[List[Dict]] = None,
     workload: str = "foreground",
     _is_teacher_run: bool = False,
+    _subagent_depth: int = 0,
+    partial_sink: Optional[Dict] = None,
 ) -> AsyncGenerator[str, None]:
     """Streaming agent loop generator.
 
@@ -3373,6 +3379,11 @@ async def stream_agent_loop(
         and (_casual_low_signal_turn or not workspace)
         and not forced_tools
         and not relevant_tools
+        # Sub-agents are spawned with an explicit task from a parent agent —
+        # never casual chat. The low-signal fast path would strip their tools
+        # whenever the task text happens to read like small talk ("count the
+        # files"), silently gutting delegation.
+        and not _subagent_depth
     )
     # Tool retrieval uses the latest message by default. It may inherit recent
     # user turns only for explicit continuations ("yes", "do it", "1").
@@ -3925,11 +3936,15 @@ async def stream_agent_loop(
     # the system prompt is constant for the whole message; this targets
     # accumulated tool-round growth specifically.
     _acc_tokens = estimate_tokens([m for m in messages if m.get("role") != "system"])
-    if _acc_tokens > MID_MESSAGE_COMPACT_TRIGGER_TOKENS:
+    # Settings-driven trigger ("agent_mid_message_compact_trigger"; 0 disables).
+    # The old hardcoded 30k fired on every turn of any session above 30k, which
+    # made the input budget irrelevant for long sessions.
+    _mid_trigger = int(get_setting("agent_mid_message_compact_trigger", MID_MESSAGE_COMPACT_TRIGGER_TOKENS) or 0)
+    if _mid_trigger > 0 and _acc_tokens > _mid_trigger:
         logger.info("[agent] mid-message compaction at %d tokens", _acc_tokens)
         messages, _, _ = await maybe_compact(
             None, endpoint_url, model, messages, headers,
-            force_threshold_tokens=MID_MESSAGE_COMPACT_TRIGGER_TOKENS,
+            force_threshold_tokens=_mid_trigger,
         )
 
     agent_prompt_tokens = estimate_tokens(messages)
@@ -3948,6 +3963,15 @@ async def stream_agent_loop(
     first_token_received = False
     tool_events = []   # Persist tool executions for history reload
     round_texts = []   # Cleaned text per round for history reload
+    if partial_sink is not None:
+        # Live handles for the route's stop/checkpoint paths. Both lists are
+        # mutated in place for the whole run, so publishing the references
+        # once keeps the sink current — a force-stopped turn can then persist
+        # the tool calls that already executed instead of dropping them
+        # (2026-10-11 defenestration fix).
+        partial_sink["tool_events"] = tool_events
+        partial_sink["round_texts"] = round_texts
+        partial_sink["current_round_text"] = ""
     # Completion-verifier state (mechanism 3a). _effectful_used flips on when
     # a tool that produces a checkable artifact runs; the verifier only fires
     # on such turns and at most _VERIFIER_MAX_ROUNDS times.
@@ -4015,6 +4039,8 @@ async def stream_agent_loop(
 
     for round_num in range(1, max_rounds + 1):
         round_response = ""
+        if partial_sink is not None:
+            partial_sink["current_round_text"] = ""
         round_reasoning = ""  # reasoning_content deltas (DeepSeek-thinking, vLLM --reasoning-parser)
         native_tool_calls = []  # populated if model uses function calling
         # Reset doc streaming state per round
@@ -4254,6 +4280,8 @@ async def stream_agent_loop(
                             if _ody_qwen_finetune_model:
                                 _delta_text = _normalize_ody_qwen_text_artifacts(_delta_text)
                             round_response += _delta_text
+                            if partial_sink is not None:
+                                partial_sink["current_round_text"] = round_response
                             full_response += _delta_text
                             data["delta"] = _delta_text
                         if not _ody_qwen_finetune_model or data.get("thinking"):
@@ -4514,6 +4542,10 @@ async def stream_agent_loop(
         # on reload (#3222 follow-up).
         cleaned_round = strip_tool_blocks(round_response, skip_fenced=(_is_api_model and not used_native and not guide_only)).strip()
         round_texts.append(cleaned_round)
+        if partial_sink is not None:
+            # This round's text now lives in round_texts — clear the live
+            # mirror so a cancel during tool execution doesn't double-count it.
+            partial_sink["current_round_text"] = ""
         if _ody_qwen_finetune_model and not tool_blocks and cleaned_round:
             yield f'data: {json.dumps({"delta": cleaned_round})}\n\n'
 
@@ -4808,6 +4840,12 @@ async def stream_agent_loop(
                             owner=owner,
                             progress_cb=_push_progress,
                             workspace=workspace,
+                            extra_ctx={
+                                "endpoint_url": endpoint_url,
+                                "model": model,
+                                "headers": headers,
+                                "subagent_depth": _subagent_depth,
+                            },
                         )
                     finally:
                         # Sentinel so the drainer knows to stop.

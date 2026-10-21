@@ -1039,6 +1039,13 @@ async def _startup_event():
         _startup_tasks.append(start_bg_monitor())
     except Exception as _e:
         logger.warning("Failed to start background-job monitor: %s", _e)
+    # Always-on monitor that delivers finished background sub-agent reports
+    # (spawn_agent background=true) into their parent session.
+    try:
+        from src.agent_jobs import start_agent_job_monitor
+        _startup_tasks.append(start_agent_job_monitor())
+    except Exception as _e:
+        logger.warning("Failed to start background-agent monitor: %s", _e)
     # MCP servers can be slow or blocked by local tooling. Connect them after
     # the web server is accepting traffic instead of delaying the whole UI.
     async def _startup_mcp_connections():
