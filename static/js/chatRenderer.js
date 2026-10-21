@@ -2329,7 +2329,20 @@ export function addMessage(role, content, modelName, metadata) {
 
       for (let r = 0; r < maxRound; r++) {
         const roundNum = r + 1;
-        const txt = resolveDocumentPlaceholderLinks((roundTexts[r] || '').trim(), metadata);
+        let txt = resolveDocumentPlaceholderLinks((roundTexts[r] || '').trim(), metadata);
+        // Reasoning pass-back replay (2026-10-21): reasoning_content-style
+        // models (DeepSeek/Nemotron/vLLM reasoning parser) stream thinking as
+        // separate deltas — it is saved to metadata.thinking but never lands
+        // inside round_texts, so this multi-bubble reload path lost every
+        // thinking block on refresh. Prepend the stored reasoning to round 0
+        // exactly like the single-bubble path does. Inline-think models
+        // already carry tags inside round_texts and are skipped by the
+        // guard below (no double render).
+        if (r === 0 && metadata?.thinking && !roundTexts.some(t => String(t || '').includes('<think'))) {
+          const safeThinking = markdownModule.neutralizeStrayThinkTags(String(metadata.thinking || ''), true);
+          const thinkTime = metadata.thinking_time || null;
+          txt = '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</' + 'think>\n\n' + txt;
+        }
 
         if (txt) {
           const wrap = document.createElement('div');

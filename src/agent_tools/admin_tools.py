@@ -555,6 +555,8 @@ async def do_manage_settings(content: str, owner: Optional[str] = None) -> Dict:
             "hard max": "agent_input_token_hard_max",
             "token budget cap": "agent_input_token_hard_max",
             "input budget cap": "agent_input_token_hard_max",
+            "thinking": "thinking_enabled", "thinking mode": "thinking_enabled",
+            "reasoning": "thinking_enabled", "reasoning mode": "thinking_enabled",
         }
         def _resolve(k):
             k2 = (k or "").strip().lower()

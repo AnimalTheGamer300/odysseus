@@ -103,7 +103,15 @@ def is_local_endpoint(url: str) -> bool:
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-DEFAULT_CONTEXT = 128000
+# Fallback window when a model is in no table and the endpoint reports nothing.
+# Raised 128000 -> 1048576 (2026-10-11): unknown models now default to 1M so the
+# compactor/trim gates stop firing ~9x early for long-context models the catalog
+# doesn't describe (NVIDIA /models carries no context field for most ids).
+# Trade-off accepted by Sir: if a small model genuinely can't take the prompt,
+# the upstream API / LM Studio rejects it with an explicit context-window error
+# rather than Odysseus silently pre-truncating. budget_context_for_model still
+# returns 0 for unproven windows, so agent input budgets stay conservative.
+DEFAULT_CONTEXT = 1048576
 REQUEST_TIMEOUT = 5
 
 # Known context windows for major API models (used as fallback when /models
@@ -152,6 +160,24 @@ KNOWN_CONTEXT_WINDOWS = {
     # 'deepseek-v4', so this entry is the one that resolves — 2026-08-09).
     'deepseek-v4-flash-free': 200000,
     'deepseek-v2': 64000,
+
+    # --- Z.ai / GLM ---
+    # GLM-5.3 and GLM-5.3-Flash ship a 1M window (NVIDIA NIM model card +
+    # contextwindows.dev, 2026-10). NVIDIA's /models lists these ids with no
+    # context field at all, so without entries here they fell through to the
+    # bare DEFAULT_CONTEXT fallback and the compactor/trim gates fired far
+    # too early (2026-10-07; the fallback was 128K then, 1M since 2026-10-11).
+    'glm-5.3-flash': 1048576,
+    'glm-5.3': 1048576,
+
+    # --- Moonshot / Kimi ---
+    # Kimi K3 (moonshotai/kimi-k3, 2.8T MoE, July 2026) ships a 1,048,576-token
+    # window (Lyceum model card read 2026-10-05 + HF community overview).
+    # NVIDIA's /models lists the id with no context field (2026-10-11).
+    # The exact-id key outranks the legacy 'moonshot' prefix key in longest-match
+    # (see the second Moonshot section below for why that key is a trap).
+    'moonshotai/kimi-k3': 1048576,
+    'kimi-k3': 1048576,
 
     # --- Google ---
     'gemini-2.5-pro': 1048576,
@@ -204,15 +230,20 @@ KNOWN_CONTEXT_WINDOWS = {
     'minimax': 1000000,
 
     # --- Moonshot / Kimi ---
-    'moonshot': 128000,
-    'kimi': 128000,
+    # 'moonshot' narrowed to 'moonshot-v1-128k' (2026-10-11): the bare key
+    # substring-matched the 'moonshotai' provider prefix in ids like
+    # moonshotai/kimi-k3 and, winning longest-match at 8 chars, shadowed the
+    # more specific 'kimi-k3' entry (7 chars) with a stale 128K window.
+    'moonshot-v1-128k': 128000,
+    'kimi': 1048576,
+    'kimi-v3': 1048576,
 
     # --- Microsoft ---
     'phi-4': 16000,
     'phi-3': 128000,
 
     # --- Nvidia ---
-    'nemotron': 131072,
+    'nemotron': 1048576,
 
     # --- Yi ---
     'yi-large': 32768,

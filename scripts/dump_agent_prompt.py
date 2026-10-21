@@ -277,7 +277,7 @@ def build_verbatim_payload(endpoint_url, model, messages, tools, temperature,
     that stream_llm would POST (auth headers omitted).
     """
     provider = lc._detect_provider(endpoint_url)
-    messages_copy = lc._sanitize_llm_messages(messages)
+    messages_copy = lc._sanitize_llm_messages(messages, provider=provider)
 
     # Consolidate multiple system messages into one at the start (some models,
     # e.g. Qwen3.5, reject system messages that aren't first).

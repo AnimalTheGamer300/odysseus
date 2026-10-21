@@ -11,7 +11,7 @@ import os
 from contextlib import asynccontextmanager
 from fastapi import HTTPException
 from typing import Optional, Dict, List, Tuple, Union
-from src.model_context import get_context_length, DEFAULT_CONTEXT, is_local_endpoint
+from src.model_context import get_context_length_known, DEFAULT_CONTEXT, is_local_endpoint
 from urllib.parse import urlparse
 
 logger = logging.getLogger(__name__)
@@ -617,6 +617,7 @@ def _build_ollama_payload(
     stream: bool = False,
     tools: Optional[List[Dict]] = None,
     num_ctx: Optional[int] = None,
+    num_ctx_trusted: Optional[bool] = None,
     disable_thinking: bool = False,
 ) -> Dict:
     """Build the JSON payload for Ollama's /api/chat endpoint.
@@ -625,10 +626,13 @@ def _build_ollama_payload(
     when the option is omitted, so a model with a larger advertised
     window is silently truncated there, and a model with a smaller one
     gets an oversized window it can't service. Pass the discovered
-    context length through ``num_ctx``; this builder only emits it when
-    the value is trusted (not the ``DEFAULT_CONTEXT`` fallback), so we
-    don't guess for unknown models but do tell Ollama the real window
-    when we know it — even if it's smaller than 2048.
+    context length through ``num_ctx`` plus the ``known`` flag from
+    ``get_context_length_known`` in ``num_ctx_trusted``; this builder only
+    emits it when the value is trusted, so we don't guess for unknown
+    models but do tell Ollama the real window when we know it — even if
+    it's smaller than 2048. (``num_ctx_trusted=None`` falls back to the
+    legacy value-vs-DEFAULT_CONTEXT sniff for callers that pass no flag —
+    unreliable now that DEFAULT_CONTEXT itself is 1M.)
 
     ``disable_thinking=True`` sets Ollama's top-level ``think: false`` so
     reasoning models answer without emitting chain-of-thought (used by
@@ -646,8 +650,15 @@ def _build_ollama_payload(
         options["temperature"] = temperature
     if max_tokens and max_tokens > 0:
         options["num_predict"] = max_tokens
-    if num_ctx is not None and num_ctx > 0 and num_ctx != DEFAULT_CONTEXT:
-        options["num_ctx"] = num_ctx
+    if num_ctx is not None and num_ctx > 0:
+        # Trust comes from the caller's known-flag; the value-vs-DEFAULT_CONTEXT
+        # comparison is only a legacy fallback for callers that pass no flag.
+        # Once DEFAULT_CONTEXT itself became 1M (2026-10-11) that sniff misread
+        # real 1M windows as the untrusted fallback and silently dropped num_ctx
+        # for exactly the long-context models that need it.
+        trusted = num_ctx_trusted if num_ctx_trusted is not None else (num_ctx != DEFAULT_CONTEXT)
+        if trusted:
+            options["num_ctx"] = num_ctx
     if options:
         payload["options"] = options
     if tools:
@@ -1283,6 +1294,60 @@ def _disable_deepseek_v4_thinking(payload: dict, model: str, force: bool = False
     if not force and _DEEPSEEK_V4_THINKING in ("1", "true", "yes", "on", "enabled"):
         return  # leave upstream default (thinking on)
     payload["thinking"] = {"type": "disabled"}
+    # Thinking-off requests must not carry reasoning_content history: the
+    # pass-back contract only exists while thinking is ON, and DeepSeek
+    # rejects reasoning_content fields on thinking-disabled calls. Strip
+    # it so a toggle flip mid-session can't 400 the chat. (Sanitize's
+    # metadata.thinking promotion runs earlier, at assembly time; this
+    # runs last, at payload build, so the scrub wins when they disagree.)
+    for msg in payload.get("messages") or []:
+        if isinstance(msg, dict):
+            msg.pop("reasoning_content", None)
+
+
+def _thinking_setting_off() -> bool:
+    """True when the admin toggle ``thinking_enabled`` is switched off.
+
+    Read from data/settings.json via the TTL-cached settings loader, so
+    flipping the toggle (Settings panel, the in-bot settings tool, or a
+    direct file edit) takes effect within ~2s without a restart. Any
+    failure to read settings keeps the default (thinking on) — a broken
+    settings file must not silently change model behavior.
+    """
+    try:
+        from src.settings import get_setting
+        return get_setting("thinking_enabled", True) is False
+    except Exception:
+        return False
+
+
+def _apply_thinking_off_openai_compat(payload: dict, url: str, model: str) -> None:
+    """Best-effort thinking-off for OpenAI-compatible providers that don't
+    have a dedicated switch above (called only when thinking is disabled).
+
+    - NVIDIA NIM (integrate.api.nvidia.com) and self-hosted vLLM servers
+      use the vLLM chat-template switch ``chat_template_kwargs:
+      {"enable_thinking": false}`` (Qwen/GLM-style templates; NVIDIA's own
+      docs document it for NIM reasoning models).
+    - OpenRouter normalizes ``reasoning: {"enabled": false}``.
+    - Groq exposes ``reasoning_effort: "none"`` on its reasoning models.
+    - api.openai.com reasoning models floor at ``reasoning_effort:
+      "minimal"`` (gated on the max_completion_tokens model families, the
+      same heuristic that already detects OpenAI reasoning models).
+
+    Strict clouds without a knob here (unknown providers) get nothing —
+    an unrecognized field risks a hard 400 on every request, which is
+    worse than a model that keeps thinking.
+    """
+    provider = _detect_provider(url)
+    if provider == "openrouter":
+        payload["reasoning"] = {"enabled": False}
+    elif provider == "groq":
+        payload["reasoning_effort"] = "none"
+    elif provider == "openai" and _uses_max_completion_tokens(model):
+        payload["reasoning_effort"] = "minimal"
+    elif provider == "nvidia" or _is_self_hosted_openai_compatible(url):
+        payload["chat_template_kwargs"] = {"enable_thinking": False}
 
 # Models that support structured thinking — may output </think> without opening tag
 _THINKING_MODEL_PATTERNS = (
@@ -1544,6 +1609,16 @@ def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[D
         if not role:
             continue
         if role == "assistant":
+            # Promote persisted thinking blob (metadata.thinking) to reasoning_content
+            # so DeepSeek / Moonshot-Kimi thinking mode receives prior reasoning on
+            # follow-up turns. Top-level reasoning_content always wins.
+            # Only promote for providers that support reasoning_content (not Groq).
+            if provider != "groq":
+                meta = msg.get("metadata")
+                if isinstance(meta, dict) and "thinking" in meta and "reasoning_content" not in item:
+                    thinking_blob = meta.get("thinking")
+                    if thinking_blob:
+                        item["reasoning_content"] = thinking_blob
             # Re-add an explicit content=None when the message is tool-calls-only
             # (the None was stripped above) so the provider gets the spec-correct
             # `content: null`, not an omitted key.
@@ -1835,7 +1910,10 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
     if isinstance(headers, dict):
         h.update(headers)
 
-    messages_copy = _sanitize_llm_messages(messages)
+    provider = _detect_provider(url)
+    messages_copy = _sanitize_llm_messages(messages, provider=provider)
+    # Admin thinking toggle (data/settings.json `thinking_enabled`).
+    no_think = _thinking_setting_off()
 
     # Consolidate multiple system messages into one at the start.
     sys_parts = []
@@ -1863,9 +1941,11 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
         payload = _build_anthropic_payload(model, messages_copy, temperature, max_tokens)
     elif provider == "ollama":
         target_url = _normalize_ollama_url(url)
+        _ctx_len, _ctx_known = get_context_length_known(url, model)
         payload = _build_ollama_payload(
             model, messages_copy, temperature, max_tokens,
-            stream=False, num_ctx=get_context_length(url, model),
+            stream=False, num_ctx=_ctx_len, num_ctx_trusted=_ctx_known,
+            disable_thinking=no_think,
         )
     else:
         target_url = _normalize_openai_chat_url(url)
@@ -1884,8 +1964,10 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
             payload[tok_key] = max_tokens
         _apply_local_generation_stability(payload, target_url, model)
         if provider == "mistral" and _supports_thinking(model):
-            payload["reasoning_effort"] = _MISTRAL_REASONING_EFFORT
-        _disable_deepseek_v4_thinking(payload, model)
+            payload["reasoning_effort"] = "minimal" if no_think else _MISTRAL_REASONING_EFFORT
+        _disable_deepseek_v4_thinking(payload, model, force=no_think)
+        if no_think:
+            _apply_thinking_off_openai_compat(payload, url, model)
     try:
         note_model_activity(target_url, model)
         r = httpx_post_kimi_aware(target_url, h, json=payload, timeout=timeout)
@@ -2033,6 +2115,13 @@ async def llm_call_async(
     the context compactor use this to detect silently truncated summaries).
     Cached responses carry no finish_reason and return None.
     """
+    # Admin thinking toggle (data/settings.json `thinking_enabled`): fold it
+    # into the existing disable_thinking flow so every provider branch below
+    # (Ollama think:false, Mistral minimal, DeepSeek force-off) honors it.
+    # Callers that already forced disable_thinking=True (compaction, titles)
+    # are unaffected either way.
+    if not disable_thinking and _thinking_setting_off():
+        disable_thinking = True
     provider = _detect_provider(url)
     messages_copy = _sanitize_llm_messages(messages, provider=provider)
 
@@ -2115,9 +2204,10 @@ async def llm_call_async(
         h = {"Content-Type": "application/json"}
         if headers:
             h.update(headers)
+        _ctx_len, _ctx_known = get_context_length_known(url, model)
         payload = _build_ollama_payload(
             model, messages_copy, temperature, max_tokens,
-            stream=False, num_ctx=get_context_length(url, model),
+            stream=False, num_ctx=_ctx_len, num_ctx_trusted=_ctx_known,
             disable_thinking=disable_thinking,
         )
     else:
@@ -2142,6 +2232,8 @@ async def llm_call_async(
         if provider == "mistral" and _supports_thinking(model):
             payload["reasoning_effort"] = "minimal" if disable_thinking else _MISTRAL_REASONING_EFFORT
         _disable_deepseek_v4_thinking(payload, model, force=disable_thinking)
+        if disable_thinking:
+            _apply_thinking_off_openai_compat(payload, url, model)
         _apply_local_cache_affinity(payload, url, session_id)
         _apply_local_generation_stability(payload, target_url, model)
 
@@ -2252,7 +2344,9 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
       - data: [DONE]                       — end of stream
     """
     provider = _detect_provider(url)
-    messages_copy = _sanitize_llm_messages(messages)
+    messages_copy = _sanitize_llm_messages(messages, provider=provider)
+    # Admin thinking toggle (data/settings.json `thinking_enabled`).
+    no_think = _thinking_setting_off()
 
     # Consolidate multiple system messages into one at the start.
     # Some models (e.g. Qwen3.5) reject system messages that aren't first.
@@ -2277,9 +2371,11 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
         h = {"Content-Type": "application/json"}
         if headers:
             h.update(headers)
+        _ctx_len, _ctx_known = get_context_length_known(url, model)
         payload = _build_ollama_payload(
             model, messages_copy, temperature, max_tokens,
-            stream=True, tools=tools, num_ctx=get_context_length(url, model),
+            stream=True, tools=tools, num_ctx=_ctx_len, num_ctx_trusted=_ctx_known,
+            disable_thinking=no_think,
         )
     elif provider == "chatgpt-subscription":
         target_url = _normalize_chatgpt_subscription_url(url)
