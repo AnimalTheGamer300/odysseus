@@ -102,3 +102,7 @@ compound.config.json
 *.error.log
 _scratch/
 /odysseus/
+
+# Local runtime stores + scratch backups (2026-10-21)
+chroma/
+*.bak-*
