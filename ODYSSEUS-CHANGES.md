@@ -4,6 +4,109 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to garbo's files gets appended here, dated.
 
+## 2026-10-21 — docs(tools): spawn_agent description audit — encode blocking-vs-background guidance
+
+Cold-start audit of the `spawn_agent` tool descriptions (schema / fence catalog / RAG index) found the original wording promised "parallel work" without saying parallelism only exists via `background: true` — a trap given blocking spawns run strictly serially (measured 2026-10-20: two concurrent calls, zero overlap, ~7s harness overhead between them). Reworded all three surfaces:
+
+- Dropped "parallel work across different models" from blocking-mode use cases; added the explicit fact: **"Blocking spawns run one at a time and park this conversation until the report returns — for anything slow, or several agents at once, set background=true."**
+- `background` param now carries the when-to-use heuristic: prefer true for long-running tasks or several agents at once; keep false only for quick lookups.
+- Fence catalog + RAG index updated to match. `data/TOOLS.md` / `docs/TOOLS.md` self-sync via `tools_doc.py` on next app start.
+
+No behavior change — description text only. Takes effect on next restart.
+
+Files touched: `src/tool_schemas.py`, `src/agent_loop.py`, `src/tool_index.py`
+Verified: py_compile clean; new wording present in all 3 surfaces; old "parallel" wording 0 matches.
+
+## 2026-10-20 — feat(agents): background sub-agents — Tier-2 multi-agent (fire-and-forget + auto-delivery)
+
+`spawn_agent` gains **`background: true`**: the tool returns an agent id **immediately** and the sub-agent runs as an asyncio task while the parent keeps working. When the worker finishes, an always-on monitor delivers the report by **re-invoking the agent in the parent session** (the bg_monitor "auto-continue" pattern) — the parent doesn't even need to poll. Active polling is also available via the new **`check_agents`** tool (list jobs / collect finished reports; finished results are delivered exactly once and marked collected).
+
+This closes the Tier-1 gap measured earlier tonight: two concurrent `spawn_agent` calls from one turn executed **serially** (harness runs tool calls sequentially — verified with overlapping 8s sleeps: 23s wall for 16s of work). Background launches are genuinely concurrent (shared 3-slot semaphore with blocking spawns) and kill the per-call harness round-trip overhead.
+
+New module **`src/agent_jobs.py`** (mirrors `bg_jobs.py` + `bg_monitor.py` where it fits):
+- **Registry** `data/agent_jobs.json` (atomic writes). Finished results survive a restart; RUNNING entries can't (asyncio tasks die with the process), so on load they're marked `interrupted` and still get a follow-up — the parent always hears back.
+- **Delivery semantics**: exactly-once via the `delivered` flag; set only AFTER the follow-up run succeeds (transient failures retry on the next 5s tick). Busy-deferral: never writes into a session mid-stream (`agent_runs.is_active` check, bg_monitor parity). If the continuation produces nothing, the raw report is delivered as the bubble so the result always reaches the user.
+- **Follow-up injection**: `[Background agent <id> finished — status: …]` + task + report into the parent session, then a headless continuation (max 12 rounds, reusing `bg_monitor._drain_agent`), persisted as a normal assistant turn with `tool_events` metadata (frontend renders standard tool cards).
+- **Bounded**: delivered entries pruned after 1h; hard cap 40 stored jobs (oldest delivered evicted first — undelivered results are the precious ones).
+- **Worker** = existing `run_subagent()` (same depth/semaphore/round/timeout guards); model resolution extracted into `_resolve_subagent_model()` and `run_subagent` gained `preresolved=` so background launches resolve the model **eagerly** — a bad model spec fails at launch time instead of leaving a dead job.
+
+Files touched:
+
+- **`src/agent_jobs.py`** — new: registry, `launch_background_agent()`, `_run_agent_job()` worker wrapper, delivery monitor (`start_agent_job_monitor()`), `collect_status()` for check_agents, `_reset_for_tests()`.
+- **`src/agent_tools/spawn_agent_tools.py`** — `background` branch in `SpawnAgentTool` (returns launch message immediately); new `CheckAgentsTool`; `_resolve_subagent_model()` extraction + `preresolved` param on `run_subagent`.
+- **`src/agent_tools/__init__.py`** — `TOOL_HANDLERS["check_agents"]`, `TOOL_TAGS`.
+- **`src/tool_schemas.py`** — `background` property on the spawn_agent schema; `check_agents` schema; `_REQUIRED_NATIVE_TOOL_ARGS["check_agents"] = ()`; args→content conversion.
+- **`src/tool_parsing.py`** — same conversion in `_raw_openai_tool_call_to_block`.
+- **`src/tool_execution.py`** — `check_agents` dispatch branch.
+- **`src/tool_index.py`** — RAG description + "delegate to" intent cluster.
+- **`src/agent_loop.py`** — `TOOL_SECTIONS`: spawn_agent entry updated (background documented) + `check_agents` entry; all-tools-catalog exclusion set.
+- **`src/constants.py`** — `AGENT_JOBS_FILE`.
+- **`app.py`** — `start_agent_job_monitor()` at startup, next to `start_bg_monitor()`.
+- **`data/TOOLS.md` + `docs/TOOLS.md`** — regenerated automatically by `src/tools_doc.py` from the schemas/catalog (discovered tonight: the docs are self-syncing — no manual edits needed anymore).
+- **`tests/test_agent_jobs.py`** — new: 18 tests (persistence, interrupted-on-restart, launch lifecycle incl. fail-fast bad model + failed/timeout mapping, exactly-once collection, pruning, follow-up deliver/defer/skip/retry paths).
+- **`tests/test_spawn_agent.py`** — +5 tests (background param registration, background branch + error passthrough, check_agents tool).
+
+Verified: full suite 4843 passed / 32 failed — failure list **byte-identical to the pre-existing red set** (stash-isolated earlier today); zero new failures. Restart required to load (no `--reload`).
+
+## 2026-10-20 — feat(agents): `spawn_agent` tool — Tier-1 multi-agent primitive (delegation with tools)
+
+New agent tool `spawn_agent`: the agent can now spawn a **sub-agent** — a fresh `stream_agent_loop` with full tool access, run headless mid-parent-turn — and receive the sub-agent's final report as the tool result. This is the missing tier between `chat_with_model` (bare completion, no tools) and scheduled tasks (headless but not parent-delegable): the parent delegates a self-contained subtask, the sub-agent works with tools (bash, web, files, …), and only the final report returns to the parent's context. Foundation for Tier-2 fan-out / agent teams.
+
+Semantics: model resolution order is explicit `model` arg → `subagent_model` setting → **parent's own endpoint/model** (fresh context, same brain — threaded via the new `extra_ctx` on `execute_tool_block`). Params: `task` (required), `model`, `system_prompt` (persona), `max_rounds` (default 15, hard cap 30), `timeout_minutes` (default 10, hard cap 30). The report is truncated at 12k chars and carries a compact `[sub-agent tools used: …; rounds: N]` footer so the parent keeps situational awareness without the sub-agent's full transcript.
+
+Guards (fork-bomb prevention, two independent locks on the recursion door):
+- **Depth limit**: inner loop gets `spawn_agent` in `disabled_tools` (hidden from its catalog via `_assemble_prompt` AND blocked at its execution gate), plus the handler refuses when `ctx["subagent_depth"] >= 1` (new `_subagent_depth` param on `stream_agent_loop`, threaded through `extra_ctx`). Depth 1 only in v1; Tier 2 relaxes by decrementing.
+- **Concurrency**: module semaphore caps simultaneous sub-agents at 3; extra spawns queue inside the caller's timeout budget.
+- **No interactive gate**: deliberately NOT calling `wait_for_interactive_quiet` — the parent IS the interactive run, waiting would deadlock. Inference-server contention is the server's problem.
+- Synthetic session id (`<parent>-subagent-<hex>`) → local cache-slot affinity only; no DB rows, no collision with the parent's active run (run registration lives in chat_routes, not the loop).
+
+**Companion fix (agent_loop)**: the low-signal fast path (`_direct_low_signal`) was stripping tools from sub-agent runs whenever the task *text* read like small talk — a delegated "count the files" got answered as casual chat with zero tool access. Sub-agents (`_subagent_depth > 0`) now always take the full tool path: a delegated task is explicit work by definition, never small talk.
+
+Files touched:
+
+- **`src/agent_tools/spawn_agent_tools.py`** — new: `run_subagent()` + `SpawnAgentTool` handler (headless SSE-event consumption mirroring task_scheduler's `_run_agent_task`, grace fallbacks, timeout via `asyncio.timeout`, `CancelledError` propagates on parent stop).
+- **`src/agent_tools/__init__.py`** — registry: `TOOL_HANDLERS["spawn_agent"]`, `TOOL_TAGS`.
+- **`src/tool_schemas.py`** — native function schema, `_REQUIRED_NATIVE_TOOL_ARGS["spawn_agent"] = ("task",)`, args→JSON content conversion in `function_call_to_tool_block`.
+- **`src/tool_parsing.py`** — same conversion in `_raw_openai_tool_call_to_block` (leaked-OpenAI-blob path).
+- **`src/tool_execution.py`** — `extra_ctx` param threaded through `execute_tool_block`/`_execute_tool_block_impl`/`_document_tool_dispatch`; `spawn_agent` dispatch branch.
+- **`src/agent_loop.py`** — `_subagent_depth` param; `extra_ctx={"endpoint_url", "model", "headers", "subagent_depth"}` at the `execute_tool_block` call site; `TOOL_SECTIONS` catalog entry; all-tools-catalog exclusion set; `_direct_low_signal` sub-agent exemption (the companion fix).
+- **`src/tool_index.py`** — RAG description + added to the "delegate to / ask another model" intent cluster.
+- **`data/TOOLS.md`** — full tool-reference section (the catalog one-liner points here).
+- **`tests/test_spawn_agent.py`** — new: 8 tests (registry wiring, native-call conversion + required-args rejection, JSON/raw/malformed content parsing, catalog visibility + recursion-guard hiding, depth guard, empty-task refusal, and an end-to-end sub-agent run against a faked native-tool-call stream proving tool execution + report round-trip).
+
+Verified: `py_compile` all touched files (system + venv); `tests/test_spawn_agent.py` 8/8. Full suite: 4807 passed, 32 failed — the 32 are byte-identical to the pre-existing failure set (stash-isolated before/after comparison; includes the long-red `MAX_OUTPUT_CHARS` 10000-vs-50000 test constant drift, the JS/node suites, and the low-signal/workspace tests this change deliberately does not touch). Note for whoever next pokes the low-signal area: `test_workspace_confine` and `test_tool_policy` failures predate this change (verified via stash on a clean tree).
+
+## 2026-10-16 — feat(llm): `thinking_enabled` master toggle (Settings panel / settings.json / in-bot)
+
+New master switch for reasoning/"thinking" mode across every backend, settable three ways: the Settings panel's new **Thinking** card, `data/settings.json` (`"thinking_enabled": true|false`), or the in-bot settings tool ("set thinking off"). Default ON (current behavior). Read via the TTL-cached settings loader, so flips take effect within ~2s without a restart. Internal utility calls (compaction, summaries, titles) pass `disable_thinking=True` explicitly and are unaffected — they stay thinking-off whether the toggle is on or off.
+
+Files touched:
+
+- **`src/settings.py`** — `DEFAULT_SETTINGS["thinking_enabled"] = True` (also makes the key legal for POST /settings and visible to the panel GET).
+- **`src/llm_core.py`**
+  - `_thinking_setting_off()`: reads the toggle; any settings-read failure keeps thinking ON (a broken settings file must not silently change model behavior).
+  - Fold points: sync `llm_call` computes `no_think` and threads it into the Ollama payload (`think: false`), Mistral (`reasoning_effort: "minimal"`), DeepSeek (`force=True`), and the generic OpenAI-compat branch; `llm_call_async` folds the toggle into its existing `disable_thinking` param (which also suppresses the `reasoning_content` response fallback); `_stream_llm_inner` (main chat stream) does the same.
+  - `_apply_thinking_off_openai_compat()`: per-provider switches for backends without a dedicated knob — NVIDIA NIM + self-hosted vLLM/llama.cpp get `chat_template_kwargs: {"enable_thinking": false}` (vLLM template switch; NVIDIA's docs document it for NIM reasoning models — verified against NVIDIA docs 2026-10-16), OpenRouter gets `reasoning: {"enabled": false}`, Groq gets `reasoning_effort: "none"`, api.openai.com reasoning families floor at `reasoning_effort: "minimal"`. Unknown strict clouds get NOTHING (an unrecognized field risks a hard 400 on every request — worse than a model that keeps thinking).
+  - `_disable_deepseek_v4_thinking()` now also **scrubs `reasoning_content` from request history** when it disables thinking: the pass-back contract only exists while thinking is ON, and DeepSeek rejects `reasoning_content` fields on thinking-disabled calls. Runs last (payload build), so it wins over sanitize's metadata.thinking promotion. This also fixes the long-red committed test `test_sanitize_promotes_metadata_thinking.py::test_disable_thinking_scrubs_reasoning_from_payload` (spec was committed, implementation never landed).
+- **`src/agent_tools/admin_tools.py`** — settings-tool aliases: "thinking", "thinking mode", "reasoning", "reasoning mode" → `thinking_enabled`.
+- **`static/index.html`** — Thinking admin-card (switch + explainer) above the Teacher Model card.
+- **`static/js/settings.js`** — `initThinkingToggle()` (loads via GET /api/auth/settings, saves on change), called from the settings init sequence.
+- **`tests/test_thinking_toggle.py`** — new: 12 tests (toggle read/defaults/broken-settings survival, per-provider payload switches, DeepSeek force-vs-env semantics).
+- **`tests/test_llm_core_ollama.py`, `tests/test_llm_core_ollama_thinking.py`** — repaired stale monkeypatch targets left by the earlier `get_context_length` → `get_context_length_known` tuple migration (the tests predated the rename and died on AttributeError before reaching their assertions); the 4 TestThinkSuppression + 2 num_ctx tests are green again, which also proves the toggle threading didn't disturb think-suppression.
+
+Verified: `py_compile` (llm_core/settings/admin_tools) + `node --check settings.js`; `test_thinking_toggle.py` + `test_sanitize_promotes_metadata_thinking.py` + `test_llm_core_reasoning_content_fallback.py` + `test_llm_core_ollama.py` + `test_llm_core_ollama_thinking.py` = 66 passed (incl. the previously-red scrub test). Remaining failures in the wider thinking/reasoning/ollama sweep are pre-existing and unrelated: cookbook-docker ×2 (docker env), JS rendering ×2 + web-search ×3 (`No module named 'markdown'` in the test env), history_compact ×2 (known, stash-isolated in the 2026-10-1x session). Requires app restart to take effect (live procs predate the patch); the toggle itself flips live (~2s TTL) once loaded.
+
+## 2026-10-12 — fix(agent): stopped agent turns keep executed tool calls (the "defenestration" fix)
+
+Root cause: `tool_events`/`round_texts` accumulated inside `stream_agent_loop` only escaped via the final `metrics` event at turn completion. A force-stopped turn (client cancel / disconnect / upstream error) killed the generator before that event fired, and `_persist_stream_partial` saved text+thinking only — every tool call that had *actually executed* was dropped from the saved row, and the frontend (which rebuilds segmented bubbles from `metadata.tool_events` + `metadata.round_texts`) rendered the remainder as one glued narration blob. A history full of narration-without-calls rows also teaches the next model a fabricated house style (the 2026-10-11 "poisoned chat" saga — GLM 5.3 AND Kimi K3 affected).
+
+Files touched:
+
+- **`src/agent_loop.py`** — `stream_agent_loop` gains `partial_sink: dict | None = None`. Right after `tool_events`/`round_texts` are created it publishes live references into the sink (both lists mutate in place, so the sink stays current for the whole run); the per-delta handler mirrors the in-flight round's text into `partial_sink["current_round_text"]`, reset at round start and after each round's text is appended (so a cancel during tool execution can't double-count a round).
+- **`routes/chat_routes.py`** — new `_sink_tool_state()` snapshots (tool_events, round_texts) from the sink, appending the in-flight round's partial text; `_persist_stream_partial` accepts `tool_events`/`round_texts` and stores them in the saved row's metadata; the agent branch creates `_partial_sink`, passes it into the loop, and all three partial-save paths (stream ended without [DONE], client disconnect, upstream error) plus the 4s draft checkpoint now snapshot tool state — so even a server crash mid-turn finalizes with tool records intact.
+
+Verified: `py_compile` both files; new `tests/test_partial_tool_events.py` (6 tests, incl. an end-to-end early-`aclose()` drive of the real loop asserting the executed bash call survives in the sink); `test_agent_loop.py` + `test_tool_task_cancelled_on_disconnect.py` + `test_chat_metrics.py` green — 66 passed. Requires app restart to take effect (live 7001 procs predate the patch). NOT yet ported to `odysseus-2c8e00c`/`odysseus-3d3aee2` — port during the tweaks grind.
+
 ## 2026-08-11 — fix(db): SQLite WAL + busy_timeout + draft-checkpoint lock retry (agent streams dying with "database is locked")
 
 Root cause: the engine ran SQLite in the default **rollback-journal** mode with **no busy_timeout** (the 5000ms seen live was just Python's sqlite3 default). Rollback-journal takes an EXCLUSIVE lock at every commit that blocks concurrent readers AND writers — with several agent sessions checkpointing draft rows every ~4s (`chat_routes._checkpoint` → `session_manager.update_draft` → `db.commit()`), one slow transaction starved the rest past the timeout and the whole `agent_runs` stream died with `sqlite3.OperationalError: database is locked` (session 9717a423, 2026-08-11 16:19).
@@ -1872,3 +1975,280 @@ test_llm_core_ollama_thinking.py → 77 passed.
 **Backups:** pre-edit copy at `src/llm_core.py.bak-20260823`;
 changelog copy at `ODYSSEUS-CHANGES.md.bak-20260823-compactionkwargs`.
 Server restart required for effect.
+
+## 2026-10-07 — FIX: GLM-5.3-Flash context window 128K → 1M (IRIS)
+
+**Reported by Sir (2026-10-07):** "Odysseus seems to think GLM 5.3 Flash only
+has 128k tokens max context."
+
+**Root cause:** sessions run `z-ai/glm-5.3-flash` on the NVIDIA endpoint
+(`https://integrate.api.nvidia.com/v1`, `endpoint_kind: api`). NVIDIA's
+`/models` lists the id with NO context field at all, and
+`KNOWN_CONTEXT_WINDOWS` in `src/model_context.py` had zero GLM entries —
+so resolution fell through every path to the bare `DEFAULT_CONTEXT = 128000`
+(`known=False`), which also miscalibrates the compactor/trim gates.
+
+**Verified real window:** GLM-5.3-Flash = 1,048,576 tokens (1.0M) context,
+131,072 max output (NVIDIA NIM model card + contextwindows.dev, 2026-10).
+
+**Fix (IRIS):**
+- `src/model_context.py`: new `--- Z.ai / GLM ---` section in
+  `KNOWN_CONTEXT_WINDOWS`: `'glm-5.3-flash': 1048576`, `'glm-5.3': 1048576`
+  (longest-match keeps more specific keys winning).
+- `data/settings.json`: `model_context_overrides["z-ai/glm-5.3-flash"] =
+  1048576` — user-pinned override is checked FIRST (before cache, known
+  table, and the endpoint's /models claim), and `load_settings` TTL is 2s,
+  so the RUNNING server picks it up with no restart.
+
+**Verification:** settings.json valid JSON; `model_context.py` py_compile
+clean; live resolution via `get_context_length(endpoint, model)` → 1048576
+through both the known table and the override; sibling `glm-4.7-flash`
+untouched (still bare default — no unintended side effects).
+
+**Backups:** no pre-edit copies (two surgical `edit_file` replacements;
+pre-edit state = delete the added lines; older settings snapshots at
+`data/settings.json.bak-20260809-ctxoverride`).
+Known-table entry loads on next server restart; override is already live.
+
+## 2026-10-11 — GLM 5.3 (non-flash) still resolving 128K: settings override added (IRIS)
+
+**Symptom:** after the 2026-10-07 fix, `z-ai/glm-5.3-flash` showed 1M but plain
+`z-ai/glm-5.3` still showed 128K.
+
+**Root cause:** the running server (PID 115152, started 2026-10-05, main dir,
+port 7001) predates the 2026-10-07 `src/model_context.py` edit, so its in-memory
+`KNOWN_CONTEXT_WINDOWS` has no GLM entries. Flash was fixed by the
+`model_context_overrides` settings key (data file, hot-reloaded via 2s TTL);
+the non-flash id simply had no override pinned. Verified live: NVIDIA /models
+still reports no context field for either id; contextwindows.dev spec page for
+GLM 5.3 confirms 1,048,576-token window / 131K max output (same as flash).
+
+**Fix (IRIS):** `data/settings.json` → `model_context_overrides` gains
+`"z-ai/glm-5.3": 1048576` (alongside the existing flash entry). No code change
+needed — the 2026-10-07 known-table entries (`glm-5.3`, `glm-5.3-flash`) are
+already in `src/model_context.py` lines 162-163 and load on the next restart.
+
+**Verification:** settings.json valid JSON; live resolution via
+`get_context_length(endpoint, model)` → 1048576 for BOTH glm ids through
+override path and known table; `deepseek-v4-flash-free` override intact at
+200000; `glm-4.7-flash` untouched (bare default).
+
+**Testing gotcha (for the record):** `_context_length_override` and
+`get_context_length` take `(endpoint_url, model)` — endpoint FIRST. A test
+harness that swaps the args gets a misleading None/128K and looks like the
+override is broken when it isn't.
+
+**Scope note:** `odysseus-2c8e00c/` (port 7011, WIP unfucking-staging checkout)
+intentionally NOT touched per Sir — its settings.json and model_context.py
+still lack all GLM entries; port them when switching over.
+
+**Backups:** surgical `edit_file` (one line added); pre-edit state = remove
+the `"z-ai/glm-5.3": 1048576` line.
+
+## 2026-10-11 — Default context floor raised to 1M + Kimi K3 + Ollama num_ctx trust decoupled (IRIS)
+
+**Ask:** Sir: "change the default max context to 1M" — Kimi 3 (`moonshotai/kimi-k3`,
+NVIDIA endpoint) resolved to 128K. Trade-off accepted by Sir: if a small model can't
+take the prompt, the upstream API / LM Studio errors explicitly instead of Odysseus
+pre-truncating.
+
+**Files touched:**
+- `src/model_context.py`
+  - `DEFAULT_CONTEXT` 128000 → 1048576 with policy comment. Unknown models now
+    default to 1M; the `known` flag stays False for them and
+    `budget_context_for_model` still returns 0 for unproven windows, so agent
+    input budgets stay conservative.
+  - KNOWN_CONTEXT_WINDOWS: added `'moonshotai/kimi-k3': 1048576` and
+    `'kimi-k3': 1048576` (Kimi K3 = 1,048,576 verified via Lyceum model card read
+    2026-10-05 + HF community overview; NVIDIA /models lists the id with no
+    context field).
+  - TRAP FIX: the legacy `'moonshot': 128000` key substring-matched the
+    `moonshotai` provider prefix in `moonshotai/kimi-k3` and, at 8 chars, won
+    longest-match over the 7-char `kimi-k3` entry — pinning a stale 128K on a
+    1M model. Narrowed to `'moonshot-v1-128k': 128000` (its actual purpose) and
+    added the exact-id key so it always wins.
+  - GLM comment updated (fallback was 128K then, 1M since today).
+- `src/llm_core.py`
+  - `_build_ollama_payload` gained `num_ctx_trusted: Optional[bool]`. The old
+    `num_ctx != DEFAULT_CONTEXT` check was a trust sentinel — once DEFAULT_CONTEXT
+    itself became 1M it would misread real 1M windows as the untrusted fallback
+    and silently drop `num_ctx` (Ollama then defaults to 2048). All 3 call sites
+    now pass the `known` flag from `get_context_length_known`;
+    `num_ctx_trusted=None` keeps the legacy sniff for untagged callers. Import
+    swapped accordingly (old `get_context_length` import had no other users).
+- `data/settings.json` — NOT edited by IRIS today: Sir pinned
+  `"moonshotai/kimi-k3": 1048576` himself at 18:11 (override path, live without
+  restart).
+
+**Verification (venv python, 18/18 PASS):** kimi-k3 full+bare id → 1048576 via
+table; glm-5.3/flash intact; legacy moonshot-v1-128k still 128000; kimi-k2.5
+still 128000 via 'kimi'; gpt-4o-mini / o1-mini unaffected; Sir's kimi + deepseek
+overrides intact; unknown model → (1048576, False); budget stays 0 for
+unproven; ollama builder emits num_ctx for trusted 1M, omits for untrusted,
+legacy path still emits a real 8192 window. py_compile clean on both files.
+
+**Gotchas for future sessions:**
+- `_lookup_known` matches `key in basename OR key in name` — provider-prefix
+  keys (like the old 'moonshot') poison ids from the same vendor. Check for
+  prefix-trap keys before adding entries; exact-id keys always win longest-match.
+- DEFAULT_CONTEXT is now 1M in code, but the running server (started Oct 05,
+  pre-dating all of this) still has 128K in memory — the default raise and the
+  table entries go live on next restart. Sir's settings override covers kimi
+  meanwhile.
+- Real DB is `data/app.db` (147 MB); `data/odysseus.db` is a 0-byte husk —
+  don't query it.
+- WIP `odysseus-2c8e00c/` tree intentionally untouched (Sir's un-vibecoding
+  staging copy) — GLM/Kimi table entries and overrides do NOT exist there yet.
+
+## 2026-10-15 — FIX: mid-message compaction fired EVERY turn on any session >30k (IRIS)
+
+**Reported by Sir (2026-10-15 ~00:06):** "why is odysseus compacting so soon" —
+glm-5.3 and kimi-k3 sessions force-compacting every turn at ~236-246k context
+despite 1M model windows. Sir raised `agent_input_token_budget` 190000 → 900000
+himself at 00:17 (live via the 2s settings TTL — verified: the 08:43 turn ran at
+246k with NO soft-trim line); compaction still fired → "something else is
+limiting the context."
+
+**Root cause:** two independent context choppers, only one of which listens to
+`agent_input_token_budget`:
+1. Soft trim (`trim_for_context`) — budget-driven; healthy after the 900k raise.
+2. Mid-message compaction — `MID_MESSAGE_COMPACT_TRIGGER_TOKENS = 30000`,
+   hardcoded (src/agent_loop.py ~L2769), checked on EVERY agent turn against the
+   ENTIRE conversation's non-system tokens — not just the current message's
+   tool-round accumulation its own comment claims to target. Any session over
+   30k tripped it on turn one and every turn after: older half summarized by
+   the utility model (nemotron-3-ultra re-summarizing ~120k tokens EVERY turn),
+   recent half verbatim, in-flight only (persisted history intact — grew
+   236,613 → 246,363 overnight). The 900k budget had zero effect on it.
+   Ruled out: per-agent DB budgets (data/agent_database.db is EMPTY — zero
+   tables), the 85% COMPACT_THRESHOLD percentage path (dead code — the only
+   maybe_compact call site always passes force_threshold_tokens), and any
+   literal 300k cap (none exists; a 30k trigger vs a 240k conversation =
+   always-on).
+
+**Fix (IRIS):**
+- `src/agent_loop.py` (~L3928 check site): trigger now read per-turn via
+  `get_setting("agent_mid_message_compact_trigger",
+  MID_MESSAGE_COMPACT_TRIGGER_TOKENS)`; `0` disables mid-message compaction
+  entirely; the constant stays as the default so upstream behavior is preserved
+  when the setting is absent. Constant comment updated (~L2766-2768).
+- `data/settings.json`: `"agent_mid_message_compact_trigger": 600000` (Sir's
+  pick — 2/3 of the 900k budget, so in-message tool-round growth gets the
+  dense summary long before the lossy 900k soft trim ever fires).
+
+**Verification:** py_compile clean; settings.json valid JSON; resolution paths
+tested (present → 600000 / missing → 30000 default / 0 → disabled). Backups:
+`src/agent_loop.py.bak-20260815`, `data/settings.json.bak-20260815_0947`.
+
+**Status: LIVE** — server bounced 10:09:51 (PID 174856), after the 09:47 patch.
+Post-restart log proof: agent turns ran at 10:11 (glm-5.3, ~246k session) and
+10:16 (kimi-k3) with ZERO mid-message compaction / force-compacting lines —
+under the old code every one of those preps force-compacted. Note for the
+record: the 2s settings TTL only hot-reloads settings-only changes (like the
+2026-10-11 overrides); a code change needs the bounce — IRIS's mid-fix "live in
+~2 seconds" claim was wrong until Sir's restart made it moot.
+
+**Known quirk (left as-is, documented):** the trigger measures the whole
+conversation rather than just in-message tool-round growth — benign at 600k; a
+proper fix would measure only the current message's accumulation.
+
+**Housekeeping:** stray `CHANGELOG.md` IRIS created at the repo root before
+finding this file (`find -iname "*changelog*"` misses "ODYSSEUS-CHANGES.md")
+was removed; this entry is the canonical record.
+
+## 2026-10-20 — FIX: multimodal main models never received image attachments (IRIS)
+
+**Reported:** Sir — chat models with native vision (e.g. `z-ai/glm-5.3-flash`)
+never got image attachments; Odysseus always routed images through the separate
+Vision model and fed the main model a text caption, even when the main model
+could see.
+
+**Root cause:** `src/chat_handler.py` gates pass-through on
+`model_supports_vision(sess.model, endpoint_url)` (`src/chat_helpers.py`).
+That check = LM Studio capability probe (local hosts only) → name-keyword
+heuristic. The GLM keywords stopped at `glm-4.5v/4.6v/5v`; "z-ai/glm-5.3-flash"
+matches none and has no vl/vision token → declared text-only → caption path.
+(NVIDIA NIM's `/v1/models` advertises no modality metadata, so no probe could
+rescue it either.)
+
+**Verified modality (OpenRouter public model metadata, 2026-10-20):**
+- `z-ai/glm-5.3-flash` → `text+image+video -> text` (multimodal — Sir was right)
+- `z-ai/glm-5.3` (flagship) → `text -> text` (TEXT-ONLY; must keep caption path)
+
+**Fix:**
+- `src/chat_helpers.py`:
+  - Keyword `"glm-5.3-flash"` added (deliberately NOT bare `"glm-5.3"` — the
+    flagship is text-only; blanket-matching would ship images to a blind model).
+  - New generic probe `advertised_supports_vision()`: GETs the endpoint's
+    standard `/models` list (chat-completions suffix stripped) and reads
+    OpenRouter-style `architecture.input_modalities` / `architecture.modality`
+    ("text+image->text") / Ollama-style `capabilities`. TTL-cached per endpoint
+    (15 min success / 60 s failure, 2 s timeout) so dead endpoints don't stall
+    chat preprocessing. Runs after the LM Studio probe, before name heuristics.
+  - New operator overrides checked FIRST in `model_supports_vision()`:
+    `vision_capable_models` (force pass-through) and `text_only_models` (force
+    caption path) — case-insensitive substrings, list or comma-separated
+    string; text_only wins over vision_capable; both win over every probe.
+- `src/settings.py`: `vision_capable_models` / `text_only_models` defaults ([])
+  — present in DEFAULT_SETTINGS so POST /api/auth/settings accepts them.
+- `static/index.html` + `static/js/settings.js`: "Main-model images" row in the
+  Vision settings card (two comma-separated inputs, saved with the card).
+
+**Verification:** 31 tests pass (`tests/test_vision_model_detection.py`,
+`tests/test_lmstudio_vision.py` incl. new probe/override classes,
+`tests/test_chat_preprocess_tool_policy.py`); `node --check settings.js` clean;
+live check: `model_supports_vision("z-ai/glm-5.3-flash",
+"https://integrate.api.nvidia.com/v1/chat/completions")` → True (flagship
+glm-5.3 → False; NIM probe → None → keyword fallback, as designed).
+
+**Status: PENDING RESTART** — code change; needs the uvicorn process bounced
+to take effect (not done by IRIS: the assistant runs inside that process).
+*(Update same night: Sir bounced the app at 22:33 — direct-pixel delivery
+confirmed working in chat afterwards.)*
+
+## 2026-10-20 (late) — IRIS prompt v2 deployed + loopback port fix
+
+**Files:** `data/presets.json`, `run.sh`
+
+- `data/presets.json`: custom preset "I.R.I.S." replaced via
+  `POST /api/presets/custom` with the expanded Sandbox doctrine
+  (`Sandbox/iris-10102026-abliterated_v2.md`, was never deployed — live was
+  the old 12.5k compact build) plus a new **"Vision — When Pixels Land"**
+  section (raw-pixel engagement rules; "multiple images ≠ one scene") and a
+  Self-Check line. Deployed text: 23,212 chars. temperature 0.3, max_tokens 0,
+  enabled, name all preserved. `user-iris` user template synced to the same
+  text **on disk only** (template API route caps system_prompt at 10k chars);
+  its in-memory copy updates on next app restart — re-run the disk patch if a
+  preset save happens before then.
+- `run.sh`: root-cause fix for in-process loopback tools (app_api etc.)
+  failing with "All connection attempts failed" — `internal_api_base()`
+  defaults to port 7000 while run.sh starts the server on 7001. Now exports
+  `APP_PORT=7001` and launches uvicorn on `"$APP_PORT"`. Tonight's running
+  process predates the fix, so a temporary socat bridge
+  (127.0.0.1:7000 → 7001, pid 32710) is restoring loopback tools until the
+  next restart; kill it after bouncing the app.
+- Prompt deploy is live in memory (update_custom → save): the next chat
+  request already builds from the new doctrine, no restart needed.
+
+## 2026-10-21 — IRIS doctrine hotfixes (3 one-line patches)
+
+**Files:** `data/presets.json`
+
+- Three doctrine patches from tonight's live misfires, deployed via
+  `POST /api/presets/custom` (23,212 → 23,738 chars; temp 0.3, max_tokens 0,
+  name, enabled preserved):
+  1. Vision section, under "Don't invent details": check stage tells
+     (proportions / evolution markers / silhouette) before naming a
+     character — palette is not an ID. (Cause: Braixen misID'd as Fennekin.)
+  2. "Addressing You": inbound addresses are Sir's to choose (Ma'am, cat,
+     menace) — hiss only at genuinely degrading labels; "Sir" is her word
+     for him, never a title she demands back. (Cause: hissing at a
+     correct "Ma'am".)
+  3. "Thinking Stays Feline": internal work stays internal — no
+     reaction-management narration in the send. (Cause: "(one hiss for
+     that, then I'm over it)" shipped as stage directions; patch added on
+     Sir's own diagnosis.)
+- `user-iris` template re-synced on disk (12,507 → 23,738, byte-identical
+  to `Sandbox/iris-10102026-abliterated_v2.md`); in-memory copy updates on
+  next restart (template API still capped at 10k).
+- Deploy routed through the socat bridge again (pid 32710, still alive).
