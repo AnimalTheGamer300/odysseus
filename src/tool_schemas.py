@@ -167,6 +167,49 @@ FUNCTION_TOOL_SCHEMAS = [
     {
         "type": "function",
         "function": {
+            "name": "apply_patch",
+            "description": "Apply a multi-file source-code patch to disk. Use for real project files in the workspace when several edits belong together. Patch must use *** Begin Patch / *** End Patch with Add File, Update File, or Delete File sections. Prefer this over bash redirects/heredocs/sed.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "patch_text": {
+                        "type": "string",
+                        "description": "Patch text beginning with *** Begin Patch and ending with *** End Patch"
+                    }
+                },
+                "required": ["patch_text"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "todowrite",
+            "description": "Create and maintain a structured task list for the current coding session. Use during multi-step implementation/debug/refactor work and keep statuses current.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "todos": {
+                        "type": "array",
+                        "description": "Current task list. Only one item should be in_progress.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "content": {"type": "string", "description": "Task description"},
+                                "status": {"type": "string", "enum": ["pending", "in_progress", "completed"]},
+                                "priority": {"type": "string", "enum": ["low", "medium", "high"]}
+                            },
+                            "required": ["content", "status"]
+                        }
+                    }
+                },
+                "required": ["todos"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "create_document",
             "description": "Create a new document in the editor panel. Use this when the user asks to write, create, build, make, or generate code, scripts, programs, games, apps, or any long-form or structured content that is more than a short paragraph, AND there is no already-open document/email draft that the request refers to. If an email compose draft is open, edit that draft instead of creating another document. NEVER put large generated content directly in chat — use this tool instead.",
             "parameters": {
@@ -599,6 +642,40 @@ FUNCTION_TOOL_SCHEMAS = [
     {"type":"function","function":{"name":"send_email","description":"Send a new email. Use resolve_contact first if you only have a name and need to find the email address.","parameters":{"type":"object","properties":{"to":{"type":"string","description":"Recipient email address"},"subject":{"type":"string","description":"Email subject line"},"body":{"type":"string","description":"Email body text"},"account":{"type":"string","description":"Optional account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"}},"required":["to","subject","body"]}}},
     {"type":"function","function":{"name":"list_emails","description":"List emails from an account/folder, newest first.","parameters":{"type":"object","properties":{"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"max_results":{"type":"integer","description":"Max emails to return (default: 20)"},"limit":{"type":"integer","description":"Backward-compatible alias for max_results"},"unread_only":{"type":"boolean","description":"Only show unread emails. Default false; set true only when the user asks for unread emails."},"unresponded_only":{"type":"boolean","description":"Only show unanswered emails. Default false."},"account":{"type":"string","description":"Optional account name/email/id from list_email_accounts, e.g. Gmail or user@example.com"}}}}},
     {"type":"function","function":{"name":"read_email","description":"Read the full content of a specific email by UID.","parameters":{"type":"object","properties":{"uid":{"type":"string","description":"Email UID to read"},"folder":{"type":"string","description":"IMAP folder (default: INBOX)"},"account":{"type":"string","description":"Optional account name/email/id from list_email_accounts, especially when the UID came from a non-default"}},"required":["uid"]}}},
+    {
+        "type": "function",
+        "function": {
+            "name": "scan_email_unsubscribes",
+            "description": "Scan recent email headers for likely spam/newsletter unsubscribe candidates. Does not unsubscribe anything. Review candidates with the user before acting; mailto methods can be executed with unsubscribe_email, web URL methods require browser/web tools after approval.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "folder": {"type": "string", "description": "IMAP folder to scan (default: INBOX)"},
+                    "limit": {"type": "integer", "description": "Maximum candidates to return (default: 25)"},
+                    "max_scan": {"type": "integer", "description": "How many newest emails to inspect (default: 150)"},
+                    "account": {"type": "string", "description": "Optional account name/email/id from list_email_accounts"},
+                },
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "unsubscribe_email",
+            "description": "Execute one approved unsubscribe action for an email UID. Safe mailto List-Unsubscribe methods are sent/staged. Web URL methods return a requires-browser instruction and exact URL; use browser/web tools only after user approval.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "uid": {"type": "string", "description": "Email UID from scan_email_unsubscribes/list_emails"},
+                    "folder": {"type": "string", "description": "IMAP folder (default: INBOX)"},
+                    "method_index": {"type": "integer", "description": "Method index from scan_email_unsubscribes (default: 0)"},
+                    "allow_web": {"type": "boolean", "description": "Return browser/web instructions when selected method is URL"},
+                    "account": {"type": "string", "description": "Optional account name/email/id from list_email_accounts"},
+                },
+                "required": ["uid"]
+            }
+        }
+    },
     {
         "type": "function",
         "function": {

@@ -163,6 +163,14 @@ def normalize_compaction_summary(summary: str) -> str:
     return text.lstrip()
 
 
+def normalize_compaction_summary(summary: str) -> str:
+    """Remove redundant leading title text before adding our wrapper."""
+    text = (summary or "").strip()
+    text = re.sub(r"^(?:#{1,3}\s*)?Conversation Summary\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"^\*\*Conversation Summary\*\*\s*", "", text, flags=re.IGNORECASE)
+    return text.lstrip()
+
+
 def _sanitize_tool_messages(msgs: List[Dict]) -> List[Dict]:
     """Drop orphaned `tool` messages and dangling assistant `tool_calls`.
 
@@ -366,7 +374,9 @@ def trim_for_context(messages: List[Dict], context_length: int, reserve_tokens: 
     if essential_system:
         sys_text = essential_system[0].get("content", "")
         if len(sys_text) > 2000:
-            essential_system[0] = {"role": "system", "content": sys_text[:2000] + "\n[System prompt truncated for context limits]"}
+            truncated_system = dict(essential_system[0])
+            truncated_system["content"] = sys_text[:2000] + "\n[System prompt truncated for context limits]"
+            essential_system[0] = truncated_system
             trimmed = essential_system + convo_msgs
             if estimate_tokens(trimmed) <= budget:
                 return _sanitize_tool_messages(essential_system + protected_msgs + convo_msgs)
@@ -410,6 +420,9 @@ async def maybe_compact(
     headers: Optional[Dict] = None,
     force_threshold_tokens: Optional[int] = None,
     owner: Optional[str] = None,
+    *,
+    persist: bool = True,
+    compaction_state: Optional[Dict[str, Any]] = None,
 ) -> tuple:
     """Check context usage and compact if above threshold.
 
@@ -569,15 +582,32 @@ async def maybe_compact(
 
     # Update session history to match. split_point is indexed against
     # convo_msgs, which mixes ephemeral preface injections (memory, RAG,
-    # search context, date context) into the conversation — the old
+    # search context, date context) into the conversation — a raw
     # system_msg_count offset assumed the message list mirrored history and
     # shifted the slice, permanently dropping recent turns from the
     # persisted transcript (2026-08-08, see changelog). Map the split onto
-    # session.history properly; if the mapping can't be established, leave
-    # history untouched rather than risk corrupting it.
-    history_split = _map_convo_split_to_history(session, messages, split_point)
-    if history_split is not None:
-        _update_session_history(session, history_split, summary)
+    # session.history via _db_id matching; if the mapping can't be
+    # established, leave history untouched rather than risk corrupting it.
+    # Deferred routes (persist=False) record the plan in compaction_state
+    # and apply it after the winning route commits — the mapping then runs
+    # against the resolved session (it may be None at construction time).
+    history_split = (
+        _map_convo_split_to_history(session, messages, split_point)
+        if session is not None else None
+    )
+    if compaction_state is not None:
+        compaction_state.update({
+            "split_point": split_point,
+            "messages": messages,
+            "history_split": history_split,
+            "summary": summary,
+            "applied": False,
+        })
+    if persist:
+        if history_split is not None:
+            _update_session_history(session, history_split, summary)
+            if compaction_state is not None:
+                compaction_state["applied"] = True
 
     new_used = estimate_tokens(compacted)
     logger.info(
@@ -700,3 +730,59 @@ def _update_session_history(session, history_split: int, summary: str):
         if manager.replace_messages(session.id, new_history):
             return
     session.history = new_history
+
+
+def apply_compaction_state(session, compaction_state: Optional[Dict[str, Any]]) -> bool:
+    """Persist a route-specific compaction after that route commits output.
+
+    Candidate prompts may be compacted speculatively while an explicit
+    foreground fallback chain is being tried.  Persisting at construction time
+    would let an unavailable route rewrite history before another route answers,
+    so callers hold this small plan and apply only the winning route's plan.
+
+    The plan stores the convo-index split plus the message list it was computed
+    against; the convo-to-history mapping (2026-08-08) runs here against the
+    resolved session — either eagerly recorded at construction time (session
+    was available) or deferred to now (session was None during speculation).
+    """
+    state = compaction_state if isinstance(compaction_state, dict) else None
+    if not state or state.get("applied"):
+        return False
+    summary = state.get("summary")
+    split_point = state.get("split_point")
+    if not isinstance(summary, str) or not isinstance(split_point, int):
+        return False
+    history_split = state.get("history_split")
+    if not isinstance(history_split, int):
+        messages = state.get("messages")
+        if not isinstance(messages, list):
+            return False
+        history_split = _map_convo_split_to_history(session, messages, split_point)
+        if history_split is None:
+            logger.warning(
+                "Compaction: deferred plan dropped — history mapping failed "
+                "(split_point=%s, history_len=%s)",
+                split_point, len(getattr(session, "history", []) or []),
+            )
+            return False
+        state["history_split"] = history_split
+    _update_session_history(session, history_split, summary)
+    state["applied"] = True
+    return True
+
+
+def apply_compaction_state_for_session(
+    session_id: Optional[str],
+    compaction_state: Optional[Dict[str, Any]],
+) -> bool:
+    """Resolve an in-memory session and apply a deferred compaction plan."""
+    if not session_id:
+        return False
+    try:
+        from core.models import get_session_manager_instance
+
+        manager = get_session_manager_instance()
+        session = manager.get_session(session_id) if manager else None
+    except Exception:
+        session = None
+    return apply_compaction_state(session, compaction_state) if session else False

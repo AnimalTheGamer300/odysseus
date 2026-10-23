@@ -5,9 +5,38 @@
 import uiModule from './ui.js';
 import Storage from './storage.js';
 import themeModule from './theme.js';
-import markdownModule from './markdown.js?v=20260806thinkfix1';
-import sessionModule from './sessions.js?v=20260806autotitle1';
-import documentModule from './document.js?v=20260722emailfastindex1';
+import markdownModule from './markdown.js?v=20261023merge1';
+import sessionModule from './sessions.js?v=20261023merge1';
+import documentModule from './document.js?v=20261023merge1';
+
+// Tool approvals are control-plane submits for the current chat. chat.js
+// deliberately leaves the composer untouched, then programmatically clicks the
+// shared send button after it records the sealed approval id/decision. That
+// button is polymorphic: with an empty composer it can mean New chat or Record
+// voice instead of Send. Intercept only the programmatic approval click and
+// route it through the form submit path, which already reaches chat.js directly.
+document.addEventListener('odysseus:tool-approval', () => {
+  const sendButton = document.querySelector('.send-btn');
+  const chatForm = document.getElementById('chat-form');
+  if (!sendButton || !chatForm) return;
+
+  const interceptApprovalClick = (event) => {
+    // A real user click must retain the normal send/new-chat/STT behavior.
+    if (event.isTrusted) return;
+    sendButton.removeEventListener('click', interceptApprovalClick, true);
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (chatForm.requestSubmit) chatForm.requestSubmit();
+    else chatForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  };
+
+  sendButton.addEventListener('click', interceptApprovalClick, true);
+  // Fail-safe cleanup if the approval continuation never reaches its deferred
+  // synthetic click (for example because the surrounding view is torn down).
+  setTimeout(() => {
+    sendButton.removeEventListener('click', interceptApprovalClick, true);
+  }, 60000);
+}, true);
 
 /**
  * Handle a ui_control SSE event — AI-driven UI manipulation.
@@ -132,7 +161,7 @@ export function handleUIControl(uiData) {
       // the 12s active-poll.
       var rsid = uiData.research_session_id || uiData.session_id;
       if (rsid) {
-        import('./research/jobs.js').then(function(mod) {
+        import('./research/jobs.js?v=20261023merge1').then(function(mod) {
           var fn = mod.adoptSession || (mod.default && mod.default.adoptSession);
           if (fn) fn(rsid);
         }).catch(function(){});
@@ -151,17 +180,17 @@ export function handleUIControl(uiData) {
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'gallery') {
-        import('./gallery.js').then(function(mod) {
+        import('./gallery.js?v=20261023merge1').then(function(mod) {
           var fn = mod.openGallery || (mod.default && mod.default.openGallery);
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'email') {
-        import('./emailLibrary.js?v=20260722emailfastindex1').then(function(mod) {
+        import('./emailLibrary.js?v=20261023merge1').then(function(mod) {
           var fn = mod.openEmailLibrary || (mod.default && mod.default.openEmailLibrary);
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'sessions') {
-        import('./sessions.js?v=20260806autotitle1').then(function(mod) {
+        import('./sessions.js?v=20261023merge1').then(function(mod) {
           var fn = mod.openLibrary || (mod.default && mod.default.openLibrary);
           if (fn) fn();
         }).catch(function(){});
@@ -205,7 +234,7 @@ export function handleUIControl(uiData) {
       } catch (e) {
         console.warn('open_email_reply existing draft update failed:', e);
       }
-      import('./emailInbox.js?v=20260722emailfastindex1').then(function(mod) {
+      import('./emailInbox.js?v=20261023merge1').then(function(mod) {
         var fn = mod.openReplyDraft || (mod.default && mod.default.openReplyDraft);
         if (fn) fn(uiData.uid, uiData.folder || 'INBOX', uiData.mode || 'reply', uiData.body || '');
       }).catch(function(e) {

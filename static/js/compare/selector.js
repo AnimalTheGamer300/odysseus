@@ -1,7 +1,7 @@
 // compare/selector.js — model selection modal
 import state from './state.js';
 import Storage from '../storage.js';
-import { fetchModels, _persistSelections, getExcludedModels } from './models.js';
+import { fetchModels, _persistSelections, getExcludedModels } from './models.js?v=20261023merge1';
 import { showScoreboard } from './scoreboard.js';
 import { EYE_OPEN, EYE_CLOSED, ICON_DICE, ICON_PARALLEL, ICON_SEQUENTIAL, SAVE_ICON, WAVE_FRAMES, CHAT_ICON } from './icons.js';
 import { _clearProbeWaves } from './probe.js';

@@ -2,7 +2,7 @@
 // This module handles all memory-related operations
 
 import uiModule from './ui.js';
-import sessionModule from './sessions.js?v=20260806autotitle1';
+import sessionModule from './sessions.js?v=20261023merge1';
 import spinnerModule from './spinner.js';
 import { makeWindowDraggable } from './windowDrag.js';
 import { snapModalToZone } from './tileManager.js';
