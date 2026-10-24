@@ -4,6 +4,28 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to files under `odysseus/` gets appended here, dated.
 
+## 2026-10-24 (14:15) — restore merge-dropped CI/supply-chain infra (wound repairs II)
+
+**Merge-wound audit follow-up** — the Oct 21 merge silently dropped upstream
+files added 2026-10-05 (dab66054, "close pre-integration release blockers")
+even though the fork side never touched them:
+
+- `.gitleaks.toml` — the gitleaks allowlist. Its absence made the fork's
+  Secret scan fail on 4 npm package identifiers ("inherits_2.0.4",
+  "bluebird_3.4.7", "inherits_2.0.1", "inherits_2.0.3") that upstream's
+  config explicitly allowlists as "package names, not secrets". Verified
+  locally with the same pinned gitleaks v8.30.1 over full history (4,356
+  commits): those 4 are the ONLY findings, all in
+  THIRD_PARTY_PROVENANCE.json. Zero real secrets, nothing to rotate.
+- `THIRD_PARTY_PROVENANCE.json` + `licenses/` (FiraCode, Inter, SheetJS,
+  docx, highlightjs, mammoth) — supply-chain docs dropped alongside it.
+
+Restored verbatim from odysseus-dev/main. The remaining files upstream has
+that this fork lacks are upstream's parallel architecture (frontend/src
+build tree, src/agent_runtime/, services/skills/, routes/email/ package,
+their tests) which this fork's older layout does not use — divergence, not
+wounds; left alone on purpose.
+
 ## 2026-10-24 (13:20) — repo hygiene: land upstream merge on main; untrack 81 scratch copies
 
 **Tree cleanup** — the Oct 21 upstream merge (14171121) + wound repairs were
