@@ -5,9 +5,9 @@
 import uiModule from './ui.js';
 import Storage from './storage.js';
 import themeModule from './theme.js';
-import markdownModule from './markdown.js?v=20261023merge1';
-import sessionModule from './sessions.js?v=20261023merge1';
-import documentModule from './document.js?v=20261023merge1';
+import markdownModule from './markdown.js?v=20261023merge2';
+import sessionModule from './sessions.js?v=20261023merge2';
+import documentModule from './document.js?v=20261023merge2';
 
 // Tool approvals are control-plane submits for the current chat. chat.js
 // deliberately leaves the composer untouched, then programmatically clicks the
@@ -161,7 +161,7 @@ export function handleUIControl(uiData) {
       // the 12s active-poll.
       var rsid = uiData.research_session_id || uiData.session_id;
       if (rsid) {
-        import('./research/jobs.js?v=20261023merge1').then(function(mod) {
+        import('./research/jobs.js?v=20261023merge2').then(function(mod) {
           var fn = mod.adoptSession || (mod.default && mod.default.adoptSession);
           if (fn) fn(rsid);
         }).catch(function(){});
@@ -180,17 +180,17 @@ export function handleUIControl(uiData) {
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'gallery') {
-        import('./gallery.js?v=20261023merge1').then(function(mod) {
+        import('./gallery.js?v=20261023merge2').then(function(mod) {
           var fn = mod.openGallery || (mod.default && mod.default.openGallery);
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'email') {
-        import('./emailLibrary.js?v=20261023merge1').then(function(mod) {
+        import('./emailLibrary.js?v=20261023merge2').then(function(mod) {
           var fn = mod.openEmailLibrary || (mod.default && mod.default.openEmailLibrary);
           if (fn) fn();
         }).catch(function(){});
       } else if (panel === 'sessions') {
-        import('./sessions.js?v=20261023merge1').then(function(mod) {
+        import('./sessions.js?v=20261023merge2').then(function(mod) {
           var fn = mod.openLibrary || (mod.default && mod.default.openLibrary);
           if (fn) fn();
         }).catch(function(){});
@@ -234,7 +234,7 @@ export function handleUIControl(uiData) {
       } catch (e) {
         console.warn('open_email_reply existing draft update failed:', e);
       }
-      import('./emailInbox.js?v=20261023merge1').then(function(mod) {
+      import('./emailInbox.js?v=20261023merge2').then(function(mod) {
         var fn = mod.openReplyDraft || (mod.default && mod.default.openReplyDraft);
         if (fn) fn(uiData.uid, uiData.folder || 'INBOX', uiData.mode || 'reply', uiData.body || '');
       }).catch(function(e) {

@@ -1,8 +1,17 @@
-# Odysseus Change Log — garbo fork
+# Odysseus Change Log — main tree
 
-> Changelog for the **garbo** fork (`/run/media/crao/BTnvme/LLM/odysseus-garboGH`, served on 127.0.0.1:7001).
+> Changelog for the **main Odysseus tree** (`/run/media/crao/BTnvme/LLM/odysseus`, served on 127.0.0.1:7001).
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
-> Standing rule: every change made to garbo's files gets appended here, dated.
+> Standing rule: every change made to files under `odysseus/` gets appended here, dated.
+
+## 2026-10-23 — merge sealed + send-gate hotfix; header de-staled
+
+**The big one:** merged `odysseus-dev/main` (`37d19df0`) into `merge/upstream-main-20261021` — all 56 conflicted files resolved, fork features preserved (multi-agent spawn_agent, model-switch hijack, queue machinery), upstream features adopted (tool-approval flow, stream generations, send-states). Commit `14171121`. Boot-verified: 69 routes mount, all Python compiles, all touched JS parses.
+
+**Send-gate hotfix (same day):** the merge resolution dropped upstream's synchronous stream-registration block in `static/js/chat.js` (`streamSessionId`/`streamGeneration` declarations, `_streamGenerations.set`, `_sendStates` install, `_streamRunIds.delete`) while keeping every check that reads them — first send threw `ReferenceError` after the busy-flags were set and before the try/finally, wedging every tab busy forever: all later submits queued into the bubble, nothing ever POSTed. Restored the block verbatim (upstream ~1465-1484), kept the ODYS-HIJACK debug line (relocated below the declarations). Verified: TDZ-clean, `node --check` OK, served file confirmed over HTTP.
+
+- Cache busters bumped `v=20261023merge1` → `v=20261023merge2` across 41 static files; `sw.js` `CACHE_NAME` → `odysseus-v393-20261023merge2` (the old tag was already cached by Sir's tab — a plain reload would have served the broken corpse).
+- Header corrected: this log lives in the main tree now, not the garbo mirror.
 
 ## 2026-10-21 — docs(tools): spawn_agent description audit — encode blocking-vs-background guidance
 

@@ -1,8 +1,8 @@
 // compare/stream.js — SSE streaming to panes
 import state from './state.js';
 import { addFinishBadge } from './vote.js';
-import { getModelCost, renderAskUserCard, safeDisplayImageSrc } from '../chatRenderer.js?v=20261023merge1';
-import markdownModule from '../markdown.js?v=20261023merge1';
+import { getModelCost, renderAskUserCard, safeDisplayImageSrc } from '../chatRenderer.js?v=20261023merge2';
+import markdownModule from '../markdown.js?v=20261023merge2';
 import spinnerModule from '../spinner.js';
 import uiModule from '../ui.js';
 import presetsModule from '../presets.js';

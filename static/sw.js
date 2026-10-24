@@ -7,7 +7,7 @@
 //   - Other static assets (images/fonts/libs): cache-first with bg refresh.
 //   - API / non-GET: never cached.
 // Bump CACHE_NAME whenever the precache list or SW logic changes.
-const CACHE_NAME = 'odysseus-v392-merge20261023merge1';
+const CACHE_NAME = 'odysseus-v393-20261023merge2';
 
 // KaTeX resolves these from its own stylesheet, so caching the CSS without them
 // gives offline math fallback glyphs instead of proper typesetting.
@@ -44,9 +44,9 @@ const PRECACHE = [
   '/static/js/storage.js',
   '/static/js/appConfig.js',
   '/static/js/ui.js',
-  '/static/js/markdown.js?v=20261023merge1',
+  '/static/js/markdown.js?v=20261023merge2',
   '/static/js/dragSort.js',
-  '/static/js/sessions.js?v=20261023merge1',
+  '/static/js/sessions.js?v=20261023merge2',
   '/static/js/memory.js',
   '/static/js/skills.js',
   '/static/js/tourHints.js',
@@ -59,17 +59,17 @@ const PRECACHE = [
   '/static/js/spinner.js',
   '/static/js/tts-ai.js',
   '/static/js/document.js',
-  '/static/js/gallery.js?v=20261023merge1',
-  '/static/js/chatRenderer.js?v=20261023merge1',
+  '/static/js/gallery.js?v=20261023merge2',
+  '/static/js/chatRenderer.js?v=20261023merge2',
   '/static/js/codeRunner.js',
-  '/static/js/chatStream.js?v=20261023merge1',
-  '/static/js/chat.js?v=20261023merge1',
+  '/static/js/chatStream.js?v=20261023merge2',
+  '/static/js/chat.js?v=20261023merge2',
   '/static/js/cookbook.js',
   '/static/js/search-chat.js',
   '/static/js/compare/index.js',
   '/static/js/theme.js',
   '/static/js/censor.js',
-  '/static/js/settings.js?v=20261023merge1',
+  '/static/js/settings.js?v=20261023merge2',
   '/static/js/admin.js',
   '/static/js/init.js',
   '/static/js/slashCommands.js',
@@ -103,15 +103,15 @@ const PRECACHE = [
 const PANEL_PRECACHE = [
   // Image editor — galleryEditor.js and its js/editor/ graph.
   '/static/js/galleryEditor.js',
-  '/static/js/editor/ai-inpaint.js?v=20261023merge1',
+  '/static/js/editor/ai-inpaint.js?v=20261023merge2',
   '/static/js/editor/ai-models.js',
   '/static/js/editor/ai-rembg.js',
   '/static/js/editor/ai-tool-runner.js',
   '/static/js/editor/ai-tools-misc.js',
-  '/static/js/editor/build/controls.js?v=20261023merge1',
+  '/static/js/editor/build/controls.js?v=20261023merge2',
   '/static/js/editor/build/popups.js',
   '/static/js/editor/build/right-panel.js',
-  '/static/js/editor/build/toolbar.js?v=20261023merge1',
+  '/static/js/editor/build/toolbar.js?v=20261023merge2',
   '/static/js/editor/build/topbar.js',
   '/static/js/editor/build/transform-popup.js',
   '/static/js/editor/canvas-coords.js',
@@ -150,7 +150,7 @@ const PANEL_PRECACHE = [
   '/static/js/editor/tools/transform-session.js',
   '/static/js/editor/tools/wand.js',
   '/static/js/editor/wire-import.js',
-  '/static/js/editor/wire-inpaint-controls.js?v=20261023merge1',
+  '/static/js/editor/wire-inpaint-controls.js?v=20261023merge2',
   '/static/js/editor/wire-merge-buttons.js',
   '/static/js/editor/wire-selection-controls.js',
   '/static/js/editor/wire-topbar-menus.js',

@@ -7,15 +7,15 @@
 
 
 import uiModule from './ui.js';
-import sessionModule from './sessions.js?v=20261023merge1';
+import sessionModule from './sessions.js?v=20261023merge2';
 import emojiPicker from './emojiPicker.js';
-import markdownModule from './markdown.js?v=20261023merge1';
+import markdownModule from './markdown.js?v=20261023merge2';
 import codeRunnerModule from './codeRunner.js';
 import { langIcon } from './langIcons.js';
 import spinnerModule from './spinner.js';
 import { openLibrary, closeLibrary, isLibraryOpen, initLibrary } from './documentLibrary.js';
 import signatureModule from './signature.js';
-import * as Modals from './modalManager.js?v=20261023merge1';
+import * as Modals from './modalManager.js?v=20261023merge2';
 import { bindMenuDismiss, dismissOrRemove } from './escMenuStack.js';
 
   let API_BASE = '';
@@ -3934,7 +3934,7 @@ import { bindMenuDismiss, dismissOrRemove } from './escMenuStack.js';
             leadingIcon: 'check',
             action: 'View Message',
             onAction: () => {
-              import('./emailLibrary.js?v=20261023merge1').then(mod => {
+              import('./emailLibrary.js?v=20261023merge2').then(mod => {
                 const open = mod.openEmailLibrary || (mod.default && mod.default.openEmailLibrary);
                 if (open) open({
                   account_id: data.account_id || activeAccountId || null,

@@ -2,11 +2,11 @@
 // Extracted from chat.js — message rendering, sources, images, metrics
 
 import uiModule from './ui.js';
-import markdownModule from './markdown.js?v=20261023merge1';
-import { svgifyEmoji } from './markdown.js?v=20261023merge1';
+import markdownModule from './markdown.js?v=20261023merge2';
+import { svgifyEmoji } from './markdown.js?v=20261023merge2';
 import { addAITTSButton } from './tts-ai.js';
 import { providerLogo, providerLabel } from './providers.js';
-import settingsModule from './settings.js?v=20261023merge1';
+import settingsModule from './settings.js?v=20261023merge2';
 import spinnerModule from './spinner.js';
 import { bindMenuDismiss } from './escMenuStack.js';
 import { loadPanel } from './panels.js';
@@ -1363,7 +1363,7 @@ document.addEventListener('click', function(e) {
       a.classList.add('is-loading');
       a.setAttribute('aria-busy', 'true');
     } catch {}
-    import('./sessions.js?v=20261023merge1').then(mod => {
+    import('./sessions.js?v=20261023merge2').then(mod => {
       const fn = mod.selectSession || (mod.default && mod.default.selectSession);
       if (fn) return fn(id, { showLoading: true, immediateLoading: true });
     }).finally(() => {
@@ -1373,7 +1373,7 @@ document.addEventListener('click', function(e) {
       } catch {}
     });
   } else if (kind === 'document') {
-    import('./document.js?v=20261023merge1').then(mod => {
+    import('./document.js?v=20261023merge2').then(mod => {
       const open = mod.loadDocument
         || mod.openDocument
         || (mod.default && (mod.default.loadDocument || mod.default.openDocument));
@@ -1390,12 +1390,12 @@ document.addEventListener('click', function(e) {
       } catch (_) {}
     }).catch(() => {});
   } else if (kind === 'image') {
-    import('./gallery.js?v=20261023merge1').then(mod => {
+    import('./gallery.js?v=20261023merge2').then(mod => {
       const open = mod.openGalleryImage || (mod.default && mod.default.openGalleryImage);
       if (open) open(id);
     }).catch(() => {});
   } else if (kind === 'email') {
-    import('./emailLibrary.js?v=20261023merge1').then(mod => {
+    import('./emailLibrary.js?v=20261023merge2').then(mod => {
       const open = mod.openEmailLibrary || (mod.default && mod.default.openEmailLibrary);
       if (open) open({ uid: id });
     }).catch(() => {});
@@ -1405,7 +1405,7 @@ document.addEventListener('click', function(e) {
       if (open) open(id);
     }).catch(() => {});
   } else if (kind === 'task') {
-    import('./tasks.js?v=20261023merge1').then(mod => {
+    import('./tasks.js?v=20261023merge2').then(mod => {
       const open = mod.openTasks || (mod.default && mod.default.openTasks);
       if (open) open(id);
       else { const b = document.getElementById('tasks-btn'); if (b) b.click(); }
@@ -1416,7 +1416,7 @@ document.addEventListener('click', function(e) {
       if (open) open(id);
     }).catch(() => {});
   } else if (kind === 'research') {
-    import('./research/panel.js?v=20261023merge1').then(mod => {
+    import('./research/panel.js?v=20261023merge2').then(mod => {
       const open = mod.openPanel || (mod.default && mod.default.openPanel);
       if (open) open(id);
     }).catch(() => {});
@@ -1553,7 +1553,7 @@ export function buildImageBubble(imageUrl, prompt, model, size, quality, imageId
     e.stopPropagation();
     try {
       const [galleryMod, editorMod] = await Promise.all([
-        import('./gallery.js?v=20261023merge1'),
+        import('./gallery.js?v=20261023merge2'),
         loadPanel('editor'),
       ]);
       // Ensure the Gallery modal is open so the editor has a container
@@ -1587,7 +1587,7 @@ export function buildImageBubble(imageUrl, prompt, model, size, quality, imageId
     galleryBtn.addEventListener('click', async (e) => {
       e.stopPropagation();
       try {
-        const mod = await import('./gallery.js?v=20261023merge1');
+        const mod = await import('./gallery.js?v=20261023merge2');
         const open = mod.openGalleryImage || (mod.default && mod.default.openGalleryImage);
         if (open) open(imageId);
       } catch (err) {

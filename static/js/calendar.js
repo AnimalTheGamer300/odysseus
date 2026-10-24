@@ -4,7 +4,7 @@
 
 import uiModule from './ui.js';
 import spinnerModule from './spinner.js';
-import * as Modals from './modalManager.js?v=20261023merge1';
+import * as Modals from './modalManager.js?v=20261023merge2';
 import { topPortalZ } from './toolWindowZOrder.js';
 import { makeWindowDraggable } from './windowDrag.js';
 import { attachColorPicker } from './colorPicker.js';
@@ -2948,7 +2948,7 @@ function _showEventForm(existing, defaultDate, defaultEndDate) {
     e.preventDefault();
     const taskId = e.currentTarget?.dataset?.taskId || '';
     try {
-      const m = await import('/static/js/tasks.js?v=20261023merge1');
+      const m = await import('/static/js/tasks.js?v=20261023merge2');
       const openTasks = m.openTasks || m.default?.openTasks;
       if (typeof openTasks === 'function') { openTasks(taskId); return; }
     } catch (_) {}

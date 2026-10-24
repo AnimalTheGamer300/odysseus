@@ -18,10 +18,10 @@ import { EVAL_PROMPTS, WAVE_FRAMES,
   EYE_OPEN, EYE_CLOSED, SAVE_ICON, CHAT_ICON,
   SEND_SVG, VOTES_STORAGE_KEY,
 } from './icons.js';
-import { fetchModels, _persistSelections, _modelDisplayNames, getExcludedModels, setExcludedModels } from './models.js?v=20261023merge1';
-import { showModelSelector, disableToolToggles, restoreToolToggles, _syncToolbarIndicator } from './selector.js?v=20261023merge1';
+import { fetchModels, _persistSelections, _modelDisplayNames, getExcludedModels, setExcludedModels } from './models.js?v=20261023merge2';
+import { showModelSelector, disableToolToggles, restoreToolToggles, _syncToolbarIndicator } from './selector.js?v=20261023merge2';
 import { _checkUnprobed, _clearProbeWaves } from './probe.js';
-import { streamToPane, _renderSearchResults, _runSynthForPane, _formatMs, registerStreamActions } from './stream.js?v=20261023merge1';
+import { streamToPane, _renderSearchResults, _runSynthForPane, _formatMs, registerStreamActions } from './stream.js?v=20261023merge2';
 import {
   stopAll, stopPane, rerollPane, shufflePanePositions, resetCompare,
   _addPane, _removePane, toggleExpandPane, togglePanePreview, copyPaneResponse,
@@ -34,11 +34,11 @@ import { showScoreboard } from './scoreboard.js';
 // ── External dependency imports ──
 import Storage from '../storage.js';
 import uiModule from '../ui.js';
-import sessionModule from '../sessions.js?v=20261023merge1';
+import sessionModule from '../sessions.js?v=20261023merge2';
 import spinnerModule from '../spinner.js';
 import themeModule from '../theme.js';
 import presetsModule from '../presets.js';
-import markdownModule from '../markdown.js?v=20261023merge1';
+import markdownModule from '../markdown.js?v=20261023merge2';
 import { bindMenuDismiss } from '../escMenuStack.js';
 
 var escapeHtml = uiModule.esc;

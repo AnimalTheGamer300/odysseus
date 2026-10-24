@@ -7,23 +7,23 @@
 
 import Storage from './storage.js';
 import uiModule from './ui.js';
-import sessionModule from './sessions.js?v=20261023merge1';
-import chatRenderer from './chatRenderer.js?v=20261023merge1';
-import chatStream from './chatStream.js?v=20261023merge1';
+import sessionModule from './sessions.js?v=20261023merge2';
+import chatRenderer from './chatRenderer.js?v=20261023merge2';
+import chatStream from './chatStream.js?v=20261023merge2';
 import { addAITTSButton } from './tts-ai.js';
-import markdownModule from './markdown.js?v=20261023merge1';
+import markdownModule from './markdown.js?v=20261023merge2';
 import spinnerModule from './spinner.js';
 import presetsModule from './presets.js';
 import fileHandlerModule from './fileHandler.js';
 import searchModule from './search.js';
-import documentModule from './document.js?v=20261023merge1';
-import * as emailInbox from './emailInbox.js?v=20261023merge1';
+import documentModule from './document.js?v=20261023merge2';
+import * as emailInbox from './emailInbox.js?v=20261023merge2';
 import codeRunnerModule from './codeRunner.js';
-import slashCommands, { initSlashCommands, isCommand, handleSlashCommand, handleSetupInput, handleSetupWizard, typewriterInto } from './slashCommands.js?v=20261023merge1';
+import slashCommands, { initSlashCommands, isCommand, handleSlashCommand, handleSetupInput, handleSetupWizard, typewriterInto } from './slashCommands.js?v=20261023merge2';
 import createResearchSynapse from './researchSynapse.js';
 import { createStreamRenderer } from './streamingRenderer.js';
-import { wireHistoryRecall, getUserMessagesFromChatHistory } from './composerHistoryRecall.js?v=20261023merge1';
-import { wireArrowUpRecall } from './composerArrowUpRecall.js?v=20261023merge1';
+import { wireHistoryRecall, getUserMessagesFromChatHistory } from './composerHistoryRecall.js?v=20261023merge2';
+import { wireArrowUpRecall } from './composerArrowUpRecall.js?v=20261023merge2';
 import {
   createIncrementalDisplayProjector,
   createLiveThinkingThrottle,
@@ -1839,16 +1839,29 @@ import { setFaviconBusy } from './theme.js';
     if (messageInput) messageInput.disabled = false;
     updateSubmitButton('streaming', submitBtn);
     if (submitBtn) submitBtn.classList.remove('send-pending');
-    console.debug('[ODYS-HIJACK] send: current=%s lastSelected=%s inFlight=%s',
-      streamSessionId, String(window.__odysseusLastSelectedSessionId || ''), _streamSessionId);
-    // Superseded while awaiting the model switch: the replacement owns the
-    // session now, and everything below (state resets, registration, POST)
-    // is its business alone.
-    if (_streamGenerations.get(streamSessionId) !== streamGeneration) return;
-
-    _terminalSavedStreams.delete(streamSessionId);
+    // Per-send generation, reserved SYNCHRONOUSLY before the send gate clears
+    // and before the first await: from this instant the superseded send may
+    // not clean session state, register, or POST (each checked at its own
+    // await boundaries). Session-keyed state (run id, queued Stop, cleanup
+    // rights) belongs to the latest generation only. A queued Stop from the
+    // superseded send is deliberately left in place, tagged with ITS
+    // generation: that send's still-alive POST is the only identity channel
+    // able to name its run, so the Stop fires from its own header arrival
+    // (see _rememberStreamRunId) even if this replacement dies before fetch.
+    const streamSessionId = sessionModule.getCurrentSessionId();
+    const streamGeneration = (_streamGenerations.get(streamSessionId) || 0) + 1;
+    _streamGenerations.set(streamSessionId, streamGeneration);
+    const _sendState = { generation: streamGeneration, abortCtrl: null };
+    _sendStates.set(streamSessionId, _sendState);
+    // The previous send's run identity dies with its ownership: a Stop after
+    // this instant must queue for THIS send, not fire against the old run.
+    // (The old send's own queued Stop still works — its flush carries the run
+    // id from its header, and its stale generation cannot repopulate this map.)
+    _streamRunIds.delete(streamSessionId);
     _streamSessionId = streamSessionId;
     _sendInFlight = false;
+    console.debug('[ODYS-HIJACK] send: current=%s lastSelected=%s inFlight=%s',
+      streamSessionId, String(window.__odysseusLastSelectedSessionId || ''), _streamSessionId);
 
     try {
       const pendingSwitch = window.__odysseusModelSwitchPromise;

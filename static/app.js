@@ -6,13 +6,13 @@ import Storage from './js/storage.js';
 import uiModule from './js/ui.js';
 import workspaceModule from './js/workspace.js';
 import fileHandlerModule from './js/fileHandler.js';
-import modelsModule from './js/models.js?v=20261023merge1';
+import modelsModule from './js/models.js?v=20261023merge2';
 import ragModule from './js/rag.js';
 import presetsModule from './js/presets.js';
 import searchModule from './js/search.js';
-import chatModule from './js/chat.js?v=20261023merge1';
-import compareModule from './js/compare/index.js?v=20261023merge1';
-import documentModule from './js/document.js?v=20261023merge1';
+import chatModule from './js/chat.js?v=20261023merge2';
+import compareModule from './js/compare/index.js?v=20261023merge2';
+import documentModule from './js/document.js?v=20261023merge2';
 import searchChatModule from './js/search-chat.js';
 import { makeWindowDraggable } from './js/windowDrag.js';
 import {
@@ -21,21 +21,21 @@ import {
   deferRouteOpener,
   settleSessionHydration
 } from './js/startupShell.js';
-import markdownModule from './js/markdown.js?v=20261023merge1';
-import chatRenderer from './js/chatRenderer.js?v=20261023merge1';
-import sessionModule from './js/sessions.js?v=20261023merge1';
-import memoryModule from './js/memory.js?v=20261023merge1';
+import markdownModule from './js/markdown.js?v=20261023merge2';
+import chatRenderer from './js/chatRenderer.js?v=20261023merge2';
+import sessionModule from './js/sessions.js?v=20261023merge2';
+import memoryModule from './js/memory.js?v=20261023merge2';
 import voiceRecorderModule from './js/voiceRecorder.js';
 import censorModule from './js/censor.js';
-import galleryModule from './js/gallery.js?v=20261023merge1';
+import galleryModule from './js/gallery.js?v=20261023merge2';
 import { UI_VIS_DEFAULT_OFF, resolveVisibility } from './js/ui_visibility.js';
-import tasksModule from './js/tasks.js?v=20261023merge1';
+import tasksModule from './js/tasks.js?v=20261023merge2';
 import calendarModule from './js/calendar.js';
 import notesModule from './js/notes.js';
-import adminModule from './js/admin.js?v=20261023merge1';
-import settingsModule from './js/settings.js?v=20261023merge1';
+import adminModule from './js/admin.js?v=20261023merge2';
+import settingsModule from './js/settings.js?v=20261023merge2';
 // Eagerly bind unified minimize/restore behavior across all tool modals.
-import './js/modalManager.js?v=20261023merge1';
+import './js/modalManager.js?v=20261023merge2';
 // Desktop window tiling — drag a modal near an edge/corner to snap.
 import './js/tileManager.js';
 import themeModule from './js/theme.js';
@@ -46,12 +46,12 @@ import themeModule from './js/theme.js';
 // unversioned so this can't recur.
 import cookbookModule from './js/cookbook.js';
 import groupModule from './js/group.js';
-import * as researchPanelModule from './js/research/panel.js?v=20261023merge1';
+import * as researchPanelModule from './js/research/panel.js?v=20261023merge2';
 import ttsModule from './js/tts-ai.js';
 import spinnerModule from './js/spinner.js';
 import { initKeyboardShortcuts } from './js/keyboard-shortcuts.js';
 import { getSettings } from './js/appConfig.js';
-import { initSidebarLayout, syncRailSide } from './js/sidebar-layout.js?v=20261023merge1';
+import { initSidebarLayout, syncRailSide } from './js/sidebar-layout.js?v=20261023merge2';
 import { initSectionCollapse, initSectionDrag } from './js/section-management.js';
 
 const API_BASE = window.location.origin;
@@ -1029,7 +1029,7 @@ function initializeEventListeners() {
     toolCookbookBtn.addEventListener('click', async () => {
       if (!cookbookModule) return;
       // Try minimized→restore or open→minimize via the manager first
-      const Modals = await import('./js/modalManager.js?v=20261023merge1');
+      const Modals = await import('./js/modalManager.js?v=20261023merge2');
       if (!Modals.toggle('cookbook-modal')) {
         // Not registered yet → fresh open
         cookbookModule.open();
@@ -1057,7 +1057,7 @@ function initializeEventListeners() {
   if (toolGalleryBtn) {
     toolGalleryBtn.addEventListener('click', async () => {
       if (!galleryModule) return;
-      const Modals = await import('./js/modalManager.js?v=20261023merge1');
+      const Modals = await import('./js/modalManager.js?v=20261023merge2');
       if (!Modals.toggle('gallery-modal')) {
         if (galleryModule.isGalleryOpen()) galleryModule.closeGallery();
         else galleryModule.openGallery();
@@ -1086,7 +1086,7 @@ function initializeEventListeners() {
   if (toolCalendarBtn) {
     toolCalendarBtn.addEventListener('click', async () => {
       if (!calendarModule) return;
-      const Modals = await import('./js/modalManager.js?v=20261023merge1');
+      const Modals = await import('./js/modalManager.js?v=20261023merge2');
       // toggle returns true when a registered modal was minimized/restored;
       // returns false when nothing is registered → open fresh.
       if (!Modals.toggle('calendar-modal')) {

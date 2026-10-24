@@ -8,7 +8,7 @@ import spinnerModule from './spinner.js';
 import { makeWindowDraggable } from './windowDrag.js';
 import { bindMenuDismiss, dismissOrRemove } from './escMenuStack.js';
 import { topPortalZ } from './toolWindowZOrder.js';
-import sessionModule from './sessions.js?v=20261023merge1';
+import sessionModule from './sessions.js?v=20261023merge2';
 import fileHandlerModule from './fileHandler.js';
 
 const API_BASE = window.location.origin;
@@ -1987,7 +1987,7 @@ function _makeGalleryDraggable(content) {
 // ---- Open / Close ----
 
 // Re-export the manager for the rail click handler
-import * as Modals from './modalManager.js?v=20261023merge1';
+import * as Modals from './modalManager.js?v=20261023merge2';
 
 export function openGallery() {
   // If already minimized — restore in place, preserve all state
@@ -2333,7 +2333,7 @@ export function openGallery() {
   if (visionLink) {
     visionLink.addEventListener('click', (e) => {
       e.preventDefault();
-      import('./settings.js?v=20261023merge1').then(m => {
+      import('./settings.js?v=20261023merge2').then(m => {
         m.open('ai');
         // The gallery modal gets a bumped z-index from modalManager; settings
         // opens with its lower static z-index and lands BEHIND it. Raise it above.

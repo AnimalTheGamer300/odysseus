@@ -18,7 +18,7 @@
  * }}
  */
 import { state } from './state.js';
-import modalManager from '../modalManager.js?v=20261023merge1';
+import modalManager from '../modalManager.js?v=20261023merge2';
 import { HISTORY_ICON, relTime } from './layer-helpers.js';
 import { historyPanelHTML } from './build/popups.js';
 

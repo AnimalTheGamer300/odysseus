@@ -11,16 +11,16 @@ window.cancelActiveTour = function cancelActiveTour() {
 
 import Storage from './storage.js';
 import uiModule from './ui.js';
-import sessionModule from './sessions.js?v=20261023merge1';
-import modelsModule from './models.js?v=20261023merge1';
-import chatRenderer from './chatRenderer.js?v=20261023merge1';
+import sessionModule from './sessions.js?v=20261023merge2';
+import modelsModule from './models.js?v=20261023merge2';
+import chatRenderer from './chatRenderer.js?v=20261023merge2';
 import spinnerModule from './spinner.js';
 import themeModule from './theme.js';
-import documentModule from './document.js?v=20261023merge1';
+import documentModule from './document.js?v=20261023merge2';
 import workspaceModule from './workspace.js';
-import settingsModule from './settings.js?v=20261023merge1';
+import settingsModule from './settings.js?v=20261023merge2';
 import cookbookModule from './cookbook.js';
-import { EVAL_PROMPTS } from './compare/index.js?v=20261023merge1';
+import { EVAL_PROMPTS } from './compare/index.js?v=20261023merge2';
 import { PROVIDER_DEVICE_FLOWS, formatDeviceFlowError, runProviderDeviceFlow } from './providerDeviceFlow.js';
 import { getSettings } from './appConfig.js';
 

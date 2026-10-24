@@ -1,8 +1,8 @@
 // compare/vote.js — voting, revealing, confetti
 import Storage from '../storage.js';
 import state from './state.js';
-import { _modelDisplayNames } from './models.js?v=20261023merge1';
-import { getModelCost } from '../chatRenderer.js?v=20261023merge1';
+import { _modelDisplayNames } from './models.js?v=20261023merge2';
+import { getModelCost } from '../chatRenderer.js?v=20261023merge2';
 import uiModule from '../ui.js';
 import { VOTES_STORAGE_KEY, VOTES_MAX } from './icons.js';
 import { showScoreboard } from './scoreboard.js';

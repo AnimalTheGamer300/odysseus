@@ -1,6 +1,6 @@
 // compare/panes.js — pane lifecycle, actions, layout
 import state from './state.js';
-import { _persistSelections } from './models.js?v=20261023merge1';
+import { _persistSelections } from './models.js?v=20261023merge2';
 import { buildVoteBar } from './vote.js';
 import {
   ICON_REROLL, ICON_COPY, ICON_EXPAND, ICON_COLLAPSE, ICON_CLOSE,
