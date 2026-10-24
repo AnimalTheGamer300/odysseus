@@ -124,3 +124,11 @@ _scratch/
 # Local runtime stores + scratch backups (2026-10-21)
 chroma/
 *.bak-*
+
+# Scratch copies from LLM editing sessions (2026-10-24, untracked from tree;
+# copies remain on disk only)
+*.bak
+*.py[0-9]
+*.py.[0-9]*
+*.restored-*
+backups/

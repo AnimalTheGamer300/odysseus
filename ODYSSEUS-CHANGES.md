@@ -4,6 +4,21 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to files under `odysseus/` gets appended here, dated.
 
+## 2026-10-24 (13:20) — repo hygiene: land upstream merge on main; untrack 81 scratch copies
+
+**Tree cleanup** — the Oct 21 upstream merge (14171121) + wound repairs were
+stranded on `merge/upstream-main-20261021`; fast-forwarded `main` to ab9fedd9
+so the merge is landed and pushable. Untracked 81 committed scratch/backup
+copies (74 `*.bak-*` full-file snapshots + 7 numeric/restored/autotitle
+scratch files, ~314.5k duplicated lines) — files stay on disk and remain
+recoverable from git history; future upstream diffs now show real code only.
+`.gitignore` extended so scratch patterns can't be re-committed.
+
+- `main` = ab9fedd9 + this cleanup; pushed to origin (AnimalTheGamer300 fork)
+- fork `dev` reset to a pristine upstream mirror (old local dev was a stale
+  June pre-history-cleanup fossil — 0 fork commits inside; kept as
+  `backup/dev-stale-fossil-20261024`)
+
 ## 2026-10-24 (01:20) — fork repair (full-copy default + real timestamps) + history pager button
 
 **Fork feature repaired** — bug confirmed in the CURRENT tree, not just .old!:
