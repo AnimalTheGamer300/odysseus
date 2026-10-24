@@ -339,8 +339,13 @@ def _checkpoint_draft(
     replies. Returns the (possibly new) draft row id, or None when the
     session is gone (create soft-drop).
     """
+    create = getattr(session_manager, "create_draft", None)
+    if create is None:
+        # session_manager without draft support (upstream-generation mocks,
+        # stripped builds): soft-drop checkpointing, stream continues.
+        return None
     if draft_id is None:
-        return session_manager.create_draft(session_id, content, metadata)
+        return create(session_id, content, metadata)
     if not session_manager.update_draft(session_id, draft_id, content, metadata):
         # Draft row vanished (deleted mid-stream?) — start a fresh one.
         return session_manager.create_draft(session_id, content, metadata)
@@ -1734,7 +1739,7 @@ def setup_chat_routes(
             # its DB id back immediately so the frontend can stamp the
             # optimistic user bubble. Delete/regenerate target by exact id —
             # no pair resolution, no re-send (2026-08-08, see changelog).
-            if ctx.user_message_id:
+            if getattr(ctx, "user_message_id", None):
                 yield f'data: {json.dumps({"type": "user_message_saved", "id": ctx.user_message_id})}\n\n'
 
             # The client sent a workspace the server refused to bind (deleted

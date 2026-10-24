@@ -4,6 +4,36 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to files under `odysseus/` gets appended here, dated.
 
+## 2026-10-24 (14:45) — fix unguarded ctx.user_message_id; clear stale pre-rename bytecode
+
+**pytest triage, round 1** — local full-suite run (5,973 passed / 62 failed /
+3 errors, Python 3.11.16 = CI's minor) triaged into three buckets:
+
+- REAL FORK BUG (fixed here): `routes/chat_routes.py` streamed
+  `user_message_saved` via unguarded `if ctx.user_message_id:` — the
+  fork-only exact-id feature (2026-08-08) assumed the attr always exists.
+  Test fixtures (SimpleNamespace contexts) lack it → AttributeError at
+  chat_routes.py:1737 killed 26 foreground_model_routing tests. Now
+  `getattr(ctx, "user_message_id", None)` — event emits only when the id
+  exists, which was always the intent.
+- SAME PATTERN, SECOND GUARD: the streaming path's draft-checkpoint helper
+  called `session_manager.create_draft` unguarded — a fork-only
+  session_manager API that upstream-generation mocks don't carry → 22 more
+  foreground_model_routing failures at chat_routes.py:343. Now soft-drops
+  checkpointing (returns None) when the API is absent; fork runtime unchanged.
+- STALE ARTIFACT: `tests/__pycache__` held bytecode compiled before the
+  garboGH→odysseus rename — tracebacks reported the old absolute paths
+  (co_filename), making two failures look like cross-tree imports. Cleared.
+  `tests/markdown_browser_check.py` / `markdown_screenshot.py` still carry
+  hardcoded `ROOT = '...odysseus-garboGH'` (not pytest-collected; fix later).
+- DIVERGENCE (documented, not fixed): remaining ~30 failures are upstream
+  contracts the fork intentionally differs from — budget/truncation constants
+  (200000/50000 vs upstream 6000/10000), tool-inventory enumerations,
+  gemma4/thinking-tag JS behavior, notes-mode tool sets, history hydration,
+  compose env forwarding. Tier-1 suspects kept for a focused pass:
+  session_manager upload-reservation writer (:370), llm_core fallback chain
+  (['primary'] vs ['primary','backup']), history hydration assert 6 == 0.
+
 ## 2026-10-24 (14:15) — restore merge-dropped CI/supply-chain infra (wound repairs II)
 
 **Merge-wound audit follow-up** — the Oct 21 merge silently dropped upstream
