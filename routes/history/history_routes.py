@@ -805,11 +805,22 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
 
     @router.post("/api/session/{session_id}/fork")
     async def fork_session(request: Request, session_id: str):
-        """Create a new session with messages copied up to keep_count."""
+        """Fork this conversation into a new session.
+
+        keep_count absent / None / <= 0 → copy the ENTIRE live transcript
+        (the "take this conversation and continue it elsewhere" flow — e.g.
+        testing a different model on the same context). An explicit positive
+        keep_count keeps the branch-at-message-N semantics: copy only the
+        first N messages. (2026-10-24 repair: the old default of 0 made a
+        bare /fork produce an EMPTY session, and the copy-oldest-N behavior
+        silently dropped everything after the chosen point — the
+        "fork lost my recent messages" bug; the ⫝ IRIS fork on the old
+        instance kept 67 of 107 rows.)
+        """
         _verify_session_owner(request, session_id)
         try:
             body = await request.json()
-            keep_count = body.get("keep_count", 0)
+            keep_count = body.get("keep_count")
 
             # Get the source session. keep_count indexes into source.history,
             # so this must go through get_session — reading the cache directly
@@ -834,6 +845,13 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 owner=getattr(source, 'owner', None),
             )
 
+            # Normalize keep_count now that the source is loaded: absent,
+            # non-numeric, or non-positive → full copy of the live transcript.
+            if isinstance(keep_count, bool) or not isinstance(keep_count, (int, float)) or keep_count <= 0:
+                keep_count = len(source.history)
+            else:
+                keep_count = int(keep_count)
+
             # Copy messages up to keep_count
             msgs_to_copy = source.history[:keep_count]
             for msg in msgs_to_copy:
@@ -844,6 +862,42 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 # edit/delete-by-id on the original conversation.
                 meta = dict(msg.metadata) if isinstance(msg.metadata, dict) else None
                 new_session.add_message(ChatMessage(msg.role, msg.content, meta))
+
+            # Preserve the source conversation's timeline: add_message stamps
+            # fresh arrival-order timestamps, which would squash the fork's
+            # history into a few seconds and lie about when anything happened
+            # (the .old! fork rendered a 107-message day as a 5-minute blur).
+            from datetime import datetime, timezone
+            db = SessionLocal()
+            try:
+                fork_rows = (
+                    db.query(DbChatMessage)
+                    .filter(DbChatMessage.session_id == new_id)
+                    .order_by(DbChatMessage.timestamp)
+                    .all()
+                )
+                preserved = 0
+                for row, msg in zip(fork_rows, msgs_to_copy):
+                    orig_ts = (msg.metadata or {}).get("timestamp") if isinstance(msg.metadata, dict) else None
+                    if not orig_ts:
+                        continue
+                    try:
+                        ts = datetime.fromisoformat(str(orig_ts).replace("Z", "+00:00"))
+                        if ts.tzinfo is not None:
+                            ts = ts.astimezone(timezone.utc).replace(tzinfo=None)
+                        row.timestamp = ts
+                        preserved += 1
+                    except Exception:
+                        continue
+                db.commit()
+                if preserved:
+                    logger.info(f"Fork {new_id}: preserved {preserved}/{len(fork_rows)} original timestamps")
+            except Exception:
+                db.rollback()
+                logger.warning(f"Fork {new_id}: timestamp preservation failed", exc_info=True)
+            finally:
+                db.close()
+
             try:
                 from src.event_bus import fire_event
                 fire_event("session_created", getattr(source, 'owner', None))

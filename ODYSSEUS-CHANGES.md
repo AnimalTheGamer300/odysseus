@@ -4,6 +4,34 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to files under `odysseus/` gets appended here, dated.
 
+## 2026-10-24 (01:20) — fork repair (full-copy default + real timestamps) + history pager button
+
+**Fork feature repaired** — bug confirmed in the CURRENT tree, not just .old!:
+`fork_session` copied `source.history[:keep_count]` with `keep_count` defaulting
+to 0 — a bare `/fork` produced an EMPTY session, and the copy-oldest-N semantics
+silently dropped everything after the chosen point (the ⫝ IRIS fork kept 67 of
+107 rows — Sir's "dropped more recent messages" report, forensically confirmed).
+Also: the copy ran through `add_message`, stamping fresh arrival-order
+timestamps — the .old! fork rendered a 107-message day as a 5-minute blur.
+
+- `keep_count` absent/None/≤0 → copy the ENTIRE live transcript; explicit
+  positive N → branch-at-message-N (the right-click "fork from this reply"
+  flow is unchanged).
+- Original timestamps preserved: fork rows re-stamped from `metadata.timestamp`.
+- `/fork` (bare) sends no keep_count → full copy; `/fork N` still branches.
+
+**History pager button**: the backend's last-24 pagination + `has_more_before`
+were correct, but the scroll-up loader could fail silently (momentum scrolling)
+and an anchored load is invisible from the reading position. Added a visible
+"⬆ Load earlier messages (N more)" button at the top of the timeline — click
+fetches the previous page and jumps to the oldest newly-loaded message. The
+scroll handler remains as enhancement.
+
+**Mystery note**: the top-bar count span (`#current-meta-count`) is dead markup —
+nothing writes it, and no session in the DB has 128 messages. The "128msgs"
+Sir spotted remains unexplained (cosmetic; possibly the session-cost display
+or a transient render).
+
 ## 2026-10-23 (late) — compaction reform: archive, don't burn + 4 merge wounds
 
 **Phase 1 of the compaction rebuild** (triggered by the 1.4M→150K lobotomy of the

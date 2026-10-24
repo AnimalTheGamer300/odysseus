@@ -1917,6 +1917,20 @@ body.bg-pattern-sparkles {
     .chat-history > * {
       flex: 0 0 auto;
     }
+    .history-load-older-btn {
+      align-self: center;
+      margin: 10px auto 4px;
+      padding: 6px 16px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent);
+      background: color-mix(in srgb, var(--fg) 5%, transparent);
+      color: var(--fg);
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 120ms ease;
+    }
+    .history-load-older-btn:hover { opacity: 1; }
     .chat-pull-refresh {
       --pull-refresh-y: 0px;
       --pull-refresh-progress: 0;

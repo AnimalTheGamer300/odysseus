@@ -1098,11 +1098,15 @@ async function _cmdSessionUnimportant(args, ctx) {
 
 async function _cmdSessionFork(args, ctx) {
   if (!ctx.sid) { slashReply('No active session'); return true; }
-  const keepCount = parseInt(args[0]) || 0;
+  // /fork        → copy the ENTIRE conversation (continue it elsewhere,
+  //                e.g. testing a different model on the same context)
+  // /fork N      → branch at message N (keep the first N messages only)
+  const keepArg = parseInt(args[0], 10);
+  const forkBody = Number.isFinite(keepArg) && keepArg > 0 ? { keep_count: keepArg } : {};
   const res = await fetch(`${API_BASE}/api/session/${ctx.sid}/fork`, {
     method: 'POST', credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ keep_count: keepCount })
+    body: JSON.stringify(forkBody)
   });
   if (res.ok) {
     const data = await res.json();

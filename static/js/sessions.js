@@ -223,10 +223,10 @@ function _installHistoryPager(id, pageInfo, modelName) {
     handler: null,
   };
 
-  const loadOlder = async () => {
+  const loadOlder = async (viaButton = false) => {
     if (!_historyPager || _historyPager.loading || _historyPager.done) return;
     if (_historyPager.sessionId !== currentSessionId) return;
-    if (box.scrollTop > 90) return;
+    if (!viaButton && box.scrollTop > 90) return;
 
     const nextOffset = Math.max(0, _historyPager.offset - _historyPager.limit);
     const nextLimit = _historyPager.offset - nextOffset;
@@ -253,11 +253,26 @@ function _installHistoryPager(id, pageInfo, modelName) {
       }
       _historyPager.offset = Number(data.offset || nextOffset);
       _historyPager.done = !data.has_more_before;
+      if (_historyPager.btn) {
+        if (_historyPager.done) {
+          _historyPager.btn.remove();
+          _historyPager.btn = null;
+        } else {
+          const more = Math.max(0, _historyPager.offset);
+          _historyPager.btn.textContent = `⬆ Load earlier messages${more ? ` (${more} more)` : ''}`;
+        }
+      }
       if (window.hljs) {
         newEls.forEach(el => el.querySelectorAll('pre code:not(.hljs)').forEach(block => window.hljs.highlightElement(block)));
       }
       const heightDelta = box.scrollHeight - beforeHeight;
       box.scrollTop += heightDelta;
+      if (viaButton && newEls.length && newEls[0].scrollIntoView) {
+        // A button click is an explicit "show me what's earlier" — jump the
+        // view to the oldest newly-loaded message instead of anchoring in
+        // place, where the success would be invisible.
+        newEls[0].scrollIntoView({ block: 'start' });
+      }
     } catch (e) {
       console.warn('Failed to load older chat history:', e);
     } finally {
@@ -269,6 +284,21 @@ function _installHistoryPager(id, pageInfo, modelName) {
     if (box.scrollTop <= 90) loadOlder();
   };
   box.addEventListener('scroll', _historyPager.handler, { passive: true });
+
+  // Visible fallback + discoverability: scroll events can be swallowed by
+  // momentum scrolling, and an anchored load is invisible from the reading
+  // position. A clickable anchor at the top of the timeline guarantees the
+  // older pages are reachable no matter how the container scrolls.
+  if (pageInfo.has_more_before) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'history-load-older-btn';
+    const more = Math.max(0, Number(pageInfo.offset) || 0);
+    btn.textContent = `⬆ Load earlier messages${more ? ` (${more} more)` : ''}`;
+    btn.addEventListener('click', () => loadOlder(true));
+    box.insertBefore(btn, box.firstChild);
+    _historyPager.btn = btn;
+  }
 }
 
 function _getIncognitoIds() {
