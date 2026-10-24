@@ -164,6 +164,7 @@ class Session:
             msg.to_dict()
             for msg in self.history
             if (msg.metadata or {}).get("source") != "slash"
+            and not (msg.metadata or {}).get("archived")
         ]
         if not _history_grants_chat_session_approval(self.history, self.id):
             return messages

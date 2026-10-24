@@ -4,6 +4,47 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to files under `odysseus/` gets appended here, dated.
 
+## 2026-10-23 (late) — compaction reform: archive, don't burn + 4 merge wounds
+
+**Phase 1 of the compaction rebuild** (triggered by the 1.4M→150K lobotomy of the
+merge-epic session; full transcript rescued byte-exact to `data/rescue/`):
+
+- `core/session_manager.py` `replace_messages` is now a **reconciler**: rows the
+  incoming history no longer references are flagged `{"archived": true}` in place —
+  never deleted. Rows referenced via `metadata._db_id` keep their original ids and
+  timestamps (no more delete + re-insert churn). Idempotent; smoke-tested against
+  a temp DB (archive-not-delete, id/timestamp survival, live-count semantics).
+- Hydrate gate (`_db_to_session`), session counts (`sync_session_metadata`,
+  `load_sessions`), and all history display paths exclude archived rows — the
+  archive stays on disk without re-bloating context or the UI.
+- `core/models.py` `get_context_messages`: belt-and-suspenders archived filter.
+- `routes/history/history_routes.py`: manual compact path disarmed (archive loop
+  replaces the `db.delete` burn); **`POST /api/session/{id}/uncompact`** added
+  (un-flags archived rows, drops summary rows, reloads memory from DB).
+
+**Four merge wounds found & fixed** (test suite led straight to them; suite went
+5 inherited failures → 57 passed, 0 failed):
+
+1. `resolve_endpoint` was never imported in history_routes — **the manual Compact
+   button has been a 500 since the merge**; the merge-epic lobotomy was 100%
+   auto-compaction.
+2. Duplicate `normalize_compaction_summary` in context_compactor.py — upstream's
+   think-blind copy shadowed the fork's `_strip_think_blocks` guard
+   (last-def-wins), re-arming the August reasoning-leak bug. Impostor deleted.
+3. compact_session was missing its entire middle: `owner` derivation,
+   `_reject_compact_during_active_run` guard (import + call), the
+   older/recent/keep_count/convo_text block, `llm_call_async` +
+   `_message_role`/`_message_text` imports, and upstream's
+   `status`/`message`/`before`/`after` return fields. Restored from upstream.
+4. `test_deferred_compaction_persists_only_after_route_commit` updated to the
+   2026-08-08 convo→history mapping contract (upstream test had been stitched to
+   the fork's newer function).
+
+**Hotfix during rollout:** `from sqlalchemy import func` was missing in
+history_routes (8 display-path filter sites) — caught live by Sir's console
+(NameError on GET /api/history), fixed, verified end-to-end via authenticated
+curl (login → history 200, 22 messages returned).
+
 ## 2026-10-23 — merge sealed + send-gate hotfix; header de-staled
 
 **The big one:** merged `odysseus-dev/main` (`37d19df0`) into `merge/upstream-main-20261021` — all 56 conflicted files resolved, fork features preserved (multi-agent spawn_agent, model-switch hijack, queue machinery), upstream features adopted (tool-approval flow, stream generations, send-states). Commit `14171121`. Boot-verified: 69 routes mount, all Python compiles, all touched JS parses.

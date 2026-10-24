@@ -563,7 +563,22 @@ async def test_deferred_compaction_persists_only_after_route_commit(monkeypatch)
     assert was_compacted is True
     assert updates == []
     assert state["summary"] == "route-specific summary"
-    assert cc.apply_compaction_state(object(), state) is True
+
+    # 2026-08-08 mapping contract: a deferred plan resolves its convo→history
+    # split at apply time against the now-available session, so apply needs a
+    # session whose history mirrors the persisted (non-system) convo messages.
+    from types import SimpleNamespace
+
+    hist_session_history = [
+        SimpleNamespace(role=m["role"], content=m["content"], metadata=None)
+        for m in messages
+        if m["role"] != "system"
+    ]
+
+    class _HistSession:
+        history = hist_session_history
+
+    assert cc.apply_compaction_state(_HistSession(), state) is True
     assert len(updates) == 1
     assert cc.apply_compaction_state(object(), state) is False
     assert len(updates) == 1

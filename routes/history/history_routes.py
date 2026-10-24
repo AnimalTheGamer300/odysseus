@@ -6,6 +6,8 @@ import logging
 import re
 from typing import Dict, Any, Optional
 
+from sqlalchemy import func
+
 from fastapi import APIRouter, Request, HTTPException, Depends
 
 from core.models import ChatMessage
@@ -14,8 +16,12 @@ from src.auth_helpers import effective_user, require_chat_api_token_scope
 from src.topic_analyzer import analyze_topics
 from src.upload_handler import reserve_message_upload_references
 from src.tool_approval_scopes import sanitize_client_message_metadata
+from src.endpoint_resolver import resolve_endpoint
 from routes.session_routes import (
     _verify_session_owner,
+    _reject_compact_during_active_run,
+    _message_role,
+    _message_text,
 )
 
 logger = logging.getLogger(__name__)
@@ -269,6 +275,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 total = (
                     db.query(DbChatMessage)
                     .filter(DbChatMessage.session_id == session_id)
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .count()
                 )
                 page_offset = int(offset) if offset is not None else max(total - page_limit, 0)
@@ -278,6 +288,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 rows = (
                     db.query(DbChatMessage)
                     .filter(DbChatMessage.session_id == session_id)
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .order_by(DbChatMessage.timestamp)
                     .offset(page_offset)
                     .limit(page_limit)
@@ -287,6 +301,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                     full_rows = (
                         db.query(DbChatMessage)
                         .filter(DbChatMessage.session_id == session_id)
+                        .filter(
+                            ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                            ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                        )
                         .order_by(DbChatMessage.timestamp)
                         .all()
                     )
@@ -324,14 +342,15 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
         for msg in session.history:
             if isinstance(msg, ChatMessage):
                 # Skip hidden messages (e.g. compaction summaries for AI context)
-                if msg.metadata and msg.metadata.get("hidden"):
+                # and archived rows (compaction archive — retrievable, not live).
+                if msg.metadata and (msg.metadata.get("hidden") or msg.metadata.get("archived")):
                     continue
                 entry = {"role": msg.role, "content": _history_display_content(msg.content)}
                 if msg.metadata:
                     entry["metadata"] = msg.metadata
                 history_dict.append(entry)
             elif isinstance(msg, dict):
-                if msg.get("metadata", {}).get("hidden"):
+                if msg.get("metadata", {}).get("hidden") or msg.get("metadata", {}).get("archived"):
                     continue
                 entry = {
                     "role": msg.get("role", ""),
@@ -351,6 +370,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 db_messages = (
                     db.query(DbChatMessage)
                     .filter(DbChatMessage.session_id == session_id)
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .order_by(DbChatMessage.timestamp)
                     .all()
                 )
@@ -367,6 +390,7 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 history_dict = [
                     entry for entry in (_db_history_entry(m) for m in db_messages)
                     if not (entry.get("metadata") or {}).get("hidden")
+                    and not (entry.get("metadata") or {}).get("archived")
                 ]
             except Exception as e:
                 logger.error(f"DB fallback failed for {session_id}: {e}")
@@ -896,17 +920,83 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             logger.error(f"Context usage error {session_id}: {e}")
             raise HTTPException(500, str(e))
 
+    @router.post("/api/session/{session_id}/uncompact")
+    async def uncompact_session(request: Request, session_id: str):
+        """Reverse compaction: un-archive archived rows, drop summary rows.
+
+        Restores the FULL archived transcript for the session (all batches),
+        rebuilds the in-memory session from the DB, and lets the model see the
+        whole conversation again. The context meter will show the real cost —
+        that is the honest price of un-compacting.
+        """
+        _verify_session_owner(request, session_id)
+        db = SessionLocal()
+        try:
+            rows = (
+                db.query(DbChatMessage)
+                .filter(DbChatMessage.session_id == session_id)
+                .order_by(DbChatMessage.timestamp)
+                .all()
+            )
+            import json as _json
+            from datetime import datetime, timezone
+            restored = 0
+            summary_rows = []
+            for m in rows:
+                try:
+                    meta = _json.loads(m.meta_data) if m.meta_data else {}
+                except Exception:
+                    meta = {}
+                if not isinstance(meta, dict):
+                    continue
+                if meta.get("archived"):
+                    meta.pop("archived", None)
+                    meta.pop("archived_at", None)
+                    meta.pop("archived_by", None)
+                    meta["unarchived_at"] = datetime.now(timezone.utc).isoformat()
+                    m.meta_data = _json.dumps(meta, ensure_ascii=False)
+                    restored += 1
+                elif meta.get("compacted"):
+                    # Compaction summaries (hidden system blob + visible stats
+                    # message) are superseded once the real rows return.
+                    summary_rows.append(m)
+            for m in summary_rows:
+                db.delete(m)
+            db.commit()
+            removed = len(summary_rows)
+        except HTTPException:
+            raise
+        except Exception as e:
+            db.rollback()
+            logger.error(f"Uncompact failed for {session_id}: {e}")
+            raise HTTPException(500, f"Uncompact failed: {e}")
+        finally:
+            db.close()
+
+        # Rebuild the in-memory session from the restored DB state so the next
+        # model call sees the full transcript without a server restart.
+        try:
+            session_manager._load_session_from_db(session_id)
+        except Exception as e:
+            logger.warning(f"Uncompact: in-memory reload failed for {session_id}: {e}")
+
+        return {"ok": True, "restored": restored, "summaries_removed": removed}
+
     @router.post("/api/session/{session_id}/compact")
     async def compact_session(request: Request, session_id: str):
         """Manually trigger context compaction for a session."""
         _verify_session_owner(request, session_id)
+        from src.auth_helpers import effective_user
+        owner = effective_user(request)
         try:
             session = session_manager.get_session(session_id)
         except KeyError:
             raise HTTPException(404, "Session not found")
+        _reject_compact_during_active_run(session_id)
 
         try:
             from src.model_context import estimate_tokens, get_context_length
+            from src.llm_core import llm_call_async
 
             messages = session.get_context_messages()
             used = int(estimate_tokens(messages))
@@ -916,6 +1006,20 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             visible_messages = sum(
                 1 for m in session.history
                 if not (getattr(m, "metadata", None) or {}).get("hidden")
+            )
+
+            msg_count_before = len(session.history)
+
+            # Keep only last 4 messages, summarize the rest
+            keep_count = 4
+            older = session.history[:-keep_count]
+            recent = session.history[-keep_count:]
+
+            # Build text to summarize
+            convo_text = "\n".join(
+                f"{_message_role(m).upper()}: "
+                f"{_message_text(m)[:2000]}"
+                for m in older
             )
 
             # Use utility model if available
@@ -963,9 +1067,32 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                     DbChatMessage.session_id == session_id
                 ).order_by(DbChatMessage.timestamp).all()
 
-                # Delete all but the last keep_count
-                for m in db_msgs[:-keep_count]:
-                    db.delete(m)
+                # ARCHIVE, don't burn (2026-10-23 compaction reform): rows the
+                # kept history no longer references are flagged, never deleted.
+                # Ids and timestamps survive; /uncompact can restore everything.
+                import json as _json
+                from datetime import datetime, timezone
+                _kept_ids = set()
+                for _msg in recent:
+                    _mid = (getattr(_msg, "metadata", None) or {}).get("_db_id")
+                    if _mid:
+                        _kept_ids.add(_mid)
+                _now_iso = datetime.now(timezone.utc).isoformat()
+                for m in db_msgs:
+                    if m.id in _kept_ids:
+                        continue
+                    try:
+                        _meta = _json.loads(m.meta_data) if m.meta_data else {}
+                    except Exception:
+                        _meta = {}
+                    if not isinstance(_meta, dict):
+                        _meta = {}
+                    if _meta.get("archived"):
+                        continue
+                    _meta["archived"] = True
+                    _meta["archived_at"] = _now_iso
+                    _meta["archived_by"] = "compact"
+                    m.meta_data = _json.dumps(_meta, ensure_ascii=False)
 
                 # Insert system summary (hidden, for AI context) and visible summary
                 import json as _json
@@ -1011,6 +1138,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             )
             can_compact = used > 0
             return {
+                "status": "ok",
+                "message": f"Compacted: {msg_count_before} msgs → {len(session.history)} msgs ({pct}% → {pct_after}%)",
+                "before": pct,
+                "after": pct_after,
                 "session_id": session_id,
                 "model": session.model,
                 "endpoint_url": session.endpoint_url,

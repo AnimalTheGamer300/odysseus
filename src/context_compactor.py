@@ -155,17 +155,15 @@ def _build_convo_text(older: List[Dict], max_chars: Optional[int] = None,
 
 
 def normalize_compaction_summary(summary: str) -> str:
-    """Remove redundant leading title text before adding our wrapper."""
+    """Remove redundant leading title text before adding our wrapper.
+
+    Merge repair (2026-10-23): upstream's think-blind duplicate of this
+    function shadowed the fork's _strip_think_blocks variant (second def
+    wins in Python), re-opening the reasoning leak the August regression
+    tests guard against. Fork variant kept; duplicate deleted.
+    """
     text = (summary or "").strip()
     text = _strip_think_blocks(text)
-    text = re.sub(r"^(?:#{1,3}\s*)?Conversation Summary\s*", "", text, flags=re.IGNORECASE)
-    text = re.sub(r"^\*\*Conversation Summary\*\*\s*", "", text, flags=re.IGNORECASE)
-    return text.lstrip()
-
-
-def normalize_compaction_summary(summary: str) -> str:
-    """Remove redundant leading title text before adding our wrapper."""
-    text = (summary or "").strip()
     text = re.sub(r"^(?:#{1,3}\s*)?Conversation Summary\s*", "", text, flags=re.IGNORECASE)
     text = re.sub(r"^\*\*Conversation Summary\*\*\s*", "", text, flags=re.IGNORECASE)
     return text.lstrip()

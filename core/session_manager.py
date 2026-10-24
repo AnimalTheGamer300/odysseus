@@ -148,6 +148,10 @@ class SessionManager:
                 message_counts = dict(
                     db.query(DbChatMessage.session_id, func.count(DbChatMessage.id))
                     .filter(DbChatMessage.session_id.in_([row.id for row in db_sessions]))
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .group_by(DbChatMessage.session_id)
                     .all()
                 )
@@ -229,6 +233,10 @@ class SessionManager:
             for db_msg in db_session.messages:
                 meta = json.loads(db_msg.meta_data) if db_msg.meta_data else {}
                 if meta is None: meta = {}
+                # Compaction archive (2026-10-23): flagged rows stay on disk
+                # but never re-enter the live transcript or model context.
+                if meta.get("archived"):
+                    continue
                 if not _draft_ok(db_msg, meta):
                     continue
                 meta['_db_id'] = db_msg.id
@@ -241,6 +249,9 @@ class SessionManager:
         else:
             db_messages = db.query(DbChatMessage).filter(
                 DbChatMessage.session_id == db_session.id
+            ).filter(
+                ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
             ).order_by(DbChatMessage.timestamp).all()
 
             for db_msg in db_messages:
@@ -666,10 +677,63 @@ class SessionManager:
                         f"Referenced upload is no longer available: {missing_upload_id}"
                     )
 
-            db.query(DbChatMessage).filter(DbChatMessage.session_id == session_id).delete()
+            # ------------------------------------------------------------------
+            # Reconcile, don't incinerate (2026-10-23 compaction reform):
+            # rows the incoming history no longer references are ARCHIVED in
+            # place — flagged, never deleted — so compaction stays reversible
+            # and the transcript remains whole on disk. Rows still referenced
+            # via metadata._db_id keep their original ids and timestamps
+            # instead of being churned through delete + re-insert.
+            # ------------------------------------------------------------------
+            existing_rows = {
+                row.id: row
+                for row in db.query(DbChatMessage)
+                .filter(DbChatMessage.session_id == session_id)
+                .all()
+            }
+            kept_ids = set()
+            for message in messages:
+                mid = (message.metadata or {}).get("_db_id") if isinstance(message.metadata, dict) else None
+                if mid and mid in existing_rows:
+                    kept_ids.add(mid)
+
             now = datetime.now(timezone.utc)
+            archived_count = 0
+            for row_id, row in existing_rows.items():
+                if row_id in kept_ids:
+                    continue
+                try:
+                    meta = json.loads(row.meta_data) if row.meta_data else {}
+                except Exception:
+                    meta = {}
+                if not isinstance(meta, dict):
+                    meta = {}
+                if meta.get("archived"):
+                    continue  # already archived by an earlier pass
+                meta["archived"] = True
+                meta["archived_at"] = now.isoformat()
+                meta["archived_by"] = "replace_messages"
+                row.meta_data = json.dumps(meta, ensure_ascii=False)
+                archived_count += 1
+
             for i, message in enumerate(messages):
+                mid = (message.metadata or {}).get("_db_id") if isinstance(message.metadata, dict) else None
+                if mid and mid in existing_rows:
+                    # Already persisted: keep the original row untouched
+                    # (id, timestamp, content and metadata all survive).
+                    continue
                 msg_id = str(uuid.uuid4())
+                ts = now + timedelta(microseconds=i)
+                if isinstance(message.metadata, dict) and message.metadata.get("timestamp"):
+                    try:
+                        _ts = datetime.fromisoformat(
+                            str(message.metadata["timestamp"]).replace("Z", "+00:00")
+                        )
+                        if _ts.tzinfo is not None:
+                            _ts = _ts.astimezone(timezone.utc).replace(tzinfo=None)
+                        ts = _ts
+                    except Exception:
+                        pass
                 db_message = DbChatMessage(
                     id=msg_id,
                     session_id=session_id,
@@ -678,7 +742,7 @@ class SessionManager:
                     # persisted transcript and search index.
                     content=persistable_message_content(message.content, message.metadata),
                     meta_data=json.dumps(message.metadata) if message.metadata else None,
-                    timestamp=now + timedelta(microseconds=i),
+                    timestamp=ts,
                 )
                 db.add(db_message)
                 if message.metadata is None:
@@ -694,7 +758,10 @@ class SessionManager:
             session.history = list(messages)
             session._history = session.history
             session.message_count = len(messages)
-            logger.info("Replaced session %s history with %d messages", session_id, len(messages))
+            logger.info(
+                "Replaced session %s history with %d messages (archived %d rows)",
+                session_id, len(messages), archived_count,
+            )
             return True
         except Exception as e:
             logger.error("Error replacing session history: %s", e)
@@ -777,6 +844,10 @@ class SessionManager:
             session.message_count = (
                 db.query(DbChatMessage)
                 .filter(DbChatMessage.session_id == session_id)
+                .filter(
+                    ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                    ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                )
                 .count()
             )
             return True
