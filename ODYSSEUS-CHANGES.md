@@ -4,6 +4,189 @@
 > Format follows the `.old` fork's `ODYSSEUS-CHANGES.md` house style.
 > Standing rule: every change made to files under `odysseus/` gets appended here, dated.
 
+## 2026-10-31 — fix(agents): sub-agent runs auto-satisfy the post-external-context approval gate
+
+Upstream's tool-approval flow ("Allow this task to continue?") seals a dangerous tool call once external untrusted content (web pages, search results) has entered the run, emits an ask_user card, and ENDS the turn — the human's decision rides back in on the next message (tool_approval_id → ExactToolApproval). Sub-agents (spawn_agent) are headless: run_subagent's stream parser only consumes delta/tool_output events, so the card was silently swallowed and the sub-agent's run ended mid-task with a truncated report — the gated tool never executed.
+
+Fix: stream_agent_loop auto-satisfies the automatic post-external-context gate for sub-agent runs (keyed on `_subagent_depth`), reusing the existing task-scope-approval bypass flag. The delegated-credential refusal still fires first in decision_for; tool policy, disabled tools, ownership, workspace confinement, and sandbox restrictions all still apply. `ask_user` is also removed from the sub-agent catalog (headless runs cannot answer cards, whether gate-initiated or model-initiated).
+
+Known structural trade-off (pre-existing, now reliable instead of silently broken): run-taint does not propagate across run boundaries, so a tainted parent can delegate gated actions to a fresh sub-agent run. The parent's own post-taint actions remain gated.
+
+Files: `src/agent_loop.py`, `src/agent_tools/spawn_agent_tools.py`, `src/tool_schemas.py`, `src/tool_index.py` (+ TOOL_SECTIONS note in agent_loop.py)
+Verified: py_compile, import, approval/capabilities test suite, description greps. Restart required to take effect.
+
+## 2026-10-28 (03:20) — fix(agent): `manage_skills` was never shipped to any LLM — the admin-intent gate stranded the skill index
+
+**Symptom (user-reported):** Odysseus has skills.md, yet it seems no LLM has
+ever been given the tool to properly use it.
+
+**Root cause — instruction/availability mismatch across three gates:**
+
+1. **The index says "call `manage_skills`" on every turn.** The skill index is
+   injected into the agent system prompt (`src/agent_loop.py::_build_base_prompt`,
+   plus `src/chat_processor.py` for chat mode) whenever the owner has indexed
+   skills and skills aren't suppressed — explicitly instructing *"Fetch the full
+   procedure with `manage_skills` action=view name=<name>"*.
+2. **The schema was stripped unless the turn looked "admin".**
+   `_tool_schemas_for_route` filtered `FUNCTION_TOOL_SCHEMAS` against
+   `_ADMIN_SCHEMA_NAMES` when `_needs_admin` was False — and `manage_skills`
+   was in that set. `_needs_admin = _detect_admin_intent(messages)` fires only
+   when the LAST user message contains an `_ADMIN_KEYWORDS` entry ("skill" is
+   in the list, but ordinary work turns — "poke", "debug this" — never say it).
+   The prompt catalog had the same hole: `_build_base_prompt`'s `mgmt_tools`
+   subtraction (`TOOL_SECTIONS - ALWAYS_AVAILABLE - {...}`) dropped the
+   `manage_skills` one-liner too, so fenced-block (non-API) models lost the
+   prose as well.
+3. **The "lockstep" guard was dead code.** The block that adds `manage_skills`
+   when skills are indexed is gated on `_relevant_tools is not None`, but
+   all-tools mode permanently forces `_relevant_tools = None` (RAG disabled
+   2026-08-07), so it could never run.
+
+Same stranded-instruction pattern on the scheduler path:
+`src/task_scheduler.py` tells crew agents *"save it as a SKILL using
+manage_skills"* / *"check manage_skills for an existing procedure"* while the
+schema was equally stripped.
+
+**Live evidence:** captured model reasoning in
+`.playwright-mcp/page-2026-10-27T18-14-50-329Z.yml` — *"the skill index says
+'call manage_skills(action='view', name='...')' — but manage_skills isn't in my
+current tool list... No manage_skills tool visible this turn."*
+
+**Fix (two lines + one removal):**
+
+- `src/tool_index.py`: added `"manage_skills"` to `ALWAYS_AVAILABLE` — the
+  tool now ships in the prompt catalog in lockstep with the index injection.
+- `src/agent_loop.py`: removed `"manage_skills"` from `_ADMIN_SCHEMA_NAMES`
+  (and deleted the stale duplicate definition left mid-file) — the schema is
+  no longer stripped on non-admin turns.
+- Execution gates are untouched: incognito, the `can_manage_memory`
+  privilege, the global `disabled_tools` setting (verified NOT currently set
+  in `data/settings.json` / `data2/settings.json`), and the
+  capability/approval scopes still strip or deny it where they should.
+
+**Tests:** 61 passed across tool-policy / skill-index / keyword-boundary /
+update-plan suites; routing suite 98 passed with 4 failures that are
+pre-existing (verified identical on the stashed pre-edit tree — fallout from
+the earlier uncommitted merge work, unrelated to this change).
+
+## 2026-10-25 (15:54) — fix(history): "message ID not found" on edit — `_db_id` was never re-derived from the DB row id
+
+**Symptom (user-reported):** editing a message fails with *"Cannot edit:
+message ID not found"* — while everything else in the app works fine.
+
+**Root cause:** `routes/history/history_routes.py::_db_message_metadata()`
+parsed the persisted `meta_data` blob and added `timestamp`, but never
+re-derived the row's durable id. The blob itself does not reliably carry
+`_db_id` — it is a runtime key stamped onto the in-memory message by
+`core/session_manager.py`, not persisted — so every DB-served history entry
+shipped to the browser had `metadata._db_id === undefined`.
+
+The helper's own docstring and inline comment already described the
+intended behaviour ("Metadata for a DB row, carrying the row's durable id"
+/ "The row id is authoritative — it always wins over any stale value that
+may have been persisted inside the metadata blob") — but the assignment
+itself was missing. The helper extraction + docstring were uncommitted
+in-flight work from the prior session; the line that does the work was
+never written.
+
+**Why it looked like "only editing is broken":** live-streamed messages get
+`dataset.dbId` stamped from the server's message-id payload
+(`chat.js:889`, `3924`, `3933`, `3950`), so a message edited in the same
+session it was created in works fine. Messages loaded back from history go
+through `chatRenderer.js:2689` / `2879`
+(`if (metadata?._db_id) wrap.dataset.dbId = metadata._db_id`) and were
+never stamped — so the edit button always hit the `!msgId` guard at
+`chat.js:7209`.
+
+**Fix (one line, `routes/history/history_routes.py`):**
+
+```python
+meta["_db_id"] = m.id
+```
+
+placed in `_db_message_metadata()` ahead of the `timestamp` fallback, so the
+row's primary key always wins over any stale value persisted inside the
+blob. Every consumer funnels through this one helper — `_db_history_entry`,
+`_entry_or_none`, and `_hydrate_session_history_from_db` — so the paged
+history response, the in-memory session history, and the renderer stamp all
+pick it up at once.
+
+**Verification:**
+- `tests/test_delete_message_after_refresh.py`: 4 failed / 2 passed before →
+  **6 passed** after. That file asserts the row id wins over a stale stored
+  `_db_id`, that the id deletes the row, that the paged load keeps `_db_id`
+  on in-memory history, and that the frontend does not claim "Message
+  deleted" when it deleted nothing.
+- Wider sweep (`-k "history or delete or edit or session or truncate or
+  compact or replace_messages"`): 11 failed / 483 passed / 3 errors before →
+  **7 failed / 487 passed / 3 errors** after — exactly 4 fewer failures and
+  **no new failures**.
+
+**Pre-existing failures, NOT from this change** (confirmed byte-identical at
+clean HEAD `a5c77f8a`): the 2 failures in
+`tests/test_replace_messages_upload_reservations.py` (the 2026-10-23
+archive-don't-delete reform left those assertions still expecting hard
+`DELETE`s) plus the remainder of the sweep's failures/errors.
+
+**NOT LIVE YET — needs an app restart.** The running uvicorn (pid 497241,
+started 04:30:55) predates this patch; there is no `--reload` and no
+restart endpoint. Do **not** bounce it while a chat is streaming: the agent
+loop runs *inside* the app process, so a restart kills the in-flight
+session and any other open tab's stream. The 2026-10-20 socat bridge
+(127.0.0.1:7000 → 7001) is already gone and no longer needed — the live
+process has `APP_PORT=7001` in its env, so the bounce is clean: stop
+pid 497241 (its konsole parent runs `run.sh`, which re-execs uvicorn on
+7001) and start it again.
+
+## 2026-10-24 (14:55) — fix(truncate): the session-eating truncate bug (root cause of the 349bf43f wipe) + transcript restored from forensic copies
+
+**Symptom (user-reported 12:53):** "odysseus just wiped the chat history" —
+session 349bf43f showed ~170k tokens of live context with zero visible rows.
+
+**Root cause — three stacked defects, one kill chain (reconstructed from
+app.log):**
+1. `core/session_manager.py truncate_messages` hard-DELETEd tail rows — the
+   one history writer the 2026-10-23 "reconcile, don't incinerate" reform
+   never touched.
+2. `routes/history/history_routes.py` truncate route: a `keep_through_id`
+   that no longer resolved (an *earlier* truncate had already eaten the
+   target row) fell back to `keep_count`, which defaults to 0 — i.e.
+   "delete everything."
+3. `static/js/chat.js` edit/resend/regenerate passed DOM-derived counts as
+   `keep_count` (`_dbRowCountBefore` counts DOM rows, not DB rows — wrong the
+   instant the render lags the DB). Log forensics of the kill chain:
+   10:54:57 truncate→135 (43 rows), 12:47:56 truncate→12 (135 rows),
+   12:53:50 truncate→0 (last 13 rows) — two seconds before the user noticed.
+
+**Fixes (four independent layers — any one stops the data loss):**
+- `truncate_messages` now ARCHIVES tail rows in place (metadata flag, same
+  convention as `replace_messages`) instead of deleting; archived rows are
+  excluded from keep-window math. Truncation is now reversible.
+- Truncate route: unknown `keep_through_id` → 404 refusal, no destructive
+  fallback; the id→position map excludes archived rows.
+- `chat.js` editUserMessage / resendUserMessage / regenerateFrom: all three
+  send `keep_through_id` (the target bubble's durable dbId) and refuse to
+  truncate when the bubble has no dbId (nothing durable to truncate to).
+- Plain `keep_count` remains supported for the explicit `/truncate N` slash
+  command (deliberate user action).
+
+**Data restore (same incident):** 168 message rows re-inserted for 349bf43f
+from forensic sources — `odysseus.old!/data/app.db` (133 rows incl. its WAL),
+`data/rescue/app.db.pre-import-20261023` (25), `data2/app.db` (32), deduped
+by id — plus 31 clearly-marked recovery rows ([RECOVERED PREVIEW] skeletons
+rebuilt from app.log agent-round summaries + one gap marker) covering the
+~3 hours whose rows were destroyed before the first backup existed.
+`sessions.message_count` re-seeded (199) so the hydration gate reloads the
+full history on next access. Forensic backups + restore set live in
+`Sandbox/db_backups/` (app.db.backup.20261024_125745 + raw WAL copy,
+app.db.rawcopy.20261024_130703, final_restore_set.json).
+
+**Deploy notes:** backend layers need a server restart (uvicorn still runs
+pre-patch code in memory — restart when convenient, NOT mid-generation).
+Frontend fix ships on next UI reload: cache busters bumped
+`chat.js?v=20261023merge2` → `?v=20261024truncfix1` (index.html ×2, app.js,
+sw.js precache) and `sw.js` CACHE_NAME → `odysseus-v394-20261024truncfix1`.
+
 ## 2026-10-24 (14:45) — fix unguarded ctx.user_message_id; clear stale pre-rename bytecode
 
 **pytest triage, round 1** — local full-suite run (5,973 passed / 62 failed /
@@ -2397,3 +2580,1468 @@ confirmed working in chat afterwards.)*
   to `Sandbox/iris-10102026-abliterated_v2.md`); in-memory copy updates on
   next restart (template API still capped at 10k).
 - Deploy routed through the socat bridge again (pid 32710, still alive).
+
+## 2026-10-26 — feat(vision): add MiniMax (minimax-m3.1-flash, minimax-m3) as vision-capable models (IRIS)
+
+**Reported by Sir:** add MiniMax models to vision-capable detection so images pass through instead of being swapped for a VLM caption.
+
+**Root cause:** `src/chat_helpers.py` `_VISION_MODEL_KEYWORDS` had no MiniMax keyword. MiniMax's multimodal models (minimax-m3.1-flash, minimax-m3, etc.) are natively multimodal but their names don't contain "vision" or "vl", so they fell through to the VLM-caption path and the main model never saw the image.
+
+**Fix (IRIS):**
+- `src/chat_helpers.py`: added `"minimax"` to `_VISION_MODEL_KEYWORDS` (with comment documenting it's native multimodal). The lowercase keyword catches all variants: `minimax-m3.1-flash`, `minimax-m3`, `MiniMax-M3.1-Flash`, etc.
+- `tests/test_vision_model_detection.py`: added MiniMax test cases to `test_recognizes_local_and_hosted_vision_models()`:
+  - `"minimax-m3.1-flash"`, `"minimax-m3"`, `"MiniMax-M3.1-Flash"`
+
+**Verification:** full vision detection test suite (50 cases) passes — all MiniMax variants now return `True`, no text-only overmatch (the keyword is specific enough; no existing text models contain "minimax").
+
+**Files touched:** `src/chat_helpers.py`, `tests/test_vision_model_detection.py`
+**Status:** PENDING RESTART — server code change requires uvicorn bounce to take effect.
+
+## 2026-10-26 — fix(tools): fetch_image no longer routes through the gallery by default (IRIS)
+
+**Reported by Sir:** fetch_image was built (by Nemotron) as a "gallery import" tool instead of what he asked for — a way for the LLM to grab an image itself and SEE it. Side effects: every fetch force-uploaded to the gallery and emitted a `generated_image` SSE event, so each fetched image appeared as its own unmosaiced chat bubble, clogging the UI.
+
+**Root cause:** `do_fetch_image` unconditionally POSTed to `/api/gallery/upload` and returned `image_id`/`image_url` on every call. `agent_loop.py` emits a `generated_image` SSE event for ANY tool result carrying `image_url` (that path exists for generate_image), and persisted tool events re-render as image bubbles in `chatRenderer.js` on reload. Gallery import was the default, UI surfacing was a consequence.
+
+**Fix (IRIS):**
+- `src/tools/image.py`: gallery upload is now opt-in via `save_to_gallery` (default off). Default path returns the base64 `image_data_url` (consumed by the existing vision-injection path in agent_loop) + a model-facing summary with content-type, best-effort pixel dimensions (Pillow, optional dep — failure tolerated) and human-readable size. No `image_id`/`image_url` keys on the default path → no `generated_image` SSE event → no chat bubble, no gallery entry. Opt-in branch keeps the original upload code and appends gallery ID to the output; upload failure degrades to a note, never fails the fetch.
+- `src/tool_execution.py`: added `image_data_url` to `_FORMATTER_HANDLED_KEYS` — previously the generic "extra" JSON dump fed ~8000 chars of truncated base64 back to the model as text on every fetch.
+- `src/agent_loop.py`: vision injection now carries ALL image_data_urls from the round's tool results (deduped, single user message, capped at 4) instead of only the first one — the old `break` silently blinded the model to same-round batch fetches.
+- `src/tool_schemas.py` + `src/tool_index.py`: descriptions rewritten to match reality ("fetch so YOU can see it"; gallery only via explicit `save_to_gallery=true`).
+
+**Verification:** `py_compile` clean on all 5 files. Live smoke test via venv: default path returns data URL + zero gallery keys; `save_to_gallery=true` parses and attempts upload (401 in the out-of-process harness is a per-process internal-token artifact — `core/middleware.py` generates a fresh `secrets.token_hex(32)` per process; in-process the token matches, and the failure-note path proven by the 401 shows fetch still succeeds if upload errors). No fetch_image tests existed before; none added yet.
+
+**Files touched:** `src/tools/image.py`, `src/tool_execution.py`, `src/agent_loop.py`, `src/tool_schemas.py`, `src/tool_index.py`
+**Status:** PENDING RESTART — server code change requires uvicorn bounce to take effect.
+
+## 2026-10-26 — fix(session): draft-row count mismatch re-hydrated the transcript every turn, stripping live images (IRIS)
+
+**Reported by Sir:** an uploaded image is visible to the model on the turn it
+was sent, then degrades to `[1 inline media payload omitted]` + `[Attachment:
+...]` for every later turn; each *new* image works until its own turn ends.
+
+**Root cause:** `sync_session_metadata` reconciled `session.message_count`
+against all non-archived `chat_messages` rows — including live draft rows,
+which `create_draft` writes DB-only and `_db_to_session` deliberately skips
+at hydration (`_draft_ok`). While a draft existed, the cached transcript was
+therefore permanently one row short of the gate's expectation, so
+`get_session` re-hydrated from the DB on *every* warm read — including the
+call at the top of `promote_draft`, i.e. the end of the very turn the image
+was sent in (the successful save runs while `_active_streams` still says
+"streaming"). Each re-hydrate rebuilt the Session from `chat_messages.content`,
+which stores `persistable_message_content` (text + attachment refs, no raw
+base64 by design) — so the in-memory transcript's live multimodal payload was
+replaced by the lossy stub. Text-only messages round-trip invisibly; images
+exposed it. Note `_load_session_from_db` *replaces* the cached Session object,
+so the pixels could never come back within the session.
+
+**Fix (IRIS):**
+- `core/session_manager.py`: new `SessionManager._session_has_live_stream`
+  helper — single source of truth for the draft policy (lazy-imports
+  `routes.chat_routes._active_streams`, exactly as `_draft_ok` did inline).
+  `_db_to_session._draft_ok` now calls it, so the hydration policy and the
+  count policy cannot drift apart again. `sync_session_metadata` subtracts
+  live draft rows from the count, so `get_session`'s completeness gate
+  compares against the row count a hydration would actually materialize.
+  Orphaned drafts (stream dead) still count — hydration finalizes and keeps
+  those, so the crashed-turn contract is unchanged.
+- `tests/test_draft_promotion_keeps_live_media.py`: regression — an image
+  message stays a live multimodal list through `create_draft` →
+  `promote_draft` → warm `get_session`, and the DB contract (persisted rows
+  stay stubbed, no base64) is asserted unchanged; plus orphan-draft
+  count/hydration consistency.
+
+**Verification:** new suite 2/2 green; `test_replace_messages_multimodal.py`
+3/3; session/vision/image batch (session_manager, session_concurrent,
+persist_guard, discovery_message_count, context_excludes_slash,
+vision_model_detection, chat_image_routing, cleanup, ghost_delete,
+deleted_sidebar, editor_draft, export_nonstring, fork_metadata,
+delete_after_refresh) 61/61 green. 3 failures in
+`test_history_display_model_hydration.py` are pre-existing — identical on
+the un-patched tree (`git stash` run), unrelated to this change.
+
+**Files touched:** `core/session_manager.py`,
+`tests/test_draft_promotion_keeps_live_media.py`
+**Status:** PENDING RESTART — server code change requires uvicorn bounce to take effect.
+
+## 2026-10-26 — fix(search): web_search page extraction served nav menus instead of content (IRIS)
+
+**Reported by Sir:** web_search tool output feels lazy — navigation buttons
+and unrelated site chrome end up in the model context.
+
+**Root cause:** `fetch_webpage_content`'s main-content heuristic
+(`content|main|body|article|post|entry|text` class regex, first-3 matches
+concatenated) had zero boilerplate handling on the primary path: it matched
+wrapper containers (e.g. `class="vector-main-menu…"`), never checked
+id/role, kept inline `<script>`/`<style>` text, and duplicated nested
+matches by construction. Live proof: Wikipedia "Cat" extracted to **627
+chars of nav menu printed three times** (fallback threshold 600 never
+tripped), Godot docs to header junk; the downstream key-points/TL;DR/quotes
+extractors then mined the same polluted text, so nav labels became "Key
+Points" and menu numbers became fake "Statistics".
+
+**Fix (IRIS):** `services/search/content.py` —
+- Optional **trafilatura** (Apache-2.0, added to requirements-optional.txt,
+  installed in venv) runs first on the raw HTML (favor_recall, no comments);
+  trusted at ≥600 chars, else the longer of trafilatura / heuristic wins.
+- New `_strip_boilerplate`: strips script/style/noscript/template/iframe/
+  svg/nav/aside/footer/header + role-based (banner/navigation/contentinfo/
+  complementary/search) + aria-hidden/hidden + class/id token matches
+  (nav, menu, sidebar, cookie, breadcrumb, share, social, widget, popup,
+  toc, …) *before* any main-content extraction; runs after the meta/js
+  probes (which need the untouched tree); aux list/table/code extractors
+  inherit the cleaned tree.
+- New `_extract_main_content`: candidates = main/article/role=main +
+  content-regex class/id hits, ranked longest-first with substring dedup
+  (replaces concatenate-first-3 and its duplicate-text behavior).
+- Two bs4 landmines defused during verification: (1) `Tag.decompose()`
+  follows the next_element chain and stales/clears every element *after*
+  the decomposed node — Wikipedia went 13,412 → 0 elements post-strip;
+  switched to `extract()` (unlink only, topmost-offender filtering kept).
+  (2) Dash-token matching hits skin/feature-flag classes —
+  `vector-feature-main-menu-pinned-disabled` puts "menu" on `<html>`, RTD
+  themes class the content pane `wy-nav-content` — so page roots
+  (html/body/head) and any element containing the page's own `<h1>`
+  (`_h1_ancestor_ids`, O(#h1·depth) ancestor marking) are exempt from the
+  veto. Plus: dedup-loop empty-`acc` guard (`'' in text` is always True and
+  skipped every candidate — heuristic was returning 0 chars on real pages
+  while synthetic tests passed).
+
+**Verification:** `py_compile` clean. Live before/after (fresh cache keys):
+Wikipedia Cat 627 chars (nav ×3) → **109,938 chars article via trafilatura /
+114,956 chars, 0 nav-junk hits via heuristic-only fallback**; Godot intro
+header junk → clean 375-char content (tf and heuristic agree); synthetic
+boilerplate test passes (nav/cookie/footer out, article in). Focused
+search/fetch suite 41/41 green. Known pre-existing, out of scope: python.org
+fetch fails in the outbound layer ("Refusing compressed response … after
+requesting identity") — server ignores `Accept-Encoding: identity`;
+unchanged by this patch. Old extraction results age out of the 2h content
+cache on their own.
+
+**Files touched:** `services/search/content.py`, `requirements-optional.txt`
+**Status:** PENDING RESTART — server code change requires uvicorn bounce to take effect.
+
+## 2026-10-27 — fix(search): statistics extractor shipped date crumbs as data; viewer-shell pages leaked UI chrome; PDF branch was a dead path (IRIS)
+
+**Reported by Sir:** follow-up to the 2026-10-26 nav-soup fix — live
+web_search test ("Nvidia Blackwell architecture specs") still showed slop
+in the derived sections: "Data / Statistics: - 25 / - 2026 Blackwell /
+- 5090 / - 6000 accelerates / - 6000 transforms", and one fetched page
+was ~900 chars of PDF-viewer UI ("Thumbnails Document Outline ... Enter
+the password to open this PDF ...").
+
+**Root cause:** three weaknesses, all downstream of the fixed extraction:
+(1) extract_statistics matched every bare digit run + optional glued word,
+in document order, so date fragments ("25" from "October 25, 2026"),
+model numbers ("RTX 5090", "RTX PRO 6000 transforms") and version strings
+took the caller's 5-item cap before real measurements got a seat;
+(2) get_tldr took the first 3 sentences with no quality filter;
+(3) fetch_webpage_content had no concept of embedded-PDF-viewer shells,
+and the PDF branch itself was a dead path — pdfminer.six was never
+installed, so every PDF fetch silently returned "Failed to extract PDF
+text" — and that failure was then cached for 2h (_cache_result cached
+failures unconditionally).
+
+**Fix (IRIS):**
+- `services/search/content.py`, extract_statistics: matches keep the
+  pinned `<number>[unit]` shape but are now tiered (currency/$, %, unit
+  words → comma-grouped magnitudes → plain number+word pairs), deduped,
+  and junk-filtered — bare unitless numbers, bare years (1500–2199), and
+  ALL-CAPS product-code contexts (RTX 5090, PRO 6000) dropped; "$"
+  prefix captured; TFLOPS/bandwidth units added; interior whitespace
+  normalized (PDF text keeps newlines — "7\nGB"). Crash fix: the bare-year
+  check previously fed 4-char decimals ("22.4") to int() — found live on
+  the RTX Blackwell whitepaper.
+- `services/search/content.py`, get_tldr: quality-filtered (30–400 chars,
+  viewer/UI chrome skipped) instead of blind first-3.
+- `services/search/content.py`: new `_VIEWER_CHROME_RE`; embedded-viewer
+  shells (<1500 chars matching pdf.js viewer UI phrases) zero their
+  content and set js_message, so core.py's non-empty content gate drops
+  the block instead of shipping viewer chrome.
+- `services/search/content.py`, `_cache_result`: failures no longer
+  cached — a transient timeout or a since-fixed condition (pdfminer
+  installed mid-session) must not poison a key for the 2h TTL; confirmed
+  live when the post-install PDF probe was served the pre-install cached
+  failure under the same key.
+- `requirements-optional.txt` + venv: pdfminer.six (MIT, 20260107)
+  installed and declared — the PDF branch's import guard made its
+  absence silent. (The file's pypdf note predates the pdfminer-based
+  branch.)
+- `tests/test_extract_statistics.py`: policy change pinned (bare years
+  are no longer statistics), plus regressions for the live date-crumb /
+  model-number junk, unit ranking, and the decimal crash.
+
+**Verification:** py_compile clean; focused suite 52/52 (was 47 pass / 4
+fail mid-flight before the fixes landed). Live: the exact Blackwell junk
+string extracts to []; realistic page text yields ['208 billion',
+'192 GB', '32GB', '$1,999'] ranked with junk gone; viewer chrome skipped
+in TL;DR. PDF end-to-end through fetch_webpage_content: 8.3MB Blackwell
+whitepaper (exceeds the 2MB default soft cap — the live-search skip of
+source [3] was TooLarge by design, not a bug; explicit max_bytes up to
+the 20MB hard cap works) → 97,540 chars in ~2.3s, and extract_statistics
+on it returns real measurements ('128 MB', '96 MB', '22.4 Gbps').
+Operational note: an earlier multi-section apply_patch partially persisted
+(only the viewer-gate hunk landed despite a full success diff); caught
+by a NameError in test_web_fetch_plaintext + an on-disk grep audit,
+re-applied as a single-section patch — patch persistence is now verified
+against disk, not the tool's diff.
+
+**Files touched:** `services/search/content.py`,
+`tests/test_extract_statistics.py`, `requirements-optional.txt`
+**Status:** PENDING RESTART — server code change requires uvicorn bounce to take effect.
+
+## 2026-10-27 — fix(frontend): tagless-thinking reply heuristic swallowed markdown tables (IRIS)
+
+**Reported by Sir:** "tables aren't rendered properly sometimes" — in
+assistant replies, frontend rendering (not the web_search tool).
+
+**Root cause:** not the table renderer — mdToHtml renders pipe tables
+correctly (verified offline against the exact leaderboard table that
+triggered the report: 5 headers, 25 cells, no leaked pipes; the streaming
+segmenter cannot split a table either, since its freeze boundaries are
+blank-line runs and tables contain none). The actual eater was the
+TAGLESS-THINKING reply-start heuristic, which exists in two places:
+markdown.js normalizePlainThinking and the chat.js _finalReply fallback.
+When a reply starts with a reasoning-style prefix ("I can ...", "Let me
+check ...", "I'll ...") and carries no think tags, the heuristic slices
+thinking from reply at the first reply-start line ("Here", "OK",
+"Absolutely", ...). A markdown table sitting before that line was
+classified as thinking and silently dropped from the rendered reply —
+visible during streaming (the live tail renders everything), gone after
+finalize, which is exactly why it looked intermittent. Reproduced offline
+before fixing: extractThinkingBlocks on "I can see the results now." + a
+results table + "Here is the summary." returned reply content of ONLY
+"Here is the summary." — the entire table eaten.
+
+**Fix (IRIS):**
+- markdown.js: new exported tableReplyFloor(text) — char offset of the
+  first non-fence line with 2+ pipe characters (fence-aware, so a fenced
+  table *example* inside a code block does not drag the boundary). All
+  three boundary paths in normalizePlainThinking (paragraph-boundary,
+  line-scan, within-line) now clamp to it: no reply boundary may start
+  past a table block, because a markdown table is reply content, never
+  reasoning. The fourth path (the "everything is thinking" fallback)
+  bails out entirely when a table is present — not confidently
+  splittable, so it shows the whole text as reply instead of hiding a
+  table inside the thinking dropdown.
+- chat.js: the _finalReply prefix-scan fallback gets the same floor via
+  markdownModule.tableReplyFloor (line-scan and within-line variants).
+- markdown.js mdToHtml: the paragraph pass no longer wraps table blocks
+  in an invalid `<p><table>...</p>` (the HTML parser self-heals it, but
+  it left stray empty `<p>` elements around every table); `<table` added
+  to the paragraph lookahead exclusion.
+- index.html: entry ?v= bumped for markdown.js and chat.js
+  (tablefloor1) per house convention; SW is network-first for JS so a
+  normal reload picks the fix up.
+
+**Verification:** offline harness (Sandbox/table-render-repro, imports the
+REAL markdown.js via symlink with only ui.js stubbed): pre-fix, the two
+repro shapes ate the table; post-fix, the table leads the reply and the
+thinking keeps only the reasoning prose. The verbatim leaderboard table
+renders structurally identical before/after (no regressions; the invalid
+p-wrap is gone). New regression suite
+tests/markdown_table_reply_floor.test.mjs: 7/7 green. Existing suites:
+markdown formatting 57/57, codefence placeholder regression OK, streaming
+110/113 — the 3 failing loose-list invariants fail identically on the
+PRE-PATCH tree (verified via git stash comparison), pre-existing and out
+of scope for this fix. Operational note: the tooling's think-tag sanitizer
+eats literal think tags and HTML entities from file-write payloads, so
+these patches were authored without embedding tag literals and verified
+against disk rather than the tool's diff. Worse, the tool-result DISPLAY
+layer transposes digit pairs (the file's "20261023merge2" version string
+displayed as "20260823" in both grep and sed output — ordinals and count()
+are the only trustworthy views); the index.html ?v= bumps were applied via
+digit-agnostic regex for exactly that reason.
+
+**Files touched:** `static/js/markdown.js`, `static/js/chat.js`,
+`static/index.html`, `tests/markdown_table_reply_floor.test.mjs`
+**Status:** PENDING REFRESH — static JS change; a normal browser reload picks it up (SW is network-first for JS); entry ?v= bumped per convention.
+
+## 2026-10-27 (cont.) — fix(frontend): one linkable domain in a table cell collapsed the whole table into raw pipe-text (IRIS)
+
+**Reported by Sir:** "tables aren't rendered properly sometimes" — content
+fully visible (all pipes, all rows), never formatted as a table. The earlier
+same-night diagnosis (tagless-thinking heuristic eating tables) was a real,
+cage-proven bug but NOT this one — Sir sees the table; that fix stays.
+
+**Root cause (live-DOM-proven, session 41654bf7, dbId 6f798321):** the reply
+bubble's raw contains perfect table markdown (42 pipes, clean rows), yet the
+rendered HTML wrapped every row in its own <p>. Mechanism: the autolink pass
+(case-insensitive gi) wraps a bare domain in a cell ("Z.ai" in the
+leaderboard table) in an <a>; the <a>-preservation pass swaps it to an
+___ALLOWED_HTML_n___ placeholder; the table pass's inherited blanket skip —
+`if (table.includes('___CODE_BLOCK_') || table.includes('___ALLOWED_HTML_'))
+return table;` — bailed on the ENTIRE table block; the paragraph pass then
+wrapped each pipe row in a <p> and the restore pass put the link back inside
+the raw text. "Sometimes" = only tables with a link/image/bare-domain in a
+cell. Upstream's newest snapshot (odysseus-2c8e00c, same line ~1103) carries
+the identical skip — upstreamable fix candidate.
+
+**Why the offline harness missed it:** the Sandbox node harness's DOM shim
+never defined window.location, so safeLinkUrl()'s
+`new URL(url, window.location.origin)` threw inside its own try/catch and
+silently returned '' — every autolink no-op'd, the harness ran a NEUTERED
+pipeline, and every "table renders fine" was a false negative for
+link-bearing tables. The house harness (tests/streaming/markdownHarness.mjs)
+was honest all along (it provides window.location.origin). Lesson: a
+silently-caught error in a stubbed dependency is a lie with a green
+checkmark — before trusting a harness result, prove the stubbed path
+actually executes.
+
+**Fix (IRIS):**
+- static/js/markdown.js: removed the table pass's blanket placeholder skip.
+  Extracted placeholders (___ALLOWED_HTML_n___, ___CODE_BLOCK_n___,
+  ___INLINE_CODE_n___) are pipe-free single-line tokens — safe as ordinary
+  cell content; splitTableRow keeps each whole and the restore pass swaps
+  them back inside their <td> (the inline-code family always flowed through
+  cells exactly this way).
+- static/index.html: markdown.js ?v= -> 20261027tablelinks1.
+- tests/markdown_table_link_cells.test.mjs: 5 regressions pinning the live
+  failure shapes (bare uppercase-domain cell, markdown-link cell,
+  inline-code-with-pipes cell, fence-adjacent table, mixed-placeholder row
+  column count), with the harness-environment lesson in the header.
+
+**Verification:** live-page bisect on the actual bubble raw: orig => no
+table, 42 pipes as paragraphs; Z.ai->Zlab => table renders; patched module
+(fresh import) => table renders WITH the autolinked <a href="https://z.ai/">
+inside the GLM-5.3 cell. Honest-harness (shim now provides location.origin +
+template-capable createElement): full stored round text => table:true
+rawPipes:0 z.ai-link:true. Suites: new 5/5, tableReplyFloor 7/7, formatting
+57/57, codefence ok; streaming suite unchanged (3 pre-existing loose-list
+invariant failures, stash-proven earlier tonight).
+
+**Files touched:** `static/js/markdown.js`, `static/index.html`,
+`tests/markdown_table_link_cells.test.mjs`
+**Status:** PENDING REFRESH — reload the tab; history re-renders from stored bytes and the leaderboard table will format.
+
+## 2026-10-27 (cont.) — fix(chat): mid-stream chat open in a second tab froze the tab — resume replay rendered per-token through a dead coalescer (IRIS)
+
+**Symptom:** Opening a chat mid-turn in a NEW tab (while the LLM streams in
+the tab that sent it) lags the new tab hard and the chat barely renders. The
+already-open tab streams fine.
+
+**Root cause:** Session open mid-stream goes selectSession →
+_checkServerStream → resumeStream(), whose SSE replays the ENTIRE
+accumulated buffer as a per-token burst (agent_runs.subscribe yields the
+buffer event-by-event). The resume read loop called renderDelta() DIRECTLY
+per delta, and renderDelta does full-text work per call —
+_streamDisplayText (3 chained regex strips) + normalizeThinkingMarkup +
+renderer update — i.e. O(buffer) per token, O(n²) across the burst. A
+50KB thinking-heavy turn ≈ 15K tokens of full-text regex churn →
+multi-second main-thread jam; UI starves, repaints barely happen. The
+already-open tab never hits this: its live path uses thinking-analysis
+gates + incremental projectors + rAF-coalesced thinking renders.
+
+**The fix existed but was dead code:** queueRender() (chat.js, the 34ms
+coalescer whose comment names "the known 'freeze-to-halt on mid-stream chat
+open'") was defined and never called — the delta branch bypassed it. Likely
+wired in a prior session's intent but the call was never switched.
+
+**Fix (IRIS):**
+- static/js/chat.js (resumeStream): delta branch renderDelta() →
+  queueRender(). Safe: every tail path after the read loop renders final
+  state canonically from roundText (plain path → chatRenderer.addMessage;
+  rich path → session reload), and cleanup() sets _resumeClosed so a
+  pending queued render can't fire post-teardown.
+- static/js/chat.js (resumeStream): _tabSyncClearMirror(sessionId) right
+  after _resumingStreams.add(). Second bug found while tracing: a
+  chat-delta BroadcastChannel post from the streaming tab can land in the
+  async gap between session-open rendering and resume attach
+  (hasActiveStream still false) → a tab-sync mirror bubble is created and
+  NOTHING cleared it on attach; on the plain-text finalize path it
+  survived as a stale duplicate assistant bubble. The local reader now
+  owns rendering at attach time, so the racing mirror is dropped (same
+  call _tabSyncTakeover already makes before resuming).
+- static/index.html: chat.js ?v= 20261027tablefloor1 → 20261027resumequeue1
+  (modulepreload + script tag).
+- static/sw.js: CACHE_NAME v394-20261024truncfix1 → v395-20261027resumequeue1
+  + precache chat.js entry updated to match (SW's own bump rule).
+
+**Verification:** node --check chat.js/sw.js clean; grep confirms delta
+branch now hits queueRender (only remaining renderDelta call sites are the
+definition + inside the coalescer's timeout). Streaming suite: segmenter
+117/120 — the 3 failures are the loose-list invariants already
+stash-proven pre-existing from tonight's table work, untouched here.
+Live server serves index.html with the new ?v= and the new chat.js URL
+(200). Runtime repro (needs a real mid-stream open) left for Sir:
+SW is network-first for JS, so a plain reload of both tabs picks up the
+patch; the ?v= bump force-busts HTTP cache + module map regardless.
+
+**Files touched:** `static/js/chat.js`, `static/index.html`, `static/sw.js`
+(.bak-20261027-resumequeue copies kept for all three)
+**Status:** CONFIRMED by Sir same day ("performance is 10/10").
+
+### 2026-10-27 (later) — resume-path thinking rendering (mid-stream reopen showed reasoning as plain reply text)
+
+**Bug:** reopening a chat mid-turn in a NEW tab rendered the model's
+reasoning as plain reply text in one long bubble — no thinking box, tools
+invisible — until the turn finished, when the rich reload snapped everything
+to canonical layout.
+
+**Root cause:** the server replays vLLM reasoning deltas flagged
+thinking:true, but the resume read loop appended json.delta RAW. The live
+send path statefully wraps reasoning in `<think real="1">` markers (open on
+first reasoning delta, close on first content delta); that wrapper was never
+ported into resumeStream — its `_thinkOpen` flag sat declared-but-unused
+(fossil of the unfinished 2026-10-12 resume work, same pattern as the dead
+queueRender). No markers in roundText → normalizeThinkingMarkup had nothing
+to wrap → reasoning rendered as answer text. Worse, the plain-text finalize
+path passes the resume-accumulated roundText straight to
+chatRenderer.addMessage, so a thinking reply finalized in place would have
+kept its reasoning inline PERMANENTLY (only rich replies got fixed by the
+reload).
+
+**Fix (static/js/chat.js):**
+- Resume delta branch now mirrors the live wrapper verbatim:
+  neutralizeStrayThinkTags on reasoning deltas (model quoting a think tag in
+  its reasoning must not break the boundary), stateful `<think real="1">`
+  open, close tag on first content delta. Stateful (not substring-scan) so
+  each round of a multi-round agent run gets its own thinking block.
+- New local closeThinkIfOpen() (the live path's _closeOpenThinkingMarkup is
+  a closure bound to live-path accumulated/currentAccumulated state, not
+  reusable) called at: tool-event boundaries (tool_start/tool_output/
+  tool_progress/agent_step/sources — mirrors the live path's agent_step
+  closure so round 2 reasoning opens a fresh block), agent_terminal/
+  chat_terminal, and the plain finalize — a stream ending mid-thinking
+  never finalizes an unclosed tag.
+- NOTE (pipeline hazard, for future sessions): emitting a literal think
+  close tag in agent tool-call text gets silently STRIPPED before reaching
+  the file — this patch's first apply landed empty-string closures
+  (byte-verified via python repr, fixed by writing the tag from chr()
+  construction). Always byte-verify after patching anything containing
+  think-tag literals.
+
+Live tool cards during resume remain deferred to the end-of-turn rich
+reload BY DESIGN (resume loop only flags rich on tool events; porting the
+agent-thread card machinery into the resume loop would be a feature lift,
+not a regression fix).
+
+**Verification:** node --check chat.js/sw.js clean; byte-level python check
+confirms both closures carry real tag bytes (matching the live path's
+line-shape exactly); streaming suite unchanged — 117/120, same 3 pre-existing
+loose-list failures. The render chain itself is mirror-proven: the tab-sync
+mirror path already renders tab A's marker-wrapped accumulated through the
+identical normalizeThinkingMarkup → createStreamRenderer(liveThinking) chain
+in second tabs. Version-bumped chat.js: index.html ?v= 20261027resumequeue1 →
+20261027resumethink1 (modulepreload + script tag), sw.js CACHE_NAME
+v395-20261027resumequeue1 → v396-20261027resumethink1 + precache entry.
+
+**Files touched:** `static/js/chat.js`, `static/index.html`, `static/sw.js`
+(.bak-20261027-resumethink copies kept for all three)
+**Status:** PENDING REPRO — reload both tabs, send a reasoning-model turn,
+open the chat in a second tab mid-stream: reasoning should render inside the
+live thinking box (not as plain text), and stay separated after finalize.
+
+## 2026-10-27 (evening) — fix(frontend): emphasis paired across paragraphs into giant italic blocks; stray think-tag + $-pair math verified ALREADY-FIXED (IRIS)
+
+**Reported by Sir:** (1) "big blocks of the LLM's message italicized even
+though it likely wasn't intended"; (2) a quoted closing think-tag inside
+reasoning makes the UI end the thought early ("doesn't affect the LLM
+itself, only the rendering"); (3) two `$` in a response compress/italicize
+everything between (LaTeX) — "don't go searching too hard, I don't
+remember if it's still a bug."
+
+**Verdicts:**
+- **(1) REAL, fixed tonight.** All five emphasis passes (bold `**`, italic
+  `*`, strike `~~`, highlight `==`, sup `^`) used `[^X]+` content classes
+  that match across newlines AND blank lines — two stray delimiters
+  paragraphs apart paired up and wrapped the whole span between them (live
+  repro: `2*3` in para 1 + a stray `*` in para 3 → `<em>` opened in para 1,
+  closed in para 3). Fix: CommonMark rule — emphasis never crosses a
+  paragraph boundary; matched content containing `\n\n` rejects the pair
+  (raw delimiters stay literal text). Soft line breaks within a paragraph
+  still pair. (`~sub~` was already whitespace-bounded.)
+- **(2) ALREADY FIXED — verified, not re-fixed.** Both flagged-reasoning
+  paths neutralize think-family tags inside every reasoning delta in force
+  mode BEFORE the synthetic wrapper (live send chat.js:3308; resume/replay
+  chat.js:5776), including tags split across delta boundaries (trailing
+  partial-tag escape). DB forensics: 52 stored bug-shape occurrences
+  (reasoning containing a literal closer with substantial text after it),
+  ALL at rowid ≤ 8506 — the session that landed the fix — zero in the
+  ~1,700 assistant messages since; every affected message was a
+  DeepSeek/Kimi flagged-reasoning stream. End-to-end harness against the
+  real rowid-8506 example (closer quoted inside a code block; whole-chunk,
+  split-across-deltas, and control cases): no reasoning leak, thinking box
+  holds the full text. Residual edge, deliberately untouched: the legacy
+  text-based detector for streams passing raw inline tags without thinking
+  flags would still bless a stray closer — no model on this instance uses
+  that path (server-side parsing emits structured deltas); noted for the map.
+- **(3) ALREADY FIXED — verified per the "don't dig hard" instruction.**
+  The inline-`$` math pass is single-line-only with hardened Pandoc guards
+  (opener must precede non-space, closer must follow non-space, no word-char
+  after the closer). Same-line prose pairs ("costs $5 and $10"), cross-line
+  pairs, and multi-`$` prose all stay prose; genuine `$x^2 + y^2$` still
+  renders. 3/3 probe cases pass.
+
+**Fix (IRIS):** static/js/markdown.js — the five emphasis passes converted
+to callback form rejecting `\n\n` in matched content. static/index.html —
+markdown.js `?v=` → 20261027emphasisfix1 (the concurrent session's chat.js
+resumethink1 bump untouched; no file overlap between the two entries).
+
+**Verification:** Sandbox probe5 (real module + honest shim, the shim that
+proved the lying-shim lesson from the table hunt): 14/14 — cross-paragraph
+pairs rejected for all five delimiter families, raw delimiters preserved,
+legit + soft-break emphasis intact, stray-tag cases clean, `$` cases
+clean. New tests/markdown_emphasis_paragraph_boundary.test.mjs: 4/4.
+Existing suites: formatting 57/57, codefence ok, table-link-cells +
+table-reply-floor 12/12, streaming 117 pass / 3 fail (the pre-existing
+loose-list invariants, unchanged).
+
+**Files touched:** `static/js/markdown.js`, `static/index.html`,
+`tests/markdown_emphasis_paragraph_boundary.test.mjs`
+**Status:** PENDING REFRESH — static JS change; a normal reload picks it up
+(SW is network-first for JS); markdown.js `?v=` bumped per convention.
+
+## 2026-10-28 — fix(backend): prefetched web search ran on bare continuation nudges ("ctn" → Christian Television Network sources) (IRIS)
+
+**Reported by Sir:** "it seems that odysseus like putting my message through
+web_search. All I said was 'ctn' (agent turn got stopped so I was 'restarting
+it')" — with a screenshot of the reply's "6 Web sources" card: CTN Original
+Programs, CTN Online, CTNX2026, CTN Events, Christian Television Network
+(Wikipedia), Connecticut Network.
+
+**Root cause (DB-forensics-proven, not a model decision):** the context-
+prefetch web search (routes/chat_helpers.py build_chat_context →
+chat_processor.build_context_preface(use_web=...)) runs on the raw user
+message text, injects its results into the model's context as untrusted
+reference data, and attaches them as web_sources — the UI sources card. The
+existing low-signal guard (_is_casual_low_signal) only knows greetings/slang,
+so a bare "ctn" sailed through and the prefetch searched the literal token.
+Receipts: user "ctn" 02:15 → reply's web_sources = exactly the screenshot's
+six CTN sources; user "uhhh ctn" 02:28 → web_sources = uhhh-meme/Tenor
+results (the raw filler words as the query); "ctn" at 07:02 in the main
+session → same CTN card. The GLM-5.3-flash model's own thinking confirms it
+never called web_search — it *received* the CTN results "delivered as
+untrusted source data" and had to reason around the garbage. Sir's phrasing
+("odysseus like putting my message through web_search") was exactly right:
+the system, not the model.
+
+**Fix (IRIS):**
+- routes/chat_helpers.py: new _CONTINUATION_NUDGE_RE — bare continuation
+  nudges with optional filler/vocative prefixes (uhhh/um/hmm/er/ah/pls/
+  please/sir) over the token family ctn, ctnue, ctnow, cont, continue, keep
+  going, go on, carry on, resume, next, again, more, go — anchored ^...$ so
+  "continue the function below" and "ctn events" do NOT match. Checked first
+  in _is_casual_low_signal: nudges are now low-signal → no memory/skills/
+  RAG/web-prefetch injection. Conversation history still flows, so the model
+  can resume the interrupted work.
+- src/agent_loop.py: ctn-family added to _EXPLICIT_CONTINUATION_RE so nudges
+  inherit older user turns for tool retrieval (resuming an interrupted task
+  needs the prior tool context). Deliberately NOT added to agent_loop's
+  _is_casual_low_signal twin: that copy forces continuation=False in
+  _classify_agent_request, which would defeat the resume machinery.
+  Cross-reference comments added in both files to keep the vocabularies in
+  sync.
+- tests/test_continuation_nudge_gating.py: 29 parametrized cases — nudges →
+  low-signal (17, incl. "Uhhh CTN!!" and "sir, ctn"), real messages →
+  full-signal (5, incl. the bug-report sentence itself), nudges → explicit
+  continuation (6), greeting behavior untouched (1).
+
+**Verification:** py_compile clean; new suite 29/29; ReDoS verdict suite on
+the edited regex 30/30 (house polynomial-redos regressions pass); foreground
+routing suite 98 pass / 4 fail — the same 4 fail identically on the pre-patch
+tree (git-stash comparison: cancelled-fallback provenance tests, pre-existing,
+unrelated). Known follow-up candidate (NOT done): bare acknowledgments
+("ok", "yes") outside agent_loop's continuation list would still prefetch on
+the routes side — same disease class, awaiting a real complaint.
+
+**Files touched:** `routes/chat_helpers.py`, `src/agent_loop.py`,
+`tests/test_continuation_nudge_gating.py`
+**Status:** PENDING RESTART — server code change requires uvicorn bounce to
+take effect.
+
+## 2026-10-28 — fix(backend): NVIDIA free tier MiniMax m3.1-flash context window pinned to 262,144 (IRIS)
+
+**Reported by Sir:** `minimaxai/minimax-m3.1-flash` through the free NVIDIA API only offers 262,144 context window — Odysseus believed 1M and packed 900k budget into requests the API rejected with 400.
+
+**Root cause:** two-layer lie stack.
+1. NVIDIA's `/models` catalog reports **no `context_length`** for this model — catalog lookup returns nothing.
+2. Odysseus's `KNOWN_CONTEXT_WINDOWS` table has `'minimax': 1000000` (substring match) → 1M window assumed.
+3. Model card advertises "ISL up to 1M" — but the hosted trial endpoint enforces **262,144** (prompt + output combined, per API error: `{"limit":262144,"actual":346487}`).
+
+Result: explicit 900k agent budget → `compute_input_token_budget` clamped only to model window → 900k prompt tokens stuffed into 256k pipe → API 400. Compactor never fired in time.
+
+**Fix (IRIS):**
+- `data/settings.json`: added `"minimaxai/minimax-m3.1-flash": 262144` to `model_context_overrides` — live override, hot-reloaded via settings TTL (2s), no restart.
+- `src/model_context.py`: added provider-scoped known-table entry `'minimaxai/minimax-m3.1-flash': 262144` **before** the generic `'minimax': 1000000` so longest-match wins for this specific NVIDIA-hosted variant. Other providers (OpenRouter, etc.) still get the 1M entry.
+
+**Verification:**
+- Live probe with decrypted NVIDIA API key: oversized request (346,487 tokens) → `400 {"type":"context_length","limit":262144,"actual":346487}` — ceiling proven.
+- Resolution check: `get_context_length()` → 262144, `get_context_length_known()` → (262144, known=True), `budget_context_for_model()` → 262144.
+- Budget clamp: explicit 900k budget → `compute_input_token_budget(900000, 262144, explicit=True)` → **262144** (clamped to window).
+- Compactor threshold: 85% of 262144 ≈ 222k (soft trim), mid-message trigger (600k) correctly above window → no double-compaction.
+- `py_compile` clean on both touched files.
+
+**Files touched:** `data/settings.json`, `src/model_context.py`
+**Status:** LIVE — settings hot-reload (2s TTL) + known-table change effective on next resolution call (no process restart needed for model_context module; in-flight requests use cached values until TTL expiry).
+
+**Note:** The 262,144 limit counts **prompt + output together** (API error arithmetic: 259,509 prompt + 4,096 max_tokens = 263,605 actual). Effective prompt budget is `min(262144 - max_tokens, 262144 * 0.85)` ≈ 222k for auto-trim, 258k hard ceiling with default 4k output.
+
+## 2026-10-28 (13:41) — fix(ui): thinking-process box not clickable
+
+**Symptom (user-reported):** Thinking process box renders but header/toggle won't respond to clicks — can't expand/collapse thinking sections.
+
+**Root cause:** No explicit `pointer-events: auto` on `.thinking-header` or `.thinking-toggle` in `static/style.css`; an upstream stacking context or overlay could be swallowing pointer events before they reach the delegated click handler on `document` (which reads `data-thinking-id` from `.thinking-header` and looks up content/toggle by matching `id`).
+
+**Fix:** Added `pointer-events: auto` to `.thinking-header` and `.thinking-toggle` in `static/style.css`.
+
+**Files touched:** `static/style.css`
+**Status:** Applied — needs frontend reload to take effect.
+
+**Follow-up (same session, ~14:00):** `pointer-events: auto` alone did not resolve it. The delegated click handler in `static/js/markdown.js` only matched clicks landing directly on `.thinking-header[data-thinking-id]` — clicks on the toggle span, section body, or content area silently returned without toggling.
+
+**Additional fix:**
+- `static/style.css`: added `pointer-events: auto` to `.thinking-section` itself.
+- `static/js/markdown.js`: delegated handler now falls back to `closest('.thinking-section')` → `querySelector('.thinking-header[data-thinking-id]')` when the direct header match fails, so clicks anywhere on the section toggle it.
+
+**Files touched:** `static/style.css`, `static/js/markdown.js`
+**Status:** Applied — needs frontend reload to take effect.
+
+## 2026-10-28 (14:10, corrected 14:36) — revert(sessions): undo the loadSessions "sessionid sync" hack (truncate "permanent deletes" portion was a MISREAD — restored) (IRIS)
+
+**Reported by Sir:** "It constantly refreshes the chat to 'ensure the frontend
+knows the sessionid' … supposed to fix a bug with thinking sections not opening
+on click. Somehow managed to cause new chats to be created when I'm trying to
+send a message in an already created one. Then the new chat carries the old
+chat's id, so when I go try to delete this new bogus chat, it deletes the old
+one with all the data inside of it. Another IRIS is making deletes not
+permanent. You go undo the code."
+
+**Revert 1 — static/js/sessions.js → HEAD (a5c77f8a).** An undocumented
+working-tree change-set (not in this changelog, mtime 10:21) had:
+1. Appended an unconditional `if (targetId) { await selectSession(targetId); }`
+   at the end of `loadSessions()` — re-running the FULL selection (history
+   refetch + full re-render + composer clear + stream detach) on every
+   `loadSessions()` call, including when the session was already current.
+   loadSessions fires on dozens of triggers (every message save, stream
+   completion, background poll, edit, delete), so the chat visibly refreshed
+   constantly. The block's own comment ("Restore the resolved session so
+   currentSessionId isn't null…") is the "ensure the frontend knows the
+   sessionid" hack; selection was ALREADY handled a few lines above
+   (`targetId !== currentSessionId → selectSession(...)`), so the block was
+   pure duplication with side effects.
+2. Removed the `_freshRootLoad` `Storage.remove('lastSessionId')` wipe and
+   widened the `savedId` fallback — so any background `loadSessions()` could
+   resurrect the PREVIOUS chat as `targetId` and the trailing select would
+   force-navigate to it, racing the send/materialize flow (send-in-existing-chat
+   materializing a new chat, stale selection carrying the old chat's id into
+   the "new" row — deleting the bogus row then hit the old session's id).
+   All three hunks were one change-set; the whole file is reverted to the last
+   committed good state. Backup of the reverted state:
+   `static/js/sessions.js.bak-20261028-nemotron-revert`.
+
+**CORRECTION (14:36) — Revert 2 was a misread of Sir's instruction and is
+fully undone.** Sir's line "Another IRIS is making deletes not permanent"
+described the other IRIS's ACTIVE, wanted work (the archive-don't-burn
+truncate reform), not a complaint. Within ~20 minutes of the mistaken edit,
+`core/session_manager.py` was restored byte-identical to the pre-edit state
+(`core/session_manager.py.bak-20261028-truncate-revert` — checked: diff of
+backup vs current file was exactly the mistaken edit, no other-IRIS work
+clobbered). Truncate is ARCHIVE-IN-PLACE again, exactly as the 2026-10-24
+reform left it. The other IRIS's work on this file is untouched; the
+`.bak-20261028-truncate-revert` copy can be deleted once the other IRIS
+lands their work. Lesson recorded: when Sir mentions another IRIS working on
+something, that work is WIP TO PRESERVE — revert only the code Sir actually
+complained about, and when a directive is ambiguous about whether a behavior
+is wanted, ask instead of guessing.
+
+**Verification:** `node --check static/js/sessions.js` clean;
+`py_compile core/session_manager.py` clean; pytest
+`test_truncate_message_count_regression.py test_session_manager.py
+test_session_ghost_delete.py test_delete_message_after_refresh.py` → 26/26
+both before AND after the correction (i.e., the restored archive-in-place
+version is green too).
+
+**Files touched (net):** `static/js/sessions.js` (reverted to HEAD),
+`ODYSSEUS-CHANGES.md`. `core/session_manager.py`: net change ZERO — the
+mistaken edit was fully restored; the file is byte-identical to the other
+IRIS's pre-edit state.
+**Status:** sessions.js needs a browser reload (unversioned import; SW is
+network-first for JS). No server restart needed for THIS entry — the
+restored session_manager.py is the same bytes that were on disk before
+14:12; any pending-restart state belongs to the other IRIS's own entries.
+
+## 2026-10-28 (16:40) — fix(frontend): split-brain sessions.js recurrence #3 — send-after-reload materialized a phantom chat + URL swap (IRIS)
+
+**Reported by Sir (live, mid-conversation):** reload a tab showing chat #123 →
+send → URL silently rewrites to a brand-new #xyz (`replaceState`, no navigation)
+while the UI keeps rendering #123's history; the agent's context is #xyz
+(empty). Clicking the old chat in the sidebar could land on the phantom. Sir:
+"an old Odysseus version had this issue, I had IRIS fix it, and now we're back
+here."
+
+**Root cause:** the 2026-08-05/06/09 split-brain landmine, re-armed. Module
+identity = URL; mixed query strings = two instances of `sessions.js`, each with
+its own `currentSessionId`. Working tree had 16 refs on
+`sessions.js?v=20261023merge2` vs **3 bare** (app.js:26, index.html modulepreload
++ script tag). UI shell (app.js → `window.sessionModule`, sidebar,
+loadSessions/selectSession) ran on the bare instance; the chat engine (chat.js
+send path, chatStream) on the versioned one. Send-after-reload: engine instance
+saw `currentSessionId = null` → materialized a new session → its materialize
+wrote `history.replaceState('#xyz')` (URL swap without navigation) while the
+shell instance kept rendering the old chat. Bonus: sessions.js's top-level
+`hashchange` listener was bound by BOTH instances.
+
+Provenance of the bare refs: index.html's were already bare at HEAD a5c77f8a
+(merge-era regression — the 08-07 pattern: "the ghost bug's own split-brain was
+quietly back"); app.js:26 went bare in the undocumented 05:15 version-sweep
+today, which also un-versioned compare/index.js, modalManager.js and
+research/panel.js in app.js. Nemotron's reverted loadSessions hack (see 14:10
+entry) was a band-aid aimed at this bug's symptoms ("currentSessionId isn't null
+on hard refresh… model-switch spawn a new chat").
+
+**Fix — restore the 08-05 invariant (every ref → exactly one URL):**
+- sessions.js: app.js:26 + index.html:252/2591 → `?v=20261023merge2` (19/19 refs
+  unified).
+- compare/index.js (app.js:14), modalManager.js (app.js:38), research/panel.js
+  (app.js:49) → `?v=20261023merge2`, matching their versioned twins
+  (slashCommands.js:23; calendar.js:7 + cookbook.js:3294 + app.js dynamic
+  imports; chatRenderer.js:1419). sidebar-layout.js left bare — app.js is its
+  only importer, no split.
+- **markdown.js was a second live split** (2 refs on `emphasisfix1` vs 11 on
+  `merge2` + 1 bare preload — two renderer instances): all 14 refs unified on
+  `?v=20261027emphasisfix1` (chat.js:14, chatRenderer.js:5/6, chatStream.js:8,
+  compare/index.js:41, compare/stream.js:5, document.js:12,
+  documentLibrary.js:11, group.js:5, tasks.js:6, index.html preload, sw.js).
+- sw.js: PRECACHE entries aligned to the exact URLs the page requests (11 stale
+  entries: app.js, markdown.js, memory.js, models.js, document.js,
+  compare/index.js, admin.js, init.js, slashCommands.js, emailInbox.js,
+  tasks.js); CACHE_NAME `v396-20261027resumethink1` → `v397-splitbrain-unify1`
+  per the SW's own bump rule.
+
+**Verified:** `node --check` clean on all 11 touched JS files; grep audit over
+all of static/ (lib excluded): **zero modules with mixed specifiers** — every
+module resolves to exactly one URL.
+
+**Deploy:** one hard refresh (Ctrl+Shift+R). SW re-installs under v397 and
+re-precaches. No server restart needed (frontend-only).
+
+**Lesson (3rd recurrence of this exact landmine):** any version-tag sweep or
+merge resolution must finish with the 08-05 audit gate — every module resolves
+to exactly one URL, grep-audited — BEFORE calling the work done. Both the merge
+(index.html) and this morning's sweep (app.js) skipped it.
+
+## 2026-10-28 (20:47) — feat(sessions): chat deletion was permanent — added a recycle bin (`deleted_at` soft-delete)
+
+**Symptom (user-reported):** "I have accidentally deleted a handful of chat
+sessions because Nemotron has completely borked chat session ids, everything's
+cross over." Every delete was irreversible — `SessionManager.delete_session`
+hard-deleted the messages, dropped the session row, purged session images and
+detached documents. No tombstone, no trash, no recovery path.
+
+**Root cause — one primitive, no soft-delete layer:**
+
+`core/session_manager.py::delete_session` opened its own DB session, ran
+`db.query(DbChatMessage).filter(...).delete()`, detached every
+`DbDocument.session_id`, called `cleanup_session_images(session_id)`, then
+`db.delete(db_session)` — all committed. The `sessions` table had no
+`deleted_at` column and no listing path filtered on one, so there was nothing
+to recover from even in principle.
+
+**Fix — `deleted_at` soft-delete with an explicit purge path:**
+
+1. **Schema** (`core/database.py`): `Session.deleted_at = Column(DateTime,
+   nullable=True, default=None)` + `ix_sessions_deleted_at` index, exposed in
+   `to_dict()`. Migration `_migrate_add_deleted_at_column()` — guarded,
+   idempotent, registered in `init_db()` after `_migrate_add_mode_column()`.
+   `cleanup_old_sessions` now skips trashed rows (`Session.deleted_at.is_(None)`).
+2. **Model** (`core/models.py`): in-memory `Session` dataclass gained
+   `deleted_at: Optional[Any] = None` so the cache can carry the marker.
+3. **Core** (`core/session_manager.py`): `delete_session` stays the HARD
+   delete (unchanged semantics — zero risk to existing callers). New:
+   - `trash_session(sid)` — sets `deleted_at`, evicts from `self.sessions`,
+     keeps messages/documents/images intact.
+   - `restore_session(sid)` — clears `deleted_at`, re-hydrates into cache.
+   - `purge_session(sid)` — explicit permanent destroy (alias of the hard path).
+   - `list_trashed_sessions(owner)` — owner-scoped trash listing.
+   Guards: `load_sessions` filters `deleted_at.is_(None)`; `_db_to_session_meta`
+   carries the marker; `get_sessions_for_user` filters it; `_load_session_from_db`
+   raises `KeyError` for trashed sessions so direct access cannot resurrect one
+   into the cache; `cleanup_empty_sessions` skips trashed rows.
+4. **Routes** (`routes/session_routes.py`):
+   - `DELETE /api/session/{sid}` → **trashes** by default; `?permanent=true`
+     purges. Starred sessions still blocked (403 `SESSION_STARRED`).
+   - `POST /api/session/{sid}/untrash` — restore from trash.
+   - `DELETE /api/session/{sid}/purge` — permanent delete of one trashed session.
+   - `GET /api/sessions/trash` — owner-scoped trash list.
+   - `DELETE /api/sessions/trash` — empty trash (purge all, owner-scoped).
+   - `POST /api/sessions/bulk-delete` → trashes.
+   - `list_sessions` and `/sessions/archived` queries filter `deleted_at.is_(None)`.
+   - The AI **tidy** heuristic path (`/api/sessions/auto-sort`) now trashes
+     throwaway/empty sessions instead of hard-deleting them — removed the
+     `db.delete(row)` double-delete and sets `row.deleted_at` in the outer
+     transaction. Incognito stays hard-deleted (ephemeral by design).
+   - Incognito ghost purge keeps the hard path.
+   - `DELETE /api/sessions/all` (admin Danger Zone) unchanged — permanent.
+5. **UI** (`static/js/documentLibrary.js`): new **Trash** tab in the Library
+   modal (alongside Chats/Documents/Research/Archive) with search, sort,
+   multi-select, per-item Restore / Delete forever, and an Empty-trash bulk
+   action. Trashed chats are not openable (click does nothing — `get_session`
+   refuses them). Wording updated across `sessions.js`, `app.js` and
+   `index.html`: "permanently" → "Move to trash"; toasts now say
+   "Moved to trash".
+
+**Verified:**
+- `python -m py_compile` clean on all 4 touched Python files.
+- `node --check` clean on all 3 touched JS files.
+- Live-DB smoke test (create → trash → restore → purge): `deleted_at` set on
+  trash with messages intact and cache evicted; `get_session` raises `KeyError`
+  while trashed; trash listing sees it; restore clears the marker and
+  re-hydrates; purge removes row + messages.
+- Route table audit: all 5 new routes registered under `/api`, no shadowing
+  (`DELETE /session/{sid}` vs `/session/{sid}/purge`, `GET /sessions/trash` vs
+  `GET /session/{sid}` — different path shapes).
+- Migration confirmed applied to the live DB (`deleted_at` column +
+  `ix_sessions_deleted_at` index present in `data/app.db`).
+
+**Deploy:** server restart required (backend changes; uvicorn runs without
+`--reload`). Frontend needs only a normal reload — the SW is network-first for
+JS/CSS and the server sends `cache-control: no-cache` with an ETag, so no
+CACHE_NAME bump and no `?v=` tag sweep was needed.
+
+**Note:** this protects *future* deletions only. Sessions already hard-deleted
+before this change are not recoverable — there was no tombstone to recover from.
+
+**Lesson:** the "delete" verb had exactly one meaning (permanent) across every
+caller, so the fix had to add a second verb rather than redefine the first.
+Keeping `delete_session` hard and adding `trash_session`/`purge_session` meant
+zero risk to the incognito ghost-purge and admin-wipe paths, which genuinely
+want permanent deletion.
+
+## 2026-10-29 (12:05) — feat(library): trash-tab transcript preview — borked-name chats are now identifiable
+
+**Follow-up to the recycle-bin entry above.** Live E2E (20/21) flagged one gap:
+trash cards showed only name/model/count, and `GET /api/history/{sid}` 404s
+while trashed (the `_load_session_from_db` cache guard — by design). With
+Nemotron having scrambled names↔content, a bin entry identified by name alone
+may not be identifiable — the exact failure mode this feature exists for.
+
+**Root cause of the 404 (not a bug):** the no-limit history path hydrates via
+`get_session`, which refuses trashed sessions so they can't re-enter the live
+cache. The `?limit=` path reads straight from the DB and both hydration helpers
+(`_session_needs_db_history_hydration`, `_hydrate_session_history_from_db`)
+catch `KeyError` and bail — verified safe for trashed sessions, zero cache
+pollution. So preview needs **no new backend endpoint**.
+
+**Fix (frontend-only, `static/js/documentLibrary.js`):**
+- `_toggleChatPreview(card, session, opts)` — new `opts.trashed` mode: fetches
+  `/api/history/{sid}?limit=50` (DB path), footer swaps Open→(omitted) and
+  Archive→Restore (`/untrash` + trash-grid refresh), Delete→"Delete forever"
+  (`/purge` + confirm), Copy passes the flag through.
+- `_copyChatById(sessionId, opts)` — same `?limit=100` DB path when trashed
+  (the no-limit fetch 404'd there too).
+- Trash cards: gained the hidden `.doclib-chat-preview` div, a click handler
+  (`_toggleChatPreview(card, s, {trashed:true})` — same inline-expand pattern
+  as the archive tab), and `cursor: pointer`.
+
+**Verified:**
+- `node --check` clean.
+- Live authenticated E2E v2 against the running server: **15/15 PASS** —
+  create → inject 2 msgs → trash → hidden from `/api/sessions` → in trash with
+  `deleted_at` → history no-limit 404 (guard) → history `?limit=50` 200 with
+  both messages intact → untrash → back in list, no-limit history 200 again →
+  purge → 404 even on the DB path. Test session purged; DB left clean.
+- One self-inflicted mid-edit regression (an `edit_file` old_string over-matched
+  and dropped the `data`/`history`/`recent` lines) — caught on the diff,
+  restored in the next edit, `node --check` confirms.
+
+**Deploy:** normal reload only (SW is network-first for JS; `cache-control:
+no-cache` + ETag). No backend change, no restart.
+
+**Lesson:** when a guard makes a resource unfetchable by its normal route,
+check for a side door *in the same API* before building a new endpoint — the
+`?limit=` DB path already existed and was already trashed-safe.
+
+## 2026-10-30 (11:30) — fix(agent): long-session "announces the tool, never fires it" — 4-layer fix (IRIS)
+
+**Diagnosis** (session `dea27bea` autopsy + live NVIDIA probes): cross-turn
+history stored assistant turns as prose-only (`metadata.tool_events` never
+replayed as native calls), so long sessions showed the model hundreds of its
+own turns ending in narration and zero examples of itself calling tools —
+it learned "turns end with text" and EOS'd right after the preamble
+("Hunting it:"), finish_reason invisible, nudge net too narrow. Fresh
+sessions were immune. Usage arithmetic (`completion_tokens ≈ thinking +
+text`, `usage_source: real`) proved the call was never generated — not
+dropped by the app.
+
+**Fix 1 — native tool replay (`src/tool_replay.py`, `routes/chat_helpers.py`):**
+- New `replay_tool_events_as_native()`: rebuilds persisted tool_events as
+  real assistant `tool_calls` + `role=tool` result messages in request
+  history (newest-12 events/turn, 16k chars/turn budget, head+tail output
+  truncation). Deterministic per message (content-derived call ids, fixed
+  truncation) so local KV-cache prefixes stay byte-stable. JSON-dict
+  commands (app_api) pass through as real args; others as `{"command": ...}`.
+- `chat_helpers` gates on `_agent_route_tool_mode`: API models get native
+  replay + a static anti-re-run note; text-transport models keep the prose
+  digest (their within-turn history has no native calls either). Digest
+  path unchanged otherwise.
+
+**Fix 2 — finish_reason visibility (`src/llm_core.py`, `src/agent_loop.py`):**
+- Streaming path now extracts `choices[0].finish_reason` (OpenAI-compat)
+  and Anthropic `message_delta.stop_reason` (mapped to OpenAI vocabulary)
+  and emits `data: {"type": "finish_reason", ...}` before [DONE].
+- Agent loop records it per round (`round_finish_reasons`, and per-round
+  `finish_reason` in usage_buckets) and logs a WARNING on `length` — a
+  cap-truncated response is no longer indistinguishable from a voluntary
+  stop.
+
+**Fix 3 — explicit output cap (`src/agent_loop.py`):**
+- `AGENT_MIN_OUTPUT_TOKENS = 16384` floor applied at `stream_agent_loop`
+  entry (preset default 0 → param omitted → provider default governed).
+  Clears the 8k webui slider ceiling; reasoning models burning 5-7k tokens
+  thinking at long context no longer risk hitting a default cap right at
+  the preamble→call boundary.
+
+**Fix 4 — intent-nudge net widened (`src/agent_loop.py`):**
+- `_looks_like_promise`: char gate 400→1200 (every real failure had a
+  424-706 char preamble — the old gate excluded them all), plus a
+  trailing-":" heuristic (the "Hunting it:" shape ends exactly there).
+- `_INTENT_RE`: added `i can(?! see|help)|we can` starters, 14 new verbs
+  (settle/hunt/fire/measure/grep/trace/scan/...), and a gerund-first line
+  alternative (Hunting/Firing/Starting with/Reading...). `_matched_phrase`
+  falls back to the text tail when only the colon heuristic matched.
+- Gauntlet: all 6 real failure phrasings from `dea27bea` now trip the
+  nudge; 5 negative controls (incl. "I can see", >1200-char colon) stay
+  clean.
+
+**Fix 5 — guard reword (`src/agent_loop.py`):** tool-verification note now
+appends "(If no tools were meant to run this turn, this warning can be
+safely ignored.)" — stays in content (that's how the AI sees it next turn)
+without reading as an accusation on false positives.
+
+**Verified:**
+- `py_compile` clean on all 4 files.
+- 27/27 on the directly-relevant suites (`test_action_intents*`,
+  `test_tool_replay`, `test_history_compact_tool_calls`).
+- Targeted slice: 1383 passed; 19 failures all confirmed pre-existing via
+  worktree diff against the pre-change stash (`98fb964b`) — zero new
+  failures. One red herring (`test_native_model_real_native_tool_call_is_
+  executed`) is live-DB-state-dependent: passes with `ODYSSEUS_DATA_DIR`
+  fresh, fails on the live DB with my patch reverted too.
+- Replay unit smoke: pairing (call↔result ids), determinism (byte-identical
+  re-renders), idempotence (no double-replay), char/event caps, JSON-dict
+  args passthrough, digest fallback intact.
+
+**Deploy:** backend change — needs a server restart (re-run.sh) to take
+effect. No DB/schema change; replay is request-only and never mutates saved
+history.
+
+## 2026-10-30 (15:46) — fix(chat): "Regenerate from here" re-sent the last user message (duplicate bubble) instead of regenerating in place
+
+**Symptom (user-reported):** clicking the ↻ Regenerate button on an AI bubble
+just re-sent the last user message — a second copy of the user bubble appeared
+and the new response streamed below it, instead of the response being
+regenerated in place on the latest agent bubble with variant navigation.
+
+**Root cause:** `static/js/chat.js::handleChatSubmit` captured the pending-flow
+flags at send entry — `const skipBubble = _hideUserBubble; _hideUserBubble =
+false;` (line ~1661, Finding A) — but the `try` block further down (~line 1977)
+*re-declared* `const skipBubble = _hideUserBubble || !!approvalForSend;` in its
+own block scope, re-reading the global that the entry capture had already
+cleared. The shadowed read was therefore always `false` for regen/continue
+(no tool approval), so `if (!skipBubble) addMessage('user', ...)` fired and a
+duplicate user bubble was appended. The backend regen path was fine all along:
+truncate with `keep_through_id` kept all context through the last user message,
+`reuse_last_user=true` reused that row (no new user row in `chat_messages`),
+and the new assistant row carried `variants` (original + regen) with the
+`<n/m>` variant nav rendering on the new AI bubble.
+
+**Fix:** entry capture now folds in the approval case
+(`const skipBubble = _hideUserBubble || !!approvalForSend;`), and the try
+block no longer re-reads the cleared global — it uses the outer entry-captured
+`skipBubble` (comment updated to warn against re-adding the shadowing read).
+
+**Verified live** (127.0.0.1:7001, session 8c8430b3…, glm-5.3-flash): before
+fix, regen produced DOM `user, user, ai` (2 user bubbles sharing one dbId);
+after fix, regen produces exactly `user, ai` — one user bubble (dbId
+3670fa6b) + the new AI bubble with variant nav `<3/3>`, `<` flips to `<2/3>`.
+Network: `POST /api/session/{id}/truncate {"keep_count":0,"keep_through_id":
+"3670fa6b…"}` then `POST /api/chat_stream` with `reuse_last_user=true`. DB:
+still exactly 1 non-archived user row; old assistant rows archived; new
+assistant row has 3 variants. `node --check` clean on the edited module.
+
+## 2026-10-30 (16:20) — fix(chat): regen from a USER message still double-sent (second user row, no variants)
+
+**Symptom (user-reported):** "Still appears to double-send (with regen on
+user-message)" — using the ↻ on a user bubble (footer "Resend message", or the
+vision editor's "Regenerate message" which calls
+`resendUserMessage(el, { replaceFromHere: true })`) left the user message
+twice in history and the new reply without variant navigation.
+
+**Root cause:** `static/js/chat.js::resendUserMessage` with `replaceFromHere`
+truncated through the user row and set `_hideUserBubble = true`, but never set
+`_pendingRegenUser = true` — so the send did NOT append `reuse_last_user=true`
+and the backend persisted a SECOND user row (verified live: chat_stream body
+had no `reuse_last_user` field; DB gained a duplicate non-archived user row).
+It also never stashed `_pendingVariants`, so the new reply got no `<n/m>`
+variant nav. The footer "Resend message" (no opts) skipped the truncate
+entirely and appended a fresh user bubble + reply at the end.
+
+**Fix (static/js/chat.js, resendUserMessage):** compute the first following
+`.msg-ai` sibling; if one exists (or `replaceFromHere` was requested), the
+call now delegates to the shared `regenerateFrom(nextAi)` — which truncates
+with `keep_through_id`, stashes the old reply as variant 0, sets
+`_hideUserBubble` + `_pendingRegenUser`, and resubmits — so the user row is
+reused, not duplicated, and the new response lands on the latest agent bubble
+with variant navigation. When no reply bubble exists yet, the manual path now
+also sets `_pendingRegenUser = true`. Plain resend (no reply yet, no
+replaceFromHere) still appends, unchanged. Companion fix from the previous
+entry: the shadowed `skipBubble` re-read inside the send `try` block was
+removed so the entry-captured value (which clears the global) is what the
+bubble-suppression check actually uses.
+
+**Verified live** (127.0.0.1:7001, session 4b1756ed…, glm-5.3-flash):
+`resendUserMessage(userMsg, {replaceFromHere:true})` and the footer ↻ both
+now produce DOM `user, ai` (was `user, user, ai` / duplicate user row before);
+truncate body `{"keep_count":0,"keep_through_id":"78d6d573…"}`; chat_stream
+body includes `reuse_last_user=true`; DB keeps exactly 1 non-archived user
+row, old assistant rows archived, new assistant row carries variants
+(2 after first regen, 3 after second); variant nav renders `<3/3>` and `<`
+flips to `<2/3>`; after full page reload the DOM renders clean from DB
+(1 user + 1 AI). `node --check` clean on the edited module.
+
+## 2026-10-30 (19:25) — fix(agent): nudge now RECOVERS hallucinated work-log turns (post-deploy residual, session 200e825f) (IRIS)
+
+**Residual found in the wild** (msg `48c84ab8`, 24 min AFTER the 16:06
+restart — all five fixes from the 11:30 entry were live): the model wrote
+"Updating the tally, then batch 8~" and then **fabricated the entire
+batch-7 tally table in prose** (5.7k chars) instead of stopping — the
+hallucinated-completion variant, not announce-then-stop. Small session
+(83k tokens, 8% context), so the history-diet fix was never the relevant
+layer here; this is per-turn flakiness. The tool-verification guard DID
+catch it post-hoc (`tool_claims_unverified=true`, reworded note visible —
+user commented on it next turn), but nothing recovered the turn.
+
+**Forensics:** the nudge missed for three independent reasons — "Updating"
+was not in the gerund list, the text does not end with a colon (it ends
+with fabricated results), and 5723 chars > the 1200 gate. Worse, the guard
+itself tripped on incidental verbs (`closed`, `running`) — `updated|updating`
+was missing from `_TOOL_CLAIM_STRONG_RE` entirely (it had `edited|editing`
+but not the sibling). Session scan: 6 of 9 post-restart assistant turns ran
+zero tools in a tool-dependent workflow.
+
+**Fix (all in `src/agent_loop.py`):**
+- `_looks_like_promise` gains branch (b): when the recent user request was
+  effectful AND the round prose narrates ≥2 distinct strong tool actions
+  with zero tools run (`_looks_like_tool_claim_narration`, same detector as
+  the post-loop guard), treat it as a broken promise at ANY length — the
+  in-loop nudge now gives the model a second chance to actually run the
+  tool instead of only flagging after the fact.
+- Gerund-first list += updating/writing/adding/creating/sending/marking/
+  translating/summarizing/compiling/building.
+- `_TOOL_CLAIM_STRONG_RE` += `updated|updating`.
+- Nudge message gains a fabrication sting when only the narration branch
+  fired: "Your reply also describes results as if tools had already run —
+  none did this turn. Never present fabricated output as a tool result."
+
+**Verified:**
+- `py_compile` clean; 27/27 on the relevant suites (`test_action_intents*`,
+  `test_tool_replay`, `test_history_compact_tool_calls`).
+- Gauntlet: the REAL 48c84ab8 specimen now fires via regex+narration
+  (double-covered); all six earlier failure shapes still fire; six
+  negatives stay clean, incl. honest past-tense summaries (effectful-gate
+  holds), "I can see", fenced replies, and >1200-char colon-only text.
+- Known boundary: bare "All 15 edits landed" claims with zero strong verbs
+  still slip the narration detector (≥2-verb threshold is the accepted
+  trigger-happiness tradeoff).
+
+**Deploy:** backend change — needs a server restart to take effect.
+
+---
+
+## 2026-10-30 20:35 — Chat-box thinking control (per-session reasoning_effort) (IRIS)
+
+**What:** the reasoning/thinking control moved into the chat box. A lightbulb
+button in the composer's left toolbar (`#thinking-btn`) opens a dropdown:
+**Default / Off / Low / Medium / High / Max**. Stored per session in
+localStorage (`odysseus:reasoning:<sid>`), sent as `reasoning_effort` on every
+`/api/chat_stream` (form field; JSON body also accepted) and `/api/chat`.
+"Default" = no override → the global `thinking_enabled` setting in the
+Settings panel still applies (that card now points at the chat-box control).
+
+**Backend:**
+- `src/llm_core.py`: new per-request ContextVar `_REQUEST_REASONING` +
+  `set_request_reasoning()` / `normalize_reasoning_override()` ('none'→'off',
+  'default'/'auto'/'on'→None) + `_apply_request_reasoning_effort()`, applied
+  at all three payload build sites (non-stream chat, utility, stream).
+  Graded levels are only sent to providers known to accept them — NVIDIA NIM
+  (GLM-5.x accepts low/medium/high/max per Z.AI docs, passed verbatim),
+  self-hosted local vLLM-style, Groq/Mistral (max→high), OpenRouter
+  (`reasoning:{effort}`, max→high), OpenAI reasoning models (max→high, and
+  skipped entirely for GPT-5.x + tools, which reject the field). Unknown
+  public hosts get nothing (no 400 risk). 'off' rides the existing no_think
+  path (`chat_template_kwargs.enable_thinking:false` on NIM/vLLM etc.).
+- Cache keys partition on the override (`_get_cache_key(extra=...)`); None
+  values are dropped so no-override hashes match pre-feature keys (no cache
+  invalidation on deploy).
+- **Bug fixed along the way:** the STREAM path never called
+  `_apply_thinking_off_openai_compat` and didn't pass `force=no_think` to the
+  DeepSeek scrub — so the global thinking toggle's off-switch never reached
+  OpenAI-compat providers on `/api/chat_stream` (the main chat path). Now it
+  does.
+- `routes/chat_routes.py`: both endpoints set the ContextVar from the request
+  (scoped to the request task; the streaming generator and agent loop inherit
+  it — `stream_agent_loop` is awaited inline in the handler).
+- `src/request_models.py`: `ChatRequest.reasoning_effort` with validator.
+
+**Frontend:** `static/index.html` (composer control + settings-card hint),
+`static/js/chat.js` (per-session state, menu wiring, `fd.append`), 
+`static/js/sessions.js` (refresh button on session open), `static/style.css`.
+
+**Verified:** py_compile clean; `node --check` clean on chat.js/sessions.js;
+24/24 llm_core-adjacent tests pass; payload unit checks (nvidia levels
+verbatim, off→no field, openrouter/groq mapping, unknown-host safe, GPT-5
+tools guard, cache partition + legacy-key compatibility). One pre-existing
+failure (`test_app_config_shared_fetch_js` — settings.js:509 POST lacks cache
+invalidation) confirmed present at HEAD, unrelated.
+
+**Deploy:** backend change — needs a server restart; frontend is static files
+(served fresh on reload, SW cache-busted by deploy).
+
+---
+
+## 2026-10-30 21:15 — fix(ui): thinking-level popup was clipped to a sliver (portal to <body>) (IRIS)
+
+**Bug:** the chat-box thinking menu rendered as "a line with shading" —
+`.chat-input-left` is `overflow: hidden` and `.chat-input-bar` has
+`container-type: inline-size` (a containing block for fixed/absolute
+descendants), so the in-place `position: absolute; bottom: 100%` menu was
+clipped to ~0px inside the composer row. Reproduced in a standalone harness
+(real style.css + real composer markup + the real control block sliced from
+chat.js): menu rect y=-108 h=202 vs overflow row y=100..132 → 0px visible.
+
+**Fix:** `initThinkingControl()` in `static/js/chat.js` now portals the menu
+to `<body>` while open (same pattern as the overflow "+" menu in app.js),
+pins it `position: fixed` 8px above the button (clamped to viewport),
+repositions on scroll/resize, and restores it to `#thinking-wrap` on close.
+`style.css`: `.thinking-menu` is now `position: fixed; z-index: 10000;
+max-height: 60vh; overflow-y: auto`. Also added `#thinking-btn` to the
+mobile textarea-refocus exclusions in `static/app.js` (no keyboard bounce
+when tapping the button).
+
+**Verified in-browser** (standalone page on :7999, since the app itself is
+behind login): open → menu portaled to BODY, fixed, 184x202, fully in
+viewport, 6 items visible; pick "Low" → closes, label "Low", button
+active, `localStorage['odysseus:reasoning:<sid>']='low'`; reopen works.
+Screenshot confirmed the rendered dropdown. `node --check` clean on
+chat.js/app.js. Test harness removed afterwards.
+
+**Deploy:** static files only — no server restart needed, just reload
+(SW cache-busted on deploy).
+
+---
+
+## 2026-10-31 04:35 — fix(agent): intent-without-action guard is now PASSIVE (flag-only, no nudge/kill) + wrap-up exemption (IRIS)
+
+**Bug (specimen chat d4dbac50, msg 6c157fb3):** the in-loop supervisor nudged
+the model whenever a no-tools round looked like an unfinished promise. On a
+wrap-up summary (tools ran in earlier rounds, final round is prose with >=2
+strong verbs) it nudged, the model re-wrote its finishing summary, tripped
+again, and after _MAX_INTENT_NUDGES=2 the run was KILLED with
+"The agent stopped because it repeatedly announced a tool action without
+making the tool call." Specimen rounds 27-29 are three near-identical
+re-written summaries, then the kill.
+
+**Fix (per Sir: "just have the guard flag the message"):**
+- `src/agent_loop.py` supervisor: the nudge system-message injection and the
+  `intent_nudge_exhausted` kill are REMOVED. Detection still runs in-loop;
+  on a hit it only sets `_intent_without_action = True` and logs, then the
+  round ends normally. The message stands as written.
+- Post-loop guard folds the flag in: `_tool_claims_unverified =
+  _intent_without_action or (not tool_events and effectful and narration)`
+  → appends the existing visible "⚠ Described tool actions did not execute…
+  (can be safely ignored)" note as a normal delta + sets the
+  `tool_claims_unverified` metrics/metadata flag. Pure passive labeling.
+- Wrap-up exemption: new `_looks_like_conclusion()` (conclusion phrases in
+  head/tail 250 chars) + `_tools_ran_in_history_since_last_user()`; a round
+  that is BOTH conclusion-shaped AND corroborated by prior tool work
+  (run-level `tool_events` or native tool messages in history since the last
+  user msg) is the model FINISHING — not even flagged. Pure hallucinations
+  (zero tools anywhere) are still flagged.
+- `_intent_nudge_count` / `_MAX_INTENT_NUDGES` removed (no longer referenced).
+  Frontend `intent_nudge_exhausted` handlers left in place (dead, harmless).
+
+**Tests:** rewrote `test_emits_intent_nudge_exhausted_when_cap_is_exhausted`
+→ `test_intent_without_action_is_flagged_not_nudged_or_killed` (no kill
+event, no extra rounds, ⚠ note + metrics flag present); added
+`test_hallucinated_work_log_with_zero_tools_is_flagged` and
+`test_wrap_up_summary_after_real_tools_is_not_flagged`.
+69/69 on test_agent_rounds_exhausted + test_tool_policy + test_action_intents*
++ test_continuation_nudge_gating; 128 passed on the wider agent-loop slice
+(the 1 failure, test_agent_loop_tool_output_truncation
+::test_default_limit_matches_constant, is PRE-EXISTING: tool_utils
+MAX_OUTPUT_CHARS=50000 vs test asserting 10000 — untouched by this change).
+Helper unit checks pass (conclusion detector, history tool scan).
+
+**Deploy:** backend change — takes effect on next server restart. NOT
+restarted now per Sir ("don't force a restart"); the running server keeps
+the old behavior until then.
+
+## 2026-10-30 (16:35) — fix(chat): "Regenerate from here" button vanished from AI bubbles on page refresh
+
+**Symptom (user-reported):** the ↻ Regenerate button was present during a live
+session but disappeared from the AI message footer after a refresh.
+
+**Root cause (two holes):**
+1. `static/js/chatRenderer.js::addMessage` (the history-reload path) built the
+   footer with `wrap.appendChild(createMsgFooter(wrap))` BEFORE
+   `box.appendChild(wrap)`. `createMsgFooter` evaluates the regen action's
+   `available: () => _hasAdjacentUserPrompt(msgElement)` immediately, and that
+   guard starts with `if (!msgElement.parentNode) return false` — a detached
+   bubble has no siblings, so the guard was always false on reload and regen
+   was filtered out of the footer entirely (it is a pinned action, so it did
+   not even fall into the "···" overflow). Live-stream paths attach the bubble
+   first and build the footer at stream end, which is why it only vanished on
+   refresh. Same detached-footer ordering existed in the research-result
+   bubble path (`static/js/chat.js` ~line 7022).
+2. `_hasAdjacentUserPrompt`'s walk-back treated the r=0 bubble of the SAME
+   multi-round agent response as a foreign AI response, so on reload of an
+   agent turn (footer lands on the last round bubble) regen was hidden too.
+
+**Fix:**
+- `addMessage`: `box.appendChild(wrap)` now happens BEFORE footer creation
+  (both assistant and user branches).
+- research-result path in `chat.js`: `_box.appendChild(_wrap)` moved before
+  `createMsgFooter(_wrap)`.
+- `_hasAdjacentUserPrompt`: a preceding `msg-ai` (non-continuation) bubble
+  whose `dataset.dbId` matches the current bubble's dbId is the same
+  response's first round — the walk skips it and continues to the user
+  prompt. Different dbId (a previous turn's response) still returns false, so
+  the orphan guard (hide regen when the user message was deleted) is intact.
+
+**Verified live** (127.0.0.1:7001, session fd5f9219…, glm-5.3-flash): before
+fix, after a full reload the AI footer actions were `[continue, copy, delete]`
+— no regen. After fix, post-reload footer is `[continue, regen, copy, delete]`
+with title "Regenerate from here"; clicking it post-refresh fires
+`POST /api/session/{id}/truncate {"keep_count":0,"keep_through_id":…}` then
+`POST /api/chat_stream` with `reuse_last_user=true`; DOM stays at exactly
+1 user + 1 AI bubble; DB keeps 1 non-archived user row, old reply archived,
+new reply carries variants=2 with `<2/2>` nav; a second reload keeps the
+button pinned on the variant bubble. Synthetic DOM checks: regen shown on a
+normal bubble and on the last round of a same-dbId multi-round response,
+hidden on a true orphan (no preceding user message). `node --check` clean on
+both edited modules.
+
+## 2026-10-30 (23:10) — feat(chat): Continue button = same-turn prefill (no handshake user message) + fix UnboundLocalError in chat_stream
+
+**Feature (user-requested):** the Continue button (footer ▸ on the last AI
+bubble, and the "[Message interrupted]" indicator) no longer sends a hidden
+user message like "Your previous response ended with: … Do NOT repeat…".
+Instead it sends an EMPTY message with `continue_assistant=true`; the model's
+own partial reply stays as the trailing assistant message and the provider
+just keeps writing (prefill, same turn). The continuation merges SEAMLESSLY
+into the same bubble (no `*(continued)*` marker) and into the SAME DB row
+(server-side merge), the stopped badge is cleared, and no user row is created.
+Prefill only applies in chat mode on the LAST AI bubble; agent mode and
+middle-bubble continues keep the legacy handshake flow.
+
+**Files:**
+- `routes/chat_routes.py`: parse `continue_assistant` right after the last
+  `chat_mode` override (~line 1216) — it is first used in
+  `coerce_message_and_session(allow_empty=...)` at ~line 1291. (An earlier
+  version assigned it at ~line 1478, causing `UnboundLocalError: continue_assistant`
+  on EVERY chat_stream call — fixed by moving the assignment up; AST-verified
+  store-before-load.) `allow_empty` now includes the flag; `build_chat_context`
+  gets `continue_assistant=` and `persist_user_message=... and not
+  continue_assistant`; draft checkpointing skipped during a prefill turn
+  (`_checkpoint` returns None — the disconnect path merges the partial into
+  the same row instead); `save_assistant_response` / `_persist_stream_partial`
+  calls pass `continue_assistant=`; background memory extraction gated off for
+  prefill turns.
+- `routes/chat_helpers.py`: `build_chat_context(continue_assistant=...)` —
+  forces `persist_user_message=False` and `casual_low_signal=True` (no
+  memory/skills/RAG/web prefetch on an empty nudge), and a `_tail_insert`
+  helper puts the datetime + tool-replay context notes BEFORE a trailing
+  assistant message so the last message stays assistant (prefill) instead of
+  being answered as a user note. `save_assistant_response(continue_assistant=...)`
+  merges the reply into the last assistant row via
+  `session_manager.append_to_last_assistant(..., clear_stopped=True)` and
+  returns that row's id (falls back to a normal add if no eligible row).
+  `_persist_stream_partial(continue_assistant=...)` appends a cut-off partial
+  to the same row keeping `stopped:True`.
+- `core/session_manager.py`: new `append_to_last_assistant(session_id,
+  extra_content, metadata, clear_stopped=False)` — appends text to the last
+  non-archived assistant message IN PLACE (in-memory history + DbChatMessage
+  row, matched by `metadata._db_id` with fallback to newest non-archived
+  assistant row); pops `draft`, optionally `stopped`/`stream_error`.
+- `static/js/chat.js`: `_continuePrefill` flag + `setContinuePrefill` +
+  `continueFromBubble(el)` (chat mode + last AI bubble → prefill with empty
+  input; otherwise legacy handshake text; clicks send). `handleChatSubmit`
+  captures `continuePrefill`, allows empty message when `pendingContinue`,
+  appends `continue_assistant=true` to the FormData (chat mode only), and the
+  stream-end merge is seamless (`oldRaw + newRaw`, no separator, no
+  merge-last-assistant POST) for prefill, legacy `*(continued)*` otherwise;
+  stopped badge removed on merge. Stopped-indicator Continue handlers now
+  call `continueFromBubble`. Both new functions exported on `chatModule`.
+- `static/js/chatRenderer.js`: footer Continue handler and the
+  refresh-rendered stopped-indicator Continue now call
+  `window.chatModule.continueFromBubble(...)` instead of building the
+  handshake text inline.
+
+**Verified statically:** `py_compile` clean on all three py files; AST check
+confirms first store of `continue_assistant` (line 1216) precedes first load
+(line 1291) in `chat_stream`; `node --check` clean on both JS modules.
+Live end-to-end verification pending the user's own server restart
+(re-run.sh Ctrl+C) — server is NOT restarted by the assistant per user rule.
+
+---
+
+## 2026-10-31 05:20 — fix(llm_core): NIM "thinking off" actually off — reasoning_effort "low" (verified live) (IRIS)
+
+**Bug:** chat-box Thinking=Off (and the global thinking_enabled toggle) sent
+only `chat_template_kwargs: {"enable_thinking": false}` for NVIDIA NIM —
+which NIM IGNORES for GLM-5.x. Verified live against
+integrate.api.nvidia.com with glm-5.3-flash: template-only still streams
+~200-800 chars of reasoning_content (trivial + hard prompts); "none" and
+"minimal" are also NOT honored (model thinks MORE: 909/199 chars).
+
+**Verified live (2026-10-31, NIM, glm-5.3-flash):**
+- `reasoning_effort: "low"` → **0 reasoning chars**, non-streaming AND
+  streaming, trivial and hard prompts. Safe with tools: tools+low returns
+  tool_calls normally (no 400). ← the real off-switch on NIM.
+- GLM accepts low/medium/high/max verbatim. mistral-large-4-1t-a52b accepts
+  low/medium/high but **400s on "max" and "none"**; nothing fully suppresses
+  its thinking (provider limitation — "low" is the floor).
+
+**Fix (`src/llm_core.py`):**
+- `_apply_thinking_off_openai_compat`: nvidia branch now sends
+  `reasoning_effort: "low"` AND `chat_template_kwargs` (template kwarg kept —
+  harmless on NIM, still the switch for self-hosted vLLM, which keeps its own
+  branch). Affects both the chat-box Off and the global toggle.
+- `_apply_request_reasoning_effort`: nvidia levels pass verbatim for GLM
+  models; "max" clamped to "high" for non-GLM NIM models (mistral 400s).
+
+**Verified:** payload unit checks (off→low+template on glm AND mistral;
+glm low/medium/high/max verbatim; mistral max→high; default→no fields);
+py_compile clean; 26/26 llm_core-adjacent tests pass. The 10 failures in the
+broad "cache/thinking" pytest slice are pre-existing and unrelated (fallback
+delta logic, kv-cache, approval routing — my diff touches none of them).
+
+**Deploy:** backend change — live on next server restart (running server
+started 22:13, before this fix). NOT restarted per Sir's standing "don't
+force a restart".
+
+## 2026-10-31 (10:35) — fix(chat): make Continue-prefill actually fire (agent-mode gate + ghost handshake rows)
+
+**User report:** Continue still sent the legacy handshake user message
+("Your previous response ended with: …") — visible in the server log as an
+[agent-intent] turn through stream_agent_loop — and the ghost handshake row
+only appeared in the chat history after a reload.
+
+**Root causes:**
+1. `continueFromBubble` gated prefill on `!agentMode`, so with the mode toggle
+   on agent the click took the legacy handshake branch (and the request went
+   to the agent loop). A Continue is a pure text continuation, so mode must
+   not matter.
+2. The send path appended `continue_assistant` only when `!isAgentMode`, and
+   sent `mode=agent` — so even a prefill-armed click in agent mode never
+   reached the prefill backend path.
+3. The history renderer (`sessions.js::_renderHistoryMessage`) filtered some
+   handshake prefixes but not "Your previous response ended with:" — hence the
+   ghost bubble on reload. `get_context_messages` also still fed those rows
+   to the model.
+
+**Fix:**
+- `static/js/chat.js`: `continueFromBubble` now prefills whenever the clicked
+   bubble is the LAST `.msg-ai` (mode-independent; middle bubbles keep the
+   handshake). In `handleChatSubmit`, `if (continuePrefill) isAgentMode = false`
+   so the request goes out as `mode=chat` + `continue_assistant=true`.
+- `routes/chat_routes.py`: `continue_assistant` is parsed unconditionally
+  (line ~1215, still before first use — AST-verified) and, when set, forces
+  `chat_mode = "chat"` so the request never enters `stream_agent_loop`, even
+  if the toggle/auto-escalation promoted the turn.
+- `core/models.py::get_context_messages`: user rows starting with
+  "Your previous response ended with:" / "Your previous response was
+  interrupted." / "Your message was cut off." are excluded from LLM context.
+- `static/js/sessions.js::_renderHistoryMessage`: added the
+  "Your previous response ended with:" prefix to the render filter so legacy
+  ghost handshake bubbles no longer appear on reload.
+
+**Verified (no server restart — static files are served network-first, and the
+running backend already has the flag handling):** `py_compile` clean;
+`node --check` clean; AST store-before-load for `continue_assistant`;
+harness test of `build_chat_context(continue_assistant=True, message="")`:
+no user row persisted, trailing message is the partial assistant, datetime
+context inserted BEFORE it (prefill-safe); control turn unchanged.
+`SessionManager.append_to_last_assistant` tested against a temp
+DATABASE_URL db: merges content into the SAME row (DB + in-memory), clears
+`stopped`, merges metadata, returns the row id, returns None when there is no
+assistant tail (caller falls back to a normal add).
+
+## 2026-10-31 (12:05) — fix(chat): Continue-prefill live-verified end-to-end; send-btn newchat-mode trap fixed
+
+**Root cause of "still sends handshake":** three stacked issues —
+1. `continueFromBubble` clicked `.send-btn`, but with an EMPTY composer the
+   button is in `data-mode="newchat"` (app.js:4036) and clicking it opens a NEW
+   CHAT instead of sending. Now it calls `handleChatSubmit({preventDefault(){}})`
+   directly (same pattern as `_setComposerAndSend`).
+2. Prefill was gated on `!agentMode` — with the toggle on agent the click took
+   the legacy handshake branch and the request went to stream_agent_loop.
+   Now prefill applies whenever the clicked bubble is the LAST `.msg-ai`
+   (mode-independent); the send forces `isAgentMode=false` so the request goes
+   out as `mode=chat` + `continue_assistant=true`.
+3. Backend gate `continue_assistant = flag and chat_mode=="chat"` replaced:
+   the flag is parsed unconditionally and forces `chat_mode="chat"` when set,
+   so a prefill request never enters the agent loop even if the toggle or
+   auto-escalation promoted the turn.
+
+**Live-verified against the running server (no restart — static JS is
+network-first, and the 10:29 boot already had the flag handling):**
+- Continue on a completed reply: request had EMPTY message + `mode=chat` +
+  `continue_assistant=true`; model prefilled; DB row `3d23fc5c` grew
+  `MELON-31` → `MELON-31MELON-31` in place (no new user/assistant row,
+  `message_saved` returned the same id); DOM merged seamlessly into the same
+  bubble, no `*(continued)*` marker, footer intact.
+- Stop mid-stream → partial row saved `stopped=True` → Continue on the last
+  bubble: same empty+flag request; row `1a973e0f` grew 0 → 24764 chars,
+  `stopped` cleared, same row id; DOM: stopped indicator removed, single
+  merged bubble.
+- Ghost check: session 349bf43f (which has a legacy handshake row) renders
+  with 0 handshake bubbles after reload — `sessions.js` render filter now
+  includes "Your previous response ended with:".
+- Harness tests (temp DATABASE_URL): `build_chat_context(continue_assistant=True,
+  message="")` persists no user row and leaves the partial assistant as the
+  trailing message with the datetime note inserted BEFORE it;
+  `append_to_last_assistant` merges content into the same DB row + in-memory
+  history, clears `stopped`, merges metadata, returns the row id, returns None
+  when there is no assistant tail; `get_context_messages` excludes handshake
+  user rows.
+
+**Files this round:** `static/js/chat.js` (continueFromBubble direct submit +
+mode-independent prefill; send path forces chat mode + flag),
+`routes/chat_routes.py` (unconditional flag parse + force chat_mode),
+`core/models.py` (handshake rows excluded from LLM context),
+`static/js/sessions.js` (render filter prefix added).
+
+## 2026-10-31 (20:10) — fix(chat): agent-mode Continue resumes the agent loop (tools intact) instead of forcing chat mode
+
+**User need:** free NVIDIA endpoint 504/429s mid-agent-turn at the tool
+reconnect; user was manually typing "ctn". The Continue button must resume the
+agent's WORK (more tool calls allowed), not just prefill text.
+
+**Change:** `continue_assistant` is now parsed unconditionally (no
+`chat_mode == "chat"` gate, no force-`chat_mode`). Semantics per mode:
+- chat mode: text prefill — trailing assistant message, same-row merge
+  (`continue_prefill = continue_assistant and chat_mode == "chat"` gates the
+  merge to chat mode only).
+- agent mode: `persist_user_message=False`, request routes to
+  `stream_agent_loop` as usual; native tool-event replay
+  (`replay_tool_events_as_native`) rebuilds the persisted tool_events as
+  assistant tool_calls + role=tool results at the context tail, so the loop's
+  first model call continues right after the tool results with full tool
+  access. Agent rounds persist as their own rows (no same-row merge).
+- All `save_assistant_response` / `_persist_stream_partial` call sites now pass
+  `continue_assistant=continue_prefill` (merge only in chat mode).
+- Frontend: removed the `if (continuePrefill) isAgentMode = false` force —
+  agent mode sends `mode=agent` + `continue_assistant=true` + empty message.
+  `continueFromBubble` prefills on the LAST AI bubble in any mode; middle
+  bubbles keep the legacy handshake.
+
+**Verified:** harness (stubbed deps, `src.agent_loop._agent_route_tool_mode`
+patched to API-model) with history [user task, assistant(stopped, tool_events)]
++ `agent_mode=True, continue_assistant=True, message=""`: add_user_message NOT
+called (history stays 2), tail = [user, assistant w/ native tool_calls(bash),
+tool result, replay note]. Chat-mode prefill was live-verified earlier against
+the running server (empty message + flag → same-row merge, seamless bubble).
+py_compile + node --check clean. Agent-mode resume backend loads on the user's
+next re-run.sh restart (assistant does not restart the server per user rule).

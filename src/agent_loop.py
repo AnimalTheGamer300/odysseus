@@ -689,7 +689,7 @@ Generate an image. Line 1 = description, line 2 = model name, line 3 = WxH (e.g.
     "chat_with_model": "- ```chat_with_model``` — Ask a DIFFERENT AI model and relay its answer. Line 1 = model name (or 'model@endpoint'), rest = your message. Use when the user says 'ask <model>', 'what does <model> think', or wants to compare/their answer from another model.",
     "ask_teacher": "- ```ask_teacher``` — Escalate a hard question to a more capable model. Line 1 = model name or 'auto', rest = the question. Use when stuck or need expert knowledge.",
     "list_models": "- ```list_models``` — Show all available AI models across all endpoints. Use when user asks what models are available.",
-    "spawn_agent": "- ```spawn_agent``` — Spawn a sub-agent (a fresh AI agent WITH tool access) to autonomously execute a self-contained task and return its final report. Args (JSON): {\"task\": \"...\", \"model\": \"model@endpoint (optional)\", \"system_prompt\": \"persona (optional)\", \"max_rounds\": 15, \"timeout_minutes\": 10, \"background\": false}. Unlike chat_with_model (bare completion), the sub-agent can use tools. Use for delegating subtasks or isolating context-heavy work. Blocking spawns run one at a time and park the conversation until the report returns — use \"background\": true for anything slow or for several agents at once: you get an agent id back IMMEDIATELY, the report is delivered to this conversation when it finishes, and you collect with ```check_agents```. The sub-agent cannot see this conversation or ask the user questions — put everything it needs in `task`.",
+    "spawn_agent": "- ```spawn_agent``` — Spawn a sub-agent (a fresh AI agent WITH tool access) to autonomously execute a self-contained task and return its final report. Args (JSON): {\"task\": \"...\", \"model\": \"model@endpoint (optional)\", \"system_prompt\": \"persona (optional)\", \"max_rounds\": 15, \"timeout_minutes\": 10, \"background\": false}. Unlike chat_with_model (bare completion), the sub-agent can use tools. Use for delegating subtasks or isolating context-heavy work. Blocking spawns run one at a time and park the conversation until the report returns — use \"background\": true for anything slow or for several agents at once: you get an agent id back IMMEDIATELY, the report is delivered to this conversation when it finishes, and you collect with ```check_agents```. The sub-agent cannot see this conversation or ask the user questions — put everything it needs in `task`. Sub-agents run headlessly: the interactive tool-approval gate never fires for them (auto-satisfied), so they can chain web_fetch → bash without stalling; other restrictions still apply.",
     "check_agents": "- ```check_agents``` — Check background sub-agents launched with spawn_agent(background=true). No args: list all agent jobs (id/status/task/age) and collect the full reports of any finished-but-undelivered ones. Optional arg: an agent id for just that one. Finished reports are delivered once and marked collected.",
     "manage_session": "- ```manage_session``` — Rename, archive, delete, fork, switch, or `list` chats (the UI calls them 'chats'; 'session' is internal). Line 1 = action (list/switch/rename/archive/unarchive/delete/important/unimportant/truncate/fork), Line 2 = exact chat id from `list_sessions` (or `current` where supported). For delete/archive/truncate, always list first and reuse the exact id; never invent placeholder ids. `switch`/`open` returns a clickable anchor link the user can tap to open the chat — use for \"open my X chat\".",
     "manage_memory": "- ```manage_memory``` — Manage the user's persistent memory (facts about the USER themselves, their preferences, context that persists across chats). Line 1 = action (list/add/edit/delete/search), rest = content. Use when user says 'remember this' about themselves, states identity facts like 'my name is <name>' / 'call me <name>' / 'I live in <place>', or asks about stored memories. DO NOT use for info about another person (their address, phone, email, birthday) — that goes in `manage_contact`. If the user pastes an address/phone with a name and says 'save this for <person>', use `manage_contact add` with the address arg, NOT manage_memory.",
@@ -985,12 +985,6 @@ _API_HOSTS = frozenset([
 ])
 _MCP_KEYWORDS = frozenset(["mcp", "browse", "browser", "website", "calendar", "event", "email",
                            "gmail", "screenshot", "navigate", "click", "miniflux", "rss", "feed"])
-_ADMIN_SCHEMA_NAMES = frozenset([
-    "manage_session", "manage_skills", "manage_tasks",
-    "manage_endpoints", "manage_mcp", "manage_webhooks", "manage_tokens",
-    "create_session", "list_sessions", "send_to_session", "pipeline",
-    "ask_teacher", "list_models", "search_chats",
-])
 _TOOL_SELECTION_TIMEOUT_SECONDS = 1.5
 
 
@@ -1135,6 +1129,21 @@ def _agent_route_tool_mode(
     else:
         is_api_model = any(host in endpoint_url for host in _API_HOSTS) or model_supports_tools
     return is_api_model, is_ollama_native, ollama_openai_compat
+
+# Schema names withheld from the model unless the turn shows admin intent
+# (`_detect_admin_intent`). NOTE: manage_skills is deliberately NOT in this
+# set — the skill index injected by _build_base_prompt tells the model to
+# call `manage_skills action=view` on every turn that has indexed skills,
+# so admin-gating the schema stranded that instruction (models were observed
+# reasoning "the index says call manage_skills but it isn't in my tool
+# list"). It now ships in lockstep with the index; incognito / privilege /
+# global disabled_tools gates still strip it when they should.
+_ADMIN_SCHEMA_NAMES = frozenset([
+    "manage_session", "manage_tasks",
+    "manage_endpoints", "manage_mcp", "manage_webhooks", "manage_tokens",
+    "create_session", "list_sessions", "send_to_session", "pipeline",
+    "ask_teacher", "list_models", "search_chats",
+])
 
 # Admin tool keywords — if the last user message contains any of these, include admin tools
 _ADMIN_KEYWORDS = [
@@ -1451,9 +1460,13 @@ _CASUAL_BLOCKLIST_RE = re.compile(
     r"file|folder|repo|git|settings?|endpoint|api|token|mcp)\b",
     re.IGNORECASE,
 )
+# ctn-family nudges inherit older user turns for tool retrieval — resuming an
+# interrupted task needs the prior tool context. Keep in sync with
+# _CONTINUATION_NUDGE_RE in routes/chat_helpers.py (low-signal injection).
 _EXPLICIT_CONTINUATION_RE = re.compile(
     r"^\s*(?:"
     r"yes|y|yeah|yep|ok|okay|sure|do it|go ahead|continue|carry on|"
+    r"ctn|ctnue|ctnow|cont|keep going|go on|resume|"
     r"run it|launch it|start it|use that|that one|same|the same|"
     r"first|second|third|the first one|the second one|the third one|"
     r"[123]|[abc]"
@@ -2332,7 +2345,7 @@ _EFFECTFUL_REQUEST_RE = re.compile(
 # exact text... captured... backup confirmed... applied... auditing").
 _TOOL_CLAIM_STRONG_RE = re.compile(
     r"\b(?:read|reading|captured|capturing|backed|backup|backing|applied|applying|edited|"
-    r"editing|sent|sending|deleted|deleting|removed|removing|archived|archiving|"
+    r"editing|updated|updating|sent|sending|deleted|deleting|removed|removing|archived|archiving|"
     r"unsubscribed|fetched|fetching|downloaded|downloading|executed|executing|ran|running|"
     r"opened|opening|closed|closing|renamed|renaming|moved|moving|copied|copying|patched|"
     r"patching|installed|installing|converted|converting|uploaded|uploading|audited|"
@@ -2382,6 +2395,60 @@ def _recent_user_request_is_effectful(messages: list, depth: int = 8) -> bool:
         if seen > depth:
             break
         if _looks_like_effectful_request(content):
+            return True
+    return False
+
+
+# Wrap-up/conclusion language (2026-10-31): a finishing summary opens or
+# closes with one of these phrases. Used to exempt CORROBORATED summaries
+# from the intent-without-action guard — if tools demonstrably ran earlier
+# in the run/history and the round reads as a conclusion, zero tool calls
+# this turn means the model is FINISHING, not making a broken promise
+# (specimen 6c157fb3: rounds 27-29 were three re-written wrap-up summaries
+# before the guard killed the run).
+_CONCLUSION_RE = re.compile(
+    r"(?:"
+    r"all done|all set|case closed|that'?s (?:it|all|everything|done)|"
+    r"fixed and verified|verified clean|all green|all tests pass|tests? pass|"
+    r"here'?s (?:the|a|my) (?:wrap-?up|summary|recap|result|answer|verdict|fix|report)|"
+    r"wrap-?up|wrapping up|to wrap up|in short|to summarize|in summary|in conclusion|"
+    r"recap:|summary:|verdict:|final (?:answer|summary|result|verdict|report)|"
+    r"let me know (?:if|when)|anything else\??|that covers (?:it|everything)|"
+    r"that'?s everything|no (?:server )?restart needed|just (?:reload|refresh)|"
+    r"all \d+ (?:tasks|fixes|edits|files|hunks|changes) (?:done|landed)|"
+    r"changelog (?:entry )?logged|in the end|overall\b"
+    r")",
+    re.IGNORECASE,
+)
+
+
+def _looks_like_conclusion(text: str) -> bool:
+    """True when the text opens or closes with wrap-up language.
+
+    Only the head (first 250 chars) and tail (last 250 chars) are scanned:
+    summaries lead with the verdict ("Fixed and verified — …") or close with
+    it ("… no restart needed, just reload"), while mid-work narration
+    ("Updating the tally, then batch 8~") does neither.
+    """
+    text = (text or "").strip()
+    if not text:
+        return False
+    return bool(
+        _CONCLUSION_RE.search(text[:250]) or _CONCLUSION_RE.search(text[-250:])
+    )
+
+
+def _tools_ran_in_history_since_last_user(messages: list) -> bool:
+    """True when any tool call/result appears in the message history after the
+    most recent user message — work demonstrably happened in this conversation
+    even when this agent run's `tool_events` list is still empty (cross-run
+    summaries: user asks "summarize what you did" in a fresh run).
+    """
+    for msg in reversed(messages or []):
+        role = msg.get("role")
+        if role == "user":
+            return False
+        if role == "tool" or msg.get("tool_calls"):
             return True
     return False
 
@@ -3602,6 +3669,7 @@ def _usage_bucket(
     input_tokens: int,
     output_tokens: int,
     usage_source: str,
+    finish_reason: Optional[str] = None,
 ) -> dict:
     """Build non-secret usage attribution for one concrete Agent round."""
 
@@ -3614,6 +3682,8 @@ def _usage_bucket(
         "output_tokens": max(int(output_tokens or 0), 0),
         "usage_source": "real" if usage_source == "real" else "estimated",
     }
+    if finish_reason:
+        bucket["finish_reason"] = str(finish_reason)
     # Persist the owner-resolved route classification so saved usage remains
     # stable even if the session later selects a different endpoint.
     if isinstance(endpoint_cost_tracked, bool):
@@ -3801,6 +3871,9 @@ def _detect_runaway_call(call_freq, threshold=15):
     return sig.split(":", 1)[0] if sig else None
 
 
+AGENT_MIN_OUTPUT_TOKENS = 16384
+
+
 async def stream_agent_loop(
     endpoint_url: str,
     model: str,
@@ -3849,6 +3922,14 @@ async def stream_agent_loop(
       - data: [DONE]                                        (end)
     """
 
+    # Agent rounds always send an explicit output cap (2026-10-30): the
+    # preset default is 0 → param omitted → provider default governs, and
+    # reasoning models at long context burn thousands of tokens thinking
+    # before the tool call. An omitted/default cap truncates the response
+    # right at the preamble→tool-call boundary. 16384 clears the 8k webui
+    # slider ceiling; lower here if an endpoint rejects it.
+    max_tokens = max(int(max_tokens or 0), AGENT_MIN_OUTPUT_TOKENS)
+
     run_security = ToolRunSecurityContext(
         external_untrusted_context_seen=(
             bool(external_untrusted_context_seen)
@@ -3860,9 +3941,24 @@ async def stream_agent_loop(
         ),
         approval_gate_bypassed=bool(
             exact_approval and exact_approval.allow_remaining_actions
-        ),
+        )
+        # Headless sub-agents (spawn_agent) have no human to answer the
+        # post-external-context approval card: the ask_user card would be
+        # swallowed by the parent's stream parser and the run would end
+        # mid-task with the gated tool never executed. Auto-satisfy the
+        # automatic gate for them — tool policy, disabled tools, ownership,
+        # workspace confinement, sandboxing, and the delegated-credential
+        # refusal all still apply. (2026-10-31)
+        or bool(_subagent_depth),
         delegated_credential=bool(delegated_credential),
     )
+    if _subagent_depth and run_security.approval_gate_bypassed:
+        logger.info(
+            "[subagent] depth=%s run=%s post-external-context approval gate "
+            "auto-satisfied (headless run)",
+            _subagent_depth,
+            run_security.run_id,
+        )
     mcp_mgr = get_mcp_manager()
     prep_timings: Dict[str, float] = {}
     disabled_tools = set(disabled_tools or [])
@@ -4737,6 +4833,7 @@ async def stream_agent_loop(
         partial_sink["round_texts"] = round_texts
         partial_sink["current_round_text"] = ""
     round_models = []  # Actual model for each corresponding round
+    round_finish_reasons: list = []  # finish_reason per round (None if unseen)
     round_endpoint_ids = []
     round_endpoint_labels = []
     # Completion-verifier state (mechanism 3a). _effectful_used flips on when
@@ -4775,11 +4872,11 @@ async def stream_agent_loop(
     # lets a legit batch (e.g. 18 calendar events at once) through.
     _call_freq: collections.Counter = collections.Counter()
     _force_answer = False  # set by loop-breaker → next round runs with NO tools
-    # Supervisor: how many times we've nudged the model after it announced
-    # an action without emitting the tool call. Capped to prevent a model
-    # that *can't* call the tool from looping forever.
-    _intent_nudge_count = 0
-    _MAX_INTENT_NUDGES = 2
+    # Passive intent-without-action flag (2026-10-31): set when the final
+    # no-tools round looks like an unfinished promise; the post-loop guard
+    # turns it into a visible ⚠ note + metadata flag. Never nudged, never
+    # killed — see the supervisor block in the loop.
+    _intent_without_action = False
 
     # "I said I would, then didn't" detector. The pattern that breaks debug
     # loops on weak models (deepseek-v4-flash mid-2026): the model writes
@@ -4790,12 +4887,24 @@ async def stream_agent_loop(
     # know what you think".
     _INTENT_RE = re.compile(
         r"(?:^|\n)\s*(?:let me|i'?ll|i will|i need to|we need to|need to|"
-        r"i should|we should|i must|we must|going to|let's)\s+"
+        r"i should|we should|i must|we must|going to|let's|"
+        r"i can(?! (?:see|help))|we can)\s+"
         r"(?:tail|check|investigate|look at|see|tail|read|fetch|inspect|"
         r"verify|diagnose|examine|debug|capture|grab|pull|view|run|call|"
         r"trigger|launch|start|kick off|stop|kill|restart|adopt|serve|"
-        r"register|adopt|list|search|find|query|hit|ping|test|use|perform|do)"
-        r"\b[^.\n]{0,140}",
+        r"register|list|search|find|query|hit|ping|test|use|perform|do|"
+        r"settle|hunt|fire|measure|grep|trace|scan|diff|dump|install|"
+        r"build|compile|deploy|patch|review|analyze)"
+        r"\b[^.\n]{0,140}"
+        # Gerund-first announce lines ("Hunting it:", "Firing the edit
+        # batch:", "Starting with the two file edits:") — the 2026-10-30
+        # long-session failures announce exactly like this, then EOS.
+        r"|(?:^|\n)\s*(?:hunting|firing|checking|reading|measuring|"
+        r"grepping|tracing|scanning|querying|fetching|running|testing|"
+        r"searching|digging|inspecting|verifying|starting|settling|"
+        r"reviewing|analyzing|investigating|debugging|updating|writing|"
+        r"adding|creating|sending|marking|translating|summarizing|"
+        r"compiling|building)\b[^.\n]{0,140}",
         re.IGNORECASE,
     )
     _awaiting_user = False  # set by ask_user → end the turn and wait for a choice
@@ -5220,6 +5329,7 @@ async def stream_agent_loop(
         # so never trips the inactivity timeout. Generous — only catches runaway.
         _round_deadline = time.time() + max(agent_stream_timeout * 4, 1200)
         _round_start = time.time()
+        _round_finish_reason: Optional[str] = None
         _round_first_event_logged = False
         _round_first_token_logged = False
         _round_actual_model = model
@@ -5264,6 +5374,7 @@ async def stream_agent_loop(
                 input_tokens=round_input_tokens,
                 output_tokens=round_output_tokens,
                 usage_source=usage_source,
+                finish_reason=_round_finish_reason,
             ))
         logger.info(
             "[agent-timing] round_start round=%s model=%s endpoint=%s prompt_tokens=%s tools=%s native_tools=%s timeout=%s",
@@ -5397,6 +5508,12 @@ async def stream_agent_loop(
                             yield f'data: {json.dumps({"type": "compacted", "context_length": _last_route_context_length})}\n\n'
                         native_tool_calls = data.get("calls", [])
                         logger.info(f"Agent round {round_num}: received {len(native_tool_calls)} native tool call(s)")
+                    elif data.get("type") == "finish_reason":
+                        # Voluntary stop vs token-cap cut — previously invisible
+                        # in the streaming path, which made "model chose to end
+                        # the turn" and "response truncated before the tool
+                        # call" indistinguishable. Recorded per round below.
+                        _round_finish_reason = str(data.get("finish_reason") or "") or None
                     elif data.get("type") == "usage":
                         u = data.get("data", {})
                         actual_model = u.get("model") or actual_model
@@ -5572,6 +5689,12 @@ async def stream_agent_loop(
             _round_first_event_logged,
             _round_first_token_logged,
         )
+        if _round_finish_reason == "length":
+            logger.warning(
+                "[agent] round %d ended with finish_reason=length — output hit the token cap; "
+                "the response is truncated and any tool call it was about to emit was lost",
+                round_num,
+            )
         _finalize_round_usage()
         _normalized_doc_round = (
             _normalize_stream_document_fences(
@@ -5767,6 +5890,7 @@ async def stream_agent_loop(
         round_models.append(_round_actual_model)
         round_endpoint_ids.append(_round_actual_endpoint_id)
         round_endpoint_labels.append(_round_actual_endpoint_label)
+        round_finish_reasons.append(_round_finish_reason)
         if _ody_qwen_finetune_model and not tool_blocks and cleaned_round:
             yield f'data: {json.dumps({"delta": cleaned_round})}\n\n'
 
@@ -5818,76 +5942,70 @@ async def stream_agent_loop(
             # "Let me investigate" patterns where the model announces an
             # action but emits no tool_call. The bug shows up most on
             # smaller models trained to verbalize plans before acting.
-            # We inject one sharp nudge ("you said you would X — call the
-            # actual tool now") and loop again. Capped at
-            # _MAX_INTENT_NUDGES so a model that genuinely cannot use the
-            # tool doesn't pin us in a forever loop.
             _intent_text = _strip_think_blocks(cleaned_round).strip()
             _intent_match = _INTENT_RE.search(_intent_text) if _intent_text else None
-            # Only nudge when the round REALLY looks like an unfinished
-            # promise: short response (<400 chars), no fenced code/answer,
-            # and an action-intent phrase was matched. Long answers that
-            # happen to contain "let me know" are not stalls.
+            # PASSIVE ONLY (2026-10-31, per Sir): the guard flags the message
+            # but never nudges the model to re-answer and never stops the
+            # run. The old nudge forced finishing summaries to be re-written
+            # several times and then killed the agent with "The agent
+            # stopped because it repeatedly announced a tool action..."
+            # (specimen 6c157fb3, rounds 27-29: three re-written wrap-up
+            # summaries, then the kill). Detection still runs in-loop so the
+            # flag lands on the final round; the visible note + metadata flag
+            # are appended post-loop.
+            # Two shapes qualify as an unfinished promise:
+            # (a) announce-then-stop — no fenced code/answer, response under
+            #     1200 chars, and either an action-intent phrase matched OR
+            #     the text ends with a colon (the "Hunting it:" shape). The
+            #     old <400 gate excluded every real failure: the model
+            #     writes a full 400-700 char preamble before the missing call.
+            # (b) hallucinated work-log — the prose narrates completed tool
+            #     actions with ZERO tools run this turn, at any length (the
+            #     2026-10-30 "Updating the tally, then batch 8~" shape
+            #     fabricated a full 5.7k-char results table). Same detector
+            #     as the post-loop tool-verification guard.
+            # Wrap-up exemption: if tools demonstrably ran earlier in this
+            # run (or in recent history) and the round reads as a conclusion,
+            # zero tool calls this turn means the model is FINISHING, not
+            # making a broken promise — don't even flag it.
+            _ends_with_call_colon = _intent_text.endswith(":")
+            _narrates_unrun_tools = (
+                _recent_user_request_is_effectful(messages)
+                and _looks_like_tool_claim_narration(_intent_text)
+            )
+            _wrap_up_summary = (
+                _looks_like_conclusion(_intent_text)
+                and (bool(tool_events) or _tools_ran_in_history_since_last_user(messages))
+            )
             _looks_like_promise = (
                 not guide_only
-                and _intent_match is not None
-                and len(_intent_text) < 400
+                and not _wrap_up_summary
                 and "```" not in _intent_text
-            )
-            if _looks_like_promise and _intent_nudge_count < _MAX_INTENT_NUDGES:
-                _intent_nudge_count += 1
-                _matched_phrase = _intent_match.group(0).strip()
-                logger.info(f"[agent] intent-without-action nudge #{_intent_nudge_count} on round {round_num}: {_matched_phrase!r}")
-                _lower_phrase = _matched_phrase.lower()
-                _cookbook_log_hint = ""
-                if any(_word in _lower_phrase for _word in ("log", "logs", "output", "tail", "status")):
-                    _cookbook_log_hint = (
-                        " If this is about a Cookbook/model serve, the concrete calls are: "
-                        "`list_served_models` first, then `tail_serve_output` with the "
-                        "session_id from the serve/list result. Never answer with "
-                        "\"check logs\" when those tools are available."
+                and (
+                    (
+                        len(_intent_text) < 1200
+                        and (_intent_match is not None or _ends_with_call_colon)
                     )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        f"You just wrote: \"{_matched_phrase}\" — but ended the "
-                        "turn without making the actual tool call. The user can "
-                        "see you announced the action but didn't run it, which "
-                        "is the most frustrating thing you can do. "
-                        "DO IT NOW: emit the actual function call this turn. "
-                        f"{_cookbook_log_hint}"
-                        "If you decided not to do it after all, say so plainly in "
-                        "one sentence instead of restating the plan."
-                    ),
-                })
-                # Visible signal in the stream so the user knows we caught it.
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
+                    or _narrates_unrun_tools
+                )
+            )
             if _looks_like_promise:
-                _matched_phrase = _intent_match.group(0).strip()
-                _guard_message = (
-                    "The agent stopped because it repeatedly announced a tool "
-                    "action without making the tool call."
+                # Flag only — the message stands as written. The post-loop
+                # guard appends the visible ⚠ note and sets the metadata
+                # flag (tool_claims_unverified) so the unverified claim never
+                # silently passes, but we never re-ask the model and never
+                # stop the run.
+                _intent_without_action = True
+                _matched_phrase = (
+                    _intent_match.group(0).strip()
+                    if _intent_match
+                    else "…" + _intent_text[-120:]
                 )
                 logger.warning(
-                    "[agent] intent-without-action guard exhausted on round %d after %d nudges: %r",
+                    "[agent] intent-without-action flagged on round %d (passive — no nudge, no stop): %r",
                     round_num,
-                    _intent_nudge_count,
                     _matched_phrase,
                 )
-                yield (
-                    "data: "
-                    + json.dumps({
-                        "type": "intent_nudge_exhausted",
-                        "reason": "intent_without_action_nudge_cap",
-                        "message": _guard_message,
-                        "round": round_num,
-                        "nudges": _intent_nudge_count,
-                        "matched": _matched_phrase,
-                    })
-                    + "\n\n"
-                )
-                break
             break  # no tools — done
 
         # ── Loop-breaker (Terminus-style stall detector) ──────────────
@@ -6652,6 +6770,25 @@ async def stream_agent_loop(
                              round_reasoning=round_reasoning,
                              tool_result_records=tool_result_records)
 
+        # If any tool returned an image_data_url, inject ONE user message
+        # carrying every fetched image (deduped, capped) so the model can
+        # "see" them for vision analysis in the next round. Previously only
+        # the first image per round was injected, silently blinding the model
+        # to the rest of a same-round batch.
+        _vision_urls = []
+        for record in tool_result_records:
+            image_data_url = (record.get("result") or {}).get("image_data_url")
+            if image_data_url and image_data_url not in _vision_urls:
+                _vision_urls.append(image_data_url)
+        if _vision_urls:
+            messages.append({
+                "role": "user",
+                "content": [
+                    {"type": "image_url", "image_url": {"url": u}}
+                    for u in _vision_urls[:4]  # cap: context-window safety
+                ],
+            })
+
         # Emit agent_step event
         yield (
             f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
@@ -6704,10 +6841,15 @@ async def stream_agent_loop(
     # event into the saved message) and append a visible note so the unverified
     # claim never silently stands. Passive by design: we never fabricate
     # results, never re-run tools, never loop a correction.
+    # Also true when the in-loop supervisor flagged the final no-tools round
+    # as an unfinished promise (2026-10-31: flag-only, no nudge/kill).
     _tool_claims_unverified = (
-        not tool_events
-        and _recent_user_request_is_effectful(messages)
-        and _looks_like_tool_claim_narration(full_response)
+        _intent_without_action
+        or (
+            not tool_events
+            and _recent_user_request_is_effectful(messages)
+            and _looks_like_tool_claim_narration(full_response)
+        )
     )
     if _tool_claims_unverified:
         logger.warning(
@@ -6717,7 +6859,8 @@ async def stream_agent_loop(
         )
         _tool_claim_note = (
             "\n\n---\n⚠ Described tool actions did not execute — no tool ran this turn. "
-            "Flagged by the tool-verification guard."
+            "Flagged by the tool-verification guard. "
+            "(If no tools were meant to run this turn, this warning can be safely ignored.)"
         )
         full_response = (full_response or "").strip() + _tool_claim_note
         yield f"data: {json.dumps({'delta': _tool_claim_note})}\n\n"

@@ -37,6 +37,14 @@ ALWAYS_AVAILABLE = frozenset({
     # of topic. Without this, RAG drops it and the agent falls back to
     # app_api /api/memory/add which fails with 422 on first attempt.
     "manage_memory",
+    # Skills ride in lockstep with the skill index: whenever the owner has
+    # indexed skills, the agent prompt injects an index that instructs the
+    # model to fetch procedures via `manage_skills action=view`. The tool
+    # must always ship alongside that instruction — otherwise the model is
+    # told to call a tool that was stripped from its schema list. Execution
+    # gates (incognito, can_manage_memory privilege, global disabled_tools,
+    # capability/approval scopes) still apply downstream.
+    "manage_skills",
     # Ask the user a multiple-choice question for a decision/clarification.
     # Always reachable so the agent can pause and ask at any point.
     "ask_user",
@@ -86,7 +94,7 @@ BUILTIN_TOOL_DESCRIPTIONS: Dict[str, str] = {
     "suggest_document": "Suggest changes to the active document with explanations. For code review, proofreading, feedback requests.",
     "generate_image": "Generate an AI image from a text prompt. Specify model, size, and quality. Art, illustrations, photos.",
     "chat_with_model": "Send a message to a different AI model. Compare responses, get specialized help, delegate tasks.",
-    "spawn_agent": "Spawn a sub-agent — a fresh AI agent with full tool access — to autonomously complete a self-contained task and report back. For delegating subtasks or isolating context-heavy work; use background=true for long-running or parallel work. Unlike chat_with_model, the sub-agent can use tools.",
+    "spawn_agent": "Spawn a sub-agent — a fresh AI agent with full tool access — to autonomously complete a self-contained task and report back. For delegating subtasks or isolating context-heavy work; use background=true for long-running or parallel work. Unlike chat_with_model, the sub-agent can use tools. Sub-agents run headlessly — they never pause for interactive tool approvals.",
     "check_agents": "Check background sub-agents launched with spawn_agent(background=true): list their status and collect finished reports. Use after launching background agents, or when the user asks about delegated tasks.",
     "ask_teacher": "Ask a more capable model for help with a difficult problem. Escalate complex tasks.",
     "pipeline": "Run a multi-step AI pipeline with multiple models. Chain tasks together in sequence.",
@@ -140,6 +148,7 @@ BUILTIN_TOOL_DESCRIPTIONS: Dict[str, str] = {
     "list_cookbook_servers": "List the cookbook's configured servers (remote GPU boxes + local) and which is the current default. Use this BEFORE download_model/serve_model when the user didn't name a host — to decide where to run, or to ask the user which server when ambiguous. Downloads/serves default to the cookbook's selected server, NOT localhost.",
     "app_api": "Generic loopback to allowed Odysseus internal endpoints. Use this when the user wants something the UI can do but there's no named tool for it. Covers calendar, gallery, library/documents, memory, notes, tasks, settings, research, compare, cookbook GPUs/state — allowed UI buttons hit /api/* endpoints and you can hit them too. Sensitive auth/user/admin/shell paths and host-control Cookbook mutation routes are blocked; do NOT use app_api for shell commands, package installs, engine rebuilds, or PID signalling. Use named command tooling for shell commands. action='endpoints' with filter=<keyword> lists available endpoints. action='call' takes method+path+body. Hits same routes the UI uses — auth flows free. NOTE: themes are NOT an API endpoint — use the ui_control tool (create_theme / set_theme), not app_api. SESSIONS/CHATS: do NOT use app_api for these — GET /api/sessions returns EMPTY for tool calls (it's owner-filtered and tool calls authenticate as a different identity). EMAIL ACCOUNTS: do NOT use /api/email/accounts via app_api; use list_email_accounts, list_emails, and read_email instead. To list/rename/archive/delete/fork chats use the list_sessions and manage_session tools instead.",
     "edit_image": "Edit an image in the gallery: upscale (increase resolution), remove background (rembg), inpaint (fill selected area), or harmonize (blend edits). Specify image ID and action.",
+    "fetch_image": "Fetch an image (from a URL or a local path) so YOU can see and analyze it yourself — vision analysis, description, OCR, screenshots, etc. The image is attached back to you as a vision message in the next round. Pass save_to_gallery=true ONLY when the user explicitly wants it stored in their gallery (that surfaces it in the UI).",
     "trigger_research": "Start a deep research job on any topic — appears in the Deep Research sidebar, streams progress, produces a detailed report. Use for 'research X', 'look into Y', 'do deep research on Z', 'investigate'. NOT a scheduled task — it runs now and surfaces in the sidebar.",
     "manage_bg_jobs": "Inspect and control detached background `bash` jobs (the ones started with a `#!bg` marker). action='list' shows this chat's jobs (id/status/age/command); action='output' returns a job's captured output so far (check on a long-running job, or re-read a finished one); action='kill' stops a runaway job by id. Use for 'is the background job done', 'check on that job', 'show the build output', 'kill the background job', 'stop the bg task'. output/kill need a job_id from list.",
 }

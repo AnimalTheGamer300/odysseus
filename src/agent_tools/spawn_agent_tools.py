@@ -200,7 +200,10 @@ async def run_subagent(
                     max_rounds=max_rounds,
                     session_id=sub_session_id,
                     owner=owner,
-                    disabled_tools={"spawn_agent"},
+                    # ask_user too: a headless run cannot answer approval
+                    # cards, and an unanswered card silently ends the run
+                    # mid-task (gate-initiated or model-initiated alike).
+                    disabled_tools={"spawn_agent", "ask_user"},
                     workload="background",
                     _is_teacher_run=True,  # reuse the existing "not the primary chat" flag
                     _subagent_depth=subagent_depth + 1,
