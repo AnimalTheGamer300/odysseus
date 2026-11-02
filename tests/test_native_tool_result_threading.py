@@ -9,11 +9,7 @@ answered with an empty string. _resolve_tool_blocks now returns the converted
 calls aligned 1:1 with tool_blocks/tool_result_texts, and that aligned list is
 what is threaded back.
 """
-import re
-
 import src.agent_loop as al
-
-_TS = re.compile(r"^\[\d{2}:\d{2}:\d{2}(?:\s*\|\s*[^\]]*)?\]\s*")
 
 
 def test_resolve_returns_converted_calls_aligned():
@@ -38,8 +34,6 @@ def test_append_threads_result_to_correct_tool_call_id():
     tool_msgs = [m for m in messages if m.get("role") == "tool"]
     assert len(tool_msgs) == 1
     assert tool_msgs[0]["tool_call_id"] == "B"
-    # (2026-11-01) tool results carry a [HH:MM:SS | elapsed] stamp prefix
-    assert _TS.match(tool_msgs[0]["content"])
-    assert _TS.sub("", tool_msgs[0]["content"]) == "RESULT"
+    assert tool_msgs[0]["content"] == "RESULT"
     asst = next(m for m in messages if m.get("role") == "assistant")
     assert [tc["id"] for tc in asst["tool_calls"]] == ["B"]

@@ -74,15 +74,13 @@ def _format_output(output) -> str:
 
 
 def _format_event(event: Dict) -> str:
-    from src.user_time import tool_event_stamp
     tool = str(event.get("tool") or event.get("desc") or "tool").strip()
     command = str(event.get("command") or "").strip()
     if len(command) > COMMAND_MAX_CHARS:
         command = command[:COMMAND_MAX_CHARS].rstrip() + " ..."
     output = _format_output(event.get("output"))
     exit_code = event.get("exit_code")
-    # (2026-11-01) lead with [HH:MM:SS | elapsed] for temporal grounding
-    lines = [f"{tool_event_stamp(event)} [{tool}]"]
+    lines = [f"[{tool}]"]
     if command:
         lines.append(f"cmd: {command}")
     if output:
@@ -246,15 +244,21 @@ def replay_tool_events_as_native(messages: List[Dict]) -> int:
                 "type": "function",
                 "function": {"name": tool, "arguments": _native_args_for_event(command)},
             })
-            from src.user_time import tool_event_stamp
             out = _format_output(ev.get("output")) or "(no output persisted)"
             exit_code = ev.get("exit_code")
             if exit_code not in (None, 0, "0"):
                 out = f"{out}\n[exit_code: {exit_code}]"
-            # (2026-11-01) stamp the replayed result with [HH:MM:SS | elapsed]
-            results.append(
-                {"role": "tool", "tool_call_id": call_id, "content": f"{tool_event_stamp(ev)} {out}"}
-            )
+            # (2026-11-01) ts/duration ride in metadata (never in content); the
+            # LLM payload boundary injects them as structured fields.
+            res = {"role": "tool", "tool_call_id": call_id, "content": out}
+            _meta = {}
+            if ev.get("ts"):
+                _meta["ts"] = ev["ts"]
+            if ev.get("duration_ms") is not None:
+                _meta["duration_ms"] = ev["duration_ms"]
+            if _meta:
+                res["metadata"] = _meta
+            results.append(res)
         # Per-turn char budget: drop the oldest kept events until under cap
         # (never below one — a single oversized result still replays).
         while len(calls) > 1:

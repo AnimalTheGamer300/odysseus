@@ -2627,9 +2627,9 @@ export function addMessage(role, content, modelName, metadata) {
         // inside round_texts, so this multi-bubble reload path lost every
         // thinking block on refresh. Prepend the stored reasoning to the first
         // text round exactly like the single-bubble path does. Inline-think
-        // models already carry tags inside round_texts and are skipped by the
-        // guard below (no double render).
-        if (r === 0 && metadata?.thinking && !roundTexts.some(t => String(t || '').includes('<think'))) {
+        // models already carry real blocks inside round_texts and are skipped
+        // by the guard below (no double render).
+        if (r === thinkRound && metadata?.thinking && !hasInlineThink) {
           const safeThinking = markdownModule.neutralizeStrayThinkTags(String(metadata.thinking || ''), true);
           const thinkTime = metadata.thinking_time || null;
           txt = '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</' + 'think>\n\n' + txt;
@@ -2754,9 +2754,7 @@ export function addMessage(role, content, modelName, metadata) {
             node.className = 'agent-thread-node' + (ok ? '' : ' error');
             // Hide the raw JSON command when a diff says it better (same as live).
             const evCmdHtml = (ev.command && !(ev.diff && ev.diff.text)) ? `<pre class="agent-thread-cmd">${esc(ev.command)}</pre>` : '';
-            const durMs = (typeof ev.duration_ms === 'number') ? ev.duration_ms : null;
-            const durLabel = durMs === null ? '' : `<span class="agent-thread-dur">${durMs < 1000 ? durMs + 'ms' : (durMs < 60000 ? (durMs / 1000).toFixed(1) + 's' : Math.floor(durMs / 60000) + 'm ' + String(Math.floor(durMs / 1000) % 60).padStart(2, '0') + 's')}</span>`;
-            node.innerHTML = `<div class="agent-thread-dot"></div><div class="agent-thread-header"><span class="agent-thread-icon">${ok ? '\u2713' : '\u2717'}</span><span class="agent-thread-tool">${esc(ev.tool)}</span>${durLabel}<span class="agent-thread-status">${ok ? 'done' : 'failed'}</span><span class="agent-thread-chevron">\u25B6</span></div><div class="agent-thread-content">${evCmdHtml}${outHtml}${evDiffHtml}</div>`;
+            node.innerHTML = `<div class="agent-thread-dot"></div><div class="agent-thread-header"><span class="agent-thread-icon">${ok ? '\u2713' : '\u2717'}</span><span class="agent-thread-tool">${esc(ev.tool)}</span><span class="agent-thread-status">${ok ? 'done' : 'failed'}</span><span class="agent-thread-chevron">\u25B6</span></div><div class="agent-thread-content">${evCmdHtml}${outHtml}${evDiffHtml}</div>`;
             // Click handling is delegated globally \u2014 see chat.js init.
             threadWrap.appendChild(node);
           }

@@ -3488,7 +3488,7 @@ def _append_tool_results(
     bloat vector). Bounded: at most one reasoning blob per tool round.
     """
     tool_result_records = tool_result_records or []
-    from src.user_time import clock_stamp, tool_event_stamp
+    from src.user_time import now_iso
     # Strip reasoning_content from earlier PLAIN-PROSE assistant turns; assistant
     # turns that carry tool_calls keep theirs (DeepSeek/Moonshot thinking mode
     # requires the prior reasoning_content passed back on the follow-up request),
@@ -3505,11 +3505,14 @@ def _append_tool_results(
         # specified" / a JSON parse error), which aborts every tool-using turn
         # at the follow-up round. null (i.e. omitted text) is the spec-correct
         # form the OpenAI SDK itself emits, and OpenAI/Anthropic accept it too.
-        # (2026-11-01) temporal grounding: stamp the within-turn assistant turn
-        # with the user-local clock. None stays None — providers reject empty
-        # string content alongside tool_calls (see note above).
+        # (2026-11-01) temporal grounding: the turn time rides in metadata (never
+        # in content) — the LLM payload boundary injects it as a structured field,
+        # so it can't be mimicked into replies, persisted, or shown in the UI.
+        # None stays None — providers reject empty string content alongside
+        # tool_calls (see note above).
+        assistant_msg["metadata"] = {"timestamp": now_iso()}
         if round_response.strip():
-            assistant_msg["content"] = f"{clock_stamp()} {round_response}"
+            assistant_msg["content"] = round_response
         else:
             assistant_msg["content"] = None
         if round_reasoning:
@@ -3540,12 +3543,10 @@ def _append_tool_results(
                 "result",
                 tool_results[j] if j < len(tool_results) else None,
             )
-            # (2026-11-01) stamp the tool result with [HH:MM:SS | elapsed] from
-            # the execution record (falls back to a bare clock stamp).
             result_message = {
                 "role": "tool",
                 "tool_call_id": tc.get("id", f"call_{round_num}_{j}"),
-                "content": f"{tool_event_stamp(record)} {result_text}",
+                "content": result_text,
             }
             capabilities = capabilities_for_action(tool_name, tool_content)
             should_arm_gate = tool_result_should_arm_gate(
@@ -3562,15 +3563,18 @@ def _append_tool_results(
                     "source": f"tool result: {tool_name}",
                     "tool_gate_untrusted": should_arm_gate,
                 }
+            # (2026-11-01) ts/duration ride in metadata; the payload boundary turns
+            # them into structured timestamp/duration_ms fields on the tool message.
+            if record.get("ts") or record.get("duration_ms") is not None:
+                _meta = dict(result_message.get("metadata") or {})
+                if record.get("ts"):
+                    _meta["ts"] = record["ts"]
+                if record.get("duration_ms") is not None:
+                    _meta["duration_ms"] = record["duration_ms"]
+                result_message["metadata"] = _meta
             messages.append(result_message)
     else:
-        # (2026-11-01) stamp each tool result with [HH:MM:SS | elapsed] BEFORE
-        # the untrusted wrapper, so the stamps land inside the guard block and
-        # the hardcoded header stays ahead of GUARD_OPEN.
-        tool_output_text = "\n\n".join(
-            f"{tool_event_stamp(tool_result_records[_j] if _j < len(tool_result_records) else {})} {_t}"
-            for _j, _t in enumerate(tool_results)
-        )
+        tool_output_text = "\n\n".join(tool_results)
         # An approved-action replay injects the sealed tool result with no
         # assistant prose for that round, which used to append an assistant turn
         # whose content was "". Anthropic's Messages API rejects a non-final
@@ -3578,7 +3582,7 @@ def _append_tool_results(
         # died before the model saw the result. A turn carrying neither prose nor
         # reasoning has nothing to say to any provider, so skip it entirely.
         if round_response.strip() or round_reasoning:
-            msg = {"role": "assistant", "content": f"{clock_stamp()} {round_response}"}
+            msg = {"role": "assistant", "content": round_response, "metadata": {"timestamp": now_iso()}}
             if round_reasoning:
                 msg["reasoning_content"] = round_reasoning
             messages.append(msg)
@@ -3760,16 +3764,13 @@ def _build_actions_snapshot(tool_events: list, limit: int = 8000) -> str:
     """Compact record of what the agent actually did this turn, for the
     verifier to judge against. One block per tool execution: the command and
     a head of its output."""
-    from src.user_time import tool_event_stamp
     parts = []
     for ev in tool_events:
         tool = ev.get("tool", "?")
         cmd = (ev.get("command") or "").strip()
         out = (ev.get("output") or "").strip()
         rc = ev.get("exit_code")
-        # (2026-11-01) lead each replayed tool call with [HH:MM:SS | elapsed]
-        stamp = tool_event_stamp(ev)
-        head = f"{stamp} [{tool}] {cmd}" if cmd else f"{stamp} [{tool}]"
+        head = f"[{tool}] {cmd}" if cmd else f"[{tool}]"
         rc_s = f" (exit {rc})" if rc not in (None, 0) else ""
         body = (out[:1200] + " …") if len(out) > 1200 else (out or "(no output)")
         parts.append(f"{head}{rc_s}\n-> {body}")

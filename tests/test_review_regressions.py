@@ -2,7 +2,6 @@
 
 import importlib
 import json
-import re
 import sys
 import types
 from types import SimpleNamespace
@@ -425,9 +424,7 @@ async def test_build_chat_context_incognito_does_not_duplicate_current_user_mess
         incognito=True,
     )
 
-    # (2026-11-01) user messages carry a [HH:MM:SS] stamp prefix in ctx.messages
-    _ts = re.compile(r"^\[\d{2}:\d{2}:\d{2}(?:\s*\|\s*[^\]]*)?\]\s*")
-    user_messages = [m for m in ctx.messages if m.get("role") == "user" and _ts.sub("", str(m.get("content") or "")) == "hello"]
+    user_messages = [m for m in ctx.messages if m.get("role") == "user" and m.get("content") == "hello"]
     assert len(user_messages) == 1
 
 
@@ -489,9 +486,7 @@ async def test_build_chat_context_incognito_ignores_saved_session_history(monkey
         incognito=True,
     )
 
-    # (2026-11-01) stamped content — compare with the stamp stripped
-    _ts2 = re.compile(r"^\[\d{2}:\d{2}:\d{2}(?:\s*\|\s*[^\]]*)?\]\s*")
-    assert any(m.get("role") == "user" and _ts2.sub("", str(m.get("content") or "")) == "fresh incognito turn" for m in ctx.messages)
+    assert {"role": "user", "content": "fresh incognito turn"} in ctx.messages
     assert all(m.get("content") != "older non-incognito secret" for m in ctx.messages)
 
 

@@ -9920,11 +9920,6 @@ body.fullwidth-chat .chat-history {
   font-size: 0.85em;
   opacity: 0.5;
 }
-.agent-thread-dur {
-  font-size: 0.85em;
-  opacity: 0.5;
-  font-variant-numeric: tabular-nums;
-}
 .agent-thread-chevron {
   font-size: 0.7em;
   transition: transform 0.2s ease;

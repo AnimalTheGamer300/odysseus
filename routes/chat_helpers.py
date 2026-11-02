@@ -996,18 +996,10 @@ async def build_chat_context(
         except Exception:
             logger.debug("Failed to inject continue separator", exc_info=True)
 
-    # (2026-11-01) Temporal grounding: prefix every user/assistant/tool message
-    # with its [HH:MM:SS] (user-local) so the model can order turns. Stamps derive
-    # from persisted metadata.timestamp, so the history prefix stays byte-stable
-    # across turns and local KV-cache prefixes survive. Applied AFTER compaction/
-    # trimming so persisted history is never written back with stamps, and on
-    # copies — session history objects are untouched. System messages and
-    # untrusted-guarded context blocks are skipped inside the helper.
-    try:
-        from src.user_time import stamp_context_messages
-        messages = stamp_context_messages(messages)
-    except Exception:
-        logger.debug("Failed to stamp message timestamps", exc_info=True)
+    # (2026-11-01) Temporal grounding moved to the LLM payload boundary:
+    # llm_core._sanitize_llm_messages injects each message's timestamp (from the
+    # DB column via metadata) as a structured field. Content is never stamped
+    # here, so nothing stamped can be persisted or shown in the UI.
 
     return ChatContext(
         preface=preface,

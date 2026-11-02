@@ -7,9 +7,11 @@ import json
 import logging
 import hashlib
 import threading
+import contextvars
 import re
 import os
 import math
+from datetime import datetime, timezone
 from contextlib import asynccontextmanager
 from fastapi import HTTPException
 from typing import Optional, Dict, List, Tuple, Union
@@ -194,7 +196,7 @@ def _cache_header_identity(headers) -> str:
 
 
 def _get_cache_key(url: str, model: str, messages: List[Dict],
-                   temperature: float, max_tokens: int, headers=None) -> str:
+                   temperature: float, max_tokens: int, headers=None, extra=None) -> str:
     """Generate a cache key partitioned by endpoint and credential identity."""
     hashable_messages = []
     for msg in messages:
@@ -207,6 +209,11 @@ def _get_cache_key(url: str, model: str, messages: List[Dict],
         'messages': hashable_messages,
         'temp': temperature,
         'max_tokens': max_tokens,
+        # Extra request-shaping inputs (e.g. the per-request reasoning
+        # override) must partition the cache, or a response generated at one
+        # thinking level could be served for another. None values are dropped
+        # so "no override" hashes identically to the pre-feature cache keys.
+        'extra': {k: v for k, v in (extra or {}).items() if v is not None},
         # Never put credentials in a cache key or loggable cache payload.  The
         # digest only prevents responses from one configured account/route
         # being returned under another route with the same URL and model.
@@ -1503,14 +1510,160 @@ def _thinking_setting_off() -> bool:
         return False
 
 
+# ── Per-request reasoning override (chat-box thinking control) ──────────────
+# The chat routes set this ContextVar from the request's `reasoning_effort`
+# field before any LLM work; payload builders read it at build time. A
+# ContextVar (not a global) so concurrent requests never see each other's
+# override, and each ASGI request runs in its own task context, so no state
+# leaks between requests (same pattern as src/user_time.py).
+_REQUEST_REASONING: "contextvars.ContextVar[Optional[str]]" = contextvars.ContextVar(
+    "request_reasoning_override", default=None
+)
+
+REASONING_OVERRIDE_LEVELS = ("off", "low", "medium", "high", "xhigh", "max")
+
+
+def normalize_reasoning_override(value) -> Optional[str]:
+    """Normalize a request-supplied reasoning level. None/empty/'default'/
+    'auto'/'on' mean "no override" (fall back to the global thinking_enabled
+    setting); 'none' maps to 'off' (Z.AI/GLM vocabulary)."""
+    if value is None:
+        return None
+    v = str(value).strip().lower()
+    if v in ("", "default", "auto", "on"):
+        return None
+    if v == "none":
+        return "off"
+    return v if v in REASONING_OVERRIDE_LEVELS else None
+
+
+def set_request_reasoning(value) -> "contextvars.Token":
+    """Set the per-request reasoning override for this request's context."""
+    return _REQUEST_REASONING.set(normalize_reasoning_override(value))
+
+
+def _request_reasoning() -> Optional[str]:
+    return _REQUEST_REASONING.get()
+
+
+# ── NVIDIA NIM per-model reasoning_effort behavior ──────────────────────────
+# Live-verified 2026-11-01 against integrate.api.nvidia.com (acceptance = HTTP
+# 200; "off" = 0 reasoning_content chars on BOTH trivial and hard prompts):
+#   nemotron (any version): accepts none/minimal/low/medium/high/xhigh/max;
+#       OFF = "none" (0 reasoning; low+ still think 260-419 chars).
+#   glm-5.x: accepts none/minimal/low/medium/high/max, but none/minimal do
+#       NOT suppress (model thinks MORE, 493-909 chars); OFF = "low" (0).
+#   minimax m3.1: accepts all values; none/minimal do not suppress (330-430);
+#       OFF = "low" (best effort, 158 — cannot be fully silenced via API).
+#   mistral-large-4: accepts ONLY low/medium/high (400 on none/minimal/
+#       xhigh/max); nothing suppresses fully; OFF = "low" (best effort).
+#   default NIM model: OFF = "low" (accepted by every model tested).
+_NIM_REASONING_OFF = (
+    ("nemotron", "none"),
+    ("glm", "low"),
+    ("minimax", "low"),
+    ("mistral", "low"),
+)
+_NIM_REASONING_LEVELS = {
+    "nemotron": ("low", "medium", "high", "xhigh", "max"),
+    "glm": ("low", "medium", "high", "max"),
+    "minimax": ("low", "medium", "high", "xhigh", "max"),
+    "mistral": ("low", "medium", "high"),
+}
+_NIM_DEFAULT_LEVELS = ("low", "medium", "high")
+_REASONING_LEVEL_ORDER = ("low", "medium", "high", "xhigh", "max")
+
+
+def _nim_model_family(model: str) -> str:
+    m = (model or "").lower()
+    for fam in ("nemotron", "glm", "minimax", "mistral"):
+        if fam in m:
+            return fam
+    return ""
+
+
+def nim_reasoning_off_value(model: str) -> str:
+    """The reasoning_effort value that actually disables thinking for this NIM
+    model (per-family, live-verified 2026-11-01). Defaults to "low", which every
+    tested NIM model accepts."""
+    m = (model or "").lower()
+    for pat, off in _NIM_REASONING_OFF:
+        if pat in m:
+            return off
+    return "low"
+
+
+def nim_reasoning_levels(model: str) -> tuple:
+    """Graded reasoning_effort levels this NIM model accepts (drives the
+    chat-box thinking menu so it only offers levels the model supports)."""
+    return _NIM_REASONING_LEVELS.get(_nim_model_family(model), _NIM_DEFAULT_LEVELS)
+
+
+def _nim_clamp_level(model: str, level: str) -> str:
+    """Clamp a requested level to one the NIM model accepts (avoids 400s —
+    e.g. mistral-large-4 rejects "max"/"xhigh"/"none"/"minimal")."""
+    levels = nim_reasoning_levels(model)
+    if level in levels:
+        return level
+    if level in _REASONING_LEVEL_ORDER:
+        i = _REASONING_LEVEL_ORDER.index(level)
+        for cand in reversed(_REASONING_LEVEL_ORDER[: i + 1]):
+            if cand in levels:
+                return cand
+        return levels[0]
+    return level
+
+
+def _apply_request_reasoning_effort(payload: dict, url: str, model: str) -> None:
+    """Fold the per-request reasoning override into an OpenAI-compatible
+    payload as a GRADED effort level. ('off' is handled separately through
+    the no_think path, which also covers Ollama/DeepSeek.)
+
+    Only providers known to accept a graded reasoning_effort get the field —
+    an unrecognized field risks a hard 400 on strict providers, which is
+    worse than a model that keeps thinking (same philosophy as
+    _apply_thinking_off_openai_compat). GLM-5.x on NVIDIA NIM accepts
+    low/medium/high/max (Z.AI docs), so levels pass through there verbatim.
+    """
+    override = _request_reasoning()
+    if not override or override == "off":
+        return
+    provider = _detect_provider(url)
+    level = override
+    if provider == "openrouter":
+        payload["reasoning"] = {"effort": "high" if level == "max" else level}
+    elif provider in ("groq", "mistral"):
+        payload["reasoning_effort"] = "high" if level == "max" else level
+    elif provider == "openai" and _uses_max_completion_tokens(model):
+        # GPT-5.x rejects reasoning_effort entirely when tools are present.
+        if _model_disallows_reasoning_effort_with_chat_tools(model) and payload.get("tools"):
+            return
+        payload["reasoning_effort"] = "high" if level == "max" else level
+    elif provider == "nvidia":
+        # Per-model clamp (live-verified 2026-11-01): nemotron/minimax accept
+        # low..xhigh/max, glm accepts low/medium/high/max, mistral-large-4
+        # accepts ONLY low/medium/high (400 on the rest). _nim_clamp_level maps
+        # the request to the nearest accepted value so NIM never 400s.
+        payload["reasoning_effort"] = _nim_clamp_level(model, level)
+    elif _is_self_hosted_openai_compatible(url):
+        payload["reasoning_effort"] = level
+    # ollama / anthropic / unknown public hosts: no graded knob — ignore the
+    # level ('off' still works through the no_think path).
+
+
 def _apply_thinking_off_openai_compat(payload: dict, url: str, model: str) -> None:
     """Best-effort thinking-off for OpenAI-compatible providers that don't
     have a dedicated switch above (called only when thinking is disabled).
 
-    - NVIDIA NIM (integrate.api.nvidia.com) and self-hosted vLLM servers
-      use the vLLM chat-template switch ``chat_template_kwargs:
-      {"enable_thinking": false}`` (Qwen/GLM-style templates; NVIDIA's own
-      docs document it for NIM reasoning models).
+    - NVIDIA NIM (integrate.api.nvidia.com): the chat-template switch
+      ``chat_template_kwargs: {"enable_thinking": false}`` is IGNORED by
+      NIM for GLM-5.x (verified live 2026-10-31: template-only still
+      streams ~200-800 chars of reasoning_content). The verified
+      off-switch on NIM is ``reasoning_effort: "low"`` — 0 reasoning chars
+      on glm-5.3-flash for trivial AND hard prompts, and safe with tools
+      (tool_calls still returned). "none"/"minimal" are NOT honored by NIM
+      (the model thinks MORE with them). Both fields are sent; the
+      template kwarg is harmless on NIM and still helps self-hosted vLLM.
     - OpenRouter normalizes ``reasoning: {"enabled": false}``.
     - Groq exposes ``reasoning_effort: "none"`` on its reasoning models.
     - api.openai.com reasoning models floor at ``reasoning_effort:
@@ -1528,7 +1681,14 @@ def _apply_thinking_off_openai_compat(payload: dict, url: str, model: str) -> No
         payload["reasoning_effort"] = "none"
     elif provider == "openai" and _uses_max_completion_tokens(model):
         payload["reasoning_effort"] = "minimal"
-    elif provider == "nvidia" or _is_self_hosted_openai_compatible(url):
+    elif provider == "nvidia":
+        # Per-model off value (live-verified 2026-11-01): nemotron wants
+        # "none" (0 reasoning chars), glm wants "low" (none/minimal do NOT
+        # suppress on glm), minimax/mistral can't be fully silenced via the
+        # API so "low" is the floor.
+        payload["reasoning_effort"] = nim_reasoning_off_value(model)
+        payload["chat_template_kwargs"] = {"enable_thinking": False}
+    elif _is_self_hosted_openai_compatible(url):
         payload["chat_template_kwargs"] = {"enable_thinking": False}
 
 # Models that support structured thinking — may output </think> without opening tag
@@ -1795,6 +1955,27 @@ def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[D
         role = item.get("role")
         if not role:
             continue
+        # (2026-11-01) Temporal grounding as structured fields: every chat message
+        # carries its timestamp (the DB column, surfaced as metadata.timestamp;
+        # tool events use metadata.ts) and tool results carry duration_ms. Content
+        # is NEVER modified here, so a stamp can't be mimicked into model replies,
+        # persisted into the DB, or rendered in the UI. System messages are
+        # skipped to keep the KV-cache prefix byte-stable; live tail messages
+        # without a stored timestamp fall back to now. History messages derive
+        # the field from the stored column, so the prefix stays byte-stable
+        # across turns. The Anthropic payload builder drops unknown keys, so
+        # Claude never sees these fields; OpenAI-compatible servers ignore them.
+        if role in ("user", "assistant", "tool"):
+            from src.user_time import parse_message_timestamp
+            _meta = msg.get("metadata")
+            _meta = _meta if isinstance(_meta, dict) else {}
+            _ts = parse_message_timestamp(_meta.get("timestamp") or _meta.get("ts"))
+            item["timestamp"] = (_ts or datetime.now(timezone.utc)).isoformat()
+            if role == "tool" and _meta.get("duration_ms") is not None:
+                try:
+                    item["duration_ms"] = int(_meta["duration_ms"])
+                except (TypeError, ValueError):
+                    pass
         if role == "assistant":
             # Promote persisted thinking blob (metadata.thinking) to reasoning_content
             # so DeepSeek / Moonshot-Kimi thinking mode receives prior reasoning on
@@ -2105,8 +2286,10 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
 
     provider = _detect_provider(url)
     messages_copy = _sanitize_llm_messages(messages, provider=provider)
-    # Admin thinking toggle (data/settings.json `thinking_enabled`).
-    no_think = _thinking_setting_off()
+    # Admin thinking toggle (data/settings.json `thinking_enabled`) plus the
+    # per-request chat-box override ('off' forces thinking off as well).
+    _reasoning_override = _request_reasoning()
+    no_think = _thinking_setting_off() or _reasoning_override == "off"
 
     # Consolidate multiple system messages into one at the start.
     sys_parts = []
@@ -2124,6 +2307,7 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
     provider = _detect_provider(url)
     cache_key = _get_cache_key(
         url, model, messages_copy, temperature, max_tokens, headers=headers,
+        extra={"reasoning": _reasoning_override},
     )
     cached_response = _get_cached_response(cache_key)
     if cached_response:
@@ -2163,6 +2347,7 @@ def llm_call(url: str, model: str, messages: List[Dict], temperature: float = LL
         _disable_deepseek_v4_thinking(payload, model, force=no_think)
         if no_think:
             _apply_thinking_off_openai_compat(payload, url, model)
+        _apply_request_reasoning_effort(payload, url, model)
     try:
         note_model_activity(target_url, model)
         r = httpx_post_kimi_aware(target_url, h, json=payload, timeout=timeout)
@@ -2450,7 +2635,8 @@ async def llm_call_async(
     # (Ollama think:false, Mistral minimal, DeepSeek force-off) honors it.
     # Callers that already forced disable_thinking=True (compaction, titles)
     # are unaffected either way.
-    if not disable_thinking and _thinking_setting_off():
+    _reasoning_override = _request_reasoning()
+    if not disable_thinking and (_thinking_setting_off() or _reasoning_override == "off"):
         disable_thinking = True
     provider = _detect_provider(url)
     messages_copy = _sanitize_llm_messages(messages, provider=provider)
@@ -2470,6 +2656,7 @@ async def llm_call_async(
 
     cache_key = _get_cache_key(
         url, model, messages_copy, temperature, max_tokens, headers=headers,
+        extra={"reasoning": _reasoning_override},
     )
     cached_response = _get_cached_response(cache_key)
     if cached_response:
@@ -2582,6 +2769,7 @@ async def llm_call_async(
         _disable_deepseek_v4_thinking(payload, model, force=disable_thinking)
         if disable_thinking:
             _apply_thinking_off_openai_compat(payload, url, model)
+        _apply_request_reasoning_effort(payload, url, model)
         _apply_local_cache_affinity(payload, url, session_id)
         _apply_local_generation_stability(payload, target_url, model)
 
@@ -2780,8 +2968,10 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
     """
     provider = _detect_provider(url)
     messages_copy = _sanitize_llm_messages(messages, provider=provider)
-    # Admin thinking toggle (data/settings.json `thinking_enabled`).
-    no_think = _thinking_setting_off()
+    # Admin thinking toggle (data/settings.json `thinking_enabled`) plus the
+    # per-request chat-box override ('off' forces thinking off as well).
+    _reasoning_override = _request_reasoning()
+    no_think = _thinking_setting_off() or _reasoning_override == "off"
 
     # Consolidate multiple system messages into one at the start.
     # Some models (e.g. Qwen3.5) reject system messages that aren't first.
@@ -2846,10 +3036,15 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
         # <think> blocks. Ollama /v1 accepts "think": false as a top-level param.
         if _is_ollama_openai_compat_url(url) and _supports_thinking(model):
             payload["think"] = False
-        _disable_deepseek_v4_thinking(payload, model)
+        _disable_deepseek_v4_thinking(payload, model, force=no_think)
+        if no_think:
+            # Stream path previously skipped this — the global toggle's
+            # off-switch never reached OpenAI-compat providers on /api/chat_stream.
+            _apply_thinking_off_openai_compat(payload, url, model)
         _apply_local_cache_affinity(payload, url, session_id)
         _apply_local_generation_stability(payload, target_url, model)
         _scrub_openai_chat_tool_reasoning(payload, target_url, model)
+        _apply_request_reasoning_effort(payload, url, model)
         h = _provider_headers(provider, headers)
         if provider == "copilot":
             from src.copilot import apply_request_headers
@@ -3183,6 +3378,30 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
                             if "output_tokens" in _u:
                                 _anth_usage_seen = True
                             _anth_output_tokens = _u.get("output_tokens", 0)
+                            # stop_reason rides the final message_delta — map it
+                            # to OpenAI vocabulary and stream it so consumers can
+                            # distinguish a voluntary stop from a token-cap cut.
+                            _anth_delta = j.get("delta")
+                            _anth_stop = (
+                                _anth_delta.get("stop_reason")
+                                if isinstance(_anth_delta, dict)
+                                else None
+                            )
+                            if _anth_stop:
+                                _fr_map = {
+                                    "end_turn": "stop",
+                                    "stop_sequence": "stop",
+                                    "max_tokens": "length",
+                                    "tool_use": "tool_calls",
+                                }
+                                yield (
+                                    'data: '
+                                    + json.dumps({
+                                        "type": "finish_reason",
+                                        "finish_reason": _fr_map.get(_anth_stop, _anth_stop),
+                                    })
+                                    + "\n\n"
+                                )
                         elif evt == "message_stop":
                             # Emit accumulated tool calls in OpenAI-compatible format
                             if _anth_tool_blocks:
@@ -3326,6 +3545,18 @@ async def _stream_llm_inner(url: str, model: str, messages: List[Dict], temperat
                                 # Usage chunk (from stream_options)
                                 _choices = j.get("choices") or []
                                 _delta0 = _choices[0].get("delta") if (_choices and _choices[0] is not None) else None
+                                # finish_reason arrives on the final choices chunk
+                                # (before [DONE]). Stream it to consumers — the
+                                # agent loop records it per round so a response
+                                # axed at the output cap is distinguishable from
+                                # a voluntary stop (2026-10-30 turn-end bug).
+                                _fr0 = (
+                                    _choices[0].get("finish_reason")
+                                    if (_choices and _choices[0] is not None)
+                                    else None
+                                )
+                                if _fr0:
+                                    yield f'data: {json.dumps({"type": "finish_reason", "finish_reason": _fr0})}\n\n'
                                 # Capture usage whenever the chunk carries it and
                                 # the delta has no actual output. Some gateways /
                                 # local servers attach usage to the FINAL delta,

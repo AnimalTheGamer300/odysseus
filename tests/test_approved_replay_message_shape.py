@@ -6,15 +6,8 @@ ever saw the sealed result. The replay injects its result with no assistant
 prose for that round, which is the only path that produced such a turn.
 """
 
-import re
-
 import src.llm_core as llm_core
 from src.agent_loop import _append_tool_results
-
-_TS = re.compile(r"^\[\d{2}:\d{2}:\d{2}(?:\s*\|\s*[^\]]*)?\]\s*")
-
-def _strip_ts(c):
-    return _TS.sub("", c or "")
 
 _RESULT = "bash: ok\nhello"
 _RECORD = {
@@ -87,8 +80,7 @@ def test_replay_merges_tool_output_after_the_request_with_its_fence_intact():
 def test_a_round_with_prose_still_appends_its_assistant_turn():
     messages = _replay_messages(round_response="running that now")
     assistants = [m for m in messages if m.get("role") == "assistant"]
-    # (2026-11-01) assistant turns carry a [HH:MM:SS] stamp prefix
-    assert [_strip_ts(m["content"]) for m in assistants] == ["running that now"]
+    assert [m["content"] for m in assistants] == ["running that now"]
 
 
 def test_reasoning_only_round_keeps_its_carrier_and_its_known_empty_content():
@@ -105,7 +97,4 @@ def test_reasoning_only_round_keeps_its_carrier_and_its_known_empty_content():
     assistants = [m for m in messages if m.get("role") == "assistant"]
     assert len(assistants) == 1
     assert assistants[0].get("reasoning_content") == "thinking about it"
-    # (2026-11-01) content is now the [HH:MM:SS] stamp alone (non-empty),
-    # which also closes the Anthropic empty-content rejection gap.
-    assert re.fullmatch(r"\[\d{2}:\d{2}:\d{2}\] ?", assistants[0]["content"])
-    assert _strip_ts(assistants[0]["content"]) == ""
+    assert assistants[0]["content"] == ""

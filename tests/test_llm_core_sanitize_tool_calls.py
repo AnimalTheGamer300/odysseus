@@ -32,6 +32,13 @@ from src.agent_loop import _append_tool_results
 from src.llm_core import _sanitize_llm_messages
 
 
+def _no_ts(m):
+    """Drop the (2026-11-01) temporal-grounding payload fields for exact-shape
+    comparisons; asserted separately where relevant."""
+    return {k: v for k, v in m.items() if k not in ("timestamp", "duration_ms")}
+
+
+
 def test_sanitize_keeps_no_prose_assistant_tool_call_message():
     native = [{"id": "call_1", "name": "web_fetch",
                "arguments": '{"url": "https://example.com"}'}]
@@ -81,9 +88,10 @@ def test_sanitize_merges_consecutive_user_messages():
     assert len(out) == 5
     assert out[0] == {"role": "system", "content": "System message 1"}
     assert out[1] == {"role": "system", "content": "System message 2"}
-    assert out[2] == {"role": "user", "content": "User message 1\n\nUser message 2"}
-    assert out[3] == {"role": "assistant", "content": "Assistant message 1"}
-    assert out[4] == {"role": "assistant", "content": "Assistant message 2"}
+    assert _no_ts(out[2]) == {"role": "user", "content": "User message 1\n\nUser message 2"}
+    assert "timestamp" in out[2]  # (2026-11-01) temporal grounding field
+    assert _no_ts(out[3]) == {"role": "assistant", "content": "Assistant message 1"}
+    assert _no_ts(out[4]) == {"role": "assistant", "content": "Assistant message 2"}
 
 
 def test_sanitize_merges_search_results_and_user_query():
@@ -105,8 +113,9 @@ def test_sanitize_merges_search_results_and_user_query():
     assert out[1]["content"] == (
         "UNTRUSTED SOURCE DATA\nSource: web search results\n<<<UNTRUSTED_SOURCE_DATA>>>\nHere are some web search results about python.\n<<<END_UNTRUSTED_SOURCE_DATA>>>"
     )
-    assert out[2] == {"role": "assistant", "content": "Reference context received."}
-    assert out[3] == {"role": "user", "content": "What is the latest version of python?"}
+    assert _no_ts(out[2]) == {"role": "assistant", "content": "Reference context received."}
+    assert _no_ts(out[3]) == {"role": "user", "content": "What is the latest version of python?"}
+    assert "timestamp" in out[3]  # (2026-11-01) temporal grounding field
 
 
 def test_sanitize_labels_current_request_after_untrusted_context():
@@ -128,7 +137,7 @@ def test_sanitize_labels_current_request_after_untrusted_context():
     out = _sanitize_llm_messages(messages)
 
     assert [m["role"] for m in out] == ["system", "user", "assistant", "user"]
-    assert out[2] == {"role": "assistant", "content": "Reference context received."}
+    assert _no_ts(out[2]) == {"role": "assistant", "content": "Reference context received."}
     assert out[3]["content"] == "Why do I do this?"
     assert "UNTRUSTED SOURCE DATA" not in out[3]["content"]
     assert "prompt-injection" not in out[3]["content"]
