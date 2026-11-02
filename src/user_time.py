@@ -250,6 +250,29 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+# Synthetic per-round datetime tool call injected by the agent loop into every
+# tool batch (see agent_loop._append_tool_results). The dispatcher in
+# tool_execution answers it with the real current time, so a model mimic of the
+# call also gets a correct answer. Never persisted as a tool event.
+DATETIME_TOOL_NAME = "get_current_datetime"
+
+
+def current_datetime_line(now_utc: Optional[datetime] = None) -> str:
+    """One-line current date/time for the synthetic datetime tool result."""
+    if now_utc is None:
+        utc_now = datetime.now(timezone.utc)
+    elif now_utc.tzinfo is None:
+        utc_now = now_utc.replace(tzinfo=timezone.utc)
+    else:
+        utc_now = now_utc.astimezone(timezone.utc)
+    local_now = now_user_local(utc_now)
+    return (
+        f"Current date/time: {_date_label(local_now)}, {_clock_label(local_now)} "
+        f"({timezone_label(local_now)}); UTC {utc_now.strftime('%Y-%m-%d %H:%M')}. "
+        "Use this for 'today'/'tomorrow'/'in 5 minutes' reasoning."
+    )
+
+
 def parse_message_timestamp(value) -> Optional[datetime]:
     """Parse a metadata timestamp (ISO string / epoch / datetime) to aware UTC."""
     if value is None:

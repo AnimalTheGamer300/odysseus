@@ -118,3 +118,83 @@ def test_parse_message_timestamp_variants():
     dt2 = parse_message_timestamp(1798000000)
     assert dt2 is not None
     assert TS_RE.match(now_iso())
+
+
+# --- Synthetic per-round datetime tool call (2026-11-01) -------------------
+
+def _native_round():
+    from src.agent_loop import _append_tool_results
+    messages = [{"role": "user", "content": "run it"}]
+    calls = [{"id": "call_1", "name": "bash", "arguments": '{"command":"date"}',
+              "type": "function", "function": {"name": "bash", "arguments": '{"command":"date"}'}}]
+    _append_tool_results(
+        messages, "running", calls, [{"stdout": "Sun Nov 1 22:02:33 MST 2026", "exit_code": 0}],
+        ["Sun Nov 1 22:02:33 MST 2026"], True, 1,
+        tool_result_records=[{"tool_name": "bash", "content": '{"command":"date"}',
+                              "result": {"stdout": "x", "exit_code": 0}, "text": "Sun Nov 1 22:02:33 MST 2026",
+                              "ts": "2026-11-01T22:02:33-07:00", "duration_ms": 621}],
+    )
+    return messages
+
+
+def test_native_round_appends_synthetic_datetime_call_and_result():
+    from src.user_time import DATETIME_TOOL_NAME
+    msgs = _native_round()
+    assistants = [m for m in msgs if m.get("role") == "assistant"]
+    assert len(assistants) == 1
+    calls = assistants[0]["tool_calls"]
+    # real call + synthetic datetime call
+    assert [c["function"]["name"] for c in calls] == ["bash", DATETIME_TOOL_NAME]
+    dt_call = calls[-1]
+    assert dt_call["id"] == "call_dt_1"
+    # matching tool result with a natural-language clock line (not a [HH:MM:SS] stamp)
+    tools = [m for m in msgs if m.get("role") == "tool"]
+    dt_result = [m for m in tools if m.get("tool_call_id") == dt_call["id"]]
+    assert len(dt_result) == 1
+    assert "Current date/time:" in dt_result[0]["content"]
+    assert not re.match(r"^\[\d{2}:\d{2}:\d{2}", dt_result[0]["content"])
+    assert dt_result[0]["metadata"].get("synthetic") == "datetime"
+    # real tool result content untouched
+    real = [m for m in tools if m.get("tool_call_id") == "call_1"][0]
+    assert real["content"] == "Sun Nov 1 22:02:33 MST 2026"
+    assert real["metadata"]["duration_ms"] == 621
+
+
+def test_synthetic_pair_survives_sanitize_with_fields():
+    from src.llm_core import _sanitize_llm_messages
+    out = _sanitize_llm_messages(_native_round())
+    tools = [m for m in out if m.get("role") == "tool"]
+    dt = [m for m in tools if m.get("tool_call_id", "").startswith("call_dt_")][0]
+    assert "timestamp" in dt
+    assert "Current date/time:" in dt["content"]
+    real = [m for m in tools if m.get("tool_call_id") == "call_1"][0]
+    assert real.get("duration_ms") == 621
+    assert real["content"] == "Sun Nov 1 22:02:33 MST 2026"
+
+
+def test_fenced_round_gets_datetime_line_in_tool_output():
+    from src.agent_loop import _append_tool_results
+    messages = [{"role": "user", "content": "run it"}]
+    _append_tool_results(
+        messages, "thinking...", [], ["out"], ["out"],
+        False, 2, tool_result_records=[{"tool_name": "bash", "content": "x",
+                                        "result": {"stdout": "out", "exit_code": 0}, "text": "out"}],
+    )
+    user_msgs = [m for m in messages if m.get("role") == "user" and "tool execution results" in str(m.get("content"))]
+    assert user_msgs, "expected the untrusted tool-output block"
+    assert "Current date/time:" in user_msgs[-1]["content"]
+    # and it stays inside the guard markers
+    c = user_msgs[-1]["content"]
+    assert c.index("<<<UNTRUSTED_SOURCE_DATA>>>") < c.index("Current date/time:")
+
+
+def test_datetime_tool_dispatcher_returns_real_time():
+    import asyncio
+    from src.tool_execution import execute_tool_block, NO_TOOL_SECURITY_CONTEXT
+    from src.agent_tools import ToolBlock
+    block = ToolBlock(tool_type="get_current_datetime", content="")
+    desc, result = asyncio.run(
+        execute_tool_block(block, security_context=NO_TOOL_SECURITY_CONTEXT)
+    )
+    assert result.get("exit_code") == 0
+    assert "Current date/time:" in result.get("stdout", "")

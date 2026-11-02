@@ -3459,6 +3459,20 @@ def _resolve_tool_blocks(
     return tool_blocks, used_native, converted_calls
 
 
+def _inject_datetime_tool_call() -> bool:
+    """Whether to append the synthetic per-round datetime tool call.
+
+    Skipped for Gemini 3: its endpoint 400s on assistant tool_calls that lack
+    the thought_signature it returned, and a server-injected call has none.
+    """
+    try:
+        from src.agent_tools.document_tools import get_active_model
+        model = (get_active_model() or "").lower()
+    except Exception:
+        model = ""
+    return "gemini" not in model
+
+
 def _append_tool_results(
     messages: List[Dict],
     round_response: str,
@@ -3488,7 +3502,8 @@ def _append_tool_results(
     bloat vector). Bounded: at most one reasoning blob per tool round.
     """
     tool_result_records = tool_result_records or []
-    from src.user_time import now_iso
+    from src.user_time import now_iso, current_datetime_line, DATETIME_TOOL_NAME
+    _inject_dt = _inject_datetime_tool_call()
     # Strip reasoning_content from earlier PLAIN-PROSE assistant turns; assistant
     # turns that carry tool_calls keep theirs (DeepSeek/Moonshot thinking mode
     # requires the prior reasoning_content passed back on the follow-up request),
@@ -3533,6 +3548,16 @@ def _append_tool_results(
             }
             for j, tc in enumerate(native_tool_calls)
         ]
+        if _inject_dt:
+            # (2026-11-01) synthetic per-round datetime call: fresh clock for
+            # long tool loops. Request-only — never persisted as a tool event.
+            assistant_msg["tool_calls"].append(
+                {
+                    "id": f"call_dt_{round_num}",
+                    "type": "function",
+                    "function": {"name": DATETIME_TOOL_NAME, "arguments": "{}"},
+                }
+            )
         messages.append(assistant_msg)
         for j, tc in enumerate(native_tool_calls):
             result_text = tool_result_texts[j] if j < len(tool_result_texts) else ""
@@ -3573,8 +3598,23 @@ def _append_tool_results(
                     _meta["duration_ms"] = record["duration_ms"]
                 result_message["metadata"] = _meta
             messages.append(result_message)
+        if _inject_dt:
+            # (2026-11-01) matching result for the synthetic datetime call —
+            # request-only, never persisted, never rendered as a tool card.
+            messages.append(
+                {
+                    "role": "tool",
+                    "tool_call_id": f"call_dt_{round_num}",
+                    "content": current_datetime_line(),
+                    "metadata": {"ts": now_iso(), "synthetic": "datetime"},
+                }
+            )
     else:
         tool_output_text = "\n\n".join(tool_results)
+        if _inject_dt:
+            # (2026-11-01) fenced models get the same per-round clock as a plain
+            # line inside the untrusted tool-output block (request-only).
+            tool_output_text += "\n\n" + current_datetime_line()
         # An approved-action replay injects the sealed tool result with no
         # assistant prose for that round, which used to append an assistant turn
         # whose content was "". Anthropic's Messages API rejects a non-final

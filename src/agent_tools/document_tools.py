@@ -33,6 +33,11 @@ def set_active_model(model: Optional[str]):
     _active_model = model
 
 
+def get_active_model() -> Optional[str]:
+    """Return the model name set for the current agent request, if any."""
+    return _active_model
+
+
 def get_active_document():
     return _active_document_id
 

@@ -454,7 +454,11 @@ def test_native_untrusted_tool_result_keeps_cross_turn_provenance():
         ],
     )
 
-    tool_message = messages[-1]
+    # (2026-11-01) skip the synthetic per-round datetime tool result appended last
+    tool_message = next(
+        m for m in reversed(messages)
+        if m.get("role") == "tool" and not str(m.get("tool_call_id", "")).startswith("call_dt_")
+    )
     assert tool_message["role"] == "tool"
     assert tool_message["metadata"]["tool_gate_untrusted"] is True
     assert messages_contain_external_untrusted_context(messages) is True
@@ -730,7 +734,12 @@ def test_result_folding_is_transport_and_status_consistent(
     )
 
     assert messages_contain_external_untrusted_context(messages) is expected_taint
-    result_message = messages[-1]
+    # (2026-11-01) skip the synthetic per-round datetime tool result appended last
+    result_message = next(
+        (m for m in reversed(messages)
+         if m.get("role") == "tool" and not str(m.get("tool_call_id", "")).startswith("call_dt_")),
+        messages[-1],  # fenced path: no tool message, the untrusted block is last
+    )
     assert result_message["metadata"]["tool_gate_untrusted"] is expected_taint
 
 
