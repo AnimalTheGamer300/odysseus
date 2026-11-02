@@ -17,22 +17,25 @@ cd "$(dirname "$0")"
 # ---- 1. Start Docker dependencies (chromadb, searxng, ntfy) ----
 # log_info "Starting Docker services (chromadb, searxng, ntfy)..."
 # docker compose up -d chromadb searxng ntfy
-#
-# # ---- 2. Wait for ChromaDB to be ready ----
-# log_info "Waiting for ChromaDB on localhost:8100..."
-# for i in {1..30}; do
-#     if curl -sf http://localhost:8100/api/v2/heartbeat >/dev/null 2>&1; then
-#         log_info "ChromaDB is ready"
-#         break
-#     fi
-#     sleep 1
-#     if [[ $i -eq 30 ]]; then
-#         log_err "ChromaDB failed to start after 30s"
-#         exit 1
-#     fi
-# done
-#
-# # ---- 3. Wait for SearXNG to be ready ----
+tmux kill-session -t chroma 2>/dev/null
+log_info "Chroma Chroma-ing"
+tmux new-session -d -s chroma "chroma run --port 8100"
+
+# ---- 2. Wait for ChromaDB to be ready ----
+log_info "Waiting for ChromaDB on localhost:8100..."
+for i in {1..30}; do
+    if curl -sf http://localhost:8100/api/v2/heartbeat >/dev/null 2>&1; then
+        log_info "ChromaDB is ready"
+        break
+    fi
+    sleep 1
+    if [[ $i -eq 30 ]]; then
+        log_err "ChromaDB failed to start after 30s"
+        exit 1
+    fi
+done
+
+# ---- 3. Wait for SearXNG to be ready ----
 # log_info "Waiting for SearXNG on localhost:8080..."
 # for i in {1..60}; do
 #     if curl -sf http://localhost:8080/ >/dev/null 2>&1; then
@@ -69,3 +72,6 @@ log_info "Activating venv and starting Odysseus on 127.0.0.1:7001..."
 source venv/bin/activate
 export APP_PORT=7001
 exec python -m uvicorn app:app --host 127.0.0.1 --port "$APP_PORT"
+echo "Killing Chroma" && tmux kill-session -t chroma 2>/dev/null
+echo "-- END LOG --"
+sleep 5

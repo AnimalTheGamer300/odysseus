@@ -2224,6 +2224,7 @@ import { setFaviconBusy } from './theme.js';
       const fd = new FormData();
       fd.append('message', approvalForSend ? '' : _finalMsgWithInject);
       fd.append('session', streamSessionId);
+      fd.append('reasoning_effort', getReasoningLevel(streamSessionId));
       if (reusePending) {
         // Regenerate: the user message row already exists (kept via the
         // keep_through_id truncate) — the backend reuses it instead of
@@ -5987,10 +5988,155 @@ import { setFaviconBusy } from './theme.js';
     obs.observe(document.body, { childList: true, subtree: true });
   })();
 
+  // ── Chat-box thinking control (per-session reasoning_effort override) ──
+  // Level is stored per session in localStorage; 'default' means "use the
+  // global thinking_enabled setting from the Settings panel" and is sent as
+  // 'default', which the backend normalizes to no-override.
+  const REASONING_LEVELS = ['default', 'off', 'low', 'medium', 'high', 'xhigh', 'max'];
+  const REASONING_LABELS = { default: 'Default', off: 'Off', low: 'Low', medium: 'Medium', high: 'High', xhigh: 'XHigh', max: 'Max' };
+  const REASONING_LEVEL_ORDER = ['low', 'medium', 'high', 'xhigh', 'max'];
+  function _reasoningKey(sid) { return 'odysseus:reasoning:' + (sid || '__none__'); }
+  function getReasoningLevel(sid) {
+    try {
+      const v = localStorage.getItem(_reasoningKey(sid));
+      return REASONING_LEVELS.includes(v) ? v : 'default';
+    } catch (_) { return 'default'; }
+  }
+  function setReasoningLevel(sid, level) {
+    try {
+      if (level === 'default') localStorage.removeItem(_reasoningKey(sid));
+      else localStorage.setItem(_reasoningKey(sid), level);
+    } catch (_) {}
+    updateThinkingUI(sid);
+  }
+  function updateThinkingUI(sid) {
+    const lvl = getReasoningLevel(sid);
+    const lbl = document.getElementById('thinking-label');
+    if (lbl) lbl.textContent = REASONING_LABELS[lvl] || 'Default';
+    const btn = document.getElementById('thinking-btn');
+    if (btn) {
+      const custom = lvl !== 'default';
+      btn.classList.toggle('active', custom);
+      btn.setAttribute('aria-pressed', custom ? 'true' : 'false');
+      btn.title = 'Thinking: ' + (custom ? lvl : 'default (global setting in Settings panel)');
+    }
+    document.querySelectorAll('#thinking-menu .thinking-menu-item').forEach((it) => {
+      it.classList.toggle('active', it.getAttribute('data-level') === lvl);
+    });
+  }
+  window.updateThinkingUI = updateThinkingUI;
+
+  // ── Dynamic per-model menu ──
+  // Ask the backend which levels the CURRENT model accepts and which value
+  // turns thinking off (NIM is model-specific: nemotron off="none", glm
+  // off="low", minimax/mistral off="low" best-effort), then rebuild the menu
+  // so it only offers levels the model actually supports.
+  let _thinkingRefreshTimer = null;
+  function refreshThinkingControl() {
+    if (_thinkingRefreshTimer) clearTimeout(_thinkingRefreshTimer);
+    _thinkingRefreshTimer = setTimeout(_refreshThinkingControlNow, 250);
+  }
+  async function _refreshThinkingControlNow() {
+    const menu = document.getElementById('thinking-menu');
+    if (!menu) return;
+    const model = sessionModule && sessionModule.getCurrentModel ? (sessionModule.getCurrentModel() || '') : '';
+    const url = sessionModule && sessionModule.getCurrentEndpointUrl ? (sessionModule.getCurrentEndpointUrl() || '') : '';
+    let levels = ['low', 'medium', 'high', 'max'];  // fallback = static set
+    try {
+      const r = await fetch('/api/chat/reasoning-control?model=' + encodeURIComponent(model) + '&url=' + encodeURIComponent(url));
+      if (r.ok) {
+        const d = await r.json();
+        if (Array.isArray(d.levels) && d.levels.length) levels = d.levels;
+      }
+    } catch (_) {}
+    menu.innerHTML = '';
+    const mk = (level, label, sub) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'thinking-menu-item';
+      b.setAttribute('data-level', level);
+      b.setAttribute('role', 'menuitem');
+      b.innerHTML = sub
+        ? '<span>' + label + '</span><span class="thinking-menu-sub">' + sub + '</span>'
+        : '<span>' + label + '</span>';
+      menu.appendChild(b);
+    };
+    mk('default', 'Default', 'global setting');
+    mk('off', 'Off');
+    for (const lvl of levels) mk(lvl, lvl[0].toUpperCase() + lvl.slice(1));
+    // Clamp a stored level the current model doesn't support (same order
+    // logic as the backend) so the label never lies about what gets sent.
+    const sid = sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : '';
+    const cur = getReasoningLevel(sid);
+    if (cur !== 'default' && cur !== 'off' && !levels.includes(cur)) {
+      const i = REASONING_LEVEL_ORDER.indexOf(cur);
+      let clamped = levels[0];
+      for (let j = i; j >= 0; j--) {
+        if (levels.includes(REASONING_LEVEL_ORDER[j])) { clamped = REASONING_LEVEL_ORDER[j]; break; }
+      }
+      setReasoningLevel(sid, clamped);
+    } else {
+      updateThinkingUI(sid);
+    }
+  }
+  window.refreshThinkingControl = refreshThinkingControl;
+
+  function initThinkingControl() {
+    const btn = document.getElementById('thinking-btn');
+    const menu = document.getElementById('thinking-menu');
+    const wrap = document.getElementById('thinking-wrap');
+    if (!btn || !menu || !wrap) return;
+    if (window.__odysseus_thinking_bound) return;
+    window.__odysseus_thinking_bound = true;
+
+    // `.chat-input-left` is overflow:hidden and `.chat-input-bar` has
+    // container-type:inline-size, so an in-place absolute/fixed menu gets
+    // clipped to a sliver (the "line with shading" bug). Portal the menu to
+    // <body> while open — same trick as the overflow "+" menu in app.js —
+    // and pin it viewport-relative above the button.
+    function _position() {
+      const r = btn.getBoundingClientRect();
+      menu.style.left = Math.max(8, r.left) + 'px';
+      const h = menu.offsetHeight || 200;
+      menu.style.top = Math.max(8, r.top - h - 8) + 'px';
+    }
+    function _open() {
+      if (menu.parentElement !== document.body) document.body.appendChild(menu);
+      menu.classList.remove('hidden');
+      _position();
+    }
+    function _close() {
+      menu.classList.add('hidden');
+      if (menu.parentElement === document.body) wrap.appendChild(menu);
+      menu.style.left = '';
+      menu.style.top = '';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (menu.classList.contains('hidden')) _open(); else _close();
+    });
+    menu.addEventListener('click', (e) => {
+      const item = e.target.closest('.thinking-menu-item');
+      if (!item) return;
+      e.stopPropagation();
+      const sid = sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : '';
+      setReasoningLevel(sid, item.getAttribute('data-level') || 'default');
+      _close();
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#thinking-wrap') && !e.target.closest('#thinking-menu')) _close();
+    });
+    window.addEventListener('resize', () => { if (!menu.classList.contains('hidden')) _position(); });
+    document.addEventListener('scroll', () => { if (!menu.classList.contains('hidden')) _position(); }, true);
+    updateThinkingUI(sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : '');
+    refreshThinkingControl();
+  }
+
   /**
    * Initialize event listeners
    */
   export function initListeners() {
+    initThinkingControl();
     // Watchdog: log any message bubble that leaves #chat-history outside the
     // known flows (truncate/regenerate/delete all remove bubbles deliberately,
     // right after their server-side counterpart). A spontaneous removal here

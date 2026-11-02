@@ -2090,6 +2090,7 @@ function initializeEventListeners() {
       // menu. Without this, the textarea blurs (keyboard down), then this
       // handler re-focuses it (keyboard bounces back up).
       if (e.target.closest('#overflow-plus-btn')) return;
+      if (e.target.closest('#thinking-btn')) return;
       if (document.activeElement === _msgTextarea) _refocusOnBlur = true;
     }
     chatInputBar.addEventListener('touchstart', _flagRefocus, { passive: true });

@@ -76,15 +76,64 @@ def test_no_rounds_exhausted_on_normal_finish(monkeypatch):
     assert not any(e.get("type") == "rounds_exhausted" for e in events), events
 
 
-def test_emits_intent_nudge_exhausted_when_cap_is_exhausted(monkeypatch):
+def test_intent_without_action_is_flagged_not_nudged_or_killed(monkeypatch):
+    """2026-10-31: the intent-without-action guard is PASSIVE. It must not
+    emit intent_nudge_exhausted, must not burn rounds re-asking the model,
+    and must flag the message instead (visible ⚠ note + metrics flag)."""
     _patch_common(monkeypatch)
 
     events = _run_loop(monkeypatch, "Let me check the logs", max_rounds=5)
 
-    guard = next((e for e in events if e.get("type") == "intent_nudge_exhausted"), None)
-    assert guard is not None, events
-    assert guard["reason"] == "intent_without_action_nudge_cap"
-    assert guard["nudges"] == 2
+    assert not any(e.get("type") == "intent_nudge_exhausted" for e in events), events
+    assert not any(e.get("type") == "rounds_exhausted" for e in events), events
+    assert any("⚠" in (e.get("delta") or "") for e in events), events
+    assert any(
+        e.get("type") == "metrics" and e.get("data", {}).get("tool_claims_unverified")
+        for e in events
+    ), events
+
+
+def test_hallucinated_work_log_with_zero_tools_is_flagged(monkeypatch):
+    """A work-log narration with zero tools run is still flagged (passively)."""
+    _patch_common(monkeypatch)
+
+    events = _run_loop(
+        monkeypatch,
+        "Updating the tally, then batch 8. Applied the edits and saved the file.",
+        max_rounds=5,
+    )
+    assert any("⚠" in (e.get("delta") or "") for e in events), events
+    assert not any(e.get("type") == "intent_nudge_exhausted" for e in events), events
+
+
+def test_wrap_up_summary_after_real_tools_is_not_flagged(monkeypatch):
+    """Corroborated wrap-up summary (tools ran earlier + conclusion language)
+    is the model FINISHING — not flagged, not nudged, not killed.
+    Regression for specimen 6c157fb3 (rounds 27-29 re-written summaries)."""
+    _patch_common(monkeypatch)
+
+    rounds = iter([
+        '```update_plan\n{"plan":"- [ ] fix the popup"}\n```',
+        "Fixed and verified — all done. No restart needed, just reload the page.",
+    ])
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        yield f'data: {json.dumps({"delta": next(rounds)})}\n\n'
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+    gen = al.stream_agent_loop(
+        "http://x/v1", "m",
+        [{"role": "user", "content": "fix the thinking popup in the chat box"}],
+        max_rounds=5,
+        relevant_tools={"bash"},
+    )
+    events = _types(_collect(gen))
+    assert not any("⚠" in (e.get("delta") or "") for e in events), events
+    assert not any(
+        e.get("type") == "metrics" and e.get("data", {}).get("tool_claims_unverified")
+        for e in events
+    ), events
 
 
 def test_emits_loop_breaker_triggered_when_loop_breaker_trips(monkeypatch):

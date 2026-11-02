@@ -1,0 +1,404 @@
+# `src/memory_vector.py` — definitions & call sites
+
+14 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `MemoryVectorStore` — class, line 25
+- **called from:**
+- `mcp_servers/memory_server.py:108`
+- `services/memory/service.py:44`
+- `src/app_initializer.py:106`
+- `tests/test_embedding_lanes_legacy.py:27`
+- `tests/test_embedding_lanes_legacy.py:56`
+- `tests/test_embedding_lanes_legacy.py:82`
+- `tests/test_embedding_lanes_legacy.py:114`
+- `tests/test_embedding_lanes_memory.py:26`
+- `tests/test_embedding_lanes_memory.py:119`
+- `tests/test_embedding_lanes_memory.py:182`
+
+## `MemoryVectorStore.__init__` — method, line 30
+- **called from:**
+- `core/exceptions.py:8`
+- `core/exceptions.py:15`
+- `core/exceptions.py:22`
+- `core/exceptions.py:29`
+- `routes/email_routes.py:1455`
+- `src/builtin_actions.py:428`
+- `src/outbound_fetch.py:220`
+- `tests/test_agent_state_dir_confinement.py:648`
+- `tests/test_calendar_default_transaction.py:456`
+- `tests/test_chat_attachment_picker.py:10`
+- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_embedding_lanes.py:257`
+- `tests/test_embedding_lanes.py:284`
+- `tests/test_integrations_store_shape.py:46`
+- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_upload_handler_atomicity.py:42`
+- `tests/test_upload_multifile.py:154`
+- `static/js/cookbookDownload.js:148`
+
+## `MemoryVectorStore._initialize` — method, line 38
+- **called from:**
+- `src/memory_vector.py:36`
+
+## `MemoryVectorStore.healthy` — method, line 60
+- decorator: `property`
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `MemoryVectorStore._embed` — method, line 63
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `MemoryVectorStore.count` — method, line 68
+- **called from:**
+- `core/database.py:2713`
+- `core/database.py:2714`
+- `core/database.py:2715`
+- `core/database.py:2716`
+- `core/database.py:2717`
+- `core/session_manager.py:150`
+- `core/session_manager.py:971`
+- `core/session_manager.py:973`
+- `routes/admin_wipe/admin_wipe_routes.py:79`
+- `routes/admin_wipe/admin_wipe_routes.py:90`
+- `routes/admin_wipe/admin_wipe_routes.py:127`
+- `routes/admin_wipe/admin_wipe_routes.py:135`
+- `routes/admin_wipe/admin_wipe_routes.py:143`
+- `routes/admin_wipe/admin_wipe_routes.py:149`
+- `routes/admin_wipe/admin_wipe_routes.py:149`
+- `routes/admin_wipe/admin_wipe_routes.py:161`
+- `routes/chat_helpers.py:253`
+- `routes/cookbook_routes.py:3475`
+- `routes/cookbook_routes.py:3476`
+- `routes/document/document_routes.py:354`
+- `routes/document/document_routes.py:364`
+- `routes/document/document_routes.py:404`
+- `routes/email_routes.py:5693`
+- `routes/gallery/gallery_routes.py:755`
+- `routes/gallery/gallery_routes.py:758`
+- `routes/gallery/gallery_routes.py:826`
+- `routes/gallery/gallery_routes.py:883`
+- `routes/gallery/gallery_routes.py:885`
+- `routes/gallery/gallery_routes.py:886`
+- `routes/gallery/gallery_routes.py:913`
+- `routes/history/history_routes.py:287`
+- `routes/session_routes.py:808`
+- `routes/session_routes.py:998`
+- `routes/session_routes.py:1319`
+- `routes/session_routes.py:1321`
+- `routes/task/task_routes.py:977`
+- `src/agent_loop.py:5958`
+- `src/agent_loop.py:5968`
+- `src/agent_tools/filesystem_tools.py:208`
+- `src/agent_tools/filesystem_tools.py:235`
+- `src/agent_tools/filesystem_tools.py:504`
+- `src/agent_tools/filesystem_tools.py:509`
+- `src/agent_tools/interaction_tools.py:86`
+- `src/agent_tools/interaction_tools.py:86`
+- `src/agent_tools/interaction_tools.py:87`
+- `src/app_initializer.py:109`
+- `src/builtin_actions.py:882`
+- `src/builtin_actions.py:970`
+- `src/chat_helpers.py:33`
+- `src/chat_helpers.py:33`
+- `src/cleanup_service.py:133`
+- `src/email_thread_parser.py:276`
+- `src/embedding_lanes.py:44`
+- `src/embedding_lanes.py:56`
+- `src/embedding_lanes.py:340`
+- `src/embedding_lanes.py:370`
+- `src/llm_core.py:405`
+- `src/llm_core.py:417`
+- `src/memory_vector.py:53`
+- `src/memory_vector.py:139`
+- … +140 more (grep the name in repo)
+
+## `MemoryVectorStore._collections_for_delete` — method, line 74
+- **called from:**
+- `src/memory_vector.py:126`
+- `src/rag_vector.py:297`
+- `src/rag_vector.py:577`
+- `src/rag_vector.py:685`
+
+## `MemoryVectorStore.add` — method, line 78
+- **called from:**
+- `companion/pairing.py:196`
+- `core/database.py:524`
+- `core/database.py:2010`
+- `core/platform_compat.py:205`
+- `core/session_manager.py:416`
+- `core/session_manager.py:478`
+- `core/session_manager.py:807`
+- `core/session_manager.py:856`
+- `core/session_manager.py:1053`
+- `mcp_servers/email_server.py:552`
+- `mcp_servers/email_server.py:1665`
+- `mcp_servers/email_server.py:1706`
+- `mcp_servers/email_server.py:1707`
+- `mcp_servers/email_server.py:1828`
+- `mcp_servers/image_gen_server.py:143`
+- `mcp_servers/memory_server.py:190`
+- `mcp_servers/memory_server.py:219`
+- `routes/api_token_routes.py:135`
+- `routes/api_token_routes.py:179`
+- `routes/backup_routes.py:105`
+- `routes/backup_routes.py:176`
+- `routes/backup_routes.py:178`
+- `routes/backup_routes.py:179`
+- `routes/calendar_routes.py:190`
+- `routes/calendar_routes.py:316`
+- `routes/calendar_routes.py:324`
+- `routes/calendar_routes.py:1253`
+- `routes/calendar_routes.py:1374`
+- `routes/calendar_routes.py:1441`
+- `routes/calendar_routes.py:1540`
+- `routes/chat_helpers.py:86`
+- `routes/chat_routes.py:1688`
+- `routes/chat_routes.py:1742`
+- `routes/chatgpt_subscription_routes.py:54`
+- `routes/chatgpt_subscription_routes.py:79`
+- `routes/compare/compare_routes.py:218`
+- `routes/compare/compare_routes.py:313`
+- `routes/contacts/contacts_routes.py:476`
+- `routes/contacts/contacts_routes.py:604`
+- `routes/cookbook_routes.py:1579`
+- `routes/cookbook_routes.py:1916`
+- `routes/cookbook_routes.py:3006`
+- `routes/cookbook_routes.py:3788`
+- `routes/cookbook_routes.py:3855`
+- `routes/cookbook_routes.py:3971`
+- `routes/cookbook_routes.py:4058`
+- `routes/copilot_routes.py:77`
+- `routes/device_flow.py:154`
+- `routes/document/document_routes.py:165`
+- `routes/document/document_routes.py:201`
+- `routes/document/document_routes.py:202`
+- `routes/document/document_routes.py:545`
+- `routes/document/document_routes.py:604`
+- `routes/document/document_routes.py:683`
+- `routes/document/document_routes.py:839`
+- `routes/editor_draft_routes.py:126`
+- `routes/email_helpers.py:1700`
+- `routes/email_helpers.py:1732`
+- `routes/email_helpers.py:1868`
+- `routes/email_pollers.py:810`
+- … +1237 more (grep the name in repo)
+
+## `MemoryVectorStore.add` — method, line 104
+- **called from:**
+- `companion/pairing.py:196`
+- `core/database.py:524`
+- `core/database.py:2010`
+- `core/platform_compat.py:205`
+- `core/session_manager.py:416`
+- `core/session_manager.py:478`
+- `core/session_manager.py:807`
+- `core/session_manager.py:856`
+- `core/session_manager.py:1053`
+- `mcp_servers/email_server.py:552`
+- `mcp_servers/email_server.py:1665`
+- `mcp_servers/email_server.py:1706`
+- `mcp_servers/email_server.py:1707`
+- `mcp_servers/email_server.py:1828`
+- `mcp_servers/image_gen_server.py:143`
+- `mcp_servers/memory_server.py:190`
+- `mcp_servers/memory_server.py:219`
+- `routes/api_token_routes.py:135`
+- `routes/api_token_routes.py:179`
+- `routes/backup_routes.py:105`
+- `routes/backup_routes.py:176`
+- `routes/backup_routes.py:178`
+- `routes/backup_routes.py:179`
+- `routes/calendar_routes.py:190`
+- `routes/calendar_routes.py:316`
+- `routes/calendar_routes.py:324`
+- `routes/calendar_routes.py:1253`
+- `routes/calendar_routes.py:1374`
+- `routes/calendar_routes.py:1441`
+- `routes/calendar_routes.py:1540`
+- `routes/chat_helpers.py:86`
+- `routes/chat_routes.py:1688`
+- `routes/chat_routes.py:1742`
+- `routes/chatgpt_subscription_routes.py:54`
+- `routes/chatgpt_subscription_routes.py:79`
+- `routes/compare/compare_routes.py:218`
+- `routes/compare/compare_routes.py:313`
+- `routes/contacts/contacts_routes.py:476`
+- `routes/contacts/contacts_routes.py:604`
+- `routes/cookbook_routes.py:1579`
+- `routes/cookbook_routes.py:1916`
+- `routes/cookbook_routes.py:3006`
+- `routes/cookbook_routes.py:3788`
+- `routes/cookbook_routes.py:3855`
+- `routes/cookbook_routes.py:3971`
+- `routes/cookbook_routes.py:4058`
+- `routes/copilot_routes.py:77`
+- `routes/device_flow.py:154`
+- `routes/document/document_routes.py:165`
+- `routes/document/document_routes.py:201`
+- `routes/document/document_routes.py:202`
+- `routes/document/document_routes.py:545`
+- `routes/document/document_routes.py:604`
+- `routes/document/document_routes.py:683`
+- `routes/document/document_routes.py:839`
+- `routes/editor_draft_routes.py:126`
+- `routes/email_helpers.py:1700`
+- `routes/email_helpers.py:1732`
+- `routes/email_helpers.py:1868`
+- `routes/email_pollers.py:810`
+- … +1237 more (grep the name in repo)
+
+## `MemoryVectorStore.remove` — method, line 122
+- **called from:**
+- `core/auth.py:542`
+- `mcp_servers/memory_server.py:218`
+- `mcp_servers/memory_server.py:246`
+- `routes/admin_wipe/admin_wipe_routes.py:51`
+- `routes/admin_wipe/admin_wipe_routes.py:121`
+- `routes/embedding_routes.py:339`
+- `routes/gallery/gallery_routes.py:2019`
+- `routes/memory/memory_routes.py:543`
+- `routes/memory/memory_routes.py:565`
+- `routes/personal_routes.py:440`
+- `services/memory/service.py:125`
+- `services/memory/skills.py:517`
+- `src/agent_tools/filesystem_tools.py:395`
+- `src/ai_interaction.py:477`
+- `src/api_key_manager.py:100`
+- `src/memory_provider.py:251`
+- `src/personal_docs.py:318`
+- `src/readiness.py:42`
+- `src/upload_handler.py:660`
+- `tests/test_embedding_lanes_memory.py:165`
+- `tests/test_history_display_model_hydration.py:117`
+- `tests/test_memory_store_unreadable_no_wipe.py:94`
+- `tests/test_replace_messages_upload_reservations.py:130`
+- `tests/test_replace_messages_upload_reservations.py:172`
+- `tests/test_upload_handler_atomicity.py:425`
+- `static/app.js:337`
+- `static/app.js:377`
+- `static/app.js:380`
+- `static/app.js:398`
+- `static/app.js:409`
+- `static/app.js:412`
+- `static/app.js:490`
+- `static/app.js:504`
+- `static/app.js:518`
+- `static/app.js:543`
+- `static/app.js:570`
+- `static/app.js:582`
+- `static/app.js:685`
+- `static/app.js:697`
+- `static/app.js:720`
+- `static/app.js:797`
+- `static/app.js:803`
+- `static/app.js:806`
+- `static/app.js:812`
+- `static/app.js:813`
+- `static/app.js:817`
+- `static/app.js:818`
+- `static/app.js:853`
+- `static/app.js:865`
+- `static/app.js:897`
+- `static/app.js:1143`
+- `static/app.js:1157`
+- `static/app.js:1292`
+- `static/app.js:1564`
+- `static/app.js:1689`
+- `static/app.js:1987`
+- `static/app.js:2008`
+- `static/app.js:2165`
+- `static/app.js:2166`
+- `static/app.js:2192`
+- … +1230 more (grep the name in repo)
+
+## `MemoryVectorStore.search` — method, line 132
+- **called from:**
+- `mcp_servers/email_server.py:427`
+- `mcp_servers/email_server.py:433`
+- `mcp_servers/email_server.py:446`
+- `mcp_servers/email_server.py:530`
+- `mcp_servers/email_server.py:599`
+- `mcp_servers/email_server.py:1529`
+- `routes/calendar_routes.py:1706`
+- `routes/chat_helpers.py:66`
+- `routes/chat_helpers.py:1148`
+- `routes/chat_helpers.py:1176`
+- `routes/chat_routes.py:493`
+- `routes/chat_routes.py:495`
+- `routes/chat_routes.py:500`
+- `routes/chat_routes.py:502`
+- `routes/chat_routes.py:550`
+- `routes/chat_routes.py:1205`
+- `routes/chat_routes.py:1209`
+- `routes/contacts/contacts_routes.py:503`
+- `routes/contacts/contacts_routes.py:507`
+- `routes/contacts/contacts_routes.py:511`
+- `routes/cookbook_helpers.py:680`
+- `routes/cookbook_helpers.py:1129`
+- `routes/cookbook_helpers.py:1132`
+- `routes/cookbook_helpers.py:1436`
+- `routes/cookbook_helpers.py:1438`
+- `routes/cookbook_helpers.py:1438`
+- `routes/cookbook_output.py:56`
+- `routes/cookbook_routes.py:124`
+- `routes/cookbook_routes.py:147`
+- `routes/cookbook_routes.py:590`
+- `routes/cookbook_routes.py:592`
+- `routes/cookbook_routes.py:592`
+- `routes/cookbook_routes.py:918`
+- `routes/cookbook_routes.py:990`
+- `routes/cookbook_routes.py:1528`
+- `routes/cookbook_routes.py:1787`
+- `routes/cookbook_routes.py:1788`
+- `routes/cookbook_routes.py:1808`
+- `routes/cookbook_routes.py:1823`
+- `routes/cookbook_routes.py:2046`
+- `routes/cookbook_routes.py:2173`
+- `routes/cookbook_routes.py:2293`
+- `routes/cookbook_routes.py:2684`
+- `routes/cookbook_routes.py:3547`
+- `routes/cookbook_routes.py:3751`
+- `routes/cookbook_routes.py:3753`
+- `routes/cookbook_routes.py:3755`
+- `routes/cookbook_routes.py:3757`
+- `routes/cookbook_routes.py:3763`
+- `routes/cookbook_routes.py:3824`
+- `routes/cookbook_routes.py:3827`
+- `routes/cookbook_routes.py:3829`
+- `routes/cookbook_routes.py:3973`
+- `routes/cookbook_routes.py:4238`
+- `routes/cookbook_routes.py:4488`
+- `routes/cookbook_routes.py:4494`
+- `routes/cookbook_routes.py:4513`
+- `routes/document/document_helpers.py:227`
+- `routes/document/document_routes.py:63`
+- `routes/document/document_routes.py:64`
+- … +331 more (grep the name in repo)
+
+## `MemoryVectorStore.find_similar` — method, line 165
+- **called from:**
+- `services/memory/memory_extractor.py:600`
+
+## `MemoryVectorStore.rebuild` — method, line 188
+- **called from:**
+- `services/memory/memory_extractor.py:851`
+- `src/app_initializer.py:112`
+- `tests/test_embedding_lanes_memory.py:122`
+- `tests/test_embedding_lanes_memory.py:183`
+
+## `MemoryVectorStore.get_stats` — method, line 246
+- **called from:**
+- `routes/diagnostics_routes.py:70`
+- `routes/stt_routes.py:20`
+- `routes/tts_routes.py:25`
+- `scripts/index_documents.py:103`
+- `services/docs/service.py:117`
+- `services/research/research_handler.py:281`
+- `src/rag_manager.py:62`
+- `src/research_handler.py:364`
+- `src/research_handler.py:388`
+- `src/research_handler.py:845`
+- `src/task_scheduler.py:2081`
+- `tests/test_tts_cache_stats.py:10`
+- `tests/test_tts_speed_malformed.py:22`

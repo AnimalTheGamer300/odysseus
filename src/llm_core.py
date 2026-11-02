@@ -1924,11 +1924,6 @@ def _is_untrusted_context_content(content) -> bool:
 
 
 _REFERENCE_CONTEXT_BOUNDARY = "Reference context received."
-# (2026-11-01) Filler assistant message inserted after a tool-result batch when
-# the next message would be user/system (or the batch ends the list) — some
-# endpoints reject a user-role message directly after a tool-role message.
-# Request-payload only; never persisted to the DB.
-_TOOL_BATCH_ACK = "..."
 
 
 def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[Dict]:
@@ -1955,27 +1950,6 @@ def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[D
         role = item.get("role")
         if not role:
             continue
-        # (2026-11-01) Temporal grounding as structured fields: every chat message
-        # carries its timestamp (the DB column, surfaced as metadata.timestamp;
-        # tool events use metadata.ts) and tool results carry duration_ms. Content
-        # is NEVER modified here, so a stamp can't be mimicked into model replies,
-        # persisted into the DB, or rendered in the UI. System messages are
-        # skipped to keep the KV-cache prefix byte-stable; live tail messages
-        # without a stored timestamp fall back to now. History messages derive
-        # the field from the stored column, so the prefix stays byte-stable
-        # across turns. The Anthropic payload builder drops unknown keys, so
-        # Claude never sees these fields; OpenAI-compatible servers ignore them.
-        if role in ("user", "assistant", "tool"):
-            from src.user_time import parse_message_timestamp
-            _meta = msg.get("metadata")
-            _meta = _meta if isinstance(_meta, dict) else {}
-            _ts = parse_message_timestamp(_meta.get("timestamp") or _meta.get("ts"))
-            item["timestamp"] = (_ts or datetime.now(timezone.utc)).isoformat()
-            if role == "tool" and _meta.get("duration_ms") is not None:
-                try:
-                    item["duration_ms"] = int(_meta["duration_ms"])
-                except (TypeError, ValueError):
-                    pass
         if role == "assistant":
             # Promote persisted thinking blob (metadata.thinking) to reasoning_content
             # so DeepSeek / Moonshot-Kimi thinking mode receives prior reasoning on
@@ -2064,12 +2038,6 @@ def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[D
             fixed["content"] = None
         repaired.append(fixed)
         repaired.extend(tool_batch)
-        # (2026-11-01) Never let a user/system message (or the end of the list)
-        # sit directly after a tool-role message — insert a filler assistant
-        # ack so strict endpoints don't 400 the whole request.
-        _next_role = cleaned[j].get("role") if j < len(cleaned) else None
-        if _next_role in ("user", "system", None):
-            repaired.append({"role": "assistant", "content": _TOOL_BATCH_ACK})
         if len(pruned_calls) != len(tool_calls):
             logger.debug("Pruned unanswered assistant tool_calls before provider request")
         i = j

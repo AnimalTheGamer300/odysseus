@@ -1,0 +1,483 @@
+# `static/js/spinner.js` — definitions & call sites
+
+20 definitions (regex-based, best-effort).
+**Exports:** `Spinner`, `create`, `createLoadingRow`, `createWhirlpool`, `default`
+
+## `Spinner` — class, line 14
+- **called from:**
+- `static/js/spinner.js:420`
+- `static/js/spinner.js:428`
+- `static/js/spinner.js:447`
+
+## `constructor` — method?, line 15
+- **called from:**
+- `static/js/signature.js:39`
+- `static/js/spinner.js:15`
+- `static/js/tts-ai.js:7`
+
+## `createElement` — method?, line 39
+- **called from:**
+- `static/app.js:189`
+- `static/app.js:594`
+- `static/app.js:1410`
+- `static/app.js:1430`
+- `static/app.js:1942`
+- `static/app.js:2288`
+- `static/app.js:3056`
+- `static/app.js:3132`
+- `static/app.js:3136`
+- `static/app.js:3140`
+- `static/app.js:3173`
+- `static/app.js:3542`
+- `static/app.js:3546`
+- `static/app.js:4260`
+- `static/app.js:4267`
+- `static/app.js:4386`
+- `static/js/admin.js:44`
+- `static/js/admin.js:48`
+- `static/js/admin.js:70`
+- `static/js/admin.js:663`
+- `static/js/admin.js:1164`
+- `static/js/admin.js:1221`
+- `static/js/admin.js:1682`
+- `static/js/admin.js:1685`
+- `static/js/admin.js:2237`
+- `static/js/admin.js:2240`
+- `static/js/admin.js:2243`
+- `static/js/admin.js:2246`
+- `static/js/admin.js:2272`
+- `static/js/admin.js:2275`
+- `static/js/admin.js:2278`
+- `static/js/admin.js:2292`
+- `static/js/admin.js:2332`
+- `static/js/admin.js:2846`
+- `static/js/admin.js:3047`
+- `static/js/admin.js:3060`
+- `static/js/admin.js:3077`
+- `static/js/assistant.js:90`
+- `static/js/assistant.js:432`
+- `static/js/calendar.js:25`
+- `static/js/calendar.js:448`
+- `static/js/calendar.js:537`
+- `static/js/calendar.js:544`
+- `static/js/calendar.js:661`
+- `static/js/calendar.js:670`
+- `static/js/calendar.js:760`
+- `static/js/calendar.js:1562`
+- `static/js/calendar.js:2278`
+- `static/js/calendar.js:2515`
+- `static/js/censor.js:177`
+- `static/js/censor.js:216`
+- `static/js/censor.js:261`
+- `static/js/censor.js:300`
+- `static/js/censor.js:324`
+- `static/js/chat.js:182`
+- `static/js/chat.js:185`
+- `static/js/chat.js:190`
+- `static/js/chat.js:192`
+- `static/js/chat.js:206`
+- `static/js/chat.js:208`
+- … +1481 more (grep the name in repo)
+
+## `_createSineWaveElement` — method?, line 54
+- **called from:**
+- `static/js/spinner.js:41`
+- `static/js/spinner.js:54`
+
+## `_drawSineWave` — method?, line 86
+- **called from:**
+- `static/js/spinner.js:86`
+- `static/js/spinner.js:280`
+- `static/js/spinner.js:345`
+
+## `_createWhirlpoolElement` — method?, line 137
+- **called from:**
+- `static/js/spinner.js:44`
+- `static/js/spinner.js:137`
+
+## `_drawWhirlpool` — method?, line 169
+- **called from:**
+- `static/js/spinner.js:169`
+- `static/js/spinner.js:281`
+- `static/js/spinner.js:353`
+
+## `spiralPoint` — function, line 198
+- **called from:**
+- `static/js/spinner.js:198`
+- `static/js/spinner.js:223`
+- `static/js/spinner.js:224`
+- `static/js/spinner.js:234`
+
+## `_requestFrame` — method?, line 277
+- **called from:**
+- `static/js/spinner.js:134`
+- `static/js/spinner.js:266`
+- `static/js/spinner.js:277`
+- `static/js/spinner.js:303`
+
+## `_armVisibilityPause` — method?, line 291
+- **called from:**
+- `static/js/spinner.js:291`
+- `static/js/spinner.js:344`
+- `static/js/spinner.js:352`
+
+## `_disarmVisibilityPause` — method?, line 309
+- **called from:**
+- `static/js/spinner.js:309`
+- `static/js/spinner.js:377`
+
+## `updateDisplay` — method?, line 318
+- **called from:**
+- `static/js/spinner.js:50`
+- `static/js/spinner.js:318`
+- `static/js/spinner.js:360`
+- `static/js/spinner.js:388`
+- `static/js/spinner.js:400`
+
+## `start` — method?, line 338
+- **called from:**
+- `app.py:1218`
+- `launcher.py:73`
+- `launcher.py:145`
+- `launcher.py:147`
+- `routes/chat_helpers.py:1149`
+- `routes/chat_helpers.py:1150`
+- `routes/chat_helpers.py:1151`
+- `routes/chat_routes.py:3068`
+- `routes/cookbook_routes.py:3678`
+- `routes/email_helpers.py:273`
+- `routes/email_routes.py:1003`
+- `routes/model_routes.py:1537`
+- `routes/skills_routes.py:849`
+- `scripts/add_hwfit_models.py:64`
+- `services/hwfit/hf_discovery.py:115`
+- `services/search/content.py:720`
+- `services/search/content.py:720`
+- `src/agent_tools/document_tools.py:205`
+- `src/agent_tools/filesystem_tools.py:864`
+- `src/agent_tools/filesystem_tools.py:865`
+- `src/agent_tools/filesystem_tools.py:954`
+- `src/llm_core.py:346`
+- `src/pdf_form_doc.py:86`
+- `src/text_helpers.py:110`
+- `src/text_helpers.py:111`
+- `src/tool_parsing.py:595`
+- `src/tool_parsing.py:762`
+- `src/tool_parsing.py:785`
+- `src/tool_parsing.py:1211`
+- `src/tool_parsing.py:1211`
+- `src/tool_parsing.py:1245`
+- `src/tool_parsing.py:1272`
+- `src/tool_parsing.py:1344`
+- `src/visual_report.py:1706`
+- `src/visual_report.py:1709`
+- `tests/markdown_browser_check.py:32`
+- `tests/markdown_screenshot.py:57`
+- `tests/test_agent_thread_dot_alignment_css.py:35`
+- `tests/test_app_config_shared_fetch_js.py:210`
+- `tests/test_app_config_shared_fetch_js.py:210`
+- `tests/test_app_config_shared_fetch_js.py:212`
+- `tests/test_atomic_io.py:114`
+- `tests/test_atomic_io.py:115`
+- `tests/test_auth_config_lock_concurrency.py:185`
+- `tests/test_auth_config_lock_concurrency.py:234`
+- `tests/test_auth_config_lock_concurrency.py:235`
+- `tests/test_caldav_redirect_hardening.py:65`
+- `tests/test_caldav_redirect_hardening.py:66`
+- `tests/test_calendar_default_transaction.py:287`
+- `tests/test_calendar_default_transaction.py:288`
+- `tests/test_compare_stop_disconnect_poll.py:105`
+- `tests/test_compare_stop_disconnect_poll.py:135`
+- `tests/test_compare_stop_disconnect_poll.py:167`
+- `tests/test_compare_stop_disconnect_poll.py:180`
+- `tests/test_compare_stop_disconnect_poll.py:186`
+- `tests/test_compare_stop_disconnect_poll.py:200`
+- `tests/test_compare_stop_disconnect_poll.py:206`
+- `tests/test_compare_stop_disconnect_poll.py:227`
+- `tests/test_compare_stop_disconnect_poll.py:229`
+- `tests/test_compare_stop_disconnect_poll.py:262`
+- … +98 more (grep the name in repo)
+
+## `stop` — method?, line 367
+- **called from:**
+- `app.py:1290`
+- `launcher.py:96`
+- `routes/chat_routes.py:3099`
+- `tests/test_compare_stop_disconnect_poll.py:146`
+- `tests/test_compare_stop_disconnect_poll.py:232`
+- `tests/test_compare_stop_disconnect_poll.py:233`
+- `tests/test_compare_stop_disconnect_poll.py:235`
+- `static/js/admin.js:673`
+- `static/js/chat.js:4889`
+- `static/js/chat.js:4980`
+- `static/js/chatRenderer.js:145`
+- `static/js/compare/stream.js:250`
+- `static/js/compare/stream.js:287`
+- `static/js/cookbookRunning.js:2895`
+- `static/js/documentLibrary.js:3280`
+- `static/js/documentLibrary.js:3433`
+- `static/js/emailLibrary.js:8414`
+- `static/js/fileHandler.js:347`
+- `static/js/galleryEditor.js:3664`
+- `static/js/keyboard-shortcuts.js:171`
+- `static/js/models.js:220`
+- `static/js/settings.js:2652`
+- `static/js/spinner.js:260`
+- `static/js/spinner.js:268`
+- `static/js/spinner.js:274`
+- `static/js/spinner.js:288`
+- `static/js/spinner.js:367`
+- `static/js/spinner.js:408`
+- `static/js/spinner.js:425`
+- `static/js/spinner.js:437`
+- `static/js/tasks.js:2865`
+- `static/js/tts-ai.js:179`
+- `static/js/tts-ai.js:224`
+- `static/js/tts-ai.js:503`
+- `static/js/tts-ai.js:517`
+- `static/js/voiceRecorder.js:102`
+- `static/js/voiceRecorder.js:178`
+- `static/js/voiceRecorder.js:251`
+
+## `updateMessage` — method?, line 383
+- **called from:**
+- `static/js/chat.js:1932`
+- `static/js/chat.js:2471`
+- `static/js/chat.js:2472`
+- `static/js/chat.js:2474`
+- `static/js/chat.js:2475`
+- `static/js/chat.js:2477`
+- `static/js/chat.js:3580`
+- `static/js/chat.js:3582`
+- `static/js/chat.js:3586`
+- `static/js/chat.js:3588`
+- `static/js/chat.js:3590`
+- `static/js/chat.js:3592`
+- `static/js/chat.js:3594`
+- `static/js/chat.js:7125`
+- `static/js/chat.js:7127`
+- `static/js/chat.js:7131`
+- `static/js/chat.js:7133`
+- `static/js/chat.js:7135`
+- `static/js/chat.js:7137`
+- `static/js/compare/stream.js:444`
+- `static/js/compare/stream.js:446`
+- `static/js/compare/stream.js:448`
+- `static/js/compare/stream.js:450`
+- `static/js/compare/stream.js:452`
+- `static/js/memory.js:559`
+- `static/js/spinner.js:383`
+
+## `updateLabel` — method?, line 395
+- **called from:**
+- `static/js/compare/index.js:983`
+- `static/js/spinner.js:395`
+
+## `destroy` — method?, line 407
+- **called from:**
+- `static/app.js:1471`
+- `static/js/admin.js:1512`
+- `static/js/admin.js:1749`
+- `static/js/calendar.js:2079`
+- `static/js/chat.js:518`
+- `static/js/chat.js:737`
+- `static/js/chat.js:770`
+- `static/js/chat.js:1538`
+- `static/js/chat.js:1543`
+- `static/js/chat.js:2668`
+- `static/js/chat.js:2928`
+- `static/js/chat.js:3267`
+- `static/js/chat.js:3290`
+- `static/js/chat.js:3365`
+- `static/js/chat.js:3452`
+- `static/js/chat.js:3512`
+- `static/js/chat.js:3973`
+- `static/js/chat.js:4359`
+- `static/js/chat.js:4400`
+- `static/js/chat.js:4442`
+- `static/js/chat.js:4477`
+- `static/js/chat.js:4863`
+- `static/js/chat.js:5672`
+- `static/js/chat.js:5796`
+- `static/js/chat.js:5995`
+- `static/js/chat.js:6006`
+- `static/js/chat.js:7188`
+- `static/js/chat.js:7202`
+- `static/js/chat.js:7218`
+- `static/js/chat.js:7584`
+- `static/js/codeRunner.js:225`
+- `static/js/compare/panes.js:66`
+- `static/js/compare/stream.js:161`
+- `static/js/compare/stream.js:493`
+- `static/js/compare/stream.js:518`
+- `static/js/compare/stream.js:559`
+- `static/js/compare/stream.js:615`
+- `static/js/compare/stream.js:644`
+- `static/js/cookbook-diagnosis.js:1005`
+- `static/js/cookbook-hwfit.js:702`
+- `static/js/cookbook-hwfit.js:751`
+- `static/js/cookbook-hwfit.js:842`
+- `static/js/cookbook-hwfit.js:856`
+- `static/js/cookbook-hwfit.js:861`
+- `static/js/cookbook-hwfit.js:887`
+- `static/js/cookbook-hwfit.js:972`
+- `static/js/cookbook-hwfit.js:2237`
+- `static/js/cookbookServe.js:2050`
+- `static/js/cookbookServe.js:2812`
+- `static/js/cookbookServe.js:3900`
+- `static/js/cookbookServe.js:4186`
+- `static/js/cookbookServe.js:4191`
+- `static/js/cookbookServe.js:4218`
+- `static/js/cookbookServe.js:4221`
+- `static/js/document.js:588`
+- `static/js/document.js:3998`
+- `static/js/documentLibrary.js:3511`
+- `static/js/documentLibrary.js:3522`
+- `static/js/editor/ai-inpaint.js:248`
+- `static/js/editor/ai-inpaint.js:249`
+- … +67 more (grep the name in repo)
+
+## `create` — function, line 419
+- **called from:**
+- `routes/chat_routes.py:398`
+- `scripts/demo_email/seed_demo_emails.py:318`
+- `src/agent_loop.py:6297`
+- `src/teacher_escalation.py:764`
+- `tests/test_email_account_default_serialization.py:375`
+- `tests/test_email_account_port_validation.py:45`
+- `tests/test_foreground_model_routing.py:273`
+- `tests/test_foreground_model_routing.py:319`
+- `tests/test_foreground_model_routing.py:352`
+- `tests/test_foreground_model_routing.py:389`
+- `tests/test_foreground_model_routing.py:421`
+- `tests/test_model_routes.py:1407`
+- `tests/test_model_routes.py:1427`
+- `tests/test_model_routes.py:1452`
+- `tests/test_model_routes.py:1478`
+- `tests/test_model_routes.py:1498`
+- `tests/test_model_routes.py:1523`
+- `tests/test_model_routes.py:1544`
+- `tests/test_model_routes.py:1563`
+- `tests/test_scheduler_prompt_cache_time.py:77`
+- `tests/test_skills_routes_owner_update.py:158`
+- `tests/test_tool_approval_single_action_scope.py:17`
+- `tests/test_tool_approval_task_scope.py:26`
+- `tests/test_tool_approvals.py:27`
+- `static/app.js:1429`
+- `static/js/chat.js:711`
+- `static/js/chat.js:2463`
+- `static/js/chat.js:2696`
+- `static/js/chat.js:4362`
+- `static/js/chat.js:5626`
+- `static/js/chat.js:5984`
+- `static/js/chat.js:7116`
+- `static/js/compare/index.js:696`
+- `static/js/compare/index.js:773`
+- `static/js/compare/index.js:844`
+- `static/js/compare/index.js:920`
+- `static/js/compare/panes.js:109`
+- `static/js/compare/panes.js:161`
+- `static/js/compare/selector.js:387`
+- `static/js/compare/stream.js:77`
+- `static/js/compare/stream.js:469`
+- `static/js/compare/stream.js:529`
+- `static/js/cookbook.js:110`
+- `static/js/document.js:581`
+- `static/js/documentLibrary.js:2344`
+- `static/js/documentLibrary.js:3245`
+- `static/js/documentLibrary.js:3478`
+- `static/js/editor/ai-inpaint.js:104`
+- `static/js/editor/ai-tool-runner.js:58`
+- `static/js/emailLibrary.js:8245`
+- `static/js/fileHandler.js:284`
+- `static/js/galleryEditor.js:3655`
+- `static/js/galleryEditor.js:4052`
+- `static/js/group.js:742`
+- `static/js/memory.js:513`
+- `static/js/models.js:187`
+- `static/js/presets.js:125`
+- `static/js/sessions.js:2839`
+- `static/js/slashCommands.js:672`
+- `static/js/slashCommands.js:2059`
+- … +3 more (grep the name in repo)
+
+## `createWhirlpool` — function, line 427
+- **called from:**
+- `static/app.js:4393`
+- `static/js/admin.js:668`
+- `static/js/admin.js:1466`
+- `static/js/admin.js:1680`
+- `static/js/calendar.js:2022`
+- `static/js/calendar.js:3542`
+- `static/js/chat.js:227`
+- `static/js/chat.js:3497`
+- `static/js/chat.js:7578`
+- `static/js/chatRenderer.js:126`
+- `static/js/compare/probe.js:27`
+- `static/js/cookbook-diagnosis.js:990`
+- `static/js/cookbook-hwfit.js:688`
+- `static/js/cookbook-hwfit.js:2225`
+- `static/js/cookbook.js:1080`
+- `static/js/cookbook.js:2674`
+- `static/js/cookbookServe.js:2036`
+- `static/js/cookbookServe.js:2802`
+- `static/js/cookbookServe.js:3303`
+- `static/js/cookbookServe.js:3854`
+- `static/js/cookbookServe.js:4117`
+- `static/js/cookbookServe.js:4192`
+- `static/js/document.js:2969`
+- `static/js/document.js:3899`
+- `static/js/documentLibrary.js:2901`
+- `static/js/documentLibrary.js:3424`
+- `static/js/editor/ai-inpaint.js:68`
+- `static/js/editor/ai-tools-misc.js:109`
+- `static/js/emailInbox.js:396`
+- `static/js/emailInbox.js:786`
+- `static/js/emailInbox.js:1283`
+- `static/js/emailLibrary.js:103`
+- `static/js/emailLibrary.js:398`
+- `static/js/emailLibrary.js:982`
+- `static/js/emailLibrary.js:1228`
+- `static/js/emailLibrary.js:1339`
+- `static/js/emailLibrary.js:1372`
+- `static/js/emailLibrary.js:2045`
+- `static/js/emailLibrary.js:6588`
+- `static/js/emailLibrary.js:6643`
+- `static/js/emailLibrary.js:6741`
+- `static/js/emailLibrary.js:7497`
+- `static/js/emailLibrary.js:7584`
+- `static/js/emailLibrary.js:8406`
+- `static/js/gallery.js:892`
+- `static/js/gallery.js:1647`
+- `static/js/gallery.js:1710`
+- `static/js/gallery.js:1800`
+- `static/js/galleryEditor.js:2070`
+- `static/js/memory.js:1301`
+- `static/js/rag.js:31`
+- `static/js/research/panel.js:566`
+- `static/js/settings.js:1343`
+- `static/js/settings.js:2648`
+- `static/js/settings.js:3142`
+- `static/js/settings.js:4692`
+- `static/js/settings.js:5384`
+- `static/js/skills.js:1265`
+- `static/js/skills.js:1642`
+- `static/js/spinner.js:427`
+- … +2 more (grep the name in repo)
+
+## `createLoadingRow` — function, line 446
+- **called from:**
+- `static/js/document.js:3364`
+- `static/js/documentLibrary.js:1935`
+- `static/js/documentLibrary.js:2385`
+- `static/js/documentLibrary.js:2745`
+- `static/js/memory.js:700`
+- `static/js/modelPicker.js:346`
+- `static/js/sessions.js:3490`
+- `static/js/sessions.js:3521`
+- `static/js/sessions.js:3559`
+- `static/js/spinner.js:446`
+- `static/js/tasks.js:816`
+- `static/js/tasks.js:1805`
+- `static/js/tasks.js:2071`
+- `static/js/tasks.js:2229`

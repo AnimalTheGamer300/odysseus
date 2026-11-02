@@ -1,0 +1,155 @@
+# `mcp_servers/memory_server.py` — definitions & call sites
+
+9 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `_configured_owner` — function, line 40
+- **called from:**
+- `mcp_servers/email_server.py:90`
+- `mcp_servers/memory_server.py:75`
+
+## `_entry_owner` — function, line 48
+- **called from:**
+- `mcp_servers/memory_server.py:57`
+- `mcp_servers/memory_server.py:81`
+- `mcp_servers/memory_server.py:86`
+
+## `_owner_scoped_store` — function, line 56
+- **called from:**
+- `mcp_servers/memory_server.py:76`
+
+## `_scope_entries` — function, line 60
+- **called from:**
+- `mcp_servers/memory_server.py:156`
+- `mcp_servers/memory_server.py:182`
+- `mcp_servers/memory_server.py:200`
+- `mcp_servers/memory_server.py:228`
+- `mcp_servers/memory_server.py:257`
+
+## `_text_result` — function, line 91
+- **called from:**
+- `mcp_servers/memory_server.py:146`
+- `mcp_servers/memory_server.py:150`
+- `mcp_servers/memory_server.py:158`
+- `mcp_servers/memory_server.py:165`
+- `mcp_servers/memory_server.py:175`
+- `mcp_servers/memory_server.py:181`
+- `mcp_servers/memory_server.py:184`
+- `mcp_servers/memory_server.py:193`
+- `mcp_servers/memory_server.py:199`
+- `mcp_servers/memory_server.py:202`
+- `mcp_servers/memory_server.py:209`
+- `mcp_servers/memory_server.py:222`
+- `mcp_servers/memory_server.py:227`
+- `mcp_servers/memory_server.py:230`
+- `mcp_servers/memory_server.py:241`
+- `mcp_servers/memory_server.py:251`
+- `mcp_servers/memory_server.py:256`
+- `mcp_servers/memory_server.py:259`
+- `mcp_servers/memory_server.py:266`
+- `mcp_servers/memory_server.py:273`
+- `mcp_servers/memory_server.py:276`
+
+## `_ensure_init` — function, line 95
+- **called from:**
+- `mcp_servers/memory_server.py:148`
+- `mcp_servers/rag_server.py:73`
+
+## `list_tools` — function (async), line 116
+- decorator: `server.list_tools()`
+- **called from:**
+- `mcp_servers/email_server.py:2088`
+- `mcp_servers/image_gen_server.py:24`
+- `mcp_servers/memory_server.py:115`
+- `mcp_servers/rag_server.py:46`
+- `src/mcp_manager.py:205`
+- `src/mcp_manager.py:274`
+- `src/mcp_manager.py:362`
+
+## `call_tool` — function (async), line 144
+- decorator: `server.call_tool()`
+- **called from:**
+- `mcp_servers/email_server.py:2454`
+- `mcp_servers/image_gen_server.py:44`
+- `mcp_servers/memory_server.py:143`
+- `mcp_servers/rag_server.py:68`
+- `src/mcp_manager.py:511`
+- `src/task_scheduler.py:1474`
+- `src/task_scheduler.py:2234`
+- `src/tool_execution.py:713`
+- `src/tool_execution.py:1351`
+- `src/tool_execution.py:1366`
+- `tests/test_mcp_email_decode_header_spaces.py:100`
+- `tests/test_mcp_email_decode_header_spaces.py:114`
+- `tests/test_mcp_email_decode_header_spaces.py:130`
+- `tests/test_mcp_email_decode_header_spaces.py:143`
+- `tests/test_mcp_email_decode_header_spaces.py:210`
+- `tests/test_mcp_email_decode_header_spaces.py:228`
+- `tests/test_mcp_email_decode_header_spaces.py:259`
+- `tests/test_mcp_email_decode_header_spaces.py:314`
+- `tests/test_mcp_memory_owner_scope.py:22`
+- `tests/test_memory_store_unreadable_no_wipe.py:218`
+- `tests/test_rag_server_directory_nonstring.py:18`
+
+## `run` — function (async), line 279
+- **called from:**
+- `app.py:1312`
+- `core/platform_compat.py:124`
+- `core/platform_compat.py:406`
+- `core/platform_compat.py:447`
+- `launcher.py:114`
+- `launcher.py:149`
+- `mcp_servers/email_server.py:2906`
+- `mcp_servers/email_server.py:2912`
+- `mcp_servers/email_server.py:2912`
+- `mcp_servers/image_gen_server.py:180`
+- `mcp_servers/image_gen_server.py:184`
+- `mcp_servers/image_gen_server.py:184`
+- `mcp_servers/memory_server.py:281`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/rag_server.py:156`
+- `mcp_servers/rag_server.py:160`
+- `mcp_servers/rag_server.py:160`
+- `routes/cookbook_routes.py:1627`
+- `routes/cookbook_routes.py:3720`
+- `routes/cookbook_routes.py:3733`
+- `routes/cookbook_routes.py:3744`
+- `routes/cookbook_routes.py:3805`
+- `routes/cookbook_routes.py:4271`
+- `routes/cookbook_routes.py:4273`
+- `routes/cookbook_routes.py:4294`
+- `routes/cookbook_routes.py:4296`
+- `routes/cookbook_routes.py:4457`
+- `routes/cookbook_routes.py:4467`
+- `routes/hwfit_routes.py:128`
+- `scripts/diffusion_server.py:1506`
+- `scripts/dump_agent_prompt.py:415`
+- `scripts/mlx_image_server.py:207`
+- `scripts/mlx_image_server.py:281`
+- `scripts/mlx_image_server.py:379`
+- `scripts/mlx_image_server.py:466`
+- `scripts/pr_blocker_audit.py:253`
+- `services/hwfit/hardware.py:45`
+- `src/builtin_mcp.py:293`
+- `src/document_processor.py:548`
+- `src/document_processor.py:616`
+- `src/endpoint_resolver.py:184`
+- `src/event_bus.py:43`
+- `src/model_discovery.py:49`
+- `tests/run_focus.py:321`
+- `tests/run_order_report.py:152`
+- `tests/test_admin_tools_registry.py:44`
+- `tests/test_admin_tools_registry.py:56`
+- `tests/test_agent_round_model_provenance_ui.py:35`
+- `tests/test_agent_rounds_exhausted.py:18`
+- `tests/test_agent_state_dir_confinement.py:126`
+- `tests/test_agent_state_dir_confinement.py:129`
+- `tests/test_agent_state_dir_confinement.py:132`
+- `tests/test_agent_state_dir_confinement.py:450`
+- `tests/test_agent_state_dir_confinement.py:453`
+- `tests/test_agent_state_dir_confinement.py:474`
+- `tests/test_agent_state_dir_confinement.py:477`
+- `tests/test_agent_state_dir_confinement.py:609`
+- `tests/test_agent_state_dir_confinement.py:629`
+- `tests/test_agent_state_dir_confinement.py:689`
+- … +553 more (grep the name in repo)

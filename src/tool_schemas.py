@@ -27,7 +27,7 @@ _REQUIRED_NATIVE_TOOL_ARGS = {
     "read_file": ("path",),
     "write_file": ("path",),
     "edit_file": ("path",),
-    "apply_patch": ("patch_text", "patchText", "patch"),
+    "apply_patch": ("patch_text", "patchText", "patch", "command"),
     "spawn_agent": ("task",),
     "check_agents": (),
 }
@@ -970,7 +970,7 @@ def function_call_to_tool_block(name: str, arguments: str) -> Optional[ToolBlock
     elif tool_type == "edit_file":
         content = json.dumps(args)
     elif tool_type == "apply_patch":
-        content = args.get("patch_text") or args.get("patchText") or args.get("patch") or ""
+        content = args.get("patch_text") or args.get("patchText") or args.get("patch") or args.get("command") or ""
     elif tool_type == "todowrite":
         content = json.dumps(args)
     elif tool_type == "create_document":

@@ -13,7 +13,20 @@ class ChatRequest(BaseModel):
     time_filter: Optional[str] = Field(default=None, description="Time filter for search")
     preset_id: Optional[str] = Field(default=None, description="Preset identifier")
     selected_endpoint_id: Optional[str] = Field(default=None, description="Selected model endpoint ID")
+    reasoning_effort: Optional[str] = Field(default=None, description="Per-request reasoning override: off|low|medium|high|xhigh|max; default/None = global thinking setting")
     
+    @field_validator('reasoning_effort')
+    @classmethod
+    def validate_reasoning_effort(cls, v):
+        if v is None:
+            return None
+        v = str(v).strip().lower()
+        if v in ('', 'default', 'auto', 'on'):
+            return None
+        if v == 'none':
+            return 'off'
+        return v if v in ('off', 'low', 'medium', 'high', 'xhigh', 'max') else None
+
     @field_validator('message')
     @classmethod
     def clean_message(cls, v):
