@@ -37,10 +37,28 @@ _CASUAL_BLOCKLIST_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Bare continuation nudges are not queries. 2026-10-28 live bug: sending "ctn"
+# to resume a stopped turn ran the prefetched web search on the literal token
+# and pinned a "6 Web sources" card of Christian Television Network results on
+# the reply ("uhhh ctn" fetched uhhh-meme sources, which proves the query was
+# the raw message text). Nudges now count as low-signal: no memory/skills/RAG/
+# web-prefetch injection. Conversation history still flows, so the model can
+# resume the interrupted work. Keep the ctn-family in sync with
+# _EXPLICIT_CONTINUATION_RE in src/agent_loop.py (tool-retrieval inheritance).
+_CONTINUATION_NUDGE_RE = re.compile(
+    r"^(?:[\s,.\-!?~]*(?:uh+h*|um+m*|hm+m*|er+r*|ah+h*|pls|please|sir[,:]?)\b)*"
+    r"[\s,.\-!?~]*(?:ctn|ctnue|ctnow|cont|continue|keep\s+going|go\s+on|"
+    r"carry\s+on|resume|next|again|more|go)\b[\s,.\-!?~]*$",
+    re.IGNORECASE,
+)
+
 
 def _is_casual_low_signal(text: str) -> bool:
-    """Short greetings/slang should not pull memory, skills, RAG, or docs."""
+    """Short greetings/slang and bare continuation nudges should not pull
+    memory, skills, RAG, docs, or the prefetched web search."""
     s = str(text or "").strip()
+    if _CONTINUATION_NUDGE_RE.match(s):
+        return True
     m = _CASUAL_OPENING_RE.match(s)
     if not m:
         return False
@@ -663,6 +681,7 @@ async def build_chat_context(
     defer_context_shaping: bool = False,
     continuation_context_message: str | None = None,
     persist_user_message: bool = True,
+    continue_assistant: bool = False,
 ) -> ChatContext:
     """Build the full context (preface + messages) for an LLM call.
 
@@ -674,7 +693,14 @@ async def build_chat_context(
     is NOT persisted again — the existing row is reused so its DB id/timestamp
     stay stable. Falls back to a fresh add if the history tail isn't the
     matching user message.
+
+    `continue_assistant` (Continue-prefill, 2026-10-30): the Continue button
+    sends an EMPTY message with this flag — no user row is persisted. The
+    model's own partial reply stays as the trailing assistant message and the
+    provider simply continues it (prefill), same turn.
     """
+    if continue_assistant:
+        persist_user_message = False
     # Preset
     preset = extract_preset(chat_handler, preset_id)
 
@@ -746,6 +772,10 @@ async def build_chat_context(
         else message
     )
     casual_low_signal = _is_casual_low_signal(context_message)
+    if continue_assistant:
+        # A prefill continuation is not a query — never pull memory/skills/RAG/
+        # web prefetch for it (the message text is empty anyway).
+        casual_low_signal = True
 
     # Memory enabled?
     mem_enabled = not incognito and not no_memory and uprefs.get("memory_enabled", True)
@@ -808,6 +838,28 @@ async def build_chat_context(
         _preface_kwargs["use_rag"] = use_rag_val
     preface, rag_sources, web_sources = chat_processor.build_context_preface(**_preface_kwargs)
 
+    # Vision protocol injection — when the current turn carries images, prepend
+    # a dedicated vision system message so the model traces pixels instead of
+    # leaning on priors (e.g. boobs ≠ buttocks). Kept out of the main system
+    # prompt so it only fires when pixels are actually present.
+    try:
+        _has_images = False
+        if isinstance(preprocessed.user_content, list):
+            for _block in preprocessed.user_content:
+                if isinstance(_block, dict) and _block.get("type") in ("image_url", "image"):
+                    _has_images = True
+                    break
+        if _has_images:
+            _vision_path = "/run/media/crao/BTnvme/LLM/Sandbox/iris-vision-prompt.md"
+            try:
+                with open(_vision_path, encoding="utf-8") as _vf:
+                    _vision_text = _vf.read()
+                preface.append({"role": "system", "content": _vision_text})
+            except Exception:
+                logger.debug("Failed to load vision prompt", exc_info=True)
+    except Exception:
+        logger.debug("Vision image detection failed", exc_info=True)
+
     # Capture used memories immediately
     used_memories = getattr(chat_processor, '_last_used_memories', [])
 
@@ -834,6 +886,15 @@ async def build_chat_context(
     # stale normal session id. Only the ephemeral incognito transcript is safe.
     messages = preface + (_incognito_messages(session_id) if incognito else sess.get_context_messages())
 
+    def _tail_insert(msg):
+        # (2026-10-30) With a trailing ASSISTANT message (Continue prefill),
+        # tail context notes must go BEFORE it so the last message stays
+        # assistant and the provider continues it instead of answering the note.
+        if messages and (messages[-1].get("role") == "user" or (continue_assistant and messages[-1].get("role") == "assistant")):
+            messages.insert(len(messages) - 1, msg)
+        else:
+            messages.append(msg)
+
     # Current date/time — injected as a standalone *user*-role context message
     # placed immediately before the latest user turn, NOT folded into the
     # system prompt. Its text changes every minute, and local OpenAI-compatible
@@ -847,10 +908,7 @@ async def build_chat_context(
         try:
             from src.user_time import current_datetime_context_message
             _dt_msg = current_datetime_context_message()
-            if messages and messages[-1].get("role") == "user":
-                messages.insert(len(messages) - 1, _dt_msg)
-            else:
-                messages.append(_dt_msg)
+            _tail_insert(_dt_msg)
         except Exception:
             logger.debug("Failed to add current date/time context", exc_info=True)
 
@@ -862,16 +920,45 @@ async def build_chat_context(
     # datetime message above: the text changes as events accumulate, so it
     # must stay OUT of the byte-stable preface+history prefix or local
     # backends lose their KV-cache every request.
+    # Native replay first (2026-10-30): for API models, rebuild persisted
+    # tool_events as real assistant tool_calls + role=tool results so the
+    # model sees its own past calls in history. Prose-only cross-turn
+    # history taught long-session models to end turns with narration
+    # instead of tool calls. Reconstruction is deterministic per message,
+    # so the byte-stable prefix survives (same KV-cache reasoning as the
+    # digest below). Text-transport models keep the prose digest — their
+    # within-turn history never contains native calls either.
     try:
-        from src.tool_replay import prior_tool_outputs_context_message
-        _replay_msg = prior_tool_outputs_context_message(messages)
-        if _replay_msg is not None:
-            if messages and messages[-1].get("role") == "user":
-                messages.insert(len(messages) - 1, _replay_msg)
-            else:
-                messages.append(_replay_msg)
+        from src.agent_loop import _agent_route_tool_mode
+        _is_api_model, _, _ = _agent_route_tool_mode(
+            sess.endpoint_url,
+            sess.model,
+            owner=getattr(sess, "owner", None),
+        )
     except Exception:
-        logger.debug("Failed to add prior tool outputs context", exc_info=True)
+        _is_api_model = False
+    _native_replayed = 0
+    if _is_api_model:
+        try:
+            from src.tool_replay import replay_tool_events_as_native
+            _native_replayed = replay_tool_events_as_native(messages)
+        except Exception:
+            logger.debug("Failed to replay tool events natively", exc_info=True)
+    if _native_replayed:
+        try:
+            from src.tool_replay import NATIVE_REPLAY_NOTE
+            _replay_msg = {"role": "user", "content": NATIVE_REPLAY_NOTE}
+            _tail_insert(_replay_msg)
+        except Exception:
+            logger.debug("Failed to add native replay note", exc_info=True)
+    else:
+        try:
+            from src.tool_replay import prior_tool_outputs_context_message
+            _replay_msg = prior_tool_outputs_context_message(messages)
+            if _replay_msg is not None:
+                _tail_insert(_replay_msg)
+        except Exception:
+            logger.debug("Failed to add prior tool outputs context", exc_info=True)
 
     route_messages = list(messages)
     # Explicit fallback routing must shape from the same route-neutral prompt
@@ -892,6 +979,22 @@ async def build_chat_context(
     _after_trim_messages = len(messages)
     _after_trim_tokens = estimate_tokens(messages)
     _context_trimmed = _after_trim_messages < _before_trim_messages or _after_trim_tokens < _before_trim_tokens
+
+    # Continue separator (agent mode only): on Continue after a mid-stream
+    # error the stopped assistant row sits at the tail. If it has no replayed
+    # tool events, the resumed generation would follow it directly — two
+    # adjacent assistant messages, which the sanitizer does not merge and
+    # models/providers choke on. Inject a synthetic tool pair (API models) or
+    # a user note (fenced models) so the boundary is explicit. Chat-mode
+    # Continue uses prefill instead (the trailing assistant message is
+    # continued by the provider), so this is gated on agent_mode.
+    # Request-only: lands in the outgoing array, never in session history.
+    if continue_assistant and agent_mode:
+        try:
+            from src.tool_replay import inject_continue_separator
+            inject_continue_separator(messages, _is_api_model)
+        except Exception:
+            logger.debug("Failed to inject continue separator", exc_info=True)
 
     return ChatContext(
         preface=preface,
@@ -1128,6 +1231,7 @@ def save_assistant_response(
     tool_events: list = None,
     incognito: bool = False,
     draft_id: str | None = None,
+    continue_assistant: bool = False,
 ):
     """Add assistant response to session history.
 
@@ -1177,6 +1281,19 @@ def save_assistant_response(
     if incognito:
         _append_incognito_message(session_id, "assistant", _content, md)
         return None
+    if continue_assistant and not draft_id:
+        # Continue-prefill (2026-10-30): the continuation is the SAME turn —
+        # merge it into the existing last assistant row (same DB id, same
+        # bubble) instead of adding a new message.
+        _merged_id = session_manager.append_to_last_assistant(
+            session_id, _content, md, clear_stopped=True,
+        )
+        if _merged_id:
+            from core.database import update_session_last_accessed
+            update_session_last_accessed(session_id)
+            session_manager.save_sessions()
+            return _merged_id
+        # No eligible last assistant row — fall through to a normal add.
     if draft_id:
         # Checkpointed draft row exists for this turn — promote it IN PLACE
         # (same row id, no duplicate). The frontend already stamped the
