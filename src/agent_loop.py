@@ -3178,6 +3178,26 @@ def _build_system_prompt(
                 mcp_disabled_map or {}, disabled_tools=disabled_tools,
             )
             if _mcp_desc:
+                if compact:
+                    # (2026-11-01) Native function calling already ships the MCP
+                    # schemas in tools=; injecting the full arg docs as text too
+                    # duplicated ~2-4k tokens every turn. Stash the reference in
+                    # an on-demand file and inject only a pointer. DATA_DIR is a
+                    # default tool-path root, so read_file can page it.
+                    try:
+                        import os as _os
+                        from src.constants import DATA_DIR
+                        _mcp_doc = _os.path.join(DATA_DIR, "MCP-TOOLS.md")
+                        with open(_mcp_doc, "w", encoding="utf-8") as _fh:
+                            _fh.write("# MCP tool reference\n\n" + _mcp_desc + "\n")
+                        _mcp_desc = (
+                            "MCP tool servers are available via native function calling "
+                            "(see the tools list). Full argument reference: "
+                            f"{_mcp_doc} — read it only if you need detailed args for a "
+                            "specific MCP tool before calling it."
+                        )
+                    except Exception:
+                        pass  # write failed — fall back to the full block below
                 _mcp_desc_message = untrusted_context_message(
                     "MCP tools",
                     _mcp_desc,

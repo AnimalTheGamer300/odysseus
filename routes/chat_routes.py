@@ -21,6 +21,7 @@ from src.llm_core import (
     llm_call_async_with_route_fallback,
     stream_llm,
     stream_llm_with_fallback,
+    set_request_reasoning,
 )
 from src.agent_loop import stream_agent_loop
 from src import agent_runs
@@ -258,6 +259,7 @@ def _persist_stream_partial(
     draft_id: str | None = None,
     tool_events: list | None = None,
     round_texts: list | None = None,
+    continue_assistant: bool = False,
 ) -> bool:
     """Persist a partial assistant response (client disconnect / stream error).
 
@@ -297,6 +299,14 @@ def _persist_stream_partial(
     if thinking:
         md["thinking"] = thinking
     content, md = clean_thinking_for_save(full_response, md)
+    if continue_assistant:
+        # (2026-10-30) Prefill turn cut off: append the partial to the SAME
+        # assistant row, keeping stopped:True so refresh still offers Continue.
+        _merged = session_manager.append_to_last_assistant(session_id, content, md)
+        if _merged:
+            session_manager.save_sessions()
+            return True
+        # No eligible row — fall through to the normal partial save.
     if draft_id:
         session_manager.promote_draft(
             session_id, draft_id, ChatMessage("assistant", content, metadata=md)
@@ -305,6 +315,42 @@ def _persist_stream_partial(
         sess.add_message(ChatMessage("assistant", content, metadata=md))
     session_manager.save_sessions()
     return True
+
+
+def _persist_continue_separator(sess, session_manager, session_id: str) -> bool:
+    """Persist a synthetic odysseus_continue tool event on the stopped assistant row.
+
+    (2026-11-01) Agent-mode Continue after a mid-stream error used to leave the
+    stopped assistant row glued directly to the resumed generation — two adjacent
+    assistant messages in both the UI and the model context. Persisting the event
+    in metadata.tool_events means the frontend renders it through the normal
+    tool-event path (no special UI code) and native replay turns it into a tool
+    pair on every subsequent request. Idempotent: no-op if already present.
+    """
+    try:
+        from src.tool_replay import build_continue_separator_event, CONTINUE_SEPARATOR_TOOL
+        hist = getattr(sess, "history", None) or []
+        last = None
+        for m in reversed(hist):
+            if getattr(m, "role", None) == "assistant" and not (getattr(m, "metadata", None) or {}).get("archived"):
+                last = m
+                break
+        if last is None or not isinstance(getattr(last, "content", None), str):
+            return False
+        md = dict(last.metadata or {})
+        events = [e for e in (md.get("tool_events") or []) if isinstance(e, dict)]
+        if any(str(e.get("tool") or "") == CONTINUE_SEPARATOR_TOOL for e in events):
+            return False  # already persisted
+        rounds = [e["round"] for e in events if isinstance(e.get("round"), int)]
+        events.append(build_continue_separator_event(round_num=(max(rounds) + 1) if rounds else 1))
+        merged = session_manager.append_to_last_assistant(session_id, "", {"tool_events": events})
+        if merged:
+            session_manager.save_sessions()
+            return True
+        return False
+    except Exception:
+        logger.debug("persist continue separator failed", exc_info=True)
+        return False
 
 
 def _sink_tool_state(sink: dict | None) -> tuple[list, list]:
@@ -887,6 +933,9 @@ def setup_chat_routes(
         use_research = chat_request.use_research
         time_filter = chat_request.time_filter
         preset_id = chat_request.preset_id
+        # Per-request reasoning override from the chat-box thinking control.
+        # ContextVar: scoped to this request's task, no cross-request leak.
+        set_request_reasoning(getattr(chat_request, "reasoning_effort", None))
 
         # Verify the caller owns this session before loading it.
         # Without this, any authenticated user can post into another user's chat.
@@ -1107,6 +1156,11 @@ def setup_chat_routes(
         incognito = str(form_data.get("incognito", "")).lower() == "true"
         plan_mode = str(form_data.get("plan_mode") or (body or {}).get("plan_mode") or "").lower() == "true"
         chat_mode = str(form_data.get("mode", "")).lower()  # 'chat' or 'agent'
+        # Per-request reasoning override from the chat-box thinking control
+        # (form field, or JSON body for API callers). ContextVar-scoped to this
+        # request's task, so the streaming generator below inherits it.
+        reasoning_effort = form_data.get("reasoning_effort") or (body or {}).get("reasoning_effort")
+        set_request_reasoning(reasoning_effort)
         tool_approval_id = (
             form_data.get("tool_approval_id")
             or (body or {}).get("tool_approval_id")
@@ -1188,6 +1242,22 @@ def setup_chat_routes(
             chat_mode = "agent"
             auto_escalated = True
             logger.info("chat→agent auto-escalation: explicit web intent")
+        # Continue-prefill (2026-10-30): the Continue button sends an EMPTY
+        # message with this flag — the model's own partial reply stays as the
+        # trailing assistant message and the provider just continues it (same
+        # turn, no handshake user message). Parsed here, after ALL chat_mode
+        # overrides, because it is first used in coerce_message_and_session
+        # below — assigning it later raised UnboundLocalError (2026-10-30).
+        # Continue/resume (2026-10-31): the Continue button sends an EMPTY
+        # message with this flag — no user row is persisted. Chat mode: the
+        # model's own partial reply stays as the trailing assistant message
+        # (text prefill). Agent mode: the agent loop resumes on the replayed
+        # tool-call/result tail (native tool-event replay), so tools keep
+        # working after a mid-turn 504/429. `continue_prefill` gates the
+        # same-row merge to chat mode only — agent rounds persist as their
+        # own rows with tool_events/round_texts.
+        continue_assistant = str(form_data.get("continue_assistant", "")).lower() == "true"
+        continue_prefill = continue_assistant and chat_mode == "chat"
         active_doc_id = form_data.get("active_doc_id", "").strip()
         logger.info(f"[doc-inject] chat_mode={chat_mode}, active_doc_id={active_doc_id!r}")
 
@@ -1259,12 +1329,18 @@ def setup_chat_routes(
             )
             message, session = coerce_message_and_session(
                 body, message, session, session_manager,
-                allow_empty=(_has_atts or bool(tool_approval_id)),
+                allow_empty=(_has_atts or bool(tool_approval_id) or continue_assistant),
             )
             # Verify ownership AFTER coerce (which may resolve a default session)
             # but BEFORE loading. Prevents cross-user session hijack.
             _verify_session_owner(request, session)
             sess = session_manager.get_session(session)
+            # (2026-11-01) Agent-mode Continue: persist the synthetic
+            # odysseus_continue tool event on the stopped assistant row so the
+            # UI and every future model request show a tool boundary between
+            # the interrupted reply and the resumed generation.
+            if continue_assistant and chat_mode == "agent":
+                _persist_continue_separator(sess, session_manager, session)
             owner = effective_user(request)
             if tool_approval_id:
                 _reject_delegated_tool_approval(request)
@@ -1451,6 +1527,8 @@ def setup_chat_routes(
         # (keep_through_id) — build_chat_context must reuse it instead of
         # persisting a new row (2026-08-08, see changelog).
         reuse_last_user = str(form_data.get("reuse_last_user", "")).lower() == "true"
+        # continue_assistant is parsed up top (right after the chat_mode
+        # overrides) — it is used before this point in coerce_message_and_session.
         if image_generation_session:
             no_memory = True
             use_rag = "false"
@@ -1494,7 +1572,8 @@ def setup_chat_routes(
                 and pending_tool_approval.continuation_query
                 else None
             ),
-            persist_user_message=not tool_approval_continuation,
+            persist_user_message=not tool_approval_continuation and not continue_assistant,
+            continue_assistant=continue_assistant,
         )
 
         _research_flags = {"do": do_research}  # Mutable container for generator scope
@@ -1937,7 +2016,10 @@ def setup_chat_routes(
                 draft row id when a NEW draft was created (caller emits the
                 draft_saved SSE event), else None."""
                 nonlocal _draft_id, _draft_meta, _last_ckpt
-                if _saw_done or incognito:
+                # (2026-10-30) Prefill continues skip draft checkpointing: the
+                # in-flight continuation merges into the existing assistant row
+                # on save/disconnect, so a separate draft row would duplicate it.
+                if _saw_done or incognito or continue_assistant:
                     return None
                 _partial_chars = len(full_response) + len(thinking_response)
                 if not _partial_chars:
@@ -2362,6 +2444,7 @@ def setup_chat_routes(
                                     _terminal_metrics,
                                     character_name=ctx.preset.character_name,
                                     incognito=incognito,
+                                    continue_assistant=continue_prefill,
                                 )
                                 accumulate_token_usage(session, _terminal_metrics)
                                 _chat_terminal_saved = True
@@ -2433,7 +2516,7 @@ def setup_chat_routes(
                                     used_memories=ctx.used_memories,
                                     do_research=effective_do_research,
                                     incognito=incognito,
-                                    draft_id=_draft_id,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
                                 )
                                 if _saved_id:
                                     yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
@@ -2447,6 +2530,7 @@ def setup_chat_routes(
                                     allow_background_extraction=(
                                         not tool_policy.block_all_tool_calls
                                         and not tool_approval_continuation
+                                        and not continue_assistant
                                     ),
                                 )
                             elif not incognito:
@@ -2480,7 +2564,7 @@ def setup_chat_routes(
                                     used_memories=ctx.used_memories,
                                     do_research=effective_do_research,
                                     incognito=incognito,
-                                    draft_id=_draft_id,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
                                 )
                                 if _saved_id:
                                     yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
@@ -2510,7 +2594,7 @@ def setup_chat_routes(
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
                                 extra={"stream_error": "stream ended without completion"},
-                                draft_id=_draft_id,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
                             )
                         except Exception as _persist_err:
                             logger.error("Failed to persist no-done partial for session %s: %s", session, _persist_err)
@@ -2527,7 +2611,7 @@ def setup_chat_routes(
                                 sess, session_manager, session, full_response, thinking_response,
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
-                                draft_id=_draft_id,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
                             )
                         except Exception as _persist_err:
                             logger.error("Failed to persist partial response for session %s: %s", session, _persist_err)
@@ -2545,7 +2629,7 @@ def setup_chat_routes(
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
                                 extra={"stream_error": str(_upstream_err)[:300]},
-                                draft_id=_draft_id,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
                             )
                         except Exception as _persist_err:
                             logger.error("Failed to persist error partial for session %s: %s", session, _persist_err)
@@ -2793,7 +2877,7 @@ def setup_chat_routes(
                                     rag_sources=ctx.rag_sources,
                                     used_memories=ctx.used_memories,
                                     incognito=incognito,
-                                    draft_id=_draft_id,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
                                 )
                                 if _saved_id:
                                     yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
@@ -2814,6 +2898,7 @@ def setup_chat_routes(
                                     allow_background_extraction=(
                                         not tool_policy.block_all_tool_calls
                                         and not tool_approval_continuation
+                                        and not continue_assistant
                                     ),
                                 )
                             elif not incognito:
@@ -2845,7 +2930,7 @@ def setup_chat_routes(
                                     rag_sources=ctx.rag_sources,
                                     used_memories=ctx.used_memories,
                                     incognito=incognito,
-                                    draft_id=_draft_id,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
                                 )
                                 if _saved_id:
                                     yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
@@ -2875,7 +2960,7 @@ def setup_chat_routes(
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
                                 extra={"stream_error": "stream ended without completion"},
-                                draft_id=_draft_id,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
                                 tool_events=_ev,
                                 round_texts=_rt,
                             )
@@ -2897,7 +2982,7 @@ def setup_chat_routes(
                                 sess, session_manager, session, full_response, thinking_response,
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
-                                draft_id=_draft_id,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
                                 tool_events=_ev,
                                 round_texts=_rt,
                             )
@@ -2917,7 +3002,7 @@ def setup_chat_routes(
                                 model=_actual_model or _answered_by or _requested_model,
                                 requested_model=_requested_model,
                                 extra={"stream_error": str(_upstream_err)[:300]},
-                                draft_id=_draft_id,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
                                 tool_events=_ev,
                                 round_texts=_rt,
                             )
@@ -3049,6 +3134,52 @@ def setup_chat_routes(
                 include_legacy_owner=False,
             )
         ]
+
+    # ------------------------------------------------------------------ #
+    # GET /api/chat/reasoning-control — per-model thinking menu info
+    # ------------------------------------------------------------------ #
+    @router.get("/api/chat/reasoning-control")
+    async def reasoning_control(
+        model: str = Query(""),
+        url: str = Query(""),
+    ) -> Dict[str, Any]:
+        """Which graded reasoning levels this model accepts and which value
+        turns thinking off, so the chat-box dropdown adapts per model instead
+        of lying. NIM values are live-verified per model family (2026-11-01):
+        nemotron off="none", glm off="low", minimax/mistral off="low"
+        (best effort — those two cannot be fully silenced via the API), and
+        mistral accepts only low/medium/high (400 on max/xhigh/none)."""
+        from src.llm_core import (
+            _detect_provider,
+            _is_self_hosted_openai_compatible,
+            nim_reasoning_levels,
+            nim_reasoning_off_value,
+        )
+        provider = _detect_provider(url or "")
+        if provider == "nvidia":
+            return {
+                "provider": provider,
+                "levels": list(nim_reasoning_levels(model)),
+                "off_value": nim_reasoning_off_value(model),
+                "off_supported": True,
+            }
+        if _is_self_hosted_openai_compatible(url or ""):
+            return {"provider": "self_hosted", "levels": ["low", "medium", "high"],
+                    "off_value": "off", "off_supported": True}
+        if provider == "groq":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "none", "off_supported": True}
+        if provider == "openrouter":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "off", "off_supported": True}
+        if provider == "openai":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "minimal", "off_supported": True}
+        if provider == "mistral":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "none", "off_supported": True}
+        return {"provider": provider or "unknown", "levels": [],
+                "off_value": "off", "off_supported": True}
 
     # ------------------------------------------------------------------ #
     # POST /api/rewrite — lightweight rewrite of last AI message (no tools)
