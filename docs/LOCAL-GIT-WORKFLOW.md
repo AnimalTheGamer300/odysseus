@@ -77,3 +77,26 @@ a GitHub PAT via `git remote set-url origin https://github.com/...`.
 2. `git branch -a` — wip-snapshot-* / backup/* branches are recovery points.
 3. `git stash list` — stashes survive resets.
 4. `ODYSSEUS-CHANGES.md` (on disk, git-immune) documents what was done.
+
+## Reconciliation workspace (set up 2026-11-02)
+
+- **Path:** `/home/crao/odysseus-reconcile` — on nvme0, a DIFFERENT physical
+  disk from the live install (BTnvme). Created via `git worktree add`, so it
+  shares the main repo's object store; the live server and the original tree
+  are untouched by anything done here.
+- **Branch:** `reconcile-20261102`, based on `origin/dev` (`a0c93f38` — the
+  fork's front-page state). Note: worktree-add set it to track `origin/dev` —
+  do NOT `git pull` in the worktree; fetch and merge explicitly.
+- **Recon (2026-11-02):** `git merge --no-commit --no-ff
+  iris-ctx-packing-tweaks` conflicts in **63 files**. Hotspots:
+  `core/database.py`, `routes/{chat_helpers,chat_routes,session_routes}.py`,
+  `routes/history/history_routes.py`, `src/{agent_loop,llm_core,
+  request_models,settings,tool_execution,tool_parsing,tool_schemas,
+  tools/image}.py`, `src/context_compactor.py`, `src/document_processor.py`,
+  `src/mcp_manager.py`, and a wide swath of `static/js/*` (upstream's 508
+  commits include a broad frontend refresh). Merge aborted cleanly; worktree
+  left at `a0c93f38`.
+- **When Sir says go:** resolve in the worktree favoring Sir's side (his
+  features are primary — this fork never goes upstream), run the test suite
+  there, and only push `reconcile-20261102:dev` (front-page update) on his
+  explicit yes.
