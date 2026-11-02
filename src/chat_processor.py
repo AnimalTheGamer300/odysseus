@@ -86,6 +86,9 @@ class ChatProcessor:
         self.personal_docs_manager = personal_docs_manager
         self.memory_vector = memory_vector
         self.skills_manager = skills_manager
+        # mem_id -> (hash(text), frozenset(tokens)) so the per-turn BM25 pass
+        # doesn't re-tokenize the whole corpus every message.
+        self._mem_token_cache = {}
 
     # Minimum similarity score for RAG results to be injected
     RAG_SIMILARITY_THRESHOLD = 0.35
@@ -177,11 +180,24 @@ class ChatProcessor:
         N = len(mem_entries)
         doc_freq = Counter()  # token -> how many memories contain it
         mem_token_cache = {}  # mem_id -> set of content tokens
+        cache = self._mem_token_cache
         for mem in mem_entries:
-            toks = set(_content_tokens(mem["text"]))
-            mem_token_cache[mem["id"]] = toks
+            mid = mem["id"]
+            text = mem.get("text") or ""
+            h = hash(text)
+            entry = cache.get(mid)
+            if entry is not None and entry[0] == h:
+                toks = entry[1]
+            else:
+                toks = frozenset(_content_tokens(text))
+                cache[mid] = (h, toks)
+            mem_token_cache[mid] = set(toks)
             for t in toks:
                 doc_freq[t] += 1
+        # Prune stale entries so deleted/edited memories don't grow the cache forever
+        if len(cache) > 4 * max(N, 1):
+            live = {m["id"] for m in mem_entries}
+            self._mem_token_cache = {k: v for k, v in cache.items() if k in live}
 
         def _bm25_score(query_toks, mem_id):
             """BM25-inspired score between query and a memory."""

@@ -53,7 +53,7 @@ from src.tool_approvals import (
     document_content_digest,
     tool_approval_store,
 )
-from src.tool_utils import _truncate, get_mcp_manager
+from src.tool_utils import get_mcp_manager, truncate_tool_output
 from src.agent_tools import (
     parse_tool_blocks,
     strip_tool_blocks,
@@ -4957,6 +4957,13 @@ async def stream_agent_loop(
                     if schema.get("function", {}).get("name") not in disabled_tools
                     and schema.get("name") not in disabled_tools
                 ]
+            # Slim the tools= payload for API models: short description, no
+            # examples. Full reference stays in data/TOOLS.md (read on demand).
+            # Lazy import: tool_schemas <-> agent_tools is circular at module
+            # load, so importing it here (post-init) is the safe order.
+            if get_setting("agent_slim_tool_schemas", True):
+                from src.tool_schemas import slim_tool_schemas
+                schemas = slim_tool_schemas(schemas)
             return _filter_route_tool_schemas(schemas)
 
         wants_mcp = any(keyword in _last_user.lower() for keyword in _MCP_KEYWORDS)
@@ -5090,7 +5097,7 @@ async def stream_agent_loop(
             "type": "tool_output",
             "tool": approved.tool_name,
             "command": approved_display[:240] if approval_matches else "",
-            "output": _truncate(approved_output),
+            "output": truncate_tool_output(approved_output, tool_name=approved.tool_name),
             "exit_code": approved_result.get("exit_code"),
             "approved": True,
         }
@@ -5170,7 +5177,7 @@ async def stream_agent_loop(
             "tool": approved.tool_name,
             "desc": desc,
             "command": approved_display[:240] if approval_matches else "",
-            "output": _truncate(approved_output),
+            "output": truncate_tool_output(approved_output, tool_name=approved.tool_name),
             "exit_code": approved_result.get("exit_code"),
             "approved": True,
             "approval_digest": approved.digest[:16],
@@ -5964,13 +5971,21 @@ async def stream_agent_loop(
             #     2026-10-30 "Updating the tally, then batch 8~" shape
             #     fabricated a full 5.7k-char results table). Same detector
             #     as the post-loop tool-verification guard.
+            #     2026-10-31: `not tool_events` is now actually enforced here —
+            #     the branch used to fire even when tools HAD run this turn,
+            #     false-flagging any tool turn whose final round carried >=2
+            #     strong verbs (e.g. a read_file turn whose wrap-up contained
+            #     "makeup running by tears" + "updated"; 8 of 104 flagged
+            #     turns DB-wide had tool_events, one with 131 bash events).
+            #     Narration can only be "unrun tools" if zero tools ran.
             # Wrap-up exemption: if tools demonstrably ran earlier in this
             # run (or in recent history) and the round reads as a conclusion,
             # zero tool calls this turn means the model is FINISHING, not
             # making a broken promise — don't even flag it.
             _ends_with_call_colon = _intent_text.endswith(":")
             _narrates_unrun_tools = (
-                _recent_user_request_is_effectful(messages)
+                not tool_events
+                and _recent_user_request_is_effectful(messages)
                 and _looks_like_tool_claim_narration(_intent_text)
             )
             _wrap_up_summary = (
@@ -6447,19 +6462,19 @@ async def stream_agent_loop(
                 # empty) stdout/stderr; fall back to the error so the "timed
                 # out" reason reaches the UI instead of a blank result.
                 raw = result["stdout"] or result["stderr"] or result.get("error", "")
-                output_text = _truncate(raw)
+                output_text = truncate_tool_output(raw, tool_name=block.tool_type)
             elif "output" in result:
                 # bash / python canonical result: {"output": ..., "exit_code": ...}
                 raw = result["output"] or ""
-                output_text = _truncate(raw)
+                output_text = truncate_tool_output(raw, tool_name=block.tool_type)
             elif "response" in result:
                 # AI interaction tools (chat_with_model, send_to_session)
                 label = result.get("model", result.get("session_name", "AI"))
-                output_text = _truncate(f"{label}: {result['response']}")
+                output_text = truncate_tool_output(f"{label}: {result['response']}", tool_name=block.tool_type)
             elif "content" in result:
-                output_text = _truncate(result["content"])
+                output_text = truncate_tool_output(result["content"], tool_name=block.tool_type)
             elif "results" in result:
-                output_text = _truncate(result["results"])
+                output_text = truncate_tool_output(result["results"], tool_name=block.tool_type)
             elif "session_id" in result and "name" in result:
                 output_text = f"Session created: {result['name']} (id: {result['session_id']})"
             elif "success" in result:
@@ -6469,7 +6484,7 @@ async def stream_agent_loop(
                     else f"Error: {result.get('error', '')}"
                 )
             elif "error" in result:
-                output_text = _truncate(result["error"])
+                output_text = truncate_tool_output(result["error"], tool_name=block.tool_type)
 
             # Emit tool_output (include ui_event data if present)
             tool_output_data = {"type": "tool_output", "tool": block.tool_type, "command": cmd_display, "output": output_text, "exit_code": result.get("exit_code")}

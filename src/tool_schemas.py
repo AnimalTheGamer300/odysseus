@@ -8,8 +8,10 @@ Extracted from agent_tools.py to keep schema definitions separate from
 tool parsing / execution logic.
 """
 
+import copy
 import json
 import logging
+import re
 from typing import Optional
 
 from src.agent_tools import ToolBlock, TOOL_TAGS
@@ -763,6 +765,59 @@ FUNCTION_TOOL_SCHEMAS = [
         }
     },
 ]
+
+
+# ---------------------------------------------------------------------------
+# Slim schemas for the tools= payload on API routes
+# ---------------------------------------------------------------------------
+
+def _slim_description(desc: str, cap: int) -> str:
+    """Cut a schema description to its first sentence, hard-capped at *cap* chars."""
+    desc = (desc or "").strip()
+    if not desc:
+        return desc
+    first = re.split(r"(?<=[.!?])\s", desc, maxsplit=1)[0]
+    if len(first) > cap:
+        first = first[: cap - 3] + "..."
+    return first
+
+
+def _slim_node(node) -> None:
+    """Recursively drop examples and shorten descriptions in a schema subtree.
+
+    Keeps type/enum/required/default/items/properties — only prose is cut.
+    """
+    if isinstance(node, dict):
+        for key in ("examples", "example"):
+            node.pop(key, None)
+        if isinstance(node.get("description"), str):
+            node["description"] = _slim_description(node["description"], 120)
+        for value in node.values():
+            _slim_node(value)
+    elif isinstance(node, list):
+        for item in node:
+            _slim_node(item)
+
+
+def slim_tool_schema(schema: dict) -> dict:
+    """Return a copy of a function schema with short descriptions and no examples.
+
+    The full descriptions/examples stay in data/TOOLS.md, which the agent can
+    read on demand; the tools= param only needs enough for the model to pick
+    the tool and shape the call. Names, types, enums, and required flags stay
+    intact — only prose (top-level description capped at 240 chars, nested
+    descriptions at 120) is cut to the first sentence.
+    """
+    slim = copy.deepcopy(schema)
+    fn = slim.get("function", {})
+    if isinstance(fn.get("description"), str):
+        fn["description"] = _slim_description(fn["description"], 240)
+    _slim_node(fn.get("parameters", {}))
+    return slim
+
+
+def slim_tool_schemas(schemas: list) -> list:
+    return [slim_tool_schema(s) for s in schemas]
 
 
 # ---------------------------------------------------------------------------
