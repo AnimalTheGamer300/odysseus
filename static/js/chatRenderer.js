@@ -2604,6 +2604,18 @@ export function addMessage(role, content, modelName, metadata) {
       const maxRound = Math.max(toolRounds.length ? Math.max(...toolRounds) : 0, roundTexts.length);
 
       const firstRound = (toolsByRound[0] || []).length ? 0 : 1;
+      // (2026-11-01) Thinking-box placement + guard fix: attach the stored
+      // metadata.thinking to the first round that actually has text (fallback
+      // round 0) so the box sits on the text bubble instead of a detached
+      // empty one. The inline guard must test for REAL parsed think blocks —
+      // a prose mention of `<think>` in a round (model discussing tags in
+      // backticks) used to trip the substring check and suppress the box
+      // entirely on refresh.
+      const hasInlineThink = roundTexts.some(
+        t => (markdownModule.extractThinkingBlocks(String(t || ''))?.thinkingBlocks || []).length > 0
+      );
+      let thinkRound = roundTexts.findIndex(t => String(t || '').trim());
+      if (thinkRound < 0) thinkRound = 0;
       for (let roundNum = firstRound; roundNum <= maxRound; roundNum++) {
         const r = roundNum - 1;
         let txt = r >= 0
@@ -2908,8 +2920,15 @@ export function addMessage(role, content, modelName, metadata) {
       // tags are the only boundary, and quoted tags render literally inside
       // the box.
       const safeThinking = markdownModule.neutralizeStrayThinkTags(String(metadata.thinking || ''), true);
+      // (2026-11-01) Legacy double-store: if the content still carries real
+      // inline think blocks alongside metadata.thinking, strip them from the
+      // display text (dataset.raw keeps the original) so the box doesn't
+      // render twice on refresh.
+      let displayText = text;
+      const _inline = markdownModule.extractThinkingBlocks(text);
+      if (_inline?.thinkingBlocks?.length) displayText = _inline.content;
       const thinkHtml = markdownModule.processWithThinking(
-        '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</think>\n\n' + text
+        '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</think>\n\n' + displayText
       );
       b.innerHTML = sourcesPrefix + thinkHtml + findingsSuffix;
 	    } else {

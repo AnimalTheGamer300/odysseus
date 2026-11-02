@@ -9497,10 +9497,11 @@ body.fullwidth-chat .chat-history {
 }
 
 .thinking-content.expanded {
-  /* (2026-11-01) Never visually truncate reasoning — expanded shows the full
-     thinking block, no scroll cap. */
-  max-height: none;
-  overflow: visible;
+  /* (2026-11-01) Display cap only — the full reasoning stays in the DOM and
+     is reachable by scrolling; collapse hides it entirely. Sir wants the cap
+     so a huge reasoning block doesn't flood the chat. */
+  max-height: 300px;
+  overflow-y: auto;
   padding: 12px;
 }
 
