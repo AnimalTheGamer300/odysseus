@@ -4045,3 +4045,271 @@ tool result, replay note]. Chat-mode prefill was live-verified earlier against
 the running server (empty message + flag → same-row merge, seamless bubble).
 py_compile + node --check clean. Agent-mode resume backend loads on the user's
 next re-run.sh restart (assistant does not restart the server per user rule).
+
+## 2026-10-31 (20:55) — data surgery (no code change): repair hallucinated-tool-call turn in forked session 79fe8eec (data/app.db)
+
+**User need:** in forked chat `79fe8eec-94db-45ce-af1c-ff7d61bb42e6`, assistant
+message `3ea3ee07-…` was stopped mid-generation after narrating "Updating the
+tally, then your Q52 homework~" but before any tool executed — saved as
+prose-only (`stopped: true`, no `tool_events`). The follow-up turn
+`a300b0d9-…` actually ran `write_file` (bdsmtest_answers.md, 2820 bytes), with
+the user's "nuh uh run your tools ma'am" (`5eb9dad3-…`) in between. Sir asked
+to rewrite history: merge the two assistant turns into one that owns the tool
+call, drop the user message between them.
+
+**Change:** `data/app.db` `chat_messages` only (direct SQLite, app running in
+WAL mode; FTS triggers kept `chat_messages_fts` in sync):
+- `3ea3ee07-…` row: content replaced with merged reply (3ea intro + "Updating
+  the tally…" + "Receipt secured — 2820 bytes…" + a300's full batch-6 table
+  Q51–60, pattern notes, Q52 homework, batch-7 questions; 5201 chars);
+  metadata = a300's metadata (carries the real `tool_events` write_file event)
+  with 3ea's `timestamp`/`_db_id`/`thinking`, `stopped` removed,
+  `round_texts` split into the two rounds. No `edited` flag — looks untouched.
+- Rows `5eb9dad3-…` (user) and `a300b0d9-…` (assistant) deleted via
+  `POST /api/session/{sid}/delete-messages` (DB + in-memory + message_count).
+- In-memory hydration forced by inserting a throwaway row directly in the DB
+  (stored count 22 > cached 21 → `get_session` re-hydrates from DB on next
+  access via `GET /api/session/{sid}/context`), then the throwaway row was
+  deleted through the same delete-messages call. `sanitize_client_message_metadata`
+  strips `tool_events` from client-supplied metadata (server-owned key), which
+  is why the metadata write had to go direct-to-DB.
+- Backup before surgery: `/tmp/iris-surgery-backup/app.db{,-wal,-shm}`.
+
+**Verified:** DB now 19 rows (was 21), FTS 19, `sessions.message_count`=19;
+`GET /api/session/{sid}/context` reports messages=19 (was 22 pre-delete);
+`replay_tool_events_as_native()` over the DB history augments 8 assistant turns
+and renders the merged `3ea3ee07` as assistant(tool_calls=[write_file
+bdsmtest_answers.md]) + role=tool "Wrote 2820 bytes…" — identical shape to the
+session's other legitimate tool turns, so future requests see the tool call as
+having really run. Root cause of the original poison (confirmed by user):
+the model narrated a performed tool action in prose ("Updating the tally,
+then your Q52 homework~") WITHOUT emitting a tool call; the user hit stop on
+noticing, which closed the SSE generator mid-stream (GeneratorExit) — so the
+post-loop guard at `agent_loop.py:6846` (`_tool_claims_unverified`) never ran,
+and the stop path (`routes/chat_routes.py:288`, `stopped: True` + partial_sink)
+persisted the partial with 0 `tool_events` and NO flag. `replay_tool_events_as_native`
+had nothing to replay, so the false claim stood in context unchallenged. The
+guard only fired later on the completed no-tool turn `42303066-…` (flag + ⚠
+note appended to its content — left in place, see session) because
+`_recent_user_request_is_effectful` + `_looks_like_tool_claim_narration`
+(≥2 strong action verbs) matched with 0 `tool_events`. Gap noted, not fixed:
+stopped turns skip the tool-claim guard entirely — running the same check in
+the stop/partial-persist path would flag these at stop time.
+
+## 2026-10-31 (22:45) — fix(agent): tool-hallucination guard no longer false-flags turns where tools ran (`not tool_events` enforced in `_narrates_unrun_tools`)
+
+**User need:** the tool-verification guard (`_tool_claims_unverified`) fired on
+turns where tools DID execute. In forked session `79fe8eec-…`, message
+`3b888681-…` ran `read_file` (tool_events=1) yet was flagged and got the ⚠ note
+appended to its saved content: the in-loop `_intent_without_action` branch
+(`_narrates_unrun_tools`) never checked `tool_events` — the final round's text
+carried ≥2 distinct strong verbs ("makeup **running** by tears" + "updated"/
+"applied"/"closed"/"ran") and a recent user message was effectful, while the
+wrap-up exemption failed because `_looks_like_conclusion` only scans head/tail
+250 chars and "Fire away~" is not in `_CONCLUSION_RE`. DB-wide: 8 of 104
+flagged turns had tool_events (one with 131 bash events).
+
+**Change:** `src/agent_loop.py` only — `_narrates_unrun_tools` now starts with
+`not tool_events`, matching its own comment ("ZERO tools run this turn") and
+the post-loop guard's existing `not tool_events` condition. Narration can only
+count as "unrun tools" when zero tools ran this turn. Comment updated with the
+2026-10-31 note. No behavior change for 0-tool turns (the real
+hallucinated-work-log case).
+
+**Verified:** `python3 -m py_compile src/agent_loop.py` clean; `import
+src.agent_loop` clean. Functional replay of the guard predicates against the
+real session rows from `data/app.db`: `3b888681` (tool_events=[read_file]) →
+`narrates_unrun=False` → guard does NOT fire (was True pre-patch);
+`42303066` (0 tools + ≥2 strong verbs + effectful user msg) → `narrates_unrun=True`
+→ guard still fires. Live effect on next server restart (assistant does not
+restart the server per user rule).
+
+## 2026-10-31 (22:54) — data surgery (no code change): scrub false guard ⚠ note from tool-running message in forked session 79fe8eec (data/app.db)
+
+**User need:** after the 22:45 guard fix, scrub the tool-verification guard's
+⚠ note + `tool_claims_unverified` flag from the "proper working tool messages"
+in forked chat `79fe8eec-…` — flagged turns where tools actually executed. In
+this session only `3b888681-…` qualified (read_file ran, tool_events=1, but the
+final round's text tripped `_TOOL_CLAIM_STRONG_RE` via "makeup running by
+tears" + "updated"/"applied"/"closed"/"ran" → false flag + note baked into
+content).
+
+**Change:** `data/app.db` `chat_messages` only (direct SQLite; FTS triggers
+kept `chat_messages_fts` in sync): `3b888681-…` content stripped of the
+appended "\n\n---\n⚠ Described tool actions did not execute …" note
+(round_texts checked too — clean), `tool_claims_unverified` removed from
+metadata; `tool_events` left intact. In-memory hydration forced via a
+throwaway row (stored > cached → `get_session` → `_load_session_from_db`),
+throwaway deleted via `POST /api/session/{sid}/delete-messages`. Backup:
+`/tmp/iris-surgery-backup2/app.db{,-wal,-shm}`. Left in place deliberately:
+`42303066-…` and `9556b515-…` still carry flag+note (0 tool_events — the note
+is factually accurate there). DB-wide, 7 other false-flagged tool-running
+messages exist in 5 other sessions (3770f309/5359ef01, c0d7eb13/393340b5,
+a0e4e6f6/96c284e2+2031e69a+4d67ee2e, 315f71d7/c66cfcfd+09aaad72) — not touched
+(other live sessions).
+
+**Verified:** DB: 23 rows; `3b888681` flag=None, note=False, events=1, content
+ends "Fire away~"; dummy rows 0; FTS in sync. App: `GET
+/api/session/{sid}/context` hydrated in-memory from DB (cached 21 < stored 23
+→ reload; export via `get_session` reflects the scrubbed row).
+`42303066`/`9556b515` unchanged (flag=True, note present, events=0).
+
+## 2026-11-01 (08:31) — data surgery (no code change): fix NVIDIA 400s in session 5d36643b (data/app.db) — archive empty stopped assistant rows
+
+**User need:** chat `5d36643b-2d7b-47a1-9f3f-8ddbbb9c47a1`
+(mistralai/mistral-large-4-1t-a52b @ integrate.api.nvidia.com) returned HTTP
+400 "Invalid request" on every send (app.log 2026-11-01 07:07–07:18 local,
+prompt_tokens 129k–244k). User suspected backend-garbled history.
+
+**Root cause (verified by live probes against NIM):** 5 stopped assistant rows
+with EMPTY content (`content=""`, no tool_calls) were non-archived, so the
+request contained `{"role":"assistant","content":""}`. Minimal probe with an
+empty-content assistant → 400 "Invalid request"; control, valid tool-call, and
+duplicate-tool_call-id payloads → 200. `_sanitize_llm_messages` keeps them
+because `content=""` is not None. (A regenerate pair 9ce9bdec/c35ac567 also
+produced duplicate tool_call ids after native replay — probe showed NIM
+accepts those; left in place.)
+
+**Change:** `data/app.db` `chat_messages` only: set `archived=true`
+(+`archived_at`, `archived_by='iris-surgery'`) on the 5 empty stopped rows
+(addb4b82-…, 7d02cf74-…, 850dcfe6-…, beeb92dd-…, 1f1dded5-…). Rows stay on
+disk and in the UI; the existing archived filter excludes them from model
+context. In-memory hydration forced via throwaway rows (stored>cached →
+get_session → _load_session_from_db); dummies deleted via
+POST /api/session/{sid}/delete-messages. Backup:
+/tmp/iris-surgery-backup3/app.db{,-wal,-shm}.
+
+**Verified:** DB 73 rows, 0 dummies, 57 archived, 0 non-archived empty
+assistants, FTS in sync; context endpoint messages 21→16, used_tokens
+98901→80686; rebuilt request payload (preface + context + native replay +
+sanitize + system consolidation + tail inserts) = 33 messages, zero empty
+assistants, tool calls/results correctly paired; live probe of the full
+rebuilt payload (real IRIS system prompt + 78 tool schemas) to
+integrate.api.nvidia.com → HTTP 200, prompt_tokens=103169. Code-level
+hardening NOT applied (option): drop empty-content assistant messages in
+`_sanitize_llm_messages` so stopped empty turns never reach the API.
+
+## 2026-11-01 (02:20) — fix(core): AttributeError in get_context_messages on multimodal (list) content
+
+**Bug (user-reported traceback):** `msg.content.startswith(_HANDSHAKE_PREFIXES)`
+in `core/models.py::get_context_messages` raised
+`AttributeError: 'list' object has no attribute 'startswith'`.
+`ChatMessage.content` is a LIST of content blocks for multimodal user messages
+(image/audio attachments) — `_parse_msg_content` (session_manager.py:81)
+deserializes JSON arrays back to lists. The handshake-prefix filter added
+2026-10-31 assumed str content. (User had commented the line out to keep the
+server running; this restores the filter safely.)
+
+**Fix:**
+- `core/models.py::get_context_messages`: handshake filter now guarded with
+  `isinstance(msg.content, str)` — list content passes through untouched.
+- `core/session_manager.py::append_to_last_assistant`: same guard — if the
+  last assistant message's content is not a str (multimodal), return None so
+  the caller falls back to a normal add instead of crashing on concatenation.
+
+**Verified:** py_compile clean; harness with history [handshake user row,
+user row with list content (image blocks), normal user, assistant] →
+get_context_messages() returns without error, excludes the handshake row,
+keeps the multimodal row. Frontend sessions.js already handles list content
+(extracts text parts) — no JS change needed.
+
+---
+
+## 2026-11-01 12:30 — feat: DYNAMIC per-model thinking control on NIM (off value + levels per model, live-verified) (IRIS)
+
+**Problem:** Thinking=Off was hardcoded to `reasoning_effort: "low"` for all
+NIM models. Live probing (2026-11-01, integrate.api.nvidia.com, trivial AND
+hard prompts, acceptance=HTTP 200, off=0 reasoning_content chars) showed the
+correct off value is MODEL-SPECIFIC:
+- nemotron (any version, incl. 3.5-super-vl-120b-a12b, 3-ultra-550b-a55b,
+  3-nano-omni-30b-a3b-reasoning): accepts none/minimal/low/medium/high/
+  xhigh/max; **OFF = "none"** (0 reasoning; low+ still think 260-419).
+- glm-5.x: accepts none/minimal/low/medium/high/max but none/minimal do NOT
+  suppress (thinks MORE, 493-909); **OFF = "low"** (0 reasoning).
+- minimax-m3.1-flash: accepts all values; none/minimal don't suppress
+  (330-430); **OFF = "low"** best effort (158) — cannot be fully silenced.
+- mistral-large-4-1t-a52b: accepts ONLY low/medium/high (400 on
+  none/minimal/xhigh/max); nothing suppresses fully; **OFF = "low"** best
+  effort. (mistral-large 404s for this account — not deployed.)
+- deepseek-v4.1-flash: skipped (nearly always 5min timeouts, per Sir).
+- unknown NIM models: OFF = "low" (accepted by every model tested).
+
+**Changes:**
+- `src/llm_core.py`: `_NIM_REASONING_OFF` / `_NIM_REASONING_LEVELS` tables +
+  `nim_reasoning_off_value()`, `nim_reasoning_levels()`, `_nim_clamp_level()`,
+  `_nim_model_family()`. `_apply_thinking_off_openai_compat` nvidia branch now
+  sends the per-model off value (+ chat_template_kwargs, harmless on NIM,
+  still the switch for self-hosted vLLM). `_apply_request_reasoning_effort`
+  nvidia branch clamps via `_nim_clamp_level` so NIM never 400s (e.g.
+  mistral max/xhigh -> high). `REASONING_OVERRIDE_LEVELS` += "xhigh".
+- `routes/chat_routes.py`: new `GET /api/chat/reasoning-control?model=&url=`
+  returns {provider, levels, off_value, off_supported} per model — drives the
+  dynamic dropdown.
+- `static/js/chat.js`: menu items are now REBUILT from the endpoint response
+  (Default / Off / <model's accepted levels>, incl. xhigh where supported);
+  a stored level the current model doesn't support is clamped in
+  localStorage (same order logic as backend) so the label never lies.
+  `refreshThinkingControl()` (250ms debounce) called on init, on session
+  open (sessions.js hook), and on model-picker updates (modelPicker.js hook).
+- `tests/test_nim_reasoning_control.py`: 6 tests — off value per family,
+  levels per family, clamp (no 400s), normalize xhigh, off payload per model,
+  level payload per model.
+
+**Verified:** 6/6 new tests + 26/26 llm_core-adjacent tests pass; 69/69
+guard suites still pass; py_compile + node --check clean; 14-case end-to-end
+payload matrix through the real helpers all correct (nemotron off->none,
+glm off->low, mistral off->low, mistral max/xhigh->high, nemotron
+max/xhigh verbatim, default->no field).
+
+**Deploy:** backend change — live on next server restart (not forced).
+Frontend is static (fresh on reload). Local/self-hosted models (e.g.
+Qwen3.6 35B A3B on LM Studio) keep the chat_template_kwargs on/off switch —
+Qwen-style templates only have On/Off, which the self-hosted branch handles.
+
+## 2026-11-01 (09:55) — refactor(vision): grid overlay REMOVED from vision preprocessing (IRIS, at Sir's order — "gone, not disabled")
+- `src/vision_preprocessing.py`: deleted `draw_grid_overlay()`, `_load_font()`, all `_GRID_*` / `_CELL_NAMES` / `_FONT_CANDIDATES` constants, the `vision_grid_overlay_enabled` setting read, the grid branch in `preprocess_image_for_vlm()`, and the `g` param from the cache key. Kept: upscale-to-floor (MIN_SHORTEST_SIDE=1024, MAX_LONG_SIDE=2048 cap), JPEG-q92 / alpha-PNG encode with MAX_PAYLOAD_BYTES cap, content-hash cache under `<upload_dir>/.vision/prepped/`. Docstring updated.
+- `src/document_processor.py`: untouched — the `build_user_content` hook only calls `preprocess_image_for_vlm()` and already falls back to raw bytes on any exception, so image sending cannot break.
+- No settings/UI cleanup needed: `vision_grid_overlay_enabled` was never persisted in `data/settings.json` (code default only) and had no references in `static/`/`templates/`. Remaining knob: `vision_upscale_enabled` (default True, code-default only).
+- Cache: `data/uploads/.vision/prepped/` wiped (10 stale `g1`-keyed gridded entries + `.mime` sidecars); old keys unreachable after the key change regardless.
+
+**Verified:** py_compile clean on both files; probe (`Sandbox/vision_probe_post_ripout.py`): 480×320 → 1536×1024 JPEG with ZERO amber grid pixels, cache key `..._u1f1024m2048q92.img`; 2600×1500 → byte-identical passthrough; text file → passthrough; RGBA PNG 800×600 → 1365×1024 RGBA PNG (alpha preserved); cache hit on repeat; upscale-toggle-off → passthrough. `grep` confirms no `draw_grid`/`vision_grid` refs anywhere in src/routes/static/templates/tests.
+
+**Deploy:** backend change — live on next server restart (Sir restarts; IRIS never touches the Odysseus process). Until then the running process still has the old code in memory; the hook's try/except means nothing breaks either way.
+
+## 2026-11-01 — context-packing tweaks (branch `iris-ctx-packing-tweaks`)
+- `src/tool_utils.py`: `_truncate()` now keeps head+tail with an explicit middle-elision marker (was head-only, which dropped the tail of long logs — usually where the error lives). New `truncate_tool_output()` writes the full over-limit output once to `data/tool_output_cache/<sha1>.txt` (DATA_DIR is a default tool-path root, so read_file can page it) and appends a "saved to <path> — page with read_file offset/limit instead of re-running" note.
+- `src/agent_loop.py`: all 8 tool-output sites (2 approval events + 6 round-loop result branches) now call `truncate_tool_output(..., tool_name=...)`. `_tool_schemas_for_route()` slims the `tools=` payload for API models via `slim_tool_schemas()` behind new setting `agent_slim_tool_schemas` (default true; lazy import inside the function to avoid the tool_schemas<->agent_tools circular import at module load).
+- `src/tool_schemas.py`: new `slim_tool_schema()`/`slim_tool_schemas()` — deep-copies each schema, cuts the top-level description to its first sentence (max 240 chars), recursively cuts nested descriptions to first sentence (max 120 chars) and drops `examples`/`example` keys; keeps names/types/enums/required/default. Measured: 78 schemas 58.9KB -> 45.7KB JSON per agent round.
+- `src/prompt_security.py`: per-message untrusted wrapper now uses a short self-contained header (`UNTRUSTED_CONTEXT_HEADER_SHORT`, ~100 chars) instead of the full ~340-char header repeated on every injection; the full policy stays once as a system message. Guard markers + `_escape_guard_markers` unchanged.
+- `src/chat_processor.py`: `_hybrid_retrieve()` caches per-memory token sets on the ChatProcessor (`_mem_token_cache`, keyed by id + hash(text), pruned when >4x corpus size) so the per-turn BM25 pass no longer re-tokenizes the whole memory corpus every message.
+- **Verified:** py_compile clean on all 5 files; `import src.agent_loop` clean in a fresh interpreter; functional probes: head+tail truncation keeps both ends + file persistence round-trips byte-identical, untrusted wrapper still escapes embedded guard markers, slim schemas preserve full structure (only prose cut).
+
+## 2026-11-01 — Continue separator (synthetic tool pair, agent mode)
+- Problem: on Continue after a mid-stream error (502/504), the stopped assistant row sits at the tail of the outgoing context. If it has no replayed `tool_events`, the resumed generation follows it directly — two adjacent assistant messages, which `_sanitize_llm_messages` does not merge (it only merges consecutive user messages) and which confuse models / some providers reject. Chat mode was already fine (prefill continues the trailing assistant message).
+- `src/tool_replay.py`: new `inject_continue_separator(messages, is_api_model)` + `CONTINUE_SEPARATOR_TOOL`/`CONTINUE_SEPARATOR_OUTPUT`. API models: attaches a synthetic `odysseus_continue` tool_call to a COPY of the trailing assistant message (history row never mutated), or appends a fresh assistant message if the tail isn't assistant, then the matching `role=tool` result — pair stays adjacent so the sanitizer sees an answered call. Fenced/local models: plain user note instead (no native tool role). The tool name is deliberately absent from `FUNCTION_TOOL_SCHEMAS`, so the model can never call it — it only ever appears as injected history. Request-only; nothing persisted.
+- `routes/chat_helpers.py` (`build_chat_context`): injects the separator at the very end of the outgoing messages (after compaction/trim, so it can't be dropped) when `continue_assistant and agent_mode`. Chat-mode Continue keeps prefill behavior.
+- Output text tells the model the call is auto-generated by Odysseus for Continue, that the message above is a partial reply to resume, and not to re-run tools whose results are already present.
+- **Verified:** py_compile clean; functional tests through the real `_sanitize_llm_messages`: tail-assistant case produces `system,user,assistant,tool` with the synthetic call answered and metadata stripped; tail-tool case produces valid `user,assistant,tool,assistant,tool`; fenced case `user,assistant,user`; empty list no-op; original history row not mutated; no collision with real tool schemas.
+
+## 2026-11-01 — Continue separator persisted in DB + MCP block slimmed for native-tool models
+- **Persisted, not frontend-only:** on agent-mode Continue, `routes/chat_routes.py::_persist_continue_separator` appends a synthetic `odysseus_continue` tool event to the stopped assistant row's `metadata.tool_events` (via `append_to_last_assistant`, DB + in-memory, idempotent). The frontend renders it through the *existing* tool_events path (`agent-thread-node` in chatRenderer.js) — zero new UI code — and `replay_tool_events_as_native` turns it into a native tool pair on every subsequent request, so the stopped row is never glued to the resumed generation in the model context either. Event shape: `src/tool_replay.py::build_continue_separator_event` (tool/command/output/exit_code/round/synthetic; command is a JSON dict so replay passes it through as arguments).
+- The request-only `inject_continue_separator` in `build_chat_context` stays as a fallback for legacy stopped rows, now with a dedup guard (skips if an `odysseus_continue` call is already present post-replay).
+- **MCP slimming:** in `_build_system_prompt`, when `compact` (native tool calling: API / native Ollama), the full MCP arg docs are written to `data/MCP-TOOLS.md` (DATA_DIR is a default tool-path root, so read_file can page it) and only a one-line pointer is injected as the untrusted "MCP tools" message instead of the full ~2-4k-token block. Fenced/local models (compact=False) keep the full text block since they have no native schemas. Write failure falls back to the full block.
+- **Verified:** py_compile clean on all touched files; replay of a persisted event yields `user,assistant,tool,tool` with the separator call answered (args `{"note": ...}`) and survives `_sanitize_llm_messages`; dedup prevents double injection; legacy fallback still injects; agent_loop parses with the MCP gating present.
+
+## 2026-11-01 — Continue separator renders live (no refresh needed)
+- Problem: the persisted `odysseus_continue` event only appeared after a page refresh, because the already-rendered stopped bubble was never re-rendered when Continue was clicked — live, the resumed reply looked like a bare bubble glued to the stopped one.
+- Fix: in the agent-mode stream branch of `routes/chat_routes.py`, when `continue_assistant` is set, yield synthetic `tool_start` + `tool_output` SSE events for `odysseus_continue` immediately before `stream_agent_loop` starts. The frontend's existing handlers (chat.js tool_start → creates the `agent-thread-node`, tool_output → ✓/done + output details) render it through the exact same path as real tools. The post-stream canonical reload then re-renders it from the persisted DB row (live nodes are discarded on reload, so no duplicates).
+- **Verified:** py_compile clean; SSE payloads validated against the frontend handler shapes (`tool`, `command`, `output`, `exit_code`, `round` fields all present).
+
+## 2026-11-01 — Static call-graph & architecture docs added (docs/ARCHITECTURE.md + docs/call-graph/)
+- Added `docs/ARCHITECTURE.md`: repo size/composition, entry points (launcher.py → uvicorn, app.py router registration, static/app.js orchestrator), directory map, key end-to-end flows (chat stream, upload/vision, memory/RAG), conventions (setup_*_routes factories, exception handlers, auth, sw.js cache tokens, *.bak* scratch files are not live code).
+- Added `docs/call-graph/` (427 generated markdown files, ~4 MB): per-module def→call-site maps (`py/`, `js/`), `http-endpoints.md` (all 508 FastAPI routes ↔ 1,327 JS API-URL literals), `module-deps-python.md` / `module-deps-js.md` (import edges + reverse dependents — "if I change X, who imports it"), `dead-code.md` (172 defs with zero static callers, verify before deleting), `external-calls.md`, `INDEX.md` (stats + top hubs), `README.md` (scope, caveats, regeneration).
+- Generated by `Sandbox/trace_odysseus.py` (AST for py, regex for js → `Sandbox/odysseus-trace.json`) + `Sandbox/gen_docs.py` (renders the markdown). Regenerate with those two scripts after big refactors. No runtime code touched; docs only.
+
+## 2026-11-01 — DB keeps everything + frontend parity with DB (nothing dropped, nothing hidden)
+- **Tool-only stopped turns now persist (was the big drop):** `routes/chat_routes.py::_persist_stream_partial` used to return early when no reply text AND no reasoning had streamed — so a turn stopped right after a tool executed (Assistant → Tool → [stopped]) saved *nothing*, losing the executed tool calls from the DB. Now it persists whenever `tool_events`/`round_texts` are present, saving an empty-content assistant row whose `metadata.tool_events` carries the calls (frontend multi-bubble path renders the tool thread even with empty text). The two agent-mode disconnect/error guards in `chat_routes.py` (CancelledError + upstream-error branches) now hoist `_sink_tool_state` before the guard and also fire when only tool events exist.
+- **No user-role directly after tool-role in request payloads:** `src/llm_core.py::_sanitize_llm_messages` now appends a filler assistant message (`_TOOL_BATCH_ACK = "..."`, request-only, never persisted) after a tool-result batch when the next message is user/system or the batch ends the list — strict endpoints that reject user-after-tool no longer 400. DB keeps the stopped turn exactly as it happened; the filler only shapes the outgoing payload.
+- **Frontend parity:** `static/js/sessions.js` history pager ("load earlier") and archived-session peek no longer filter to `role === user/assistant` — every row the DB returns is rendered, so paged loads and peeks match the main history path. ("Copy Chat" keeps its user/assistant filter deliberately — it's an export, not rendering.)
+- **Thinking never visually truncated:** `static/style.css` `.thinking-content.expanded` went from `max-height: 300px; overflow-y: auto` to `max-height: none; overflow: visible` — expanding the thinking section shows the full reasoning, no scroll cap. (JS already rendered full `metadata.thinking`; no slicing anywhere.)
+- **Verified:** py_compile clean on touched py files; `node --check` clean on sessions.js; unit checks: sanitizer yields `user,assistant,tool,assistant(filler),user` for tool→user, no filler for tool→assistant or tool-at-end, unchanged for tool-free lists; `_persist_stream_partial` mock tests: tool-only partial persists with `stopped:True` + `tool_events`, empty turn still skipped, text+thinking partial unchanged. Call-graph docs regenerated (`Sandbox/trace_odysseus.py` + `Sandbox/gen_docs.py`).

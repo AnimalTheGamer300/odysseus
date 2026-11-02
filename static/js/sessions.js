@@ -244,7 +244,9 @@ function _installHistoryPager(id, pageInfo, modelName) {
       if (!_historyPager || _historyPager.sessionId !== currentSessionId) return;
       const newEls = [];
       for (const msg of data.history || []) {
-        if (msg.role !== 'user' && msg.role !== 'assistant') continue;
+        // (2026-11-01) Render every role the DB returns — filtering to
+        // user/assistant here silently dropped system/other rows, breaking
+        // frontend↔DB parity on paged loads.
         const els = _renderHistoryMessage(msg, _historyPager.modelName);
         if (Array.isArray(els)) newEls.push(...els);
       }
@@ -3028,11 +3030,11 @@ async function _arcPeekOpen(sid) {
     const addMsg = window.chatModule && window.chatModule.addMessage;
     if (addMsg) {
       for (const msg of history) {
-        if (msg.role === 'user' || msg.role === 'assistant') {
-          const model = String((msg.metadata && msg.metadata.model) || '');
-          const content = typeof msg.content === 'string' ? msg.content : (Array.isArray(msg.content) ? msg.content : String(msg.content || ''));
-          try { addMsg(msg.role, content, model, msg.metadata || null); } catch (e) { console.warn('Failed to render message:', e); }
-        }
+        // (2026-11-01) Render every role the DB returns (parity with the main
+        // history path) instead of dropping non-user/assistant rows.
+        const model = String((msg.metadata && msg.metadata.model) || '');
+        const content = typeof msg.content === 'string' ? msg.content : (Array.isArray(msg.content) ? msg.content : String(msg.content || ''));
+        try { addMsg(msg.role, content, model, msg.metadata || null); } catch (e) { console.warn('Failed to render message:', e); }
       }
     }
     if (window.uiModule) window.uiModule.scrollHistory();

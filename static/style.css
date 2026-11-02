@@ -9494,8 +9494,10 @@ body.fullwidth-chat .chat-history {
 }
 
 .thinking-content.expanded {
-  max-height: 300px;
-  overflow-y: auto;
+  /* (2026-11-01) Never visually truncate reasoning — expanded shows the full
+     thinking block, no scroll cap. */
+  max-height: none;
+  overflow: visible;
   padding: 12px;
 }
 

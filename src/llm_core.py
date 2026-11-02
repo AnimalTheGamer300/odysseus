@@ -1764,6 +1764,11 @@ def _is_untrusted_context_content(content) -> bool:
 
 
 _REFERENCE_CONTEXT_BOUNDARY = "Reference context received."
+# (2026-11-01) Filler assistant message inserted after a tool-result batch when
+# the next message would be user/system (or the batch ends the list) — some
+# endpoints reject a user-role message directly after a tool-role message.
+# Request-payload only; never persisted to the DB.
+_TOOL_BATCH_ACK = "..."
 
 
 def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[Dict]:
@@ -1878,6 +1883,12 @@ def _sanitize_llm_messages(messages: List[Dict], provider: str = None) -> List[D
             fixed["content"] = None
         repaired.append(fixed)
         repaired.extend(tool_batch)
+        # (2026-11-01) Never let a user/system message (or the end of the list)
+        # sit directly after a tool-role message — insert a filler assistant
+        # ack so strict endpoints don't 400 the whole request.
+        _next_role = cleaned[j].get("role") if j < len(cleaned) else None
+        if _next_role in ("user", "system", None):
+            repaired.append({"role": "assistant", "content": _TOOL_BATCH_ACK})
         if len(pruned_calls) != len(tool_calls):
             logger.debug("Pruned unanswered assistant tool_calls before provider request")
         i = j

@@ -282,7 +282,11 @@ def _persist_stream_partial(
     duplicate row appears (2026-08-08 draft-checkpoint audit).
     Returns True when a row was saved.
     """
-    if not (full_response or (thinking_response or "").strip()):
+    # (2026-11-01) A turn stopped right after a tool executed — before any
+    # reply text or reasoning streamed — must still persist: the executed
+    # tool_events/round_texts are the only record of that work. Empty-content
+    # row + tool_events metadata renders fine (multi-bubble tool thread).
+    if not (full_response or (thinking_response or "").strip() or tool_events or round_texts):
         return False
     md = {
         "stopped": True,
@@ -2987,9 +2991,11 @@ def setup_chat_routes(
                     # persist failure never masks the original CancelledError
                     # (which prevented the outer finally from running and left
                     # _active_streams with a stale entry).
-                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip()):
+                    _ev, _rt = _sink_tool_state(_partial_sink)
+                    # (2026-11-01) Persist even when no text/reasoning streamed yet —
+                    # a turn stopped right after a tool executed must keep its tool_events.
+                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip() or _ev or _rt):
                         logger.info("Client disconnected mid-stream for session %s, saving partial response (%d chars)", session, len(full_response))
-                        _ev, _rt = _sink_tool_state(_partial_sink)
                         try:
                             _persist_stream_partial(
                                 sess, session_manager, session, full_response, thinking_response,
@@ -3007,8 +3013,10 @@ def setup_chat_routes(
                     # guarantee, then re-raise so the SSE terminates and the
                     # client shows the error over the preserved partial.
                     logger.warning("Agent stream error for session %s: %s", session, _upstream_err)
-                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip()):
-                        _ev, _rt = _sink_tool_state(_partial_sink)
+                    _ev, _rt = _sink_tool_state(_partial_sink)
+                    # (2026-11-01) Persist even when no text/reasoning streamed yet —
+                    # a turn stopped right after a tool executed must keep its tool_events.
+                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip() or _ev or _rt):
                         try:
                             _persist_stream_partial(
                                 sess, session_manager, session, full_response, thinking_response,
