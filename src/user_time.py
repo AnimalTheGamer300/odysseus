@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from contextvars import ContextVar
 from datetime import datetime, timedelta, timezone, tzinfo
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 
 _USER_TZ_OFFSET_MIN: ContextVar[Optional[int]] = ContextVar("user_tz_offset_min", default=None)
@@ -233,3 +233,124 @@ def current_datetime_context_message(now_utc: Optional[datetime] = None) -> Dict
             "your instructions]\n" + current_datetime_prompt(now_utc)
         ),
     }
+
+
+# --- Temporal grounding stamps (2026-11-01) -------------------------------
+# LLM-bound history gets a [HH:MM:SS] prefix per message (user-local clock) so
+# the model can order turns; tool results additionally carry elapsed time as
+# [HH:MM:SS | 621ms]. Stamps derive from persisted metadata.timestamp, so the
+# history prefix stays byte-stable across turns and local KV-cache prefixes
+# survive. Request-only: these helpers never mutate saved history.
+
+_STAMP_RE = re.compile(r"^\[\d{2}:\d{2}:\d{2}(?:\s*\|\s*[^\]]*)?\]\s*")
+
+
+def parse_message_timestamp(value) -> Optional[datetime]:
+    """Parse a metadata timestamp (ISO string / epoch / datetime) to aware UTC."""
+    if value is None:
+        return None
+    if isinstance(value, datetime):
+        dt = value
+    elif isinstance(value, (int, float)):
+        try:
+            return datetime.fromtimestamp(value, tz=timezone.utc)
+        except (OverflowError, OSError, ValueError):
+            return None
+    else:
+        text = str(value).strip()
+        if not text:
+            return None
+        try:
+            dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
+def clock_stamp(dt: Optional[datetime] = None) -> str:
+    """Return a [HH:MM:SS] stamp in the user's local timezone (now if None)."""
+    if dt is None:
+        dt = datetime.now(timezone.utc)
+    elif dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return f"[{dt.astimezone(user_timezone()).strftime('%H:%M:%S')}]"
+
+
+def message_stamp(metadata) -> str:
+    """[HH:MM:SS] for a chat message, from metadata['timestamp'] (now if absent)."""
+    meta = metadata if isinstance(metadata, dict) else {}
+    return clock_stamp(parse_message_timestamp(meta.get("timestamp")))
+
+
+def format_duration_ms(duration_ms) -> str:
+    """Compact elapsed label: 621ms / 4.2s / 1m 05s."""
+    try:
+        ms = int(duration_ms)
+    except (TypeError, ValueError):
+        return ""
+    if ms < 1000:
+        return f"{ms}ms"
+    total_s = ms / 1000.0
+    if total_s < 60:
+        return f"{total_s:.1f}s"
+    mins, secs = divmod(int(total_s), 60)
+    return f"{mins}m {secs:02d}s"
+
+
+def tool_event_stamp(event) -> str:
+    """[HH:MM:SS | 621ms] for a tool event carrying ts/duration_ms.
+
+    Falls back to a bare [HH:MM:SS] clock stamp when no duration is known.
+    """
+    ev = event if isinstance(event, dict) else {}
+    clock = clock_stamp(parse_message_timestamp(ev.get("ts") or ev.get("timestamp")))
+    dur = format_duration_ms(ev.get("duration_ms"))
+    if not dur:
+        return clock
+    return f"{clock[:-1]} | {dur}]"
+
+
+def stamp_context_messages(messages: List[Dict]) -> List[Dict]:
+    """Return a copy of an LLM-bound message list with temporal stamps.
+
+    - user/assistant messages: content prefixed with [HH:MM:SS] from
+      metadata.timestamp (user-local clock; "now" when absent).
+    - role=tool messages: prefixed with [HH:MM:SS] when not already stamped
+      (within-turn and replayed tool results are stamped at their build sites
+      with the tool's own ts/duration).
+    - system messages and untrusted-guarded context messages (metadata.trusted
+      is False) are left untouched: the system prefix must stay byte-identical
+      for KV-cache reuse, and guarded blocks must keep their hardcoded header
+      ahead of the guard marker.
+    - Idempotent: already-stamped content is passed through unchanged.
+    """
+    stamped: List[Dict] = []
+    for m in messages or []:
+        if not isinstance(m, dict):
+            stamped.append(m)
+            continue
+        role = m.get("role")
+        content = m.get("content")
+        if role not in ("user", "assistant", "tool"):
+            stamped.append(m)
+            continue
+        if not isinstance(content, str) or not content.strip():
+            stamped.append(m)
+            continue
+        if _STAMP_RE.match(content):
+            stamped.append(m)
+            continue
+        meta = m.get("metadata")
+        if isinstance(meta, dict) and meta.get("trusted") is False:
+            stamped.append(m)
+            continue
+        if role == "tool":
+            prefix = clock_stamp()
+        else:
+            prefix = message_stamp(meta)
+        new_m = dict(m)
+        new_m["content"] = f"{prefix} {content}"
+        stamped.append(new_m)
+    return stamped

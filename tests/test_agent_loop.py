@@ -49,6 +49,14 @@ finally:
     for _mod, _stub in _INJECTED_IMPORT_STUBS.items():
         _drop_module_if_same(_mod, _stub)
 
+from src.user_time import _STAMP_RE as _TS_STAMP_RE
+
+
+def _strip_ts_stamp(content):
+    """Remove a leading [HH:MM:SS | elapsed] stamp (2026-11-01 temporal grounding)."""
+    m = _TS_STAMP_RE.match(content or "")
+    return content[m.end():] if m else content
+
 
 def test_import_stubs_do_not_leak_into_later_tests():
     leaked = [
@@ -358,7 +366,9 @@ class TestAppendToolResultsNativeContent:
         # tool result follows as a role:tool message keyed by tool_call_id
         assert messages[1]["role"] == "tool"
         assert messages[1]["tool_call_id"] == "call_abc"
-        assert messages[1]["content"] == "page text"
+        # (2026-11-01) tool results carry a [HH:MM:SS | elapsed] stamp prefix
+        assert _TS_STAMP_RE.match(messages[1]["content"])
+        assert _strip_ts_stamp(messages[1]["content"]) == "page text"
 
     def test_whitespace_only_text_yields_null_content(self):
         messages = []
@@ -374,7 +384,9 @@ class TestAppendToolResultsNativeContent:
             messages, "Let me check that page.", self._native(), [{}], ["r"],
             used_native=True, round_num=1,
         )
-        assert messages[0]["content"] == "Let me check that page."
+        # (2026-11-01) prose is preserved after the [HH:MM:SS] stamp prefix
+        assert _TS_STAMP_RE.match(messages[0]["content"])
+        assert _strip_ts_stamp(messages[0]["content"]) == "Let me check that page."
 
     def test_non_native_path_unaffected(self):
         # The text-block fallback path still wraps results in a user message.
@@ -384,9 +396,12 @@ class TestAppendToolResultsNativeContent:
             used_native=False, round_num=1,
         )
         assert messages[0]["role"] == "assistant"
-        assert messages[0]["content"] == "thinking..."
+        assert _strip_ts_stamp(messages[0]["content"]) == "thinking..."
         assert messages[1]["role"] == "user"
         assert "tool output" in messages[1]["content"]
+        # (2026-11-01) the fenced tool output is stamped inside the guard block
+        import re as _re
+        assert _re.search(r"\[\d{2}:\d{2}:\d{2}(?: \| [^\]]*)?\] tool output", messages[1]["content"])
 
 
 class TestAppendToolResultsThoughtSignature:

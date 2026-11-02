@@ -12,6 +12,7 @@ import json
 import re
 import time
 import logging
+from datetime import datetime, timezone
 from typing import Any, AsyncGenerator, List, Dict, Optional, Set
 from urllib.parse import urlparse
 
@@ -3487,6 +3488,7 @@ def _append_tool_results(
     bloat vector). Bounded: at most one reasoning blob per tool round.
     """
     tool_result_records = tool_result_records or []
+    from src.user_time import clock_stamp, tool_event_stamp
     # Strip reasoning_content from earlier PLAIN-PROSE assistant turns; assistant
     # turns that carry tool_calls keep theirs (DeepSeek/Moonshot thinking mode
     # requires the prior reasoning_content passed back on the follow-up request),
@@ -3503,7 +3505,13 @@ def _append_tool_results(
         # specified" / a JSON parse error), which aborts every tool-using turn
         # at the follow-up round. null (i.e. omitted text) is the spec-correct
         # form the OpenAI SDK itself emits, and OpenAI/Anthropic accept it too.
-        assistant_msg["content"] = round_response if round_response.strip() else None
+        # (2026-11-01) temporal grounding: stamp the within-turn assistant turn
+        # with the user-local clock. None stays None — providers reject empty
+        # string content alongside tool_calls (see note above).
+        if round_response.strip():
+            assistant_msg["content"] = f"{clock_stamp()} {round_response}"
+        else:
+            assistant_msg["content"] = None
         if round_reasoning:
             assistant_msg["reasoning_content"] = round_reasoning
         assistant_msg["tool_calls"] = [
@@ -3532,10 +3540,12 @@ def _append_tool_results(
                 "result",
                 tool_results[j] if j < len(tool_results) else None,
             )
+            # (2026-11-01) stamp the tool result with [HH:MM:SS | elapsed] from
+            # the execution record (falls back to a bare clock stamp).
             result_message = {
                 "role": "tool",
                 "tool_call_id": tc.get("id", f"call_{round_num}_{j}"),
-                "content": result_text,
+                "content": f"{tool_event_stamp(record)} {result_text}",
             }
             capabilities = capabilities_for_action(tool_name, tool_content)
             should_arm_gate = tool_result_should_arm_gate(
@@ -3554,7 +3564,13 @@ def _append_tool_results(
                 }
             messages.append(result_message)
     else:
-        tool_output_text = "\n\n".join(tool_results)
+        # (2026-11-01) stamp each tool result with [HH:MM:SS | elapsed] BEFORE
+        # the untrusted wrapper, so the stamps land inside the guard block and
+        # the hardcoded header stays ahead of GUARD_OPEN.
+        tool_output_text = "\n\n".join(
+            f"{tool_event_stamp(tool_result_records[_j] if _j < len(tool_result_records) else {})} {_t}"
+            for _j, _t in enumerate(tool_results)
+        )
         # An approved-action replay injects the sealed tool result with no
         # assistant prose for that round, which used to append an assistant turn
         # whose content was "". Anthropic's Messages API rejects a non-final
@@ -3562,7 +3578,7 @@ def _append_tool_results(
         # died before the model saw the result. A turn carrying neither prose nor
         # reasoning has nothing to say to any provider, so skip it entirely.
         if round_response.strip() or round_reasoning:
-            msg = {"role": "assistant", "content": round_response}
+            msg = {"role": "assistant", "content": f"{clock_stamp()} {round_response}"}
             if round_reasoning:
                 msg["reasoning_content"] = round_reasoning
             messages.append(msg)
@@ -3744,13 +3760,16 @@ def _build_actions_snapshot(tool_events: list, limit: int = 8000) -> str:
     """Compact record of what the agent actually did this turn, for the
     verifier to judge against. One block per tool execution: the command and
     a head of its output."""
+    from src.user_time import tool_event_stamp
     parts = []
     for ev in tool_events:
         tool = ev.get("tool", "?")
         cmd = (ev.get("command") or "").strip()
         out = (ev.get("output") or "").strip()
         rc = ev.get("exit_code")
-        head = f"[{tool}] {cmd}" if cmd else f"[{tool}]"
+        # (2026-11-01) lead each replayed tool call with [HH:MM:SS | elapsed]
+        stamp = tool_event_stamp(ev)
+        head = f"{stamp} [{tool}] {cmd}" if cmd else f"{stamp} [{tool}]"
         rc_s = f" (exit {rc})" if rc not in (None, 0) else ""
         body = (out[:1200] + " …") if len(out) > 1200 else (out or "(no output)")
         parts.append(f"{head}{rc_s}\n-> {body}")
@@ -5038,6 +5057,7 @@ async def stream_agent_loop(
             finally:
                 await approved_progress_q.put(None)
 
+        _approved_t0 = time.time()  # (2026-11-01) tool elapsed timing
         approved_tool_task = asyncio.create_task(_run_approved_tool())
         try:
             while True:
@@ -5065,6 +5085,8 @@ async def stream_agent_loop(
                     await approved_tool_task
                 except (asyncio.CancelledError, Exception):
                     pass
+        _approved_duration_ms = int((time.time() - _approved_t0) * 1000)
+        _approved_ts = datetime.now(timezone.utc).isoformat()
         total_tool_calls += 1
 
         if tool_result_is_successful(approved_result):
@@ -5201,6 +5223,8 @@ async def stream_agent_loop(
             "exit_code": approved_result.get("exit_code"),
             "approved": True,
             "approval_digest": approved.digest[:16],
+            "ts": _approved_ts,
+            "duration_ms": _approved_duration_ms,
         }
         for key in (
             "image_url",
@@ -5233,6 +5257,8 @@ async def stream_agent_loop(
                     "content": approved.content,
                     "result": approved_result,
                     "text": formatted_approved_result,
+                    "ts": _approved_ts,
+                    "duration_ms": _approved_duration_ms,
                 }
             ],
         )
@@ -6135,6 +6161,7 @@ async def stream_agent_loop(
                 break
 
             total_tool_calls += 1
+            _tool_t0 = time.time()  # (2026-11-01) tool elapsed timing
             # Build a short display string for the frontend tool bubble.
             # Document tools show a brief summary instead of dumping full content.
             is_doc_tool = block.tool_type in ("create_document", "update_document", "edit_document", "suggest_document")
@@ -6336,6 +6363,8 @@ async def stream_agent_loop(
                         except (asyncio.CancelledError, Exception):
                             pass
 
+            _tool_duration_ms = int((time.time() - _tool_t0) * 1000)
+            _tool_ts = datetime.now(timezone.utc).isoformat()
             run_security.observe_tool_result(block.tool_type, result, block.content)
 
             # A skill the model just loaded can prescribe tools that weren't
@@ -6714,6 +6743,8 @@ async def stream_agent_loop(
                 "command": cmd_display,
                 "output": _persisted_output,
                 "exit_code": result.get("exit_code"),
+                "ts": _tool_ts,
+                "duration_ms": _tool_duration_ms,
             }
             if result.get("image_url"):
                 for ik in ("image_url", "image_prompt", "image_model", "image_size", "image_quality"):
@@ -6746,6 +6777,8 @@ async def stream_agent_loop(
                     "content": block.content,
                     "result": result,
                     "text": formatted,
+                    "ts": _tool_ts,
+                    "duration_ms": _tool_duration_ms,
                 }
             )
             if (

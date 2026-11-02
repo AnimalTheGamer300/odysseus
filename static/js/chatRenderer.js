@@ -2,8 +2,8 @@
 // Extracted from chat.js — message rendering, sources, images, metrics
 
 import uiModule from './ui.js';
-import markdownModule from './markdown.js?v=20261023merge2';
-import { svgifyEmoji } from './markdown.js?v=20261023merge2';
+import markdownModule from './markdown.js?v=20261027emphasisfix1';
+import { svgifyEmoji } from './markdown.js?v=20261027emphasisfix1';
 import { addAITTSButton } from './tts-ai.js';
 import { providerLogo, providerLabel } from './providers.js';
 import settingsModule from './settings.js?v=20261023merge2';
@@ -1141,7 +1141,7 @@ export function buildSourcesBox(sources, type, expanded) {
   var arrow = expanded ? 'down' : 'right';
   var expandedClass = expanded ? ' expanded' : '';
   return '<div class="sources-section">'
-    + '<div class="sources-header" data-sources-id="' + id + '" onclick="window.toggleSources(\'' + id + '\')">'
+    + '<div class="sources-header" data-sources-id="' + id + '">'
     + '<div class="sources-header-left">' + SEARCH_ICON + '<span>' + count + ' ' + label + '</span></div>'
     + '<span class="sources-toggle" id="' + id + '-toggle" data-arrow="' + arrow + '"></span>'
     + '</div>'
@@ -1201,7 +1201,7 @@ export function buildFindingsBox(findings, expanded) {
   var arrow = expanded ? 'down' : 'right';
   var expandedClass = expanded ? ' expanded' : '';
   return '<div class="sources-section">'
-    + '<div class="sources-header" data-sources-id="' + id + '" onclick="window.toggleSources(\'' + id + '\')">'
+    + '<div class="sources-header" data-sources-id="' + id + '">'
     + '<div class="sources-header-left">' + FINDINGS_ICON + '<span>' + count + ' Raw collected findings</span></div>'
     + '<span class="sources-toggle" id="' + id + '-toggle" data-arrow="' + arrow + '"></span>'
     + '</div>'
@@ -1711,10 +1711,18 @@ export function showWelcomeScreen() {
  */
 function _hasAdjacentUserPrompt(msgElement) {
   if (!msgElement || !msgElement.parentNode) return false;
+  const myDbId = msgElement.dataset ? msgElement.dataset.dbId : null;
   let el = msgElement.previousElementSibling;
   while (el) {
     if (el.classList.contains('msg-user')) return true;
-    if (el.classList.contains('msg-ai') && !el.classList.contains('msg-continuation')) return false;
+    if (el.classList.contains('msg-ai') && !el.classList.contains('msg-continuation')) {
+      // (2026-10-30) The first bubble of THIS SAME response (multi-round agent
+      // turns reloaded from history share the row's dbId on every round) is
+      // not a foreign response — keep walking past it to the user prompt.
+      const elDbId = el.dataset ? el.dataset.dbId : null;
+      if (myDbId && elDbId && elDbId === myDbId) { el = el.previousElementSibling; continue; }
+      return false;
+    }
     el = el.previousElementSibling;
   }
   return false;
@@ -1754,22 +1762,10 @@ export function createMsgFooter(msgElement) {
       }},
     { id: 'continue', icon: '\u25B8', title: 'Continue', cls: 'msg-action-btn', handler(e) {
       e.stopPropagation();
-      const cm = window.chatModule;
-      if (!cm?.setPendingContinue || !cm?.setHideUserBubble) return;
-      // Same resume flow as the "[Message interrupted]" button: merge the next
-      // streamed response into this bubble, hide the handshake user bubble.
-      cm.setHideUserBubble();
-      cm.setPendingContinue(msgElement);
-      // Prefer the clean raw text; fall back to the rendered body. Strip a
-      // trailing error note so an errored message continues from its real
-      // cutoff instead of the "[Error: ...]" suffix.
-      let cutoffText = (msgElement.dataset.raw || msgElement.querySelector('.body')?.textContent || '').trim();
-      cutoffText = cutoffText.replace(/\s*\[?Error: [^\]]*\]?\s*$/i, '').trim();
-      const msgInput = document.getElementById('message');
-      if (!msgInput) return;
-      msgInput.value = 'Your previous response ended with:\n\n' + cutoffText.slice(-500) + '\n\nDo NOT repeat what you already said. Continue exactly from where you left off.';
-      const sb = document.querySelector('.send-btn');
-      if (sb) sb.click();
+      // (2026-10-30) chat mode: prefill continue — the model just keeps writing
+      // its own last reply (same turn, no handshake user message). Agent mode
+      // keeps the legacy handshake text (handled inside continueFromBubble).
+      if (window.chatModule?.continueFromBubble) window.chatModule.continueFromBubble(msgElement);
     }},
     { id: 'shorten', icon: '\u2702', title: 'Rewrite shorter', cls: 'msg-action-btn', handler(e) {
       e.stopPropagation();
@@ -2686,6 +2682,9 @@ export function addMessage(role, content, modelName, metadata) {
           body.innerHTML = agentSourcesPrefix + markdownModule.processWithThinking(markdownModule.squashOutsideCode(txt)) + agentFindingsSuffix;
           wrap.appendChild(body);
           wrap.dataset.raw = txt;
+          if (metadata?.thinking) wrap.dataset.thinking = metadata.thinking;
+          if (metadata?.thinking_time) wrap.dataset.thinkingTime = metadata.thinking_time;
+          if (metadata?.round_texts) wrap.dataset.roundTexts = JSON.stringify(metadata.round_texts);
           if (metadata?._db_id) wrap.dataset.dbId = metadata._db_id;
           box.appendChild(wrap);
           lastWrap = wrap;
@@ -2743,7 +2742,9 @@ export function addMessage(role, content, modelName, metadata) {
             node.className = 'agent-thread-node' + (ok ? '' : ' error');
             // Hide the raw JSON command when a diff says it better (same as live).
             const evCmdHtml = (ev.command && !(ev.diff && ev.diff.text)) ? `<pre class="agent-thread-cmd">${esc(ev.command)}</pre>` : '';
-            node.innerHTML = `<div class="agent-thread-dot"></div><div class="agent-thread-header"><span class="agent-thread-icon">${ok ? '\u2713' : '\u2717'}</span><span class="agent-thread-tool">${esc(ev.tool)}</span><span class="agent-thread-status">${ok ? 'done' : 'failed'}</span><span class="agent-thread-chevron">\u25B6</span></div><div class="agent-thread-content">${evCmdHtml}${outHtml}${evDiffHtml}</div>`;
+            const durMs = (typeof ev.duration_ms === 'number') ? ev.duration_ms : null;
+            const durLabel = durMs === null ? '' : `<span class="agent-thread-dur">${durMs < 1000 ? durMs + 'ms' : (durMs < 60000 ? (durMs / 1000).toFixed(1) + 's' : Math.floor(durMs / 60000) + 'm ' + String(Math.floor(durMs / 1000) % 60).padStart(2, '0') + 's')}</span>`;
+            node.innerHTML = `<div class="agent-thread-dot"></div><div class="agent-thread-header"><span class="agent-thread-icon">${ok ? '\u2713' : '\u2717'}</span><span class="agent-thread-tool">${esc(ev.tool)}</span>${durLabel}<span class="agent-thread-status">${ok ? 'done' : 'failed'}</span><span class="agent-thread-chevron">\u25B6</span></div><div class="agent-thread-content">${evCmdHtml}${outHtml}${evDiffHtml}</div>`;
             // Click handling is delegated globally \u2014 see chat.js init.
             threadWrap.appendChild(node);
           }
@@ -2876,6 +2877,9 @@ export function addMessage(role, content, modelName, metadata) {
     }
 
 	    wrap.dataset.raw = text;
+	    if (metadata?.thinking) wrap.dataset.thinking = metadata.thinking;
+	    if (metadata?.thinking_time) wrap.dataset.thinkingTime = metadata.thinking_time;
+	    if (metadata?.round_texts) wrap.dataset.roundTexts = JSON.stringify(metadata.round_texts);
 	    if (metadata?._db_id) wrap.dataset.dbId = metadata._db_id;
     // Prepend sources box if saved in metadata
     var sourcesPrefix = '';
@@ -2973,18 +2977,8 @@ export function addMessage(role, content, modelName, metadata) {
         continueBtn.textContent = '\u25B8';
         continueBtn.addEventListener('click', () => {
           stoppedIndicator.remove();
-          if (window.chatModule) {
-            window.chatModule.setHideUserBubble();
-            window.chatModule.setPendingContinue(wrap);
-            const rawText = wrap.dataset.raw || wrap.querySelector('.body')?.textContent || '';
-            const cutoff = rawText;
-            const msgInput = document.getElementById('message');
-            if (msgInput) {
-              msgInput.value = 'Your previous response was interrupted. It ended with:\n\n' + cutoff.slice(-500) + '\n\nDo NOT repeat what you already said. Continue exactly from where you were cut off.';
-              const sb = document.querySelector('.send-btn');
-              if (sb) sb.click();
-            }
-          }
+          // (2026-10-30) chat mode: prefill continue; agent mode: legacy handshake
+          if (window.chatModule?.continueFromBubble) window.chatModule.continueFromBubble(wrap);
         });
         stoppedIndicator.appendChild(continueBtn);
       }
@@ -3088,6 +3082,13 @@ export function addMessage(role, content, modelName, metadata) {
       r.appendChild(nav);
     }
 
+    // (2026-10-30) Attach to the chat box BEFORE building the footer: the
+    // regen action's availability guard walks previousElementSibling and
+    // returns false for a detached bubble, so building the footer first made
+    // "Regenerate" vanish on every history reload (live-stream paths attach
+    // first, which is why it only disappeared on refresh).
+    box.appendChild(wrap);
+
     if (role === 'assistant') {
       // The "N pinned" / "N recalled" pill in the footer reads from
       // wrap._memoriesUsed — propagate it from saved metadata so the pill
@@ -3102,8 +3103,6 @@ export function addMessage(role, content, modelName, metadata) {
 
       wrap.appendChild(createUserMsgFooter(wrap));
     }
-
-    box.appendChild(wrap);
 
     // TTS is now part of the msg-actions system
     if (role === 'assistant' && markdownModule.renderMermaid) {
