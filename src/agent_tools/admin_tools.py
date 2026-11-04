@@ -577,6 +577,8 @@ async def do_manage_settings(content: str, owner: Optional[str] = None) -> Dict:
             "writing style": "document_writing_style", "document writing style": "document_writing_style",
             "email writing style": "email_writing_style",
             "reply writing style": "email_writing_style", "email reply writing style": "email_writing_style",
+            "thinking": "thinking_enabled", "thinking mode": "thinking_enabled",
+            "reasoning": "thinking_enabled", "reasoning mode": "thinking_enabled",
         }
         def _resolve(k):
             k2 = (k or "").strip().lower()

@@ -58,6 +58,15 @@ DEFAULT_SETTINGS = {
     "vision_enabled": True,
     # Ordered fallback chain for the Vision model (image analysis, OCR, tagging).
     "vision_model_fallbacks": [],
+    # Vision pass-through overrides for the MAIN chat model. When the main
+    # model natively accepts images it gets the attachment directly instead
+    # of a VLM-written caption. Detection is automatic (endpoint capability
+    # metadata + name heuristics); these lists force the outcome when both
+    # fail. Case-insensitive substrings, list or comma-separated string.
+    #   vision_capable_models — always pass images to these models.
+    #   text_only_models      — never pass images (always caption instead).
+    "vision_capable_models": [],
+    "text_only_models": [],
     # Public base URL used to build clickable deep-links in outgoing alerts
     # (e.g., urgency alert email). Example: "https://chat.example.com"
     "app_public_url": "",
@@ -103,7 +112,7 @@ DEFAULT_SETTINGS = {
     "research_endpoint_id": "",
     "research_model": "",
     "research_search_provider": "",
-    "research_max_tokens": 16384,
+    "research_max_tokens": 163840,
     "research_extraction_timeout_seconds": 90,
     # Lightweight planning/query LLM calls happen before any search starts.
     # Keep them separately tunable so slow local backends are not capped by
@@ -130,7 +139,7 @@ DEFAULT_SETTINGS = {
     # default is treated as auto because the settings-save path materializes
     # defaults, so a persisted 6000 can't be told apart from a deliberate 6000 —
     # to pin a budget near the default, use a nearby value (e.g. 5999).
-    "agent_input_token_budget": 6000,
+    "agent_input_token_budget": 200000,
     # Ceiling on the *auto-derived* input budget; a configurable setting since #1273
     # (the merged #1230 left it a module constant). No effect on an explicit budget
     # — a deliberate value is honoured (#1230). Default matches
@@ -141,6 +150,14 @@ DEFAULT_SETTINGS = {
     "agent_input_token_hard_max": 200_000,
     "agent_stream_timeout_seconds": 300,
     "auto_compact_threshold_percent": 85,
+    # 24/7 all-tools mode: when True, agent mode skips RAG/keyword tool
+    # selection entirely and always sends the FULL tool catalog (prompt
+    # sections + native schemas) every round. Default ON.
+    "agent_list_all_tools": True,
+    # Optimistic tool support: unknown model names get native OpenAI-style
+    # tool schemas instead of the MCP-only fenced-block fallback. Set False
+    # to restore old keyword-whitelist behavior.
+    "assume_unknown_models_support_tools": True,
     # Extra directory roots that read_file / write_file may access, in
     # addition to the built-in project data/ and system temp dirs. Each
     # entry is an absolute path. Sensitive subpaths (.ssh, .gnupg, shell
@@ -172,6 +189,14 @@ DEFAULT_SETTINGS = {
     # provider default; a value is sent only to utility-chain candidates whose
     # model advertises that level.
     "utility_reasoning_effort": "",
+    # Master switch for reasoning/"thinking" mode on models that support it.
+    # False = every chat request asks the backend to skip chain-of-thought
+    # (Ollama `think:false`, DeepSeek `thinking:disabled`, Mistral
+    # `reasoning_effort:minimal`, NVIDIA NIM / vLLM
+    # `chat_template_kwargs.enable_thinking:false`, OpenRouter
+    # `reasoning.enabled:false`). Internal utility calls (compaction,
+    # summaries, titles) always run thinking-off regardless of this flag.
+    "thinking_enabled": True,
     "teacher_model": "",
     "teacher_enabled": False,
     "teacher_tier2_enabled": False,

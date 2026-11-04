@@ -113,9 +113,11 @@ def test_append_threads_result_to_correct_tool_call_id():
         messages, "some response", converted,
         ["RESULT"], ["RESULT"], True, 1,
     )
-    tool_msgs = [m for m in messages if m.get("role") == "tool"]
+    # (2026-11-01) exclude the synthetic per-round datetime tool result
+    tool_msgs = [m for m in messages if m.get("role") == "tool" and not str(m.get("tool_call_id", "")).startswith("call_dt_")]
     assert len(tool_msgs) == 1
     assert tool_msgs[0]["tool_call_id"] == "B"
     assert tool_msgs[0]["content"] == "RESULT"
     asst = next(m for m in messages if m.get("role") == "assistant")
-    assert [tc["id"] for tc in asst["tool_calls"]] == ["B"]
+    # (2026-11-01) exclude the synthetic per-round datetime call
+    assert [tc["id"] for tc in asst["tool_calls"] if not tc["id"].startswith("call_dt_")] == ["B"]

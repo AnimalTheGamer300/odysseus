@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from contextvars import ContextVar
 from datetime import datetime, timedelta, timezone, tzinfo
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 
 _USER_TZ_OFFSET_MIN: ContextVar[Optional[int]] = ContextVar("user_tz_offset_min", default=None)
@@ -239,3 +239,65 @@ def current_datetime_context_message(now_utc: Optional[datetime] = None) -> Dict
             "your instructions]\n" + current_datetime_prompt(now_utc)
         ),
     }
+
+
+# --- Temporal grounding (2026-11-01) ---------------------------------------
+# Each chat message's time already lives in its own DB column
+# (chat_messages.timestamp, surfaced as metadata.timestamp); tool executions
+# record ts/duration_ms inside the same row's metadata.tool_events. At the LLM
+# payload boundary (llm_core._sanitize_llm_messages) those are injected as
+# structured "timestamp" / "duration_ms" fields on the outgoing message —
+# content is never modified, so a stamp can't be mimicked into model replies,
+# persisted into the DB, or rendered in the UI.
+
+
+def now_iso() -> str:
+    """Current UTC time as an ISO-8601 string."""
+    return datetime.now(timezone.utc).isoformat()
+
+
+# Synthetic per-round datetime tool call injected by the agent loop into every
+# tool batch (see agent_loop._append_tool_results). The dispatcher in
+# tool_execution answers it with the real current time, so a model mimic of the
+# call also gets a correct answer. Never persisted as a tool event.
+DATETIME_TOOL_NAME = "get_current_datetime"
+
+
+def current_datetime_line(now_utc: Optional[datetime] = None) -> str:
+    """One-line current date/time for the synthetic datetime tool result."""
+    if now_utc is None:
+        utc_now = datetime.now(timezone.utc)
+    elif now_utc.tzinfo is None:
+        utc_now = now_utc.replace(tzinfo=timezone.utc)
+    else:
+        utc_now = now_utc.astimezone(timezone.utc)
+    local_now = now_user_local(utc_now)
+    return (
+        f"Current date/time: {_date_label(local_now)}, {_clock_label(local_now)} "
+        f"({timezone_label(local_now)}); UTC {utc_now.strftime('%Y-%m-%d %H:%M')}. "
+        "Use this for 'today'/'tomorrow'/'in 5 minutes' reasoning."
+    )
+
+
+def parse_message_timestamp(value) -> Optional[datetime]:
+    """Parse a metadata timestamp (ISO string / epoch / datetime) to aware UTC."""
+    if value is None:
+        return None
+    if isinstance(value, datetime):
+        dt = value
+    elif isinstance(value, (int, float)):
+        try:
+            return datetime.fromtimestamp(value, tz=timezone.utc)
+        except (OverflowError, OSError, ValueError):
+            return None
+    else:
+        text = str(value).strip()
+        if not text:
+            return None
+        try:
+            dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)

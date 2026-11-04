@@ -1135,8 +1135,28 @@ def _resolve_tool_path_in_workspace(workspace: str, raw_path: str) -> str:
         )
     if _is_hardlinked_regular_file(resolved):
         raise ValueError(f"path '{raw_path}' is a hard-linked file")
+
     if _is_denied_tool_path(resolved):
         raise ValueError("path addresses sensitive execution control-plane state")
+    if resolved != base:
+        # normcase so containment holds on case-insensitive filesystems
+        # (Windows, default macOS): it lowercases on Windows and is a no-op on
+        # POSIX. commonpath raises ValueError across Windows drives (C: vs D:)
+        # or mixed abs/rel — both mean "outside", so the except rejects them.
+        nbase = os.path.normcase(base)
+        try:
+            if os.path.commonpath([os.path.normcase(resolved), nbase]) != nbase:
+                raise ValueError
+        except ValueError:
+            # User-nominated path bypass: if the raw path appears VERBATIM in
+            # the user's own message, trust it (they pasted an absolute path).
+            # The sensitive-file deny list above still applies — this only
+            # relaxes containment, never the deny list.
+            user_text = _active_user_text.get()
+            if user_text and str(raw_path).strip() in user_text:
+                return resolved
+            raise ValueError(f"path '{raw_path}' is outside the workspace ({workspace})")
+
     return resolved
 
 
@@ -1153,6 +1173,20 @@ def _resolve_tool_path_in_workspace(workspace: str, raw_path: str) -> str:
 _active_workspace: contextvars.ContextVar = contextvars.ContextVar(
     "agent_active_workspace", default=None
 )
+
+# User-nominated path bypass: verbatim last user message, bound per-turn.
+# _resolve_tool_path_in_workspace consults it so a path the USER explicitly
+# typed (e.g. an absolute path pasted into chat) is trusted even when it
+# escapes the workspace. Only ever matched verbatim against real user text —
+# the model cannot nominate paths on its own.
+_active_user_text: contextvars.ContextVar = contextvars.ContextVar(
+    "agent_active_user_text", default=None
+)
+
+
+def get_active_user_text() -> Optional[str]:
+    """The verbatim last user message for this turn, or None."""
+    return _active_user_text.get()
 
 
 def get_active_workspace() -> Optional[str]:
@@ -1627,8 +1661,9 @@ async def _document_tool_dispatch(
     content: str,
     session_id: Optional[str] = None,
     owner: Optional[str] = None,
+    extra_ctx: Optional[Dict] = None,
     document_id: Optional[str] = None,
-    document_version: Optional[int] = None,
+    document_version: Optional[str] = None,
     document_digest: Optional[str] = None,
 ) -> Optional[Dict]:
     """Route a document tool through TOOL_HANDLERS with the right ctx shape."""
@@ -1643,6 +1678,8 @@ async def _document_tool_dispatch(
         "expected_document_version": document_version,
         "expected_document_digest": document_digest,
     }
+    if extra_ctx:
+        ctx.update(extra_ctx)
     if tool in TOOL_HANDLERS:
         return await TOOL_HANDLERS[tool](content, ctx)
     return None
@@ -1675,6 +1712,7 @@ async def execute_tool_block(
     progress_cb: Optional[Callable[[Dict], Awaitable[None]]] = None,
     workspace: Optional[str] = None,
     tool_policy: Optional[Any] = None,
+    extra_ctx: Optional[Dict] = None,
     security_context: (
         ToolRunSecurityContext
         | _NoToolSecurityContext
@@ -1691,6 +1729,13 @@ async def execute_tool_block(
     cwd confine to it) for the duration of this call, then delegate. Reset on the
     way out so the binding never leaks to the next tool call.
     """
+    if getattr(block, "tool_type", "") == "get_current_datetime":
+        # Synthetic per-round datetime call injected by the agent loop (and
+        # any model mimic of it) - answer with the real current date/time.
+        # Always permitted: it reads the server clock and touches nothing,
+        # so no request-authority admission applies.
+        from src.user_time import current_datetime_line
+        return "get_current_datetime", {"stdout": current_datetime_line(), "exit_code": 0}
     if security_context is _MISSING_TOOL_SECURITY_CONTEXT:
         raise TypeError(
             "execute_tool_block requires security_context; pass a "
@@ -1940,6 +1985,7 @@ async def execute_tool_block(
 
     token = _active_workspace.set(workspace or None)
     try:
+
         backend_operation.validate(client_runtime_context)
         if process_operation is not None and approval_claimed:
             process_operation = replace(process_operation, exact_approval=exact_approval)
@@ -1957,12 +2003,14 @@ async def execute_tool_block(
                 owner=owner,
                 progress_cb=progress_cb,
                 tool_policy=tool_policy,
+                extra_ctx=extra_ctx,
                 approved_document_id=sealed_document.document_id if sealed_document is not None else None,
                 approved_document_version=sealed_document.document_version if sealed_document is not None else None,
                 approved_document_digest=sealed_document.document_digest if sealed_document is not None else None,
                 active_document_id=active_document_id,
                 client_runtime_context=client_runtime_context,
             )
+
         if isinstance(security_context, ToolRunSecurityContext):
             security_context.observe_tool_result(
                 getattr(block, "tool_type", None),
@@ -1988,8 +2036,9 @@ async def _execute_tool_block_impl(
     owner: Optional[str] = None,
     progress_cb: Optional[Callable[[Dict], Awaitable[None]]] = None,
     tool_policy: Optional[Any] = None,
+    extra_ctx: Optional[Dict] = None,
     approved_document_id: Optional[str] = None,
-    approved_document_version: Optional[int] = None,
+    approved_document_version: Optional[str] = None,
     approved_document_digest: Optional[str] = None,
     active_document_id: Optional[str] = None,
     client_runtime_context: Optional[Dict[str, Any]] = None,
@@ -2009,7 +2058,7 @@ async def _execute_tool_block_impl(
         do_list_downloads, do_cancel_download, do_search_hf_models, do_list_cached_models,
         do_list_serve_presets, do_serve_preset, do_adopt_served_model,
         do_list_cookbook_servers,
-        do_edit_image, do_trigger_research, do_manage_research, do_resolve_contact,
+        do_edit_image, do_fetch_image, do_trigger_research, do_manage_research, do_resolve_contact,
         do_manage_contact,
         do_vault_search, do_vault_get, do_vault_unlock,
         do_app_api,
@@ -2301,6 +2350,7 @@ async def _execute_tool_block_impl(
             document_id=approved_document_id or active_document_id,
             document_version=approved_document_version,
             document_digest=approved_document_digest,
+            extra_ctx=extra_ctx,
         )) \
             or {"error": f"{tool}: execution failed", "exit_code": 1}
         if tool in ("edit_document", "suggest_document") and "title" in (result or {}):
@@ -2318,6 +2368,22 @@ async def _execute_tool_block_impl(
         desc = f"{tool}: {first_line}" if first_line else tool
         result = await dispatched(_document_tool_dispatch(tool, content, session_id, owner)) \
             or {"error": f"{tool}: execution failed", "exit_code": 1}
+    elif tool == "spawn_agent":
+        # Tier-1 multi-agent primitive: run a full sub-agent loop (with tool
+        # access) headless and return its report. extra_ctx carries the
+        # parent's endpoint/model/headers + subagent_depth so the handler can
+        # default to the parent's brain and enforce the recursion guard.
+        first_line = content.split(chr(10))[0].strip()[:60]
+        desc = f"spawn_agent: {first_line}" if first_line else "spawn_agent"
+        result = await _document_tool_dispatch(tool, content, session_id, owner, extra_ctx=extra_ctx) \
+            or {"error": "spawn_agent: execution failed", "exit_code": 1}
+    elif tool == "check_agents":
+        # Tier-2 multi-agent: status/collection for background sub-agents
+        # (spawn_agent background=true). extra_ctx unused today, kept for parity.
+        first_line = content.split(chr(10))[0].strip()[:60]
+        desc = f"check_agents: {first_line}" if first_line else "check_agents"
+        result = await _document_tool_dispatch(tool, content, session_id, owner, extra_ctx=extra_ctx) \
+            or {"error": "check_agents: execution failed", "exit_code": 1}
     elif tool in ("create_session", "list_sessions", "send_to_session", "manage_session"):
         # Migrated to the agent_tools registry (#3629): dispatched through
         # TOOL_HANDLERS with the owner/session ctx these tools need. The impls
@@ -2392,6 +2458,10 @@ async def _execute_tool_block_impl(
     elif tool == "list_cookbook_servers":
         desc = "list_cookbook_servers"
         result = await dispatched(do_list_cookbook_servers(content, owner=owner))
+    elif tool == "fetch_image":
+        desc = "fetch_image"
+        result = await dispatched(do_fetch_image(content, owner=owner))
+
     elif tool == "edit_image":
         desc = "edit_image"
         image_privacy = (client_runtime_context or {}).get('web_ui_state', {}).get('incognito') is True
@@ -2516,6 +2586,13 @@ async def _execute_tool_block_impl(
         else:
             result = res or {"error": f"{tool}: execution failed", "exit_code": 1}
 
+    elif tool == "get_current_datetime":
+        # Synthetic per-round datetime call injected by the agent loop (and any
+        # model mimic of it) — answer with the real current date/time.
+        from src.user_time import current_datetime_line
+        desc = "get_current_datetime"
+        result = {"stdout": current_datetime_line(), "exit_code": 0}
+
     else:
         desc = f"unknown: {tool}"
         result = {
@@ -2537,6 +2614,12 @@ _FORMATTER_HANDLED_KEYS = {
     "response", "results", "session_id", "name", "model", "session_name",
     "success", "path", "action", "title", "doc_id", "version", "applied",
     "error", "output", "images",
+    # image_data_url is a huge base64 payload consumed by the vision-injection
+    # path in agent_loop, not by the textual tool result. Dumping it through
+    # the generic "extra" branch used to waste 8000 chars of truncated base64
+    # on every fetch_image call.
+    "image_data_url",
+
 }
 
 

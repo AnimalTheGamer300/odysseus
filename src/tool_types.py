@@ -20,6 +20,8 @@ TOOL_TAGS = {
     "send_to_session", "pipeline", "manage_session", "manage_memory", "list_models",
     "ui_control", "generate_image", "ask_user", "update_plan",
     "manage_tasks", "api_call", "ask_teacher", "manage_skills",
+    # Fork-only agent-tier tools (never offered upstream).
+    "spawn_agent", "check_agents",
     "suggest_document",
     "manage_endpoints", "manage_mcp", "manage_webhooks",
     "manage_tokens", "manage_documents", "manage_settings",
@@ -27,7 +29,7 @@ TOOL_TAGS = {
     "download_model", "serve_model", "list_served_models", "stop_served_model",
     "tail_serve_output", "list_downloads", "cancel_download", "search_hf_models",
     "list_cached_models", "list_serve_presets", "serve_preset", "adopt_served_model",
-    "list_cookbook_servers", "edit_image", "trigger_research", "manage_research",
+    "list_cookbook_servers", "edit_image", "fetch_image", "trigger_research", "manage_research",
     "plan_edit", "run_editor_command", "get_editor_screenshot", "ai_edit_image",
     "app_api",
 } | BUILTIN_EMAIL_TOOLS

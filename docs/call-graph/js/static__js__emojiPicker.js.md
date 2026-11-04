@@ -1,0 +1,216 @@
+# `static/js/emojiPicker.js` — definitions & call sites
+
+8 definitions (regex-based, best-effort).
+**Exports:** `createEmojiButton`, `default`
+
+## `I` — arrow, line 15
+- **called from:**
+- `static/js/emojiPicker.js:29`
+- `static/js/emojiPicker.js:30`
+- `static/js/emojiPicker.js:31`
+- `static/js/emojiPicker.js:32`
+- `static/js/emojiPicker.js:33`
+- `static/js/emojiPicker.js:34`
+- `static/js/emojiPicker.js:40`
+- `static/js/emojiPicker.js:41`
+- `static/js/emojiPicker.js:42`
+- `static/js/emojiPicker.js:43`
+- `static/js/emojiPicker.js:44`
+- `static/js/emojiPicker.js:45`
+- `static/js/emojiPicker.js:46`
+- `static/js/emojiPicker.js:47`
+- `static/js/emojiPicker.js:48`
+- `static/js/emojiPicker.js:49`
+- `static/js/emojiPicker.js:50`
+- `static/js/emojiPicker.js:51`
+- `static/js/emojiPicker.js:57`
+- `static/js/emojiPicker.js:58`
+- `static/js/emojiPicker.js:59`
+- `static/js/emojiPicker.js:60`
+- `static/js/emojiPicker.js:61`
+- `static/js/emojiPicker.js:62`
+- `static/js/emojiPicker.js:68`
+- `static/js/emojiPicker.js:69`
+- `static/js/emojiPicker.js:70`
+- `static/js/emojiPicker.js:71`
+- `static/js/emojiPicker.js:72`
+- `static/js/emojiPicker.js:73`
+- `static/js/emojiPicker.js:74`
+- `static/js/emojiPicker.js:75`
+- `static/js/emojiPicker.js:76`
+- `static/js/emojiPicker.js:77`
+- `static/js/emojiPicker.js:78`
+- `static/js/emojiPicker.js:79`
+- `static/js/emojiPicker.js:80`
+- `static/js/emojiPicker.js:81`
+- `static/js/emojiPicker.js:82`
+- `static/js/emojiPicker.js:83`
+- `static/js/emojiPicker.js:84`
+- `static/js/emojiPicker.js:85`
+- `static/js/emojiPicker.js:86`
+- `static/js/emojiPicker.js:87`
+- `static/js/emojiPicker.js:88`
+- `static/js/emojiPicker.js:94`
+- `static/js/emojiPicker.js:95`
+- `static/js/emojiPicker.js:96`
+- `static/js/emojiPicker.js:97`
+- `static/js/emojiPicker.js:98`
+- `static/js/emojiPicker.js:99`
+- `static/js/emojiPicker.js:100`
+- `static/js/emojiPicker.js:101`
+
+## `createEmojiButton` — function, line 118
+- **called from:**
+- `static/js/document.js:5414`
+- `static/js/emojiPicker.js:118`
+
+## `togglePicker` — function, line 137
+- **called from:**
+- `static/js/emojiPicker.js:132`
+- `static/js/emojiPicker.js:137`
+
+## `close` — arrow, line 178
+- **called from:**
+- `app.py:333`
+- `app.py:451`
+- `app.py:532`
+- `app.py:1050`
+- `app.py:1174`
+- `app.py:1295`
+- `companion/pairing.py:151`
+- `companion/routes.py:165`
+- `core/database.py:161`
+- `core/database.py:930`
+- `core/database.py:961`
+- `core/database.py:984`
+- `core/database.py:1009`
+- `core/database.py:1032`
+- `core/database.py:1055`
+- `core/database.py:1086`
+- `core/database.py:1111`
+- `core/database.py:1135`
+- `core/database.py:1163`
+- `core/database.py:1186`
+- `core/database.py:1209`
+- `core/database.py:1232`
+- `core/database.py:1255`
+- `core/database.py:1287`
+- `core/database.py:1310`
+- `core/database.py:1333`
+- `core/database.py:1357`
+- `core/database.py:1381`
+- `core/database.py:1415`
+- `core/database.py:1444`
+- `core/database.py:1517`
+- `core/database.py:2106`
+- `core/database.py:2340`
+- `core/database.py:2402`
+- `core/database.py:2518`
+- `core/database.py:2545`
+- `core/database.py:2571`
+- `core/database.py:2596`
+- `core/database.py:2623`
+- `core/database.py:2645`
+- `core/database.py:2658`
+- `core/database.py:2674`
+- `core/session_manager.py:68`
+- `core/session_manager.py:178`
+- `core/session_manager.py:442`
+- `core/session_manager.py:582`
+- `core/session_manager.py:654`
+- `core/session_manager.py:689`
+- `core/session_manager.py:760`
+- `core/session_manager.py:880`
+- `core/session_manager.py:984`
+- `core/session_manager.py:1014`
+- `core/session_manager.py:1028`
+- `core/session_manager.py:1074`
+- `core/session_manager.py:1118`
+- `core/session_manager.py:1149`
+- `core/session_manager.py:1173`
+- `core/session_manager.py:1209`
+- `core/session_manager.py:1233`
+- `core/session_manager.py:1253`
+- … +763 more (grep the name in repo)
+
+## `_closePicker` — function, line 198
+- **called from:**
+- `static/js/emojiPicker.js:143`
+- `static/js/emojiPicker.js:182`
+- `static/js/emojiPicker.js:193`
+- `static/js/emojiPicker.js:198`
+- `static/js/emojiPicker.js:256`
+
+## `_buildPicker` — function, line 213
+- **called from:**
+- `static/js/emojiPicker.js:155`
+- `static/js/emojiPicker.js:213`
+
+## `render` — function, line 227
+- **called from:**
+- `static/js/calendar.js:1259`
+- `static/js/calendar.js:2092`
+- `static/js/chat.js:3658`
+- `static/js/chat.js:4482`
+- `static/js/chat.js:4621`
+- `static/js/editor/layer-panel.js:67`
+- `static/js/editor/layer-panel.js:144`
+- `static/js/editor/layer-panel.js:157`
+- `static/js/editor/layer-panel.js:271`
+- `static/js/editor/layer-panel.js:325`
+- `static/js/editor/layer-panel.js:342`
+- `static/js/editor/layer-panel.js:373`
+- `static/js/editor/layer-panel.js:392`
+- `static/js/editor/layer-panel.js:413`
+- `static/js/editor/layer-panel.js:445`
+- `static/js/editor/layer-panel.js:458`
+- `static/js/editor/layer-panel.js:499`
+- `static/js/editor/layer-panel.js:532`
+- `static/js/editor/layer-panel.js:552`
+- `static/js/editor/layer-panel.js:566`
+- `static/js/emojiPicker.js:227`
+- `static/js/emojiPicker.js:265`
+- `static/js/emojiPicker.js:267`
+- `static/js/galleryEditor.js:3572`
+- `static/js/group.js:478`
+- `static/js/group.js:515`
+- `static/js/group.js:516`
+- `static/js/markdown.js:1361`
+- `static/js/notes.js:3281`
+- `static/js/notes.js:3386`
+- `static/js/notes.js:3389`
+- `static/js/notes.js:3392`
+- `static/js/notes.js:3397`
+- `static/js/notes.js:3400`
+- `static/js/notes.js:3410`
+- `static/js/research/panel.js:721`
+- `static/js/settings.js:309`
+- `static/js/settings.js:352`
+- `static/js/settings.js:367`
+- `static/js/settings.js:371`
+- `static/js/settings.js:374`
+- `static/js/settings.js:1839`
+- `static/js/settings.js:1887`
+- `static/js/settings.js:1929`
+- `static/js/settings.js:1993`
+- `static/js/settings.js:1999`
+- `static/js/settings/search.js:79`
+- `static/js/settings/search.js:129`
+- `static/js/skills.js:1071`
+- `static/js/streamingRenderer.js:57`
+- `static/js/streamingRenderer.js:76`
+- `static/js/streamingRenderer.js:136`
+- `static/js/streamingSegmenter.js:18`
+- `static/js/streamingSegmenter.js:18`
+- `static/js/streamingSegmenter.js:18`
+- `static/js/streamingSegmenter.js:118`
+- `static/js/streamingSegmenter.js:118`
+- `static/js/streamingSegmenter.js:118`
+- `static/js/streamingSegmenter.js:125`
+- `static/js/streamingSegmenter.js:125`
+- … +1 more (grep the name in repo)
+
+## `_insertEmoji` — function, line 273
+- **called from:**
+- `static/js/emojiPicker.js:255`
+- `static/js/emojiPicker.js:273`

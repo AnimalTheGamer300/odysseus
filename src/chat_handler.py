@@ -226,12 +226,21 @@ class ChatHandler:
             meta_by_id = {m["id"]: m for m in attachment_meta}
             for att_id in effective_att_ids:
                 file_info = files_by_id.get(att_id)
-                if file_info and self.upload_handler.is_image_file(
-                    file_info["name"], file_info.get("mime", "")
+                _is_vid = file_info and (
+                    getattr(self.upload_handler, "is_video_file", None)
+                    and self.upload_handler.is_video_file(
+                        file_info["name"], file_info.get("mime", "")
+                    )
+                )
+                if file_info and (
+                    self.upload_handler.is_image_file(
+                        file_info["name"], file_info.get("mime", "")
+                    ) or _is_vid
                 ):
+                    _attach_label = "Video" if _is_vid else "Image"
                     if main_is_vision:
                         # Main model can see images — just note it, image is passed via build_user_content.
-                        enhanced_message = f"{enhanced_message}\n\n[Image attached: {file_info['name']}]"
+                        enhanced_message = f"{enhanced_message}\n\n[{_attach_label} attached: {file_info['name']}]"
                         _m = meta_by_id.get(att_id)
                         if _m is not None:
                             _m["vision_model"] = sess.model or ""

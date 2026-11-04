@@ -1,0 +1,336 @@
+# `static/js/storage.js` — definitions & call sites
+
+9 definitions (regex-based, best-effort).
+**Exports:** `KEYS`, `default`, `get`, `getJSON`, `getToggle`, `loadToggleState`, `remove`, `saveToggleState`, `set`, `setJSON`, `setToggle`
+
+## `getJSON` — function, line 35
+- **called from:**
+- `static/app.js:1931`
+- `static/app.js:2644`
+- `static/app.js:2664`
+- `static/app.js:2668`
+- `static/app.js:2692`
+- `static/app.js:2703`
+- `static/app.js:2745`
+- `static/app.js:2981`
+- `static/js/chat.js:2547`
+- `static/js/chatStream.js:72`
+- `static/js/chatStream.js:84`
+- `static/js/compare/models.js:97`
+- `static/js/compare/scoreboard.js:34`
+- `static/js/compare/selector.js:397`
+- `static/js/compare/selector.js:397`
+- `static/js/compare/selector.js:400`
+- `static/js/compare/vote.js:123`
+- `static/js/group.js:612`
+- `static/js/init.js:99`
+- `static/js/models.js:33`
+- `static/js/models.js:41`
+- `static/js/models.js:60`
+- `static/js/models.js:482`
+- `static/js/section-management.js:11`
+- `static/js/section-management.js:31`
+- `static/js/sessions.js:403`
+- `static/js/sessions.js:409`
+- `static/js/sessions.js:1088`
+- `static/js/slashCommands.js:2497`
+- `static/js/slashCommands.js:5167`
+- `static/js/storage.js:35`
+- `static/js/storage.js:94`
+- `static/js/theme.js:86`
+- `static/js/theme.js:611`
+
+## `setJSON` — function, line 49
+- **called from:**
+- `static/app.js:1935`
+- `static/app.js:2646`
+- `static/app.js:2666`
+- `static/app.js:2670`
+- `static/app.js:2698`
+- `static/app.js:2749`
+- `static/js/chat.js:2549`
+- `static/js/chatStream.js:74`
+- `static/js/chatStream.js:86`
+- `static/js/compare/models.js:41`
+- `static/js/compare/models.js:44`
+- `static/js/compare/models.js:101`
+- `static/js/compare/scoreboard.js:196`
+- `static/js/compare/vote.js:126`
+- `static/js/dragSort.js:143`
+- `static/js/models.js:36`
+- `static/js/models.js:44`
+- `static/js/models.js:67`
+- `static/js/section-management.js:33`
+- `static/js/section-management.js:240`
+- `static/js/sessions.js:406`
+- `static/js/sessions.js:412`
+- `static/js/sessions.js:1094`
+- `static/js/slashCommands.js:2501`
+- `static/js/storage.js:49`
+- `static/js/storage.js:98`
+- `static/js/theme.js:89`
+- `static/js/theme.js:630`
+- `static/js/theme.js:2240`
+
+## `get` — function, line 60
+- **called from:**
+- `app.py:359`
+- `app.py:383`
+- `app.py:389`
+- `app.py:416`
+- `app.py:428`
+- `app.py:470`
+- `app.py:538`
+- `app.py:512`
+- `app.py:595`
+- `app.py:891`
+- `app.py:903`
+- `app.py:907`
+- `app.py:915`
+- `app.py:919`
+- `app.py:923`
+- `app.py:927`
+- `app.py:931`
+- `app.py:935`
+- `app.py:939`
+- `app.py:944`
+- `app.py:950`
+- `app.py:955`
+- `app.py:967`
+- `app.py:968`
+- `app.py:969`
+- `app.py:969`
+- `app.py:971`
+- `app.py:971`
+- `app.py:975`
+- `app.py:996`
+- `app.py:987`
+- `app.py:998`
+- `app.py:1117`
+- `app.py:1151`
+- `app.py:1165`
+- `app.py:1198`
+- `app.py:1201`
+- `app.py:1216`
+- `companion/pairing.py:116`
+- `companion/pairing.py:126`
+- `companion/pairing.py:173`
+- `companion/pairing.py:177`
+- `companion/routes.py:85`
+- `companion/routes.py:97`
+- `companion/routes.py:109`
+- `companion/routes.py:168`
+- `companion/routes.py:222`
+- `core/auth.py:143`
+- `core/auth.py:164`
+- `core/auth.py:187`
+- `core/auth.py:214`
+- `core/auth.py:226`
+- `core/auth.py:230`
+- `core/auth.py:299`
+- `core/auth.py:299`
+- `core/auth.py:325`
+- `core/auth.py:349`
+- `core/auth.py:349`
+- `core/auth.py:357`
+- `core/auth.py:370`
+- … +7551 more (grep the name in repo)
+
+## `set` — function, line 72
+- **called from:**
+- `app.py:1146`
+- `app.py:1207`
+- `companion/routes.py:149`
+- `companion/routes.py:149`
+- `companion/routes.py:151`
+- `core/auth.py:207`
+- `core/database.py:67`
+- `core/database.py:2003`
+- `core/platform_compat.py:199`
+- `core/session_manager.py:803`
+- `mcp_servers/email_server.py:542`
+- `mcp_servers/email_server.py:1822`
+- `mcp_servers/email_server.py:2458`
+- `routes/calendar_routes.py:750`
+- `routes/chat_helpers.py:77`
+- `routes/chat_routes.py:1675`
+- `routes/chat_routes.py:2677`
+- `routes/chat_routes.py:2679`
+- `routes/chat_routes.py:2681`
+- `routes/chat_routes.py:2722`
+- `routes/codex_routes.py:88`
+- `routes/codex_routes.py:102`
+- `routes/codex_routes.py:131`
+- `routes/codex_routes.py:169`
+- `routes/codex_routes.py:668`
+- `routes/codex_routes.py:740`
+- `routes/codex_routes.py:818`
+- `routes/cookbook_routes.py:2998`
+- `routes/cookbook_routes.py:3447`
+- `routes/cookbook_routes.py:3966`
+- `routes/cookbook_routes.py:4018`
+- `routes/cookbook_routes.py:4050`
+- `routes/document/document_routes.py:588`
+- `routes/email_helpers.py:1698`
+- `routes/email_helpers.py:1855`
+- `routes/email_pollers.py:589`
+- `routes/email_pollers.py:593`
+- `routes/email_pollers.py:609`
+- `routes/email_pollers.py:610`
+- `routes/email_pollers.py:613`
+- `routes/email_pollers.py:621`
+- `routes/email_pollers.py:1561`
+- `routes/email_routes.py:394`
+- `routes/email_routes.py:531`
+- `routes/email_routes.py:561`
+- `routes/email_routes.py:1009`
+- `routes/email_routes.py:1541`
+- `routes/email_routes.py:1969`
+- `routes/email_routes.py:1987`
+- `routes/email_routes.py:2689`
+- `routes/email_routes.py:3852`
+- `routes/email_routes.py:3852`
+- `routes/email_routes.py:3857`
+- `routes/email_routes.py:3867`
+- `routes/email_routes.py:5049`
+- `routes/email_routes.py:5333`
+- `routes/gallery/gallery_routes.py:662`
+- `routes/gallery/gallery_routes.py:695`
+- `routes/gallery/gallery_routes.py:957`
+- `routes/gallery/gallery_routes.py:1017`
+- … +598 more (grep the name in repo)
+
+## `remove` — function, line 83
+- **called from:**
+- `core/auth.py:542`
+- `mcp_servers/memory_server.py:218`
+- `mcp_servers/memory_server.py:246`
+- `routes/admin_wipe/admin_wipe_routes.py:51`
+- `routes/admin_wipe/admin_wipe_routes.py:121`
+- `routes/embedding_routes.py:339`
+- `routes/gallery/gallery_routes.py:2019`
+- `routes/memory/memory_routes.py:543`
+- `routes/memory/memory_routes.py:565`
+- `routes/personal_routes.py:440`
+- `services/memory/service.py:125`
+- `services/memory/skills.py:517`
+- `src/agent_tools/filesystem_tools.py:395`
+- `src/ai_interaction.py:477`
+- `src/api_key_manager.py:100`
+- `src/memory_provider.py:251`
+- `src/personal_docs.py:318`
+- `src/readiness.py:42`
+- `src/upload_handler.py:660`
+- `tests/test_embedding_lanes_memory.py:165`
+- `tests/test_history_display_model_hydration.py:117`
+- `tests/test_memory_store_unreadable_no_wipe.py:94`
+- `tests/test_replace_messages_upload_reservations.py:130`
+- `tests/test_replace_messages_upload_reservations.py:172`
+- `tests/test_upload_handler_atomicity.py:425`
+- `static/app.js:337`
+- `static/app.js:377`
+- `static/app.js:380`
+- `static/app.js:398`
+- `static/app.js:409`
+- `static/app.js:412`
+- `static/app.js:490`
+- `static/app.js:504`
+- `static/app.js:518`
+- `static/app.js:543`
+- `static/app.js:570`
+- `static/app.js:582`
+- `static/app.js:685`
+- `static/app.js:697`
+- `static/app.js:720`
+- `static/app.js:797`
+- `static/app.js:803`
+- `static/app.js:806`
+- `static/app.js:812`
+- `static/app.js:813`
+- `static/app.js:817`
+- `static/app.js:818`
+- `static/app.js:853`
+- `static/app.js:865`
+- `static/app.js:897`
+- `static/app.js:1143`
+- `static/app.js:1157`
+- `static/app.js:1292`
+- `static/app.js:1564`
+- `static/app.js:1689`
+- `static/app.js:1987`
+- `static/app.js:2008`
+- `static/app.js:2165`
+- `static/app.js:2166`
+- `static/app.js:2192`
+- … +1230 more (grep the name in repo)
+
+## `loadToggleState` — function, line 93
+- **called from:**
+- `static/app.js:898`
+- `static/app.js:901`
+- `static/app.js:929`
+- `static/app.js:932`
+- `static/app.js:1728`
+- `static/app.js:1729`
+- `static/app.js:1745`
+- `static/app.js:1752`
+- `static/app.js:1791`
+- `static/app.js:1827`
+- `static/app.js:1838`
+- `static/app.js:1866`
+- `static/app.js:1872`
+- `static/app.js:1886`
+- `static/app.js:1912`
+- `static/app.js:1954`
+- `static/app.js:1961`
+- `static/app.js:1997`
+- `static/app.js:2009`
+- `static/app.js:2023`
+- `static/app.js:2048`
+- `static/app.js:2060`
+- `static/app.js:2219`
+- `static/app.js:2254`
+- `static/app.js:2257`
+- `static/app.js:2469`
+- `static/app.js:2480`
+- `static/app.js:2529`
+- `static/app.js:2532`
+- `static/js/chat.js:2285`
+- `static/js/chat.js:2366`
+- `static/js/chat.js:4726`
+- `static/js/compare/index.js:83`
+- `static/js/compare/index.js:297`
+- `static/js/storage.js:93`
+- `static/js/storage.js:102`
+- `static/js/storage.js:107`
+
+## `saveToggleState` — function, line 97
+- **called from:**
+- `static/app.js:901`
+- `static/app.js:932`
+- `static/app.js:1731`
+- `static/app.js:1732`
+- `static/app.js:1754`
+- `static/app.js:1793`
+- `static/app.js:1840`
+- `static/app.js:1997`
+- `static/app.js:2009`
+- `static/app.js:2023`
+- `static/app.js:2048`
+- `static/app.js:2260`
+- `static/app.js:2480`
+- `static/app.js:2535`
+- `static/js/compare/index.js:85`
+- `static/js/storage.js:97`
+- `static/js/storage.js:109`
+
+## `getToggle` — function, line 101
+- **called from:**
+- `static/js/storage.js:101`
+
+## `setToggle` — function, line 106
+- **called from:**
+- `static/js/chat.js:5176`
+- `static/js/slashCommands.js:927`
+- `static/js/slashCommands.js:939`
+- `static/js/storage.js:106`

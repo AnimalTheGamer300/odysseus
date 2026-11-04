@@ -123,10 +123,28 @@ _PERSONAL_TOOL_CONTEXT_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Bare continuation nudges are not queries. 2026-10-28 live bug: sending "ctn"
+# to resume a stopped turn ran the prefetched web search on the literal token
+# and pinned a "6 Web sources" card of Christian Television Network results on
+# the reply ("uhhh ctn" fetched uhhh-meme sources, which proves the query was
+# the raw message text). Nudges now count as low-signal: no memory/skills/RAG/
+# web-prefetch injection. Conversation history still flows, so the model can
+# resume the interrupted work. Keep the ctn-family in sync with
+# _EXPLICIT_CONTINUATION_RE in src/agent_loop.py (tool-retrieval inheritance).
+_CONTINUATION_NUDGE_RE = re.compile(
+    r"^(?:[\s,.\-!?~]*(?:uh+h*|um+m*|hm+m*|er+r*|ah+h*|pls|please|sir[,:]?)\b)*"
+    r"[\s,.\-!?~]*(?:ctn|ctnue|ctnow|cont|continue|keep\s+going|go\s+on|"
+    r"carry\s+on|resume|next|again|more|go)\b[\s,.\-!?~]*$",
+    re.IGNORECASE,
+)
+
 
 def _is_casual_low_signal(text: str) -> bool:
-    """Short greetings/slang should not pull memory, skills, RAG, or docs."""
+    """Short greetings/slang and bare continuation nudges should not pull
+    memory, skills, RAG, docs, or the prefetched web search."""
     s = str(text or "").strip()
+    if _CONTINUATION_NUDGE_RE.match(s):
+        return True
     m = _CASUAL_OPENING_RE.match(s)
     if not m:
         return False
@@ -439,6 +457,12 @@ class ChatContext:
     # Uploads attached to this user turn, resolved and owner-checked for the
     # agent's private context. This is not emitted to the browser.
     uploaded_files: list = field(default_factory=list)
+    # DB id of the user message persisted for this turn (None for incognito,
+    # reuse_last_user failures, or soft-dropped sessions). The stream route
+    # emits it as a `user_message_saved` SSE event so the frontend can stamp
+    # the optimistic user bubble with its row id (2026-08-08, see changelog).
+    user_message_id: Optional[str] = None
+
     # Route-neutral prompt before any model-window compaction/trimming. This is
     # retained only when explicit foreground fallbacks are enabled so each
     # concrete candidate can apply its own context budget independently.
@@ -547,13 +571,47 @@ def fallback_session_title(text: str, *, max_words: int = 6) -> str:
 
 
 async def auto_name_session(session_manager, sess):
-    """Generate a short title for a session from its first user message."""
+    """Generate a short title for a session from its conversation context.
+
+    Uses a head+tail excerpt (first 2 + last 12 non-summary messages) so the
+    title tracks where the topic actually went, not just the opener — same
+    context shape the retitle button uses. New sessions still work: the first
+    message IS the whole excerpt.
+    """
     try:
         from src.llm_core import llm_call_async
         from src.task_endpoint import resolve_task_endpoint
         from src.utility_effort import effort_for_call
 
-        # Find first user message
+        # Build a compact conversation excerpt: skip system summaries, cap
+        # each message, take head (2) + tail (12).
+        convo = []
+        for msg in getattr(sess, "history", None) or []:
+            role = getattr(msg, "role", None) or "user"
+            content = getattr(msg, "content", "")
+            if isinstance(content, list):
+                text = " ".join(
+                    str(p.get("text") or p.get("content") or p) if isinstance(p, dict) else str(p)
+                    for p in content
+                )
+            elif isinstance(content, dict):
+                text = str(content.get("text") or content.get("content") or content)
+            else:
+                text = str(content)
+            text = text.strip()
+            if not text:
+                continue
+            if role == "system" and "summary" in text[:200].lower():
+                continue
+            convo.append(f"{role}: {text[:400]}")
+        if not convo:
+            return
+        convo_text = "\n".join(convo[:2] + convo[-12:])
+        if len(convo_text) > 6000:
+            convo_text = convo_text[-6000:]
+
+        # Find first user message (upstream contract: the title call and
+        # every fallback below key off it)
         first_msg = ""
         for msg in sess.history:
             if msg.role == "user":
@@ -706,24 +764,37 @@ async def auto_name_session(session_manager, sess):
                 t_url,
                 t_model,
                 [
-                    {"role": "system", "content": "Generate a short title (3-6 words, no quotes) for a conversation that starts with this message. Reply with ONLY the title, nothing else. Do NOT include any thinking, reasoning, or explanation — just the title."},
+                    {"role": "system", "content": "Generate a short title (3-6 words, no quotes) for a conversation that starts with this message."},
                     {"role": "user", "content": first_msg},
                 ],
                 temperature=0.3,
-                max_tokens=64,
+                max_tokens=4096,
                 headers=t_headers,
-                timeout=15,
+                timeout=60,
                 reasoning_effort=effort_for_call(t_url, t_model, owner, sess),
             )
         except Exception as e:
             logger.warning("[auto-name] non-spec title call failed for %s: %s", sess.id, e)
             title = ""
 
-        title = title.strip().strip('"\'').strip()
+        title = (title or "").strip().strip('"\'').strip()
         # Strip <think>/<thinking> blocks (closed, dangling, or stray tags)
         # via the central helper.
         from src.text_helpers import strip_think
         title = strip_think(title, prose=False, prompt_echo=False)
+        # Echo guard: a model that parrots the instruction ("We need answer
+        # with title 6 words or fewer...") must never become the chat name.
+        if title:
+            low = title.lower()
+            if (len(title.split()) > 12
+                    or any(ph in low for ph in (
+                        "6 words", "words or fewer", "reply with only",
+                        "no quotes", "no prefix", "short, descriptive",
+                        "descriptive title", "we need answer", "need infer",
+                        "conversation about", "the user asks", "we need to",
+                        "name this conversation",
+                    ))):
+                title = ""
         if not title or len(title) >= 80 or "\n" in title:
             fallback = fallback_session_title(first_msg)
             session_manager.update_session_name(sess.id, fallback)
@@ -1139,21 +1210,36 @@ async def build_chat_context(
     use_enhanced_message: bool = False,
     agent_mode: bool = False,
     allow_tool_preprocessing: bool = True,
+    reuse_last_user: bool = False,
     defer_context_shaping: bool = False,
     continuation_context_message: str | None = None,
     persist_user_message: bool = True,
     interaction_mode: str | None = None,
     auto_escalated: bool = False,
     context_resolution=None,
+    continue_assistant: bool = False,
 ) -> ChatContext:
     """Build the full context (preface + messages) for an LLM call.
 
     This is the shared logic between /chat and /chat_stream — preset extraction,
     message preprocessing, memory/RAG/web injection, compaction, normalization.
 
+
     ``context_resolution`` is the turn's already resolved context window. When
     supplied, history shaping sizes against it instead of probing the endpoint.
+    `reuse_last_user` (regenerate flow): the user message row already sits at
+    the tail of session.history (kept by a keep_through_id truncate). The turn
+    is NOT persisted again — the existing row is reused so its DB id/timestamp
+    stay stable. Falls back to a fresh add if the history tail isn't the
+    matching user message.
+
+    `continue_assistant` (Continue-prefill, 2026-10-30): the Continue button
+    sends an EMPTY message with this flag — no user row is persisted. The
+    model's own partial reply stays as the trailing assistant message and the
+    provider simply continues it (prefill), same turn.
     """
+    if continue_assistant:
+        persist_user_message = False
     # Preset
     preset = extract_preset(chat_handler, preset_id)
 
@@ -1171,6 +1257,7 @@ async def build_chat_context(
     # Add user message to history. Nobody/incognito uses a request-local
     # transcript store instead of session history so stale saved chats cannot
     # bleed into context and the turn is not persisted.
+    user_message_id = None
     if persist_user_message and incognito:
         user_meta = {}
         if preprocessed.attachment_meta:
@@ -1180,6 +1267,30 @@ async def build_chat_context(
         if auto_escalated:
             user_meta["auto_escalated"] = True
         _append_incognito_message(session_id, "user", preprocessed.user_content, user_meta)
+    elif persist_user_message and reuse_last_user:
+        # Regenerate (reuse_last_user) skips the add entirely: the user message row
+        # was kept by the truncate (keep_through_id) and is reused as-is so its DB
+        # id/timestamp stay stable instead of being deleted + re-inserted on every
+        # regen (2026-08-08, see changelog). Falls back to a fresh add when the
+        # history tail isn't the matching user message (e.g. a count-based truncate
+        # deleted it, or the content drifted).
+        _tail = sess.history[-1] if getattr(sess, "history", None) else None
+        _tail_matches = (
+            _tail is not None
+            and getattr(_tail, "role", None) == "user"
+            and str(_tail.content or "").strip() == str(preprocessed.user_content or "").strip()
+        )
+        if _tail_matches:
+            user_message_id = (_tail.metadata or {}).get("_db_id")
+        else:
+            logger.warning(
+                "reuse_last_user requested for session %s but history tail is not the matching user message — adding a fresh row",
+                session_id,
+            )
+            add_user_message(sess, chat_handler, preprocessed, incognito=False)
+            _last = sess.history[-1] if sess.history else None
+            if _last is not None and _last.role == "user":
+                user_message_id = (_last.metadata or {}).get("_db_id")
     elif persist_user_message:
         add_user_message(
             sess,
@@ -1189,9 +1300,13 @@ async def build_chat_context(
             interaction_mode=interaction_mode,
             auto_escalated=auto_escalated,
         )
+        _last = sess.history[-1] if sess.history else None
+        if _last is not None and _last.role == "user":
+            user_message_id = (_last.metadata or {}).get("_db_id")
 
-    # Fire events
-    if persist_user_message and not incognito:
+    # Fire events. A regenerate reuses the existing user message — it is not a
+    # NEW message, so don't re-fire webhook/event_bus "new message" events.
+    if persist_user_message and not incognito and not reuse_last_user:
         fire_message_event(request, webhook_manager, session_id, sess, message, compare_mode)
 
     # Resolve owner-scoped prefs/context. Browser requests keep the cookie user;
@@ -1209,6 +1324,10 @@ async def build_chat_context(
         else message
     )
     casual_low_signal = _is_casual_low_signal(context_message)
+    if continue_assistant:
+        # A prefill continuation is not a query — never pull memory/skills/RAG/
+        # web prefetch for it (the message text is empty anyway).
+        casual_low_signal = True
 
     # Memory enabled?
     mem_enabled = (
@@ -1289,6 +1408,28 @@ async def build_chat_context(
     )
     preface, rag_sources, web_sources = chat_processor.build_context_preface(**_preface_kwargs)
 
+    # Vision protocol injection — when the current turn carries images, prepend
+    # a dedicated vision system message so the model traces pixels instead of
+    # leaning on priors (e.g. boobs ≠ buttocks). Kept out of the main system
+    # prompt so it only fires when pixels are actually present.
+    try:
+        _has_images = False
+        if isinstance(preprocessed.user_content, list):
+            for _block in preprocessed.user_content:
+                if isinstance(_block, dict) and _block.get("type") in ("image_url", "image"):
+                    _has_images = True
+                    break
+        if _has_images:
+            _vision_path = "/run/media/crao/BTnvme/LLM/Sandbox/iris-vision-prompt.md"
+            try:
+                with open(_vision_path, encoding="utf-8") as _vf:
+                    _vision_text = _vf.read()
+                preface.append({"role": "system", "content": _vision_text})
+            except Exception:
+                logger.debug("Failed to load vision prompt", exc_info=True)
+    except Exception:
+        logger.debug("Vision image detection failed", exc_info=True)
+
     # Capture used memories immediately
     used_memories = getattr(chat_processor, '_last_used_memories', [])
 
@@ -1337,6 +1478,15 @@ async def build_chat_context(
     # stale normal session id. Only the ephemeral incognito transcript is safe.
     messages = preface + (_incognito_messages(session_id) if incognito else sess.get_context_messages())
 
+    def _tail_insert(msg):
+        # (2026-10-30) With a trailing ASSISTANT message (Continue prefill),
+        # tail context notes must go BEFORE it so the last message stays
+        # assistant and the provider continues it instead of answering the note.
+        if messages and (messages[-1].get("role") == "user" or (continue_assistant and messages[-1].get("role") == "assistant")):
+            messages.insert(len(messages) - 1, msg)
+        else:
+            messages.append(msg)
+
     # Current date/time — injected as a standalone *user*-role context message
     # placed immediately before the latest user turn, NOT folded into the
     # system prompt. Its text changes every minute, and local OpenAI-compatible
@@ -1350,12 +1500,57 @@ async def build_chat_context(
         try:
             from src.user_time import current_datetime_context_message
             _dt_msg = current_datetime_context_message()
-            if messages and messages[-1].get("role") == "user":
-                messages.insert(len(messages) - 1, _dt_msg)
-            else:
-                messages.append(_dt_msg)
+            _tail_insert(_dt_msg)
         except Exception:
             logger.debug("Failed to add current date/time context", exc_info=True)
+
+    # Prior-turn tool output replay (2026-10-21): persisted history keeps tool
+    # executions as metadata.tool_events but never replays them across turns,
+    # so models re-ran commands purely to re-verify earlier outputs (or
+    # second-guessed accurate recall they could no longer check). Inject the
+    # persisted outputs as a tail context message — same slot reasoning as the
+    # datetime message above: the text changes as events accumulate, so it
+    # must stay OUT of the byte-stable preface+history prefix or local
+    # backends lose their KV-cache every request.
+    # Native replay first (2026-10-30): for API models, rebuild persisted
+    # tool_events as real assistant tool_calls + role=tool results so the
+    # model sees its own past calls in history. Prose-only cross-turn
+    # history taught long-session models to end turns with narration
+    # instead of tool calls. Reconstruction is deterministic per message,
+    # so the byte-stable prefix survives (same KV-cache reasoning as the
+    # digest below). Text-transport models keep the prose digest — their
+    # within-turn history never contains native calls either.
+    try:
+        from src.agent_loop import _agent_route_tool_mode
+        _is_api_model, _, _ = _agent_route_tool_mode(
+            sess.endpoint_url,
+            sess.model,
+            owner=getattr(sess, "owner", None),
+        )
+    except Exception:
+        _is_api_model = False
+    _native_replayed = 0
+    if _is_api_model:
+        try:
+            from src.tool_replay import replay_tool_events_as_native
+            _native_replayed = replay_tool_events_as_native(messages)
+        except Exception:
+            logger.debug("Failed to replay tool events natively", exc_info=True)
+    if _native_replayed:
+        try:
+            from src.tool_replay import NATIVE_REPLAY_NOTE
+            _replay_msg = {"role": "user", "content": NATIVE_REPLAY_NOTE}
+            _tail_insert(_replay_msg)
+        except Exception:
+            logger.debug("Failed to add native replay note", exc_info=True)
+    else:
+        try:
+            from src.tool_replay import prior_tool_outputs_context_message
+            _replay_msg = prior_tool_outputs_context_message(messages)
+            if _replay_msg is not None:
+                _tail_insert(_replay_msg)
+        except Exception:
+            logger.debug("Failed to add prior tool outputs context", exc_info=True)
 
     route_messages = list(messages)
     # Explicit fallback routing must shape from the same route-neutral prompt
@@ -1385,6 +1580,27 @@ async def build_chat_context(
     _after_trim_tokens = estimate_tokens(messages)
     _context_trimmed = _after_trim_messages < _before_trim_messages or _after_trim_tokens < _before_trim_tokens
 
+    # Continue separator (agent mode only): on Continue after a mid-stream
+    # error the stopped assistant row sits at the tail. If it has no replayed
+    # tool events, the resumed generation would follow it directly — two
+    # adjacent assistant messages, which the sanitizer does not merge and
+    # models/providers choke on. Inject a synthetic tool pair (API models) or
+    # a user note (fenced models) so the boundary is explicit. Chat-mode
+    # Continue uses prefill instead (the trailing assistant message is
+    # continued by the provider), so this is gated on agent_mode.
+    # Request-only: lands in the outgoing array, never in session history.
+    if continue_assistant and agent_mode:
+        try:
+            from src.tool_replay import inject_continue_separator
+            inject_continue_separator(messages, _is_api_model)
+        except Exception:
+            logger.debug("Failed to inject continue separator", exc_info=True)
+
+    # (2026-11-01) Temporal grounding moved to the LLM payload boundary:
+    # llm_core._sanitize_llm_messages injects each message's timestamp (from the
+    # DB column via metadata) as a structured field. Content is never stamped
+    # here, so nothing stamped can be persisted or shown in the UI.
+
     return ChatContext(
         preface=preface,
         rag_sources=rag_sources,
@@ -1404,6 +1620,7 @@ async def build_chat_context(
         context_tokens_after_trim=_after_trim_tokens,
         auto_opened_docs=auto_opened_docs,
         uploaded_files=uploaded_files,
+        user_message_id=user_message_id,
         route_messages=route_messages,
     )
 
@@ -1663,6 +1880,8 @@ def save_assistant_response(
     do_research: bool = False,
     tool_events: list = None,
     incognito: bool = False,
+    draft_id: str | None = None,
+    continue_assistant: bool = False,
 ):
     """Add assistant response to session history.
 
@@ -1722,7 +1941,30 @@ def save_assistant_response(
     if incognito:
         _append_incognito_message(session_id, "assistant", _content, md)
         return None
-    sess.add_message(ChatMessage("assistant", _content, metadata=md))
+    if continue_assistant and not draft_id:
+        # Continue-prefill (2026-10-30): the continuation is the SAME turn —
+        # merge it into the existing last assistant row (same DB id, same
+        # bubble) instead of adding a new message.
+        _merged_id = session_manager.append_to_last_assistant(
+            session_id, _content, md, clear_stopped=True,
+        )
+        if _merged_id:
+            from core.database import update_session_last_accessed
+            update_session_last_accessed(session_id)
+            session_manager.save_sessions()
+            return _merged_id
+        # No eligible last assistant row — fall through to a normal add.
+    if draft_id:
+        # Checkpointed draft row exists for this turn — promote it IN PLACE
+        # (same row id, no duplicate). The frontend already stamped the
+        # bubble with this id via the draft_saved event, so delete/regenerate
+        # mid-stream keeps targeting the same row (2026-08-08
+        # draft-checkpoint audit).
+        session_manager.promote_draft(
+            session_id, draft_id, ChatMessage("assistant", _content, metadata=md)
+        )
+    else:
+        sess.add_message(ChatMessage("assistant", _content, metadata=md))
 
     from core.database import update_session_last_accessed
     update_session_last_accessed(session_id)
@@ -1844,8 +2086,11 @@ def run_post_response_tasks(
     """
     _extraction_jobs: list = []
 
-    # Memory extraction — only every 4th message pair to avoid excess LLM calls
+    # Memory extraction — only every 8th message pair to avoid excess LLM
+    # calls. The extractor's novelty gate then skips runs where the session
+    # hasn't gained new messages since the last extraction.
     _msg_count = len(sess.history) if hasattr(sess, 'history') else 0
+
     _should_extract = (_msg_count >= 4) and (_msg_count % 4 == 0)
     _chat_memory_extract = getattr(sess, "memory_extraction_enabled", True) is not False
     if allow_background_extraction and not incognito and not compare_mode and _chat_memory_extract and _should_extract and uprefs.get("auto_memory", True):

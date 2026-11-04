@@ -7,6 +7,8 @@ import logging
 import re
 from typing import Dict, Any, Optional
 
+from sqlalchemy import func
+
 from fastapi import APIRouter, Request, HTTPException, Depends
 
 from core.models import ChatMessage
@@ -15,11 +17,12 @@ from src.auth_helpers import effective_user, require_chat_api_token_scope
 from src.topic_analyzer import analyze_topics
 from src.upload_handler import reserve_message_upload_references
 from src.tool_approval_scopes import sanitize_client_message_metadata
+from src.endpoint_resolver import resolve_endpoint
 from routes.session_routes import (
+    _verify_session_owner,
+    _reject_compact_during_active_run,
     _message_role,
     _message_text,
-    _reject_compact_during_active_run,
-    _verify_session_owner,
 )
 from routes.chat_helpers import strip_tui_local_context
 
@@ -182,14 +185,26 @@ def _history_display_content(content: Any) -> Any:
     return content
 
 
+# Continue/auto-recover handshake user messages that must be removed when the
+# two assistant rows around them merge. These are deliberately hidden from the
+# live UI (no user bubble) yet persisted, so without removal they ghost back on
+# refresh (2026-08-08 sync audit). Matches user-stop Continue, the auto-recover
+# handshake, and the step-limit Continue.
+_CONTINUE_HANDSHAKE_MARKERS = (
+    "previous response was interrupted",
+    "stream dropped before you finished",
+    "hit the step limit before finishing",
+)
+
+
 def _merge_continue_rows_to_delete(db_messages, db1, db2):
     """DB rows to delete when merging the last two assistant messages.
 
     Always the second assistant message (db2), plus ONLY the single
-    intervening "continue" user message (the one carrying "previous response
-    was interrupted") — matching the in-memory merge. The previous code
-    deleted the whole index range between the two assistant rows, destroying
-    any tool/system/user messages in between and desyncing the DB from the
+    intervening "continue" user message (one of the hidden handshake texts)
+    — matching the in-memory merge. The previous code deleted the whole
+    index range between the two assistant rows, destroying any
+    tool/system/user messages in between and desyncing the DB from the
     in-memory history.
     """
     to_delete = [db2]
@@ -197,7 +212,12 @@ def _merge_continue_rows_to_delete(db_messages, db1, db2):
     i2 = next((i for i, m in enumerate(db_messages) if m is db2), None)
     if i1 is not None and i2 is not None and i2 - 1 > i1:
         between = db_messages[i2 - 1]
-        if getattr(between, "role", "") == "user" and            "previous response was interrupted" in (getattr(between, "content", "") or ""):
+        between_content = getattr(between, "content", "") or ""
+        if (
+            getattr(between, "role", "") == "user"
+            and isinstance(between_content, str)
+            and any(_m in between_content.lower() for _m in _CONTINUE_HANDSHAKE_MARKERS)
+        ):
             to_delete.append(between)
     return to_delete
 
@@ -290,6 +310,101 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             entry["metadata"] = meta
         return entry
 
+    def _db_message_metadata(m: DbChatMessage) -> Dict[str, Any]:
+        meta = {}
+        if m.meta_data:
+            try:
+                meta = json.loads(m.meta_data) or {}
+            except (json.JSONDecodeError, ValueError):
+                meta = {}
+        if m.timestamp and "timestamp" not in meta:
+            meta["timestamp"] = m.timestamp.isoformat() + "Z"
+        return meta
+
+    def _draft_is_live(session_id: str) -> bool:
+        """True when a chat completion is actively streaming for this session
+        (a draft row for it is being checkpointed, not orphaned)."""
+        try:
+            from routes.chat_routes import _active_streams
+            rec = _active_streams.get(session_id)
+        except Exception:
+            return False
+        return bool(rec and rec.get("status") == "streaming")
+
+    def _finalize_or_hide_draft(m: DbChatMessage) -> bool:
+        """Draft-row policy for DB-served history (2026-08-08
+        draft-checkpoint audit).
+
+        Draft rows are the progressive checkpoint of an in-flight reply:
+        - a live draft (an active stream is still writing it) is HIDDEN so a
+          refresh mid-stream doesn't render a half-written reply — the resume
+          path re-attaches and replays it;
+        - an orphaned draft (no active stream — the server died mid-turn) is
+          FINALIZED to a stopped partial and kept, so a crashed turn survives
+          as a visible, resumable "[Message interrupted]" message instead of
+          vanishing or masquerading as a finished reply.
+        Returns True when the row should appear in history.
+        """
+        meta = _db_message_metadata(m)
+        if not meta.get("draft"):
+            return True
+        if _draft_is_live(m.session_id):
+            return False
+        meta.pop("draft", None)
+        meta["stopped"] = True
+        try:
+            session_manager.finalize_orphan_draft(m.session_id, m.id)
+        except Exception as e:
+            logger.error("Failed to finalize orphan draft %s: %s", m.id, e)
+        return True
+
+    def _entry_or_none(m: DbChatMessage) -> Optional[Dict[str, Any]]:
+        """History entry for a DB row, applying draft policy. Returns None
+        for live drafts (hidden); orphan drafts are finalized to stopped
+        partials first so their entry carries the post-finalize metadata
+        (the in-memory row object predates the DB update)."""
+        meta = _db_message_metadata(m)
+        if meta.get("draft"):
+            if _draft_is_live(m.session_id):
+                return None
+            meta.pop("draft", None)
+            meta["stopped"] = True
+            try:
+                session_manager.finalize_orphan_draft(m.session_id, m.id)
+            except Exception as e:
+                logger.error("Failed to finalize orphan draft %s: %s", m.id, e)
+        entry = {"role": m.role, "content": _history_display_content(m.content)}
+        if meta:
+            entry["metadata"] = meta
+        return entry
+
+    def _hydrate_session_history_from_db(session_id: str, rows: list[DbChatMessage]) -> None:
+        """Rebuild in-memory context from raw DB rows after a history load.
+
+        The browser history endpoint can return paged/display-trimmed messages,
+        but the next model call reads ``session.history``. After a restart or a
+        stale in-memory session, selecting an old chat through the paged endpoint
+        used to show the transcript while the model only saw fresh context.
+        """
+        if not rows:
+            return
+        try:
+            session = session_manager.get_session(session_id)
+        except KeyError:
+            return
+        session.history = [
+            ChatMessage(role=m.role, content=m.content, metadata=_db_message_metadata(m) or None)
+            for m in rows
+        ]
+        session.message_count = len(session.history)
+
+    def _session_needs_db_history_hydration(session_id: str, total: int) -> bool:
+        try:
+            session = session_manager.get_session(session_id)
+        except KeyError:
+            return False
+        return len(session.history or []) < int(total or 0)
+
     @router.get("/api/history/{session_id}")
     async def get_session_history(
         request: Request,
@@ -309,6 +424,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 total = (
                     db.query(DbChatMessage)
                     .filter(DbChatMessage.session_id == session_id)
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .count()
                 )
                 page_offset = int(offset) if offset is not None else max(total - page_limit, 0)
@@ -318,14 +437,36 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 rows = (
                     db.query(DbChatMessage)
                     .filter(DbChatMessage.session_id == session_id)
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .order_by(DbChatMessage.timestamp)
                     .offset(page_offset)
                     .limit(page_limit)
                     .all()
                 )
+                if _session_needs_db_history_hydration(session_id, total):
+                    full_rows = (
+                        db.query(DbChatMessage)
+                        .filter(DbChatMessage.session_id == session_id)
+                        .filter(
+                            ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                            ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                        )
+                        .order_by(DbChatMessage.timestamp)
+                        .all()
+                    )
+                    # Draft policy applies to hydration too: live drafts must
+                    # never enter the model's context, and orphan drafts are
+                    # finalized so a crashed partial stays part of context
+                    # (2026-08-08 draft-checkpoint audit).
+                    full_rows = [m for m in full_rows if _finalize_or_hide_draft(m)]
+                    _hydrate_session_history_from_db(session_id, full_rows)
                 history_dict = [
-                    entry for entry in (_db_history_entry(m) for m in rows)
-                    if not (entry.get("metadata") or {}).get("hidden")
+                    entry for entry in (_entry_or_none(m) for m in rows)
+                    if entry is not None
+                    and not (entry.get("metadata") or {}).get("hidden")
                 ]
                 return {
                     "history": history_dict,
@@ -351,14 +492,15 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
         for msg in session.history:
             if isinstance(msg, ChatMessage):
                 # Skip hidden messages (e.g. compaction summaries for AI context)
-                if msg.metadata and msg.metadata.get("hidden"):
+                # and archived rows (compaction archive — retrievable, not live).
+                if msg.metadata and (msg.metadata.get("hidden") or msg.metadata.get("archived")):
                     continue
                 entry = {"role": msg.role, "content": strip_tui_local_context(_history_display_content(msg.content))}
                 if msg.metadata:
                     entry["metadata"] = msg.metadata
                 history_dict.append(entry)
             elif isinstance(msg, dict):
-                if msg.get("metadata", {}).get("hidden"):
+                if msg.get("metadata", {}).get("hidden") or msg.get("metadata", {}).get("archived"):
                     continue
                 entry = {
                     "role": msg.get("role", ""),
@@ -378,13 +520,27 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 db_messages = (
                     db.query(DbChatMessage)
                     .filter(DbChatMessage.session_id == session_id)
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .order_by(DbChatMessage.timestamp)
                     .all()
                 )
+                db_history = []
+                for m in db_messages:
+                    _entry = _entry_or_none(m)
+                    if _entry is not None:
+                        db_history.append(_entry)
+                if db_history:
+                    # Rebuild in-memory history from the full set so hidden
+                    # messages (e.g. compaction summaries) are kept for AI context.
+                    _hydrate_session_history_from_db(session_id, db_messages)
                 # Response excludes hidden messages, matching the in-memory path.
                 history_dict = [
                     entry for entry in (_db_history_entry(m) for m in db_messages)
                     if not (entry.get("metadata") or {}).get("hidden")
+                    and not (entry.get("metadata") or {}).get("archived")
                 ]
             except Exception as e:
                 logger.error(f"DB fallback failed for {session_id}: {e}")
@@ -420,7 +576,14 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             if raw_msg_id is not None and not isinstance(raw_msg_id, str):
                 raise HTTPException(400, "Message ID must be a string")
             before_msg_id = (raw_msg_id or "").strip()
-            if "keep_count" not in body and not before_msg_id:
+            # Fork: keep_through_id — id-based INCLUSIVE truncate used by the
+            # regenerate flow so the user message row survives and is reused
+            # instead of deleted + re-sent (2026-08-08). Falls back to
+            # keep_count when the id is unknown.
+            keep_through_id = body.get("keep_through_id")
+            if keep_through_id is not None and not isinstance(keep_through_id, str):
+                raise HTTPException(400, "keep_through_id must be a string")
+            if "keep_count" not in body and not before_msg_id and not keep_through_id:
                 raise HTTPException(400, "keep_count or before_msg_id required")
             raw_count = body.get("keep_count", 0)
             # Keep integer-string clients working, but do not silently convert
@@ -445,6 +608,15 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                     if resolved_keep_count is None:
                         raise HTTPException(404, "Message not found")
                     keep_count = resolved_keep_count
+                elif keep_through_id:
+                    ids = [m.id for m in all_db_messages]
+                    if keep_through_id in ids:
+                        keep_count = ids.index(keep_through_id) + 1
+                    else:
+                        logger.warning(
+                            "keep_through_id %s not found in session %s — falling back to keep_count=%s",
+                            keep_through_id, session_id, keep_count,
+                        )
                 for pos, row in enumerate(all_db_messages):
                     row._will_delete_for_sft = pos >= keep_count
                 deleted_sft_pairs = _deleted_sft_pairs_from_db_rows(all_db_messages)
@@ -508,9 +680,20 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 deleted_sft_pairs = _deleted_sft_pairs_from_db_rows(all_db_messages)
 
                 if msg_ids:
-                    # New ID-based delete
+                    # ID-based delete: removes EXACTLY the given message ids —
+                    # no pair resolution, no turn-partner walking. Deleting an
+                    # AI message must NOT wipe the user message before it; each
+                    # message is deleted on its own terms (Sir's spec,
+                    # 2026-08-08). The frontend stamps every bubble with its
+                    # DB id (user_message_saved event / history render), so it
+                    # always sends precise ids.
+                    def _get_db_id(m):
+                        meta = m.metadata if isinstance(m, ChatMessage) else (m.get('metadata') if isinstance(m, dict) else None)
+                        return meta.get('_db_id') if isinstance(meta, dict) else None
+
+                    ids_to_delete = set(msg_ids)
                     deleted = 0
-                    for mid in msg_ids:
+                    for mid in ids_to_delete:
                         db_msg = db.query(DbChatMessage).filter(
                             DbChatMessage.id == mid,
                             DbChatMessage.session_id == session_id,
@@ -520,10 +703,7 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                             deleted += 1
 
                     # Remove from in-memory history by matching _db_id
-                    def _get_db_id(m):
-                        meta = m.metadata if isinstance(m, ChatMessage) else (m.get('metadata') if isinstance(m, dict) else None)
-                        return meta.get('_db_id') if isinstance(meta, dict) else None
-                    session.history = [m for m in session.history if _get_db_id(m) not in msg_ids]
+                    session.history = [m for m in session.history if _get_db_id(m) not in ids_to_delete]
                 elif indices:
                     # Legacy index-based delete
                     indices = sorted(indices, reverse=True)
@@ -777,9 +957,26 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             # Also remove the hidden "continue" user message between them if present
             # It's the message at idx2-1 if it's a user message with continue text
             remove_indices = [idx2, idx1 + 1]
+            if idx2 - 1 > idx1:
+                between = session.history[idx2 - 1]
+                between_role = between.role if isinstance(between, ChatMessage) else between.get('role', '')
+                between_content = between.content if isinstance(between, ChatMessage) else between.get('content', '')
+                # A continue/auto-recover handshake user message sits between
+                # the split reply and its continuation. It is deliberately
+                # hidden from the live UI (no bubble), so when the two
+                # assistant rows merge it must go too — otherwise it ghosts
+                # back on refresh (2026-08-08 sync audit). Same marker set as
+                # the DB-side _merge_continue_rows_to_delete.
+                if (
+                    between_role == 'user'
+                    and isinstance(between_content, str)
+                    and any(_m in between_content.lower() for _m in _CONTINUE_HANDSHAKE_MARKERS)
+                ):
+                    remove_indices.insert(0, idx2 - 1)
 
             for ri in sorted(remove_indices, reverse=True):
                 session.history.pop(ri)
+            session.message_count = len(session.history)
 
             # Update DB
             db = SessionLocal()
@@ -807,6 +1004,16 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                         for _row in _merge_continue_rows_to_delete(db_messages, db1, db2):
                             db.delete(_row)
 
+                        # Keep message_count in sync: the merge removed rows from
+                        # both memory and DB, but nothing updated the count — a stale
+                        # count (11 with 10 rows) is what left the session
+                        # bookkeeping desynced after a continue-merge.
+                        from datetime import datetime, timezone
+                        db_session = db.query(DbSession).filter(DbSession.id == session_id).first()
+                        if db_session:
+                            db_session.message_count = len(session.history)
+                            db_session.updated_at = datetime.now(timezone.utc)
+
                         db.commit()
             finally:
                 db.close()
@@ -820,10 +1027,22 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
 
     @router.post("/api/session/{session_id}/fork")
     async def fork_session(request: Request, session_id: str):
-        """Create a new session with messages copied up to keep_count."""
+        """Fork this conversation into a new session.
+
+        keep_count absent / None / <= 0 → copy the ENTIRE live transcript
+        (the "take this conversation and continue it elsewhere" flow — e.g.
+        testing a different model on the same context). An explicit positive
+        keep_count keeps the branch-at-message-N semantics: copy only the
+        first N messages. (2026-10-24 repair: the old default of 0 made a
+        bare /fork produce an EMPTY session, and the copy-oldest-N behavior
+        silently dropped everything after the chosen point — the
+        "fork lost my recent messages" bug; the ⫝ IRIS fork on the old
+        instance kept 67 of 107 rows.)
+        """
         _verify_session_owner(request, session_id)
         try:
             body = await request.json()
+
             keep_count = body.get("keep_count", 0)
             # A message id is exact; keep_count from the client counts only the
             # messages loaded in the page. before_msg_id forks before that
@@ -867,6 +1086,13 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 endpoint_id=getattr(source, 'endpoint_id', None),
             )
 
+            # Normalize keep_count now that the source is loaded: absent,
+            # non-numeric, or non-positive → full copy of the live transcript.
+            if isinstance(keep_count, bool) or not isinstance(keep_count, (int, float)) or keep_count <= 0:
+                keep_count = len(source.history)
+            else:
+                keep_count = int(keep_count)
+
             # Copy messages up to keep_count
             msgs_to_copy = source.history[:keep_count]
             for msg in msgs_to_copy:
@@ -877,6 +1103,42 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 # edit/delete-by-id on the original conversation.
                 meta = dict(msg.metadata) if isinstance(msg.metadata, dict) else None
                 new_session.add_message(ChatMessage(msg.role, msg.content, meta))
+
+            # Preserve the source conversation's timeline: add_message stamps
+            # fresh arrival-order timestamps, which would squash the fork's
+            # history into a few seconds and lie about when anything happened
+            # (the .old! fork rendered a 107-message day as a 5-minute blur).
+            from datetime import datetime, timezone
+            db = SessionLocal()
+            try:
+                fork_rows = (
+                    db.query(DbChatMessage)
+                    .filter(DbChatMessage.session_id == new_id)
+                    .order_by(DbChatMessage.timestamp)
+                    .all()
+                )
+                preserved = 0
+                for row, msg in zip(fork_rows, msgs_to_copy):
+                    orig_ts = (msg.metadata or {}).get("timestamp") if isinstance(msg.metadata, dict) else None
+                    if not orig_ts:
+                        continue
+                    try:
+                        ts = datetime.fromisoformat(str(orig_ts).replace("Z", "+00:00"))
+                        if ts.tzinfo is not None:
+                            ts = ts.astimezone(timezone.utc).replace(tzinfo=None)
+                        row.timestamp = ts
+                        preserved += 1
+                    except Exception:
+                        continue
+                db.commit()
+                if preserved:
+                    logger.info(f"Fork {new_id}: preserved {preserved}/{len(fork_rows)} original timestamps")
+            except Exception:
+                db.rollback()
+                logger.warning(f"Fork {new_id}: timestamp preservation failed", exc_info=True)
+            finally:
+                db.close()
+
             try:
                 from src.event_bus import fire_event
                 fire_event("session_created", getattr(source, 'owner', None))
@@ -965,6 +1227,7 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             logger.error(f"Context usage error {session_id}: {e}")
             raise HTTPException(500, str(e))
 
+
     @router.post("/api/session/{session_id}/memory-extraction")
     async def set_session_memory_extraction(request: Request, session_id: str) -> Dict[str, Any]:
         """Toggle automatic memory extraction for one chat session."""
@@ -995,6 +1258,7 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             raise
         except Exception as e:
             db.rollback()
+
             logger.error(f"Memory extraction toggle error {session_id}: {e}")
             raise HTTPException(500, "Failed to update memory extraction")
         finally:
@@ -1131,6 +1395,70 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
         finally:
             db.close()
 
+
+    @router.post("/api/session/{session_id}/uncompact")
+    async def uncompact_session(request: Request, session_id: str):
+        """Reverse compaction: un-archive archived rows, drop summary rows.
+
+        Restores the FULL archived transcript for the session (all batches),
+        rebuilds the in-memory session from the DB, and lets the model see the
+        whole conversation again. The context meter will show the real cost —
+        that is the honest price of un-compacting.
+        """
+        _verify_session_owner(request, session_id)
+        db = SessionLocal()
+        try:
+            rows = (
+                db.query(DbChatMessage)
+                .filter(DbChatMessage.session_id == session_id)
+                .order_by(DbChatMessage.timestamp)
+                .all()
+            )
+            import json as _json
+            from datetime import datetime, timezone
+            restored = 0
+            summary_rows = []
+            for m in rows:
+                try:
+                    meta = _json.loads(m.meta_data) if m.meta_data else {}
+                except Exception:
+                    meta = {}
+                if not isinstance(meta, dict):
+                    continue
+                if meta.get("archived"):
+                    meta.pop("archived", None)
+                    meta.pop("archived_at", None)
+                    meta.pop("archived_by", None)
+                    meta["unarchived_at"] = datetime.now(timezone.utc).isoformat()
+                    m.meta_data = _json.dumps(meta, ensure_ascii=False)
+                    restored += 1
+                elif meta.get("compacted"):
+                    # Compaction summaries (hidden system blob + visible stats
+                    # message) are superseded once the real rows return.
+                    summary_rows.append(m)
+            for m in summary_rows:
+                db.delete(m)
+            db.commit()
+            removed = len(summary_rows)
+        except HTTPException:
+            raise
+        except Exception as e:
+            db.rollback()
+
+            logger.error(f"Uncompact failed for {session_id}: {e}")
+            raise HTTPException(500, f"Uncompact failed: {e}")
+        finally:
+            db.close()
+
+        # Rebuild the in-memory session from the restored DB state so the next
+        # model call sees the full transcript without a server restart.
+        try:
+            session_manager._load_session_from_db(session_id)
+        except Exception as e:
+            logger.warning(f"Uncompact: in-memory reload failed for {session_id}: {e}")
+
+        return {"ok": True, "restored": restored, "summaries_removed": removed}
+
     @router.post("/api/session/{session_id}/compact")
     async def compact_session(request: Request, session_id: str):
         """Manually trigger context compaction for a session."""
@@ -1146,15 +1474,17 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
         try:
             from src.model_context import estimate_tokens, get_context_length
             from src.llm_core import llm_call_async
-            from src.endpoint_resolver import resolve_endpoint
 
-            if len(session.history) < 6:
-                return {"status": "ok", "message": "Not enough messages to compact"}
+            messages = session.get_context_messages()
+            used = int(estimate_tokens(messages))
+            ctx_len = int(get_context_length(session.endpoint_url, session.model) or 0)
+            pct = round((used / ctx_len) * 100, 1) if ctx_len else 0.0
+            pct = max(0.0, min(100.0, pct))
+            visible_messages = sum(
+                1 for m in session.history
+                if not (getattr(m, "metadata", None) or {}).get("hidden")
+            )
 
-            ctx_len = get_context_length(session.endpoint_url, session.model)
-            messages_before = session.get_context_messages()
-            used_before = estimate_tokens(messages_before)
-            pct_before = round((used_before / ctx_len) * 100, 1) if ctx_len else 0
             msg_count_before = len(session.history)
 
             # Keep only last 4 messages, summarize the rest
@@ -1222,9 +1552,32 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                     DbChatMessage.session_id == session_id
                 ).order_by(DbChatMessage.timestamp).all()
 
-                # Delete all but the last keep_count
-                for m in db_msgs[:-keep_count]:
-                    db.delete(m)
+                # ARCHIVE, don't burn (2026-10-23 compaction reform): rows the
+                # kept history no longer references are flagged, never deleted.
+                # Ids and timestamps survive; /uncompact can restore everything.
+                import json as _json
+                from datetime import datetime, timezone
+                _kept_ids = set()
+                for _msg in recent:
+                    _mid = (getattr(_msg, "metadata", None) or {}).get("_db_id")
+                    if _mid:
+                        _kept_ids.add(_mid)
+                _now_iso = datetime.now(timezone.utc).isoformat()
+                for m in db_msgs:
+                    if m.id in _kept_ids:
+                        continue
+                    try:
+                        _meta = _json.loads(m.meta_data) if m.meta_data else {}
+                    except Exception:
+                        _meta = {}
+                    if not isinstance(_meta, dict):
+                        _meta = {}
+                    if _meta.get("archived"):
+                        continue
+                    _meta["archived"] = True
+                    _meta["archived_at"] = _now_iso
+                    _meta["archived_by"] = "compact"
+                    m.meta_data = _json.dumps(_meta, ensure_ascii=False)
 
                 # Insert system summary (hidden, for AI context) and visible summary
                 import json as _json
@@ -1263,16 +1616,32 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
 
             used_after = estimate_tokens(session.get_context_messages())
             pct_after = round((used_after / ctx_len) * 100, 1) if ctx_len else 0
-
+            compacted_messages = sum(
+                1 for m in session.history
+                if (getattr(m, "metadata", None) or {}).get("compacted")
+                or (isinstance(m, ChatMessage) and "[Conversation summary" in (m.content or ""))
+            )
+            can_compact = used > 0
             return {
                 "status": "ok",
-                "message": f"Compacted: {msg_count_before} msgs → {len(session.history)} msgs ({pct_before}% → {pct_after}%)",
-                "before": pct_before,
+                "message": f"Compacted: {msg_count_before} msgs → {len(session.history)} msgs ({pct}% → {pct_after}%)",
+                "before": pct,
                 "after": pct_after,
+                "session_id": session_id,
+                "model": session.model,
+                "endpoint_url": session.endpoint_url,
+                "used_tokens": used,
+                "context_length": ctx_len,
+                "context_percent": pct,
+                "messages": visible_messages,
+                "context_messages": len(messages),
+                "compacted_messages": compacted_messages,
+                "can_compact": can_compact,
+                "should_compact": pct >= 70,
+                "auto_compact_threshold": 85,
             }
-
         except Exception as e:
-            logger.error(f"Manual compact error {session_id}: {e}")
+            logger.error(f"Context usage error {session_id}: {e}")
             raise HTTPException(500, str(e))
 
     return router

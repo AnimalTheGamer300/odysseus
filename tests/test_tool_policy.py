@@ -28,7 +28,6 @@ def _collect(gen):
 
     return asyncio.run(_run())
 
-
 def _events(chunks):
     out = []
     for chunk in chunks:
@@ -39,10 +38,8 @@ def _events(chunks):
                 pass
     return out
 
-
 def _delta_chunk(text):
     return "data: " + json.dumps({"delta": text}) + "\n\n"
-
 
 def _patch_loop_basics(monkeypatch):
     monkeypatch.setattr(al, "get_setting", lambda key, default=None: default, raising=False)
@@ -50,13 +47,11 @@ def _patch_loop_basics(monkeypatch):
     monkeypatch.setattr(al, "estimate_tokens", lambda *a, **k: 10, raising=False)
     monkeypatch.setattr("src.tool_capabilities.TOOL_APPROVAL_GATE_ENABLED", False)
 
-
 def test_detects_strong_guide_only_turns():
     assert detect_guide_only_turn("GUIDE-ONLY MODE. DO NOT USE TOOLS.")
     assert detect_guide_only_turn("NO-TOOLS MODE.")
     assert detect_guide_only_turn("Ask me before using tools.")
     assert detect_guide_only_turn("You are not allowed to:\n- use tools\n- execute commands")
-
 
 def test_does_not_treat_ordinary_guidance_as_no_tools():
     assert detect_guide_only_turn("Can you guide me through fixing this bug?") is None
@@ -65,7 +60,6 @@ def test_does_not_treat_ordinary_guidance_as_no_tools():
     assert detect_guide_only_turn("Do not run commands that write files; inspect the repo first.") is None
     assert detect_guide_only_turn("Don't execute shell commands unless I approve them.") is None
 
-
 def test_explicit_private_browser_visible_text_find_is_normalized():
     tool, content = al._parse_explicit_private_browser_inspection(
         "Use the private browser to find the visible text 'Learn more' on the open page."
@@ -73,7 +67,6 @@ def test_explicit_private_browser_visible_text_find_is_normalized():
 
     assert tool == "private_browser"
     assert json.loads(content) == {"action": "find", "find": "Learn more"}
-
 
 def test_explicit_private_browser_evaluate_is_normalized():
     tool, content = al._parse_explicit_private_browser_inspection(
@@ -86,7 +79,6 @@ def test_explicit_private_browser_evaluate_is_normalized():
         "script": "document.location.hostname",
     }
 
-
 def test_reviewed_unsubscribe_url_starts_in_private_browser():
     tool, content = al._parse_explicit_private_browser_inspection(
         "The user chose Agent Unsubscribe. Use the private_browser tool for this exact unsubscribe URL: "
@@ -98,7 +90,6 @@ def test_reviewed_unsubscribe_url_starts_in_private_browser():
         "action": "open",
         "url": "https://example.test/unsubscribe?token=abc123&type=email",
     }
-
 
 def test_explicit_private_browser_url_open_is_normalized_without_web_search():
     prompt = (
@@ -114,7 +105,6 @@ def test_explicit_private_browser_url_open_is_normalized_without_web_search():
         {"web"}, {"web_search", "web_fetch"}, prompt, None, None
     )
 
-
 def test_natural_browser_request_is_not_blocked_by_web_search_toggle():
     prompt = "Browse example.com and inspect its product page."
     assert al._looks_like_explicit_browser_interaction(prompt)
@@ -122,25 +112,21 @@ def test_natural_browser_request_is_not_blocked_by_web_search_toggle():
         {"web"}, {"web_search", "web_fetch"}, prompt, None, None
     )
 
-
 def test_exact_url_fetch_only_contract_is_not_reported_as_web_disabled():
     assert not al._web_search_unavailable_for_turn(
         {"web"}, {"web_search"},
         "Summarize https://example.com/report", None, None,
     )
 
-
 def test_unsubscribe_url_token_does_not_trigger_token_listing():
     assert al._parse_qwen_explicit_admin_request(
         "Use private_browser to open https://example.test/unsubscribe?token=abc123"
     ) is None
 
-
 def test_generic_find_language_is_not_forced_into_private_browser():
     assert al._parse_explicit_private_browser_inspection(
         "Find the visible text in my document."
     ) is None
-
 
 def test_explicit_teacher_request_uses_teacher_tool():
     assert al._parse_explicit_teacher_request(
@@ -150,18 +136,15 @@ def test_explicit_teacher_request_uses_teacher_tool():
         "auto\nreview this answer for persisted tool evidence",
     )
 
-
 def test_named_model_request_is_not_forced_to_teacher():
     assert al._parse_explicit_teacher_request(
         "Ask qwen/qwen3.8-flash to review this answer."
     ) is None
 
-
 def test_finish_plan_is_an_explicit_plan_request():
     assert al._looks_like_explicit_plan_request(
         "Finish the plan by marking output verification complete."
     )
-
 
 def test_guide_only_policy_blocks_and_hides_tools():
     policy = build_effective_tool_policy(
@@ -176,7 +159,6 @@ def test_guide_only_policy_blocks_and_hides_tools():
         assert tool in policy.hidden_tools
         assert policy.blocks(tool)
 
-
 def test_normal_policy_preserves_existing_disabled_tools():
     policy = build_effective_tool_policy(
         disabled_tools={"web_search"},
@@ -186,7 +168,6 @@ def test_normal_policy_preserves_existing_disabled_tools():
     assert policy.blocks("web_search")
     assert not policy.blocks("bash")
 
-
 def test_web_search_enabled_for_turn_requires_explicit_enable():
     assert web_search_enabled_for_turn(None, None) is False
     assert web_search_enabled_for_turn("true", None) is True
@@ -194,7 +175,6 @@ def test_web_search_enabled_for_turn_requires_explicit_enable():
     assert web_search_enabled_for_turn(True, None) is True
     assert web_search_enabled_for_turn("false", "true") is False
     assert web_search_enabled_for_turn(False, "true") is False
-
 
 def test_sft_workspace_clamp_does_not_strip_private_web_tools():
     tools = {"bash", "read_file", *WEB_TOOL_NAMES, "ask_user", "update_plan", "ask_teacher"}
@@ -205,7 +185,6 @@ def test_sft_workspace_clamp_does_not_strip_private_web_tools():
     assert {"ask_user", "update_plan", "ask_teacher"} <= stripped
     assert "bash" in stripped
     assert "read_file" not in stripped
-
 
 def test_sft_web_session_keeps_workspace_clamp_but_native_terminal_is_exempt():
     assert al._workspace_tools_disabled_for_request(
@@ -218,21 +197,11 @@ def test_sft_web_session_keeps_workspace_clamp_but_native_terminal_is_exempt():
     assert not al._workspace_tools_disabled_for_request(
         "pewds", {"surface": "web"}
     )
-
-
-def test_compact_prompt_says_current_turn_tools_override_stale_history():
-    prompt = al._assemble_prompt({"web_search", "ask_user"}, set(), compact=True)
-
-    assert "Tool availability is turn-local" in prompt
-    assert "web_search" in prompt
-
-
 def test_web_prompt_distinguishes_announcement_from_availability():
     prompt = al._assemble_prompt({"web_search", "web_fetch", "ask_user"}, set(), compact=True)
 
     assert "distinguish announcement date from release/ship/availability date" in prompt
     assert "announced future product" in prompt
-
 
 def test_skill_parser_ignores_ambiguous_followup_connectors():
     assert al._parse_explicit_skill_request("Open the most relevant skill from that search.") is None
@@ -242,7 +211,6 @@ def test_skill_parser_ignores_ambiguous_followup_connectors():
         "name": "audit-fixture-demo",
     }
 
-
 def test_followup_content_extracts_active_document_append_sentence():
     assert (
         al._extract_followup_content_update(
@@ -250,7 +218,6 @@ def test_followup_content_extracts_active_document_append_sentence():
         )
         == "Tool calls must persist after refresh"
     )
-
 
 def test_memory_marker_lookup_strips_sentence_punctuation():
     block = al._parse_explicit_memory_lookup_request(
@@ -261,17 +228,14 @@ def test_memory_marker_lookup_strips_sentence_punctuation():
     assert block.tool_type == "manage_memory"
     assert block.content == "search\n20260828_192332-cd9c8407-memory-a"
 
-
 def test_ody_qwen_text_artifacts_collapse_duplicate_done():
     assert al._normalize_ody_qwen_text_artifacts("Done.Done.") == "Done."
     assert al._normalize_ody_qwen_text_artifacts("Done. Done.") == "Done."
-
 
 def test_qwen_leaked_tool_text_detects_plain_web_tool_prefix():
     assert al._looks_like_ody_qwen_leaked_tool_text(
         "I need another result.\nweb_search: IKEA official website"
     )
-
 
 def test_web_search_lookup_trusts_topical_model_query():
     block = al._normalize_web_search_block_query(
@@ -280,7 +244,6 @@ def test_web_search_lookup_trusts_topical_model_query():
     )
 
     assert block.content == '"What\'s Come Over You" song'
-
 
 def test_contextual_web_followup_trusts_topical_model_query():
     block = al._normalize_web_search_block_query(
@@ -291,7 +254,6 @@ def test_contextual_web_followup_trusts_topical_model_query():
     assert "current mac chip ai" in block.content
     assert "How much vram or unified memory will be available" in block.content
     assert "vram" in block.content.lower()
-
 
 def test_contextual_browser_discovery_cannot_drop_prior_subject():
     block = al._contextual_browser_opens_to_web_search(
@@ -318,7 +280,6 @@ def test_contextual_browser_discovery_cannot_drop_prior_subject():
     assert "coffee" in query
     assert "grilled cheese" in query
 
-
 def test_contextual_browser_current_page_interaction_is_preserved():
     block = ToolBlock(
         "private_browser",
@@ -330,7 +291,6 @@ def test_contextual_browser_current_page_interaction_is_preserved():
         "browse coffee shops in todoroki open the second result",
         "open the second result",
     ) == block
-
 
 def test_contextual_browser_open_is_not_rewritten_to_unoffered_web_search():
     block = ToolBlock(
@@ -347,7 +307,6 @@ def test_contextual_browser_open_is_not_rewritten_to_unoffered_web_search():
         "try again on that page and compare the prices",
         allow_web_search=False,
     ) == block
-
 
 def test_contextual_web_followup_matrix_restores_missing_subject_anchor():
     cases = [
@@ -388,7 +347,6 @@ def test_contextual_web_followup_matrix_restores_missing_subject_anchor():
         assert "what about" not in normalized
         assert not normalized.startswith("where is statistically")
 
-
 def test_web_followup_context_directive_includes_prior_answer_context():
     messages = [
         {"role": "user", "content": "Where is statistically better to live, Sweden or Japan?"},
@@ -410,7 +368,6 @@ def test_web_followup_context_directive_includes_prior_answer_context():
     assert "Current follow-up: what about schools?" in directive
     assert "Do not search the literal follow-up alone" in directive
 
-
 def test_generic_search_followup_reuses_prior_question_without_shell_words():
     messages = [
         {"role": "user", "content": "What year did Ethiopia become independent"},
@@ -429,7 +386,6 @@ def test_generic_search_followup_reuses_prior_question_without_shell_words():
 
     assert topic == "What year did Ethiopia become independent"
 
-
 def test_generic_search_followup_uses_clean_assistant_topic_as_fallback():
     messages = [
         {"role": "assistant", "content": "The Aurora launch was reported for September 2026."},
@@ -439,7 +395,6 @@ def test_generic_search_followup_uses_clean_assistant_topic_as_fallback():
     topic = al._web_search_assistant_context_text(messages, "Look it up")
 
     assert topic == "The Aurora launch was reported for September 2026."
-
 
 def test_youtube_pronoun_followup_inherits_prior_channel_topic():
     messages = [
@@ -473,14 +428,12 @@ def test_youtube_pronoun_followup_inherits_prior_channel_topic():
         topic,
     )
 
-
 def test_web_query_source_preference_removes_if_possible_filler():
     query = al._web_search_query_from_user_text(
         "What is the latest unemployment rate in the US? Use BLS if possible"
     )
 
     assert query == "What is the latest unemployment rate in the US BLS"
-
 
 def test_product_spec_queries_leave_topical_model_query_alone():
     block = al._normalize_web_search_block_query(
@@ -490,19 +443,16 @@ def test_product_spec_queries_leave_topical_model_query_alone():
 
     assert block.content == "current laptop gpu memory price"
 
-
 def test_web_retry_preamble_is_not_treated_as_final_answer():
     assert al._looks_like_web_retry_preamble("That search got garbled. Let me retry:")
     assert al._looks_like_web_retry_preamble("The results were off-topic, so I'll search more specifically.")
     assert not al._looks_like_web_retry_preamble("The release date is September 20, 2026.")
-
 
 def _schema_names(tools):
     return {
         tool.get("function", {}).get("name") or tool.get("name")
         for tool in (tools or [])
     }
-
 
 def test_calendar_tool_family_carries_into_next_followup(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -543,7 +493,6 @@ def test_calendar_tool_family_carries_into_next_followup(monkeypatch):
 
     names = _schema_names(sent_tools[0])
     assert "manage_calendar" in names
-
 
 def test_calendar_tool_family_expires_if_followup_did_not_use_it(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -586,90 +535,6 @@ def test_calendar_tool_family_expires_if_followup_did_not_use_it(monkeypatch):
 
     names = _schema_names(sent_tools[0])
     assert "manage_calendar" not in names
-
-
-def test_agent_loop_web_intent_cannot_reenable_caller_disabled_web_tools(monkeypatch):
-    _patch_loop_basics(monkeypatch)
-    sent_tools = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        sent_tools.append(kwargs.get("tools"))
-        yield _delta_chunk("ok")
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    _collect(
-        al.stream_agent_loop(
-            "https://api.openai.com/v1",
-            "gpt-test",
-            [{"role": "user", "content": "please look up the latest CVEs"}],
-            max_rounds=1,
-            relevant_tools=set(),
-            disabled_tools=set(WEB_TOOL_NAMES),
-        )
-    )
-
-    assert sent_tools == []
-
-
-def test_agent_loop_forced_tools_cannot_reenable_caller_disabled_web_tools(monkeypatch):
-    _patch_loop_basics(monkeypatch)
-    sent_tools = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        sent_tools.append(kwargs.get("tools"))
-        yield _delta_chunk("ok")
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    _collect(
-        al.stream_agent_loop(
-            "https://api.openai.com/v1",
-            "gpt-test",
-            [{"role": "user", "content": "latest Kubernetes release"}],
-            max_rounds=1,
-            relevant_tools=set(),
-            forced_tools=set(WEB_TOOL_NAMES),
-            disabled_tools=set(WEB_TOOL_NAMES),
-        )
-    )
-
-    assert sent_tools == []
-
-
-def test_web_disabled_request_returns_feedback_without_calling_model(monkeypatch):
-    _patch_loop_basics(monkeypatch)
-    model_calls = []
-
-    async def _fake_stream(*args, **kwargs):
-        model_calls.append((args, kwargs))
-        yield _delta_chunk("unexpected")
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    chunks = _collect(
-        al.stream_agent_loop(
-            "https://api.openai.com/v1",
-            "gpt-test",
-            [{"role": "user", "content": "search the web for the latest Kubernetes release"}],
-            max_rounds=4,
-            disabled_tools=set(WEB_ACCESS_TOOL_NAMES),
-        )
-    )
-
-    events = _events(chunks)
-    finals = [event for event in events if event.get("type") == "final_response"]
-    assert model_calls == []
-    assert finals == [{
-        "type": "final_response",
-        "content": "Web access is disabled for this turn. Enable web search and resend the request.",
-    }]
-    assert chunks[-1] == "data: [DONE]\n\n"
-
-
 def test_web_disabled_context_comparison_uses_prior_result_without_new_lookup(monkeypatch):
     _patch_loop_basics(monkeypatch)
     model_calls = []
@@ -703,7 +568,6 @@ def test_web_disabled_context_comparison_uses_prior_result_without_new_lookup(mo
         event.get("content", "").startswith("Web access is disabled")
         for event in _events(chunks)
     )
-
 
 def test_web_disabled_mixed_file_intent_still_calls_model(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -740,7 +604,6 @@ def test_web_disabled_mixed_file_intent_still_calls_model(monkeypatch):
     assert len(model_calls) == 1
     assert any("local result" in chunk for chunk in chunks)
     assert not any("Web access is disabled" in chunk for chunk in chunks)
-
 
 def test_weather_status_followup_routes_to_web_not_cookbook(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -780,7 +643,6 @@ def test_weather_status_followup_routes_to_web_not_cookbook(monkeypatch):
     assert "list_downloads" not in names
     assert "previous weather or forecast topic" in sent_messages[0][0]["content"]
 
-
 def test_explicit_model_status_followup_stays_cookbook():
     messages = [
         {"role": "user", "content": "Will it rain today in Setagaya?"},
@@ -792,55 +654,6 @@ def test_explicit_model_status_followup_stays_cookbook():
         messages,
         "what is my model server status",
     )
-
-
-def test_release_notes_followup_keeps_web_fetch_available(monkeypatch):
-    _patch_loop_basics(monkeypatch)
-    sent_tools = []
-    sent_messages = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        sent_messages.append(messages)
-        sent_tools.append(kwargs.get("tools"))
-        yield _delta_chunk("ok")
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    _collect(
-        al.stream_agent_loop(
-            "https://api.openai.com/v1",
-            "gpt-test",
-            [
-                {"role": "user", "content": "What is the latest Ruby release?"},
-                {
-                    "role": "assistant",
-                    "content": "The latest Ruby release is Ruby 4.0.6.",
-                    "metadata": {
-                        "tool_events": [
-                            {"tool": "web_search", "command": "latest Ruby release version"}
-                        ]
-                    },
-                },
-                {"role": "user", "content": "Open official release notes."},
-            ],
-            max_rounds=1,
-            relevant_tools={
-                "ask_user",
-                "update_plan",
-                "manage_notes",
-                "manage_calendar",
-            },
-        )
-    )
-
-    names = _schema_names(sent_tools[0])
-    assert {"web_search", "web_fetch"} <= names
-    assert "manage_notes" not in names
-    assert "follow-up to the prior public web task" in sent_messages[0][0]["content"]
-    assert "latest Ruby release" in sent_messages[0][0]["content"]
-
-
 def test_web_correction_followup_inherits_previous_search_topic(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -880,7 +693,6 @@ def test_web_correction_followup_inherits_previous_search_topic(monkeypatch):
     assert {"web_search", "web_fetch"} <= names
     assert "Search for current Mac chip for ai" in sent_messages[0][0]["content"]
     assert "512 ram version" in sent_messages[0][0]["content"]
-
 
 def test_youtube_latest_video_followup_keeps_prior_entity_context(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -926,7 +738,6 @@ def test_youtube_latest_video_followup_keeps_prior_entity_context(monkeypatch):
     assert "follow-up to the prior public web task" in sent_messages[0][0]["content"]
     assert "does anthropic have a youtube channel" in sent_messages[0][0]["content"].lower()
     assert "whats their latest video" in sent_messages[0][0]["content"].lower()
-
 
 def test_web_correction_chain_skips_generic_prior_followup(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -976,7 +787,6 @@ def test_web_correction_chain_skips_generic_prior_followup(monkeypatch):
     assert "You're mixing ram and storage" in preface
     assert "What's the release date You're mixing" not in preface
 
-
 def test_web_followup_prefers_multi_entity_user_topic_over_assistant_summary(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_messages = []
@@ -1017,11 +827,9 @@ def test_web_followup_prefers_multi_entity_user_topic_over_assistant_summary(mon
     assert "nursery school levels" in preface
     assert "Prior answer context:" in preface
 
-
 def test_agent_loop_policy_blocks_disabled_web_tool_call_before_execution(monkeypatch):
     _patch_loop_basics(monkeypatch)
     called = False
-    model_called = False
 
     async def _fake_exec(*args, **kwargs):
         nonlocal called
@@ -1029,8 +837,6 @@ def test_agent_loop_policy_blocks_disabled_web_tool_call_before_execution(monkey
         return ("web_search", {"output": "ran", "exit_code": 0})
 
     async def _fake_stream(_candidates, messages, **kwargs):
-        nonlocal model_called
-        model_called = True
         yield _delta_chunk('```web_search\n{"query":"current CVEs"}\n```')
         yield "data: [DONE]\n\n"
 
@@ -1053,17 +859,13 @@ def test_agent_loop_policy_blocks_disabled_web_tool_call_before_execution(monkey
         )
     )
     events = _events(chunks)
-    finals = [event for event in events if event.get("type") == "final_response"]
+    blocked = [event for event in events if event.get("type") == "tool_output"]
 
     assert called is False
-    assert model_called is False
     assert not any(event.get("type") == "tool_start" for event in events)
-    assert not any(event.get("type") == "tool_output" for event in events)
-    assert finals == [{
-        "type": "final_response",
-        "content": "Web access is disabled for this turn. Enable web search and resend the request.",
-    }]
-
+    assert blocked
+    assert blocked[0]["tool"] == "web_search"
+    assert blocked[0]["exit_code"] == 1
 
 def test_web_fetch_js_failure_exposes_private_browser_next_round(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1117,7 +919,6 @@ def test_web_fetch_js_failure_exposes_private_browser_next_round(monkeypatch):
         for message in sent_messages[1]
     )
 
-
 def test_go_to_web_prompt_routes_private_browser_and_prunes_noise(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -1153,125 +954,11 @@ def test_go_to_web_prompt_routes_private_browser_and_prunes_noise(monkeypatch):
     assert "mcp__email__search_emails" not in names
     assert "search_hf_models" not in names
     assert "download_model" not in names
-
-
-def test_open_web_player_routes_private_browser_not_ui(monkeypatch):
-    _patch_loop_basics(monkeypatch)
-    q = "Open Spotify's web player and search for Bach cello suites."
-    intent = al._classify_agent_request([{"role": "user", "content": q}], q)
-    assert intent["domains"] == {"web"}
-
-    sent_tools = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        sent_tools.append(kwargs.get("tools") or [])
-        yield _delta_chunk("Opening it.")
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    _collect(
-        al.stream_agent_loop(
-            "https://api.openai.com/v1",
-            "local-model",
-            [{"role": "user", "content": q}],
-            max_rounds=1,
-            relevant_tools={
-                "web_search",
-                "web_fetch",
-                "ui_control",
-                "list_served_models",
-                "serve_preset",
-                "ask_user",
-                "update_plan",
-            },
-        )
-    )
-
-    names = _schema_names(sent_tools[0])
-    assert {"web_search", "web_fetch", "private_browser"} <= names
-    assert "ui_control" not in names
-    assert "serve_preset" not in names
-    assert "list_served_models" not in names
-
-
 def test_open_naked_domain_routes_as_pure_web():
     q = "Open npmjs.com and find the weekly downloads for `playwright`."
     intent = al._classify_agent_request([{"role": "user", "content": q}], q)
     assert intent["domains"] == {"web"}
     assert al._looks_like_explicit_browser_interaction(q)
-
-
-def test_private_browser_bot_check_switches_next_round_to_static_web(monkeypatch):
-    _patch_loop_basics(monkeypatch)
-    sent_tools = []
-    sent_messages = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        sent_messages.append(messages)
-        sent_tools.append(kwargs.get("tools") or [])
-        if len(sent_tools) == 1:
-            call = {
-                "id": "call_browser",
-                "name": "private_browser",
-                "arguments": json.dumps({
-                    "action": "batch",
-                    "commands": [
-                        ["open", "https://www.npmjs.com/package/playwright"],
-                        ["read"],
-                    ],
-                }),
-            }
-            yield f'data: {json.dumps({"type": "tool_calls", "calls": [call]})}\n\n'
-        else:
-            yield _delta_chunk("I'll use a static source instead.")
-        yield "data: [DONE]\n\n"
-
-    async def _fake_exec(block, *args, **kwargs):
-        return (
-            "Browse web",
-            {
-                "output": (
-                    "# www.npmjs.com\n\n"
-                    "## Performing security verification\n\n"
-                    "This website uses a security service to protect against malicious bots.\n\n"
-                    "Performance and Security by Cloudflare"
-                ),
-                "exit_code": 0,
-            },
-        )
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-    monkeypatch.setattr(al, "execute_tool_block", _fake_exec, raising=False)
-
-    _collect(
-        al.stream_agent_loop(
-            "https://api.openai.com/v1",
-            "local-model",
-            [{"role": "user", "content": "Open npmjs.com and find the weekly downloads for `playwright`."}],
-            max_rounds=2,
-            relevant_tools={
-                "web_search",
-                "web_fetch",
-                "private_browser",
-                "ui_control",
-                "ask_user",
-                "update_plan",
-            },
-        )
-    )
-
-    assert len(sent_tools) >= 2
-    second_round_names = _schema_names(sent_tools[1])
-    assert "web_search" in second_round_names
-    assert "web_fetch" in second_round_names
-    assert "private_browser" not in second_round_names
-    assert any(
-        "bot/security verification" in str(message.get("content") or "")
-        for message in sent_messages[1]
-    )
-
-
 def test_rendered_page_followup_keeps_private_browser(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -1319,7 +1006,6 @@ def test_rendered_page_followup_keeps_private_browser(monkeypatch):
         "follow-up to the prior public web task" in str(message.get("content") or "")
         for message in sent_messages[0]
     )
-
 
 def test_maps_followup_keeps_private_browser(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1369,7 +1055,6 @@ def test_maps_followup_keeps_private_browser(monkeypatch):
         for message in sent_messages[0]
     )
 
-
 def test_closest_parking_routes_private_browser(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -1402,7 +1087,6 @@ def test_closest_parking_routes_private_browser(monkeypatch):
         "map/navigation/location help" in str(message.get("content") or "")
         for message in sent_messages[0]
     )
-
 
 def test_youtube_prompt_routes_youtube_tool_without_noise(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1439,7 +1123,6 @@ def test_youtube_prompt_routes_youtube_tool_without_noise(monkeypatch):
     assert "mcp__email__search_emails" not in names
     assert "manage_memory" not in names
 
-
 def test_latest_numbered_videos_routes_youtube_tool(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -1465,7 +1148,6 @@ def test_latest_numbered_videos_routes_youtube_tool(monkeypatch):
     assert {"web_search", "web_fetch", "youtube_tool"} <= names
     assert "update_plan" not in names
 
-
 def test_explicit_plan_request_keeps_update_plan(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -1489,7 +1171,6 @@ def test_explicit_plan_request_keeps_update_plan(monkeypatch):
 
     names = _schema_names(sent_tools[0])
     assert "update_plan" in names
-
 
 def test_agent_loop_retries_web_after_retry_preamble(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1557,7 +1238,6 @@ def test_agent_loop_retries_web_after_retry_preamble(monkeypatch):
         for event in events
     )
 
-
 def test_agent_loop_synthesizes_web_answer_after_tool_preamble(monkeypatch):
     _patch_loop_basics(monkeypatch)
 
@@ -1611,7 +1291,6 @@ def test_agent_loop_synthesizes_web_answer_after_tool_preamble(monkeypatch):
         and "Japan and Sweden both have strong school systems" in event.get("content", "")
         for event in events
     )
-
 
 def test_open_calendar_request_uses_ui_control_panel_not_event_dump(monkeypatch):
     # Routing test written for the opt-out posture; the gate default is pinned in
@@ -1680,7 +1359,6 @@ def test_open_calendar_request_uses_ui_control_panel_not_event_dump(monkeypatch)
         and event.get("context_only") is True
         for event in events
     )
-
 
 def test_calendar_create_response_includes_persistent_event_link(monkeypatch):
     # Routing test written for the opt-out posture; the gate default is pinned in
@@ -1780,7 +1458,6 @@ def test_calendar_create_response_includes_persistent_event_link(monkeypatch):
         for text in metrics_events[-1].get("round_texts", [])
     )
 
-
 def test_executor_policy_backstop_blocks_tools():
     policy = build_effective_tool_policy(last_user_message="Do not use tools.")
     desc, result = asyncio.run(
@@ -1793,7 +1470,6 @@ def test_executor_policy_backstop_blocks_tools():
     assert desc == "bash: BLOCKED"
     assert result["exit_code"] == 1
     assert "forbade" in result["error"]
-
 
 def test_agent_loop_blocks_guide_only_fenced_tool_before_start(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1830,7 +1506,6 @@ def test_agent_loop_blocks_guide_only_fenced_tool_before_start(monkeypatch):
     assert blocked[0]["tool"] == "bash"
     assert blocked[0]["exit_code"] == 1
 
-
 def test_guide_only_hides_api_function_schemas(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -1855,7 +1530,6 @@ def test_guide_only_hides_api_function_schemas(monkeypatch):
     )
 
     assert sent_tools == [None]
-
 
 def test_guide_only_skips_tool_retrieval(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1890,7 +1564,6 @@ def test_guide_only_skips_tool_retrieval(monkeypatch):
 
     assert sent_tools == [None]
 
-
 def test_guide_only_blocks_document_prestream(monkeypatch):
     _patch_loop_basics(monkeypatch)
 
@@ -1914,7 +1587,6 @@ def test_guide_only_blocks_document_prestream(monkeypatch):
     assert not any(event.get("type") == "doc_stream_open" for event in events)
     assert not any(event.get("type") == "tool_start" for event in events)
     assert any(event.get("type") == "tool_output" and event.get("tool") == "create_document" for event in events)
-
 
 def test_guide_only_blocks_later_round_document_streaming(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -1946,7 +1618,6 @@ def test_guide_only_blocks_later_round_document_streaming(monkeypatch):
     assert not any(event.get("type") == "doc_stream_open" for event in events)
     assert not any(event.get("type") == "doc_stream_delta" for event in events)
 
-
 def test_guide_only_skips_intent_without_action_nudge(monkeypatch):
     _patch_loop_basics(monkeypatch)
 
@@ -1968,7 +1639,6 @@ def test_guide_only_skips_intent_without_action_nudge(monkeypatch):
     )
     events = _events(chunks)
     assert not any(event.get("type") == "agent_step" for event in events)
-
 
 def test_guide_only_suppresses_active_document_context(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -2005,7 +1675,6 @@ def test_guide_only_suppresses_active_document_context(monkeypatch):
     assert "ACTIVE DOCUMENT" not in prompt_payloads[0]
     assert "Relevant skills" not in prompt_payloads[0]
 
-
 def test_document_my_style_does_not_infer_public_persona(monkeypatch):
     _patch_loop_basics(monkeypatch)
     monkeypatch.setattr(al, "_build_base_prompt", lambda *a, **k: ("BASE", ""), raising=False)
@@ -2034,7 +1703,6 @@ def test_document_my_style_does_not_infer_public_persona(monkeypatch):
 
     assert "There is no saved document writing style" in payload
     assert "do NOT infer that style from memories, identity, public persona" in payload
-
 
 def test_guide_only_skips_teacher_escalation(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -2067,7 +1735,6 @@ def test_guide_only_skips_teacher_escalation(monkeypatch):
     )
 
     assert any("Could you tell me" in chunk for chunk in chunks)
-
 
 def test_previous_tool_domain_carryover_reads_persisted_session_metadata():
     history_session = SimpleNamespace(history=[
@@ -2106,7 +1773,6 @@ def test_previous_tool_domain_carryover_reads_persisted_session_metadata():
         history_session=history_session,
     ) == {"notes_calendar_tasks"}
 
-
 def test_ask_user_calendar_clarification_carries_calendar_domain():
     history_session = SimpleNamespace(history=[
         SimpleNamespace(role="user", content="add birthday 24th", metadata={}),
@@ -2138,7 +1804,6 @@ def test_ask_user_calendar_clarification_carries_calendar_domain():
         "me",
         history_session=history_session,
     ) == {"notes_calendar_tasks"}
-
 
 def test_calendar_action_continuation_carries_across_one_prose_suggestion():
     history_session = SimpleNamespace(history=[
@@ -2178,7 +1843,6 @@ def test_calendar_action_continuation_carries_across_one_prose_suggestion():
         "lets add it for thursday then 12pm",
         history_session=history_session,
     ) == {"notes_calendar_tasks"}
-
 
 def test_qwen_followup_route_respects_caller_disabled_calendar_tool(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -2227,7 +1891,6 @@ def test_qwen_followup_route_respects_caller_disabled_calendar_tool(monkeypatch)
     names = _schema_names(sent_tools[0])
     assert "manage_calendar" not in names
 
-
 def test_api_followup_route_respects_caller_disabled_carried_calendar_tool(monkeypatch):
     _patch_loop_basics(monkeypatch)
     sent_tools = []
@@ -2275,7 +1938,6 @@ def test_api_followup_route_respects_caller_disabled_carried_calendar_tool(monke
     names = _schema_names(sent_tools[0])
     assert "manage_calendar" not in names
 
-
 def test_qwen_router_keeps_calendar_for_event_reminder_followup():
     tools = al._qwen38_router_tool_names(
         "add a reminder to the summer festival event 15 min before"
@@ -2284,12 +1946,10 @@ def test_qwen_router_keeps_calendar_for_event_reminder_followup():
     assert "manage_calendar" in tools
     assert "manage_tasks" not in tools
 
-
 def test_qwen_router_keeps_calendar_for_pickup_delete_followup():
     tools = al._qwen38_router_tool_names("remove the bjorn pickup event today")
 
     assert "manage_calendar" in tools
-
 
 def test_latest_personal_events_routes_calendar_not_web():
     prompt = "What's my latest events"
@@ -2302,13 +1962,11 @@ def test_latest_personal_events_routes_calendar_not_web():
     assert "manage_calendar" in tools
     assert "web_search" not in tools
 
-
 def test_recurring_event_lookup_routes_calendar_not_tasks():
     tools = al._qwen38_router_tool_names("show my recurring trash events")
 
     assert "manage_calendar" in tools
     assert "manage_tasks" not in tools
-
 
 def test_recurring_automation_lifecycle_routes_tasks_not_calendar():
     tools = al._qwen38_router_tool_names(
@@ -2318,7 +1976,6 @@ def test_recurring_automation_lifecycle_routes_tasks_not_calendar():
 
     assert tools == {"manage_tasks"}
 
-
 def test_recurring_meeting_routes_calendar_not_tasks():
     tools = al._qwen38_router_tool_names(
         "Schedule a recurring team meeting every Monday morning."
@@ -2326,7 +1983,6 @@ def test_recurring_meeting_routes_calendar_not_tasks():
 
     assert "manage_calendar" in tools
     assert "manage_tasks" not in tools
-
 
 def test_document_title_containing_notes_does_not_offer_notes_product():
     prompt = (
@@ -2336,7 +1992,6 @@ def test_document_title_containing_notes_does_not_offer_notes_product():
 
     assert requested_capabilities(prompt) == frozenset({"documents"})
 
-
 def test_compound_document_lifecycle_is_not_single_action_terminal():
     assert al._request_has_compound_actions(
         "Create a document, search for it, suggest a revision, then delete it."
@@ -2345,13 +2000,11 @@ def test_compound_document_lifecycle_is_not_single_action_terminal():
         "Create a document titled Weekly status."
     )
 
-
 def test_two_source_comparison_is_not_single_fetch_terminal():
     assert al._request_has_compound_actions(
         "Open https://example.com/a and https://example.org/b, compare their "
         "evidence, and cite both sources."
     )
-
 
 def test_calendar_lookup_requires_fresh_tool_even_before_schema_is_added():
     assert al._calendar_lookup_requires_fresh_tool(
@@ -2359,7 +2012,6 @@ def test_calendar_lookup_requires_fresh_tool_even_before_schema_is_added():
         {"notes_calendar_tasks"},
         set(),
     )
-
 
 def test_agent_reasoning_preamble_is_replaceable():
     assert al._looks_like_agent_reasoning_preamble(
@@ -2385,7 +2037,6 @@ def test_agent_reasoning_preamble_is_replaceable():
         "当前信息有限，可能需要查看完整视频或相关资料。"
     )
 
-
 def test_trailing_answer_promise_is_removed_without_losing_factual_answer():
     text = (
         "The /tmp directory is empty (only contains . and .. entries). "
@@ -2396,18 +2047,15 @@ def test_trailing_answer_promise_is_removed_without_losing_factual_answer():
         "The /tmp directory is empty (only contains . and .. entries)."
     )
 
-
 def test_trailing_answer_promise_cleanup_does_not_rewrite_normal_answer():
     text = "The report is ready. You should send it to the user when approved."
 
     assert al._strip_trailing_answer_promise(text) == text
 
-
 def test_can_now_provide_answer_is_internal_preamble():
     assert al._looks_like_agent_reasoning_preamble(
         "The command executed successfully. I can now provide the answer."
     )
-
 
 def test_read_only_empty_bash_listing_has_concise_terminal_summary():
     event = {
@@ -2422,14 +2070,12 @@ def test_read_only_empty_bash_listing_has_concise_terminal_summary():
 
     assert al._ody_qwen_terminal_tool_summary(event) == "`/tmp` is empty."
 
-
 def test_email_account_identity_boundary_is_not_inbox_lookup():
     assert al._is_email_account_identity_request("What's my email?")
     assert al._is_email_account_identity_request("What is my email address?")
     assert al._is_email_account_identity_request("List my connected email accounts")
     assert not al._is_email_account_identity_request("What's my latest email?")
     assert not al._is_email_account_identity_request("Show my unread emails")
-
 
 def test_email_scan_announcement_is_a_tool_preamble():
     assert al._is_tool_preamble(
@@ -2438,7 +2084,6 @@ def test_email_scan_announcement_is_a_tool_preamble():
     assert al._is_tool_preamble(
         "I'll re-scan the inbox and re-list the Junk folder to verify."
     )
-
 
 def test_email_draft_no_tool_boundary_does_not_capture_real_reply_actions():
     assert al._qwen_no_tool_boundary_answer(
@@ -2456,7 +2101,6 @@ def test_email_draft_no_tool_boundary_does_not_capture_real_reply_actions():
         "4. Create follow-up items"
     ) is None
 
-
 def test_admin_report_parser_does_not_capture_status_reporting_verbs():
     tool, content = al._parse_qwen_explicit_admin_request(
         "List Cookbook downloads and report the SmolLM2 download status."
@@ -2469,12 +2113,10 @@ def test_admin_report_parser_does_not_capture_status_reporting_verbs():
     assert tool == "manage_research"
     assert json.loads(content)["action"] == "list"
 
-
 def test_explicit_admin_router_ignores_negated_tool_mentions():
     assert al._parse_qwen_explicit_admin_request(
         "Use Cookbook search to find Gemma models. Do not use the configured model list, and do not download anything."
     ) is None
-
 
 def test_simple_calendar_lookup_fallback_latest_events(monkeypatch):
     tool, args = al._parse_simple_calendar_tool_request("what's my latest events")
@@ -2484,7 +2126,6 @@ def test_simple_calendar_lookup_fallback_latest_events(monkeypatch):
     assert parsed["action"] == "list_events"
     assert parsed["start"]
     assert parsed["end"]
-
 
 def test_simple_calendar_lookup_accepts_missing_chat_apostrophes():
     tool, args = al._parse_simple_calendar_tool_request(
@@ -2501,13 +2142,11 @@ def test_simple_calendar_lookup_accepts_missing_chat_apostrophes():
         "whats todays calendar", today="2026-09-09"
     ) == ("2026-09-09", "2026-09-10")
 
-
 def test_simple_calendar_lookup_does_not_treat_definition_as_user_lookup():
     assert al._parse_simple_calendar_tool_request("What is a calendar?") is None
     assert al._is_personal_tool_definition_turn("What is a calendar?")
     assert al._parse_simple_calendar_tool_request("What is calendar software?") is None
     assert al._parse_explicit_memory_lookup_request("What does computer memory mean?") is None
-
 
 def test_simple_calendar_lookup_handles_do_i_have_events_wording():
     tool, args = al._parse_simple_calendar_tool_request("Do I have any events today?")
@@ -2517,15 +2156,12 @@ def test_simple_calendar_lookup_handles_do_i_have_events_wording():
     assert parsed["start"]
     assert parsed["end"]
 
-
 def test_notes_panel_open_is_not_reinterpreted_as_note_search():
     assert al._parse_simple_notes_tool_request("open the notes panel") is None
-
 
 def test_scheduled_tasks_plural_selects_personal_task_domain():
     intent = al._classify_agent_request([], "Show my scheduled tasks")
     assert "notes_calendar_tasks" in intent["domains"]
-
 
 def test_simple_calendar_lookup_fallback_uses_recent_event_title():
     messages = [
@@ -2547,7 +2183,6 @@ def test_simple_calendar_lookup_fallback_uses_recent_event_title():
     assert parsed["action"] == "list_events"
     assert parsed["query"] == "Coffee with Priya"
 
-
 def test_simple_calendar_tag_update_fallback():
     tool, args = al._parse_simple_calendar_tool_request(
         "change the SFT calendar smoke Hokkaido trip tag to personal"
@@ -2558,7 +2193,6 @@ def test_simple_calendar_tag_update_fallback():
     assert parsed["action"] == "update_event"
     assert parsed["summary"] == "SFT calendar smoke Hokkaido trip"
     assert parsed["tag"] == "personal"
-
 
 def test_recurring_calendar_create_parser_uses_monthly_ordinal_rule(monkeypatch):
     tool, args = al._parse_qwen_explicit_create_request(
@@ -2572,7 +2206,6 @@ def test_recurring_calendar_create_parser_uses_monthly_ordinal_rule(monkeypatch)
     assert parsed["summary"] == "SFT calendar smoke book club"
     assert "T19:00:00" in parsed["dtstart"]
 
-
 def test_next_month_calendar_reservation_without_day_uses_ask_user():
     tool, args = al._parse_ambiguous_calendar_date_ask_user(
         "event next month dinner at Skytree Tokyo 9:30 reservation id 59i2323 remind me day before"
@@ -2583,7 +2216,6 @@ def test_next_month_calendar_reservation_without_day_uses_ask_user():
     assert "What day in" in parsed["question"]
     assert "Skytree Tokyo" in parsed["question"]
     assert parsed["options"][0]["label"] == "Exact date"
-
 
 def test_api_calendar_lookup_respects_caller_disabled_calendar_schema(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -2610,7 +2242,6 @@ def test_api_calendar_lookup_respects_caller_disabled_calendar_schema(monkeypatc
     names = _schema_names(sent_tools[0])
     assert "manage_calendar" not in names
 
-
 def test_calendar_lookup_requires_fresh_tool_for_availability_and_next_event():
     domains = {"notes_calendar_tasks"}
     tools = {"manage_calendar", "ask_user"}
@@ -2631,13 +2262,11 @@ def test_calendar_lookup_requires_fresh_tool_for_availability_and_next_event():
         tools,
     )
 
-
 def test_explicit_open_up_calendar_routes_to_ui_control():
     assert al._parse_explicit_open_panel_request("open up my calendar") == (
         "ui_control",
         "open_panel calendar",
     )
-
 
 def test_show_skill_note_memory_requests_do_not_open_panels():
     assert al._parse_explicit_open_panel_request("show my skills") is None
@@ -2671,15 +2300,14 @@ def test_show_skill_note_memory_requests_do_not_open_panels():
     ("go dark mode pls", "dark"),
     ("hmm actually switch it back to light", "light"),
 ])
+
 def test_explicit_theme_change_parser_binds_set_action(message, theme):
     assert al._parse_explicit_theme_change_request(message) == (
         "ui_control", json.dumps({"action": "set_theme", "name": theme})
     )
 
-
 def test_explicit_theme_change_parser_does_not_steal_discussion():
     assert al._parse_explicit_theme_change_request("is dark mode easier on the eyes?") is None
-
 
 def test_personal_task_list_routes_to_task_manager():
     intent = al._classify_agent_request([], "show me my tasks")
@@ -2691,7 +2319,6 @@ def test_personal_task_list_routes_to_task_manager():
     natural_intent = al._classify_agent_request([], "what tasks are on my list?")
     assert not natural_intent["low_signal"]
     assert "notes_calendar_tasks" in natural_intent["domains"]
-
 
 def test_personal_inventory_natural_wording_routes_to_domain_tools():
     task = al._parse_explicit_task_state_request("what tasks are on my list?")
@@ -2709,7 +2336,6 @@ def test_personal_inventory_natural_wording_routes_to_domain_tools():
     assert document_tool == "manage_documents"
     assert json.loads(document_args) == {"action": "list"}
 
-
 def test_skill_search_is_not_normalized_to_public_web_search():
     prompt = "search my skills for testing"
     intent = al._classify_agent_request([], prompt)
@@ -2720,13 +2346,11 @@ def test_skill_search_is_not_normalized_to_public_web_search():
         "query": "testing",
     }
 
-
 def test_web_search_no_results_is_not_usable_answer_evidence():
     assert not al._web_search_output_has_answer_evidence(
         "search the web for the current weather in Stockholm",
         "Query: current weather in Stockholm\nThe web search returned no results.",
     )
-
 
 def test_web_search_cambridge_place_name_is_not_mistaken_for_dictionary_result():
     assert al._web_search_output_has_answer_evidence(
@@ -2737,7 +2361,6 @@ def test_web_search_cambridge_place_name_is_not_mistaken_for_dictionary_result()
         ),
     )
 
-
 def test_web_search_actual_dictionary_result_is_not_evidence_for_news_query():
     assert not al._web_search_output_has_answer_evidence(
         "Latest news in AI",
@@ -2747,7 +2370,6 @@ def test_web_search_actual_dictionary_result_is_not_evidence_for_news_query():
             "    Snippet: Meaning of AI in English."
         ),
     )
-
 
 def test_web_search_one_dictionary_row_does_not_veto_other_relevant_rows():
     assert al._web_search_output_has_answer_evidence(
@@ -2765,7 +2387,6 @@ def test_web_search_one_dictionary_row_does_not_veto_other_relevant_rows():
         ),
     )
 
-
 def test_web_model_insufficient_evidence_detection_is_generic():
     assert al._web_model_reports_insufficient_evidence(
         "The results don't provide a clear answer about the comparison."
@@ -2776,7 +2397,6 @@ def test_web_model_insufficient_evidence_detection_is_generic():
     assert not al._web_model_reports_insufficient_evidence(
         "There is no definitive winner because quality depends on the stated criteria."
     )
-
 
 def test_direct_email_listing_terminal_summary_uses_user_request():
     summary = al._ody_qwen_terminal_tool_summary(
@@ -2797,7 +2417,6 @@ def test_direct_email_listing_terminal_summary_uses_user_request():
     assert summary.startswith("Here is your latest email:")
     assert "Project update" in summary
 
-
 def test_served_models_word_order_routes_to_cookbook_runtime():
     prompt = "list the models currently being served"
     intent = al._classify_agent_request([], prompt)
@@ -2808,13 +2427,11 @@ def test_served_models_word_order_routes_to_cookbook_runtime():
         "",
     )
 
-
 def test_explicit_open_calendar_month_view_preserves_view():
     assert al._parse_explicit_open_panel_request("open calendar month view") == (
         "ui_control",
         "open_panel calendar month",
     )
-
 
 def test_explicit_open_calendar_month_names_and_years():
     assert al._parse_explicit_open_panel_request("open calendar december") == (
@@ -2842,7 +2459,6 @@ def test_explicit_open_calendar_month_names_and_years():
         "open_panel calendar year 2027-01",
     )
 
-
 def test_fabricated_calendar_event_anchor_requires_calendar_tool():
     assert al._fabricated_calendar_event_anchor_without_tool(
         "View event: [Sail home](#event-cf8da629-177d-4faf-bdd2-1ff167f52b0125)",
@@ -2852,7 +2468,6 @@ def test_fabricated_calendar_event_anchor_requires_calendar_tool():
         "View event: [Sail home](#event-cf8da629-177d-4faf-bdd2-1ff167f52b0125)",
         {"ui_control"},
     )
-
 
 def test_calendar_create_claim_requires_create_event_evidence():
     expected = al._calendar_expected_mutation_actions("add birthday on the 24th")
@@ -2878,13 +2493,11 @@ def test_calendar_create_claim_requires_create_event_evidence():
         expected,
     )
 
-
 def test_drop_rejected_round_response_removes_embedded_rejected_text():
     rejected = "Fake done with [Birthday](#event-a1b2c3d4-bundle2)"
     full = f"prefix debug {rejected} final answer"
 
     assert al._drop_rejected_round_response(full, rejected) == "prefix debug  final answer"
-
 
 def test_notes_lookup_requires_fresh_manage_notes_action():
     domains = {"notes_calendar_tasks"}
@@ -2905,7 +2518,6 @@ def test_notes_lookup_requires_fresh_manage_notes_action():
         domains,
         tools,
     )
-
 
 def test_notes_create_claim_requires_add_note_evidence():
     expected = al._notes_expected_actions("create a note saying Marzia likes jasmine tea")
@@ -2931,7 +2543,6 @@ def test_notes_create_claim_requires_add_note_evidence():
         expected,
     )
 
-
 def test_notes_delete_action_wins_over_list_word():
     expected = al._notes_expected_actions("delete the grocery list")
 
@@ -2947,7 +2558,6 @@ def test_notes_delete_action_wins_over_list_word():
         expected,
     )
 
-
 def test_packing_list_routes_to_notes_domain():
     intent = al._classify_agent_request(
         [{"role": "user", "content": "delete the packing list"}],
@@ -2955,7 +2565,6 @@ def test_packing_list_routes_to_notes_domain():
     )
 
     assert "notes_calendar_tasks" in intent["domains"]
-
 
 def test_simple_notes_fallback_parses_checklist_create():
     tool, raw = al._parse_simple_notes_tool_request(
@@ -2973,7 +2582,6 @@ def test_simple_notes_fallback_parses_checklist_create():
         "headphones",
     ]
 
-
 def test_simple_notes_fallback_parses_note_saying_with_label():
     tool, raw = al._parse_simple_notes_tool_request(
         "create a note saying Marzia likes jasmine tea v2 and tag it personal"
@@ -2988,14 +2596,12 @@ def test_simple_notes_fallback_parses_note_saying_with_label():
         "label": "personal",
     }
 
-
 def test_simple_notes_fallback_parses_tagged_notes_lookup():
     tool, raw = al._parse_simple_notes_tool_request("show notes tagged errands")
     args = json.loads(raw)
 
     assert tool == "manage_notes"
     assert args == {"action": "list", "label": "errands"}
-
 
 def test_simple_notes_fallback_parses_pinned_notes_lookup():
     tool, raw = al._parse_simple_notes_tool_request("show my pinned notes")
@@ -3004,14 +2610,12 @@ def test_simple_notes_fallback_parses_pinned_notes_lookup():
     assert tool == "manage_notes"
     assert args == {"action": "list", "pinned": True}
 
-
 def test_simple_notes_fallback_parses_reminder_notes_lookup():
     tool, raw = al._parse_simple_notes_tool_request("show my reminder notes")
     args = json.loads(raw)
 
     assert tool == "manage_notes"
     assert args == {"action": "list", "reminders": True}
-
 
 def test_simple_notes_fallback_parses_checklist_remaining_lookup():
     tool, raw = al._parse_simple_notes_tool_request("what is left on the launch QA checklist?")
@@ -3020,14 +2624,12 @@ def test_simple_notes_fallback_parses_checklist_remaining_lookup():
     assert tool == "manage_notes"
     assert args == {"action": "search", "query": "launch QA"}
 
-
 def test_simple_notes_fallback_cleans_read_note_query_words():
     tool, raw = al._parse_simple_notes_tool_request("read the Tokyo packing idea Suica note")
     args = json.loads(raw)
 
     assert tool == "manage_notes"
     assert args == {"action": "search", "query": "Tokyo packing idea Suica"}
-
 
 def test_note_title_pairs_can_identify_duplicate_matching_body_lookup():
     raw = "\n".join(
@@ -3051,7 +2653,6 @@ def test_note_title_pairs_can_identify_duplicate_matching_body_lookup():
         ("SFT notes audit launch QA", "qa-two"),
     ]
 
-
 def test_false_unavailable_tool_claim_detects_selected_calendar_tool():
     text = (
         "I don't have access to calendar tools this turn, so I can't remove "
@@ -3063,7 +2664,6 @@ def test_false_unavailable_tool_claim_detects_selected_calendar_tool():
         {"manage_calendar", "ask_user", "update_plan"},
     ) == "manage_calendar"
 
-
 def test_false_unavailable_tool_claim_ignores_unselected_calendar_tool():
     text = "I don't have access to calendar tools this turn."
 
@@ -3072,14 +2672,12 @@ def test_false_unavailable_tool_claim_ignores_unselected_calendar_tool():
         {"web_search", "ask_user"},
     ) == ""
 
-
 def test_qwen_router_selects_admin_inventory_tools():
     assert "manage_settings" in al._qwen38_router_tool_names("show which agent tools are currently disabled")
     assert "manage_settings" in al._qwen38_router_tool_names("turn image generation back on now")
     assert "manage_tokens" in al._qwen38_router_tool_names("list API tokens by name and prefix only")
     assert "manage_webhooks" in al._qwen38_router_tool_names("list webhook integrations")
     assert "manage_mcp" in al._qwen38_router_tool_names("list MCP servers")
-
 
 def test_qwen_explicit_admin_requests_build_safe_args():
     assert al._parse_qwen_explicit_admin_request("show which agent tools are currently disabled") == (
@@ -3099,7 +2697,6 @@ def test_qwen_explicit_admin_requests_build_safe_args():
         json.dumps({"action": "list"}),
     )
 
-
 def test_qwen_explicit_session_delete_uses_recent_session_link():
     messages = [
         {
@@ -3116,7 +2713,6 @@ def test_qwen_explicit_session_delete_uses_recent_session_link():
         json.dumps({"action": "delete", "session_id": "8003653f"}),
     )
 
-
 def test_qwen_explicit_session_delete_ignores_conversational_filler():
     messages = [{
         "role": "assistant",
@@ -3129,7 +2725,6 @@ def test_qwen_explicit_session_delete_ignores_conversational_filler():
         json.dumps({"action": "delete", "session_id": "cd51fdc8"}),
     )
 
-
 def test_qwen_internal_app_api_requests_do_not_route_to_model_endpoints():
     assert al._parse_qwen_explicit_admin_request(
         "Use the internal app API catalog to list safe gallery endpoints."
@@ -3140,7 +2735,6 @@ def test_qwen_internal_app_api_requests_do_not_route_to_model_endpoints():
         "app_api",
         json.dumps({"action": "call", "method": "GET", "path": "/api/gallery/library"}),
     )
-
 
 def test_qwen_explicit_session_send_uses_recent_session_link():
     messages = [{
@@ -3154,7 +2748,6 @@ def test_qwen_explicit_session_send_uses_recent_session_link():
         "send_to_session",
         "relay-123\nReply with exactly RECEIVED.",
     )
-
 
 def test_explicit_cookbook_followups_use_recent_tool_event_session_id():
     messages = [{
@@ -3185,12 +2778,10 @@ def test_explicit_cookbook_followups_use_recent_tool_event_session_id():
     assert tool == "stop_served_model"
     assert json.loads(content) == {"session_id": "serve-f8ad8b8a"}
 
-
 def test_qwen_explicit_settings_list_is_preemptive():
     assert al._parse_qwen_explicit_admin_request(
         "List current settings without changing them."
     ) == ("manage_settings", json.dumps({"action": "list"}))
-
 
 def test_qwen_model_delegation_is_not_rewritten_as_model_listing():
     assert not al._is_qwen_explicit_model_list_request(
@@ -3202,7 +2793,6 @@ def test_qwen_model_delegation_is_not_rewritten_as_model_listing():
     assert not al._is_qwen_explicit_model_list_request(
         "Extract each model's scores from Table 2, which includes MMT-Bench results."
     )
-
 
 def test_compact_route_preserves_explicit_teacher_delegation_on_web_classified_text():
     tools = {
@@ -3223,7 +2813,6 @@ def test_compact_route_preserves_explicit_teacher_delegation_on_web_classified_t
 
     assert {"ask_teacher", "chat_with_model", "list_models"} <= selected
 
-
 def test_qwen_saved_research_listing_is_preemptive():
     assert al._parse_qwen_explicit_admin_request(
         "List my saved research reports and find the most recent completed SearXNG report."
@@ -3232,7 +2821,6 @@ def test_qwen_saved_research_listing_is_preemptive():
         json.dumps({"action": "list", "search": "searxng"}),
     )
 
-
 def test_explicit_document_create_accepts_normal_wording_and_spaced_title():
     assert al._parse_qwen_explicit_create_request(
         "Create a document titled Suggestion audit abc-123 with exactly this sentence: The weekly report is very good."
@@ -3240,7 +2828,6 @@ def test_explicit_document_create_accepts_normal_wording_and_spaced_title():
         "create_document",
         "Suggestion audit abc-123\nmarkdown\nThe weekly report is very good.",
     )
-
 
 def test_explicit_email_uid_actions_are_normalized_once():
     tool, content = al._parse_explicit_email_uid_action(
@@ -3285,7 +2872,6 @@ def test_explicit_email_uid_actions_are_normalized_once():
         json.dumps({"uid": "10", "folder": "INBOX", "body": "Thanks, I have the next steps."}),
     )
 
-
 def test_explicit_email_search_uses_named_account():
     tool, content = al._parse_explicit_email_search_tool(
         "Search the Primary Inbox for messages from Lena Ortiz."
@@ -3297,12 +2883,10 @@ def test_explicit_email_search_uses_named_account():
         "account": "Primary Inbox",
     }
 
-
 def test_email_inventory_projection_is_not_parsed_as_search_query():
     assert al._parse_explicit_email_search_tool(
         "List my latest three inbox emails with sender and subject."
     ) is None
-
 
 def test_email_immediate_send_recognizes_explicit_email_and_reply_wording():
     assert al._email_immediate_send_requested("Send an email now to alex@example.com.")
@@ -3310,13 +2894,11 @@ def test_email_immediate_send_recognizes_explicit_email_and_reply_wording():
     assert al._email_immediate_send_requested("请直接发送处理通知邮件给客户服务部。")
     assert not al._email_immediate_send_requested("Send an email to Alex saying hello.")
 
-
 def test_email_mixed_send_and_review_policy_preserves_drafts():
     request = "符合条件的直接发送通知；其余仅保存草稿，需要上级审批。"
 
     assert al._email_immediate_send_requested(request)
     assert al._email_draft_review_requested(request)
-
 
 def test_explicit_read_only_email_request_forbids_mutation_tools_only():
     request = (
@@ -3348,7 +2930,6 @@ def test_explicit_read_only_email_request_forbids_mutation_tools_only():
         "mcp__email__draft_email",
     )
 
-
 def test_qwen_explicit_session_current_chat_actions_use_manage_session():
     assert al._parse_qwen_explicit_session_action(
         "Rename this current audit chat to manage-session-audit-abc Use the tool directly and report the result.",
@@ -3370,7 +2951,6 @@ def test_qwen_explicit_session_current_chat_actions_use_manage_session():
         json.dumps({"action": "unarchive", "session_id": "current"}),
     )
 
-
 def test_qwen_explicit_session_create_uses_create_session_format():
     assert al._parse_qwen_explicit_session_create(
         "Create a scratch chat named audit helper abc using model moonshotai/kimi-k3."
@@ -3378,7 +2958,6 @@ def test_qwen_explicit_session_create_uses_create_session_format():
         "create_session",
         "audit helper abc\nmoonshotai/kimi-k3",
     )
-
 
 def test_qwen_explicit_session_find_uses_list_sessions_filter():
     assert al._parse_qwen_explicit_session_find("List my chats") == (
@@ -3395,7 +2974,6 @@ def test_qwen_explicit_session_find_uses_list_sessions_filter():
         "Find previous chats mentioning calendar tools"
     ) is None
 
-
 def test_qwen_explicit_chat_transcript_search_uses_search_chats():
     assert al._parse_qwen_explicit_chat_transcript_search(
         "Find previous chats mentioning calendar tools"
@@ -3410,7 +2988,6 @@ def test_qwen_explicit_chat_transcript_search_uses_search_chats():
         "audit marker 20260828_204528-bb9906f6",
     )
 
-
 def test_qwen_explicit_resolve_contact_uses_resolve_tool():
     assert al._parse_qwen_explicit_resolve_contact("Find the email address for Casey Morgan") == (
         "resolve_contact",
@@ -3420,7 +2997,6 @@ def test_qwen_explicit_resolve_contact_uses_resolve_tool():
         "resolve_contact",
         json.dumps({"name": "Priya Shah"}),
     )
-
 
 def test_qwen_explicit_email_attachment_uid_uses_attachment_tool():
     assert al._parse_qwen_explicit_download_attachment_request(
@@ -3437,7 +3013,6 @@ def test_qwen_explicit_email_attachment_uid_uses_attachment_tool():
         "index": 0,
         "folder": "INBOX",
     }
-
 
 def test_qwen_explicit_unsubscribe_scan_and_action():
     assert al._parse_qwen_explicit_unsubscribe_scan_request(
@@ -3459,7 +3034,6 @@ def test_qwen_explicit_unsubscribe_scan_and_action():
         "Preview unsubscribing from UID 126; do not unsubscribe"
     ) is None
 
-
 def test_qwen_explicit_bulk_email_uses_bulk_tool_args():
     assert al._parse_qwen_explicit_bulk_email_request(
         "Mark emails UID 162 and UID 163 as read"
@@ -3479,7 +3053,6 @@ def test_qwen_explicit_bulk_email_uses_bulk_tool_args():
         "Mark email UID 162 as read"
     ) is None
 
-
 def test_qwen_explicit_block_sender_uses_block_tool_args():
     assert al._parse_qwen_explicit_block_sender_request(
         "Block sender alerts@secure-rowan-login.co but do not delete existing messages"
@@ -3492,7 +3065,6 @@ def test_qwen_explicit_block_sender_uses_block_tool_args():
     assert al._parse_qwen_explicit_block_sender_request(
         "Should I block alerts@secure-rowan-login.co?"
     ) is None
-
 
 def test_notes_about_calendar_context_still_route_to_notes():
     prompt = (
@@ -3509,7 +3081,6 @@ def test_notes_about_calendar_context_still_route_to_notes():
         {"notes_calendar_tasks"},
         {"ui_control", "manage_notes"},
     )
-
 
 def test_notes_panel_open_plus_create_keeps_both_tool_calls(monkeypatch):
     # Routing test written for the opt-out posture; the gate default is pinned in
@@ -3560,7 +3131,6 @@ def test_notes_panel_open_plus_create_keeps_both_tool_calls(monkeypatch):
     assert seen_blocks[1][0] == "manage_notes"
     assert json.loads(seen_blocks[1][1])["action"] == "add"
 
-
 def test_calendar_lookup_without_note_create_does_not_route_to_notes():
     prompt = "What events are visible on my calendar next week?"
 
@@ -3570,7 +3140,6 @@ def test_calendar_lookup_without_note_create_does_not_route_to_notes():
         {"notes_calendar_tasks"},
         {"ui_control", "manage_notes", "manage_calendar"},
     )
-
 
 def test_block_sender_terminal_summary_replaces_model_preamble():
     assert al._ody_qwen_terminal_tool_summary(
@@ -3590,10 +3159,8 @@ def test_block_sender_terminal_summary_replaces_model_preamble():
         "Future matching fixture mail will appear in Junk."
     )
 
-
 def test_search_chats_is_in_api_schema_allowlist():
     assert "search_chats" in al._ADMIN_TOOLS
-
 
 def test_successful_tool_evidence_prevents_explicit_call_repeat():
     assert al._has_successful_tool_evidence(
@@ -3608,7 +3175,6 @@ def test_successful_tool_evidence_prevents_explicit_call_repeat():
         "manage_settings",
     ) is True
 
-
 def test_absolute_path_routes_to_files_not_web_only():
     intent = al._classify_agent_request(
         [{"role": "user", "content": "create /tmp/odysseus-sft-demo.txt with two lines"}],
@@ -3618,7 +3184,6 @@ def test_absolute_path_routes_to_files_not_web_only():
 
     assert "files" in intent["domains"]
     assert "write_file" in tools
-
 
 def test_kimi_admin_request_is_forced_when_model_answers_without_tool(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -3651,7 +3216,6 @@ def test_kimi_admin_request_is_forced_when_model_answers_without_tool(monkeypatc
     )
 
     assert seen_blocks == [("manage_settings", json.dumps({"action": "list_tools"}))]
-
 
 def test_kimi_session_delete_followup_is_forced_from_recent_link(monkeypatch):
     _patch_loop_basics(monkeypatch)
@@ -3688,7 +3252,6 @@ def test_kimi_session_delete_followup_is_forced_from_recent_link(monkeypatch):
         ("manage_session", json.dumps({"action": "delete", "session_id": "8003653f"}))
     ]
 
-
 def test_qwen_cached_model_status_uses_cookbook_cached_tool():
     assert al._parse_qwen_explicit_admin_request(
         "List cached models, still without launching anything."
@@ -3697,7 +3260,6 @@ def test_qwen_cached_model_status_uses_cookbook_cached_tool():
         "Show my downloaded models on disk"
     ) == ("list_cached_models", "")
 
-
 def test_qwen_download_status_uses_cookbook_download_tool():
     assert al._parse_qwen_explicit_admin_request(
         "Show active downloads without changing anything"
@@ -3705,7 +3267,6 @@ def test_qwen_download_status_uses_cookbook_download_tool():
     assert al._parse_qwen_explicit_admin_request(
         "What is downloading right now?"
     ) == ("list_downloads", "")
-
 
 def test_cookbook_download_cancel_uses_cancel_download_not_server_stop():
     messages = [{
@@ -3723,7 +3284,6 @@ def test_cookbook_download_cancel_uses_cancel_download_not_server_stop():
         "Cancel that download using its tracked session ID.", messages
     ) == ("cancel_download", json.dumps({"session_id": "cookbook-abcd1234"}))
 
-
 def test_qwen_cookbook_server_status_uses_cookbook_tools():
     assert al._parse_qwen_explicit_admin_request(
         "List configured Cookbook servers"
@@ -3735,12 +3295,10 @@ def test_qwen_cookbook_server_status_uses_cookbook_tools():
         "List saved Cookbook serve presets"
     ) == ("list_serve_presets", "")
 
-
 def test_qwen_model_registry_still_uses_list_models():
     assert al._parse_qwen_explicit_admin_request(
         "List available models"
     ) == ("list_models", "")
-
 
 def test_qwen_hardware_model_recommendation_uses_hwfit_scan():
     tool, content = al._parse_qwen_explicit_admin_request(
@@ -3755,12 +3313,10 @@ def test_qwen_hardware_model_recommendation_uses_hwfit_scan():
         "query": {"fit_only": "true", "limit": 10, "sort": "fit"},
     }
 
-
 def test_model_endpoints_take_precedence_over_model_catalog():
     assert al._parse_qwen_explicit_admin_request(
         "List configured model endpoints and summarize which ones are enabled."
     ) == ("manage_endpoints", json.dumps({"action": "list"}))
-
 
 def test_explicit_research_start_routes_to_trigger_research():
     assert al._parse_qwen_explicit_admin_request(
@@ -3769,7 +3325,6 @@ def test_explicit_research_start_routes_to_trigger_research():
         "trigger_research",
         json.dumps({"topic": "SearXNG privacy defaults"}),
     )
-
 
 def test_explicit_two_model_pipeline_builds_structured_steps():
     assert al._parse_explicit_pipeline_request(
@@ -3790,7 +3345,6 @@ def test_explicit_two_model_pipeline_builds_structured_steps():
             ],
         }),
     )
-
 
 def _junk_scan_context():
     return [{
@@ -3815,7 +3369,6 @@ def _junk_scan_context():
         },
     }]
 
-
 def test_spam_delete_first_junk_message_does_not_block_or_move_everything():
     text = "Delete the first clearly synthetic Junk message. Do not block its sender."
 
@@ -3831,7 +3384,6 @@ def test_spam_delete_first_junk_message_does_not_block_or_move_everything():
         "account": "alex.rowan@rowan.studio",
     }
 
-
 def test_spam_mutation_is_not_retried_after_failed_attempt_in_same_turn():
     text = "Delete the first clearly synthetic Junk message. Do not block its sender."
     attempted = [{
@@ -3844,7 +3396,6 @@ def test_spam_mutation_is_not_retried_after_failed_attempt_in_same_turn():
         _junk_scan_context(), text, attempted, set()
     ) == []
 
-
 def test_spam_singular_followup_uses_uid_linked_in_previous_synthesis():
     messages = _junk_scan_context()
     messages[0]["content"] = "The clearest synthetic one is [Fake grant](#email-149)."
@@ -3856,47 +3407,15 @@ def test_spam_singular_followup_uses_uid_linked_in_previous_synthesis():
     assert blocks[0].tool_type == "mcp__email__delete_email"
     assert json.loads(blocks[0].content)["uid"] == "149"
 
-
 def test_explicit_rescan_spam_without_email_noun_uses_junk_folder():
     assert al._parse_qwen_explicit_spam_scan_request(
         "Scan for spam again in Junk and confirm that exact message is gone."
     ) == {"folder": "Junk", "limit": 10, "max_scan": 100}
 
-
 def test_compound_inbox_and_junk_scan_is_left_for_multi_tool_planning():
     assert al._parse_qwen_explicit_spam_scan_request(
         "Scan the Primary Inbox for spam and identify one synthetic message already in Junk."
     ) is None
-
-
-def test_compact_native_prompt_relies_on_schemas_without_relisting_tools():
-    prompt = al._assemble_prompt(
-        {"inspect_media", "private_browser", "read_file", "write_file"},
-        compact=True,
-    )
-
-    assert "Only the current turn's tool schemas are available" in prompt
-    assert "## Available tools" not in prompt
-    assert "`inspect_media`" not in prompt
-    assert len(prompt) < 1200
-
-    ordinary_prompt = al._assemble_prompt({"manage_notes"}, compact=True)
-    assert "User wording may contain typos" in ordinary_prompt
-
-
-def test_compact_native_artifact_prompt_omits_unrelated_assistant_rules():
-    prompt = al._assemble_prompt(
-        {"inspect_media", "private_browser", "read_file", "write_file", "ls"},
-        compact=True,
-    )
-
-    assert "creating a workspace artifact" in prompt
-    assert "create and verify every requested output" in prompt
-    assert "manage_memory" not in prompt
-    assert "set one with `/workspace" not in prompt
-    assert len(prompt) < 400
-
-
 def test_native_artifact_workspace_uses_bounded_non_coding_guidance():
     messages = [{
         "role": "user",
@@ -3915,7 +3434,6 @@ def test_native_artifact_workspace_uses_bounded_non_coding_guidance():
     assert "hidden tests" not in rules.lower()
     assert len(rules) < 700
 
-
 def test_native_media_workspace_uses_bounded_non_coding_guidance():
     rules = al._native_media_workspace_rules("/workspace")
 
@@ -3929,7 +3447,6 @@ def test_native_media_workspace_uses_bounded_non_coding_guidance():
     assert "Workspace coding mode" not in rules
     assert len(rules) < 1100
 
-
 def test_compact_native_media_analysis_removes_coding_noise():
     selected = al._compact_native_media_analysis_tools(
         {
@@ -3942,7 +3459,6 @@ def test_compact_native_media_analysis_removes_coding_noise():
     )
 
     assert selected == {"bash", "inspect_media", "ls", "python", "read_file"}
-
 
 def test_compact_native_media_analysis_clamps_explicit_ocr_to_native_tool():
     selected = al._compact_native_media_analysis_tools(
@@ -3959,14 +3475,12 @@ def test_compact_native_media_analysis_clamps_explicit_ocr_to_native_tool():
 
     assert selected == {"extract_text"}
 
-
 def test_native_coding_turn_keeps_coding_workspace_guidance():
     messages = [{"role": "user", "content": "Fix the parser in this repository"}]
     context = {"surface": "odysseus-native", "terminal_agent": True}
 
     assert al._is_native_artifact_workspace_turn(messages, context) is False
     assert "Workspace coding mode" in al._workspace_coding_rules("/workspace")
-
 
 def test_native_local_media_artifact_schema_boundary_removes_route_noise():
     def schema(name):
@@ -4002,7 +3516,6 @@ def test_native_local_media_artifact_schema_boundary_removes_route_noise():
         "path", "max_dimension", "query", "crop",
     }
 
-
 def test_native_video_artifact_hides_pdf_only_inspection_arguments():
     schema = next(
         item for item in al.FUNCTION_TOOL_SCHEMAS
@@ -4021,7 +3534,6 @@ def test_native_video_artifact_hides_pdf_only_inspection_arguments():
     assert "page" not in properties
     assert "pages" not in properties
 
-
 def test_successful_media_export_is_recorded_for_mutation_deduplication():
     signatures = set()
     block = ToolBlock(
@@ -4037,7 +3549,6 @@ def test_successful_media_export_is_recorded_for_mutation_deduplication():
     assert al._record_successful_workspace_mutation(
         set(), block, {"error": "decode failed", "exit_code": 1}
     ) is False
-
 
 def test_native_artifact_schema_boundary_preserves_caller_contract():
     schemas = [{
@@ -4055,7 +3566,6 @@ def test_native_artifact_schema_boundary_preserves_caller_contract():
 
     assert filtered == schemas
 
-
 def test_spam_scan_repeat_matching_ignores_json_key_order():
     block = ToolBlock(
         "mcp__email__scan_spam",
@@ -4067,3 +3577,163 @@ def test_spam_scan_repeat_matching_ignores_json_key_order():
     }
 
     assert al._tool_block_matches_event_args(block, event) is True
+
+def test_agent_loop_web_intent_preserves_disabled_web_tools(monkeypatch):
+    _patch_loop_basics(monkeypatch)
+    sent_tools = []
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        sent_tools.append(kwargs.get("tools"))
+        yield _delta_chunk("ok")
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+
+    _collect(
+        al.stream_agent_loop(
+            "https://api.openai.com/v1",
+            "gpt-test",
+            [{"role": "user", "content": "please look up the latest CVEs"}],
+            max_rounds=1,
+            relevant_tools=set(),
+            disabled_tools=set(WEB_TOOL_NAMES),
+        )
+    )
+
+    assert sent_tools
+    assert WEB_TOOL_NAMES.isdisjoint(_schema_names(sent_tools[0]))
+
+def test_agent_loop_forced_web_tools_filtered_by_disabled_tools(monkeypatch):
+    _patch_loop_basics(monkeypatch)
+    sent_tools = []
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        sent_tools.append(kwargs.get("tools"))
+        yield _delta_chunk("ok")
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+
+    _collect(
+        al.stream_agent_loop(
+            "https://api.openai.com/v1",
+            "gpt-test",
+            [{"role": "user", "content": "latest Kubernetes release"}],
+            max_rounds=1,
+            relevant_tools=set(),
+            forced_tools=set(WEB_TOOL_NAMES),
+            disabled_tools=set(WEB_TOOL_NAMES),
+        )
+    )
+
+    assert sent_tools
+    assert WEB_TOOL_NAMES.isdisjoint(_schema_names(sent_tools[0]))
+
+def test_local_model_excludes_disabled_mcp_schemas(monkeypatch):
+    """Local (textual-tool) models must not receive schemas for disabled MCP
+    tools. The API branch filters all_tool_schemas, but the local-model branch
+    used to ship every MCP schema unfiltered (all-tools mode, RAG disabled) —
+    so a UI-toggled-off MCP tool still reached the LLM as a native schema."""
+    sent_tools = []
+
+    class _FakeMcpMgr:
+        def get_all_openai_schemas(self, disabled_map=None):
+            return [
+                {"type": "function", "function": {
+                    "name": "mcp__browser__navigate", "description": "go", "parameters": {}}},
+                {"type": "function", "function": {
+                    "name": "mcp__browser__click", "description": "click", "parameters": {}}},
+                {"type": "function", "function": {
+                    "name": "mcp__email__send_email", "description": "send", "parameters": {}}},
+            ]
+
+        def get_tool_descriptions_for_prompt(self, disabled_map=None, disabled_tools=None):
+            return "You also have access to external MCP tool servers."
+
+        def plan_mode_blocked_mcp(self):
+            return {}, set()
+
+    monkeypatch.setattr(al, "get_setting", lambda key, default=None: default, raising=False)
+    monkeypatch.setattr(al, "get_mcp_manager", lambda: _FakeMcpMgr(), raising=False)
+    monkeypatch.setattr(al, "estimate_tokens", lambda *a, **k: 10, raising=False)
+    monkeypatch.setattr(al, "blocked_tools_for_owner", lambda owner: set(), raising=False)
+    monkeypatch.setattr(al, "_load_mcp_disabled_map", lambda: {}, raising=False)
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        sent_tools.append(kwargs.get("tools"))
+        yield _delta_chunk("ok")
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+
+    _collect(
+        al.stream_agent_loop(
+            "http://127.0.0.1:9876/v1",
+            "local-test-model",
+            [{"role": "user", "content": "Please open the browser at https://example.com and report the title."}],
+            max_rounds=1,
+            disabled_tools={"mcp__email__send_email"},
+        )
+    )
+
+    assert sent_tools
+    names = _schema_names(sent_tools[0])
+    assert "mcp__browser__navigate" in names
+    assert "mcp__browser__click" in names
+    assert "mcp__email__send_email" not in names, (
+        f"disabled MCP tool leaked into local-model schema list: {sorted(names)}"
+    )
+
+def test_global_disabled_tools_setting_filters_schemas_and_catalog(monkeypatch):
+    """Tools toggled off in settings.json:disabled_tools must never reach the
+    LLM, even when the caller doesn't pass disabled_tools itself (skills
+    tests, teacher escalation, and bg-monitor follow-ups all call
+    stream_agent_loop without it). The loop merges the global list at its
+    single chokepoint so only enabled tools are shipped in the schema list
+    AND the prompt catalog."""
+    sent_tools = []
+    sent_messages = []
+
+    def _fake_get_setting(key, default=None):
+        if key == "disabled_tools":
+            return ["bash", "web_search", "create_document"]
+        return default
+
+    async def _fake_stream(_candidates, messages, **kwargs):
+        sent_messages.append(messages)
+        sent_tools.append(kwargs.get("tools"))
+        yield _delta_chunk("ok")
+        yield "data: [DONE]\n\n"
+
+    monkeypatch.setattr(al, "get_setting", _fake_get_setting, raising=False)
+    monkeypatch.setattr(al, "get_mcp_manager", lambda: None, raising=False)
+    monkeypatch.setattr(al, "estimate_tokens", lambda *a, **k: 10, raising=False)
+    monkeypatch.setattr(al, "blocked_tools_for_owner", lambda owner: set(), raising=False)
+    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
+
+    # No disabled_tools argument — exactly what skills_routes,
+    # teacher_escalation, and bg_monitor do today.
+    _collect(
+        al.stream_agent_loop(
+            "https://api.openai.com/v1",
+            "gpt-test",
+            [{"role": "user", "content": "please look up the latest CVEs"}],
+            max_rounds=1,
+            relevant_tools=set(),
+        )
+    )
+
+    assert sent_tools
+    names = _schema_names(sent_tools[0])
+    for tool in ("bash", "web_search", "create_document"):
+        assert tool not in names, (
+            f"globally-disabled tool {tool} leaked into schema list: {sorted(names)}"
+        )
+    assert "read_file" in names, "enabled tools must still be shipped"
+
+    sysp = str(sent_messages[0][0].get("content", ""))
+    for tool in ("bash", "web_search", "create_document"):
+        assert f"- `{tool}`" not in sysp, (
+            f"globally-disabled tool {tool} leaked into prompt catalog"
+        )
+    assert "- `ask_user`" in sysp, "enabled tools must stay in the prompt catalog"

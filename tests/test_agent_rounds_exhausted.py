@@ -682,83 +682,64 @@ def test_notes_definition_question_suppresses_bad_notes_tool_call(monkeypatch):
     assert "written or sounded pitch" in final["content"]
 
 
-def test_emits_intent_nudge_exhausted_when_cap_is_exhausted(monkeypatch):
+def test_intent_without_action_is_flagged_not_nudged_or_killed(monkeypatch):
+    """2026-10-31: the intent-without-action guard is PASSIVE. It must not
+    emit intent_nudge_exhausted, must not burn rounds re-asking the model,
+    and must flag the message instead (visible ⚠ note + metrics flag)."""
     _patch_common(monkeypatch)
 
     events = _run_loop(monkeypatch, "Let me check the logs", max_rounds=5)
 
-    guard = next((e for e in events if e.get("type") == "intent_nudge_exhausted"), None)
-    assert guard is not None, events
-    assert guard["reason"] == "intent_without_action_nudge_cap"
-    assert guard["nudges"] == 2
-
-
-def test_try_different_search_gets_intent_followthrough_nudges(monkeypatch):
-    _patch_common(monkeypatch)
-
-    events = _run_loop(
-        monkeypatch,
-        "Let me try a different search approach to find the official sources.",
-        max_rounds=5,
-    )
-
-    guard = next(
-        (event for event in events if event.get("type") == "intent_nudge_exhausted"),
-        None,
-    )
-    assert guard is not None, events
-
-
-def test_need_to_scan_gets_intent_followthrough_nudges(monkeypatch):
-    _patch_common(monkeypatch)
-
-    events = _run_loop(
-        monkeypatch,
-        "I need to scan through the video more carefully.",
-        max_rounds=5,
-    )
-
+    assert not any(e.get("type") == "intent_nudge_exhausted" for e in events), events
+    assert not any(e.get("type") == "rounds_exhausted" for e in events), events
+    assert any("⚠" in (e.get("delta") or "") for e in events), events
     assert any(
-        event.get("type") == "intent_nudge_exhausted" for event in events
+        e.get("type") == "metrics" and e.get("data", {}).get("tool_claims_unverified")
+        for e in events
     ), events
 
 
-def test_unattended_intent_nudge_cap_forces_final_answer(monkeypatch):
+def test_hallucinated_work_log_with_zero_tools_is_flagged(monkeypatch):
+    """A work-log narration with zero tools run is still flagged (passively)."""
     _patch_common(monkeypatch)
-    seen = []
+
+    events = _run_loop(
+        monkeypatch,
+        "Updating the tally, then batch 8. Applied the edits and saved the file.",
+        max_rounds=5,
+    )
+    assert any("⚠" in (e.get("delta") or "") for e in events), events
+    assert not any(e.get("type") == "intent_nudge_exhausted" for e in events), events
+
+
+def test_wrap_up_summary_after_real_tools_is_not_flagged(monkeypatch):
+    """Corroborated wrap-up summary (tools ran earlier + conclusion language)
+    is the model FINISHING — not flagged, not nudged, not killed.
+    Regression for specimen 6c157fb3 (rounds 27-29 re-written summaries)."""
+    _patch_common(monkeypatch)
+
+    rounds = iter([
+        '```update_plan\n{"plan":"- [ ] fix the popup"}\n```',
+        "Fixed and verified — all done. No restart needed, just reload the page.",
+    ])
 
     async def _fake_stream(_candidates, messages, **kwargs):
-        seen.append(messages)
-        if len(seen) == 1:
-            yield "data: " + json.dumps({"type": "tool_calls", "calls": [{
-                "id": "inspect-1", "name": "inspect_media",
-                "arguments": json.dumps({"path": "/workspace/video.mp4"}),
-            }]}) + "\n\n"
-        elif any(
-            "No user is available" in str(message.get("content") or "")
-            for message in messages
-        ):
-            yield 'data: {"delta":"Best-supported answer: seven points were visible."}\n\n'
-        else:
-            yield 'data: {"delta":"I will analyze the remaining points."}\n\n'
+        yield f'data: {json.dumps({"delta": next(rounds)})}\n\n'
         yield "data: [DONE]\n\n"
 
     monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-    events = _types(_collect(al.stream_agent_loop(
+    gen = al.stream_agent_loop(
         "http://x/v1", "m",
-        [{"role": "user", "content": "Inspect /workspace/video.mp4 and count the points."}],
-        max_rounds=7,
-        relevant_tools={"inspect_media"},
-        workspace="/workspace",
-        client_runtime_context={
-            "surface": "odysseus-native",
-            "terminal_agent": True,
-            "unattended_mode": True,
-        },
-    )))
-
-    assert not any(e.get("type") == "intent_nudge_exhausted" for e in events)
-    assert any("seven points" in str(e.get("delta") or "") for e in events)
+        [{"role": "user", "content": "fix the thinking popup in the chat box"}],
+        max_rounds=5,
+        relevant_tools={"bash"},
+    )
+    events = _types(_collect(gen))
+    assert not any("⚠" in (e.get("delta") or "") for e in events), events
+    assert not any(
+        e.get("type") == "metrics" and e.get("data", {}).get("tool_claims_unverified")
+        for e in events
+    ), events
 
 
 def test_unattended_force_answer_rejects_long_planning_tail(monkeypatch):
@@ -2329,92 +2310,6 @@ def test_media_artifact_recovery_allows_bounded_source_inspection_before_mutatio
     assert not any(event.get("type") == "rounds_exhausted" for event in events)
 
 
-def test_terminal_action_promise_is_not_treated_as_completion(monkeypatch):
-    _patch_common(monkeypatch)
-    monkeypatch.setattr(al, "blocked_tools_for_owner", lambda _owner: set())
-    requests = []
-    writes = []
-
-    async def _fake_exec(block, *args, **kwargs):
-        if block.tool_type == "write_file":
-            writes.append(block.content)
-            return ("write_file", {"output": "created report.md", "exit_code": 0})
-        return (block.tool_type, {"output": "ok", "exit_code": 0})
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        requests.append(messages)
-        if len(requests) == 1:
-            yield 'data: {"delta":"I need to inspect the files first."}\n\n'
-        elif not writes:
-            yield 'data: {"delta":"```write_file\\n/tmp_workspace/report.md\\ncomplete report\\n```"}\n\n'
-        else:
-            yield 'data: {"delta":"Completed the requested report."}\n\n'
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "execute_tool_block", _fake_exec, raising=False)
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    events = _types(_collect(al.stream_agent_loop(
-        "http://127.0.0.1:18080/v1",
-        "qwen35-9b-policy-test",
-        [{"role": "user", "content": "Create the requested report."}],
-        max_rounds=5,
-        relevant_tools={"write_file"},
-        forced_tools={"write_file"},
-        workspace="/tmp_workspace",
-        owner="admin",
-        force_textual_tool_transport=True,
-        client_runtime_context={
-            "surface": "external-agent",
-            "terminal_agent": True,
-            "artifact_recovery_enabled": True,
-            "completion_requirements": {
-                "required_artifacts": ["/tmp_workspace/report.md"],
-            },
-        },
-    )))
-
-    assert writes == ["/tmp_workspace/report.md\ncomplete report"]
-    assert any(event.get("type") == "agent_step" for event in events)
-    assert not any(event.get("type") == "completion_blocked" for event in events)
-
-
-def test_terminal_create_promise_gets_one_continuation(monkeypatch):
-    _patch_common(monkeypatch)
-    requests = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        requests.append(messages)
-        if len(requests) == 1:
-            yield 'data: {"delta":"Let me create a Python script to do this."}\n\n'
-        else:
-            yield 'data: {"delta":"The calculation is complete: 42."}\n\n'
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    _collect(al.stream_agent_loop(
-        "http://127.0.0.1:18080/v1",
-        "qwen35-9b-policy-test",
-        [{"role": "user", "content": "Use Python to calculate the requested value."}],
-        max_rounds=3,
-        relevant_tools={"python"},
-        forced_tools={"python"},
-        workspace="/workspace",
-        owner="admin",
-        client_runtime_context={
-            "surface": "odysseus-native",
-            "terminal_agent": True,
-        },
-    ))
-
-    assert len(requests) == 2
-    assert any(
-        "DO IT NOW" in str(message.get("content") or "")
-        for message in requests[1]
-    )
-
-
 def test_long_terminal_action_promise_gets_one_media_continuation(monkeypatch):
     _patch_common(monkeypatch)
     requests = []
@@ -2599,39 +2494,6 @@ def test_ill_need_to_examine_terminal_promise_gets_media_continuation(monkeypatc
     assert len(requests) == 3
 
 
-def test_refine_search_terminal_promise_gets_continuation(monkeypatch):
-    _patch_common(monkeypatch)
-    requests = []
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        requests.append(messages)
-        text = (
-            "The first results discuss an unrelated meaning of the term. "
-            "Let me refine my search queries to find the relevant sources."
-            if len(requests) == 1
-            else "The relevant sources confirm the requested publication status."
-        )
-        yield "data: " + json.dumps({"delta": text}) + "\n\n"
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-    _types(_collect(al.stream_agent_loop(
-        "http://127.0.0.1:18080/v1",
-        "qwen35-9b-policy-test",
-        [{"role": "user", "content": "Research the publication status."}],
-        max_rounds=3,
-        relevant_tools={"web_search"},
-        forced_tools={"web_search"},
-        owner="admin",
-        client_runtime_context={
-            "surface": "odysseus-native",
-            "terminal_agent": True,
-        },
-    )))
-
-    assert len(requests) == 2
-
-
 def test_long_media_answer_without_tool_evidence_is_not_accepted(monkeypatch):
     _patch_common(monkeypatch)
     requests = []
@@ -2716,75 +2578,6 @@ def test_long_dangling_answer_colon_gets_one_continuation(monkeypatch):
     ))
 
     assert len(requests) == 2
-
-
-def test_long_announced_answer_without_answer_gets_one_continuation(monkeypatch):
-    _patch_common(monkeypatch)
-    requests = []
-    executed = []
-
-    async def _fake_exec(block, *args, **kwargs):
-        executed.append(block)
-        return block.tool_type, {
-            "output": "Focused source evidence was collected.",
-            "exit_code": 0,
-        }
-
-    async def _fake_stream(_candidates, messages, **kwargs):
-        requests.append(messages)
-        if len(requests) == 1:
-            yield "data: " + json.dumps({
-                "type": "tool_calls",
-                "calls": [{
-                    "id": "inspect-answer-promise",
-                    "name": "inspect_media",
-                    "arguments": json.dumps({
-                        "path": "/workspace/source.mp4",
-                        "frames": 8,
-                    }),
-                }],
-            }) + "\n\n"
-        elif len(requests) == 2:
-            yield "data: " + json.dumps({
-                "delta": (
-                    "The sampled frames show a single object near the center of the scene. "
-                    "Its narrow wheels, triangular frame, handlebars, and saddle are visible "
-                    "across several angles. One view is partly occluded, but another clearly "
-                    "shows the red frame and both wheels. The available visual evidence is "
-                    "consistent enough to identify the object without another inspection. "
-                    "I will provide the answer based on the current evidence."
-                ),
-            }) + "\n\n"
-        else:
-            yield 'data: {"delta":"The best-supported identification is a red bicycle."}\n\n'
-        yield "data: [DONE]\n\n"
-
-    monkeypatch.setattr(al, "execute_tool_block", _fake_exec, raising=False)
-    monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-
-    _collect(al.stream_agent_loop(
-        "http://127.0.0.1:18080/v1",
-        "qwen35-9b-policy-test",
-        [{"role": "user", "content": "Inspect /workspace/source.mp4 and identify the visible object."}],
-        max_rounds=3,
-        relevant_tools={"inspect_media"},
-        forced_tools={"inspect_media"},
-        workspace="/workspace",
-        owner="admin",
-        client_runtime_context={
-            "surface": "odysseus-native",
-            "terminal_agent": True,
-            "loaded_files": [{"path": "/workspace/source.mp4"}],
-        },
-    ))
-
-    assert len(executed) == 1
-    assert len(requests) == 3
-    recovery_messages = [str(message.get("content") or "") for message in requests[2]]
-    assert any(
-        "Give the concise final answer now" in str(message.get("content") or "")
-        for message in requests[2]
-    ), "\n---\n".join(recovery_messages[-8:])
 
 
 def test_repeated_artifact_redirect_uses_bounded_body_handoff(monkeypatch):

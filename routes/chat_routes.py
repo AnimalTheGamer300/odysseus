@@ -23,6 +23,7 @@ from src.llm_core import (
     llm_call_async_with_route_fallback,
     stream_llm,
     stream_llm_with_fallback,
+    set_request_reasoning,
 )
 from src.agent_loop import (
     stream_agent_loop,
@@ -1441,6 +1442,162 @@ def _stream_set(session_id: str, **fields) -> None:
     rec.update(fields)
 
 
+def _persist_stream_partial(
+    sess,
+    session_manager,
+    session_id: str,
+    full_response: str,
+    thinking_response: str,
+    *,
+    model: str = "",
+    requested_model: str = "",
+    extra: dict | None = None,
+    draft_id: str | None = None,
+    tool_events: list | None = None,
+    round_texts: list | None = None,
+    continue_assistant: bool = False,
+) -> bool:
+    """Persist a partial assistant response (client disconnect / stream error).
+
+    Single save path for every "turn didn't finish" branch so they can't
+    drift (2026-08-08 sync audit):
+    - streamed reasoning deltas are preserved in metadata["thinking"] so the
+      live think bubble survives refresh (previously dropped — a mid-reasoning
+      disconnect lost the box on reload);
+    - a reasoning-only partial (no reply text yet) still persists so the turn
+      can't vanish from the DB;
+    - `stopped: True` rides along so chatRenderer's refresh rebuild shows the
+      "[Message interrupted]" + Continue affordance.
+    - tool_events/round_texts (agent mode) are preserved so a stopped agent
+      turn keeps the tool calls that already executed instead of saving
+      narration-without-calls — which both rendered as one glued blob and
+      taught the next model a fabricated house style (2026-10-11
+      defenestration fix).
+    When a checkpointed draft row exists (draft_id), it is promoted IN PLACE
+    so the partial keeps the id the frontend stamped via draft_saved and no
+    duplicate row appears (2026-08-08 draft-checkpoint audit).
+    Returns True when a row was saved.
+    """
+    # (2026-11-01) A turn stopped right after a tool executed — before any
+    # reply text or reasoning streamed — must still persist: the executed
+    # tool_events/round_texts are the only record of that work. Empty-content
+    # row + tool_events metadata renders fine (multi-bubble tool thread).
+    if not (full_response or (thinking_response or "").strip() or tool_events or round_texts):
+        return False
+    md = {
+        "stopped": True,
+        "model": model or requested_model,
+        "requested_model": requested_model,
+    }
+    if extra:
+        md.update(extra)
+    if tool_events:
+        md["tool_events"] = list(tool_events)
+    if round_texts:
+        md["round_texts"] = list(round_texts)
+    thinking = (thinking_response or "").strip()
+    if thinking:
+        md["thinking"] = thinking
+    content, md = clean_thinking_for_save(full_response, md)
+    if continue_assistant:
+        # (2026-10-30) Prefill turn cut off: append the partial to the SAME
+        # assistant row, keeping stopped:True so refresh still offers Continue.
+        _merged = session_manager.append_to_last_assistant(session_id, content, md)
+        if _merged:
+            session_manager.save_sessions()
+            return True
+        # No eligible row — fall through to the normal partial save.
+    if draft_id:
+        session_manager.promote_draft(
+            session_id, draft_id, ChatMessage("assistant", content, metadata=md)
+        )
+    else:
+        sess.add_message(ChatMessage("assistant", content, metadata=md))
+    session_manager.save_sessions()
+    return True
+
+
+def _persist_continue_separator(sess, session_manager, session_id: str) -> bool:
+    """Persist a synthetic odysseus_continue tool event on the stopped assistant row.
+
+    (2026-11-01) Agent-mode Continue after a mid-stream error used to leave the
+    stopped assistant row glued directly to the resumed generation — two adjacent
+    assistant messages in both the UI and the model context. Persisting the event
+    in metadata.tool_events means the frontend renders it through the normal
+    tool-event path (no special UI code) and native replay turns it into a tool
+    pair on every subsequent request. Idempotent: no-op if already present.
+    """
+    try:
+        from src.tool_replay import build_continue_separator_event, CONTINUE_SEPARATOR_TOOL
+        hist = getattr(sess, "history", None) or []
+        last = None
+        for m in reversed(hist):
+            if getattr(m, "role", None) == "assistant" and not (getattr(m, "metadata", None) or {}).get("archived"):
+                last = m
+                break
+        if last is None or not isinstance(getattr(last, "content", None), str):
+            return False
+        md = dict(last.metadata or {})
+        events = [e for e in (md.get("tool_events") or []) if isinstance(e, dict)]
+        if any(str(e.get("tool") or "") == CONTINUE_SEPARATOR_TOOL for e in events):
+            return False  # already persisted
+        rounds = [e["round"] for e in events if isinstance(e.get("round"), int)]
+        events.append(build_continue_separator_event(round_num=(max(rounds) + 1) if rounds else 1))
+        merged = session_manager.append_to_last_assistant(session_id, "", {"tool_events": events})
+        if merged:
+            session_manager.save_sessions()
+            return True
+        return False
+    except Exception:
+        logger.debug("persist continue separator failed", exc_info=True)
+        return False
+
+
+def _sink_tool_state(sink: dict | None) -> tuple[list, list]:
+    """Snapshot (tool_events, round_texts) from the agent loop's partial_sink.
+
+    The in-flight round's raw partial text is appended to round_texts so the
+    rebuilt stopped turn also shows what the model was writing when it was
+    cut off. Returns ([], []) when the sink is empty (chat mode, or a stop
+    before the loop published its handles).
+    """
+    if not sink:
+        return [], []
+    events = list(sink.get("tool_events") or [])
+    texts = list(sink.get("round_texts") or [])
+    current = (sink.get("current_round_text") or "").strip()
+    if current:
+        texts.append(current)
+    return events, texts
+
+
+def _checkpoint_draft(
+    session_manager,
+    session_id: str,
+    draft_id: str | None,
+    content: str,
+    metadata: dict,
+) -> str | None:
+    """Create or update the checkpointed draft row for an in-flight turn.
+
+    DB-only — the draft is never appended to in-memory history until it is
+    promoted/finalized, so the model's context never sees half-written
+    replies. Returns the (possibly new) draft row id, or None when the
+    session is gone (create soft-drop).
+    """
+    create = getattr(session_manager, "create_draft", None)
+    if create is None:
+        # session_manager without draft support (upstream-generation mocks,
+        # stripped builds): soft-drop checkpointing, stream continues.
+        return None
+    if draft_id is None:
+        return create(session_id, content, metadata)
+    if not session_manager.update_draft(session_id, draft_id, content, metadata):
+        # Draft row vanished (deleted mid-stream?) — start a fresh one.
+        return session_manager.create_draft(session_id, content, metadata)
+    return draft_id
+
+
 def _message_plain_text(content: Any) -> str:
     if isinstance(content, list):
         parts: List[str] = []
@@ -2267,6 +2424,9 @@ def setup_chat_routes(
         time_filter = chat_request.time_filter
         preset_id = chat_request.preset_id
         thinking_mode = None
+        # Per-request reasoning override from the chat-box thinking control.
+        # ContextVar: scoped to this request's task, no cross-request leak.
+        set_request_reasoning(getattr(chat_request, "reasoning_effort", None))
 
         # Verify the caller owns this session before loading it.
         # Without this, any authenticated user can post into another user's chat.
@@ -2525,6 +2685,7 @@ def setup_chat_routes(
         incognito = str(form_data.get("incognito", "")).lower() == "true"
         plan_mode = str(form_data.get("plan_mode") or (body or {}).get("plan_mode") or "").lower() == "true"
         chat_mode = str(form_data.get("mode", "")).lower()  # 'chat' or 'agent'
+
         client_runtime_context = None
         raw_client_runtime_context = (
             form_data.get("client_runtime_context")
@@ -2541,6 +2702,11 @@ def setup_chat_routes(
                     client_runtime_context = _parse_client_runtime_context(parsed_client_runtime_context)
             except Exception:
                 client_runtime_context = {}
+        # Per-request reasoning override from the chat-box thinking control
+        # (form field, or JSON body for API callers). ContextVar-scoped to this
+        # request's task, so the streaming generator below inherits it.
+        reasoning_effort = form_data.get("reasoning_effort") or (body or {}).get("reasoning_effort")
+        set_request_reasoning(reasoning_effort)
         tool_approval_id = (
             form_data.get("tool_approval_id")
             or (body or {}).get("tool_approval_id")
@@ -2688,10 +2854,27 @@ def setup_chat_routes(
             chat_mode = "agent"
             auto_escalated = True
             logger.info("chat→agent auto-escalation: explicit web intent")
+
         elif chat_mode == "chat" and _explicit_private_browser_intent:
             chat_mode = "agent"
             auto_escalated = True
             logger.info("chat→agent auto-escalation: explicit private browser workflow")
+        # Continue-prefill (2026-10-30): the Continue button sends an EMPTY
+        # message with this flag — the model's own partial reply stays as the
+        # trailing assistant message and the provider just continues it (same
+        # turn, no handshake user message). Parsed here, after ALL chat_mode
+        # overrides, because it is first used in coerce_message_and_session
+        # below — assigning it later raised UnboundLocalError (2026-10-30).
+        # Continue/resume (2026-10-31): the Continue button sends an EMPTY
+        # message with this flag — no user row is persisted. Chat mode: the
+        # model's own partial reply stays as the trailing assistant message
+        # (text prefill). Agent mode: the agent loop resumes on the replayed
+        # tool-call/result tail (native tool-event replay), so tools keep
+        # working after a mid-turn 504/429. `continue_prefill` gates the
+        # same-row merge to chat mode only — agent rounds persist as their
+        # own rows with tool_events/round_texts.
+        continue_assistant = str(form_data.get("continue_assistant", "")).lower() == "true"
+        continue_prefill = continue_assistant and chat_mode == "chat"
         active_doc_id = form_data.get("active_doc_id", "").strip()
         active_doc_state = form_data.get("active_doc_state", "").strip().casefold()
         # Scoped photo_editor agent context: the Quick Edit popup (and any
@@ -2784,12 +2967,13 @@ def setup_chat_routes(
             )
             message, session = coerce_message_and_session(
                 body, message, session, session_manager,
-                allow_empty=(_has_atts or bool(tool_approval_id)),
+                allow_empty=(_has_atts or bool(tool_approval_id) or continue_assistant),
             )
             # Verify ownership AFTER coerce (which may resolve a default session)
             # but BEFORE loading. Prevents cross-user session hijack.
             _verify_session_owner(request, session)
             sess = session_manager.get_session(session)
+
             session_mode = str(getattr(sess, "thinking_mode", "") or "off").lower()
             # An explicit request-scoped mode (headless eval, API client, or
             # UI override) wins over the persisted session default. The old
@@ -2816,6 +3000,12 @@ def setup_chat_routes(
                 current_workspace=workspace,
                 current_rejected=workspace_rejected,
             )
+            # (2026-11-01) Agent-mode Continue: persist the synthetic
+            # odysseus_continue tool event on the stopped assistant row so the
+            # UI and every future model request show a tool boundary between
+            # the interrupted reply and the resumed generation.
+            if continue_assistant and chat_mode == "agent":
+                _persist_continue_separator(sess, session_manager, session)
             owner = effective_user(request)
             selected_notes = []
             if selected_note_ids:
@@ -3054,6 +3244,12 @@ def setup_chat_routes(
 
         image_generation_session = _is_image_generation_session(sess, owner=effective_user(request))
         no_memory = str(form_data.get("no_memory", "")).lower() == "true"
+        # Regenerate flow: the user message row was kept by the truncate
+        # (keep_through_id) — build_chat_context must reuse it instead of
+        # persisting a new row (2026-08-08, see changelog).
+        reuse_last_user = str(form_data.get("reuse_last_user", "")).lower() == "true"
+        # continue_assistant is parsed up top (right after the chat_mode
+        # overrides) — it is used before this point in coerce_message_and_session.
         if image_generation_session:
             no_memory = True
             use_rag = "false"
@@ -3121,6 +3317,7 @@ def setup_chat_routes(
             # index would be useless / unwanted noise.
             agent_mode=(chat_mode == "agent"),
             allow_tool_preprocessing=allow_tool_preprocessing,
+            reuse_last_user=reuse_last_user,
             defer_context_shaping=foreground_policy.enabled,
             continuation_context_message=(
                 pending_tool_approval.continuation_query
@@ -3129,10 +3326,11 @@ def setup_chat_routes(
                 and pending_tool_approval.continuation_query
                 else None
             ),
-            persist_user_message=not tool_approval_continuation and not is_internal_tool_request(request),
+            persist_user_message=not tool_approval_continuation and not is_internal_tool_request(request) and not continue_assistant,
             context_resolution=_compact_context_resolution,
             interaction_mode=chat_mode,
             auto_escalated=auto_escalated,
+            continue_assistant=continue_assistant,
         )
         if is_internal_tool_request(request):
             _append_internal_chat_context(ctx, message)
@@ -3439,51 +3637,13 @@ def setup_chat_routes(
             allow_web_search = "true"
         if is_web_search_explicitly_denied(allow_web_search) or not _search_enabled:
             disabled_tools.update(WEB_TOOL_NAMES)
-            if not _explicit_browser_intent:
-                disabled_tools.add("youtube_tool")
-            if not (_explicit_browser_intent or _local_browser_render_intent):
-                disabled_tools.add("private_browser")
-        if _exact_url_fetch_intent:
-            # A pasted URL grants only the exact-target reader. Keep broad
-            # search and interactive browsing behind their normal toggles.
-            disabled_tools.discard("web_fetch")
-        if (
-            _explicit_web_intent
-            and not _use_turn_contract
-            and _effective_tool_schema_mode != "full"
-        ):
-            # A direct lookup/search request should not drift into personal
-            # tools or shell fallbacks. A combined web+workspace deliverable
-            # is the exception: it still needs native file/Python tools after
-            # gathering evidence from the web.
-            disabled_tools.update({
-                "search_chats", "manage_skills", "manage_memory",
-                "create_document", "edit_document", "update_document",
-                "send_email", "reply_to_email",
-                "manage_notes", "manage_calendar", "manage_tasks",
-                "api_call",
-            })
-            _web_workspace_output = bool(
-                workspace
-                and isinstance(message, str)
-                and re.search(r"(?:^|\s)/workspace/[^\s]+", message)
-                and re.search(
-                    r"(?:\b(?:create|generate|save|write|render|export|produce|build|make)\b|"
-                    r"创建|生成|保存|写入|制作|截取|剪辑|拼接|导出)",
-                    message,
-                    re.IGNORECASE,
-                )
-            )
-            if not _web_workspace_output:
-                disabled_tools.update({
-                    "bash", "python", "read_file", "write_file", "edit_file",
-                })
-            if _search_enabled:
-                disabled_tools.difference_update(WEB_TOOL_NAMES)
-            else:
-                disabled_tools.update(WEB_TOOL_NAMES)
-        elif _search_enabled:
-            disabled_tools.difference_update(WEB_TOOL_NAMES)
+        # Web-intent tool strip removed 2026-08-07 (user directive): lookup
+        # turns keep EVERY enabled tool — the LLM is trusted not to drift,
+        # and dossier/memory/document work must stay possible mid-lookup.
+        # (Auto-escalation for web intent still applies above; RAG and
+        # intent-based tool gating are both disabled.)
+        # Web-tool availability is governed solely by the manual web toggle /
+        # search setting above (and the global disabled_tools list below).
 
         # Nobody/incognito mode: deny tools that would expose the user's
         # persistent memory, past chats, or other identity-linked data.
@@ -3916,6 +4076,13 @@ def setup_chat_routes(
             if not tool_approval_continuation:
                 yield f"data: {json.dumps({'type': 'turn_mode', 'mode': _effective_mode, 'auto_escalated': auto_escalated})}\n\n"
 
+            # The user message was persisted while the context was built; hand
+            # its DB id back immediately so the frontend can stamp the
+            # optimistic user bubble. Delete/regenerate target by exact id —
+            # no pair resolution, no re-send (2026-08-08, see changelog).
+            if getattr(ctx, "user_message_id", None):
+                yield f'data: {json.dumps({"type": "user_message_saved", "id": ctx.user_message_id})}\n\n'
+
             # The client sent a workspace the server refused to bind (deleted
             # folder, file path, sensitive dir, filesystem root). Tell it up
             # front so the UI can clear the pill instead of displaying a
@@ -4101,6 +4268,65 @@ def setup_chat_routes(
             _render_state = _AgentRenderState()
             thinking_response = ""
             last_metrics = None
+            # Turn-completion bookkeeping (2026-08-08 sync audit): _saw_done
+            # distinguishes "finished normally" from "stream ended without
+            # [DONE]"; _saved_this_turn stops a disconnect/error handler from
+            # double-saving when the [DONE] save already ran.
+            _saw_done = False
+            _saved_this_turn = False
+            # ── Progressive draft checkpoint (2026-08-08) ──
+            # The in-flight reply is checkpointed to a DB-only draft row
+            # every few seconds so a process death mid-turn loses nothing.
+            # _draft_meta is built once and reused (create_draft mutates it
+            # with timestamp + draft flag) so checkpoints stay consistent.
+            _draft_id: str | None = None
+            _draft_meta: dict | None = None
+            _last_ckpt = 0.0
+            # Live tool-state mirror published by the agent loop (agent mode
+            # only) so stopped/checkpointed turns keep executed tool calls
+            # instead of narration-without-calls (2026-10-11 defenestration fix).
+            _partial_sink: dict = {}
+
+            def _checkpoint():
+                """Throttled checkpoint of the in-flight reply. Returns the
+                draft row id when a NEW draft was created (caller emits the
+                draft_saved SSE event), else None."""
+                nonlocal _draft_id, _draft_meta, _last_ckpt
+                # (2026-10-30) Prefill continues skip draft checkpointing: the
+                # in-flight continuation merges into the existing assistant row
+                # on save/disconnect, so a separate draft row would duplicate it.
+                if _saw_done or incognito or continue_assistant:
+                    return None
+                _partial_chars = len(full_response) + len(thinking_response)
+                if not _partial_chars:
+                    return None
+                _now = time.monotonic()
+                # Early first checkpoint once there's real content (gives the
+                # bubble a row id fast), then a steady 4s cadence.
+                if _now - _last_ckpt < 4.0 and not (_draft_id is None and _partial_chars >= 150):
+                    return None
+                _last_ckpt = _now
+                if _draft_meta is None:
+                    _draft_meta = {
+                        "draft": True,
+                        "model": _actual_model or _answered_by or _requested_model,
+                        "requested_model": _requested_model,
+                    }
+                _think = thinking_response.strip()
+                if _think:
+                    _draft_meta["thinking"] = _think
+                elif "thinking" in _draft_meta:
+                    _draft_meta.pop("thinking", None)
+                _ev, _rt = _sink_tool_state(_partial_sink)
+                if _ev:
+                    _draft_meta["tool_events"] = _ev
+                if _rt:
+                    _draft_meta["round_texts"] = _rt
+                _new_id = _checkpoint_draft(session_manager, session, _draft_id, full_response, _draft_meta)
+                if _new_id and _new_id != _draft_id:
+                    _draft_id = _new_id
+                    return _new_id
+                return None
 
             # Foreground Chat and Agent requests share one explicit owner-aware
             # policy. Strict mode is the default; legacy values are unrelated.
@@ -4304,12 +4530,19 @@ def setup_chat_routes(
                                     # Forward them so the client can show a thinking
                                     # indicator, but don't fold them into the saved
                                     # reply (mirrors the rewrite path below).
-                                    if data.get("thinking"):
-                                        thinking_response += data["delta"]
+                                    if data.get("teacher"):
+                                        # Teacher takeover: separate turn streamed through this
+                                        # same SSE. Don't fold teacher deltas into the student's
+                                        # saved reply or thinking chunks - the teacher turn is
+                                        # saved as its own message downstream.
+                                        yield chunk
                                     else:
-                                        full_response += data["delta"]
-                                        _stream_set(session, partial=full_response)
-                                    yield chunk
+                                        if data.get("thinking"):
+                                            thinking_response += data["delta"]
+                                        else:
+                                            full_response += data["delta"]
+                                            _stream_set(session, partial=full_response)
+                                        yield chunk
                                 elif data.get("type") == "fallback":
                                     # Selected model failed; a fallback answered.
                                     # Forward the notice and remember the real model.
@@ -4389,6 +4622,11 @@ def setup_chat_routes(
                                         last_metrics["context_tokens_after_trim"] = ctx.context_tokens_after_trim
                                     if _actual_context_length and last_metrics.get("input_tokens"):
                                         pct = min(round((last_metrics["input_tokens"] / _actual_context_length) * 100, 1), 100.0)
+                                    elif ctx.context_length:
+                                        request_context_tokens = ctx.context_tokens_after_trim or estimate_tokens(messages)
+                                        last_metrics["request_context_tokens"] = request_context_tokens
+                                        if request_context_tokens:
+                                            pct = min(round((request_context_tokens / ctx.context_length) * 100, 1), 100.0)
                                         last_metrics["context_percent"] = pct
                                         last_metrics["context_length"] = _actual_context_length
                                     # The frontend reads `tokens_per_second`; the raw usage event
@@ -4489,6 +4727,7 @@ def setup_chat_routes(
                                     _terminal_metrics,
                                     character_name=ctx.preset.character_name,
                                     incognito=incognito,
+                                    continue_assistant=continue_prefill,
                                 )
                                 accumulate_token_usage(session, _terminal_metrics)
                                 _chat_terminal_saved = True
@@ -4508,6 +4747,7 @@ def setup_chat_routes(
                                 # never re-save/post-process it as a success or
                                 # advertise successful completion to the client.
                                 continue
+                            _saw_done = True
                             # Generate fallback metrics if LLM didn't send usage
                             if not last_metrics and full_response:
                                 _elapsed = time.time() - _chat_start
@@ -4576,40 +4816,126 @@ def setup_chat_routes(
                                     used_memories=ctx.used_memories,
                                     do_research=effective_do_research,
                                     incognito=incognito,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
                                 )
                                 if _saved_id:
                                     yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
+                                _saved_this_turn = True
                                 run_post_response_tasks(
                                     sess, session_manager, session, message, _response_to_save,
                                     _metrics_to_save, ctx.uprefs, memory_manager, memory_vector, webhook_manager,
                                     incognito=incognito, compare_mode=compare_mode,
                                     character_name=ctx.preset.character_name,
                                     owner=_user,
-                                    allow_background_extraction=_post_response_extraction_allowed(
-                                        tools_blocked=tool_policy.block_all_tool_calls,
-                                        tool_approval_continuation=tool_approval_continuation,
-                                        client_runtime_context=client_runtime_context,
+                                    allow_background_extraction=(
+                                        _post_response_extraction_allowed(
+                                            tools_blocked=tool_policy.block_all_tool_calls,
+                                            tool_approval_continuation=tool_approval_continuation,
+                                            client_runtime_context=client_runtime_context,
+                                        )
+                                        and not continue_assistant
                                     ),
                                 )
+                            elif not incognito:
+                                # Empty completion in chat mode: HTTP 200 with
+                                # zero text. Mirror the agent-branch handling
+                                # (2026-08-07) — persist something visible so
+                                # the turn can't vanish without a trace:
+                                # streamed reasoning if the model only emitted
+                                # that, otherwise a clear no-response marker.
+                                # Reasoning-only: content stays EMPTY — the
+                                # reasoning lives in metadata["thinking"] so
+                                # refresh renders exactly the live view (bubble
+                                # only). Saving it as content too double-
+                                # rendered the reasoning on reload (2026-08-08
+                                # sync audit).
+                                _empty_reply = "" if thinking_response.strip() else "_*The model returned an empty response — try again or switch models.*_"
+                                logger.warning(
+                                    "Empty chat completion for session %s — saving %s",
+                                    session,
+                                    "reasoning-only reply" if thinking_response.strip() else "no-response marker",
+                                )
+                                _metrics_to_save = dict(last_metrics or {})
+                                if thinking_response.strip() and not _metrics_to_save.get("thinking"):
+                                    _metrics_to_save["thinking"] = thinking_response.strip()
+                                _saved_id = save_assistant_response(
+                                    sess, session_manager, session, _empty_reply, _metrics_to_save,
+                                    character_name=ctx.preset.character_name,
+                                    web_sources=web_sources,
+                                    rag_sources=ctx.rag_sources,
+                                    research_sources=research_sources,
+                                    used_memories=ctx.used_memories,
+                                    do_research=effective_do_research,
+                                    incognito=incognito,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
+                                )
+                                if _saved_id:
+                                    yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
+                                _saved_this_turn = True
                             _stream_set(session, status="done")
                             yield chunk
-                except (asyncio.CancelledError, GeneratorExit):
-                    if full_response and not incognito:
-                        logger.info("Client disconnected mid-stream (chat mode) for session %s, saving partial (%d chars)", session, len(full_response))
-                        _stopped_content, _stopped_md = clean_thinking_for_save(
-                            full_response,
-                            {
-                                "stopped": True,
-                                "model": _actual_model or _answered_by or _requested_model,
-                                "requested_model": _requested_model,
-                                "endpoint_id": _actual_route.get("endpoint_id"),
-                                "endpoint_label": _actual_route.get("endpoint_label"),
-                                "requested_endpoint_id": _requested_route.get("endpoint_id"),
-                                "requested_endpoint_label": _requested_route.get("endpoint_label"),
-                            },
+                        # ── Draft checkpoint (2026-08-08) ── throttled write of
+                        # the in-flight reply so a process death mid-turn loses
+                        # nothing; first create emits draft_saved so the bubble
+                        # gets a row id early.
+                        _ckpt_id = _checkpoint()
+                        if _ckpt_id:
+                            yield f'data: {json.dumps({"type": "draft_saved", "id": _ckpt_id})}\n\n'
+                            _stream_set(session, partial=full_response, draft_id=_ckpt_id)
+                    # The stream ended WITHOUT [DONE] — provider error event,
+                    # silent close, etc. Persist what actually arrived so the
+                    # partial survives refresh instead of vanishing with the
+                    # connection (2026-08-08 sync audit).
+                    if not _saw_done and not _saved_this_turn and not incognito:
+                        logger.warning(
+                            "Chat stream for session %s ended without [DONE] — persisting partial (%d chars)",
+                            session, len(full_response),
                         )
-                        sess.add_message(ChatMessage("assistant", _stopped_content, metadata=_stopped_md))
-                        session_manager.save_sessions()
+                        try:
+                            _persist_stream_partial(
+                                sess, session_manager, session, full_response, thinking_response,
+                                model=_actual_model or _answered_by or _requested_model,
+                                requested_model=_requested_model,
+                                extra={"stream_error": "stream ended without completion"},
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
+                            )
+                        except Exception as _persist_err:
+                            logger.error("Failed to persist no-done partial for session %s: %s", session, _persist_err)
+                except (asyncio.CancelledError, GeneratorExit):
+                    # Client disconnected — save the partial (reply text AND
+                    # streamed reasoning, which was previously dropped so the
+                    # think bubble vanished on refresh; a reasoning-only
+                    # disconnect saved nothing at all). Never mask the original
+                    # disconnect with a persist failure.
+                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip()):
+                        logger.info("Client disconnected mid-stream (chat mode) for session %s, saving partial (%d chars)", session, len(full_response))
+                        try:
+                            _persist_stream_partial(
+                                sess, session_manager, session, full_response, thinking_response,
+                                model=_actual_model or _answered_by or _requested_model,
+                                requested_model=_requested_model,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
+                            )
+                        except Exception as _persist_err:
+                            logger.error("Failed to persist partial response for session %s: %s", session, _persist_err)
+                    raise
+                except Exception as _upstream_err:
+                    # Any other mid-stream failure (provider 5xx, transport
+                    # error, parse crash) — same partial-save guarantee, then
+                    # re-raise so the SSE terminates and the client shows the
+                    # error over the preserved partial.
+                    logger.warning("Chat stream error for session %s: %s", session, _upstream_err)
+                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip()):
+                        try:
+                            _persist_stream_partial(
+                                sess, session_manager, session, full_response, thinking_response,
+                                model=_actual_model or _answered_by or _requested_model,
+                                requested_model=_requested_model,
+                                extra={"stream_error": str(_upstream_err)[:300]},
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
+                            )
+                        except Exception as _persist_err:
+                            logger.error("Failed to persist error partial for session %s: %s", session, _persist_err)
                     raise
                 finally:
                     _active_streams.pop(session, None)
@@ -4690,6 +5016,19 @@ def setup_chat_routes(
                     if _turn_contract is not None:
                         _forced_tools = set(_turn_contract.offered)
 
+                    if continue_assistant:
+                        # (2026-11-01) Emit the persisted Continue separator as live
+                        # tool events so the frontend renders the odysseus_continue
+                        # node immediately (same path as real tools) instead of the
+                        # resumed reply looking like a bare bubble glued to the
+                        # stopped one until refresh. The event is also persisted in
+                        # the stopped row's metadata.tool_events, so the canonical
+                        # reload after the stream renders it from the DB.
+                        from src.tool_replay import CONTINUE_SEPARATOR_TOOL, CONTINUE_SEPARATOR_OUTPUT
+                        _sep_cmd = json.dumps({"note": "auto-generated by Odysseus for the Continue function"})
+                        yield f'data: {json.dumps({"type": "tool_start", "tool": CONTINUE_SEPARATOR_TOOL, "command": _sep_cmd, "full_command": _sep_cmd, "round": 0})}\n\n'
+                        yield f'data: {json.dumps({"type": "tool_output", "tool": CONTINUE_SEPARATOR_TOOL, "command": _sep_cmd, "output": CONTINUE_SEPARATOR_OUTPUT, "exit_code": 0})}\n\n'
+
                     async for chunk in _stream_agent_with_execution_bridge(
                         _external_execution_bridge(client_runtime_context),
                         sess.endpoint_url,
@@ -4728,6 +5067,7 @@ def setup_chat_routes(
                         turn_contract=_turn_contract,
                         request_authority=_request_authority,
                         uploaded_files=ctx.uploaded_files,
+                        partial_sink=_partial_sink,
                         defer_context_shaping=_foreground_policy.enabled,
                         external_untrusted_context_seen=external_untrusted_context_seen,
                         delegated_credential=_delegated_credential,
@@ -4747,9 +5087,14 @@ def setup_chat_routes(
                                     # Reasoning tokens arrive flagged thinking:true.
                                     # Forward them for the live indicator, but keep
                                     # them out of the saved reply (same as chat mode).
-                                    if data.get("thinking"):
-                                        thinking_response += data["delta"]
+                                    if data.get("teacher"):
+                                        # Teacher takeover: separate turn streamed through this
+                                        # same SSE. Don't fold teacher deltas into the student's
+                                        # saved reply or thinking chunks - the teacher turn is
+                                        # saved as its own message downstream.
+                                        yield chunk
                                     else:
+
                                         full_response = _render_state.content
                                         _stream_set(session, partial=full_response)
                                     yield chunk
@@ -4956,6 +5301,7 @@ def setup_chat_routes(
                         elif chunk.startswith("event: "):
                             yield chunk
                         elif chunk == "data: [DONE]\n\n":
+                            _saw_done = True
                             _has_tool_events = bool((last_metrics or {}).get("tool_events"))
                             if not _terminal_saved and (full_response or _has_tool_events):
                                 _metrics_to_save = _render_state.metadata(last_metrics)
@@ -4989,9 +5335,11 @@ def setup_chat_routes(
                                     rag_sources=ctx.rag_sources,
                                     used_memories=ctx.used_memories,
                                     incognito=incognito,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
                                 )
                                 if _saved_id:
                                     yield f'data: {json.dumps(_render_state.message_saved(_saved_id))}\n\n'
+                                    _saved_this_turn = True
                                 run_post_response_tasks(
                                     sess, session_manager, session, message, _response_to_save,
                                     _metrics_to_save, ctx.uprefs, memory_manager, memory_vector, webhook_manager,
@@ -5005,52 +5353,126 @@ def setup_chat_routes(
                                         user_requested_agent
                                         and not tool_approval_continuation
                                     ),
-                                    allow_background_extraction=_post_response_extraction_allowed(
-                                        tools_blocked=tool_policy.block_all_tool_calls,
-                                        tool_approval_continuation=tool_approval_continuation,
-                                        client_runtime_context=client_runtime_context,
+                                    allow_background_extraction=(
+                                        _post_response_extraction_allowed(
+                                            tools_blocked=tool_policy.block_all_tool_calls,
+                                            tool_approval_continuation=tool_approval_continuation,
+                                            client_runtime_context=client_runtime_context,
+                                        )
+                                        and not continue_assistant
                                     ),
                                 )
+                            elif not incognito:
+                                # Empty completion: HTTP 200 with zero text and
+                                # zero tool calls (opencode returned nothing).
+                                # Previously the turn vanished silently — no
+                                # reply row, no error, no retry (2026-08-07
+                                # "Update:" turn in Turn Nuke Hunt). Persist
+                                # something visible so it can't disappear:
+                                # streamed reasoning if the model only emitted
+                                # that, otherwise a clear no-response marker.
+                                # Reasoning-only: content stays EMPTY — the
+                                # reasoning lives in metadata["thinking"] so
+                                # refresh renders exactly the live view (bubble
+                                # only), no double render (2026-08-08 sync audit).
+                                _empty_reply = "" if thinking_response.strip() else "_*The model returned an empty response — try again or switch models.*_"
+                                logger.warning(
+                                    "Empty agent completion for session %s — saving %s",
+                                    session,
+                                    "reasoning-only reply" if thinking_response.strip() else "no-response marker",
+                                )
+                                _metrics_to_save = dict(last_metrics or {})
+                                if thinking_response.strip() and not _metrics_to_save.get("thinking"):
+                                    _metrics_to_save["thinking"] = thinking_response.strip()
+                                _saved_id = save_assistant_response(
+                                    sess, session_manager, session, _empty_reply, _metrics_to_save,
+                                    character_name=ctx.preset.character_name,
+                                    web_sources=web_sources,
+                                    rag_sources=ctx.rag_sources,
+                                    used_memories=ctx.used_memories,
+                                    incognito=incognito,
+                                    continue_assistant=continue_prefill, draft_id=_draft_id,
+                                )
+                                if _saved_id:
+                                    yield f'data: {json.dumps({"type": "message_saved", "id": _saved_id})}\n\n'
+                                _saved_this_turn = True
                             _stream_set(session, status="done")
                             yield chunk
-                except (asyncio.CancelledError, GeneratorExit):
-                    # Client disconnected — save partial response. Wrap
-                    # the save in its own try so an exception inside
-                    # add_message / save_sessions doesn't mask the
-                    # original CancelledError (which prevented the
-                    # outer finally from running and left _active_streams
-                    # with a stale entry).
-                    try:
-                        if full_response and not incognito:
-                            logger.info("Client disconnected mid-stream for session %s, saving partial response (%d chars)", session, len(full_response))
-                            _stopped_content2, _stopped_md2 = clean_thinking_for_save(
-                                full_response,
-                                {
-                                    "stopped": True,
-                                    "model": _actual_model or _answered_by or _requested_model,
-                                    "requested_model": _requested_model,
-                                    "endpoint_id": _agent_actual_endpoint_id,
-                                    "endpoint_label": _agent_actual_endpoint_label,
-                                    "requested_endpoint_id": _agent_requested_route.get("endpoint_id"),
-                                    "requested_endpoint_label": _agent_requested_route.get("endpoint_label"),
-                                    "round_models": [
-                                        _agent_round_models.get(i, _actual_model or _requested_model)
-                                        for i in range(1, max(_agent_round_models, default=1) + 1)
-                                    ],
-                                    "round_endpoint_ids": [
-                                        _agent_round_endpoint_ids.get(i)
-                                        for i in range(1, max(_agent_round_models, default=1) + 1)
-                                    ],
-                                    "round_endpoint_labels": [
-                                        _agent_round_endpoint_labels.get(i)
-                                        for i in range(1, max(_agent_round_models, default=1) + 1)
-                                    ],
-                                },
+                        # ── Draft checkpoint (2026-08-08) ── throttled write of
+                        # the in-flight reply so a process death mid-turn loses
+                        # nothing; first create emits draft_saved so the bubble
+                        # gets a row id early.
+                        _ckpt_id = _checkpoint()
+                        if _ckpt_id:
+                            yield f'data: {json.dumps({"type": "draft_saved", "id": _ckpt_id})}\n\n'
+                            _stream_set(session, partial=full_response, draft_id=_ckpt_id)
+                    # Stream ended without [DONE] — provider error event or
+                    # silent close. Persist the partial so nothing is lost
+                    # (2026-08-08 sync audit).
+                    if not _saw_done and not _saved_this_turn and not incognito:
+                        logger.warning(
+                            "Agent stream for session %s ended without [DONE] — persisting partial (%d chars)",
+                            session, len(full_response),
+                        )
+                        _ev, _rt = _sink_tool_state(_partial_sink)
+                        try:
+                            _persist_stream_partial(
+                                sess, session_manager, session, full_response, thinking_response,
+                                model=_actual_model or _answered_by or _requested_model,
+                                requested_model=_requested_model,
+                                extra={"stream_error": "stream ended without completion"},
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
+                                tool_events=_ev,
+                                round_texts=_rt,
                             )
-                            sess.add_message(ChatMessage("assistant", _stopped_content2, metadata=_stopped_md2))
-                            session_manager.save_sessions()
-                    except Exception:
-                        logger.exception("Failed to save partial response on disconnect (session %s)", session)
+                        except Exception as _persist_err:
+                            logger.error("Failed to persist no-done partial for session %s: %s", session, _persist_err)
+                except (asyncio.CancelledError, GeneratorExit):
+                    # Client disconnected — save the partial (reply text AND
+                    # streamed reasoning, which was previously dropped so the
+                    # think bubble vanished on refresh; a reasoning-only
+                    # disconnect saved nothing at all). Wrap the save so a
+                    # persist failure never masks the original CancelledError
+                    # (which prevented the outer finally from running and left
+                    # _active_streams with a stale entry).
+                    _ev, _rt = _sink_tool_state(_partial_sink)
+                    # (2026-11-01) Persist even when no text/reasoning streamed yet —
+                    # a turn stopped right after a tool executed must keep its tool_events.
+                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip() or _ev or _rt):
+                        logger.info("Client disconnected mid-stream for session %s, saving partial response (%d chars)", session, len(full_response))
+                        try:
+                            _persist_stream_partial(
+                                sess, session_manager, session, full_response, thinking_response,
+                                model=_actual_model or _answered_by or _requested_model,
+                                requested_model=_requested_model,
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
+                                tool_events=_ev,
+                                round_texts=_rt,
+                            )
+                        except Exception:
+                            logger.exception("Failed to save partial response on disconnect (session %s)", session)
+                    raise
+                except Exception as _upstream_err:
+                    # Any other mid-stream failure — same partial-save
+                    # guarantee, then re-raise so the SSE terminates and the
+                    # client shows the error over the preserved partial.
+                    logger.warning("Agent stream error for session %s: %s", session, _upstream_err)
+                    _ev, _rt = _sink_tool_state(_partial_sink)
+                    # (2026-11-01) Persist even when no text/reasoning streamed yet —
+                    # a turn stopped right after a tool executed must keep its tool_events.
+                    if not _saved_this_turn and not incognito and (full_response or thinking_response.strip() or _ev or _rt):
+                        try:
+                            _persist_stream_partial(
+                                sess, session_manager, session, full_response, thinking_response,
+                                model=_actual_model or _answered_by or _requested_model,
+                                requested_model=_requested_model,
+                                extra={"stream_error": str(_upstream_err)[:300]},
+                                continue_assistant=continue_prefill, draft_id=_draft_id,
+                                tool_events=_ev,
+                                round_texts=_rt,
+                            )
+                        except Exception as _persist_err:
+                            logger.error("Failed to persist error partial for session %s: %s", session, _persist_err)
                     raise
                 finally:
                     _active_streams.pop(session, None)
@@ -5204,6 +5626,52 @@ def setup_chat_routes(
         ]
 
     # ------------------------------------------------------------------ #
+    # GET /api/chat/reasoning-control — per-model thinking menu info
+    # ------------------------------------------------------------------ #
+    @router.get("/api/chat/reasoning-control")
+    async def reasoning_control(
+        model: str = Query(""),
+        url: str = Query(""),
+    ) -> Dict[str, Any]:
+        """Which graded reasoning levels this model accepts and which value
+        turns thinking off, so the chat-box dropdown adapts per model instead
+        of lying. NIM values are live-verified per model family (2026-11-01):
+        nemotron off="none", glm off="low", minimax/mistral off="low"
+        (best effort — those two cannot be fully silenced via the API), and
+        mistral accepts only low/medium/high (400 on max/xhigh/none)."""
+        from src.llm_core import (
+            _detect_provider,
+            _is_self_hosted_openai_compatible,
+            nim_reasoning_levels,
+            nim_reasoning_off_value,
+        )
+        provider = _detect_provider(url or "")
+        if provider == "nvidia":
+            return {
+                "provider": provider,
+                "levels": list(nim_reasoning_levels(model)),
+                "off_value": nim_reasoning_off_value(model),
+                "off_supported": True,
+            }
+        if _is_self_hosted_openai_compatible(url or ""):
+            return {"provider": "self_hosted", "levels": ["low", "medium", "high"],
+                    "off_value": "off", "off_supported": True}
+        if provider == "groq":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "none", "off_supported": True}
+        if provider == "openrouter":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "off", "off_supported": True}
+        if provider == "openai":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "minimal", "off_supported": True}
+        if provider == "mistral":
+            return {"provider": provider, "levels": ["low", "medium", "high"],
+                    "off_value": "none", "off_supported": True}
+        return {"provider": provider or "unknown", "levels": [],
+                "off_value": "off", "off_supported": True}
+
+    # ------------------------------------------------------------------ #
     # POST /api/rewrite — lightweight rewrite of last AI message (no tools)
     # ------------------------------------------------------------------ #
     @router.post("/api/rewrite")
@@ -5270,8 +5738,10 @@ def setup_chat_routes(
                                 # thinking indicator) but DON'T fold reasoning
                                 # tokens into the saved rewrite — only real
                                 # content. reasoning_content arrives flagged
-                                # with thinking:true.
-                                if not data.get("thinking"):
+                                # with thinking:true. Teacher takeover deltas
+                                # (teacher:true) are a separate turn entirely;
+                                # never fold them into the saved rewrite either.
+                                if not data.get("teacher") and not data.get("thinking"):
                                     full_response += data["delta"]
                                 yield chunk
                         except json.JSONDecodeError:

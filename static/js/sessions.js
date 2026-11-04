@@ -20,6 +20,26 @@ let _skipAutoSelect = false;
 let _suppressNextSessionLoading = false;
 let _rootFreshChatApplied = false;
 const HISTORY_DISPLAY_CHAR_LIMIT = 160000;
+
+// --- Tab title mirror (IRIS 2026-08-06) ------------------------------------
+// Mirror the active chat name (#current-meta) into the browser tab title so
+// you can tell which tab holds which chat. One MutationObserver covers every
+// writer (selectSession, rename, retitle, new-chat, archive peek, ...).
+// Pathname-guarded to the chat route (/) so /calendar, /notes, etc. keep
+// their own per-route titles.
+(function _mirrorTabTitle() {
+  const meta = document.getElementById('current-meta');
+  if (!meta) return;
+  const apply = () => {
+    try {
+      if (window.location.pathname !== '/') return;
+      const t = (meta.textContent || '').trim();
+      document.title = t ? t + ' — Odysseus' : 'Odysseus Chat';
+    } catch (_) {}
+  };
+  apply();
+  new MutationObserver(apply).observe(meta, { childList: true, subtree: true, characterData: true });
+})();
 const HISTORY_DISPLAY_TAIL_CHARS = 20000;
 const HISTORY_PAGE_LIMIT_MOBILE = 8;
 const HISTORY_PAGE_LIMIT_DESKTOP = 24;
@@ -353,10 +373,10 @@ function _installHistoryPager(id, pageInfo, modelName) {
     handler: null,
   };
 
-  const loadOlder = async () => {
+  const loadOlder = async (viaButton = false) => {
     if (!_historyPager || _historyPager.loading || _historyPager.done) return;
     if (_historyPager.sessionId !== currentSessionId) return;
-    if (box.scrollTop > 90) return;
+    if (!viaButton && box.scrollTop > 90) return;
 
     const nextOffset = Math.max(0, _historyPager.offset - _historyPager.limit);
     const nextLimit = _historyPager.offset - nextOffset;
@@ -374,7 +394,9 @@ function _installHistoryPager(id, pageInfo, modelName) {
       if (!_historyPager || _historyPager.sessionId !== currentSessionId) return;
       const newEls = [];
       for (const msg of data.history || []) {
-        if (msg.role !== 'user' && msg.role !== 'assistant') continue;
+        // (2026-11-01) Render every role the DB returns — filtering to
+        // user/assistant here silently dropped system/other rows, breaking
+        // frontend↔DB parity on paged loads.
         const els = _renderHistoryMessage(msg, _historyPager.modelName);
         if (Array.isArray(els)) newEls.push(...els);
       }
@@ -383,11 +405,26 @@ function _installHistoryPager(id, pageInfo, modelName) {
       }
       _historyPager.offset = Number(data.offset || nextOffset);
       _historyPager.done = !data.has_more_before;
+      if (_historyPager.btn) {
+        if (_historyPager.done) {
+          _historyPager.btn.remove();
+          _historyPager.btn = null;
+        } else {
+          const more = Math.max(0, _historyPager.offset);
+          _historyPager.btn.textContent = `⬆ Load earlier messages${more ? ` (${more} more)` : ''}`;
+        }
+      }
       if (window.hljs) {
         newEls.forEach(el => el.querySelectorAll('pre code:not(.hljs)').forEach(block => window.hljs.highlightElement(block)));
       }
       const heightDelta = box.scrollHeight - beforeHeight;
       box.scrollTop += heightDelta;
+      if (viaButton && newEls.length && newEls[0].scrollIntoView) {
+        // A button click is an explicit "show me what's earlier" — jump the
+        // view to the oldest newly-loaded message instead of anchoring in
+        // place, where the success would be invisible.
+        newEls[0].scrollIntoView({ block: 'start' });
+      }
     } catch (e) {
       console.warn('Failed to load older chat history:', e);
     } finally {
@@ -399,6 +436,21 @@ function _installHistoryPager(id, pageInfo, modelName) {
     if (box.scrollTop <= 90) loadOlder();
   };
   box.addEventListener('scroll', _historyPager.handler, { passive: true });
+
+  // Visible fallback + discoverability: scroll events can be swallowed by
+  // momentum scrolling, and an anchored load is invisible from the reading
+  // position. A clickable anchor at the top of the timeline guarantees the
+  // older pages are reachable no matter how the container scrolls.
+  if (pageInfo.has_more_before) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'history-load-older-btn';
+    const more = Math.max(0, Number(pageInfo.offset) || 0);
+    btn.textContent = `⬆ Load earlier messages${more ? ` (${more} more)` : ''}`;
+    btn.addEventListener('click', () => loadOlder(true));
+    box.insertBefore(btn, box.firstChild);
+    _historyPager.btn = btn;
+  }
 }
 
 function _getIncognitoIds() {
@@ -992,6 +1044,45 @@ function createSessionItem(s) {
 
 
   dropdown.appendChild(renameItem);
+
+  // Auto-title (AI): regenerate the chat name from conversation context via
+  // the utility model (POST /api/session/{id}/retitle).
+  const _autoTitleIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.7L19 10l-5.1 1.3L12 17l-1.9-5.7L5 10l5.1-1.3L12 3z"/><path d="M19 15l.9 2.6L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.4L19 15z"/></svg>';
+  const autoTitleItem = document.createElement('div');
+  autoTitleItem.className = 'dropdown-item-compact';
+  autoTitleItem.innerHTML = _icon(_autoTitleIcon) + '<span>Auto-title (AI)</span>';
+  autoTitleItem.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    dropdown.style.display = 'none';
+    autoTitleItem.style.pointerEvents = 'none';
+    autoTitleItem.style.opacity = '.5';
+    const _origHtml = autoTitleItem.innerHTML;
+    autoTitleItem.innerHTML = _icon('<span style="font-size:14px;line-height:1;">…</span>') + '<span>…</span>';
+    try {
+      const res = await fetch(`${API_BASE}/api/session/${s.id}/retitle`, { method: 'POST' });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j.detail || `HTTP ${res.status}`);
+      }
+      const d = await res.json();
+      s.name = d.name;
+      renderSessionList();
+      if (s.id === currentSessionId) {
+        const _metaEl = document.getElementById('current-meta');
+        if (_metaEl) _metaEl.textContent = d.name;
+        document.title = d.name ? d.name + ' — Odysseus' : 'Odysseus Chat';
+      }
+      uiModule.showToast('Auto-titled: ' + d.name);
+    } catch (err) {
+      console.error('Auto-title failed:', err);
+      uiModule.showError('Auto-title failed: ' + err.message);
+    } finally {
+      autoTitleItem.innerHTML = _origHtml;
+      autoTitleItem.style.pointerEvents = '';
+      autoTitleItem.style.opacity = '';
+    }
+  });
+  dropdown.appendChild(autoTitleItem);
 
   // Star/Unstar item
   if (!isOpenClaw) {
@@ -2151,6 +2242,10 @@ export async function selectSession(id, { keepSidebar = false, showLoading = tru
     window.compareModule.deactivate(true);
     return; // deactivate does a page reload
   }
+  // IRIS fix 2026-08-05 (ghost-message): user clicked an EXISTING session — their
+  // intent is no longer "new chat". Clear the flag so the next send's adopt can
+  // target this row instead of force-creating a fresh session.
+  try { window.__odysseusNewChatIntent = false; } catch (_) {}
   let navToken = 0;
   try {
     navToken = ++_sessionNavToken;
@@ -2175,6 +2270,8 @@ export async function selectSession(id, { keepSidebar = false, showLoading = tru
       detail: { sessionId: id ? id : null },
     }));
     try { window.__odysseusLastSelectedSessionId = id; } catch (_) {}
+    if (window.updateThinkingUI) { try { window.updateThinkingUI(id); } catch (_) {} }
+    if (window.refreshThinkingControl) { try { window.refreshThinkingControl(); } catch (_) {} }
     // Identify Assistant / task-output sessions so we don't "trap" the user
     // there on return. Skipped from both `lastSessionId` persistence and the
     // URL hash — the user complained that coming back to Odysseus kept
@@ -2184,10 +2281,16 @@ export async function selectSession(id, { keepSidebar = false, showLoading = tru
     const _isTransientChat = !!_meta && (_meta.folder === 'Assistant' || _meta.folder === 'Tasks');
     if (!_isTransientChat) {
       Storage.set('lastSessionId', id);
-      // Update URL hash without triggering hashchange handler
-      if (window.location.hash !== '#' + id) {
-        history.replaceState(null, '', '#' + id);
-      }
+      // Persist the session id in the URL hash so a refresh / new tab
+      // restores the same chat. The load path (targetId = hashId) and the
+      // hashchange listener already read it — the write side was simply
+      // never implemented. replaceState avoids firing hashchange, so no
+      // recursion into this handler.
+      try {
+        if (window.location.hash !== '#' + id) {
+          history.replaceState(null, '', '#' + id);
+        }
+      } catch (_) {}
     }
     _forceExitIncognitoUi();
     // Restore character preset for persistent chats
@@ -3325,11 +3428,11 @@ async function _arcPeekOpen(sid) {
     const addMsg = window.chatModule && window.chatModule.addMessage;
     if (addMsg) {
       for (const msg of history) {
-        if (msg.role === 'user' || msg.role === 'assistant') {
-          const model = String((msg.metadata && msg.metadata.model) || '');
-          const content = typeof msg.content === 'string' ? msg.content : (Array.isArray(msg.content) ? msg.content : String(msg.content || ''));
-          try { addMsg(msg.role, content, model, msg.metadata || null); } catch (e) { console.warn('Failed to render message:', e); }
-        }
+        // (2026-11-01) Render every role the DB returns (parity with the main
+        // history path) instead of dropping non-user/assistant rows.
+        const model = String((msg.metadata && msg.metadata.model) || '');
+        const content = typeof msg.content === 'string' ? msg.content : (Array.isArray(msg.content) ? msg.content : String(msg.content || ''));
+        try { addMsg(msg.role, content, model, msg.metadata || null); } catch (e) { console.warn('Failed to render message:', e); }
       }
     }
     if (window.uiModule) window.uiModule.scrollHistory();

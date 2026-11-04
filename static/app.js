@@ -863,6 +863,17 @@ function initializeEventListeners() {
       console.warn('fresh chat stream detach failed:', e);
     }
     if (sessionModule) sessionModule.setCurrentSessionId(null);
+    // IRIS fix 2026-08-05: clear the stale "last selected session" trap so the
+    // send path's _adoptOpenedSessionBeforeAutoCreate() can't silently re-select
+    // the OLD chat when the user clicked New Chat. Without this: New Chat -> type
+    // -> send dumps the message into the previous session (no new chat is ever
+    // created, refresh shows nothing). Mirrors createDirectChat's cleanup.
+    try { window.__odysseusLastSelectedSessionId = ''; } catch (_) {}
+    try { localStorage.removeItem('lastSessionId'); } catch (_) {}
+    history.replaceState(null, '', window.location.pathname);
+    document.querySelectorAll('.list-item.active-session, .session-item.active').forEach(el => {
+      el.classList.remove('active-session', 'active');
+    });
     const box = el('chat-history');
     if (box) box.innerHTML = '';
     if (chatModule && chatModule.showWelcomeScreen) {
@@ -1040,7 +1051,7 @@ function initializeEventListeners() {
     toolCookbookBtn.addEventListener('click', async () => {
       if (!cookbookModule) return;
       // Try minimized→restore or open→minimize via the manager first
-      const Modals = await import('./js/modalManager.js');
+      const Modals = await import('./js/modalManager.js?v=20261023merge2');
       if (!Modals.toggle('cookbook-modal')) {
         // Not registered yet → fresh open
         cookbookModule.open();
@@ -1068,7 +1079,7 @@ function initializeEventListeners() {
   if (toolGalleryBtn) {
     toolGalleryBtn.addEventListener('click', async () => {
       if (!galleryModule) return;
-      const Modals = await import('./js/modalManager.js');
+      const Modals = await import('./js/modalManager.js?v=20261023merge2');
       if (!Modals.toggle('gallery-modal')) {
         if (galleryModule.isGalleryOpen()) galleryModule.closeGallery();
         else galleryModule.openGallery();
@@ -1097,7 +1108,7 @@ function initializeEventListeners() {
   if (toolCalendarBtn) {
     toolCalendarBtn.addEventListener('click', async () => {
       if (!calendarModule) return;
-      const Modals = await import('./js/modalManager.js');
+      const Modals = await import('./js/modalManager.js?v=20261023merge2');
       // toggle returns true when a registered modal was minimized/restored;
       // returns false when nothing is registered → open fresh.
       if (!Modals.toggle('calendar-modal')) {
@@ -2127,6 +2138,7 @@ function initializeEventListeners() {
       // menu. Without this, the textarea blurs (keyboard down), then this
       // handler re-focuses it (keyboard bounces back up).
       if (e.target.closest('#overflow-plus-btn')) return;
+      if (e.target.closest('#thinking-btn')) return;
       if (document.activeElement === _msgTextarea) _refocusOnBlur = true;
     }
     chatInputBar.addEventListener('touchstart', _flagRefocus, { passive: true });
@@ -3398,6 +3410,14 @@ function initializeEventListeners() {
           : window.confirm('Bring open document to new chat?')
       );
       _deactivateIncognito();
+      // IRIS fix 2026-08-05 (ghost-message): the user EXPLICITLY asked for a new chat.
+      // Kill the stale-session trap + hash BEFORE the prefer-model shortcut, because
+      // that path returns early and skips _startFreshChat() (the only full reset).
+      // Otherwise the next send's _adoptOpenedSessionBeforeAutoCreate() resurrects the
+      // OLD session via hash/lastSelected and the message lands in the previous chat.
+      try { window.__odysseusLastSelectedSessionId = ''; } catch (_) {}
+      try { window.__odysseusNewChatIntent = true; } catch (_) {}
+      try { history.replaceState(null, '', window.location.pathname); } catch (_) {}
       // Clear character on new chat
       if (presetsModule && presetsModule.deactivateCharacter) presetsModule.deactivateCharacter();
       // Clear research mode if active

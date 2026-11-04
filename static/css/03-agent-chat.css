@@ -194,6 +194,33 @@ button.hamburger {
   border-radius: 0 6px 6px 0;
 }
 .msg blockquote p { margin: 0.3em 0; }
+/* Nested blockquotes get a lighter stripe so depth reads */
+.msg blockquote blockquote {
+  margin: 0.4em 0;
+  border-left-color: color-mix(in srgb, var(--hl-function, #5b8def) 55%, transparent);
+}
+
+/* Highlight ==text== */
+.msg mark {
+  background: color-mix(in srgb, var(--hl-function, #5b8def) 28%, transparent);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+/* Superscript ^text^ */
+.msg sup {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+/* Subscript ~text~ */
+.msg sub {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: sub;
+}
 
 /* Horizontal rules */
 .msg hr {
@@ -213,6 +240,13 @@ button.hamburger {
 }
 .msg li::marker {
   color: var(--hl-function, #5b8def);
+  /* Markers inherit the app's code font by default (Fira Code), which renders
+     ordered-list digits like pinpricks. Pin the marker to a real UI font so
+     "1. 2. 3." always read as numbers, and kill ligatures so a code font can
+     never mangle a digit into a glyph. */
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-variant-ligatures: none;
+  font-feature-settings: normal;
 }
 
 /* Links */
@@ -1011,6 +1045,7 @@ body.fullwidth-chat .chat-history {
   background: color-mix(in srgb, var(--red) 5%, transparent);
   overflow: hidden;
   transition: all 0.3s ease;
+  pointer-events: auto;
 }
 
 .thinking-header {
@@ -1020,6 +1055,7 @@ body.fullwidth-chat .chat-history {
   gap: 12px;
   padding: 6px 12px;
   cursor: pointer;
+  pointer-events: auto;
   user-select: none;
   background: color-mix(in srgb, var(--red) 8%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--red) 20%, transparent);
@@ -1064,6 +1100,7 @@ body.fullwidth-chat .chat-history {
   font-size: 0.9em;
   color: var(--red);
   transition: transform 0.3s ease;
+  pointer-events: auto;
 }
 .thinking-toggle::after {
   content: '\25BC'; /* ▼ */
@@ -1081,6 +1118,9 @@ body.fullwidth-chat .chat-history {
 }
 
 .thinking-content.expanded {
+  /* (2026-11-01) Display cap only — the full reasoning stays in the DOM and
+     is reachable by scrolling; collapse hides it entirely. Sir wants the cap
+     so a huge reasoning block doesn't flood the chat. */
   max-height: 300px;
   overflow-y: auto;
   padding: 12px;
@@ -1091,6 +1131,8 @@ body.fullwidth-chat .chat-history {
   color: var(--fg);
   opacity: 0.9;
   line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .live-reply-content {
   animation: fadeSlideIn 0.3s ease-out;

@@ -1611,7 +1611,7 @@ export function buildSourcesBox(sources, type, expanded) {
   var arrow = expanded ? 'down' : 'right';
   var expandedClass = expanded ? ' expanded' : '';
   return '<div class="sources-section">'
-    + '<div class="sources-header" data-sources-id="' + id + '" onclick="window.toggleSources(\'' + id + '\')">'
+    + '<div class="sources-header" data-sources-id="' + id + '">'
     + '<div class="sources-header-left">' + SEARCH_ICON + '<span>' + count + ' ' + label + '</span></div>'
     + '<span class="sources-toggle" id="' + id + '-toggle" data-arrow="' + arrow + '"></span>'
     + '</div>'
@@ -1671,7 +1671,7 @@ export function buildFindingsBox(findings, expanded) {
   var arrow = expanded ? 'down' : 'right';
   var expandedClass = expanded ? ' expanded' : '';
   return '<div class="sources-section">'
-    + '<div class="sources-header" data-sources-id="' + id + '" onclick="window.toggleSources(\'' + id + '\')">'
+    + '<div class="sources-header" data-sources-id="' + id + '">'
     + '<div class="sources-header-left">' + FINDINGS_ICON + '<span>' + count + ' Raw collected findings</span></div>'
     + '<span class="sources-toggle" id="' + id + '-toggle" data-arrow="' + arrow + '"></span>'
     + '</div>'
@@ -2280,18 +2280,32 @@ export function showWelcomeScreen() {
   }
 }
 
-// ── Dynamic action buttons (show 3 most recent, rest under ···) ──
-const _ACTION_RECENTS_KEY = 'odysseus-msg-actions-recent';
-const _MAX_VISIBLE = 2;
+// ── Dynamic action buttons (all actions permanently pinned, no overflow) ──
 
-function _getRecentActions() {
-  try { return JSON.parse(localStorage.getItem(_ACTION_RECENTS_KEY) || '[]'); } catch { return []; }
-}
-function _trackAction(id) {
-  let recent = _getRecentActions().filter(x => x !== id);
-  recent.unshift(id);
-  if (recent.length > 10) recent.length = 10;
-  localStorage.setItem(_ACTION_RECENTS_KEY, JSON.stringify(recent));
+/**
+ * True when an AI message still has its own user prompt directly before it —
+ * i.e. no other standalone AI response sits between them. Continuations and
+ * agent tool bubbles belong to the response and don't count as foreign.
+ * Used to hide "Regenerate" on orphaned responses whose user message was
+ * deleted (2026-08-08, Finding B).
+ */
+function _hasAdjacentUserPrompt(msgElement) {
+  if (!msgElement || !msgElement.parentNode) return false;
+  const myDbId = msgElement.dataset ? msgElement.dataset.dbId : null;
+  let el = msgElement.previousElementSibling;
+  while (el) {
+    if (el.classList.contains('msg-user')) return true;
+    if (el.classList.contains('msg-ai') && !el.classList.contains('msg-continuation')) {
+      // (2026-10-30) The first bubble of THIS SAME response (multi-round agent
+      // turns reloaded from history share the row's dbId on every round) is
+      // not a foreign response — keep walking past it to the user prompt.
+      const elDbId = el.dataset ? el.dataset.dbId : null;
+      if (myDbId && elDbId && elDbId === myDbId) { el = el.previousElementSibling; continue; }
+      return false;
+    }
+    el = el.previousElementSibling;
+  }
+  return false;
 }
 
 /**
@@ -2318,9 +2332,21 @@ export function createMsgFooter(msgElement, { animate = false } = {}) {
       e.stopPropagation();
       if (window.chatModule?.editAIMessage) window.chatModule.editAIMessage(msgElement);
     }},
-    { id: 'regen', icon: RESEND_ICON, title: 'Regenerate from here', cls: 'msg-action-btn', html: true, handler(e) {
+    { id: 'regen', icon: '\u21BB', title: 'Regenerate from here', cls: 'msg-action-btn',
+      // Hide when the response's own user prompt is gone (deleted): regen
+      // would walk back to an earlier turn and wipe everything between.
+      // (2026-08-08, Finding B)
+      available: () => _hasAdjacentUserPrompt(msgElement),
+      handler(e) {
+        e.stopPropagation();
+        if (window.chatModule?.regenerateFrom) window.chatModule.regenerateFrom(msgElement);
+      }},
+    { id: 'continue', icon: '\u25B8', title: 'Continue', cls: 'msg-action-btn', handler(e) {
       e.stopPropagation();
-      if (window.chatModule?.regenerateFrom) window.chatModule.regenerateFrom(msgElement);
+      // (2026-10-30) chat mode: prefill continue — the model just keeps writing
+      // its own last reply (same turn, no handshake user message). Agent mode
+      // keeps the legacy handshake text (handled inside continueFromBubble).
+      if (window.chatModule?.continueFromBubble) window.chatModule.continueFromBubble(msgElement);
     }},
     { id: 'shorten', icon: '\u2702', title: 'Rewrite shorter', cls: 'msg-action-btn', handler(e) {
       e.stopPropagation();
@@ -2343,35 +2369,23 @@ export function createMsgFooter(msgElement, { animate = false } = {}) {
   // Filter out unavailable actions (e.g. TTS when not enabled)
   const availableActions = allActions.filter(a => !a.available || a.available());
 
-  // Determine which 3 to show: use recent order, fallback to defaults
-  const recent = _getRecentActions();
-  const defaults = ['copy', 'delete', 'fork'];
-  const order = recent.length > 0 ? recent : defaults;
-  const sorted = [...availableActions].sort((a, b) => {
-    const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
-    if (ai >= 0 && bi >= 0) return ai - bi;
-    if (ai >= 0) return -1;
-    if (bi >= 0) return 1;
-    return 0;
-  });
-  const visible = sorted.slice(0, _MAX_VISIBLE);
-  const overflow = sorted.slice(_MAX_VISIBLE);
+  // Actions pinned straight to the footer row, in exactly this order; anything
+  // else gets tucked under the "···" overflow menu.
+  const PINNED_ACTION_IDS = ['continue', 'regen', 'copy', 'delete'];
+  const pinnedActions = PINNED_ACTION_IDS.map(id => availableActions.find(a => a.id === id)).filter(Boolean);
+  const menuActions = availableActions.filter(a => !PINNED_ACTION_IDS.includes(a.id));
 
-  // Render visible buttons
-  function _addBtn(action, container) {
-    const btn = _makeActionBtn(action.cls, action.title, action.html ? '' : action.icon, (e) => {
-      _trackAction(action.id);
-      action.handler(e);
+  pinnedActions.forEach(a => {
+    const btn = _makeActionBtn(a.cls, a.title, a.html ? '' : a.icon, (e) => {
+      a.handler(e);
     });
-    if (action.html) btn.innerHTML = action.icon;
-    btn.dataset.action = action.id;
-    container.appendChild(btn);
-  }
+    if (a.html) btn.innerHTML = a.icon;
+    btn.dataset.action = a.id;
+    actions.appendChild(btn);
+  });
 
-  visible.forEach(a => _addBtn(a, actions));
-
-  // Overflow "···" button
-  if (overflow.length > 0) {
+  // Overflow "···" button for the tucked-away actions.
+  if (menuActions.length > 0) {
     const moreBtn = document.createElement('button');
     moreBtn.className = 'msg-action-btn msg-more-btn';
     moreBtn.type = 'button';
@@ -2391,7 +2405,7 @@ export function createMsgFooter(msgElement, { animate = false } = {}) {
       const menu = document.createElement('div');
       menu.className = 'msg-overflow-menu';
       let closeMenu = () => menu.remove();
-      overflow.forEach(a => {
+      menuActions.forEach(a => {
         const item = document.createElement('button');
         item.className = 'msg-overflow-item';
         item.type = 'button';
@@ -2399,7 +2413,6 @@ export function createMsgFooter(msgElement, { animate = false } = {}) {
         item.innerHTML = `<span class="overflow-icon">${a.icon}</span> ${a.title}`;
         item.addEventListener('click', (ev) => {
           ev.stopPropagation();
-          _trackAction(a.id);
           closeMenu();
           a.handler(ev);
         });
@@ -2418,7 +2431,8 @@ export function createMsgFooter(msgElement, { animate = false } = {}) {
       if (mr.right > window.innerWidth - 8) menu.style.left = (window.innerWidth - mr.width - 8) + 'px';
       // Close on outside click or Escape. The trigger button is treated as
       // "inside" so its own click toggles rather than double-fires.
-      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);    });
+      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);
+    });
     actions.appendChild(moreBtn);
   }
 
@@ -2502,19 +2516,8 @@ export function createMsgFooter(msgElement, { animate = false } = {}) {
 }
 
 /**
- * Create a footer row for a user message with action buttons (same system as AI footer).
+ * Create a footer row for a user message with action buttons (all pinned, no overflow).
  */
-const _USER_ACTION_RECENTS_KEY = 'odysseus-user-actions-recent';
-
-function _getUserRecentActions() {
-  try { return JSON.parse(localStorage.getItem(_USER_ACTION_RECENTS_KEY) || '[]'); } catch { return []; }
-}
-function _trackUserAction(id) {
-  let recent = _getUserRecentActions().filter(x => x !== id);
-  recent.unshift(id);
-  if (recent.length > 10) recent.length = 10;
-  localStorage.setItem(_USER_ACTION_RECENTS_KEY, JSON.stringify(recent));
-}
 
 export function createUserMsgFooter(msgElement) {
   const footer = document.createElement('div');
@@ -2545,22 +2548,13 @@ export function createUserMsgFooter(msgElement) {
     }},
   ];
 
-  const recent = _getUserRecentActions();
-  const defaults = ['edit', 'delete', 'copy'];
-  const order = recent.length > 0 ? recent : defaults;
-  const sorted = [...allActions].sort((a, b) => {
-    const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
-    if (ai >= 0 && bi >= 0) return ai - bi;
-    if (ai >= 0) return -1;
-    if (bi >= 0) return 1;
-    return 0;
-  });
-  const visible = sorted.slice(0, _MAX_VISIBLE);
-  const overflow = sorted.slice(_MAX_VISIBLE);
+  // Edit / Resend / Copy pinned in this order; Delete lives under "···".
+  const PINNED_ACTION_IDS = ['edit', 'resend', 'copy'];
+  const pinnedActions = PINNED_ACTION_IDS.map(id => allActions.find(a => a.id === id)).filter(Boolean);
+  const menuActions = allActions.filter(a => !PINNED_ACTION_IDS.includes(a.id));
 
-  visible.forEach(a => {
+  pinnedActions.forEach(a => {
     const btn = _makeActionBtn(a.cls, a.title, a.html ? '' : a.icon, (ev) => {
-      _trackUserAction(a.id);
       a.handler(ev);
     });
     if (a.html) btn.innerHTML = a.icon;
@@ -2568,7 +2562,8 @@ export function createUserMsgFooter(msgElement) {
     actions.appendChild(btn);
   });
 
-  if (overflow.length > 0) {
+  // Overflow "···" button for the tucked-away actions.
+  if (menuActions.length > 0) {
     const moreBtn = document.createElement('button');
     moreBtn.className = 'msg-action-btn msg-more-btn';
     moreBtn.type = 'button';
@@ -2577,6 +2572,8 @@ export function createUserMsgFooter(msgElement) {
     moreBtn.textContent = '\u00B7\u00B7\u00B7';
     moreBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      // Toggle overflow menu — close any existing one first (through its own
+      // dismiss so the Escape registry entry goes with it).
       const existing = document.querySelector('.msg-overflow-menu');
       if (existing) {
         if (typeof existing._dismiss === 'function') existing._dismiss(); else existing.remove();
@@ -2586,7 +2583,7 @@ export function createUserMsgFooter(msgElement) {
       const menu = document.createElement('div');
       menu.className = 'msg-overflow-menu';
       let closeMenu = () => menu.remove();
-      overflow.forEach(a => {
+      menuActions.forEach(a => {
         const item = document.createElement('button');
         item.className = 'msg-overflow-item';
         item.type = 'button';
@@ -2594,7 +2591,6 @@ export function createUserMsgFooter(msgElement) {
         item.innerHTML = `<span class="overflow-icon">${a.icon}</span> ${a.title}`;
         item.addEventListener('click', (ev) => {
           ev.stopPropagation();
-          _trackUserAction(a.id);
           closeMenu();
           a.handler(ev);
         });
@@ -2602,13 +2598,19 @@ export function createUserMsgFooter(msgElement) {
       });
       menu._trigger = moreBtn;
       document.body.appendChild(menu);
+      // Position fixed relative to the ··· button
       const btnRect = moreBtn.getBoundingClientRect();
       menu.style.top = (btnRect.top - menu.offsetHeight - 4) + 'px';
       menu.style.left = btnRect.left + 'px';
+      // Flip down if above viewport
       if (parseFloat(menu.style.top) < 8) menu.style.top = (btnRect.bottom + 4) + 'px';
+      // Keep within right edge
       const mr = menu.getBoundingClientRect();
       if (mr.right > window.innerWidth - 8) menu.style.left = (window.innerWidth - mr.width - 8) + 'px';
-      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);    });
+      // Close on outside click or Escape. The trigger button is treated as
+      // "inside" so its own click toggles rather than double-fires.
+      closeMenu = bindMenuDismiss(menu, () => menu.remove(), (ev) => !menu.contains(ev.target) && ev.target !== moreBtn);
+    });
     actions.appendChild(moreBtn);
   }
 
@@ -3290,24 +3292,36 @@ export function addMessage(role, content, modelName, metadata) {
       const maxRound = Math.max(toolRounds.length ? Math.max(...toolRounds) : 0, roundTexts.length);
 
       const firstRound = (toolsByRound[0] || []).length ? 0 : 1;
+      // (2026-11-01) Thinking-box placement + guard fix: attach the stored
+      // metadata.thinking to the first round that actually has text (fallback
+      // round 0) so the box sits on the text bubble instead of a detached
+      // empty one. The inline guard must test for REAL parsed think blocks —
+      // a prose mention of `<think>` in a round (model discussing tags in
+      // backticks) used to trip the substring check and suppress the box
+      // entirely on refresh.
+      const hasInlineThink = roundTexts.some(
+        t => (markdownModule.extractThinkingBlocks(String(t || ''))?.thinkingBlocks || []).length > 0
+      );
+      let thinkRound = roundTexts.findIndex(t => String(t || '').trim());
+      if (thinkRound < 0) thinkRound = 0;
       for (let roundNum = firstRound; roundNum <= maxRound; roundNum++) {
         const r = roundNum - 1;
-	        let txt = r >= 0
-	          ? resolveDocumentPlaceholderLinks((roundTexts[r] || '').trim(), metadata)
-	          : '';
-	        if (
-	          role === 'assistant'
-	          && r === 0
-	          && metadata?.thinking
-	          && !metadata?.character_name
-	          && !roundTexts.some(t => /<\s*(?:think|thinking|thought)\b/i.test(String(t || '')))
-	        ) {
-	          const thinkTime = metadata.thinking_time || null;
-	          txt = '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>'
-	            + String(metadata.thinking || '')
-	            + '</think>'
-	            + (txt ? '\n\n' + txt : '');
-	        }
+        let txt = r >= 0
+          ? resolveDocumentPlaceholderLinks((roundTexts[r] || '').trim(), metadata)
+          : '';
+        // Reasoning pass-back replay (2026-10-21, fork): reasoning_content-style
+        // models (DeepSeek/Nemotron/vLLM reasoning parser) stream thinking as
+        // separate deltas — it is saved to metadata.thinking but never lands
+        // inside round_texts, so this multi-bubble reload path lost every
+        // thinking block on refresh. Prepend the stored reasoning to the first
+        // text round exactly like the single-bubble path does. Inline-think
+        // models already carry real blocks inside round_texts and are skipped
+        // by the guard below (no double render).
+        if (r === thinkRound && metadata?.thinking && !hasInlineThink) {
+          const safeThinking = markdownModule.neutralizeStrayThinkTags(String(metadata.thinking || ''), true);
+          const thinkTime = metadata.thinking_time || null;
+          txt = '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</' + 'think>\n\n' + txt;
+        }
 
         if (txt) {
           const wrap = document.createElement('div');
@@ -3368,6 +3382,9 @@ export function addMessage(role, content, modelName, metadata) {
           body.innerHTML = agentSourcesPrefix + markdownModule.processWithThinking(markdownModule.squashOutsideCode(txt)) + agentFindingsSuffix;
           wrap.appendChild(body);
           wrap.dataset.raw = txt;
+          if (metadata?.thinking) wrap.dataset.thinking = metadata.thinking;
+          if (metadata?.thinking_time) wrap.dataset.thinkingTime = metadata.thinking_time;
+          if (metadata?.round_texts) wrap.dataset.roundTexts = JSON.stringify(metadata.round_texts);
           if (metadata?._db_id) wrap.dataset.dbId = metadata._db_id;
           box.appendChild(wrap);
           lastWrap = wrap;
@@ -3595,6 +3612,9 @@ export function addMessage(role, content, modelName, metadata) {
     }
 
 	    wrap.dataset.raw = text;
+	    if (metadata?.thinking) wrap.dataset.thinking = metadata.thinking;
+	    if (metadata?.thinking_time) wrap.dataset.thinkingTime = metadata.thinking_time;
+	    if (metadata?.round_texts) wrap.dataset.roundTexts = JSON.stringify(metadata.round_texts);
 	    if (metadata?._db_id) wrap.dataset.dbId = metadata._db_id;
     // Prepend sources box if saved in metadata
     var sourcesPrefix = '';
@@ -3616,8 +3636,24 @@ export function addMessage(role, content, modelName, metadata) {
     // in-character; the metadata remains saved for debugging/export.
     if (role === 'assistant' && metadata?.thinking && !metadata?.character_name) {
       const thinkTime = metadata.thinking_time || null;
+      // The stored reasoning is genuine thinking — but it can itself QUOTE a
+      // think tag (the model reasoning ABOUT think tags). Wrapping it raw lets
+      // a quoted close tag terminate the rebuilt block early and leak the
+      // reasoning tail + reply out of the box ("breaks open with a little
+      // leakage"). Neutralize literal tags inside the stored reasoning BEFORE
+      // wrapping, exactly like the live delta layer does — the wrapper's own
+      // tags are the only boundary, and quoted tags render literally inside
+      // the box.
+      const safeThinking = markdownModule.neutralizeStrayThinkTags(String(metadata.thinking || ''), true);
+      // (2026-11-01) Legacy double-store: if the content still carries real
+      // inline think blocks alongside metadata.thinking, strip them from the
+      // display text (dataset.raw keeps the original) so the box doesn't
+      // render twice on refresh.
+      let displayText = text;
+      const _inline = markdownModule.extractThinkingBlocks(text);
+      if (_inline?.thinkingBlocks?.length) displayText = _inline.content;
       const thinkHtml = markdownModule.processWithThinking(
-        '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + metadata.thinking + '</think>\n\n' + text
+        '<think' + (thinkTime ? ` time="${thinkTime}"` : '') + '>' + safeThinking + '</think>\n\n' + displayText
       );
       b.innerHTML = sourcesPrefix + thinkHtml + findingsSuffix;
 		    } else {
@@ -3700,16 +3736,8 @@ export function addMessage(role, content, modelName, metadata) {
         continueBtn.innerHTML = '<span class="resume-btn-label">Resume</span><svg class="resume-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 10 7-10 7z"></path></svg>';
         continueBtn.addEventListener('click', () => {
           stoppedIndicator.remove();
-          if (window.chatModule) {
-            window.chatModule.setHideUserBubble();
-            window.chatModule.setPendingContinue(wrap);
-            const msgInput = document.getElementById('message');
-            if (msgInput) {
-              msgInput.value = 'Continue from where you left off.';
-              const sb = document.querySelector('.send-btn');
-              if (sb) sb.click();
-            }
-          }
+          // (2026-10-30) chat mode: prefill continue; agent mode: legacy handshake
+          if (window.chatModule?.continueFromBubble) window.chatModule.continueFromBubble(wrap);
         });
         stoppedIndicator.appendChild(continueBtn);
       }
@@ -3813,6 +3841,13 @@ export function addMessage(role, content, modelName, metadata) {
       r.appendChild(nav);
     }
 
+    // (2026-10-30) Attach to the chat box BEFORE building the footer: the
+    // regen action's availability guard walks previousElementSibling and
+    // returns false for a detached bubble, so building the footer first made
+    // "Regenerate" vanish on every history reload (live-stream paths attach
+    // first, which is why it only disappeared on refresh).
+    box.appendChild(wrap);
+
     if (role === 'assistant') {
       // The "N pinned" / "N recalled" pill in the footer reads from
       // wrap._memoriesUsed — propagate it from saved metadata so the pill
@@ -3827,8 +3862,6 @@ export function addMessage(role, content, modelName, metadata) {
 
       wrap.appendChild(createUserMsgFooter(wrap));
     }
-
-    box.appendChild(wrap);
 
     // TTS is now part of the msg-actions system
     if (role === 'assistant' && markdownModule.renderMermaid) {

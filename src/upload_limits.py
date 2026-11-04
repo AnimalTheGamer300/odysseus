@@ -33,6 +33,17 @@ def get_chat_upload_max_bytes() -> int:
     return read_byte_limit_env(CHAT_UPLOAD_MAX_BYTES_ENV, DEFAULT_CHAT_UPLOAD_MAX_BYTES)
 
 
+# Video attachments ride a much higher cap than the default 10MB chat upload
+# limit — a phone clip is routinely 50–200MB. Only video files get this
+# allowance; everything else keeps the normal chat cap above.
+CHAT_VIDEO_UPLOAD_MAX_BYTES_ENV = "ODYSSEUS_CHAT_VIDEO_UPLOAD_MAX_BYTES"
+DEFAULT_CHAT_VIDEO_UPLOAD_MAX_BYTES = 200 * 1024 * 1024
+
+
+def get_chat_video_upload_max_bytes() -> int:
+    return read_byte_limit_env(CHAT_VIDEO_UPLOAD_MAX_BYTES_ENV, DEFAULT_CHAT_VIDEO_UPLOAD_MAX_BYTES)
+
+
 # Per-route upload byte-limits, single-sourced here (issue #3364). Each is
 # validated + env-overridable via read_byte_limit_env: set the matching
 # ODYSSEUS_*_MAX_BYTES env var to an integer byte count to tune it; an invalid

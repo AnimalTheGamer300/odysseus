@@ -8,8 +8,8 @@ works while a different model silently answers).
 import json
 import asyncio
 
-import httpx
 import pytest
+import httpx
 from fastapi import HTTPException
 
 from src import llm_core

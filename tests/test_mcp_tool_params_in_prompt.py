@@ -45,6 +45,24 @@ def test_prompt_descriptions_surface_param_names_and_required():
     assert "required" in text                   # required-ness is surfaced
 
 
+def test_prompt_descriptions_exclude_disabled_tools():
+    mgr = _mgr_with_tool()
+    filtered = mgr.get_tool_descriptions_for_prompt(disabled_tools={"mcp__srv1__fetch_doc"})
+    # The only tool on the server is disabled -> the whole server block drops.
+    assert "mcp__srv1__fetch_doc" not in filtered
+    assert "Files" not in filtered
+
+
+def test_prompt_descriptions_cache_distinguishes_disabled_tools():
+    mgr = _mgr_with_tool()
+    full = mgr.get_tool_descriptions_for_prompt()
+    filtered = mgr.get_tool_descriptions_for_prompt(disabled_tools={"mcp__srv1__fetch_doc"})
+    again = mgr.get_tool_descriptions_for_prompt(disabled_tools={"mcp__srv1__fetch_doc"})
+    assert "mcp__srv1__fetch_doc" in full
+    assert "mcp__srv1__fetch_doc" not in filtered
+    assert filtered == again
+
+
 def test_format_mcp_params_handles_no_params():
     from src.mcp_manager import _format_mcp_params
 

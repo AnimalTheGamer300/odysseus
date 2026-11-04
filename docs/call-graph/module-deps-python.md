@@ -1,0 +1,1140 @@
+# Python module dependency graph
+
+## Import edges (file → imports)
+
+- `app.py` → `companion/__init__.py`, `core/auth.py`, `core/constants.py`, `core/database.py`, `core/exceptions.py`, `core/middleware.py`, `core/models.py`, `routes/admin_wipe/admin_wipe_routes.py`, `routes/api_token_routes.py`, `routes/assistant_routes.py`, `routes/auth_routes.py`, `routes/backup_routes.py`, `routes/calendar_routes.py`, `routes/chat_routes.py`, `routes/chatgpt_subscription_routes.py`, `routes/cleanup/cleanup_routes.py`, `routes/codex_routes.py`, `routes/compare/compare_routes.py`, `routes/contacts/contacts_routes.py`, `routes/cookbook_routes.py`, `routes/copilot_routes.py`, `routes/diagnostics_routes.py`, `routes/document/document_routes.py`, `routes/editor_draft_routes.py`, `routes/email_routes.py`, `routes/embedding_routes.py`, `routes/emoji_routes.py`, `routes/font_routes.py`, `routes/gallery/gallery_routes.py`, `routes/history/history_routes.py`, `routes/hwfit_routes.py`, `routes/mcp/mcp_routes.py`, `routes/memory/memory_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/personal_routes.py`, `routes/prefs_routes.py`, `routes/preset_routes.py`, `routes/research/research_routes.py`, `routes/search/search_routes.py`, `routes/session_routes.py`, `routes/shell_routes.py`, `routes/signature_routes.py`, `routes/skills_routes.py`, `routes/stt_routes.py`, `routes/task/task_routes.py`, `routes/tts_routes.py`, `routes/upload_routes.py`, `routes/vault/vault_routes.py`, `routes/webhook/webhook_routes.py`, `routes/workspace_routes.py`, `services/stt/__init__.py`, `services/tts/__init__.py`, `services/youtube/__init__.py`, `src/agent_jobs.py`, `src/agent_tools/__init__.py`, `src/ai_interaction.py`, `src/app_helpers.py`, `src/app_initializer.py`, `src/assistant_log.py`, `src/auth_helpers.py`, `src/bg_monitor.py`, `src/builtin_mcp.py`, `src/config.py`, `src/cookbook_serve_lifecycle.py`, `src/event_bus.py`, `src/generated_images.py`, `src/interactive_gate.py`, `src/mcp_manager.py`, `src/owner_identity.py`, `src/rag_singleton.py`, `src/readiness.py`, `src/settings.py`, `src/task_scheduler.py`, `src/tool_index.py`, `src/webhook_manager.py`
+- `companion/__init__.py` → `companion/routes.py`
+- `companion/pairing.py` → `core/database.py`, `src/constants.py`
+- `companion/routes.py` → `companion/__init__.py`, `companion/pairing.py`, `core/constants.py`, `core/database.py`, `core/middleware.py`, `src/auth_helpers.py`, `src/endpoint_resolver.py`
+- `core/__init__.py` → `src/llm_core.py`
+- `core/auth.py` → `core/atomic_io.py`, `core/database.py`, `src/constants.py`, `src/owner_identity.py`
+- `core/constants.py` → `src/constants.py`
+- `core/database.py` → `core/platform_compat.py`, `src/attachment_refs.py`, `src/constants.py`, `src/runtime_paths.py`, `src/secret_storage.py`
+- `core/middleware.py` → `src/owner_identity.py`
+- `core/models.py` → `src/tool_approval_scopes.py`
+- `core/session_manager.py` → `routes/chat_routes.py`, `src/attachment_refs.py`, `src/session_image_cleanup.py`, `src/upload_handler.py`
+- `mcp_servers/email_server.py` → `core/database.py`, `routes/email_helpers.py`, `src/constants.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/secret_storage.py`, `src/settings.py`
+- `mcp_servers/image_gen_server.py` → `src/ai_interaction.py`, `src/constants.py`, `src/database.py`, `src/settings.py`
+- `mcp_servers/memory_server.py` → `src/constants.py`, `src/memory.py`, `src/memory_vector.py`
+- `mcp_servers/rag_server.py` → `src/constants.py`, `src/personal_docs.py`, `src/rag_singleton.py`
+- `routes/admin_wipe/admin_wipe_routes.py` → `core/database.py`, `core/middleware.py`, `src/constants.py`, `src/memory_vector.py`
+- `routes/admin_wipe_routes.py` → `routes/admin_wipe/__init__.py`, `routes/admin_wipe/admin_wipe_routes.py`
+- `routes/api_token_routes.py` → `core/database.py`, `core/middleware.py`, `src/auth_helpers.py`
+- `routes/assistant_routes.py` → `core/database.py`, `src/auth_helpers.py`, `src/owner_identity.py`, `src/task_scheduler.py`
+- `routes/auth_routes.py` → `core/atomic_io.py`, `core/auth.py`, `core/database.py`, `routes/personal_routes.py`, `routes/prefs_routes.py`, `src/constants.py`, `src/integrations.py`, `src/rate_limiter.py`, `src/settings.py`, `src/settings_scrub.py`
+- `routes/backup_routes.py` → `core/middleware.py`, `routes/prefs_routes.py`, `services/memory/__init__.py`, `src/auth_helpers.py`, `src/settings.py`
+- `routes/calendar_routes.py` → `core/database.py`, `routes/prefs_routes.py`, `src/auth_helpers.py`, `src/caldav_sync.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/secret_storage.py`, `src/text_helpers.py`, `src/upload_handler.py`, `src/upload_limits.py`, `src/user_time.py`
+- `routes/chat_helpers.py` → `core/database.py`, `core/models.py`, `routes/__init__.py`, `routes/chat_routes.py`, `routes/prefs_routes.py`, `services/memory/memory_extractor.py`, `services/memory/skill_extractor.py`, `src/agent_loop.py`, `src/attachment_refs.py`, `src/auth_helpers.py`, `src/chatgpt_subscription.py`, `src/context_compactor.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/model_context.py`, `src/prompt_security.py`, `src/task_endpoint.py`, `src/text_helpers.py`, `src/tool_execution.py`, `src/tool_replay.py`, `src/user_time.py`
+- `routes/chat_routes.py` → `core/database.py`, `core/exceptions.py`, `core/log_safety.py`, `core/models.py`, `routes/chat_helpers.py`, `routes/document_helpers.py`, `routes/email_routes.py`, `routes/model_routes.py`, `routes/research_routes.py`, `routes/session_routes.py`, `src/action_intents.py`, `src/agent_loop.py`, `src/agent_runs.py`, `src/agent_tools/__init__.py`, `src/agent_tools/document_tools.py`, `src/ai_interaction.py`, `src/auth_helpers.py`, `src/chat_helpers.py`, `src/chatgpt_subscription.py`, `src/context_compactor.py`, `src/endpoint_resolver.py`, `src/foreground_model_routing.py`, `src/image_model_ids.py`, `src/llm_core.py`, `src/model_context.py`, `src/prompt_security.py`, `src/request_models.py`, `src/research_utils.py`, `src/session_search.py`, `src/settings.py`, `src/tool_approval_scopes.py`, `src/tool_approvals.py`, `src/tool_execution.py`, `src/tool_implementations.py`, `src/tool_policy.py`, `src/tool_replay.py`, `src/tool_security.py`, `src/user_time.py`
+- `routes/chatgpt_subscription_routes.py` → `core/database.py`, `routes/device_flow.py`, `routes/model_routes.py`, `src/auth_helpers.py`, `src/chatgpt_subscription.py`
+- `routes/cleanup/cleanup_routes.py` → `src/auth_helpers.py`, `src/cleanup_service.py`
+- `routes/cleanup_routes.py` → `routes/cleanup/__init__.py`, `routes/cleanup/cleanup_routes.py`
+- `routes/codex_routes.py` → `core/atomic_io.py`, `core/middleware.py`, `routes/_validators.py`, `routes/calendar_routes.py`, `routes/cookbook_helpers.py`, `routes/document_routes.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `src/auth_helpers.py`, `src/constants.py`, `src/request_models.py`, `src/tool_implementations.py`
+- `routes/compare/compare_routes.py` → `core/database.py`, `core/session_manager.py`, `routes/session_routes.py`, `src/auth_helpers.py`, `src/endpoint_resolver.py`
+- `routes/compare_routes.py` → `routes/compare/__init__.py`, `routes/compare/compare_routes.py`
+- `routes/contacts/contacts_routes.py` → `core/atomic_io.py`, `core/log_safety.py`, `core/middleware.py`, `src/constants.py`, `src/secret_storage.py`, `src/url_safety.py`
+- `routes/contacts_routes.py` → `routes/contacts/__init__.py`, `routes/contacts/contacts_routes.py`
+- `routes/cookbook_helpers.py` → `core/platform_compat.py`, `routes/_validators.py`, `src/secret_storage.py`
+- `routes/cookbook_routes.py` → `core/atomic_io.py`, `core/constants.py`, `core/database.py`, `core/middleware.py`, `core/platform_compat.py`, `routes/_validators.py`, `routes/cookbook_helpers.py`, `routes/cookbook_output.py`, `routes/model_routes.py`, `routes/shell_routes.py`, `services/hwfit/hardware.py`, `src/assistant_log.py`, `src/auth_helpers.py`, `src/constants.py`, `src/host_docker_access.py`, `src/secret_storage.py`, `src/settings.py`
+- `routes/copilot_routes.py` → `core/database.py`, `routes/device_flow.py`, `routes/model_routes.py`, `src/auth_helpers.py`, `src/copilot.py`
+- `routes/device_flow.py` → `core/middleware.py`
+- `routes/diagnostics_routes.py` → `core/constants.py`, `core/database.py`, `core/middleware.py`, `services/youtube/youtube_handler.py`, `src/service_health.py`
+- `routes/document/document_helpers.py` → `core/database.py`, `src/auth_helpers.py`, `src/pdf_form_doc.py`, `src/upload_handler.py`
+- `routes/document/document_routes.py` → `core/database.py`, `routes/document_helpers.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `src/agent_tools/document_tools.py`, `src/auth_helpers.py`, `src/constants.py`, `src/document_actions.py`, `src/document_processor.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/pdf_form_doc.py`, `src/pdf_forms.py`, `src/pdf_runtime.py`, `src/task_endpoint.py`, `src/upload_handler.py`
+- `routes/document_helpers.py` → `routes/document/__init__.py`, `routes/document/document_helpers.py`
+- `routes/document_routes.py` → `routes/document/__init__.py`, `routes/document/document_routes.py`
+- `routes/editor_draft_routes.py` → `core/database.py`, `src/auth_helpers.py`
+- `routes/email_helpers.py` → `core/atomic_io.py`, `core/database.py`, `routes/contacts_routes.py`, `src/auth_helpers.py`, `src/constants.py`, `src/llm_core.py`, `src/personal_docs.py`, `src/secret_storage.py`, `src/task_endpoint.py`, `src/text_helpers.py`, `src/tool_security.py`
+- `routes/email_pollers.py` → `core/database.py`, `routes/email_helpers.py`, `src/llm_core.py`, `src/settings.py`, `src/task_endpoint.py`, `src/tool_implementations.py`
+- `routes/email_routes.py` → `core/database.py`, `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/gallery/gallery_routes.py`, `src/auth_helpers.py`, `src/constants.py`, `src/database.py`, `src/email_thread_parser.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/pdf_form_doc.py`, `src/pdf_forms.py`, `src/secret_storage.py`, `src/upload_limits.py`
+- `routes/embedding_routes.py` → `core/constants.py`, `core/middleware.py`, `src/chroma_client.py`, `src/embedding_lanes.py`, `src/embeddings.py`, `src/rag_singleton.py`, `src/runtime_paths.py`, `src/secret_storage.py`, `src/tool_index.py`, `src/url_safety.py`
+- `routes/emoji_routes.py` → `src/constants.py`
+- `routes/gallery/gallery_helpers.py` → `core/database.py`, `src/auth_helpers.py`
+- `routes/gallery/gallery_routes.py` → `core/database.py`, `routes/gallery/gallery_helpers.py`, `src/auth_helpers.py`, `src/constants.py`, `src/document_processor.py`, `src/llm_core.py`, `src/optional_deps.py`, `src/upload_limits.py`, `src/url_safety.py`
+- `routes/gallery_helpers.py` → `routes/gallery/__init__.py`, `routes/gallery/gallery_helpers.py`
+- `routes/gallery_routes.py` → `routes/gallery/__init__.py`, `routes/gallery/gallery_routes.py`
+- `routes/history/history_routes.py` → `core/database.py`, `core/models.py`, `routes/chat_routes.py`, `routes/session_routes.py`, `src/auth_helpers.py`, `src/context_compactor.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/model_context.py`, `src/tool_approval_scopes.py`, `src/topic_analyzer.py`, `src/upload_handler.py`
+- `routes/history_routes.py` → `routes/history/__init__.py`, `routes/history/history_routes.py`
+- `routes/hwfit_routes.py` → `core/platform_compat.py`, `routes/_validators.py`, `services/hwfit/fit.py`, `services/hwfit/hardware.py`, `services/hwfit/image_models.py`, `services/hwfit/models.py`, `services/hwfit/profiles.py`
+- `routes/mcp/mcp_routes.py` → `core/database.py`, `core/middleware.py`, `src/constants.py`, `src/mcp_manager.py`, `src/mcp_oauth.py`
+- `routes/mcp_routes.py` → `routes/mcp/__init__.py`, `routes/mcp/mcp_routes.py`
+- `routes/memory/memory_routes.py` → `core/database.py`, `core/session_manager.py`, `services/memory/__init__.py`, `services/memory/memory_extractor.py`, `src/auth_helpers.py`, `src/document_processor.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/request_models.py`, `src/task_endpoint.py`, `src/upload_limits.py`
+- `routes/memory_routes.py` → `routes/memory/__init__.py`, `routes/memory/memory_routes.py`
+- `routes/model_routes.py` → `core/database.py`, `core/log_safety.py`, `core/middleware.py`, `routes/prefs_routes.py`, `src/agent_tools/__init__.py`, `src/ai_interaction.py`, `src/auth_helpers.py`, `src/chatgpt_subscription.py`, `src/constants.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/settings.py`, `src/tls_overrides.py`
+- `routes/note/note_routes.py` → `core/auth.py`, `core/database.py`, `core/middleware.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `src/auth_helpers.py`, `src/constants.py`, `src/endpoint_resolver.py`, `src/integrations.py`, `src/llm_core.py`, `src/reminder_personas.py`, `src/settings.py`, `src/text_helpers.py`, `src/upload_handler.py`, `src/url_safety.py`
+- `routes/note_routes.py` → `routes/note/__init__.py`, `routes/note/note_routes.py`
+- `routes/personal_routes.py` → `core/constants.py`, `core/middleware.py`, `src/auth_helpers.py`, `src/personal_docs.py`, `src/rag_singleton.py`, `src/request_models.py`, `src/upload_handler.py`, `src/upload_limits.py`
+- `routes/prefs_routes.py` → `core/atomic_io.py`, `src/auth_helpers.py`, `src/constants.py`
+- `routes/preset_routes.py` → `core/middleware.py`, `src/ai_interaction.py`, `src/auth_helpers.py`, `src/llm_core.py`, `src/request_models.py`
+- `routes/research/research_routes.py` → `core/middleware.py`, `core/models.py`, `src/auth_helpers.py`, `src/constants.py`, `src/database.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/owner_identity.py`
+- `routes/research_routes.py` → `routes/research/__init__.py`, `routes/research/research_routes.py`
+- `routes/search/search_routes.py` → `services/search/__init__.py`, `services/search/core.py`, `services/search/providers.py`
+- `routes/search_routes.py` → `routes/search/__init__.py`, `routes/search/search_routes.py`
+- `routes/session_routes.py` → `core/database.py`, `core/middleware.py`, `core/models.py`, `core/session_manager.py`, `src/agent_runs.py`, `src/auth_helpers.py`, `src/context_compactor.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/model_context.py`, `src/request_models.py`, `src/session_actions.py`, `src/session_image_cleanup.py`, `src/task_endpoint.py`, `src/text_helpers.py`, `src/tool_approval_scopes.py`, `src/upload_handler.py`
+- `routes/shell_routes.py` → `core/middleware.py`, `core/platform_compat.py`, `routes/cookbook_helpers.py`, `src/host_docker_access.py`, `src/optional_deps.py`
+- `routes/signature_routes.py` → `core/database.py`, `src/auth_helpers.py`
+- `routes/skills_routes.py` → `core/middleware.py`, `routes/prefs_routes.py`, `services/memory/skill_format.py`, `services/memory/skill_importer.py`, `services/memory/skills.py`, `src/agent_loop.py`, `src/ai_interaction.py`, `src/auth_helpers.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/llm_core.py`, `src/prompt_security.py`, `src/settings.py`, `src/tool_approvals.py`
+- `routes/stt_routes.py` → `src/upload_limits.py`
+- `routes/task/task_routes.py` → `core/constants.py`, `core/database.py`, `core/middleware.py`, `routes/email_helpers.py`, `routes/prefs_routes.py`, `src/auth_helpers.py`, `src/builtin_actions.py`, `src/constants.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/task_action_policy.py`, `src/task_scheduler.py`, `src/text_helpers.py`, `src/tool_utils.py`
+- `routes/task_routes.py` → `routes/task/__init__.py`, `routes/task/task_routes.py`
+- `routes/upload_routes.py` → `core/database.py`, `core/middleware.py`, `src/attachment_refs.py`, `src/auth_helpers.py`, `src/constants.py`, `src/document_processor.py`, `src/upload_handler.py`
+- `routes/vault/vault_routes.py` → `core/middleware.py`, `core/platform_compat.py`, `src/constants.py`
+- `routes/vault_routes.py` → `routes/vault/__init__.py`, `routes/vault/vault_routes.py`
+- `routes/webhook/webhook_routes.py` → `core/database.py`, `core/middleware.py`, `core/models.py`, `src/auth_helpers.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/url_security.py`, `src/webhook_manager.py`
+- `routes/webhook_routes.py` → `routes/webhook/__init__.py`, `routes/webhook/webhook_routes.py`
+- `routes/workspace_routes.py` → `src/auth_helpers.py`, `src/tool_execution.py`, `src/tool_security.py`
+- `scripts/claim_ownerless.py` → `core/database.py`, `src/constants.py`
+- `scripts/demo_email/demo_account.py` → `core/database.py`, `src/secret_storage.py`
+- `scripts/dump_agent_prompt.py` → `core/database.py`, `src/agent_loop.py`, `src/builtin_mcp.py`, `src/llm_core.py`, `src/mcp_manager.py`, `src/model_context.py`, `src/settings.py`, `src/tool_policy.py`, `src/tool_schemas.py`, `src/tool_utils.py`
+- `scripts/index_documents.py` → `src/constants.py`, `src/rag_manager.py`
+- `scripts/migrate_faiss_to_chroma.py` → `src/chroma_client.py`, `src/constants.py`, `src/embeddings.py`
+- `services/docs/__init__.py` → `src/rag_manager.py`, `src/rag_vector.py`
+- `services/docs/service.py` → `src/constants.py`, `src/rag_manager.py`
+- `services/hwfit/fit.py` → `services/hwfit/image_models.py`, `services/hwfit/models.py`
+- `services/hwfit/hardware.py` → `core/platform_compat.py`
+- `services/hwfit/hf_discovery.py` → `src/constants.py`
+- `services/hwfit/models.py` → `services/hwfit/hf_discovery.py`
+- `services/hwfit/profiles.py` → `services/hwfit/models.py`
+- `services/memory/memory.py` → `src/memory.py`
+- `services/memory/memory_extractor.py` → `src/event_bus.py`, `src/llm_core.py`, `src/memory.py`, `src/text_helpers.py`
+- `services/memory/memory_vector.py` → `src/memory_vector.py`
+- `services/memory/service.py` → `src/constants.py`, `src/memory_provider.py`
+- `services/memory/skill_extractor.py` → `routes/prefs_routes.py`, `src/event_bus.py`, `src/llm_core.py`, `src/text_helpers.py`
+- `services/memory/skill_importer.py` → `src/url_safety.py`
+- `services/memory/skills.py` → `core/atomic_io.py`
+- `services/research/research_handler.py` → `src/constants.py`, `src/deep_research.py`, `src/research_utils.py`, `src/search/__init__.py`, `src/settings.py`
+- `services/search/__init__.py` → `services/search/core.py`
+- `services/search/analytics.py` → `core/constants.py`
+- `services/search/cache.py` → `core/constants.py`
+- `services/search/content.py` → `src/constants.py`, `src/outbound_fetch.py`
+- `services/search/providers.py` → `src/constants.py`, `src/settings.py`
+- `services/stt/__init__.py` → `services/stt/stt_service.py`
+- `services/stt/stt_service.py` → `src/database.py`, `src/settings.py`
+- `services/tts/tts_service.py` → `src/constants.py`, `src/database.py`, `src/settings.py`
+- `src/agent_jobs.py` → `core/atomic_io.py`, `core/models.py`, `src/agent_runs.py`, `src/agent_tools/spawn_agent_tools.py`, `src/ai_interaction.py`, `src/bg_monitor.py`, `src/constants.py`
+- `src/agent_loop.py` → `core/database.py`, `routes/prefs_routes.py`, `services/memory/skills.py`, `src/agent_tools/__init__.py`, `src/agent_tools/document_tools.py`, `src/auth_helpers.py`, `src/constants.py`, `src/context_budget.py`, `src/context_compactor.py`, `src/endpoint_resolver.py`, `src/integrations.py`, `src/llm_core.py`, `src/model_context.py`, `src/pdf_form_doc.py`, `src/prompt_security.py`, `src/settings.py`, `src/teacher_escalation.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `src/tool_index.py`, `src/tool_policy.py`, `src/tool_schemas.py`, `src/tool_security.py`, `src/tool_utils.py`, `src/tools_doc.py`, `src/user_time.py`
+- `src/agent_tools/__init__.py` → `src/tool_execution.py`, `src/tool_implementations.py`, `src/tool_parsing.py`, `src/tool_schemas.py`, `src/tool_security.py`, `src/tool_utils.py`
+- `src/agent_tools/admin_tools.py` → `core/database.py`, `src/settings.py`, `src/tool_security.py`, `src/tool_utils.py`, `src/webhook_manager.py`
+- `src/agent_tools/bg_job_tools.py` → `src/bg_jobs.py`
+- `src/agent_tools/coding_tools.py` → `src/constants.py`
+- `src/agent_tools/document_tools.py` → `core/database.py`, `src/constants.py`, `src/database.py`, `src/document_actions.py`, `src/event_bus.py`, `src/pdf_form_doc.py`, `src/tool_approvals.py`, `src/tool_utils.py`, `src/upload_handler.py`
+- `src/agent_tools/filesystem_tools.py` → `src/constants.py`, `src/tool_execution.py`
+- `src/agent_tools/model_interaction_tools.py` → `src/ai_interaction.py`, `src/auth_helpers.py`, `src/database.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/settings.py`
+- `src/agent_tools/session_tools.py` → `core/database.py`, `core/models.py`, `src/ai_interaction.py`, `src/database.py`, `src/event_bus.py`, `src/llm_core.py`
+- `src/agent_tools/spawn_agent_tools.py` → `core/database.py`, `src/agent_jobs.py`, `src/agent_loop.py`, `src/ai_interaction.py`, `src/auth_helpers.py`, `src/endpoint_resolver.py`, `src/settings.py`
+- `src/agent_tools/subprocess_tools.py` → `core/platform_compat.py`, `src/constants.py`, `src/tool_execution.py`
+- `src/agent_tools/web_tools.py` → `src/constants.py`, `src/search/__init__.py`, `src/search/content.py`
+- `src/ai_interaction.py` → `core/models.py`, `routes/prefs_routes.py`, `src/auth_helpers.py`, `src/constants.py`, `src/database.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/image_model_ids.py`, `src/llm_core.py`, `src/memory.py`, `src/settings.py`, `src/url_safety.py`
+- `src/api_key_manager.py` → `core/platform_compat.py`
+- `src/app_initializer.py` → `core/models.py`, `core/session_manager.py`, `services/memory/skills.py`, `src/agent_loop.py`, `src/api_key_manager.py`, `src/chat_handler.py`, `src/chat_processor.py`, `src/constants.py`, `src/memory.py`, `src/memory_provider.py`, `src/memory_vector.py`, `src/model_discovery.py`, `src/personal_docs.py`, `src/preset_manager.py`, `src/research_handler.py`, `src/search/__init__.py`, `src/tool_utils.py`, `src/tools_doc.py`, `src/upload_handler.py`
+- `src/auth_helpers.py` → `src/owner_identity.py`
+- `src/bg_jobs.py` → `core/atomic_io.py`, `core/platform_compat.py`, `src/constants.py`
+- `src/bg_monitor.py` → `core/models.py`, `src/agent_loop.py`, `src/agent_runs.py`, `src/ai_interaction.py`, `src/bg_jobs.py`, `src/prompt_security.py`
+- `src/builtin_actions.py` → `core/atomic_io.py`, `core/auth.py`, `core/constants.py`, `core/database.py`, `core/middleware.py`, `core/platform_compat.py`, `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/note_routes.py`, `routes/prefs_routes.py`, `routes/skills_routes.py`, `services/memory/skills.py`, `src/auth_helpers.py`, `src/constants.py`, `src/document_actions.py`, `src/interactive_gate.py`, `src/llm_core.py`, `src/memory.py`, `src/session_actions.py`, `src/settings.py`, `src/task_endpoint.py`, `src/text_helpers.py`, `src/tool_security.py`
+- `src/builtin_mcp.py` → `core/platform_compat.py`, `src/runtime_paths.py`
+- `src/caldav_sync.py` → `core/database.py`, `routes/calendar_routes.py`, `routes/prefs_routes.py`, `src/caldav_writeback.py`, `src/secret_storage.py`
+- `src/caldav_writeback.py` → `core/database.py`, `src/caldav_sync.py`, `src/secret_storage.py`
+- `src/chat_handler.py` → `core/database.py`, `core/models.py`, `src/chat_helpers.py`, `src/constants.py`, `src/database.py`, `src/document_processor.py`, `src/settings.py`, `src/youtube_handler.py`
+- `src/chat_helpers.py` → `src/settings.py`, `src/upload_limits.py`
+- `src/chat_processor.py` → `src/chat_helpers.py`, `src/llm_core.py`, `src/prompt_security.py`, `src/search/__init__.py`, `src/youtube_handler.py`
+- `src/chatgpt_subscription.py` → `core/database.py`
+- `src/cleanup_service.py` → `src/database.py`
+- `src/config.py` → `src/constants.py`, `src/runtime_paths.py`
+- `src/constants.py` → `src/runtime_paths.py`
+- `src/context_compactor.py` → `core/models.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/model_context.py`
+- `src/cookbook_serve_lifecycle.py` → `core/atomic_io.py`, `core/constants.py`, `core/middleware.py`, `src/constants.py`
+- `src/database.py` → `core/database.py`
+- `src/deep_research.py` → `src/goal_based_extractor.py`, `src/llm_core.py`, `src/prompt_security.py`, `src/research_utils.py`, `src/search/__init__.py`, `src/search/core.py`, `src/search/providers.py`
+- `src/document_actions.py` → `core/database.py`, `src/builtin_actions.py`
+- `src/document_processor.py` → `src/ai_interaction.py`, `src/database.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/markitdown_runtime.py`, `src/office_doc.py`, `src/pdf_form_doc.py`, `src/pdf_forms.py`, `src/personal_docs.py`, `src/settings.py`, `src/vision_preprocessing.py`
+- `src/embedding_lanes.py` → `src/chroma_client.py`, `src/embeddings.py`, `src/secret_storage.py`
+- `src/embeddings.py` → `src/constants.py`, `src/runtime_paths.py`, `src/secret_storage.py`
+- `src/endpoint_resolver.py` → `core/database.py`, `src/auth_helpers.py`, `src/chatgpt_subscription.py`, `src/copilot.py`, `src/llm_core.py`, `src/settings.py`
+- `src/event_bus.py` → `core/database.py`, `src/constants.py`
+- `src/exceptions.py` → `core/exceptions.py`
+- `src/foreground_model_routing.py` → `routes/__init__.py`, `routes/prefs_routes.py`, `src/endpoint_resolver.py`
+- `src/generated_images.py` → `src/constants.py`
+- `src/integrations.py` → `core/atomic_io.py`, `core/platform_compat.py`, `src/constants.py`, `src/secret_storage.py`, `src/url_safety.py`
+- `src/interactive_gate.py` → `routes/__init__.py`, `routes/chat_routes.py`, `src/agent_runs.py`
+- `src/llm_core.py` → `src/auth_helpers.py`, `src/chatgpt_subscription.py`, `src/copilot.py`, `src/database.py`, `src/endpoint_resolver.py`, `src/interactive_gate.py`, `src/model_context.py`, `src/settings.py`, `src/tls_overrides.py`, `src/user_time.py`
+- `src/mcp_manager.py` → `src/builtin_mcp.py`, `src/database.py`, `src/mcp_oauth.py`, `src/runtime_paths.py`
+- `src/mcp_oauth.py` → `core/database.py`
+- `src/memory_vector.py` → `src/chroma_client.py`, `src/embedding_lanes.py`
+- `src/model_capability_readers/__init__.py` → `src/model_capability_readers/__init__.py`, `src/model_capability_readers/base.py`
+- `src/model_capability_readers/base.py` → `src/model_capabilities.py`
+- `src/model_capability_readers/generic_openai.py` → `src/model_capabilities.py`, `src/model_capability_readers/base.py`
+- `src/model_capability_readers/google.py` → `src/model_capability_readers/__init__.py`, `src/model_capability_readers/base.py`, `src/model_capability_readers/google_ai_studio_mapping.py`
+- `src/model_capability_readers/google_ai_studio_mapping.py` → `src/model_capabilities.py`, `src/model_capability_readers/base.py`
+- `src/model_capability_readers/llamacpp.py` → `src/model_capabilities.py`, `src/model_capability_readers/__init__.py`, `src/model_capability_readers/base.py`, `src/model_capability_readers/generic_openai.py`
+- `src/model_capability_readers/lmstudio.py` → `src/model_capabilities.py`, `src/model_capability_readers/__init__.py`, `src/model_capability_readers/base.py`, `src/model_capability_readers/generic_openai.py`
+- `src/model_capability_readers/ollama.py` → `src/model_capabilities.py`, `src/model_capability_readers/base.py`
+- `src/model_capability_readers/openai.py` → `src/model_capabilities.py`, `src/model_capability_readers/base.py`
+- `src/model_capability_readers/openrouter.py` → `src/model_capabilities.py`, `src/model_capability_readers/__init__.py`, `src/model_capability_readers/base.py`, `src/model_capability_readers/generic_openai.py`
+- `src/model_context.py` → `core/database.py`, `src/copilot.py`, `src/endpoint_resolver.py`, `src/settings.py`
+- `src/office_doc.py` → `src/agent_tools/document_tools.py`, `src/database.py`
+- `src/outbound_fetch.py` → `src/constants.py`
+- `src/pdf_form_doc.py` → `src/agent_tools/document_tools.py`, `src/database.py`, `src/upload_handler.py`
+- `src/personal_docs.py` → `src/index_walk.py`, `src/markitdown_runtime.py`
+- `src/preset_manager.py` → `core/atomic_io.py`
+- `src/rag_manager.py` → `src/constants.py`, `src/rag_vector.py`
+- `src/rag_singleton.py` → `src/constants.py`, `src/rag_vector.py`, `src/runtime_paths.py`
+- `src/rag_vector.py` → `src/chroma_client.py`, `src/constants.py`, `src/embedding_lanes.py`, `src/index_walk.py`, `src/personal_docs.py`
+- `src/readiness.py` → `core/constants.py`, `core/database.py`
+- `src/research_handler.py` → `src/constants.py`, `src/deep_research.py`, `src/event_bus.py`, `src/llm_core.py`, `src/research_utils.py`, `src/search/__init__.py`, `src/settings.py`, `src/visual_report.py`
+- `src/research_utils.py` → `src/text_helpers.py`
+- `src/search/__init__.py` → `src/search/core.py`
+- `src/search/analytics.py` → `services/search/__init__.py`, `services/search/analytics.py`
+- `src/search/cache.py` → `services/search/__init__.py`, `services/search/cache.py`
+- `src/search/content.py` → `services/search/__init__.py`, `services/search/content.py`
+- `src/search/core.py` → `services/search/__init__.py`, `services/search/core.py`
+- `src/search/providers.py` → `services/search/__init__.py`, `services/search/providers.py`
+- `src/search/query.py` → `services/search/__init__.py`, `services/search/query.py`
+- `src/search/ranking.py` → `services/search/ranking.py`
+- `src/secret_storage.py` → `core/platform_compat.py`, `src/constants.py`
+- `src/service_health.py` → `core/database.py`, `routes/email_helpers.py`, `routes/model_routes.py`, `src/constants.py`, `src/integrations.py`, `src/settings.py`
+- `src/session_actions.py` → `core/database.py`, `src/llm_core.py`, `src/task_endpoint.py`
+- `src/session_image_cleanup.py` → `core/database.py`, `src/constants.py`
+- `src/session_search.py` → `core/database.py`
+- `src/settings.py` → `core/atomic_io.py`, `routes/prefs_routes.py`, `src/constants.py`
+- `src/task_action_policy.py` → `core/auth.py`, `core/middleware.py`, `src/auth_helpers.py`
+- `src/task_endpoint.py` → `src/endpoint_resolver.py`, `src/interactive_gate.py`, `src/llm_core.py`
+- `src/task_scheduler.py` → `core/auth.py`, `core/database.py`, `core/models.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `routes/prefs_routes.py`, `src/agent_loop.py`, `src/assistant_log.py`, `src/auth_helpers.py`, `src/builtin_actions.py`, `src/deep_research.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/integrations.py`, `src/interactive_gate.py`, `src/owner_identity.py`, `src/reminder_personas.py`, `src/research_handler.py`, `src/research_utils.py`, `src/settings.py`, `src/task_action_policy.py`, `src/task_endpoint.py`, `src/text_helpers.py`, `src/tool_approvals.py`, `src/tool_implementations.py`, `src/tool_index.py`, `src/tool_utils.py`, `src/user_time.py`
+- `src/teacher_escalation.py` → `src/agent_loop.py`, `src/agent_tools/model_interaction_tools.py`, `src/ai_interaction.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/settings.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`
+- `src/tool_approval_scopes.py` → `src/secret_storage.py`
+- `src/tool_approvals.py` → `src/tool_approval_scopes.py`, `src/tool_capabilities.py`
+- `src/tool_capabilities.py` → `src/tool_approval_scopes.py`, `src/tool_security.py`
+- `src/tool_execution.py` → `src/agent_tools/__init__.py`, `src/ai_interaction.py`, `src/bg_jobs.py`, `src/constants.py`, `src/settings.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `src/tool_implementations.py`, `src/tool_policy.py`, `src/tool_security.py`, `src/tool_utils.py`, `src/user_time.py`
+- `src/tool_implementations.py` → `src/agent_tools/__init__.py`, `src/agent_tools/admin_tools.py`, `src/tool_utils.py`, `src/tools/_common.py`, `src/tools/calendar.py`, `src/tools/contacts.py`, `src/tools/cookbook.py`, `src/tools/image.py`, `src/tools/notes.py`, `src/tools/research.py`, `src/tools/search.py`, `src/tools/system.py`, `src/tools/vault.py`
+- `src/tool_index.py` → `src/embedding_lanes.py`
+- `src/tool_parsing.py` → `src/agent_tools/__init__.py`, `src/tool_schemas.py`, `src/tool_security.py`
+- `src/tool_policy.py` → `src/agent_loop.py`, `src/tool_schemas.py`, `src/tool_security.py`
+- `src/tool_schemas.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`, `src/tool_security.py`
+- `src/tool_security.py` → `core/auth.py`, `src/agent_tools/__init__.py`, `src/auth_helpers.py`, `src/tool_schemas.py`
+- `src/tool_utils.py` → `src/constants.py`
+- `src/tools/__init__.py` → `src/tools/_common.py`, `src/tools/calendar.py`, `src/tools/contacts.py`, `src/tools/cookbook.py`, `src/tools/image.py`, `src/tools/notes.py`, `src/tools/research.py`, `src/tools/search.py`, `src/tools/system.py`, `src/tools/vault.py`
+- `src/tools/_common.py` → `core/constants.py`, `core/middleware.py`, `src/tool_utils.py`
+- `src/tools/calendar.py` → `core/database.py`, `routes/calendar_routes.py`, `src/tool_utils.py`, `src/tools/_common.py`, `src/upload_handler.py`
+- `src/tools/contacts.py` → `routes/__init__.py`, `routes/contacts_routes.py`, `src/tool_implementations.py`, `src/tools/_common.py`
+- `src/tools/cookbook.py` → `routes/_validators.py`, `routes/cookbook_helpers.py`, `src/tool_implementations.py`, `src/tools/_common.py`
+- `src/tools/image.py` → `src/database.py`, `src/tool_implementations.py`, `src/tools/_common.py`
+- `src/tools/notes.py` → `core/database.py`, `routes/calendar_routes.py`, `src/tool_utils.py`, `src/tools/_common.py`, `src/upload_handler.py`
+- `src/tools/research.py` → `src/constants.py`, `src/tool_implementations.py`, `src/tools/_common.py`
+- `src/tools/search.py` → `src/session_search.py`
+- `src/tools/system.py` → `core/database.py`, `routes/prefs_routes.py`, `services/memory/skill_format.py`, `services/memory/skills.py`, `src/constants.py`, `src/event_bus.py`, `src/integrations.py`, `src/task_scheduler.py`, `src/tool_implementations.py`, `src/tools/_common.py`
+- `src/tools/vault.py` → `src/assistant_log.py`, `src/constants.py`, `src/tools/_common.py`
+- `src/tools_doc.py` → `src/constants.py`
+- `src/upload_handler.py` → `src/attachment_refs.py`, `src/upload_limits.py`
+- `src/vision_preprocessing.py` → `src/settings.py`
+- `src/visual_report.py` → `src/research_utils.py`
+- `src/webhook_manager.py` → `src/database.py`
+- `tests/conftest.py` → `core/database.py`, `core/models.py`, `src/database.py`
+- `tests/helpers/calendar_routes.py` → `routes/calendar_routes.py`
+- `tests/helpers/embedding_lanes.py` → `src/chroma_client.py`
+- `tests/test_action_intents.py` → `src/action_intents.py`
+- `tests/test_action_intents_shell_verbs.py` → `src/action_intents.py`
+- `tests/test_active_document_clear.py` → `src/agent_tools/document_tools.py`
+- `tests/test_add_directory_event_loop.py` → `core/middleware.py`, `routes/personal_routes.py`, `src/auth_helpers.py`
+- `tests/test_admin_tools_registry.py` → `src/agent_tools/__init__.py`, `src/agent_tools/admin_tools.py`, `src/tool_implementations.py`, `src/tool_utils.py`, `src/tools/__init__.py`, `src/tools/_common.py`
+- `tests/test_admin_wipe_gallery.py` → `core/database.py`, `routes/admin_wipe_routes.py`
+- `tests/test_admin_wipe_routes_shim.py` → `routes/admin_wipe_routes.py`
+- `tests/test_agent_bash_windows.py` → `src/agent_tools/__init__.py`, `src/agent_tools/subprocess_tools.py`
+- `tests/test_agent_jobs.py` → `src/agent_jobs.py`, `src/agent_tools/spawn_agent_tools.py`
+- `tests/test_agent_loop.py` → `src/agent_loop.py`
+- `tests/test_agent_loop_tool_output_truncation.py` → `src/tool_utils.py`
+- `tests/test_agent_rounds_exhausted.py` → `src/agent_loop.py`
+- `tests/test_agent_state_dir_confinement.py` → `src/agent_tools/filesystem_tools.py`, `src/app_initializer.py`, `src/constants.py`, `src/tool_execution.py`
+- `tests/test_agent_tools_truncate_nonstring.py` → `src/agent_tools/__init__.py`
+- `tests/test_ai_image_url_safety.py` → `src/ai_interaction.py`, `src/settings.py`, `src/url_safety.py`
+- `tests/test_ai_interaction_owner_scope.py` → `src/agent_tools/__init__.py`, `src/agent_tools/model_interaction_tools.py`, `src/ai_interaction.py`
+- `tests/test_anthropic_response_parse.py` → `src/llm_core.py`
+- `tests/test_api_chat_security.py` → `src/url_security.py`
+- `tests/test_api_key_file_permissions.py` → `src/api_key_manager.py`
+- `tests/test_api_key_manager_atomic_save.py` → `src/api_key_manager.py`
+- `tests/test_api_key_manager_corrupt_load.py` → `src/api_key_manager.py`
+- `tests/test_api_key_manager_resilience.py` → `src/api_key_manager.py`
+- `tests/test_api_token_routes.py` → `routes/api_token_routes.py`
+- `tests/test_api_token_tool_authority.py` → `core/models.py`, `routes/chat_routes.py`, `src/auth_helpers.py`, `src/request_models.py`, `src/tool_approval_scopes.py`, `src/tool_capabilities.py`, `src/tool_security.py`
+- `tests/test_api_token_user_route_gate.py` → `routes/codex_routes.py`, `src/auth_helpers.py`
+- `tests/test_app.py` → `src/app_helpers.py`, `src/constants.py`, `src/exceptions.py`
+- `tests/test_app_db_permissions.py` → `core/database.py`
+- `tests/test_app_initializer_memory_vector_degraded.py` → `src/app_initializer.py`, `src/memory_vector.py`, `src/service_health.py`
+- `tests/test_approved_replay_message_shape.py` → `src/agent_loop.py`, `src/llm_core.py`
+- `tests/test_archived_sessions_model_filter.py` → `core/database.py`, `routes/session_routes.py`
+- `tests/test_ask_user_persistence.py` → `src/agent_loop.py`
+- `tests/test_ask_user_tool.py` → `src/agent_tools/__init__.py`, `src/tool_execution.py`, `src/tool_index.py`, `src/tool_schemas.py`, `src/tool_security.py`
+- `tests/test_attachment_refs.py` → `src/attachment_refs.py`
+- `tests/test_auth_config_lock_concurrency.py` → `core/auth.py`
+- `tests/test_auth_disabled_document_access.py` → `core/database.py`, `routes/document_helpers.py`, `routes/document_routes.py`
+- `tests/test_auth_event_loop.py` → `routes/auth_routes.py`
+- `tests/test_auth_policy.py` → `routes/auth_routes.py`
+- `tests/test_auth_regressions.py` → `routes/__init__.py`, `routes/auth_routes.py`, `routes/research_routes.py`, `routes/task_routes.py`, `src/task_action_policy.py`, `src/task_scheduler.py`
+- `tests/test_auth_require_privilege_nondict.py` → `src/auth_helpers.py`
+- `tests/test_auth_root_path.py` → `core/middleware.py`
+- `tests/test_auth_session_revocation.py` → `routes/auth_routes.py`
+- `tests/test_backup_import_cross_user_dedup.py` → `routes/backup_routes.py`
+- `tests/test_backup_import_skills.py` → `routes/backup_routes.py`
+- `tests/test_backup_import_skills_dedup.py` → `routes/backup_routes.py`
+- `tests/test_bg_job_tools.py` → `src/agent_loop.py`, `src/agent_tools/bg_job_tools.py`, `src/bg_jobs.py`
+- `tests/test_bg_jobs_store.py` → `src/bg_jobs.py`
+- `tests/test_bg_monitor_stream.py` → `src/bg_monitor.py`
+- `tests/test_blind_compare_redaction.py` → `routes/session_routes.py`
+- `tests/test_budget_auto_sentinel.py` → `src/context_budget.py`, `src/model_context.py`, `src/settings.py`
+- `tests/test_build_user_content_pdf_marker.py` → `src/document_processor.py`, `src/pdf_form_doc.py`, `src/pdf_forms.py`
+- `tests/test_builtin_actions_cookbook_serve_state.py` → `src/builtin_actions.py`
+- `tests/test_builtin_actions_nonstring.py` → `src/builtin_actions.py`
+- `tests/test_builtin_actions_owner_scope.py` → `core/__init__.py`, `core/database.py`, `routes/__init__.py`, `routes/email_helpers.py`, `src/builtin_actions.py`, `src/task_endpoint.py`
+- `tests/test_builtin_mcp_pythonpath.py` → `src/builtin_mcp.py`
+- `tests/test_builtin_memory_consolidation.py` → `src/builtin_actions.py`, `src/constants.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/task_endpoint.py`
+- `tests/test_cache_affinity_local_only.py` → `src/llm_core.py`, `src/model_context.py`
+- `tests/test_caldav_bidirectional_sync.py` → `src/caldav_writeback.py`
+- `tests/test_caldav_client_cleanup.py` → `src/caldav_sync.py`, `src/caldav_writeback.py`
+- `tests/test_caldav_google_principal_url.py` → `core/database.py`, `src/caldav_sync.py`
+- `tests/test_caldav_prune_parse_failure.py` → `src/caldav_sync.py`
+- `tests/test_caldav_sync_prune_local_events.py` → `core/database.py`
+- `tests/test_caldav_sync_uid_scope.py` → `core/database.py`, `src/caldav_sync.py`
+- `tests/test_caldav_test_connection_ssl.py` → `routes/calendar_routes.py`
+- `tests/test_caldav_url_hardening.py` → `src/caldav_sync.py`
+- `tests/test_caldav_url_nonstring.py` → `src/caldav_sync.py`
+- `tests/test_caldav_writeback.py` → `src/caldav_sync.py`, `src/caldav_writeback.py`
+- `tests/test_caldav_writeback_route.py` → `core/database.py`, `routes/calendar_routes.py`, `src/caldav_sync.py`
+- `tests/test_calendar_batch_events.py` → `core/database.py`, `src/tool_implementations.py`
+- `tests/test_calendar_default_transaction.py` → `core/database.py`, `routes/calendar_routes.py`, `src/tools/calendar.py`
+- `tests/test_calendar_import_zero_duration.py` → `core/database.py`, `routes/calendar_routes.py`
+- `tests/test_calendar_list_range_aliases.py` → `core/database.py`, `src/tool_implementations.py`
+- `tests/test_calendar_parse_dt_time_first.py` → `routes/calendar_routes.py`
+- `tests/test_calendar_parse_dt_tonight.py` → `routes/calendar_routes.py`
+- `tests/test_calendar_reminder_minutes_parsing.py` → `core/database.py`, `src/tool_implementations.py`
+- `tests/test_calendar_rrule.py` → `core/database.py`, `src/tool_implementations.py`
+- `tests/test_calendar_update_event_tz.py` → `core/database.py`, `routes/calendar_routes.py`, `src/tool_implementations.py`
+- `tests/test_carddav_password_encryption.py` → `routes/__init__.py`, `routes/contacts_routes.py`, `src/secret_storage.py`
+- `tests/test_chat_helpers.py` → `core/auth.py`, `routes/chat_helpers.py`, `src/llm_core.py`, `src/settings.py`, `src/task_endpoint.py`, `src/user_time.py`
+- `tests/test_chat_image_routing.py` → `routes/__init__.py`, `routes/chat_routes.py`
+- `tests/test_chat_metrics.py` → `src/agent_loop.py`, `src/llm_core.py`
+- `tests/test_chat_preprocess_tool_policy.py` → `src/chat_handler.py`
+- `tests/test_chat_processor_pinned_memory.py` → `src/chat_processor.py`
+- `tests/test_chat_processor_web_search.py` → `src/chat_processor.py`
+- `tests/test_chat_route_tool_policy.py` → `src/action_intents.py`, `src/tool_policy.py`
+- `tests/test_chat_upload_limit_config.py` → `src/chat_helpers.py`, `src/upload_handler.py`, `src/upload_limits.py`
+- `tests/test_chat_url_prefetch_failure_context.py` → `src/chat_processor.py`
+- `tests/test_chatgpt_subscription_routes.py` → `core/database.py`, `routes/chatgpt_subscription_routes.py`, `routes/model_routes.py`, `routes/prefs_routes.py`, `src/ai_interaction.py`
+- `tests/test_check_outbound_url_nonstring.py` → `src/url_safety.py`
+- `tests/test_checkin_digest_owner_scope.py` → `core/database.py`, `src/task_scheduler.py`
+- `tests/test_chroma_client.py` → `src/chroma_client.py`
+- `tests/test_claim_ownerless_json.py` → `scripts/claim_ownerless.py`
+- `tests/test_classify_events_memory_text.py` → `src/builtin_actions.py`
+- `tests/test_cleanup_owner_scope.py` → `routes/cleanup_routes.py`, `src/cleanup_service.py`
+- `tests/test_cleanup_routes_shim.py` → `routes/cleanup_routes.py`
+- `tests/test_cleanup_service_utcnow.py` → `src/cleanup_service.py`
+- `tests/test_code_nav_tools.py` → `src/tool_execution.py`
+- `tests/test_codex_cookbook_admin_gate.py` → `routes/codex_routes.py`
+- `tests/test_codex_ssh_host_validation.py` → `routes/codex_routes.py`
+- `tests/test_compact_truncate_tool_call_args.py` → `src/context_compactor.py`, `src/model_context.py`
+- `tests/test_compaction_summary_failure.py` → `src/context_compactor.py`
+- `tests/test_companion_pairing.py` → `companion/pairing.py`, `companion/routes.py`, `core/middleware.py`
+- `tests/test_companion_readonly.py` → `companion/routes.py`
+- `tests/test_compare_endpoint_owner_scope.py` → `core/database.py`, `routes/compare_routes.py`
+- `tests/test_compare_routes_shim.py` → `routes/compare_routes.py`
+- `tests/test_compare_stop_disconnect_poll.py` → `src/agent_runs.py`
+- `tests/test_compute_next_run_monthly_clamp.py` → `src/task_scheduler.py`
+- `tests/test_consolidate_memory_explicit_drops.py` → `src/builtin_actions.py`, `src/llm_core.py`, `src/memory.py`, `src/task_endpoint.py`
+- `tests/test_contacts_add_null_name.py` → `routes/contacts_routes.py`
+- `tests/test_contacts_carddav_security.py` → `routes/contacts_routes.py`
+- `tests/test_contacts_import_nonstring.py` → `routes/contacts_routes.py`
+- `tests/test_contacts_routes_shim.py` → `routes/contacts_routes.py`
+- `tests/test_contacts_vcard_parse.py` → `routes/contacts_routes.py`
+- `tests/test_context_budget.py` → `src/context_budget.py`, `src/settings.py`
+- `tests/test_context_cache_per_endpoint.py` → `src/model_context.py`
+- `tests/test_context_compactor.py` → `src/context_compactor.py`
+- `tests/test_context_compactor_nonstring.py` → `src/context_compactor.py`
+- `tests/test_continuation_nudge_gating.py` → `routes/chat_helpers.py`, `src/agent_loop.py`
+- `tests/test_cookbook_agent_tool_ssh_validation.py` → `src/tool_implementations.py`
+- `tests/test_cookbook_dead_download_status.py` → `routes/cookbook_output.py`
+- `tests/test_cookbook_diagnosis.py` → `routes/cookbook_helpers.py`
+- `tests/test_cookbook_docker_access.py` → `routes/cookbook_helpers.py`, `routes/cookbook_routes.py`, `src/host_docker_access.py`
+- `tests/test_cookbook_error_feedback.py` → `routes/cookbook_helpers.py`
+- `tests/test_cookbook_error_tail_lines.py` → `routes/cookbook_output.py`
+- `tests/test_cookbook_helpers.py` → `core/platform_compat.py`, `routes/cookbook_helpers.py`
+- `tests/test_cookbook_hf_token.py` → `routes/cookbook_helpers.py`, `src/secret_storage.py`
+- `tests/test_cookbook_local_serve_pid_winpid.py` → `routes/cookbook_routes.py`
+- `tests/test_cookbook_package_detection.py` → `routes/shell_routes.py`
+- `tests/test_cookbook_remote_windows_diffusers.py` → `routes/cookbook_helpers.py`, `routes/cookbook_routes.py`
+- `tests/test_cookbook_serve_lifecycle.py` → `src/cookbook_serve_lifecycle.py`
+- `tests/test_copilot.py` → `src/agent_loop.py`, `src/copilot.py`, `src/endpoint_resolver.py`, `src/llm_core.py`
+- `tests/test_copilot_routes.py` → `core/database.py`, `routes/copilot_routes.py`
+- `tests/test_cors_preflight.py` → `core/middleware.py`
+- `tests/test_database_utcnow.py` → `core/database.py`
+- `tests/test_ddg_redirect_resolution.py` → `src/search/providers.py`
+- `tests/test_deep_research_date_context.py` → `src/deep_research.py`
+- `tests/test_deep_research_extraction_controls.py` → `src/deep_research.py`
+- `tests/test_deep_research_parse_json_array_echo.py` → `src/deep_research.py`
+- `tests/test_deep_research_search_error.py` → `src/deep_research.py`
+- `tests/test_deep_research_synthesis_resilience.py` → `src/deep_research.py`
+- `tests/test_delete_message_after_refresh.py` → `core/database.py`, `core/models.py`, `routes/history/history_routes.py`
+- `tests/test_delete_user_invalidates_token_cache.py` → `routes/auth_routes.py`
+- `tests/test_derive_title_nonstring.py` → `routes/document_helpers.py`
+- `tests/test_device_flow_routes.py` → `routes/__init__.py`, `routes/device_flow.py`
+- `tests/test_diagnostics_service_route.py` → `src/service_health.py`
+- `tests/test_digest_windows.py` → `src/task_scheduler.py`
+- `tests/test_direct_upload_limits.py` → `src/upload_limits.py`
+- `tests/test_docs_query_nondict_rows.py` → `services/docs/service.py`
+- `tests/test_document_actions_nonstring.py` → `src/document_actions.py`
+- `tests/test_document_close_clears_active_route.py` → `core/database.py`, `routes/document_helpers.py`, `routes/document_routes.py`, `src/agent_tools/document_tools.py`
+- `tests/test_document_library_language_facet.py` → `routes/document_routes.py`
+- `tests/test_document_library_pdf_metadata.py` → `routes/document_routes.py`
+- `tests/test_document_pdf_marker.py` → `src/document_processor.py`
+- `tests/test_document_processor_attachment_budget.py` → `src/document_processor.py`
+- `tests/test_document_processor_empty_media_subtype.py` → `src/document_processor.py`
+- `tests/test_document_render_pdf_iframe.py` → `core/database.py`, `core/middleware.py`, `routes/document_routes.py`, `src/pdf_form_doc.py`
+- `tests/test_document_routes_shim.py` → `routes/document_helpers.py`, `routes/document_routes.py`
+- `tests/test_document_session_owner_scope.py` → `core/database.py`, `routes/document_helpers.py`, `routes/document_routes.py`
+- `tests/test_document_tidy_null_timestamp.py` → `core/database.py`, `src/document_actions.py`
+- `tests/test_document_tool_owner_scope.py` → `src/agent_tools/__init__.py`, `src/agent_tools/document_tools.py`
+- `tests/test_draft_promotion_keeps_live_media.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`, `routes/__init__.py`, `routes/chat_routes.py`
+- `tests/test_edit_file.py` → `src/agent_tools/__init__.py`, `src/agent_tools/filesystem_tools.py`, `src/tool_execution.py`, `src/tool_security.py`
+- `tests/test_editor_draft_payload.py` → `routes/editor_draft_routes.py`
+- `tests/test_email_account_default_serialization.py` → `core/__init__.py`, `core/database.py`, `routes/__init__.py`, `routes/auth_routes.py`, `routes/email_routes.py`, `scripts/demo_email/demo_account.py`
+- `tests/test_email_account_port_validation.py` → `routes/email_routes.py`
+- `tests/test_email_decode_header.py` → `routes/email_helpers.py`
+- `tests/test_email_envelope_recipients.py` → `routes/email_routes.py`
+- `tests/test_email_fallback_reconnect.py` → `routes/__init__.py`, `routes/email_pollers.py`
+- `tests/test_email_gmail_fetch_flags.py` → `routes/email_routes.py`
+- `tests/test_email_helpers_decode_header_spaces.py` → `routes/email_helpers.py`
+- `tests/test_email_imap_timeout.py` → `routes/email_helpers.py`, `routes/email_routes.py`
+- `tests/test_email_oauth.py` → `core/database.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `src/secret_storage.py`
+- `tests/test_email_owner_scope.py` → `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/email_routes.py`, `routes/task_routes.py`
+- `tests/test_email_ownerless_account_owner_scope.py` → `core/database.py`, `routes/email_helpers.py`
+- `tests/test_email_polly_imap_leak.py` → `routes/email_pollers.py`
+- `tests/test_email_read_mark_seen.py` → `routes/email_helpers.py`, `routes/email_routes.py`
+- `tests/test_email_registry_sync.py` → `src/agent_tools/__init__.py`, `src/tool_security.py`
+- `tests/test_email_send_only_no_inbox.py` → `routes/email_helpers.py`
+- `tests/test_email_smtp_security.py` → `routes/email_helpers.py`
+- `tests/test_email_summary_llm.py` → `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/email_routes.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/task_endpoint.py`
+- `tests/test_email_test_connection_oauth.py` → `core/database.py`, `routes/email_routes.py`, `src/secret_storage.py`
+- `tests/test_email_thread_parser_nonstring.py` → `src/email_thread_parser.py`
+- `tests/test_email_uid_no_seqno_fallback.py` → `routes/__init__.py`, `routes/email_routes.py`
+- `tests/test_email_unsubscribe_candidates.py` → `routes/email_routes.py`
+- `tests/test_email_urgency_checkpoint.py` → `core/__init__.py`, `core/database.py`, `routes/__init__.py`, `routes/email_helpers.py`, `routes/note_routes.py`, `src/builtin_actions.py`, `src/task_endpoint.py`, `src/task_scheduler.py`
+- `tests/test_embedding_cache_confinement.py` → `routes/embedding_routes.py`
+- `tests/test_embedding_endpoint_config.py` → `routes/embedding_routes.py`
+- `tests/test_embedding_lane_ndarray_restore.py` → `src/embedding_lanes.py`
+- `tests/test_embedding_lanes.py` → `src/embedding_lanes.py`, `src/embeddings.py`
+- `tests/test_embedding_lanes_legacy.py` → `src/embedding_lanes.py`, `src/memory_vector.py`
+- `tests/test_embedding_lanes_memory.py` → `src/embedding_lanes.py`, `src/memory_vector.py`
+- `tests/test_embedding_lanes_rag.py` → `src/embedding_lanes.py`, `src/rag_vector.py`
+- `tests/test_embedding_lanes_tool_index.py` → `src/embedding_lanes.py`, `src/tool_index.py`
+- `tests/test_embeddings.py` → `src/embeddings.py`
+- `tests/test_embeddings_client.py` → `src/embeddings.py`
+- `tests/test_emoji_svg_hardening.py` → `routes/__init__.py`, `routes/emoji_routes.py`
+- `tests/test_endpoint_owner_scope_followup.py` → `routes/compare_routes.py`, `src/endpoint_resolver.py`
+- `tests/test_endpoint_probing.py` → `routes/model_routes.py`, `src/endpoint_resolver.py`
+- `tests/test_endpoint_resolver_headers.py` → `src/endpoint_resolver.py`
+- `tests/test_endpoint_resolver_models.py` → `src/endpoint_resolver.py`
+- `tests/test_endpoint_resolver_urls.py` → `src/endpoint_resolver.py`
+- `tests/test_estimate_tokens_tool_calls.py` → `src/model_context.py`
+- `tests/test_external_context_tool_gate.py` → `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/mcp_manager.py`, `src/prompt_security.py`, `src/teacher_escalation.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `src/tool_execution.py`, `src/tool_schemas.py`
+- `tests/test_extract_quotes.py` → `src/search/content.py`
+- `tests/test_extract_skill_json_nonstring.py` → `src/teacher_escalation.py`
+- `tests/test_extract_statistics.py` → `src/search/content.py`
+- `tests/test_extract_urls.py` → `src/chat_helpers.py`
+- `tests/test_fastembed_cache_path.py` → `src/constants.py`
+- `tests/test_fenced_example_not_executed_for_native_models.py` → `src/agent_loop.py`, `src/tool_parsing.py`
+- `tests/test_fenced_inline_args.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_fenced_invoke_no_raw_xml.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_font_routes.py` → `routes/font_routes.py`
+- `tests/test_foreground_model_routing.py` → `core/database.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/prefs_routes.py`, `services/memory/skills.py`, `src/agent_loop.py`, `src/context_budget.py`, `src/context_compactor.py`, `src/endpoint_resolver.py`, `src/foreground_model_routing.py`, `src/llm_core.py`, `src/model_context.py`, `src/request_models.py`, `src/settings.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `src/tool_policy.py`
+- `tests/test_fork_session_metadata.py` → `core/models.py`, `routes/history_routes.py`
+- `tests/test_form_markdown_roundtrip.py` → `src/pdf_form_doc.py`
+- `tests/test_forwarded_message_divider.py` → `src/email_thread_parser.py`
+- `tests/test_function_call_non_object_args.py` → `src/agent_tools/__init__.py`, `src/tool_schemas.py`
+- `tests/test_function_model_tool_call.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_gallery_delete_file_ordering.py` → `core/database.py`, `routes/gallery_routes.py`
+- `tests/test_gallery_endpoint_hardening.py` → `routes/gallery_routes.py`
+- `tests/test_gallery_endpoint_matching.py` → `routes/gallery_routes.py`
+- `tests/test_gallery_endpoint_ssrf.py` → `src/url_safety.py`
+- `tests/test_gallery_filename_confinement.py` → `core/database.py`, `routes/gallery_routes.py`
+- `tests/test_gallery_image_endpoint_owner_scope.py` → `routes/gallery_routes.py`
+- `tests/test_gallery_model_input_device.py` → `routes/gallery_routes.py`
+- `tests/test_gallery_null_user_routes.py` → `core/database.py`, `routes/gallery_routes.py`
+- `tests/test_gallery_owner_filter_single_user.py` → `core/database.py`, `routes/gallery_helpers.py`
+- `tests/test_gallery_result_image_ssrf.py` → `routes/gallery_routes.py`
+- `tests/test_gallery_routes_shim.py` → `routes/gallery_helpers.py`, `routes/gallery_routes.py`
+- `tests/test_gemma_tool_call_parsing.py` → `src/agent_tools/__init__.py`
+- `tests/test_generated_image_confinement.py` → `src/generated_images.py`
+- `tests/test_gif_video_frames.py` → `src/document_processor.py`, `src/upload_handler.py`
+- `tests/test_harmony_tool_aliasing.py` → `src/llm_core.py`
+- `tests/test_history_compact_tool_calls.py` → `core/models.py`, `routes/history_routes.py`, `routes/session_routes.py`, `src/agent_runs.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/model_context.py`
+- `tests/test_history_display_model_hydration.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`, `routes/__init__.py`, `routes/chat_routes.py`, `routes/history/__init__.py`, `routes/history/history_routes.py`, `routes/session_routes.py`, `src/request_models.py`
+- `tests/test_history_order_by_timestamp_regression.py` → `core/database.py`
+- `tests/test_history_routes_shim.py` → `routes/history_routes.py`
+- `tests/test_history_topics_owner_scope.py` → `routes/history_routes.py`, `src/auth_helpers.py`, `src/topic_analyzer.py`
+- `tests/test_hwfit_amd.py` → `services/hwfit/__init__.py`, `services/hwfit/fit.py`, `services/hwfit/hardware.py`, `services/hwfit/models.py`
+- `tests/test_hwfit_apple_bandwidth.py` → `services/hwfit/fit.py`
+- `tests/test_hwfit_bandwidth_nonstring.py` → `services/hwfit/fit.py`
+- `tests/test_hwfit_container_visibility_warning.py` → `services/hwfit/__init__.py`, `services/hwfit/hardware.py`
+- `tests/test_hwfit_cpu_arch_detection.py` → `services/hwfit/__init__.py`, `services/hwfit/hardware.py`
+- `tests/test_hwfit_cpu_only_fallback.py` → `services/hwfit/fit.py`
+- `tests/test_hwfit_gemma4_12b.py` → `services/hwfit/fit.py`, `services/hwfit/models.py`
+- `tests/test_hwfit_gpu_count_nonnumeric.py` → `routes/hwfit_routes.py`
+- `tests/test_hwfit_macos.py` → `services/hwfit/__init__.py`, `services/hwfit/fit.py`, `services/hwfit/hardware.py`, `services/hwfit/models.py`
+- `tests/test_hwfit_manual_backend.py` → `routes/hwfit_routes.py`, `services/hwfit/fit.py`, `services/hwfit/models.py`
+- `tests/test_hwfit_models_nonstring_fields.py` → `services/hwfit/models.py`
+- `tests/test_hwfit_native_quant_labels.py` → `services/hwfit/fit.py`, `services/hwfit/models.py`
+- `tests/test_hwfit_params_b_malformed.py` → `services/hwfit/models.py`
+- `tests/test_hwfit_quant_formats.py` → `services/hwfit/fit.py`, `services/hwfit/models.py`
+- `tests/test_hwfit_remote_validation.py` → `core/__init__.py`, `core/platform_compat.py`, `routes/hwfit_routes.py`, `services/hwfit/__init__.py`, `services/hwfit/hardware.py`
+- `tests/test_hwfit_unified_nvidia.py` → `services/hwfit/__init__.py`, `services/hwfit/hardware.py`
+- `tests/test_hwfit_windows.py` → `services/hwfit/__init__.py`, `services/hwfit/fit.py`, `services/hwfit/hardware.py`, `services/hwfit/models.py`
+- `tests/test_ics_export_escaping.py` → `routes/calendar_routes.py`
+- `tests/test_ics_import_dedup_tz.py` → `routes/calendar_routes.py`
+- `tests/test_image_models_nondict_system.py` → `services/hwfit/__init__.py`, `services/hwfit/image_models.py`
+- `tests/test_image_models_nonstring_search.py` → `services/hwfit/__init__.py`, `services/hwfit/image_models.py`
+- `tests/test_imap_leak_fixes.py` → `mcp_servers/email_server.py`, `routes/email_helpers.py`
+- `tests/test_imap_mailbox_quoting.py` → `mcp_servers/email_server.py`
+- `tests/test_imap_move_uid.py` → `routes/email_helpers.py`
+- `tests/test_imap_uid_commands.py` → `core/__init__.py`, `core/auth.py`, `core/database.py`, `routes/__init__.py`, `routes/email_helpers.py`, `src/builtin_actions.py`, `src/task_endpoint.py`
+- `tests/test_inside_base_dir_nonstring.py` → `src/app_helpers.py`
+- `tests/test_integration_api_call_ssrf.py` → `src/integrations.py`
+- `tests/test_integrations_api_call_truncation.py` → `src/integrations.py`
+- `tests/test_integrations_store_shape.py` → `routes/__init__.py`, `routes/auth_routes.py`, `src/integrations.py`
+- `tests/test_integrations_url_join.py` → `src/integrations.py`
+- `tests/test_interactive_gate_passive_paths.py` → `src/interactive_gate.py`
+- `tests/test_internal_api_base.py` → `core/constants.py`
+- `tests/test_is_youtube_url_nonstring.py` → `src/youtube_handler.py`
+- `tests/test_is_youtube_url_nonstring_svc.py` → `services/youtube/youtube_handler.py`
+- `tests/test_kimi_code_user_agent.py` → `src/llm_core.py`
+- `tests/test_kv_cache_invalidation_2927.py` → `src/llm_core.py`, `src/user_time.py`
+- `tests/test_live_strip_email_tool_fences.py` → `src/agent_tools/__init__.py`
+- `tests/test_llamacpp_discovery.py` → `src/model_discovery.py`
+- `tests/test_llm_core_anthropic_cache.py` → `src/llm_core.py`
+- `tests/test_llm_core_anthropic_temp_clamp.py` → `src/llm_core.py`
+- `tests/test_llm_core_anthropic_temp_omit.py` → `src/llm_core.py`
+- `tests/test_llm_core_async_mistral_content.py` → `src/llm_core.py`
+- `tests/test_llm_core_concurrency.py` → `src/llm_core.py`
+- `tests/test_llm_core_connect_timeout.py` → `src/llm_core.py`
+- `tests/test_llm_core_fallback.py` → `src/llm_core.py`
+- `tests/test_llm_core_mistral_content.py` → `src/llm_core.py`
+- `tests/test_llm_core_ollama.py` → `src/llm_core.py`, `src/model_context.py`
+- `tests/test_llm_core_ollama_thinking.py` → `src/llm_core.py`
+- `tests/test_llm_core_openai_reasoning_tools.py` → `src/llm_core.py`
+- `tests/test_llm_core_reasoning.py` → `src/llm_core.py`
+- `tests/test_llm_core_reasoning_content_fallback.py` → `src/agent_loop.py`, `src/llm_core.py`
+- `tests/test_llm_core_sanitize_tool_calls.py` → `src/agent_loop.py`, `src/llm_core.py`
+- `tests/test_llm_core_sse_no_space.py` → `src/llm_core.py`
+- `tests/test_llm_core_streaming.py` → `src/llm_core.py`
+- `tests/test_llm_core_system_msg_missing_content.py` → `src/llm_core.py`
+- `tests/test_llm_core_temperature_anthropic.py` → `src/llm_core.py`
+- `tests/test_llm_core_temperature_moonshot.py` → `src/llm_core.py`
+- `tests/test_llm_core_temperature_reasoning.py` → `src/llm_core.py`, `src/model_context.py`
+- `tests/test_llm_core_thinking_models.py` → `src/llm_core.py`
+- `tests/test_llm_core_usage_finish_delta.py` → `src/llm_core.py`
+- `tests/test_lmstudio_discovery.py` → `src/model_discovery.py`
+- `tests/test_lmstudio_vision.py` → `src/chat_helpers.py`
+- `tests/test_load_features_permission_error.py` → `src/settings.py`
+- `tests/test_log_safety.py` → `core/log_safety.py`
+- `tests/test_loop_breaker_runaway.py` → `src/agent_loop.py`
+- `tests/test_manage_mcp_command_allowlist.py` → `core/database.py`, `src/agent_tools/admin_tools.py`
+- `tests/test_manage_notes_owner_gate.py` → `src/tool_implementations.py`
+- `tests/test_manage_settings_token_budget.py` → `src/agent_tools/admin_tools.py`, `src/settings.py`
+- `tests/test_manage_skills_action_required.py` → `src/tools/system.py`
+- `tests/test_manage_tasks_owner_scope.py` → `core/database.py`, `src/tools/system.py`
+- `tests/test_markitdown_format_nonstring.py` → `src/markitdown_runtime.py`
+- `tests/test_markitdown_runtime.py` → `src/markitdown_runtime.py`
+- `tests/test_mcp_cache_invalidation.py` → `src/mcp_manager.py`
+- `tests/test_mcp_common_truncate.py` → `src/tool_utils.py`
+- `tests/test_mcp_email_decode_header_spaces.py` → `core/database.py`, `mcp_servers/email_server.py`, `src/constants.py`
+- `tests/test_mcp_manager.py` → `src/mcp_manager.py`
+- `tests/test_mcp_memory_owner_scope.py` → `mcp_servers/memory_server.py`, `src/memory.py`
+- `tests/test_mcp_oauth.py` → `routes/mcp/mcp_routes.py`, `src/mcp_oauth.py`
+- `tests/test_mcp_param_hint_hardening.py` → `src/mcp_manager.py`
+- `tests/test_mcp_reconnect_args.py` → `src/agent_tools/admin_tools.py`
+- `tests/test_mcp_routes_shim.py` → `routes/mcp_routes.py`
+- `tests/test_mcp_tool_params_in_prompt.py` → `src/mcp_manager.py`
+- `tests/test_memory_bullet_extraction.py` → `services/memory/memory.py`, `src/memory.py`
+- `tests/test_memory_extract_chat_nondict.py` → `src/memory.py`
+- `tests/test_memory_extraction_parse.py` → `services/memory/memory_extractor.py`
+- `tests/test_memory_extractor_rows.py` → `services/memory/__init__.py`, `services/memory/memory_extractor.py`
+- `tests/test_memory_extractor_vector_degraded.py` → `services/memory/memory_extractor.py`, `src/event_bus.py`, `src/llm_core.py`, `src/memory.py`
+- `tests/test_memory_fallback_dislike.py` → `services/memory/memory_extractor.py`
+- `tests/test_memory_imports.py` → `services/memory/__init__.py`, `services/memory/memory.py`, `services/memory/memory_vector.py`, `src/memory.py`, `src/memory_vector.py`
+- `tests/test_memory_owner_isolation.py` → `routes/memory_routes.py`, `src/memory.py`
+- `tests/test_memory_provider.py` → `src/memory.py`, `src/memory_provider.py`
+- `tests/test_memory_recall_nondict_rows.py` → `services/memory/service.py`
+- `tests/test_memory_routes_session_owner.py` → `routes/memory_routes.py`, `src/request_models.py`, `src/task_endpoint.py`
+- `tests/test_memory_routes_shim.py` → `routes/memory_routes.py`
+- `tests/test_memory_store_unreadable_no_wipe.py` → `mcp_servers/memory_server.py`, `src/ai_interaction.py`, `src/memory.py`, `src/memory_provider.py`
+- `tests/test_memory_validate_entries_nondict.py` → `src/memory.py`
+- `tests/test_merge_last_assistant_rows.py` → `routes/history_routes.py`
+- `tests/test_misfenced_read_file_tool_call.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_model_capabilities.py` → `src/model_capabilities.py`
+- `tests/test_model_capability_readers.py` → `src/model_capabilities.py`, `src/model_capability_readers/__init__.py`, `src/model_capability_readers/base.py`
+- `tests/test_model_context.py` → `src/model_context.py`
+- `tests/test_model_defaults.py` → `routes/model_routes.py`, `routes/prefs_routes.py`, `src/auth_helpers.py`
+- `tests/test_model_discovery_status.py` → `src/model_discovery.py`
+- `tests/test_model_interaction_registry.py` → `src/agent_tools/__init__.py`, `src/agent_tools/model_interaction_tools.py`, `src/ai_interaction.py`, `src/database.py`, `src/llm_core.py`
+- `tests/test_model_routes.py` → `routes/model_routes.py`, `src/auth_helpers.py`, `src/database.py`, `src/endpoint_resolver.py`, `src/llm_core.py`
+- `tests/test_multiple_mcp_servers_timeout.py` → `src/mcp_manager.py`
+- `tests/test_native_tool_result_threading.py` → `src/agent_loop.py`
+- `tests/test_nim_reasoning_control.py` → `src/llm_core.py`
+- `tests/test_nix_upload_text.py` → `src/document_processor.py`, `src/upload_handler.py`
+- `tests/test_note_reminder_email_oauth.py` → `routes/note_routes.py`
+- `tests/test_note_reminder_fire_scope.py` → `routes/note_routes.py`
+- `tests/test_note_routes_shim.py` → `routes/note_routes.py`
+- `tests/test_notes_fail_closed_auth.py` → `core/database.py`, `routes/note_routes.py`
+- `tests/test_notes_update_due_date.py` → `src/tool_implementations.py`
+- `tests/test_null_owner_gates.py` → `routes/document_routes.py`, `routes/gallery_routes.py`
+- `tests/test_odysseus_doc_fence_normalization.py` → `src/agent_loop.py`, `src/tool_parsing.py`
+- `tests/test_og_image_extraction.py` → `src/search/content.py`
+- `tests/test_ollama_multimodal.py` → `src/llm_core.py`
+- `tests/test_ollama_port_detection.py` → `src/endpoint_resolver.py`
+- `tests/test_ollama_runner_hint.py` → `routes/cookbook_helpers.py`
+- `tests/test_owned_document_query.py` → `src/agent_tools/document_tools.py`
+- `tests/test_owner_identity.py` → `src/auth_helpers.py`, `src/owner_identity.py`
+- `tests/test_parse_due_time_first.py` → `routes/calendar_routes.py`, `src/user_time.py`
+- `tests/test_parse_msg_content_jsonlike_string.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`
+- `tests/test_partial_tool_events.py` → `routes/chat_routes.py`, `src/agent_loop.py`
+- `tests/test_pdf_ai_edit_derivative.py` → `src/agent_tools/document_tools.py`
+- `tests/test_pdf_runtime.py` → `src/pdf_runtime.py`
+- `tests/test_personal_delete_file_confinement.py` → `routes/__init__.py`, `routes/personal_routes.py`
+- `tests/test_personal_docs_exclusions.py` → `src/personal_docs.py`
+- `tests/test_personal_docs_keyword_nondict.py` → `src/personal_docs.py`
+- `tests/test_personal_docs_lists.py` → `src/personal_docs.py`
+- `tests/test_personal_docs_office_index.py` → `src/personal_docs.py`
+- `tests/test_personal_docs_pdf_index.py` → `src/personal_docs.py`
+- `tests/test_personal_docs_state_store.py` → `src/personal_docs.py`
+- `tests/test_personal_index_hidden_dirs.py` → `src/personal_docs.py`
+- `tests/test_personal_upload_isolation.py` → `routes/__init__.py`, `routes/personal_routes.py`
+- `tests/test_personal_upload_privilege.py` → `routes/__init__.py`, `routes/personal_routes.py`
+- `tests/test_plain_ui_control_open_panel.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_plan_mode.py` → `src/agent_loop.py`, `src/mcp_manager.py`, `src/tool_security.py`
+- `tests/test_poll_endpoint_no_task_interrupt.py` → `src/interactive_gate.py`
+- `tests/test_pr6020_browser_review_regressions.py` → `src/agent_runs.py`
+- `tests/test_pr6020_rebase_regressions.py` → `src/agent_loop.py`, `src/tool_policy.py`
+- `tests/test_prefs_atomic_write.py` → `core/__init__.py`, `core/atomic_io.py`, `routes/prefs_routes.py`
+- `tests/test_prefs_routes.py` → `routes/prefs_routes.py`
+- `tests/test_prefs_single_user_no_clobber.py` → `routes/prefs_routes.py`
+- `tests/test_preset_atomic_save.py` → `src/preset_manager.py`
+- `tests/test_preset_expand_owner_scope.py` → `routes/preset_routes.py`
+- `tests/test_preset_fill_missing_defaults.py` → `src/preset_manager.py`
+- `tests/test_preset_store_shape.py` → `src/preset_manager.py`
+- `tests/test_promote_image_fields.py` → `src/tool_execution.py`
+- `tests/test_prompt_injection_audit.py` → `src/agent_loop.py`
+- `tests/test_prompt_security.py` → `src/prompt_security.py`
+- `tests/test_provider_classification.py` → `src/llm_core.py`
+- `tests/test_provider_classification_errors.py` → `src/llm_core.py`
+- `tests/test_provider_classification_token_params.py` → `src/llm_core.py`
+- `tests/test_provider_detection_builders.py` → `src/endpoint_resolver.py`, `src/llm_core.py`
+- `tests/test_provider_detection_detect.py` → `src/llm_core.py`
+- `tests/test_provider_detection_host_match.py` → `src/llm_core.py`
+- `tests/test_provider_endpoints_headers.py` → `src/endpoint_resolver.py`
+- `tests/test_provider_endpoints_models.py` → `src/endpoint_resolver.py`
+- `tests/test_provider_endpoints_normalization.py` → `src/endpoint_resolver.py`
+- `tests/test_provider_endpoints_tailscale.py` → `src/endpoint_resolver.py`
+- `tests/test_provider_endpoints_url_building.py` → `src/endpoint_resolver.py`
+- `tests/test_public_blocked_tool_nonstring.py` → `src/tool_security.py`
+- `tests/test_question_type_detection.py` → `src/search/query.py`
+- `tests/test_rag_index_hidden_dirs.py` → `src/rag_vector.py`
+- `tests/test_rag_keyword_fallback_owner.py` → `src/rag_vector.py`
+- `tests/test_rag_manager_owner_compat.py` → `src/rag_manager.py`
+- `tests/test_rag_remove_directory_scope.py` → `src/ai_interaction.py`, `src/personal_docs.py`, `src/rag_vector.py`
+- `tests/test_rag_search_signature.py` → `src/rag_manager.py`
+- `tests/test_rag_server_directory_nonstring.py` → `mcp_servers/rag_server.py`
+- `tests/test_rag_vector_rename_owner.py` → `src/rag_vector.py`
+- `tests/test_rate_limiter.py` → `src/rate_limiter.py`
+- `tests/test_readiness.py` → `src/readiness.py`
+- `tests/test_realesrgan_torchvision_compat.py` → `src/optional_deps.py`
+- `tests/test_redos_cal_extract.py` → `routes/email_pollers.py`
+- `tests/test_redos_llm_parsers.py` → `src/agent_tools/__init__.py`, `src/text_helpers.py`, `src/tool_parsing.py`
+- `tests/test_redos_think_blocks.py` → `src/agent_loop.py`
+- `tests/test_redos_verdict_continuation.py` → `routes/skills_routes.py`, `src/agent_loop.py`, `src/agent_tools/__init__.py`
+- `tests/test_redos_xml_tool_parsers.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_reminder_ntfy_ssrf.py` → `routes/note_routes.py`
+- `tests/test_rename_user_case_insensitive.py` → `core/database.py`
+- `tests/test_rename_user_owner_sync.py` → `core/auth.py`, `core/database.py`, `routes/__init__.py`, `routes/auth_routes.py`, `routes/personal_routes.py`, `routes/research_routes.py`, `src/research_handler.py`, `src/upload_handler.py`
+- `tests/test_rename_user_token_cache.py` → `core/database.py`, `routes/auth_routes.py`
+- `tests/test_replace_messages_multimodal.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`
+- `tests/test_replace_messages_upload_reservations.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`, `src/upload_handler.py`
+- `tests/test_research_endpoint_owner_scope.py` → `routes/research_routes.py`
+- `tests/test_research_handler_analyzed_urls.py` → `services/research/research_handler.py`
+- `tests/test_research_handler_path_confinement.py` → `src/research_handler.py`
+- `tests/test_research_handler_raw_nondict.py` → `src/research_handler.py`
+- `tests/test_research_handler_sources_nondict.py` → `src/research_handler.py`
+- `tests/test_research_owner_scope_routes.py` → `routes/research_routes.py`
+- `tests/test_research_probe_errors.py` → `src/research_handler.py`
+- `tests/test_research_query_fallback.py` → `core/models.py`, `src/research_handler.py`
+- `tests/test_research_report_read.py` → `src/agent_loop.py`, `src/tool_implementations.py`
+- `tests/test_research_routes_path_confinement.py` → `routes/research/research_routes.py`, `routes/research_routes.py`
+- `tests/test_research_routes_shim.py` → `routes/research_routes.py`
+- `tests/test_research_service.py` → `services/research/service.py`
+- `tests/test_research_status_avg_duration.py` → `src/research_handler.py`
+- `tests/test_research_utils.py` → `src/research_utils.py`
+- `tests/test_research_utils_low_quality_nonstring.py` → `src/research_utils.py`
+- `tests/test_reserved_username_admin_escalation.py` → `core/auth.py`, `core/middleware.py`, `src/owner_identity.py`
+- `tests/test_resolve_endpoint_fallbacks.py` → `src/auth_helpers.py`, `src/endpoint_resolver.py`, `src/settings.py`
+- `tests/test_resolve_model_offloaded.py` → `src/ai_interaction.py`
+- `tests/test_resolve_session_auth_chatgpt.py` → `core/database.py`, `routes/chat_helpers.py`, `src/endpoint_resolver.py`
+- `tests/test_resolve_upload_path_nondict.py` → `routes/document_helpers.py`
+- `tests/test_retired_settings_interfaces.py` → `core/database.py`, `routes/auth_routes.py`, `src/agent_tools/admin_tools.py`, `src/settings.py`
+- `tests/test_review_regressions.py` → `routes/model_routes.py`, `routes/prefs_routes.py`, `src/agent_tools/admin_tools.py`, `src/agent_tools/filesystem_tools.py`, `src/preset_manager.py`, `src/settings.py`, `src/tool_execution.py`, `src/tool_implementations.py`, `src/tool_parsing.py`, `src/tool_policy.py`, `src/tool_security.py`
+- `tests/test_rewrite_persist_column.py` → `core/database.py`
+- `tests/test_route_validators.py` → `routes/_validators.py`
+- `tests/test_runtime_paths.py` → `src/runtime_paths.py`
+- `tests/test_sanitize_multimodal_merge.py` → `src/llm_core.py`
+- `tests/test_sanitize_preserves_reasoning.py` → `src/llm_core.py`
+- `tests/test_sanitize_promotes_metadata_thinking.py` → `src/llm_core.py`
+- `tests/test_schedule_email_offset_normalization.py` → `routes/email_helpers.py`, `routes/email_routes.py`
+- `tests/test_scheduled_poll_race.py` → `routes/email_helpers.py`, `routes/email_pollers.py`
+- `tests/test_scheduler_prompt_cache_time.py` → `src/task_endpoint.py`, `src/task_scheduler.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `src/user_time.py`
+- `tests/test_scheduler_restart_doublefire.py` → `core/database.py`, `src/task_scheduler.py`
+- `tests/test_scheduler_scheduled_time_validation.py` → `src/task_scheduler.py`
+- `tests/test_search_analytics_defaults.py` → `services/search/analytics.py`, `src/search/analytics.py`
+- `tests/test_search_cache_invalidation.py` → `src/search/__init__.py`, `src/search/cache.py`, `src/search/core.py`
+- `tests/test_search_config_no_key_leak.py` → `services/search/__init__.py`, `services/search/core.py`
+- `tests/test_search_config_provider_key.py` → `services/search/__init__.py`
+- `tests/test_search_content_extraction_parity.py` → `services/search/__init__.py`, `services/search/content.py`
+- `tests/test_search_content_url_guards.py` → `services/search/__init__.py`, `services/search/content.py`
+- `tests/test_search_module_consolidation.py` → `services/search/__init__.py`, `src/search/__init__.py`
+- `tests/test_search_provider_json.py` → `services/search/__init__.py`, `services/search/providers.py`
+- `tests/test_search_query.py` → `src/search/query.py`
+- `tests/test_search_query_entities_nonstring.py` → `services/search/query.py`
+- `tests/test_search_query_unicode_names.py` → `services/search/query.py`
+- `tests/test_search_ranking.py` → `services/search/ranking.py`
+- `tests/test_search_ranking_recency.py` → `services/search/ranking.py`, `src/search/ranking.py`
+- `tests/test_search_ranking_sports_substring.py` → `services/search/ranking.py`, `src/search/ranking.py`
+- `tests/test_search_ranking_subject_substring.py` → `services/search/ranking.py`, `src/search/ranking.py`
+- `tests/test_search_routes_shim.py` → `routes/search_routes.py`
+- `tests/test_search_service_nondict_rows.py` → `services/search/service.py`
+- `tests/test_searchservice_search_call.py` → `services/search/__init__.py`, `services/search/service.py`
+- `tests/test_security_headers_middleware.py` → `core/middleware.py`
+- `tests/test_security_headers_pdf_preview.py` → `core/middleware.py`
+- `tests/test_security_regressions.py` → `core/auth.py`, `core/middleware.py`, `routes/__init__.py`, `routes/document_helpers.py`, `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/mcp_routes.py`, `src/auth_helpers.py`, `src/chat_handler.py`, `src/document_processor.py`, `src/integrations.py`, `src/pdf_form_doc.py`, `src/prompt_security.py`, `src/search/__init__.py`, `src/search/content.py`, `src/secret_storage.py`, `src/settings.py`, `src/upload_handler.py`, `src/visual_report.py`
+- `tests/test_sender_signature_skip_roles.py` → `src/builtin_actions.py`
+- `tests/test_serve_html_with_nonce.py` → `src/app_helpers.py`
+- `tests/test_serve_profiles.py` → `services/hwfit/profiles.py`
+- `tests/test_service_health_chromadb.py` → `src/service_health.py`
+- `tests/test_service_health_collect.py` → `src/service_health.py`
+- `tests/test_service_health_email.py` → `src/service_health.py`
+- `tests/test_service_health_ntfy.py` → `src/service_health.py`
+- `tests/test_service_health_providers.py` → `src/service_health.py`
+- `tests/test_service_health_search.py` → `src/service_health.py`
+- `tests/test_service_search_provider_guards.py` → `services/search/__init__.py`, `services/search/providers.py`
+- `tests/test_services_search_analytics_defaults.py` → `services/search/analytics.py`
+- `tests/test_session_actions_cleanup.py` → `core/database.py`, `src/session_actions.py`
+- `tests/test_session_concurrent.py` → `core/models.py`, `core/session_manager.py`
+- `tests/test_session_context_excludes_slash.py` → `core/models.py`
+- `tests/test_session_discovery_message_count.py` → `core/models.py`, `core/session_manager.py`
+- `tests/test_session_endpoint_owner_scope.py` → `routes/session_routes.py`
+- `tests/test_session_export_filename.py` → `routes/session_routes.py`
+- `tests/test_session_export_nonstring_content.py` → `routes/session_routes.py`
+- `tests/test_session_ghost_delete.py` → `routes/session_routes.py`
+- `tests/test_session_image_cleanup.py` → `core/database.py`, `src/session_image_cleanup.py`
+- `tests/test_session_list_owner_scope.py` → `core/database.py`, `routes/session_routes.py`
+- `tests/test_session_manager.py` → `core/models.py`, `core/session_manager.py`
+- `tests/test_session_manager_cleanup.py` → `core/session_manager.py`
+- `tests/test_session_manager_persist_guard.py` → `core/models.py`, `core/session_manager.py`
+- `tests/test_session_owner_attribution.py` → `routes/session_routes.py`, `src/auth_helpers.py`
+- `tests/test_session_routes_utcnow.py` → `routes/session_routes.py`
+- `tests/test_session_search.py` → `core/__init__.py`, `core/database.py`, `src/session_search.py`, `src/tool_implementations.py`
+- `tests/test_session_search_batch_fetch.py` → `src/session_search.py`
+- `tests/test_session_tools_registry.py` → `src/agent_tools/__init__.py`, `src/agent_tools/session_tools.py`, `src/ai_interaction.py`, `src/database.py`
+- `tests/test_set_admin.py` → `routes/auth_routes.py`
+- `tests/test_settings_error_paths.py` → `src/settings.py`
+- `tests/test_settings_scrub.py` → `src/settings_scrub.py`
+- `tests/test_settings_store_shape.py` → `src/settings.py`
+- `tests/test_shell_routes.py` → `core/platform_compat.py`, `routes/shell_routes.py`
+- `tests/test_signature_route_hardening.py` → `routes/__init__.py`, `routes/signature_routes.py`
+- `tests/test_skill_extractor_json.py` → `services/memory/__init__.py`, `services/memory/skill_extractor.py`
+- `tests/test_skill_extractor_rows.py` → `services/memory/__init__.py`, `services/memory/skill_extractor.py`
+- `tests/test_skill_extractor_stray_brace.py` → `services/memory/__init__.py`, `services/memory/skill_extractor.py`
+- `tests/test_skill_format_timestamp.py` → `services/memory/skill_format.py`
+- `tests/test_skill_frontmatter_escape_roundtrip.py` → `services/memory/skill_format.py`, `services/memory/skills.py`
+- `tests/test_skill_importer.py` → `services/memory/skill_importer.py`
+- `tests/test_skill_importer_dns_pinning.py` → `services/memory/__init__.py`, `services/memory/skill_importer.py`
+- `tests/test_skill_importer_security.py` → `services/memory/skill_importer.py`
+- `tests/test_skill_importer_ssrf_redirect.py` → `services/memory/__init__.py`, `services/memory/skill_importer.py`
+- `tests/test_skill_index_prompt_injection.py` → `src/agent_loop.py`, `src/constants.py`
+- `tests/test_skill_index_toolset_gating.py` → `services/memory/skills.py`
+- `tests/test_skill_save_no_rename.py` → `routes/skills_routes.py`, `services/memory/skill_format.py`, `services/memory/skills.py`
+- `tests/test_skills_delete_owner.py` → `routes/skills_routes.py`, `services/memory/skill_format.py`, `services/memory/skills.py`
+- `tests/test_skills_manager_owner_isolation.py` → `services/memory/skill_format.py`, `services/memory/skills.py`
+- `tests/test_skills_routes_nondict.py` → `routes/skills_routes.py`
+- `tests/test_skills_routes_owner_update.py` → `routes/skills_routes.py`, `services/memory/skill_format.py`, `services/memory/skills.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`
+- `tests/test_skills_tag_token_match.py` → `services/memory/skills.py`
+- `tests/test_spawn_agent.py` → `src/agent_jobs.py`, `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/agent_tools/spawn_agent_tools.py`, `src/settings.py`, `src/tool_schemas.py`
+- `tests/test_speech_service_toggles.py` → `services/stt/stt_service.py`, `services/tts/tts_service.py`
+- `tests/test_split_chunks_no_duplicate_tail.py` → `src/personal_docs.py`
+- `tests/test_sqlite_foreign_keys.py` → `core/database.py`
+- `tests/test_src_search_query_nonstring.py` → `services/search/query.py`
+- `tests/test_strip_reasoning_prose_dataloss.py` → `src/text_helpers.py`
+- `tests/test_strip_think.py` → `src/text_helpers.py`
+- `tests/test_stt_leak.py` → `services/stt/stt_service.py`
+- `tests/test_svc_research_sources_nondict.py` → `services/research/research_handler.py`
+- `tests/test_tailscale_discovery_cache.py` → `src/model_discovery.py`
+- `tests/test_task_chain_owner_scope.py` → `core/database.py`, `routes/task_routes.py`, `src/task_scheduler.py`
+- `tests/test_task_cookbook_admin_gate.py` → `core/auth.py`, `core/database.py`, `routes/task_routes.py`, `src/builtin_actions.py`, `src/task_scheduler.py`
+- `tests/test_task_endpoint_normalization.py` → `src/task_scheduler.py`
+- `tests/test_task_routes_shim.py` → `routes/task_routes.py`
+- `tests/test_task_scheduler_cache.py` → `src/task_scheduler.py`
+- `tests/test_task_scheduler_cancel.py` → `core/database.py`, `src/task_scheduler.py`
+- `tests/test_task_scheduler_session_delivery.py` → `core/database.py`, `core/models.py`, `src/task_scheduler.py`
+- `tests/test_task_session_folder.py` → `src/task_scheduler.py`
+- `tests/test_task_shell_tools.py` → `src/agent_loop.py`, `src/task_scheduler.py`, `src/tool_index.py`, `src/tool_security.py`
+- `tests/test_teacher_audit_owner_scope.py` → `routes/skills_routes.py`, `src/agent_tools/__init__.py`, `src/agent_tools/model_interaction_tools.py`, `src/teacher_escalation.py`
+- `tests/test_teacher_eval_nonstring_reply.py` → `src/teacher_escalation.py`
+- `tests/test_teacher_eval_tier2.py` → `src/teacher_escalation.py`, `src/tool_approvals.py`
+- `tests/test_temporal_grounding_stamps.py` → `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/llm_core.py`, `src/tool_execution.py`, `src/tool_replay.py`, `src/user_time.py`
+- `tests/test_thinking_toggle.py` → `src/llm_core.py`, `src/settings.py`
+- `tests/test_tidy_research_owner_scope.py` → `core/auth.py`, `src/builtin_actions.py`
+- `tests/test_tls_overrides_scope.py` → `src/tls_overrides.py`
+- `tests/test_tool_approval_single_action_scope.py` → `src/tool_approval_scopes.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`
+- `tests/test_tool_approval_task_scope.py` → `core/models.py`, `routes/__init__.py`, `routes/chat_routes.py`, `src/tool_approval_scopes.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`
+- `tests/test_tool_approvals.py` → `src/agent_tools/document_tools.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `src/tool_execution.py`
+- `tests/test_tool_implementations_shim.py` → `src/tool_implementations.py`
+- `tests/test_tool_index_keyword_boundaries.py` → `src/tool_index.py`
+- `tests/test_tool_output_prompt_injection.py` → `src/agent_loop.py`
+- `tests/test_tool_parsing_bare_end_marker.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_tool_parsing_hermes_json.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_tool_parsing_nonstring.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_tool_path_confinement.py` → `core/auth.py`, `src/constants.py`, `src/tool_execution.py`
+- `tests/test_tool_policy.py` → `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/settings.py`, `src/tool_execution.py`, `src/tool_policy.py`
+- `tests/test_tool_rag_contacts_domain.py` → `src/agent_loop.py`
+- `tests/test_tool_rag_keyword_hints.py` → `src/tool_index.py`
+- `tests/test_tool_replay.py` → `src/tool_replay.py`
+- `tests/test_tool_support_heuristic.py` → `core/__init__.py`, `core/database.py`, `src/agent_loop.py`, `src/endpoint_resolver.py`, `src/llm_core.py`
+- `tests/test_tool_task_cancelled_on_disconnect.py` → `src/agent_loop.py`
+- `tests/test_topic_analyzer.py` → `core/database.py`, `core/session_manager.py`, `src/topic_analyzer.py`
+- `tests/test_totp_failclosed.py` → `core/auth.py`
+- `tests/test_truncate_message_count_regression.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`
+- `tests/test_tts_available_nonstring_provider.py` → `services/tts/tts_service.py`
+- `tests/test_tts_cache_stats.py` → `services/tts/tts_service.py`
+- `tests/test_tts_service_enforce_cache_limit.py` → `services/tts/tts_service.py`
+- `tests/test_tts_speed_malformed.py` → `services/tts/tts_service.py`
+- `tests/test_ui_control_rag_toggle.py` → `src/ai_interaction.py`
+- `tests/test_unknown_tool_calls.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`, `src/tool_schemas.py`
+- `tests/test_update_plan_tool.py` → `src/agent_tools/__init__.py`, `src/tool_execution.py`, `src/tool_index.py`, `src/tool_schemas.py`, `src/tool_security.py`
+- `tests/test_upload_content_detection_magic.py` → `src/upload_handler.py`
+- `tests/test_upload_handler_atomicity.py` → `src/upload_handler.py`
+- `tests/test_upload_handler_cleanup.py` → `core/database.py`, `core/models.py`, `core/session_manager.py`, `routes/__init__.py`, `routes/calendar_routes.py`, `routes/document_helpers.py`, `routes/document_routes.py`, `routes/note_routes.py`, `routes/upload_routes.py`, `src/agent_tools/document_tools.py`, `src/auth_helpers.py`, `src/database.py`, `src/tool_utils.py`, `src/tools/calendar.py`, `src/tools/notes.py`, `src/upload_handler.py`
+- `tests/test_upload_handler_rename_owner.py` → `src/upload_handler.py`
+- `tests/test_upload_id_extension.py` → `src/upload_handler.py`
+- `tests/test_upload_id_validation.py` → `src/upload_handler.py`
+- `tests/test_upload_limits_centralized.py` → `src/upload_limits.py`
+- `tests/test_upload_multifile.py` → `core/database.py`, `routes/upload_routes.py`, `src/upload_handler.py`
+- `tests/test_upload_routes_owner_scope.py` → `routes/upload_routes.py`, `src/constants.py`, `src/upload_handler.py`
+- `tests/test_url_safety.py` → `src/url_safety.py`
+- `tests/test_user_time.py` → `routes/calendar_routes.py`, `src/agent_loop.py`, `src/chat_processor.py`, `src/user_time.py`
+- `tests/test_vault_password_not_in_argv.py` → `routes/vault_routes.py`
+- `tests/test_vault_routes_shim.py` → `routes/vault_routes.py`
+- `tests/test_vcard_unfolding.py` → `routes/contacts_routes.py`
+- `tests/test_vision_model_detection.py` → `src/chat_helpers.py`
+- `tests/test_vision_owner_scope.py` → `src/ai_interaction.py`, `src/document_processor.py`, `src/endpoint_resolver.py`
+- `tests/test_visual_report.py` → `src/visual_report.py`
+- `tests/test_visual_report_icon_url.py` → `src/visual_report.py`
+- `tests/test_visual_report_nonstring.py` → `src/visual_report.py`
+- `tests/test_visual_report_slug_unique.py` → `src/visual_report.py`
+- `tests/test_visual_report_toc_code_fence.py` → `src/visual_report.py`
+- `tests/test_warmup_ping_urls.py` → `src/model_discovery.py`
+- `tests/test_web_fetch_plaintext.py` → `services/search/__init__.py`, `services/search/content.py`
+- `tests/test_web_fetch_size_caps.py` → `services/search/__init__.py`, `services/search/content.py`, `src/agent_tools/web_tools.py`, `src/constants.py`, `src/search/content.py`
+- `tests/test_web_search_query_sanitization.py` → `src/chat_processor.py`
+- `tests/test_web_search_raw_json_tool_call.py` → `src/agent_tools/__init__.py`, `src/tool_parsing.py`
+- `tests/test_web_search_time_filter.py` → `src/agent_tools/__init__.py`, `src/tool_schemas.py`
+- `tests/test_webhook_dns_rebinding_pin.py` → `src/webhook_manager.py`
+- `tests/test_webhook_routes_shim.py` → `routes/webhook_routes.py`
+- `tests/test_webhook_sanitize_error_ipv6.py` → `src/webhook_manager.py`
+- `tests/test_webhook_ssrf_resilience.py` → `src/webhook_manager.py`
+- `tests/test_webhook_task_refs.py` → `src/webhook_manager.py`
+- `tests/test_workspace_confine.py` → `routes/chat_routes.py`, `routes/workspace_routes.py`, `src/agent_loop.py`, `src/agent_tools/coding_tools.py`, `src/tool_execution.py`, `src/tool_index.py`, `src/tool_security.py`
+- `tests/test_youtube_comments_timeout.py` → `src/youtube_handler.py`
+- `tests/test_youtube_extract_id_nonstring.py` → `services/youtube/youtube_handler.py`
+- `tests/test_youtube_handler_consolidation.py` → `services/youtube/__init__.py`, `services/youtube/youtube_handler.py`, `src/youtube_handler.py`
+- `tests/test_youtube_svc_comments_nondict.py` → `services/youtube/youtube_handler.py`
+- `tests/test_youtube_transcript_seg_nondict.py` → `src/youtube_handler.py`
+
+## Reverse: dependents (if you change X, these import it)
+
+- `companion/__init__.py` ← `app.py`, `companion/routes.py`
+- `companion/pairing.py` ← `companion/routes.py`, `tests/test_companion_pairing.py`
+- `companion/routes.py` ← `companion/__init__.py`, `tests/test_companion_pairing.py`, `tests/test_companion_readonly.py`
+- `core/__init__.py` ← `tests/test_builtin_actions_owner_scope.py`, `tests/test_email_account_default_serialization.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_hwfit_remote_validation.py`, `tests/test_imap_uid_commands.py`, `tests/test_prefs_atomic_write.py`, `tests/test_session_search.py`, `tests/test_tool_support_heuristic.py`
+- `core/atomic_io.py` ← `core/auth.py`, `routes/auth_routes.py`, `routes/codex_routes.py`, `routes/contacts/contacts_routes.py`, `routes/cookbook_routes.py`, `routes/email_helpers.py`, `routes/prefs_routes.py`, `services/memory/skills.py`, `src/agent_jobs.py`, `src/bg_jobs.py`, `src/builtin_actions.py`, `src/cookbook_serve_lifecycle.py`, `src/integrations.py`, `src/preset_manager.py`, `src/settings.py`, `tests/test_prefs_atomic_write.py`
+- `core/auth.py` ← `app.py`, `routes/auth_routes.py`, `routes/note/note_routes.py`, `src/builtin_actions.py`, `src/task_action_policy.py`, `src/task_scheduler.py`, `src/tool_security.py`, `tests/test_auth_config_lock_concurrency.py`, `tests/test_chat_helpers.py`, `tests/test_imap_uid_commands.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_reserved_username_admin_escalation.py`, `tests/test_security_regressions.py`, `tests/test_task_cookbook_admin_gate.py`, `tests/test_tidy_research_owner_scope.py`, `tests/test_tool_path_confinement.py`, `tests/test_totp_failclosed.py`
+- `core/constants.py` ← `app.py`, `companion/routes.py`, `routes/cookbook_routes.py`, `routes/diagnostics_routes.py`, `routes/embedding_routes.py`, `routes/personal_routes.py`, `routes/task/task_routes.py`, `services/search/analytics.py`, `services/search/cache.py`, `src/builtin_actions.py`, `src/cookbook_serve_lifecycle.py`, `src/readiness.py`, `src/tools/_common.py`, `tests/test_internal_api_base.py`
+- `core/database.py` ← `app.py`, `companion/pairing.py`, `companion/routes.py`, `core/auth.py`, `mcp_servers/email_server.py`, `routes/admin_wipe/admin_wipe_routes.py`, `routes/api_token_routes.py`, `routes/assistant_routes.py`, `routes/auth_routes.py`, `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/chatgpt_subscription_routes.py`, `routes/compare/compare_routes.py`, `routes/cookbook_routes.py`, `routes/copilot_routes.py`, `routes/diagnostics_routes.py`, `routes/document/document_helpers.py`, `routes/document/document_routes.py`, `routes/editor_draft_routes.py`, `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/email_routes.py`, `routes/gallery/gallery_helpers.py`, `routes/gallery/gallery_routes.py`, `routes/history/history_routes.py`, `routes/mcp/mcp_routes.py`, `routes/memory/memory_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/session_routes.py`, `routes/signature_routes.py`, `routes/task/task_routes.py`, `routes/upload_routes.py`, `routes/webhook/webhook_routes.py`, `scripts/claim_ownerless.py`, `scripts/demo_email/demo_account.py`, `scripts/dump_agent_prompt.py`, `src/agent_loop.py`, `src/agent_tools/admin_tools.py`, `src/agent_tools/document_tools.py`, `src/agent_tools/session_tools.py`, `src/agent_tools/spawn_agent_tools.py`, `src/builtin_actions.py`, `src/caldav_sync.py`, `src/caldav_writeback.py`, `src/chat_handler.py`, `src/chatgpt_subscription.py`, `src/database.py`, `src/document_actions.py`, `src/endpoint_resolver.py`, `src/event_bus.py`, `src/mcp_oauth.py`, `src/model_context.py`, `src/readiness.py`, `src/service_health.py`, `src/session_actions.py`, `src/session_image_cleanup.py`, `src/session_search.py`, `src/task_scheduler.py`, `src/tools/calendar.py`, `src/tools/notes.py`, `src/tools/system.py`, `tests/conftest.py`, `tests/test_admin_wipe_gallery.py`, `tests/test_app_db_permissions.py`, `tests/test_archived_sessions_model_filter.py`, `tests/test_auth_disabled_document_access.py`, `tests/test_builtin_actions_owner_scope.py`, `tests/test_caldav_google_principal_url.py`, `tests/test_caldav_sync_prune_local_events.py`, `tests/test_caldav_sync_uid_scope.py`, `tests/test_caldav_writeback_route.py`, `tests/test_calendar_batch_events.py`, `tests/test_calendar_default_transaction.py`, `tests/test_calendar_import_zero_duration.py`, `tests/test_calendar_list_range_aliases.py`, `tests/test_calendar_reminder_minutes_parsing.py`, `tests/test_calendar_rrule.py`, `tests/test_calendar_update_event_tz.py`, `tests/test_chatgpt_subscription_routes.py`, `tests/test_checkin_digest_owner_scope.py`, `tests/test_compare_endpoint_owner_scope.py`, `tests/test_copilot_routes.py`, `tests/test_database_utcnow.py`, `tests/test_delete_message_after_refresh.py`, `tests/test_document_close_clears_active_route.py`, `tests/test_document_render_pdf_iframe.py`, `tests/test_document_session_owner_scope.py`, `tests/test_document_tidy_null_timestamp.py`, `tests/test_draft_promotion_keeps_live_media.py`, `tests/test_email_account_default_serialization.py`, `tests/test_email_oauth.py`, `tests/test_email_ownerless_account_owner_scope.py`, `tests/test_email_test_connection_oauth.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_foreground_model_routing.py`, `tests/test_gallery_delete_file_ordering.py`, `tests/test_gallery_filename_confinement.py`, `tests/test_gallery_null_user_routes.py`, `tests/test_gallery_owner_filter_single_user.py`, `tests/test_history_display_model_hydration.py`, `tests/test_history_order_by_timestamp_regression.py`, `tests/test_imap_uid_commands.py`, `tests/test_manage_mcp_command_allowlist.py`, `tests/test_manage_tasks_owner_scope.py`, `tests/test_mcp_email_decode_header_spaces.py`, `tests/test_notes_fail_closed_auth.py`, `tests/test_parse_msg_content_jsonlike_string.py`, `tests/test_rename_user_case_insensitive.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_rename_user_token_cache.py`, `tests/test_replace_messages_multimodal.py`, `tests/test_replace_messages_upload_reservations.py`, `tests/test_resolve_session_auth_chatgpt.py`, `tests/test_retired_settings_interfaces.py`, `tests/test_rewrite_persist_column.py`, `tests/test_scheduler_restart_doublefire.py`, `tests/test_session_actions_cleanup.py`, `tests/test_session_image_cleanup.py`, `tests/test_session_list_owner_scope.py`, `tests/test_session_search.py`, `tests/test_sqlite_foreign_keys.py`, `tests/test_task_chain_owner_scope.py`, `tests/test_task_cookbook_admin_gate.py`, `tests/test_task_scheduler_cancel.py`, `tests/test_task_scheduler_session_delivery.py`, `tests/test_tool_support_heuristic.py`, `tests/test_topic_analyzer.py`, `tests/test_truncate_message_count_regression.py`, `tests/test_upload_handler_cleanup.py`, `tests/test_upload_multifile.py`
+- `core/exceptions.py` ← `app.py`, `routes/chat_routes.py`, `src/exceptions.py`
+- `core/log_safety.py` ← `routes/chat_routes.py`, `routes/contacts/contacts_routes.py`, `routes/model_routes.py`, `tests/test_log_safety.py`
+- `core/middleware.py` ← `app.py`, `companion/routes.py`, `routes/admin_wipe/admin_wipe_routes.py`, `routes/api_token_routes.py`, `routes/backup_routes.py`, `routes/codex_routes.py`, `routes/contacts/contacts_routes.py`, `routes/cookbook_routes.py`, `routes/device_flow.py`, `routes/diagnostics_routes.py`, `routes/embedding_routes.py`, `routes/mcp/mcp_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/personal_routes.py`, `routes/preset_routes.py`, `routes/research/research_routes.py`, `routes/session_routes.py`, `routes/shell_routes.py`, `routes/skills_routes.py`, `routes/task/task_routes.py`, `routes/upload_routes.py`, `routes/vault/vault_routes.py`, `routes/webhook/webhook_routes.py`, `src/builtin_actions.py`, `src/cookbook_serve_lifecycle.py`, `src/task_action_policy.py`, `src/tools/_common.py`, `tests/test_add_directory_event_loop.py`, `tests/test_auth_root_path.py`, `tests/test_companion_pairing.py`, `tests/test_cors_preflight.py`, `tests/test_document_render_pdf_iframe.py`, `tests/test_reserved_username_admin_escalation.py`, `tests/test_security_headers_middleware.py`, `tests/test_security_headers_pdf_preview.py`, `tests/test_security_regressions.py`
+- `core/models.py` ← `app.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/history/history_routes.py`, `routes/research/research_routes.py`, `routes/session_routes.py`, `routes/webhook/webhook_routes.py`, `src/agent_jobs.py`, `src/agent_tools/session_tools.py`, `src/ai_interaction.py`, `src/app_initializer.py`, `src/bg_monitor.py`, `src/chat_handler.py`, `src/context_compactor.py`, `src/task_scheduler.py`, `tests/conftest.py`, `tests/test_api_token_tool_authority.py`, `tests/test_delete_message_after_refresh.py`, `tests/test_draft_promotion_keeps_live_media.py`, `tests/test_fork_session_metadata.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_history_display_model_hydration.py`, `tests/test_parse_msg_content_jsonlike_string.py`, `tests/test_replace_messages_multimodal.py`, `tests/test_replace_messages_upload_reservations.py`, `tests/test_research_query_fallback.py`, `tests/test_session_concurrent.py`, `tests/test_session_context_excludes_slash.py`, `tests/test_session_discovery_message_count.py`, `tests/test_session_manager.py`, `tests/test_session_manager_persist_guard.py`, `tests/test_task_scheduler_session_delivery.py`, `tests/test_tool_approval_task_scope.py`, `tests/test_truncate_message_count_regression.py`, `tests/test_upload_handler_cleanup.py`
+- `core/platform_compat.py` ← `core/database.py`, `routes/cookbook_helpers.py`, `routes/cookbook_routes.py`, `routes/hwfit_routes.py`, `routes/shell_routes.py`, `routes/vault/vault_routes.py`, `services/hwfit/hardware.py`, `src/agent_tools/subprocess_tools.py`, `src/api_key_manager.py`, `src/bg_jobs.py`, `src/builtin_actions.py`, `src/builtin_mcp.py`, `src/integrations.py`, `src/secret_storage.py`, `tests/test_cookbook_helpers.py`, `tests/test_hwfit_remote_validation.py`, `tests/test_shell_routes.py`
+- `core/session_manager.py` ← `routes/compare/compare_routes.py`, `routes/memory/memory_routes.py`, `routes/session_routes.py`, `src/app_initializer.py`, `tests/test_draft_promotion_keeps_live_media.py`, `tests/test_history_display_model_hydration.py`, `tests/test_parse_msg_content_jsonlike_string.py`, `tests/test_replace_messages_multimodal.py`, `tests/test_replace_messages_upload_reservations.py`, `tests/test_session_concurrent.py`, `tests/test_session_discovery_message_count.py`, `tests/test_session_manager.py`, `tests/test_session_manager_cleanup.py`, `tests/test_session_manager_persist_guard.py`, `tests/test_topic_analyzer.py`, `tests/test_truncate_message_count_regression.py`, `tests/test_upload_handler_cleanup.py`
+- `mcp_servers/email_server.py` ← `tests/test_imap_leak_fixes.py`, `tests/test_imap_mailbox_quoting.py`, `tests/test_mcp_email_decode_header_spaces.py`
+- `mcp_servers/memory_server.py` ← `tests/test_mcp_memory_owner_scope.py`, `tests/test_memory_store_unreadable_no_wipe.py`
+- `mcp_servers/rag_server.py` ← `tests/test_rag_server_directory_nonstring.py`
+- `routes/__init__.py` ← `routes/chat_helpers.py`, `src/foreground_model_routing.py`, `src/interactive_gate.py`, `src/tools/contacts.py`, `tests/test_auth_regressions.py`, `tests/test_builtin_actions_owner_scope.py`, `tests/test_carddav_password_encryption.py`, `tests/test_chat_image_routing.py`, `tests/test_device_flow_routes.py`, `tests/test_draft_promotion_keeps_live_media.py`, `tests/test_email_account_default_serialization.py`, `tests/test_email_fallback_reconnect.py`, `tests/test_email_uid_no_seqno_fallback.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_emoji_svg_hardening.py`, `tests/test_history_display_model_hydration.py`, `tests/test_imap_uid_commands.py`, `tests/test_integrations_store_shape.py`, `tests/test_personal_delete_file_confinement.py`, `tests/test_personal_upload_isolation.py`, `tests/test_personal_upload_privilege.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_security_regressions.py`, `tests/test_signature_route_hardening.py`, `tests/test_tool_approval_task_scope.py`, `tests/test_upload_handler_cleanup.py`
+- `routes/_validators.py` ← `routes/codex_routes.py`, `routes/cookbook_helpers.py`, `routes/cookbook_routes.py`, `routes/hwfit_routes.py`, `src/tools/cookbook.py`, `tests/test_route_validators.py`
+- `routes/admin_wipe/__init__.py` ← `routes/admin_wipe_routes.py`
+- `routes/admin_wipe/admin_wipe_routes.py` ← `app.py`, `routes/admin_wipe_routes.py`
+- `routes/admin_wipe_routes.py` ← `tests/test_admin_wipe_gallery.py`, `tests/test_admin_wipe_routes_shim.py`
+- `routes/api_token_routes.py` ← `app.py`, `tests/test_api_token_routes.py`
+- `routes/assistant_routes.py` ← `app.py`
+- `routes/auth_routes.py` ← `app.py`, `tests/test_auth_event_loop.py`, `tests/test_auth_policy.py`, `tests/test_auth_regressions.py`, `tests/test_auth_session_revocation.py`, `tests/test_delete_user_invalidates_token_cache.py`, `tests/test_email_account_default_serialization.py`, `tests/test_integrations_store_shape.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_rename_user_token_cache.py`, `tests/test_retired_settings_interfaces.py`, `tests/test_set_admin.py`
+- `routes/backup_routes.py` ← `app.py`, `tests/test_backup_import_cross_user_dedup.py`, `tests/test_backup_import_skills.py`, `tests/test_backup_import_skills_dedup.py`
+- `routes/calendar_routes.py` ← `app.py`, `routes/codex_routes.py`, `src/caldav_sync.py`, `src/tools/calendar.py`, `src/tools/notes.py`, `tests/helpers/calendar_routes.py`, `tests/test_caldav_test_connection_ssl.py`, `tests/test_caldav_writeback_route.py`, `tests/test_calendar_default_transaction.py`, `tests/test_calendar_import_zero_duration.py`, `tests/test_calendar_parse_dt_time_first.py`, `tests/test_calendar_parse_dt_tonight.py`, `tests/test_calendar_update_event_tz.py`, `tests/test_ics_export_escaping.py`, `tests/test_ics_import_dedup_tz.py`, `tests/test_parse_due_time_first.py`, `tests/test_upload_handler_cleanup.py`, `tests/test_user_time.py`
+- `routes/chat_helpers.py` ← `routes/chat_routes.py`, `tests/test_chat_helpers.py`, `tests/test_continuation_nudge_gating.py`, `tests/test_foreground_model_routing.py`, `tests/test_resolve_session_auth_chatgpt.py`
+- `routes/chat_routes.py` ← `app.py`, `core/session_manager.py`, `routes/chat_helpers.py`, `routes/history/history_routes.py`, `src/interactive_gate.py`, `tests/test_api_token_tool_authority.py`, `tests/test_chat_image_routing.py`, `tests/test_draft_promotion_keeps_live_media.py`, `tests/test_foreground_model_routing.py`, `tests/test_history_display_model_hydration.py`, `tests/test_partial_tool_events.py`, `tests/test_tool_approval_task_scope.py`, `tests/test_workspace_confine.py`
+- `routes/chatgpt_subscription_routes.py` ← `app.py`, `tests/test_chatgpt_subscription_routes.py`
+- `routes/cleanup/__init__.py` ← `routes/cleanup_routes.py`
+- `routes/cleanup/cleanup_routes.py` ← `app.py`, `routes/cleanup_routes.py`
+- `routes/cleanup_routes.py` ← `tests/test_cleanup_owner_scope.py`, `tests/test_cleanup_routes_shim.py`
+- `routes/codex_routes.py` ← `app.py`, `tests/test_api_token_user_route_gate.py`, `tests/test_codex_cookbook_admin_gate.py`, `tests/test_codex_ssh_host_validation.py`
+- `routes/compare/__init__.py` ← `routes/compare_routes.py`
+- `routes/compare/compare_routes.py` ← `app.py`, `routes/compare_routes.py`
+- `routes/compare_routes.py` ← `tests/test_compare_endpoint_owner_scope.py`, `tests/test_compare_routes_shim.py`, `tests/test_endpoint_owner_scope_followup.py`
+- `routes/contacts/__init__.py` ← `routes/contacts_routes.py`
+- `routes/contacts/contacts_routes.py` ← `app.py`, `routes/contacts_routes.py`
+- `routes/contacts_routes.py` ← `routes/email_helpers.py`, `src/tools/contacts.py`, `tests/test_carddav_password_encryption.py`, `tests/test_contacts_add_null_name.py`, `tests/test_contacts_carddav_security.py`, `tests/test_contacts_import_nonstring.py`, `tests/test_contacts_routes_shim.py`, `tests/test_contacts_vcard_parse.py`, `tests/test_vcard_unfolding.py`
+- `routes/cookbook_helpers.py` ← `routes/codex_routes.py`, `routes/cookbook_routes.py`, `routes/shell_routes.py`, `src/tools/cookbook.py`, `tests/test_cookbook_diagnosis.py`, `tests/test_cookbook_docker_access.py`, `tests/test_cookbook_error_feedback.py`, `tests/test_cookbook_helpers.py`, `tests/test_cookbook_hf_token.py`, `tests/test_cookbook_remote_windows_diffusers.py`, `tests/test_ollama_runner_hint.py`
+- `routes/cookbook_output.py` ← `routes/cookbook_routes.py`, `tests/test_cookbook_dead_download_status.py`, `tests/test_cookbook_error_tail_lines.py`
+- `routes/cookbook_routes.py` ← `app.py`, `tests/test_cookbook_docker_access.py`, `tests/test_cookbook_local_serve_pid_winpid.py`, `tests/test_cookbook_remote_windows_diffusers.py`
+- `routes/copilot_routes.py` ← `app.py`, `tests/test_copilot_routes.py`
+- `routes/device_flow.py` ← `routes/chatgpt_subscription_routes.py`, `routes/copilot_routes.py`, `tests/test_device_flow_routes.py`
+- `routes/diagnostics_routes.py` ← `app.py`
+- `routes/document/__init__.py` ← `routes/document_helpers.py`, `routes/document_routes.py`
+- `routes/document/document_helpers.py` ← `routes/document_helpers.py`
+- `routes/document/document_routes.py` ← `app.py`, `routes/document_routes.py`
+- `routes/document_helpers.py` ← `routes/chat_routes.py`, `routes/document/document_routes.py`, `tests/test_auth_disabled_document_access.py`, `tests/test_derive_title_nonstring.py`, `tests/test_document_close_clears_active_route.py`, `tests/test_document_routes_shim.py`, `tests/test_document_session_owner_scope.py`, `tests/test_resolve_upload_path_nondict.py`, `tests/test_security_regressions.py`, `tests/test_upload_handler_cleanup.py`
+- `routes/document_routes.py` ← `routes/codex_routes.py`, `tests/test_auth_disabled_document_access.py`, `tests/test_document_close_clears_active_route.py`, `tests/test_document_library_language_facet.py`, `tests/test_document_library_pdf_metadata.py`, `tests/test_document_render_pdf_iframe.py`, `tests/test_document_routes_shim.py`, `tests/test_document_session_owner_scope.py`, `tests/test_null_owner_gates.py`, `tests/test_upload_handler_cleanup.py`
+- `routes/editor_draft_routes.py` ← `app.py`, `tests/test_editor_draft_payload.py`
+- `routes/email_helpers.py` ← `mcp_servers/email_server.py`, `routes/codex_routes.py`, `routes/document/document_routes.py`, `routes/email_pollers.py`, `routes/email_routes.py`, `routes/note/note_routes.py`, `routes/task/task_routes.py`, `src/builtin_actions.py`, `src/service_health.py`, `src/task_scheduler.py`, `tests/test_builtin_actions_owner_scope.py`, `tests/test_email_decode_header.py`, `tests/test_email_helpers_decode_header_spaces.py`, `tests/test_email_imap_timeout.py`, `tests/test_email_oauth.py`, `tests/test_email_owner_scope.py`, `tests/test_email_ownerless_account_owner_scope.py`, `tests/test_email_read_mark_seen.py`, `tests/test_email_send_only_no_inbox.py`, `tests/test_email_smtp_security.py`, `tests/test_email_summary_llm.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_imap_leak_fixes.py`, `tests/test_imap_move_uid.py`, `tests/test_imap_uid_commands.py`, `tests/test_schedule_email_offset_normalization.py`, `tests/test_scheduled_poll_race.py`, `tests/test_security_regressions.py`
+- `routes/email_pollers.py` ← `routes/email_routes.py`, `src/builtin_actions.py`, `tests/test_email_fallback_reconnect.py`, `tests/test_email_owner_scope.py`, `tests/test_email_polly_imap_leak.py`, `tests/test_email_summary_llm.py`, `tests/test_redos_cal_extract.py`, `tests/test_scheduled_poll_race.py`, `tests/test_security_regressions.py`
+- `routes/email_routes.py` ← `app.py`, `routes/chat_routes.py`, `routes/codex_routes.py`, `routes/document/document_routes.py`, `routes/note/note_routes.py`, `src/task_scheduler.py`, `tests/test_email_account_default_serialization.py`, `tests/test_email_account_port_validation.py`, `tests/test_email_envelope_recipients.py`, `tests/test_email_gmail_fetch_flags.py`, `tests/test_email_imap_timeout.py`, `tests/test_email_oauth.py`, `tests/test_email_owner_scope.py`, `tests/test_email_read_mark_seen.py`, `tests/test_email_summary_llm.py`, `tests/test_email_test_connection_oauth.py`, `tests/test_email_uid_no_seqno_fallback.py`, `tests/test_email_unsubscribe_candidates.py`, `tests/test_schedule_email_offset_normalization.py`
+- `routes/embedding_routes.py` ← `app.py`, `tests/test_embedding_cache_confinement.py`, `tests/test_embedding_endpoint_config.py`
+- `routes/emoji_routes.py` ← `app.py`, `tests/test_emoji_svg_hardening.py`
+- `routes/font_routes.py` ← `app.py`, `tests/test_font_routes.py`
+- `routes/gallery/__init__.py` ← `routes/gallery_helpers.py`, `routes/gallery_routes.py`
+- `routes/gallery/gallery_helpers.py` ← `routes/gallery/gallery_routes.py`, `routes/gallery_helpers.py`
+- `routes/gallery/gallery_routes.py` ← `app.py`, `routes/email_routes.py`, `routes/gallery_routes.py`
+- `routes/gallery_helpers.py` ← `tests/test_gallery_owner_filter_single_user.py`, `tests/test_gallery_routes_shim.py`
+- `routes/gallery_routes.py` ← `tests/test_gallery_delete_file_ordering.py`, `tests/test_gallery_endpoint_hardening.py`, `tests/test_gallery_endpoint_matching.py`, `tests/test_gallery_filename_confinement.py`, `tests/test_gallery_image_endpoint_owner_scope.py`, `tests/test_gallery_model_input_device.py`, `tests/test_gallery_null_user_routes.py`, `tests/test_gallery_result_image_ssrf.py`, `tests/test_gallery_routes_shim.py`, `tests/test_null_owner_gates.py`
+- `routes/history/__init__.py` ← `routes/history_routes.py`, `tests/test_history_display_model_hydration.py`
+- `routes/history/history_routes.py` ← `app.py`, `routes/history_routes.py`, `tests/test_delete_message_after_refresh.py`, `tests/test_history_display_model_hydration.py`
+- `routes/history_routes.py` ← `tests/test_fork_session_metadata.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_history_routes_shim.py`, `tests/test_history_topics_owner_scope.py`, `tests/test_merge_last_assistant_rows.py`
+- `routes/hwfit_routes.py` ← `app.py`, `tests/test_hwfit_gpu_count_nonnumeric.py`, `tests/test_hwfit_manual_backend.py`, `tests/test_hwfit_remote_validation.py`
+- `routes/mcp/__init__.py` ← `routes/mcp_routes.py`
+- `routes/mcp/mcp_routes.py` ← `app.py`, `routes/mcp_routes.py`, `tests/test_mcp_oauth.py`
+- `routes/mcp_routes.py` ← `tests/test_mcp_routes_shim.py`, `tests/test_security_regressions.py`
+- `routes/memory/__init__.py` ← `routes/memory_routes.py`
+- `routes/memory/memory_routes.py` ← `app.py`, `routes/memory_routes.py`
+- `routes/memory_routes.py` ← `tests/test_memory_owner_isolation.py`, `tests/test_memory_routes_session_owner.py`, `tests/test_memory_routes_shim.py`
+- `routes/model_routes.py` ← `app.py`, `routes/chat_routes.py`, `routes/chatgpt_subscription_routes.py`, `routes/cookbook_routes.py`, `routes/copilot_routes.py`, `src/service_health.py`, `tests/test_chatgpt_subscription_routes.py`, `tests/test_endpoint_probing.py`, `tests/test_model_defaults.py`, `tests/test_model_routes.py`, `tests/test_review_regressions.py`
+- `routes/note/__init__.py` ← `routes/note_routes.py`
+- `routes/note/note_routes.py` ← `app.py`, `routes/note_routes.py`
+- `routes/note_routes.py` ← `src/builtin_actions.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_note_reminder_email_oauth.py`, `tests/test_note_reminder_fire_scope.py`, `tests/test_note_routes_shim.py`, `tests/test_notes_fail_closed_auth.py`, `tests/test_reminder_ntfy_ssrf.py`, `tests/test_upload_handler_cleanup.py`
+- `routes/personal_routes.py` ← `app.py`, `routes/auth_routes.py`, `tests/test_add_directory_event_loop.py`, `tests/test_personal_delete_file_confinement.py`, `tests/test_personal_upload_isolation.py`, `tests/test_personal_upload_privilege.py`, `tests/test_rename_user_owner_sync.py`
+- `routes/prefs_routes.py` ← `app.py`, `routes/auth_routes.py`, `routes/backup_routes.py`, `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/model_routes.py`, `routes/skills_routes.py`, `routes/task/task_routes.py`, `services/memory/skill_extractor.py`, `src/agent_loop.py`, `src/ai_interaction.py`, `src/builtin_actions.py`, `src/caldav_sync.py`, `src/foreground_model_routing.py`, `src/settings.py`, `src/task_scheduler.py`, `src/tools/system.py`, `tests/test_chatgpt_subscription_routes.py`, `tests/test_foreground_model_routing.py`, `tests/test_model_defaults.py`, `tests/test_prefs_atomic_write.py`, `tests/test_prefs_routes.py`, `tests/test_prefs_single_user_no_clobber.py`, `tests/test_review_regressions.py`
+- `routes/preset_routes.py` ← `app.py`, `tests/test_preset_expand_owner_scope.py`
+- `routes/research/__init__.py` ← `routes/research_routes.py`
+- `routes/research/research_routes.py` ← `app.py`, `routes/research_routes.py`, `tests/test_research_routes_path_confinement.py`
+- `routes/research_routes.py` ← `routes/chat_routes.py`, `tests/test_auth_regressions.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_research_endpoint_owner_scope.py`, `tests/test_research_owner_scope_routes.py`, `tests/test_research_routes_path_confinement.py`, `tests/test_research_routes_shim.py`
+- `routes/search/__init__.py` ← `routes/search_routes.py`
+- `routes/search/search_routes.py` ← `app.py`, `routes/search_routes.py`
+- `routes/search_routes.py` ← `tests/test_search_routes_shim.py`
+- `routes/session_routes.py` ← `app.py`, `routes/chat_routes.py`, `routes/compare/compare_routes.py`, `routes/history/history_routes.py`, `tests/test_archived_sessions_model_filter.py`, `tests/test_blind_compare_redaction.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_history_display_model_hydration.py`, `tests/test_session_endpoint_owner_scope.py`, `tests/test_session_export_filename.py`, `tests/test_session_export_nonstring_content.py`, `tests/test_session_ghost_delete.py`, `tests/test_session_list_owner_scope.py`, `tests/test_session_owner_attribution.py`, `tests/test_session_routes_utcnow.py`
+- `routes/shell_routes.py` ← `app.py`, `routes/cookbook_routes.py`, `tests/test_cookbook_package_detection.py`, `tests/test_shell_routes.py`
+- `routes/signature_routes.py` ← `app.py`, `tests/test_signature_route_hardening.py`
+- `routes/skills_routes.py` ← `app.py`, `src/builtin_actions.py`, `tests/test_redos_verdict_continuation.py`, `tests/test_skill_save_no_rename.py`, `tests/test_skills_delete_owner.py`, `tests/test_skills_routes_nondict.py`, `tests/test_skills_routes_owner_update.py`, `tests/test_teacher_audit_owner_scope.py`
+- `routes/stt_routes.py` ← `app.py`
+- `routes/task/__init__.py` ← `routes/task_routes.py`
+- `routes/task/task_routes.py` ← `app.py`, `routes/task_routes.py`
+- `routes/task_routes.py` ← `tests/test_auth_regressions.py`, `tests/test_email_owner_scope.py`, `tests/test_task_chain_owner_scope.py`, `tests/test_task_cookbook_admin_gate.py`, `tests/test_task_routes_shim.py`
+- `routes/tts_routes.py` ← `app.py`
+- `routes/upload_routes.py` ← `app.py`, `tests/test_upload_handler_cleanup.py`, `tests/test_upload_multifile.py`, `tests/test_upload_routes_owner_scope.py`
+- `routes/vault/__init__.py` ← `routes/vault_routes.py`
+- `routes/vault/vault_routes.py` ← `app.py`, `routes/vault_routes.py`
+- `routes/vault_routes.py` ← `tests/test_vault_password_not_in_argv.py`, `tests/test_vault_routes_shim.py`
+- `routes/webhook/__init__.py` ← `routes/webhook_routes.py`
+- `routes/webhook/webhook_routes.py` ← `app.py`, `routes/webhook_routes.py`
+- `routes/webhook_routes.py` ← `tests/test_webhook_routes_shim.py`
+- `routes/workspace_routes.py` ← `app.py`, `tests/test_workspace_confine.py`
+- `scripts/claim_ownerless.py` ← `tests/test_claim_ownerless_json.py`
+- `scripts/demo_email/demo_account.py` ← `tests/test_email_account_default_serialization.py`
+- `services/docs/service.py` ← `tests/test_docs_query_nondict_rows.py`
+- `services/hwfit/__init__.py` ← `tests/test_hwfit_amd.py`, `tests/test_hwfit_container_visibility_warning.py`, `tests/test_hwfit_cpu_arch_detection.py`, `tests/test_hwfit_macos.py`, `tests/test_hwfit_remote_validation.py`, `tests/test_hwfit_unified_nvidia.py`, `tests/test_hwfit_windows.py`, `tests/test_image_models_nondict_system.py`, `tests/test_image_models_nonstring_search.py`
+- `services/hwfit/fit.py` ← `routes/hwfit_routes.py`, `tests/test_hwfit_amd.py`, `tests/test_hwfit_apple_bandwidth.py`, `tests/test_hwfit_bandwidth_nonstring.py`, `tests/test_hwfit_cpu_only_fallback.py`, `tests/test_hwfit_gemma4_12b.py`, `tests/test_hwfit_macos.py`, `tests/test_hwfit_manual_backend.py`, `tests/test_hwfit_native_quant_labels.py`, `tests/test_hwfit_quant_formats.py`, `tests/test_hwfit_windows.py`
+- `services/hwfit/hardware.py` ← `routes/cookbook_routes.py`, `routes/hwfit_routes.py`, `tests/test_hwfit_amd.py`, `tests/test_hwfit_container_visibility_warning.py`, `tests/test_hwfit_cpu_arch_detection.py`, `tests/test_hwfit_macos.py`, `tests/test_hwfit_remote_validation.py`, `tests/test_hwfit_unified_nvidia.py`, `tests/test_hwfit_windows.py`
+- `services/hwfit/hf_discovery.py` ← `services/hwfit/models.py`
+- `services/hwfit/image_models.py` ← `routes/hwfit_routes.py`, `services/hwfit/fit.py`, `tests/test_image_models_nondict_system.py`, `tests/test_image_models_nonstring_search.py`
+- `services/hwfit/models.py` ← `routes/hwfit_routes.py`, `services/hwfit/fit.py`, `services/hwfit/profiles.py`, `tests/test_hwfit_amd.py`, `tests/test_hwfit_gemma4_12b.py`, `tests/test_hwfit_macos.py`, `tests/test_hwfit_manual_backend.py`, `tests/test_hwfit_models_nonstring_fields.py`, `tests/test_hwfit_native_quant_labels.py`, `tests/test_hwfit_params_b_malformed.py`, `tests/test_hwfit_quant_formats.py`, `tests/test_hwfit_windows.py`
+- `services/hwfit/profiles.py` ← `routes/hwfit_routes.py`, `tests/test_serve_profiles.py`
+- `services/memory/__init__.py` ← `routes/backup_routes.py`, `routes/memory/memory_routes.py`, `tests/test_memory_extractor_rows.py`, `tests/test_memory_imports.py`, `tests/test_skill_extractor_json.py`, `tests/test_skill_extractor_rows.py`, `tests/test_skill_extractor_stray_brace.py`, `tests/test_skill_importer_dns_pinning.py`, `tests/test_skill_importer_ssrf_redirect.py`
+- `services/memory/memory.py` ← `tests/test_memory_bullet_extraction.py`, `tests/test_memory_imports.py`
+- `services/memory/memory_extractor.py` ← `routes/chat_helpers.py`, `routes/memory/memory_routes.py`, `tests/test_memory_extraction_parse.py`, `tests/test_memory_extractor_rows.py`, `tests/test_memory_extractor_vector_degraded.py`, `tests/test_memory_fallback_dislike.py`
+- `services/memory/memory_vector.py` ← `tests/test_memory_imports.py`
+- `services/memory/service.py` ← `tests/test_memory_recall_nondict_rows.py`
+- `services/memory/skill_extractor.py` ← `routes/chat_helpers.py`, `tests/test_skill_extractor_json.py`, `tests/test_skill_extractor_rows.py`, `tests/test_skill_extractor_stray_brace.py`
+- `services/memory/skill_format.py` ← `routes/skills_routes.py`, `src/tools/system.py`, `tests/test_skill_format_timestamp.py`, `tests/test_skill_frontmatter_escape_roundtrip.py`, `tests/test_skill_save_no_rename.py`, `tests/test_skills_delete_owner.py`, `tests/test_skills_manager_owner_isolation.py`, `tests/test_skills_routes_owner_update.py`
+- `services/memory/skill_importer.py` ← `routes/skills_routes.py`, `tests/test_skill_importer.py`, `tests/test_skill_importer_dns_pinning.py`, `tests/test_skill_importer_security.py`, `tests/test_skill_importer_ssrf_redirect.py`
+- `services/memory/skills.py` ← `routes/skills_routes.py`, `src/agent_loop.py`, `src/app_initializer.py`, `src/builtin_actions.py`, `src/tools/system.py`, `tests/test_foreground_model_routing.py`, `tests/test_skill_frontmatter_escape_roundtrip.py`, `tests/test_skill_index_toolset_gating.py`, `tests/test_skill_save_no_rename.py`, `tests/test_skills_delete_owner.py`, `tests/test_skills_manager_owner_isolation.py`, `tests/test_skills_routes_owner_update.py`, `tests/test_skills_tag_token_match.py`
+- `services/research/research_handler.py` ← `tests/test_research_handler_analyzed_urls.py`, `tests/test_svc_research_sources_nondict.py`
+- `services/research/service.py` ← `tests/test_research_service.py`
+- `services/search/__init__.py` ← `routes/search/search_routes.py`, `src/search/analytics.py`, `src/search/cache.py`, `src/search/content.py`, `src/search/core.py`, `src/search/providers.py`, `src/search/query.py`, `tests/test_search_config_no_key_leak.py`, `tests/test_search_config_provider_key.py`, `tests/test_search_content_extraction_parity.py`, `tests/test_search_content_url_guards.py`, `tests/test_search_module_consolidation.py`, `tests/test_search_provider_json.py`, `tests/test_searchservice_search_call.py`, `tests/test_service_search_provider_guards.py`, `tests/test_web_fetch_plaintext.py`, `tests/test_web_fetch_size_caps.py`
+- `services/search/analytics.py` ← `src/search/analytics.py`, `tests/test_search_analytics_defaults.py`, `tests/test_services_search_analytics_defaults.py`
+- `services/search/cache.py` ← `src/search/cache.py`
+- `services/search/content.py` ← `src/search/content.py`, `tests/test_search_content_extraction_parity.py`, `tests/test_search_content_url_guards.py`, `tests/test_web_fetch_plaintext.py`, `tests/test_web_fetch_size_caps.py`
+- `services/search/core.py` ← `routes/search/search_routes.py`, `services/search/__init__.py`, `src/search/core.py`, `tests/test_search_config_no_key_leak.py`
+- `services/search/providers.py` ← `routes/search/search_routes.py`, `src/search/providers.py`, `tests/test_search_provider_json.py`, `tests/test_service_search_provider_guards.py`
+- `services/search/query.py` ← `src/search/query.py`, `tests/test_search_query_entities_nonstring.py`, `tests/test_search_query_unicode_names.py`, `tests/test_src_search_query_nonstring.py`
+- `services/search/ranking.py` ← `src/search/ranking.py`, `tests/test_search_ranking.py`, `tests/test_search_ranking_recency.py`, `tests/test_search_ranking_sports_substring.py`, `tests/test_search_ranking_subject_substring.py`
+- `services/search/service.py` ← `tests/test_search_service_nondict_rows.py`, `tests/test_searchservice_search_call.py`
+- `services/stt/__init__.py` ← `app.py`
+- `services/stt/stt_service.py` ← `services/stt/__init__.py`, `tests/test_speech_service_toggles.py`, `tests/test_stt_leak.py`
+- `services/tts/__init__.py` ← `app.py`
+- `services/tts/tts_service.py` ← `tests/test_speech_service_toggles.py`, `tests/test_tts_available_nonstring_provider.py`, `tests/test_tts_cache_stats.py`, `tests/test_tts_service_enforce_cache_limit.py`, `tests/test_tts_speed_malformed.py`
+- `services/youtube/__init__.py` ← `app.py`, `tests/test_youtube_handler_consolidation.py`
+- `services/youtube/youtube_handler.py` ← `routes/diagnostics_routes.py`, `tests/test_is_youtube_url_nonstring_svc.py`, `tests/test_youtube_extract_id_nonstring.py`, `tests/test_youtube_handler_consolidation.py`, `tests/test_youtube_svc_comments_nondict.py`
+- `src/action_intents.py` ← `routes/chat_routes.py`, `tests/test_action_intents.py`, `tests/test_action_intents_shell_verbs.py`, `tests/test_chat_route_tool_policy.py`
+- `src/agent_jobs.py` ← `app.py`, `src/agent_tools/spawn_agent_tools.py`, `tests/test_agent_jobs.py`, `tests/test_spawn_agent.py`
+- `src/agent_loop.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/skills_routes.py`, `scripts/dump_agent_prompt.py`, `src/agent_tools/spawn_agent_tools.py`, `src/app_initializer.py`, `src/bg_monitor.py`, `src/task_scheduler.py`, `src/teacher_escalation.py`, `src/tool_policy.py`, `tests/test_agent_loop.py`, `tests/test_agent_rounds_exhausted.py`, `tests/test_approved_replay_message_shape.py`, `tests/test_ask_user_persistence.py`, `tests/test_bg_job_tools.py`, `tests/test_chat_metrics.py`, `tests/test_continuation_nudge_gating.py`, `tests/test_copilot.py`, `tests/test_external_context_tool_gate.py`, `tests/test_fenced_example_not_executed_for_native_models.py`, `tests/test_foreground_model_routing.py`, `tests/test_llm_core_reasoning_content_fallback.py`, `tests/test_llm_core_sanitize_tool_calls.py`, `tests/test_loop_breaker_runaway.py`, `tests/test_native_tool_result_threading.py`, `tests/test_odysseus_doc_fence_normalization.py`, `tests/test_partial_tool_events.py`, `tests/test_plan_mode.py`, `tests/test_pr6020_rebase_regressions.py`, `tests/test_prompt_injection_audit.py`, `tests/test_redos_think_blocks.py`, `tests/test_redos_verdict_continuation.py`, `tests/test_research_report_read.py`, `tests/test_skill_index_prompt_injection.py`, `tests/test_spawn_agent.py`, `tests/test_task_shell_tools.py`, `tests/test_temporal_grounding_stamps.py`, `tests/test_tool_output_prompt_injection.py`, `tests/test_tool_policy.py`, `tests/test_tool_rag_contacts_domain.py`, `tests/test_tool_support_heuristic.py`, `tests/test_tool_task_cancelled_on_disconnect.py`, `tests/test_user_time.py`, `tests/test_workspace_confine.py`
+- `src/agent_runs.py` ← `routes/chat_routes.py`, `routes/session_routes.py`, `src/agent_jobs.py`, `src/bg_monitor.py`, `src/interactive_gate.py`, `tests/test_compare_stop_disconnect_poll.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_pr6020_browser_review_regressions.py`
+- `src/agent_tools/__init__.py` ← `app.py`, `routes/chat_routes.py`, `routes/model_routes.py`, `src/agent_loop.py`, `src/tool_execution.py`, `src/tool_implementations.py`, `src/tool_parsing.py`, `src/tool_schemas.py`, `src/tool_security.py`, `tests/test_admin_tools_registry.py`, `tests/test_agent_bash_windows.py`, `tests/test_agent_tools_truncate_nonstring.py`, `tests/test_ai_interaction_owner_scope.py`, `tests/test_ask_user_tool.py`, `tests/test_document_tool_owner_scope.py`, `tests/test_edit_file.py`, `tests/test_email_registry_sync.py`, `tests/test_external_context_tool_gate.py`, `tests/test_fenced_inline_args.py`, `tests/test_fenced_invoke_no_raw_xml.py`, `tests/test_function_call_non_object_args.py`, `tests/test_function_model_tool_call.py`, `tests/test_gemma_tool_call_parsing.py`, `tests/test_live_strip_email_tool_fences.py`, `tests/test_misfenced_read_file_tool_call.py`, `tests/test_model_interaction_registry.py`, `tests/test_plain_ui_control_open_panel.py`, `tests/test_redos_llm_parsers.py`, `tests/test_redos_verdict_continuation.py`, `tests/test_redos_xml_tool_parsers.py`, `tests/test_session_tools_registry.py`, `tests/test_spawn_agent.py`, `tests/test_teacher_audit_owner_scope.py`, `tests/test_temporal_grounding_stamps.py`, `tests/test_tool_parsing_bare_end_marker.py`, `tests/test_tool_parsing_hermes_json.py`, `tests/test_tool_parsing_nonstring.py`, `tests/test_tool_policy.py`, `tests/test_unknown_tool_calls.py`, `tests/test_update_plan_tool.py`, `tests/test_web_search_raw_json_tool_call.py`, `tests/test_web_search_time_filter.py`
+- `src/agent_tools/admin_tools.py` ← `src/tool_implementations.py`, `tests/test_admin_tools_registry.py`, `tests/test_manage_mcp_command_allowlist.py`, `tests/test_manage_settings_token_budget.py`, `tests/test_mcp_reconnect_args.py`, `tests/test_retired_settings_interfaces.py`, `tests/test_review_regressions.py`
+- `src/agent_tools/bg_job_tools.py` ← `tests/test_bg_job_tools.py`
+- `src/agent_tools/coding_tools.py` ← `tests/test_workspace_confine.py`
+- `src/agent_tools/document_tools.py` ← `routes/chat_routes.py`, `routes/document/document_routes.py`, `src/agent_loop.py`, `src/office_doc.py`, `src/pdf_form_doc.py`, `tests/test_active_document_clear.py`, `tests/test_document_close_clears_active_route.py`, `tests/test_document_tool_owner_scope.py`, `tests/test_owned_document_query.py`, `tests/test_pdf_ai_edit_derivative.py`, `tests/test_tool_approvals.py`, `tests/test_upload_handler_cleanup.py`
+- `src/agent_tools/filesystem_tools.py` ← `tests/test_agent_state_dir_confinement.py`, `tests/test_edit_file.py`, `tests/test_review_regressions.py`
+- `src/agent_tools/model_interaction_tools.py` ← `src/teacher_escalation.py`, `tests/test_ai_interaction_owner_scope.py`, `tests/test_model_interaction_registry.py`, `tests/test_teacher_audit_owner_scope.py`
+- `src/agent_tools/session_tools.py` ← `tests/test_session_tools_registry.py`
+- `src/agent_tools/spawn_agent_tools.py` ← `src/agent_jobs.py`, `tests/test_agent_jobs.py`, `tests/test_spawn_agent.py`
+- `src/agent_tools/subprocess_tools.py` ← `tests/test_agent_bash_windows.py`
+- `src/agent_tools/web_tools.py` ← `tests/test_web_fetch_size_caps.py`
+- `src/ai_interaction.py` ← `app.py`, `mcp_servers/image_gen_server.py`, `routes/chat_routes.py`, `routes/model_routes.py`, `routes/preset_routes.py`, `routes/skills_routes.py`, `src/agent_jobs.py`, `src/agent_tools/model_interaction_tools.py`, `src/agent_tools/session_tools.py`, `src/agent_tools/spawn_agent_tools.py`, `src/bg_monitor.py`, `src/document_processor.py`, `src/teacher_escalation.py`, `src/tool_execution.py`, `tests/test_ai_image_url_safety.py`, `tests/test_ai_interaction_owner_scope.py`, `tests/test_chatgpt_subscription_routes.py`, `tests/test_memory_store_unreadable_no_wipe.py`, `tests/test_model_interaction_registry.py`, `tests/test_rag_remove_directory_scope.py`, `tests/test_resolve_model_offloaded.py`, `tests/test_session_tools_registry.py`, `tests/test_ui_control_rag_toggle.py`, `tests/test_vision_owner_scope.py`
+- `src/api_key_manager.py` ← `src/app_initializer.py`, `tests/test_api_key_file_permissions.py`, `tests/test_api_key_manager_atomic_save.py`, `tests/test_api_key_manager_corrupt_load.py`, `tests/test_api_key_manager_resilience.py`
+- `src/app_helpers.py` ← `app.py`, `tests/test_app.py`, `tests/test_inside_base_dir_nonstring.py`, `tests/test_serve_html_with_nonce.py`
+- `src/app_initializer.py` ← `app.py`, `tests/test_agent_state_dir_confinement.py`, `tests/test_app_initializer_memory_vector_degraded.py`
+- `src/assistant_log.py` ← `app.py`, `routes/cookbook_routes.py`, `src/task_scheduler.py`, `src/tools/vault.py`
+- `src/attachment_refs.py` ← `core/database.py`, `core/session_manager.py`, `routes/chat_helpers.py`, `routes/upload_routes.py`, `src/upload_handler.py`, `tests/test_attachment_refs.py`
+- `src/auth_helpers.py` ← `app.py`, `companion/routes.py`, `routes/api_token_routes.py`, `routes/assistant_routes.py`, `routes/backup_routes.py`, `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/chatgpt_subscription_routes.py`, `routes/cleanup/cleanup_routes.py`, `routes/codex_routes.py`, `routes/compare/compare_routes.py`, `routes/cookbook_routes.py`, `routes/copilot_routes.py`, `routes/document/document_helpers.py`, `routes/document/document_routes.py`, `routes/editor_draft_routes.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `routes/gallery/gallery_helpers.py`, `routes/gallery/gallery_routes.py`, `routes/history/history_routes.py`, `routes/memory/memory_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/personal_routes.py`, `routes/prefs_routes.py`, `routes/preset_routes.py`, `routes/research/research_routes.py`, `routes/session_routes.py`, `routes/signature_routes.py`, `routes/skills_routes.py`, `routes/task/task_routes.py`, `routes/upload_routes.py`, `routes/webhook/webhook_routes.py`, `routes/workspace_routes.py`, `src/agent_loop.py`, `src/agent_tools/model_interaction_tools.py`, `src/agent_tools/spawn_agent_tools.py`, `src/ai_interaction.py`, `src/builtin_actions.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/task_action_policy.py`, `src/task_scheduler.py`, `src/tool_security.py`, `tests/test_add_directory_event_loop.py`, `tests/test_api_token_tool_authority.py`, `tests/test_api_token_user_route_gate.py`, `tests/test_auth_require_privilege_nondict.py`, `tests/test_history_topics_owner_scope.py`, `tests/test_model_defaults.py`, `tests/test_model_routes.py`, `tests/test_owner_identity.py`, `tests/test_resolve_endpoint_fallbacks.py`, `tests/test_security_regressions.py`, `tests/test_session_owner_attribution.py`, `tests/test_upload_handler_cleanup.py`
+- `src/bg_jobs.py` ← `src/agent_tools/bg_job_tools.py`, `src/bg_monitor.py`, `src/tool_execution.py`, `tests/test_bg_job_tools.py`, `tests/test_bg_jobs_store.py`
+- `src/bg_monitor.py` ← `app.py`, `src/agent_jobs.py`, `tests/test_bg_monitor_stream.py`
+- `src/builtin_actions.py` ← `routes/task/task_routes.py`, `src/document_actions.py`, `src/task_scheduler.py`, `tests/test_builtin_actions_cookbook_serve_state.py`, `tests/test_builtin_actions_nonstring.py`, `tests/test_builtin_actions_owner_scope.py`, `tests/test_builtin_memory_consolidation.py`, `tests/test_classify_events_memory_text.py`, `tests/test_consolidate_memory_explicit_drops.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_imap_uid_commands.py`, `tests/test_sender_signature_skip_roles.py`, `tests/test_task_cookbook_admin_gate.py`, `tests/test_tidy_research_owner_scope.py`
+- `src/builtin_mcp.py` ← `app.py`, `scripts/dump_agent_prompt.py`, `src/mcp_manager.py`, `tests/test_builtin_mcp_pythonpath.py`
+- `src/caldav_sync.py` ← `routes/calendar_routes.py`, `src/caldav_writeback.py`, `tests/test_caldav_client_cleanup.py`, `tests/test_caldav_google_principal_url.py`, `tests/test_caldav_prune_parse_failure.py`, `tests/test_caldav_sync_uid_scope.py`, `tests/test_caldav_url_hardening.py`, `tests/test_caldav_url_nonstring.py`, `tests/test_caldav_writeback.py`, `tests/test_caldav_writeback_route.py`
+- `src/caldav_writeback.py` ← `src/caldav_sync.py`, `tests/test_caldav_bidirectional_sync.py`, `tests/test_caldav_client_cleanup.py`, `tests/test_caldav_writeback.py`
+- `src/chat_handler.py` ← `src/app_initializer.py`, `tests/test_chat_preprocess_tool_policy.py`, `tests/test_security_regressions.py`
+- `src/chat_helpers.py` ← `routes/chat_routes.py`, `src/chat_handler.py`, `src/chat_processor.py`, `tests/test_chat_upload_limit_config.py`, `tests/test_extract_urls.py`, `tests/test_lmstudio_vision.py`, `tests/test_vision_model_detection.py`
+- `src/chat_processor.py` ← `src/app_initializer.py`, `tests/test_chat_processor_pinned_memory.py`, `tests/test_chat_processor_web_search.py`, `tests/test_chat_url_prefetch_failure_context.py`, `tests/test_user_time.py`, `tests/test_web_search_query_sanitization.py`
+- `src/chatgpt_subscription.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/chatgpt_subscription_routes.py`, `routes/model_routes.py`, `src/endpoint_resolver.py`, `src/llm_core.py`
+- `src/chroma_client.py` ← `routes/embedding_routes.py`, `scripts/migrate_faiss_to_chroma.py`, `src/embedding_lanes.py`, `src/memory_vector.py`, `src/rag_vector.py`, `tests/helpers/embedding_lanes.py`, `tests/test_chroma_client.py`
+- `src/cleanup_service.py` ← `routes/cleanup/cleanup_routes.py`, `tests/test_cleanup_owner_scope.py`, `tests/test_cleanup_service_utcnow.py`
+- `src/config.py` ← `app.py`
+- `src/constants.py` ← `companion/pairing.py`, `core/auth.py`, `core/constants.py`, `core/database.py`, `mcp_servers/email_server.py`, `mcp_servers/image_gen_server.py`, `mcp_servers/memory_server.py`, `mcp_servers/rag_server.py`, `routes/admin_wipe/admin_wipe_routes.py`, `routes/auth_routes.py`, `routes/codex_routes.py`, `routes/contacts/contacts_routes.py`, `routes/cookbook_routes.py`, `routes/document/document_routes.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `routes/emoji_routes.py`, `routes/gallery/gallery_routes.py`, `routes/mcp/mcp_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/prefs_routes.py`, `routes/research/research_routes.py`, `routes/task/task_routes.py`, `routes/upload_routes.py`, `routes/vault/vault_routes.py`, `scripts/claim_ownerless.py`, `scripts/index_documents.py`, `scripts/migrate_faiss_to_chroma.py`, `services/docs/service.py`, `services/hwfit/hf_discovery.py`, `services/memory/service.py`, `services/research/research_handler.py`, `services/search/content.py`, `services/search/providers.py`, `services/tts/tts_service.py`, `src/agent_jobs.py`, `src/agent_loop.py`, `src/agent_tools/coding_tools.py`, `src/agent_tools/document_tools.py`, `src/agent_tools/filesystem_tools.py`, `src/agent_tools/subprocess_tools.py`, `src/agent_tools/web_tools.py`, `src/ai_interaction.py`, `src/app_initializer.py`, `src/bg_jobs.py`, `src/builtin_actions.py`, `src/chat_handler.py`, `src/config.py`, `src/cookbook_serve_lifecycle.py`, `src/embeddings.py`, `src/event_bus.py`, `src/generated_images.py`, `src/integrations.py`, `src/outbound_fetch.py`, `src/rag_manager.py`, `src/rag_singleton.py`, `src/rag_vector.py`, `src/research_handler.py`, `src/secret_storage.py`, `src/service_health.py`, `src/session_image_cleanup.py`, `src/settings.py`, `src/tool_execution.py`, `src/tool_utils.py`, `src/tools/research.py`, `src/tools/system.py`, `src/tools/vault.py`, `src/tools_doc.py`, `tests/test_agent_state_dir_confinement.py`, `tests/test_app.py`, `tests/test_builtin_memory_consolidation.py`, `tests/test_fastembed_cache_path.py`, `tests/test_mcp_email_decode_header_spaces.py`, `tests/test_skill_index_prompt_injection.py`, `tests/test_tool_path_confinement.py`, `tests/test_upload_routes_owner_scope.py`, `tests/test_web_fetch_size_caps.py`
+- `src/context_budget.py` ← `src/agent_loop.py`, `tests/test_budget_auto_sentinel.py`, `tests/test_context_budget.py`, `tests/test_foreground_model_routing.py`
+- `src/context_compactor.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/history/history_routes.py`, `routes/session_routes.py`, `src/agent_loop.py`, `tests/test_compact_truncate_tool_call_args.py`, `tests/test_compaction_summary_failure.py`, `tests/test_context_compactor.py`, `tests/test_context_compactor_nonstring.py`, `tests/test_foreground_model_routing.py`
+- `src/cookbook_serve_lifecycle.py` ← `app.py`, `tests/test_cookbook_serve_lifecycle.py`
+- `src/copilot.py` ← `routes/copilot_routes.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/model_context.py`, `tests/test_copilot.py`
+- `src/database.py` ← `mcp_servers/image_gen_server.py`, `routes/email_routes.py`, `routes/research/research_routes.py`, `services/stt/stt_service.py`, `services/tts/tts_service.py`, `src/agent_tools/document_tools.py`, `src/agent_tools/model_interaction_tools.py`, `src/agent_tools/session_tools.py`, `src/ai_interaction.py`, `src/chat_handler.py`, `src/cleanup_service.py`, `src/document_processor.py`, `src/llm_core.py`, `src/mcp_manager.py`, `src/office_doc.py`, `src/pdf_form_doc.py`, `src/tools/image.py`, `src/webhook_manager.py`, `tests/conftest.py`, `tests/test_model_interaction_registry.py`, `tests/test_model_routes.py`, `tests/test_session_tools_registry.py`, `tests/test_upload_handler_cleanup.py`
+- `src/deep_research.py` ← `services/research/research_handler.py`, `src/research_handler.py`, `src/task_scheduler.py`, `tests/test_deep_research_date_context.py`, `tests/test_deep_research_extraction_controls.py`, `tests/test_deep_research_parse_json_array_echo.py`, `tests/test_deep_research_search_error.py`, `tests/test_deep_research_synthesis_resilience.py`
+- `src/document_actions.py` ← `routes/document/document_routes.py`, `src/agent_tools/document_tools.py`, `src/builtin_actions.py`, `tests/test_document_actions_nonstring.py`, `tests/test_document_tidy_null_timestamp.py`
+- `src/document_processor.py` ← `routes/document/document_routes.py`, `routes/gallery/gallery_routes.py`, `routes/memory/memory_routes.py`, `routes/upload_routes.py`, `src/chat_handler.py`, `tests/test_build_user_content_pdf_marker.py`, `tests/test_document_pdf_marker.py`, `tests/test_document_processor_attachment_budget.py`, `tests/test_document_processor_empty_media_subtype.py`, `tests/test_gif_video_frames.py`, `tests/test_nix_upload_text.py`, `tests/test_security_regressions.py`, `tests/test_vision_owner_scope.py`
+- `src/email_thread_parser.py` ← `routes/email_routes.py`, `tests/test_email_thread_parser_nonstring.py`, `tests/test_forwarded_message_divider.py`
+- `src/embedding_lanes.py` ← `routes/embedding_routes.py`, `src/memory_vector.py`, `src/rag_vector.py`, `src/tool_index.py`, `tests/test_embedding_lane_ndarray_restore.py`, `tests/test_embedding_lanes.py`, `tests/test_embedding_lanes_legacy.py`, `tests/test_embedding_lanes_memory.py`, `tests/test_embedding_lanes_rag.py`, `tests/test_embedding_lanes_tool_index.py`
+- `src/embeddings.py` ← `routes/embedding_routes.py`, `scripts/migrate_faiss_to_chroma.py`, `src/embedding_lanes.py`, `tests/test_embedding_lanes.py`, `tests/test_embeddings.py`, `tests/test_embeddings_client.py`
+- `src/endpoint_resolver.py` ← `companion/routes.py`, `mcp_servers/email_server.py`, `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/compare/compare_routes.py`, `routes/document/document_routes.py`, `routes/email_routes.py`, `routes/history/history_routes.py`, `routes/memory/memory_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/research/research_routes.py`, `routes/session_routes.py`, `routes/skills_routes.py`, `routes/task/task_routes.py`, `routes/webhook/webhook_routes.py`, `src/agent_loop.py`, `src/agent_tools/model_interaction_tools.py`, `src/agent_tools/spawn_agent_tools.py`, `src/ai_interaction.py`, `src/context_compactor.py`, `src/document_processor.py`, `src/foreground_model_routing.py`, `src/llm_core.py`, `src/model_context.py`, `src/task_endpoint.py`, `src/task_scheduler.py`, `src/teacher_escalation.py`, `tests/test_builtin_memory_consolidation.py`, `tests/test_copilot.py`, `tests/test_email_summary_llm.py`, `tests/test_endpoint_owner_scope_followup.py`, `tests/test_endpoint_probing.py`, `tests/test_endpoint_resolver_headers.py`, `tests/test_endpoint_resolver_models.py`, `tests/test_endpoint_resolver_urls.py`, `tests/test_foreground_model_routing.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_model_routes.py`, `tests/test_ollama_port_detection.py`, `tests/test_provider_detection_builders.py`, `tests/test_provider_endpoints_headers.py`, `tests/test_provider_endpoints_models.py`, `tests/test_provider_endpoints_normalization.py`, `tests/test_provider_endpoints_tailscale.py`, `tests/test_provider_endpoints_url_building.py`, `tests/test_resolve_endpoint_fallbacks.py`, `tests/test_resolve_session_auth_chatgpt.py`, `tests/test_tool_support_heuristic.py`, `tests/test_vision_owner_scope.py`
+- `src/event_bus.py` ← `app.py`, `mcp_servers/email_server.py`, `routes/chat_helpers.py`, `routes/document/document_routes.py`, `routes/email_routes.py`, `routes/history/history_routes.py`, `routes/memory/memory_routes.py`, `routes/research/research_routes.py`, `routes/session_routes.py`, `routes/skills_routes.py`, `services/memory/memory_extractor.py`, `services/memory/skill_extractor.py`, `src/agent_tools/document_tools.py`, `src/agent_tools/session_tools.py`, `src/ai_interaction.py`, `src/research_handler.py`, `src/task_scheduler.py`, `src/tools/system.py`, `tests/test_memory_extractor_vector_degraded.py`
+- `src/exceptions.py` ← `tests/test_app.py`
+- `src/foreground_model_routing.py` ← `routes/chat_routes.py`, `tests/test_foreground_model_routing.py`
+- `src/generated_images.py` ← `app.py`, `tests/test_generated_image_confinement.py`
+- `src/goal_based_extractor.py` ← `src/deep_research.py`
+- `src/host_docker_access.py` ← `routes/cookbook_routes.py`, `routes/shell_routes.py`, `tests/test_cookbook_docker_access.py`
+- `src/image_model_ids.py` ← `routes/chat_routes.py`, `src/ai_interaction.py`
+- `src/index_walk.py` ← `src/personal_docs.py`, `src/rag_vector.py`
+- `src/integrations.py` ← `routes/auth_routes.py`, `routes/note/note_routes.py`, `src/agent_loop.py`, `src/service_health.py`, `src/task_scheduler.py`, `src/tools/system.py`, `tests/test_integration_api_call_ssrf.py`, `tests/test_integrations_api_call_truncation.py`, `tests/test_integrations_store_shape.py`, `tests/test_integrations_url_join.py`, `tests/test_security_regressions.py`
+- `src/interactive_gate.py` ← `app.py`, `src/builtin_actions.py`, `src/llm_core.py`, `src/task_endpoint.py`, `src/task_scheduler.py`, `tests/test_interactive_gate_passive_paths.py`, `tests/test_poll_endpoint_no_task_interrupt.py`
+- `src/llm_core.py` ← `core/__init__.py`, `mcp_servers/email_server.py`, `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/document/document_routes.py`, `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/email_routes.py`, `routes/gallery/gallery_routes.py`, `routes/history/history_routes.py`, `routes/memory/memory_routes.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/preset_routes.py`, `routes/session_routes.py`, `routes/skills_routes.py`, `routes/task/task_routes.py`, `routes/webhook/webhook_routes.py`, `scripts/dump_agent_prompt.py`, `services/memory/memory_extractor.py`, `services/memory/skill_extractor.py`, `src/agent_loop.py`, `src/agent_tools/model_interaction_tools.py`, `src/agent_tools/session_tools.py`, `src/ai_interaction.py`, `src/builtin_actions.py`, `src/chat_processor.py`, `src/context_compactor.py`, `src/deep_research.py`, `src/document_processor.py`, `src/endpoint_resolver.py`, `src/research_handler.py`, `src/session_actions.py`, `src/task_endpoint.py`, `src/teacher_escalation.py`, `tests/test_anthropic_response_parse.py`, `tests/test_approved_replay_message_shape.py`, `tests/test_builtin_memory_consolidation.py`, `tests/test_cache_affinity_local_only.py`, `tests/test_chat_helpers.py`, `tests/test_chat_metrics.py`, `tests/test_consolidate_memory_explicit_drops.py`, `tests/test_copilot.py`, `tests/test_email_summary_llm.py`, `tests/test_foreground_model_routing.py`, `tests/test_harmony_tool_aliasing.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_kimi_code_user_agent.py`, `tests/test_kv_cache_invalidation_2927.py`, `tests/test_llm_core_anthropic_cache.py`, `tests/test_llm_core_anthropic_temp_clamp.py`, `tests/test_llm_core_anthropic_temp_omit.py`, `tests/test_llm_core_async_mistral_content.py`, `tests/test_llm_core_concurrency.py`, `tests/test_llm_core_connect_timeout.py`, `tests/test_llm_core_fallback.py`, `tests/test_llm_core_mistral_content.py`, `tests/test_llm_core_ollama.py`, `tests/test_llm_core_ollama_thinking.py`, `tests/test_llm_core_openai_reasoning_tools.py`, `tests/test_llm_core_reasoning.py`, `tests/test_llm_core_reasoning_content_fallback.py`, `tests/test_llm_core_sanitize_tool_calls.py`, `tests/test_llm_core_sse_no_space.py`, `tests/test_llm_core_streaming.py`, `tests/test_llm_core_system_msg_missing_content.py`, `tests/test_llm_core_temperature_anthropic.py`, `tests/test_llm_core_temperature_moonshot.py`, `tests/test_llm_core_temperature_reasoning.py`, `tests/test_llm_core_thinking_models.py`, `tests/test_llm_core_usage_finish_delta.py`, `tests/test_memory_extractor_vector_degraded.py`, `tests/test_model_interaction_registry.py`, `tests/test_model_routes.py`, `tests/test_nim_reasoning_control.py`, `tests/test_ollama_multimodal.py`, `tests/test_provider_classification.py`, `tests/test_provider_classification_errors.py`, `tests/test_provider_classification_token_params.py`, `tests/test_provider_detection_builders.py`, `tests/test_provider_detection_detect.py`, `tests/test_provider_detection_host_match.py`, `tests/test_sanitize_multimodal_merge.py`, `tests/test_sanitize_preserves_reasoning.py`, `tests/test_sanitize_promotes_metadata_thinking.py`, `tests/test_temporal_grounding_stamps.py`, `tests/test_thinking_toggle.py`, `tests/test_tool_support_heuristic.py`
+- `src/markitdown_runtime.py` ← `src/document_processor.py`, `src/personal_docs.py`, `tests/test_markitdown_format_nonstring.py`, `tests/test_markitdown_runtime.py`
+- `src/mcp_manager.py` ← `app.py`, `routes/mcp/mcp_routes.py`, `scripts/dump_agent_prompt.py`, `tests/test_external_context_tool_gate.py`, `tests/test_mcp_cache_invalidation.py`, `tests/test_mcp_manager.py`, `tests/test_mcp_param_hint_hardening.py`, `tests/test_mcp_tool_params_in_prompt.py`, `tests/test_multiple_mcp_servers_timeout.py`, `tests/test_plan_mode.py`
+- `src/mcp_oauth.py` ← `routes/mcp/mcp_routes.py`, `src/mcp_manager.py`, `tests/test_mcp_oauth.py`
+- `src/memory.py` ← `mcp_servers/memory_server.py`, `services/memory/memory.py`, `services/memory/memory_extractor.py`, `src/ai_interaction.py`, `src/app_initializer.py`, `src/builtin_actions.py`, `tests/test_consolidate_memory_explicit_drops.py`, `tests/test_mcp_memory_owner_scope.py`, `tests/test_memory_bullet_extraction.py`, `tests/test_memory_extract_chat_nondict.py`, `tests/test_memory_extractor_vector_degraded.py`, `tests/test_memory_imports.py`, `tests/test_memory_owner_isolation.py`, `tests/test_memory_provider.py`, `tests/test_memory_store_unreadable_no_wipe.py`, `tests/test_memory_validate_entries_nondict.py`
+- `src/memory_provider.py` ← `services/memory/service.py`, `src/app_initializer.py`, `tests/test_memory_provider.py`, `tests/test_memory_store_unreadable_no_wipe.py`
+- `src/memory_vector.py` ← `mcp_servers/memory_server.py`, `routes/admin_wipe/admin_wipe_routes.py`, `services/memory/memory_vector.py`, `src/app_initializer.py`, `tests/test_app_initializer_memory_vector_degraded.py`, `tests/test_embedding_lanes_legacy.py`, `tests/test_embedding_lanes_memory.py`, `tests/test_memory_imports.py`
+- `src/model_capabilities.py` ← `src/model_capability_readers/base.py`, `src/model_capability_readers/generic_openai.py`, `src/model_capability_readers/google_ai_studio_mapping.py`, `src/model_capability_readers/llamacpp.py`, `src/model_capability_readers/lmstudio.py`, `src/model_capability_readers/ollama.py`, `src/model_capability_readers/openai.py`, `src/model_capability_readers/openrouter.py`, `tests/test_model_capabilities.py`, `tests/test_model_capability_readers.py`
+- `src/model_capability_readers/__init__.py` ← `src/model_capability_readers/__init__.py`, `src/model_capability_readers/google.py`, `src/model_capability_readers/llamacpp.py`, `src/model_capability_readers/lmstudio.py`, `src/model_capability_readers/openrouter.py`, `tests/test_model_capability_readers.py`
+- `src/model_capability_readers/base.py` ← `src/model_capability_readers/__init__.py`, `src/model_capability_readers/generic_openai.py`, `src/model_capability_readers/google.py`, `src/model_capability_readers/google_ai_studio_mapping.py`, `src/model_capability_readers/llamacpp.py`, `src/model_capability_readers/lmstudio.py`, `src/model_capability_readers/ollama.py`, `src/model_capability_readers/openai.py`, `src/model_capability_readers/openrouter.py`, `tests/test_model_capability_readers.py`
+- `src/model_capability_readers/generic_openai.py` ← `src/model_capability_readers/llamacpp.py`, `src/model_capability_readers/lmstudio.py`, `src/model_capability_readers/openrouter.py`
+- `src/model_capability_readers/google_ai_studio_mapping.py` ← `src/model_capability_readers/google.py`
+- `src/model_context.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/history/history_routes.py`, `routes/session_routes.py`, `scripts/dump_agent_prompt.py`, `src/agent_loop.py`, `src/context_compactor.py`, `src/llm_core.py`, `tests/test_budget_auto_sentinel.py`, `tests/test_cache_affinity_local_only.py`, `tests/test_compact_truncate_tool_call_args.py`, `tests/test_context_cache_per_endpoint.py`, `tests/test_estimate_tokens_tool_calls.py`, `tests/test_foreground_model_routing.py`, `tests/test_history_compact_tool_calls.py`, `tests/test_llm_core_ollama.py`, `tests/test_llm_core_temperature_reasoning.py`, `tests/test_model_context.py`
+- `src/model_discovery.py` ← `src/app_initializer.py`, `tests/test_llamacpp_discovery.py`, `tests/test_lmstudio_discovery.py`, `tests/test_model_discovery_status.py`, `tests/test_tailscale_discovery_cache.py`, `tests/test_warmup_ping_urls.py`
+- `src/office_doc.py` ← `src/document_processor.py`
+- `src/optional_deps.py` ← `routes/gallery/gallery_routes.py`, `routes/shell_routes.py`, `tests/test_realesrgan_torchvision_compat.py`
+- `src/outbound_fetch.py` ← `services/search/content.py`
+- `src/owner_identity.py` ← `app.py`, `core/auth.py`, `core/middleware.py`, `routes/assistant_routes.py`, `routes/research/research_routes.py`, `src/auth_helpers.py`, `src/task_scheduler.py`, `tests/test_owner_identity.py`, `tests/test_reserved_username_admin_escalation.py`
+- `src/pdf_form_doc.py` ← `routes/document/document_helpers.py`, `routes/document/document_routes.py`, `routes/email_routes.py`, `src/agent_loop.py`, `src/agent_tools/document_tools.py`, `src/document_processor.py`, `tests/test_build_user_content_pdf_marker.py`, `tests/test_document_render_pdf_iframe.py`, `tests/test_form_markdown_roundtrip.py`, `tests/test_security_regressions.py`
+- `src/pdf_forms.py` ← `routes/document/document_routes.py`, `routes/email_routes.py`, `src/document_processor.py`, `tests/test_build_user_content_pdf_marker.py`
+- `src/pdf_runtime.py` ← `routes/document/document_routes.py`, `tests/test_pdf_runtime.py`
+- `src/personal_docs.py` ← `mcp_servers/rag_server.py`, `routes/email_helpers.py`, `routes/personal_routes.py`, `src/app_initializer.py`, `src/document_processor.py`, `src/rag_vector.py`, `tests/test_personal_docs_exclusions.py`, `tests/test_personal_docs_keyword_nondict.py`, `tests/test_personal_docs_lists.py`, `tests/test_personal_docs_office_index.py`, `tests/test_personal_docs_pdf_index.py`, `tests/test_personal_docs_state_store.py`, `tests/test_personal_index_hidden_dirs.py`, `tests/test_rag_remove_directory_scope.py`, `tests/test_split_chunks_no_duplicate_tail.py`
+- `src/preset_manager.py` ← `src/app_initializer.py`, `tests/test_preset_atomic_save.py`, `tests/test_preset_fill_missing_defaults.py`, `tests/test_preset_store_shape.py`, `tests/test_review_regressions.py`
+- `src/prompt_security.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/skills_routes.py`, `src/agent_loop.py`, `src/bg_monitor.py`, `src/chat_processor.py`, `src/deep_research.py`, `tests/test_external_context_tool_gate.py`, `tests/test_prompt_security.py`, `tests/test_security_regressions.py`
+- `src/rag_manager.py` ← `scripts/index_documents.py`, `services/docs/__init__.py`, `services/docs/service.py`, `tests/test_rag_manager_owner_compat.py`, `tests/test_rag_search_signature.py`
+- `src/rag_singleton.py` ← `app.py`, `mcp_servers/rag_server.py`, `routes/embedding_routes.py`, `routes/personal_routes.py`
+- `src/rag_vector.py` ← `services/docs/__init__.py`, `src/rag_manager.py`, `src/rag_singleton.py`, `tests/test_embedding_lanes_rag.py`, `tests/test_rag_index_hidden_dirs.py`, `tests/test_rag_keyword_fallback_owner.py`, `tests/test_rag_remove_directory_scope.py`, `tests/test_rag_vector_rename_owner.py`
+- `src/rate_limiter.py` ← `routes/auth_routes.py`, `tests/test_rate_limiter.py`
+- `src/readiness.py` ← `app.py`, `tests/test_readiness.py`
+- `src/reminder_personas.py` ← `routes/note/note_routes.py`, `src/task_scheduler.py`
+- `src/request_models.py` ← `routes/chat_routes.py`, `routes/codex_routes.py`, `routes/memory/memory_routes.py`, `routes/personal_routes.py`, `routes/preset_routes.py`, `routes/session_routes.py`, `tests/test_api_token_tool_authority.py`, `tests/test_foreground_model_routing.py`, `tests/test_history_display_model_hydration.py`, `tests/test_memory_routes_session_owner.py`
+- `src/research_handler.py` ← `src/app_initializer.py`, `src/task_scheduler.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_research_handler_path_confinement.py`, `tests/test_research_handler_raw_nondict.py`, `tests/test_research_handler_sources_nondict.py`, `tests/test_research_probe_errors.py`, `tests/test_research_query_fallback.py`, `tests/test_research_status_avg_duration.py`
+- `src/research_utils.py` ← `routes/chat_routes.py`, `services/research/research_handler.py`, `src/deep_research.py`, `src/research_handler.py`, `src/task_scheduler.py`, `src/visual_report.py`, `tests/test_research_utils.py`, `tests/test_research_utils_low_quality_nonstring.py`
+- `src/runtime_paths.py` ← `core/database.py`, `routes/embedding_routes.py`, `src/builtin_mcp.py`, `src/config.py`, `src/constants.py`, `src/embeddings.py`, `src/mcp_manager.py`, `src/rag_singleton.py`, `tests/test_runtime_paths.py`
+- `src/search/__init__.py` ← `services/research/research_handler.py`, `src/agent_tools/web_tools.py`, `src/app_initializer.py`, `src/chat_processor.py`, `src/deep_research.py`, `src/research_handler.py`, `tests/test_search_cache_invalidation.py`, `tests/test_search_module_consolidation.py`, `tests/test_security_regressions.py`
+- `src/search/analytics.py` ← `tests/test_search_analytics_defaults.py`
+- `src/search/cache.py` ← `tests/test_search_cache_invalidation.py`
+- `src/search/content.py` ← `src/agent_tools/web_tools.py`, `tests/test_extract_quotes.py`, `tests/test_extract_statistics.py`, `tests/test_og_image_extraction.py`, `tests/test_security_regressions.py`, `tests/test_web_fetch_size_caps.py`
+- `src/search/core.py` ← `src/deep_research.py`, `src/search/__init__.py`, `tests/test_search_cache_invalidation.py`
+- `src/search/providers.py` ← `src/deep_research.py`, `tests/test_ddg_redirect_resolution.py`
+- `src/search/query.py` ← `tests/test_question_type_detection.py`, `tests/test_search_query.py`
+- `src/search/ranking.py` ← `tests/test_search_ranking_recency.py`, `tests/test_search_ranking_sports_substring.py`, `tests/test_search_ranking_subject_substring.py`
+- `src/secret_storage.py` ← `core/database.py`, `mcp_servers/email_server.py`, `routes/calendar_routes.py`, `routes/contacts/contacts_routes.py`, `routes/cookbook_helpers.py`, `routes/cookbook_routes.py`, `routes/email_helpers.py`, `routes/email_routes.py`, `routes/embedding_routes.py`, `scripts/demo_email/demo_account.py`, `src/caldav_sync.py`, `src/caldav_writeback.py`, `src/embedding_lanes.py`, `src/embeddings.py`, `src/integrations.py`, `src/tool_approval_scopes.py`, `tests/test_carddav_password_encryption.py`, `tests/test_cookbook_hf_token.py`, `tests/test_email_oauth.py`, `tests/test_email_test_connection_oauth.py`, `tests/test_security_regressions.py`
+- `src/service_health.py` ← `routes/diagnostics_routes.py`, `tests/test_app_initializer_memory_vector_degraded.py`, `tests/test_diagnostics_service_route.py`, `tests/test_service_health_chromadb.py`, `tests/test_service_health_collect.py`, `tests/test_service_health_email.py`, `tests/test_service_health_ntfy.py`, `tests/test_service_health_providers.py`, `tests/test_service_health_search.py`
+- `src/session_actions.py` ← `routes/session_routes.py`, `src/builtin_actions.py`, `tests/test_session_actions_cleanup.py`
+- `src/session_image_cleanup.py` ← `core/session_manager.py`, `routes/session_routes.py`, `tests/test_session_image_cleanup.py`
+- `src/session_search.py` ← `routes/chat_routes.py`, `src/tools/search.py`, `tests/test_session_search.py`, `tests/test_session_search_batch_fetch.py`
+- `src/settings.py` ← `app.py`, `mcp_servers/email_server.py`, `mcp_servers/image_gen_server.py`, `routes/auth_routes.py`, `routes/backup_routes.py`, `routes/chat_routes.py`, `routes/cookbook_routes.py`, `routes/email_pollers.py`, `routes/model_routes.py`, `routes/note/note_routes.py`, `routes/skills_routes.py`, `scripts/dump_agent_prompt.py`, `services/research/research_handler.py`, `services/search/providers.py`, `services/stt/stt_service.py`, `services/tts/tts_service.py`, `src/agent_loop.py`, `src/agent_tools/admin_tools.py`, `src/agent_tools/model_interaction_tools.py`, `src/agent_tools/spawn_agent_tools.py`, `src/ai_interaction.py`, `src/builtin_actions.py`, `src/chat_handler.py`, `src/chat_helpers.py`, `src/document_processor.py`, `src/endpoint_resolver.py`, `src/llm_core.py`, `src/model_context.py`, `src/research_handler.py`, `src/service_health.py`, `src/task_scheduler.py`, `src/teacher_escalation.py`, `src/tool_execution.py`, `src/vision_preprocessing.py`, `tests/test_ai_image_url_safety.py`, `tests/test_budget_auto_sentinel.py`, `tests/test_chat_helpers.py`, `tests/test_context_budget.py`, `tests/test_foreground_model_routing.py`, `tests/test_load_features_permission_error.py`, `tests/test_manage_settings_token_budget.py`, `tests/test_resolve_endpoint_fallbacks.py`, `tests/test_retired_settings_interfaces.py`, `tests/test_review_regressions.py`, `tests/test_security_regressions.py`, `tests/test_settings_error_paths.py`, `tests/test_settings_store_shape.py`, `tests/test_spawn_agent.py`, `tests/test_thinking_toggle.py`, `tests/test_tool_policy.py`
+- `src/settings_scrub.py` ← `routes/auth_routes.py`, `tests/test_settings_scrub.py`
+- `src/task_action_policy.py` ← `routes/task/task_routes.py`, `src/task_scheduler.py`, `tests/test_auth_regressions.py`
+- `src/task_endpoint.py` ← `routes/chat_helpers.py`, `routes/document/document_routes.py`, `routes/email_helpers.py`, `routes/email_pollers.py`, `routes/memory/memory_routes.py`, `routes/session_routes.py`, `src/builtin_actions.py`, `src/session_actions.py`, `src/task_scheduler.py`, `tests/test_builtin_actions_owner_scope.py`, `tests/test_builtin_memory_consolidation.py`, `tests/test_chat_helpers.py`, `tests/test_consolidate_memory_explicit_drops.py`, `tests/test_email_summary_llm.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_imap_uid_commands.py`, `tests/test_memory_routes_session_owner.py`, `tests/test_scheduler_prompt_cache_time.py`
+- `src/task_scheduler.py` ← `app.py`, `routes/assistant_routes.py`, `routes/task/task_routes.py`, `src/tools/system.py`, `tests/test_auth_regressions.py`, `tests/test_checkin_digest_owner_scope.py`, `tests/test_compute_next_run_monthly_clamp.py`, `tests/test_digest_windows.py`, `tests/test_email_urgency_checkpoint.py`, `tests/test_scheduler_prompt_cache_time.py`, `tests/test_scheduler_restart_doublefire.py`, `tests/test_scheduler_scheduled_time_validation.py`, `tests/test_task_chain_owner_scope.py`, `tests/test_task_cookbook_admin_gate.py`, `tests/test_task_endpoint_normalization.py`, `tests/test_task_scheduler_cache.py`, `tests/test_task_scheduler_cancel.py`, `tests/test_task_scheduler_session_delivery.py`, `tests/test_task_session_folder.py`, `tests/test_task_shell_tools.py`
+- `src/teacher_escalation.py` ← `src/agent_loop.py`, `tests/test_external_context_tool_gate.py`, `tests/test_extract_skill_json_nonstring.py`, `tests/test_teacher_audit_owner_scope.py`, `tests/test_teacher_eval_nonstring_reply.py`, `tests/test_teacher_eval_tier2.py`
+- `src/text_helpers.py` ← `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/email_helpers.py`, `routes/note/note_routes.py`, `routes/session_routes.py`, `routes/task/task_routes.py`, `services/memory/memory_extractor.py`, `services/memory/skill_extractor.py`, `src/builtin_actions.py`, `src/research_utils.py`, `src/task_scheduler.py`, `tests/test_redos_llm_parsers.py`, `tests/test_strip_reasoning_prose_dataloss.py`, `tests/test_strip_think.py`
+- `src/tls_overrides.py` ← `routes/model_routes.py`, `src/llm_core.py`, `tests/test_tls_overrides_scope.py`
+- `src/tool_approval_scopes.py` ← `core/models.py`, `routes/chat_routes.py`, `routes/history/history_routes.py`, `routes/session_routes.py`, `src/tool_approvals.py`, `src/tool_capabilities.py`, `tests/test_api_token_tool_authority.py`, `tests/test_tool_approval_single_action_scope.py`, `tests/test_tool_approval_task_scope.py`
+- `src/tool_approvals.py` ← `routes/chat_routes.py`, `routes/skills_routes.py`, `src/agent_loop.py`, `src/agent_tools/document_tools.py`, `src/task_scheduler.py`, `src/teacher_escalation.py`, `src/tool_execution.py`, `tests/test_external_context_tool_gate.py`, `tests/test_foreground_model_routing.py`, `tests/test_scheduler_prompt_cache_time.py`, `tests/test_skills_routes_owner_update.py`, `tests/test_teacher_eval_tier2.py`, `tests/test_tool_approval_single_action_scope.py`, `tests/test_tool_approval_task_scope.py`, `tests/test_tool_approvals.py`
+- `src/tool_capabilities.py` ← `src/agent_loop.py`, `src/teacher_escalation.py`, `src/tool_approvals.py`, `src/tool_execution.py`, `tests/test_api_token_tool_authority.py`, `tests/test_external_context_tool_gate.py`, `tests/test_foreground_model_routing.py`, `tests/test_scheduler_prompt_cache_time.py`, `tests/test_skills_routes_owner_update.py`, `tests/test_tool_approval_single_action_scope.py`, `tests/test_tool_approval_task_scope.py`, `tests/test_tool_approvals.py`
+- `src/tool_execution.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `routes/workspace_routes.py`, `src/agent_tools/__init__.py`, `src/agent_tools/filesystem_tools.py`, `src/agent_tools/subprocess_tools.py`, `tests/test_agent_state_dir_confinement.py`, `tests/test_ask_user_tool.py`, `tests/test_code_nav_tools.py`, `tests/test_edit_file.py`, `tests/test_external_context_tool_gate.py`, `tests/test_promote_image_fields.py`, `tests/test_review_regressions.py`, `tests/test_temporal_grounding_stamps.py`, `tests/test_tool_approvals.py`, `tests/test_tool_path_confinement.py`, `tests/test_tool_policy.py`, `tests/test_update_plan_tool.py`, `tests/test_workspace_confine.py`
+- `src/tool_implementations.py` ← `routes/chat_routes.py`, `routes/codex_routes.py`, `routes/email_pollers.py`, `src/agent_tools/__init__.py`, `src/task_scheduler.py`, `src/tool_execution.py`, `src/tools/contacts.py`, `src/tools/cookbook.py`, `src/tools/image.py`, `src/tools/research.py`, `src/tools/system.py`, `tests/test_admin_tools_registry.py`, `tests/test_calendar_batch_events.py`, `tests/test_calendar_list_range_aliases.py`, `tests/test_calendar_reminder_minutes_parsing.py`, `tests/test_calendar_rrule.py`, `tests/test_calendar_update_event_tz.py`, `tests/test_cookbook_agent_tool_ssh_validation.py`, `tests/test_manage_notes_owner_gate.py`, `tests/test_notes_update_due_date.py`, `tests/test_research_report_read.py`, `tests/test_review_regressions.py`, `tests/test_session_search.py`, `tests/test_tool_implementations_shim.py`
+- `src/tool_index.py` ← `app.py`, `routes/embedding_routes.py`, `src/agent_loop.py`, `src/task_scheduler.py`, `tests/test_ask_user_tool.py`, `tests/test_embedding_lanes_tool_index.py`, `tests/test_task_shell_tools.py`, `tests/test_tool_index_keyword_boundaries.py`, `tests/test_tool_rag_keyword_hints.py`, `tests/test_update_plan_tool.py`, `tests/test_workspace_confine.py`
+- `src/tool_parsing.py` ← `src/agent_tools/__init__.py`, `src/tool_schemas.py`, `tests/test_fenced_example_not_executed_for_native_models.py`, `tests/test_fenced_inline_args.py`, `tests/test_fenced_invoke_no_raw_xml.py`, `tests/test_function_model_tool_call.py`, `tests/test_misfenced_read_file_tool_call.py`, `tests/test_odysseus_doc_fence_normalization.py`, `tests/test_plain_ui_control_open_panel.py`, `tests/test_redos_llm_parsers.py`, `tests/test_redos_xml_tool_parsers.py`, `tests/test_review_regressions.py`, `tests/test_tool_parsing_bare_end_marker.py`, `tests/test_tool_parsing_hermes_json.py`, `tests/test_tool_parsing_nonstring.py`, `tests/test_unknown_tool_calls.py`, `tests/test_web_search_raw_json_tool_call.py`
+- `src/tool_policy.py` ← `routes/chat_routes.py`, `scripts/dump_agent_prompt.py`, `src/agent_loop.py`, `src/tool_execution.py`, `tests/test_chat_route_tool_policy.py`, `tests/test_foreground_model_routing.py`, `tests/test_pr6020_rebase_regressions.py`, `tests/test_review_regressions.py`, `tests/test_tool_policy.py`
+- `src/tool_replay.py` ← `routes/chat_helpers.py`, `routes/chat_routes.py`, `tests/test_temporal_grounding_stamps.py`, `tests/test_tool_replay.py`
+- `src/tool_schemas.py` ← `scripts/dump_agent_prompt.py`, `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/tool_parsing.py`, `src/tool_policy.py`, `src/tool_security.py`, `tests/test_ask_user_tool.py`, `tests/test_external_context_tool_gate.py`, `tests/test_function_call_non_object_args.py`, `tests/test_spawn_agent.py`, `tests/test_unknown_tool_calls.py`, `tests/test_update_plan_tool.py`, `tests/test_web_search_time_filter.py`
+- `src/tool_security.py` ← `routes/chat_routes.py`, `routes/email_helpers.py`, `routes/workspace_routes.py`, `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/agent_tools/admin_tools.py`, `src/builtin_actions.py`, `src/tool_capabilities.py`, `src/tool_execution.py`, `src/tool_parsing.py`, `src/tool_policy.py`, `src/tool_schemas.py`, `tests/test_api_token_tool_authority.py`, `tests/test_ask_user_tool.py`, `tests/test_edit_file.py`, `tests/test_email_registry_sync.py`, `tests/test_plan_mode.py`, `tests/test_public_blocked_tool_nonstring.py`, `tests/test_review_regressions.py`, `tests/test_task_shell_tools.py`, `tests/test_update_plan_tool.py`, `tests/test_workspace_confine.py`
+- `src/tool_utils.py` ← `routes/task/task_routes.py`, `scripts/dump_agent_prompt.py`, `src/agent_loop.py`, `src/agent_tools/__init__.py`, `src/agent_tools/admin_tools.py`, `src/agent_tools/document_tools.py`, `src/app_initializer.py`, `src/task_scheduler.py`, `src/tool_execution.py`, `src/tool_implementations.py`, `src/tools/_common.py`, `src/tools/calendar.py`, `src/tools/notes.py`, `tests/test_admin_tools_registry.py`, `tests/test_agent_loop_tool_output_truncation.py`, `tests/test_mcp_common_truncate.py`, `tests/test_upload_handler_cleanup.py`
+- `src/tools/__init__.py` ← `tests/test_admin_tools_registry.py`
+- `src/tools/_common.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`, `src/tools/calendar.py`, `src/tools/contacts.py`, `src/tools/cookbook.py`, `src/tools/image.py`, `src/tools/notes.py`, `src/tools/research.py`, `src/tools/system.py`, `src/tools/vault.py`, `tests/test_admin_tools_registry.py`
+- `src/tools/calendar.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`, `tests/test_calendar_default_transaction.py`, `tests/test_upload_handler_cleanup.py`
+- `src/tools/contacts.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`
+- `src/tools/cookbook.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`
+- `src/tools/image.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`
+- `src/tools/notes.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`, `tests/test_upload_handler_cleanup.py`
+- `src/tools/research.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`
+- `src/tools/search.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`
+- `src/tools/system.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`, `tests/test_manage_skills_action_required.py`, `tests/test_manage_tasks_owner_scope.py`
+- `src/tools/vault.py` ← `src/tool_implementations.py`, `src/tools/__init__.py`
+- `src/tools_doc.py` ← `src/agent_loop.py`, `src/app_initializer.py`
+- `src/topic_analyzer.py` ← `routes/history/history_routes.py`, `tests/test_history_topics_owner_scope.py`, `tests/test_topic_analyzer.py`
+- `src/upload_handler.py` ← `core/session_manager.py`, `routes/calendar_routes.py`, `routes/document/document_helpers.py`, `routes/document/document_routes.py`, `routes/history/history_routes.py`, `routes/note/note_routes.py`, `routes/personal_routes.py`, `routes/session_routes.py`, `routes/upload_routes.py`, `src/agent_tools/document_tools.py`, `src/app_initializer.py`, `src/pdf_form_doc.py`, `src/tools/calendar.py`, `src/tools/notes.py`, `tests/test_chat_upload_limit_config.py`, `tests/test_gif_video_frames.py`, `tests/test_nix_upload_text.py`, `tests/test_rename_user_owner_sync.py`, `tests/test_replace_messages_upload_reservations.py`, `tests/test_security_regressions.py`, `tests/test_upload_content_detection_magic.py`, `tests/test_upload_handler_atomicity.py`, `tests/test_upload_handler_cleanup.py`, `tests/test_upload_handler_rename_owner.py`, `tests/test_upload_id_extension.py`, `tests/test_upload_id_validation.py`, `tests/test_upload_multifile.py`, `tests/test_upload_routes_owner_scope.py`
+- `src/upload_limits.py` ← `routes/calendar_routes.py`, `routes/email_routes.py`, `routes/gallery/gallery_routes.py`, `routes/memory/memory_routes.py`, `routes/personal_routes.py`, `routes/stt_routes.py`, `src/chat_helpers.py`, `src/upload_handler.py`, `tests/test_chat_upload_limit_config.py`, `tests/test_direct_upload_limits.py`, `tests/test_upload_limits_centralized.py`
+- `src/url_safety.py` ← `routes/contacts/contacts_routes.py`, `routes/embedding_routes.py`, `routes/gallery/gallery_routes.py`, `routes/note/note_routes.py`, `services/memory/skill_importer.py`, `src/ai_interaction.py`, `src/integrations.py`, `tests/test_ai_image_url_safety.py`, `tests/test_check_outbound_url_nonstring.py`, `tests/test_gallery_endpoint_ssrf.py`, `tests/test_url_safety.py`
+- `src/url_security.py` ← `routes/webhook/webhook_routes.py`, `tests/test_api_chat_security.py`
+- `src/user_time.py` ← `routes/calendar_routes.py`, `routes/chat_helpers.py`, `routes/chat_routes.py`, `src/agent_loop.py`, `src/llm_core.py`, `src/task_scheduler.py`, `src/tool_execution.py`, `tests/test_chat_helpers.py`, `tests/test_kv_cache_invalidation_2927.py`, `tests/test_parse_due_time_first.py`, `tests/test_scheduler_prompt_cache_time.py`, `tests/test_temporal_grounding_stamps.py`, `tests/test_user_time.py`
+- `src/vision_preprocessing.py` ← `src/document_processor.py`
+- `src/visual_report.py` ← `src/research_handler.py`, `tests/test_security_regressions.py`, `tests/test_visual_report.py`, `tests/test_visual_report_icon_url.py`, `tests/test_visual_report_nonstring.py`, `tests/test_visual_report_slug_unique.py`, `tests/test_visual_report_toc_code_fence.py`
+- `src/webhook_manager.py` ← `app.py`, `routes/webhook/webhook_routes.py`, `src/agent_tools/admin_tools.py`, `tests/test_webhook_dns_rebinding_pin.py`, `tests/test_webhook_sanitize_error_ipv6.py`, `tests/test_webhook_ssrf_resilience.py`, `tests/test_webhook_task_refs.py`
+- `src/youtube_handler.py` ← `src/chat_handler.py`, `src/chat_processor.py`, `tests/test_is_youtube_url_nonstring.py`, `tests/test_youtube_comments_timeout.py`, `tests/test_youtube_handler_consolidation.py`, `tests/test_youtube_transcript_seg_nondict.py`

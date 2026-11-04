@@ -70,6 +70,88 @@ def test_llm_call_async_returns_reasoning_content_when_content_empty(monkeypatch
 
 
 # ---------------------------------------------------------------------------
+# 2b. llm_call_async with return_finish_reason: (text, finish_reason) tuple
+# ---------------------------------------------------------------------------
+
+def test_llm_call_async_return_finish_reason_length(monkeypatch):
+    """A summary truncated at max_tokens surfaces finish_reason='length'."""
+    class _FakeAsyncClient:
+        async def post(self, *a, **kw):
+            req = httpx.Request("POST", "http://test-fin/v1/chat/completions")
+            return httpx.Response(200, request=req, json={
+                "choices": [{
+                    "message": {"content": "cut short"},
+                    "finish_reason": "length",
+                }]
+            })
+
+    monkeypatch.setattr(llm_core, "_get_http_client",
+                        lambda: _FakeAsyncClient())
+
+    text, finish_reason = asyncio.run(llm_core.llm_call_async(
+        "http://test-fin/v1", "deepseek-v4-flash-free",
+        [{"role": "user", "content": "summarize"}],
+        disable_thinking=True,
+        return_finish_reason=True,
+    ))
+    assert text == "cut short"
+    assert finish_reason == "length"
+
+
+def test_llm_call_async_return_finish_reason_stop(monkeypatch):
+    """A complete summary surfaces finish_reason='stop'."""
+    class _FakeAsyncClient:
+        async def post(self, *a, **kw):
+            req = httpx.Request("POST", "http://test-fin2/v1/chat/completions")
+            return httpx.Response(200, request=req, json={
+                "choices": [{
+                    "message": {"content": "complete summary"},
+                    "finish_reason": "stop",
+                }]
+            })
+
+    monkeypatch.setattr(llm_core, "_get_http_client",
+                        lambda: _FakeAsyncClient())
+
+    text, finish_reason = asyncio.run(llm_core.llm_call_async(
+        "http://test-fin2/v1", "deepseek-v4-flash-free",
+        [{"role": "user", "content": "summarize"}],
+        disable_thinking=True,
+        return_finish_reason=True,
+    ))
+    assert text == "complete summary"
+    assert finish_reason == "stop"
+
+
+# ---------------------------------------------------------------------------
+# 2c. _extract_finish_reason across provider shapes
+# ---------------------------------------------------------------------------
+
+def test_extract_finish_reason_openai_compat():
+    assert llm_core._extract_finish_reason(
+        "openai", {"choices": [{"finish_reason": "length"}]}
+    ) == "length"
+
+
+def test_extract_finish_reason_anthropic():
+    assert llm_core._extract_finish_reason(
+        "anthropic", {"stop_reason": "max_tokens"}
+    ) == "max_tokens"
+
+
+def test_extract_finish_reason_ollama():
+    assert llm_core._extract_finish_reason(
+        "ollama", {"done_reason": "length"}
+    ) == "length"
+
+
+def test_extract_finish_reason_missing_returns_none():
+    assert llm_core._extract_finish_reason("openai", {}) is None
+    assert llm_core._extract_finish_reason("openai", {"choices": []}) is None
+    assert llm_core._extract_finish_reason("openai", None) is None
+
+
+# ---------------------------------------------------------------------------
 # 3. Normal content takes priority over reasoning_content when both present
 # ---------------------------------------------------------------------------
 

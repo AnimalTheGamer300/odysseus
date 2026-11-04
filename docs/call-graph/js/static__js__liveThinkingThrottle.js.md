@@ -1,0 +1,333 @@
+# `static/js/liveThinkingThrottle.js` — definitions & call sites
+
+13 definitions (regex-based, best-effort).
+**Exports:** `createIncrementalDisplayProjector`, `createLiveThinkingThrottle`, `createThinkingAnalysisGate`, `default`, `stripLiveThinkingTags`
+
+## `stripLiveThinkingTags` — function, line 25
+- **called from:**
+- `static/js/chat.js:2776`
+- `static/js/liveThinkingThrottle.js:25`
+
+## `hasFreshMatch` — function, line 46
+- **called from:**
+- `static/js/liveThinkingThrottle.js:46`
+- `static/js/liveThinkingThrottle.js:93`
+- `static/js/liveThinkingThrottle.js:95`
+- `static/js/liveThinkingThrottle.js:96`
+
+## `createThinkingAnalysisGate` — function, line 60
+- **called from:**
+- `static/js/chat.js:2726`
+- `static/js/liveThinkingThrottle.js:60`
+
+## `reset` — method?, line 116
+- **called from:**
+- `mcp_servers/email_server.py:2899`
+- `src/tool_execution.py:988`
+- `tests/test_agent_state_dir_confinement.py:70`
+- `tests/test_agent_state_dir_confinement.py:357`
+- `tests/test_agent_state_dir_confinement.py:400`
+- `tests/test_mcp_email_decode_header_spaces.py:177`
+- `tests/test_workspace_confine.py:92`
+- `static/js/admin.js:1160`
+- `static/js/admin.js:1244`
+- `static/js/admin.js:1248`
+- `static/js/admin.js:1253`
+- `static/js/admin.js:1258`
+- `static/js/chat.js:2658`
+- `static/js/chat.js:2659`
+- `static/js/chat.js:2660`
+- `static/js/chat.js:3072`
+- `static/js/chat.js:4328`
+- `static/js/chat.js:4329`
+- `static/js/chat.js:4330`
+- `static/js/compare/state.js:39`
+- `static/js/cookbookDownload.js:173`
+- `static/js/liveThinkingThrottle.js:116`
+- `static/js/liveThinkingThrottle.js:137`
+- `static/js/liveThinkingThrottle.js:158`
+- `static/js/settings/search.js:65`
+- `static/js/settings/search.js:76`
+- `static/js/settings/search.js:139`
+- `static/js/sidebar-layout.js:546`
+- `static/js/theme.js:911`
+
+## `createIncrementalDisplayProjector` — function, line 127
+- **called from:**
+- `static/js/chat.js:2729`
+- `static/js/chat.js:2730`
+- `static/js/liveThinkingThrottle.js:127`
+
+## `append` — method?, line 134
+- **called from:**
+- `app.py:331`
+- `app.py:1063`
+- `app.py:1070`
+- `app.py:1088`
+- `app.py:1105`
+- `app.py:1124`
+- `app.py:1142`
+- `app.py:1164`
+- `app.py:1237`
+- `app.py:1267`
+- `app.py:1276`
+- `companion/pairing.py:142`
+- `companion/routes.py:157`
+- `core/auth.py:197`
+- `core/database.py:2008`
+- `core/models.py:148`
+- `core/platform_compat.py:193`
+- `core/platform_compat.py:195`
+- `core/platform_compat.py:206`
+- `core/platform_compat.py:389`
+- `core/platform_compat.py:391`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:430`
+- `core/session_manager.py:258`
+- `core/session_manager.py:278`
+- `core/session_manager.py:340`
+- `core/session_manager.py:536`
+- `core/session_manager.py:572`
+- `integrations/claude/skills/odysseus/scripts/odysseus_api.py:43`
+- `integrations/claude/skills/odysseus/scripts/odysseus_api.py:45`
+- `integrations/codex/scripts/odysseus_api.py:43`
+- `integrations/codex/scripts/odysseus_api.py:45`
+- `mcp_servers/email_server.py:261`
+- `mcp_servers/email_server.py:429`
+- `mcp_servers/email_server.py:521`
+- `mcp_servers/email_server.py:523`
+- `mcp_servers/email_server.py:525`
+- `mcp_servers/email_server.py:562`
+- `mcp_servers/email_server.py:570`
+- `mcp_servers/email_server.py:592`
+- `mcp_servers/email_server.py:595`
+- `mcp_servers/email_server.py:598`
+- `mcp_servers/email_server.py:601`
+- `mcp_servers/email_server.py:646`
+- `mcp_servers/email_server.py:673`
+- `mcp_servers/email_server.py:700`
+- `mcp_servers/email_server.py:785`
+- `mcp_servers/email_server.py:794`
+- `mcp_servers/email_server.py:890`
+- `mcp_servers/email_server.py:903`
+- `mcp_servers/email_server.py:1027`
+- `mcp_servers/email_server.py:1084`
+- `mcp_servers/email_server.py:1135`
+- `mcp_servers/email_server.py:1178`
+- `mcp_servers/email_server.py:1294`
+- `mcp_servers/email_server.py:1296`
+- `mcp_servers/email_server.py:1527`
+- `mcp_servers/email_server.py:1565`
+- `mcp_servers/email_server.py:1567`
+- `mcp_servers/email_server.py:1568`
+- … +3064 more (grep the name in repo)
+
+## `current` — method?, line 155
+- **called from:**
+- `static/js/chat.js:647`
+- `static/js/chat.js:2929`
+- `static/js/chat.js:3094`
+- `static/js/chat.js:3371`
+- `static/js/chat.js:3518`
+- `static/js/chatRenderer.js:935`
+- `static/js/liveThinkingThrottle.js:155`
+- `static/js/sessions.js:2502`
+
+## `reset` — method?, line 158
+- **called from:**
+- `mcp_servers/email_server.py:2899`
+- `src/tool_execution.py:988`
+- `tests/test_agent_state_dir_confinement.py:70`
+- `tests/test_agent_state_dir_confinement.py:357`
+- `tests/test_agent_state_dir_confinement.py:400`
+- `tests/test_mcp_email_decode_header_spaces.py:177`
+- `tests/test_workspace_confine.py:92`
+- `static/js/admin.js:1160`
+- `static/js/admin.js:1244`
+- `static/js/admin.js:1248`
+- `static/js/admin.js:1253`
+- `static/js/admin.js:1258`
+- `static/js/chat.js:2658`
+- `static/js/chat.js:2659`
+- `static/js/chat.js:2660`
+- `static/js/chat.js:3072`
+- `static/js/chat.js:4328`
+- `static/js/chat.js:4329`
+- `static/js/chat.js:4330`
+- `static/js/compare/state.js:39`
+- `static/js/cookbookDownload.js:173`
+- `static/js/liveThinkingThrottle.js:116`
+- `static/js/liveThinkingThrottle.js:137`
+- `static/js/liveThinkingThrottle.js:158`
+- `static/js/settings/search.js:65`
+- `static/js/settings/search.js:76`
+- `static/js/settings/search.js:139`
+- `static/js/sidebar-layout.js:546`
+- `static/js/theme.js:911`
+
+## `createLiveThinkingThrottle` — function, line 167
+- **called from:**
+- `static/js/chat.js:2806`
+- `static/js/liveThinkingThrottle.js:13`
+- `static/js/liveThinkingThrottle.js:167`
+
+## `commitLatest` — arrow, line 177
+- **called from:**
+- `static/js/liveThinkingThrottle.js:196`
+
+## `update` — method?, line 186
+- **called from:**
+- `app.py:335`
+- `app.py:446`
+- `app.py:1152`
+- `app.py:1172`
+- `core/database.py:2770`
+- `core/session_manager.py:606`
+- `core/session_manager.py:1087`
+- `routes/auth_routes.py:424`
+- `routes/auth_routes.py:437`
+- `routes/backup_routes.py:197`
+- `routes/backup_routes.py:204`
+- `routes/backup_routes.py:212`
+- `routes/chat_helpers.py:451`
+- `routes/chat_helpers.py:556`
+- `routes/chat_helpers.py:564`
+- `routes/chat_routes.py:246`
+- `routes/chat_routes.py:297`
+- `routes/chat_routes.py:1681`
+- `routes/chat_routes.py:1691`
+- `routes/chat_routes.py:1703`
+- `routes/chat_routes.py:1721`
+- `routes/chat_routes.py:1736`
+- `routes/chat_routes.py:1738`
+- `routes/chat_routes.py:1740`
+- `routes/chat_routes.py:1744`
+- `routes/chat_routes.py:1754`
+- `routes/chat_routes.py:1762`
+- `routes/chat_routes.py:1766`
+- `routes/chat_routes.py:1770`
+- `routes/chat_routes.py:1781`
+- `routes/chat_routes.py:1784`
+- `routes/chat_routes.py:1791`
+- `routes/chat_routes.py:2163`
+- `routes/chat_routes.py:2401`
+- `routes/chat_routes.py:2420`
+- `routes/cookbook_routes.py:3385`
+- `routes/cookbook_routes.py:3389`
+- `routes/cookbook_routes.py:3392`
+- `routes/cookbook_routes.py:3507`
+- `routes/cookbook_routes.py:4215`
+- `routes/device_flow.py:156`
+- `routes/email_pollers.py:786`
+- `routes/email_routes.py:145`
+- `routes/email_routes.py:1177`
+- `routes/email_routes.py:1993`
+- `routes/email_routes.py:2311`
+- `routes/email_routes.py:3524`
+- `routes/email_routes.py:3871`
+- `routes/email_routes.py:3872`
+- `routes/email_routes.py:3875`
+- `routes/email_routes.py:3880`
+- `routes/email_routes.py:4939`
+- `routes/email_routes.py:5571`
+- `routes/email_routes.py:5695`
+- `routes/email_routes.py:6000`
+- `routes/gallery/gallery_routes.py:2170`
+- `routes/gallery/gallery_routes.py:2189`
+- `routes/gallery/gallery_routes.py:2208`
+- `routes/gallery/gallery_routes.py:2310`
+- `routes/history/history_routes.py:707`
+- … +205 more (grep the name in repo)
+
+## `flush` — method?, line 191
+- **called from:**
+- `core/atomic_io.py:37`
+- `core/atomic_io.py:58`
+- `core/database.py:525`
+- `routes/calendar_routes.py:317`
+- `routes/calendar_routes.py:325`
+- `routes/email_routes.py:5756`
+- `scripts/demo_email/demo_account.py:117`
+- `scripts/demo_email/demo_account.py:165`
+- `scripts/migrate_searxng_settings.py:133`
+- `scripts/pr_blocker_audit.py:125`
+- `scripts/pr_blocker_audit.py:138`
+- `scripts/pr_blocker_audit.py:144`
+- `scripts/pr_blocker_audit.py:151`
+- `src/api_key_manager.py:94`
+- `src/email_thread_parser.py:328`
+- `src/email_thread_parser.py:334`
+- `src/email_thread_parser.py:371`
+- `src/email_thread_parser.py:385`
+- `src/llm_core.py:3241`
+- `src/llm_core.py:3259`
+- `src/llm_core.py:3518`
+- `src/llm_core.py:3760`
+- `src/task_scheduler.py:2616`
+- `src/upload_handler.py:745`
+- `tests/test_atomic_io.py:101`
+- `tests/test_launcher.py:24`
+- `static/js/chat.js:2840`
+- `static/js/emailLibrary.js:6387`
+- `static/js/emailLibrary.js:6393`
+- `static/js/emailLibrary.js:6398`
+- `static/js/liveThinkingThrottle.js:18`
+- `static/js/liveThinkingThrottle.js:191`
+
+## `cancel` — method?, line 198
+- **called from:**
+- `app.py:1283`
+- `routes/shell_routes.py:723`
+- `routes/shell_routes.py:1108`
+- `routes/skills_routes.py:1800`
+- `services/research/research_handler.py:140`
+- `services/research/research_handler.py:143`
+- `services/shell/service.py:163`
+- `src/agent_loop.py:5124`
+- `src/agent_loop.py:6401`
+- `src/agent_runs.py:84`
+- `src/agent_runs.py:195`
+- `src/agent_runs.py:198`
+- `src/agent_runs.py:237`
+- `src/agent_runs.py:286`
+- `src/agent_tools/subprocess_tools.py:273`
+- `src/agent_tools/subprocess_tools.py:275`
+- `src/agent_tools/subprocess_tools.py:279`
+- `src/ai_interaction.py:1379`
+- `src/ai_interaction.py:1646`
+- `src/llm_core.py:109`
+- `src/mcp_manager.py:400`
+- `src/mcp_oauth.py:63`
+- `src/research_handler.py:456`
+- `src/research_handler.py:459`
+- `src/task_scheduler.py:100`
+- `src/task_scheduler.py:591`
+- `src/task_scheduler.py:599`
+- `src/task_scheduler.py:917`
+- `src/task_scheduler.py:1012`
+- `src/task_scheduler.py:2272`
+- `src/task_scheduler.py:2296`
+- `tests/test_builtin_mcp_bg_tasks.py:101`
+- `tests/test_compare_stop_disconnect_poll.py:376`
+- `tests/test_compare_stop_disconnect_poll.py:433`
+- `tests/test_email_summary_llm.py:192`
+- `tests/test_email_urgency_checkpoint.py:419`
+- `tests/test_email_urgency_checkpoint.py:554`
+- `tests/test_task_scheduler_cache.py:34`
+- `tests/test_task_scheduler_cache.py:70`
+- `static/js/chat.js:2849`
+- `static/js/chat.js:5749`
+- `static/js/chat.js:5764`
+- `static/js/documentLibrary.js:182`
+- `static/js/gallery.js:2576`
+- `static/js/gallery.js:2584`
+- `static/js/liveThinkingThrottle.js:20`
+- `static/js/liveThinkingThrottle.js:22`
+- `static/js/liveThinkingThrottle.js:193`
+- `static/js/liveThinkingThrottle.js:198`
+- `static/js/liveThinkingThrottle.js:199`
+- `static/js/settings.js:883`
+- `static/js/slashCommands.js:2439`
+- `static/js/tasks.js:1076`
+- `static/js/tts-ai.js:241`
+- `static/js/windowDrag.js:157`

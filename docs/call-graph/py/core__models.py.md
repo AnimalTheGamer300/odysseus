@@ -1,0 +1,378 @@
+# `core/models.py` — definitions & call sites
+
+14 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `set_session_manager_instance` — function, line 25
+- **called from:**
+- `app.py:592`
+- `src/ai_interaction.py:50`
+
+## `get_session_manager_instance` — function, line 31
+- **called from:**
+- `src/context_compactor.py:724`
+- `src/context_compactor.py:782`
+
+## `_history_grants_chat_session_approval` — function, line 41
+- **called from:**
+- `core/models.py:187`
+
+## `ChatMessage` — class, line 79
+- decorator: `dataclass`
+- **called from:**
+- `core/session_manager.py:258`
+- `core/session_manager.py:278`
+- `routes/chat_helpers.py:470`
+- `routes/chat_helpers.py:1309`
+- `routes/chat_helpers.py:1312`
+- `routes/chat_routes.py:316`
+- `routes/chat_routes.py:319`
+- `routes/chat_routes.py:1094`
+- `routes/chat_routes.py:1904`
+- `routes/chat_routes.py:2200`
+- `routes/chat_routes.py:3129`
+- `routes/history/history_routes.py:258`
+- `routes/history/history_routes.py:481`
+- `routes/history/history_routes.py:910`
+- `routes/history/history_routes.py:1147`
+- `routes/history/history_routes.py:1153`
+- `routes/research/research_routes.py:770`
+- `routes/session_routes.py:713`
+- `routes/session_routes.py:1258`
+- `routes/webhook/webhook_routes.py:377`
+- `routes/webhook/webhook_routes.py:385`
+- `src/agent_jobs.py:326`
+- `src/agent_tools/session_tools.py:229`
+- `src/agent_tools/session_tools.py:230`
+- `src/bg_monitor.py:131`
+- `src/chat_handler.py:351`
+- `src/chat_handler.py:353`
+- `src/context_compactor.py:709`
+- `src/task_scheduler.py:1773`
+- `src/task_scheduler.py:1781`
+- `tests/test_api_token_tool_authority.py:45`
+- `tests/test_api_token_tool_authority.py:50`
+- `tests/test_api_token_tool_authority.py:73`
+- `tests/test_api_token_tool_authority.py:74`
+- `tests/test_api_token_tool_authority.py:103`
+- `tests/test_api_token_tool_authority.py:104`
+- `tests/test_api_token_tool_authority.py:135`
+- `tests/test_api_token_tool_authority.py:136`
+- `tests/test_api_token_tool_authority.py:314`
+- `tests/test_api_token_tool_authority.py:315`
+- `tests/test_draft_promotion_keeps_live_media.py:47`
+- `tests/test_draft_promotion_keeps_live_media.py:83`
+- `tests/test_draft_promotion_keeps_live_media.py:120`
+- `tests/test_fork_session_metadata.py:63`
+- `tests/test_fork_session_metadata.py:64`
+- `tests/test_history_compact_tool_calls.py:175`
+- `tests/test_history_compact_tool_calls.py:176`
+- `tests/test_history_compact_tool_calls.py:177`
+- `tests/test_history_compact_tool_calls.py:178`
+- `tests/test_history_compact_tool_calls.py:179`
+- `tests/test_history_compact_tool_calls.py:180`
+- `tests/test_history_compact_tool_calls.py:193`
+- `tests/test_history_compact_tool_calls.py:194`
+- `tests/test_history_compact_tool_calls.py:195`
+- `tests/test_history_compact_tool_calls.py:196`
+- `tests/test_history_compact_tool_calls.py:207`
+- `tests/test_history_compact_tool_calls.py:208`
+- `tests/test_history_compact_tool_calls.py:209`
+- `tests/test_history_compact_tool_calls.py:210`
+- `tests/test_history_compact_tool_calls.py:211`
+- … +66 more (grep the name in repo)
+
+## `ChatMessage.to_dict` — method, line 85
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:3149`
+- `services/memory/skills.py:226`
+- `services/memory/skills.py:382`
+- `services/memory/skills.py:430`
+- `src/model_capabilities.py:538`
+- `src/model_capability_readers/base.py:66`
+- `src/model_capability_readers/base.py:67`
+- `src/model_capability_readers/base.py:68`
+- `tests/test_history_compact_tool_calls.py:90`
+- `tests/test_model_capabilities.py:68`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_model_capabilities.py:154`
+
+## `ChatMessage.get` — method, line 92
+- **called from:**
+- `app.py:359`
+- `app.py:383`
+- `app.py:389`
+- `app.py:416`
+- `app.py:428`
+- `app.py:470`
+- `app.py:538`
+- `app.py:512`
+- `app.py:595`
+- `app.py:891`
+- `app.py:903`
+- `app.py:907`
+- `app.py:915`
+- `app.py:919`
+- `app.py:923`
+- `app.py:927`
+- `app.py:931`
+- `app.py:935`
+- `app.py:939`
+- `app.py:944`
+- `app.py:950`
+- `app.py:955`
+- `app.py:967`
+- `app.py:968`
+- `app.py:969`
+- `app.py:969`
+- `app.py:971`
+- `app.py:971`
+- `app.py:975`
+- `app.py:996`
+- `app.py:987`
+- `app.py:998`
+- `app.py:1117`
+- `app.py:1151`
+- `app.py:1165`
+- `app.py:1198`
+- `app.py:1201`
+- `app.py:1216`
+- `companion/pairing.py:116`
+- `companion/pairing.py:126`
+- `companion/pairing.py:173`
+- `companion/pairing.py:177`
+- `companion/routes.py:85`
+- `companion/routes.py:97`
+- `companion/routes.py:109`
+- `companion/routes.py:168`
+- `companion/routes.py:222`
+- `core/auth.py:143`
+- `core/auth.py:164`
+- `core/auth.py:187`
+- `core/auth.py:214`
+- `core/auth.py:226`
+- `core/auth.py:230`
+- `core/auth.py:299`
+- `core/auth.py:299`
+- `core/auth.py:325`
+- `core/auth.py:349`
+- `core/auth.py:349`
+- `core/auth.py:357`
+- `core/auth.py:370`
+- … +7551 more (grep the name in repo)
+
+## `Session` — class, line 98
+- decorator: `dataclass`
+- **called from:**
+- `core/session_manager.py:189`
+- `core/session_manager.py:295`
+- `core/session_manager.py:1056`
+- `tests/test_api_token_tool_authority.py:24`
+- `tests/test_api_token_tool_authority.py:97`
+- `tests/test_draft_promotion_keeps_live_media.py:37`
+- `tests/test_external_context_tool_gate.py:221`
+- `tests/test_history_display_model_hydration.py:245`
+- `tests/test_history_display_model_hydration.py:326`
+- `tests/test_replace_messages_multimodal.py:32`
+- `tests/test_replace_messages_upload_reservations.py:46`
+- `tests/test_research_query_fallback.py:15`
+- `tests/test_session_concurrent.py:24`
+- `tests/test_session_concurrent.py:25`
+- `tests/test_session_concurrent.py:54`
+- `tests/test_session_concurrent.py:55`
+- `tests/test_session_concurrent.py:86`
+- `tests/test_session_concurrent.py:87`
+- `tests/test_session_context_excludes_slash.py:14`
+- `tests/test_session_context_excludes_slash.py:41`
+- `tests/test_session_image_cleanup.py:29`
+- `tests/test_session_manager.py:47`
+- `tests/test_session_manager.py:48`
+- `tests/test_session_manager.py:62`
+- `tests/test_session_manager.py:63`
+- `tests/test_session_manager.py:76`
+- `tests/test_session_manager.py:91`
+- `tests/test_session_manager.py:103`
+- `tests/test_session_manager.py:116`
+- `tests/test_session_manager.py:117`
+- `tests/test_session_manager.py:129`
+- `tests/test_session_manager.py:140`
+- `tests/test_session_manager.py:156`
+- `tests/test_session_manager.py:157`
+- `tests/test_session_manager.py:158`
+- `tests/test_session_manager.py:173`
+- `tests/test_session_manager.py:188`
+- `tests/test_sqlite_foreign_keys.py:20`
+- `tests/test_tool_approval_task_scope.py:126`
+- `tests/test_tool_approval_task_scope.py:145`
+- `tests/test_tool_approval_task_scope.py:175`
+
+## `Session.__post_init__` — method, line 124
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `Session._history` — method, line 132
+- decorator: `property`
+- **called from:**
+- `tests/test_compaction_summary_failure.py:82`
+- `tests/test_compaction_summary_failure.py:91`
+
+## `Session._history` — method, line 137
+- decorator: `_history.setter`
+- **called from:**
+- `tests/test_compaction_summary_failure.py:82`
+- `tests/test_compaction_summary_failure.py:91`
+
+## `Session.add_message` — method, line 140
+- **called from:**
+- `routes/chat_helpers.py:470`
+- `routes/chat_helpers.py:1312`
+- `routes/chat_routes.py:319`
+- `routes/chat_routes.py:1094`
+- `routes/chat_routes.py:1904`
+- `routes/chat_routes.py:2200`
+- `routes/chat_routes.py:3129`
+- `routes/history/history_routes.py:482`
+- `routes/history/history_routes.py:910`
+- `routes/research/research_routes.py:770`
+- `routes/session_routes.py:713`
+- `routes/webhook/webhook_routes.py:377`
+- `routes/webhook/webhook_routes.py:385`
+- `src/agent_jobs.py:326`
+- `src/agent_tools/session_tools.py:229`
+- `src/agent_tools/session_tools.py:230`
+- `src/agent_tools/session_tools.py:452`
+- `src/bg_monitor.py:131`
+- `src/chat_handler.py:351`
+- `src/chat_handler.py:352`
+- `src/task_scheduler.py:1752`
+- `src/task_scheduler.py:1760`
+- `tests/test_draft_promotion_keeps_live_media.py:74`
+- `tests/test_draft_promotion_keeps_live_media.py:120`
+- `tests/test_session_concurrent.py:32`
+- `tests/test_session_concurrent.py:62`
+- `tests/test_session_concurrent.py:92`
+- `tests/test_session_concurrent.py:104`
+- `tests/test_session_context_excludes_slash.py:15`
+- `tests/test_session_context_excludes_slash.py:16`
+- `tests/test_session_context_excludes_slash.py:17`
+- `tests/test_session_context_excludes_slash.py:18`
+- `tests/test_session_context_excludes_slash.py:42`
+- `tests/test_session_context_excludes_slash.py:43`
+- `tests/test_session_discovery_message_count.py:41`
+- `tests/test_session_manager.py:52`
+- `tests/test_session_manager.py:53`
+- `tests/test_session_manager.py:67`
+- `tests/test_session_manager.py:68`
+- `tests/test_session_manager.py:78`
+- `tests/test_session_manager.py:81`
+- `tests/test_session_manager.py:121`
+- `tests/test_session_manager.py:133`
+- `tests/test_session_manager.py:135`
+- `tests/test_session_manager.py:149`
+- `tests/test_session_manager.py:163`
+- `tests/test_session_manager.py:164`
+- `tests/test_session_manager.py:165`
+- `tests/test_session_manager.py:175`
+- `tests/test_session_manager.py:190`
+- `tests/test_truncate_message_count_regression.py:40`
+- `tests/test_truncate_message_count_regression.py:70`
+
+## `Session.get_context_messages` — method, line 155
+- **called from:**
+- `routes/chat_helpers.py:887`
+- `routes/history/history_routes.py:991`
+- `routes/history/history_routes.py:1101`
+- `routes/history/history_routes.py:1232`
+- `routes/memory/memory_routes.py:258`
+- `services/memory/memory_extractor.py:448`
+- `services/memory/skill_extractor.py:150`
+- `src/agent_jobs.py:315`
+- `src/agent_tools/session_tools.py:200`
+- `src/agent_tools/session_tools.py:446`
+- `src/bg_monitor.py:121`
+- `tests/test_api_token_tool_authority.py:54`
+- `tests/test_api_token_tool_authority.py:78`
+- `tests/test_api_token_tool_authority.py:109`
+- `tests/test_api_token_tool_authority.py:138`
+- `tests/test_api_token_tool_authority.py:317`
+- `tests/test_history_display_model_hydration.py:272`
+- `tests/test_replace_messages_multimodal.py:117`
+- `tests/test_session_concurrent.py:97`
+- `tests/test_session_context_excludes_slash.py:23`
+- `tests/test_session_context_excludes_slash.py:44`
+- `tests/test_session_manager.py:97`
+- `tests/test_session_manager.py:177`
+- `tests/test_session_manager.py:180`
+- `tests/test_tool_approval_task_scope.py:134`
+- `tests/test_tool_approval_task_scope.py:152`
+- `tests/test_tool_approval_task_scope.py:189`
+- `tests/test_truncate_message_count_regression.py:78`
+
+## `Session.get` — method, line 204
+- **called from:**
+- `app.py:359`
+- `app.py:383`
+- `app.py:389`
+- `app.py:416`
+- `app.py:428`
+- `app.py:470`
+- `app.py:538`
+- `app.py:512`
+- `app.py:595`
+- `app.py:891`
+- `app.py:903`
+- `app.py:907`
+- `app.py:915`
+- `app.py:919`
+- `app.py:923`
+- `app.py:927`
+- `app.py:931`
+- `app.py:935`
+- `app.py:939`
+- `app.py:944`
+- `app.py:950`
+- `app.py:955`
+- `app.py:967`
+- `app.py:968`
+- `app.py:969`
+- `app.py:969`
+- `app.py:971`
+- `app.py:971`
+- `app.py:975`
+- `app.py:996`
+- `app.py:987`
+- `app.py:998`
+- `app.py:1117`
+- `app.py:1151`
+- `app.py:1165`
+- `app.py:1198`
+- `app.py:1201`
+- `app.py:1216`
+- `companion/pairing.py:116`
+- `companion/pairing.py:126`
+- `companion/pairing.py:173`
+- `companion/pairing.py:177`
+- `companion/routes.py:85`
+- `companion/routes.py:97`
+- `companion/routes.py:109`
+- `companion/routes.py:168`
+- `companion/routes.py:222`
+- `core/auth.py:143`
+- `core/auth.py:164`
+- `core/auth.py:187`
+- `core/auth.py:214`
+- `core/auth.py:226`
+- `core/auth.py:230`
+- `core/auth.py:299`
+- `core/auth.py:299`
+- `core/auth.py:325`
+- `core/auth.py:349`
+- `core/auth.py:349`
+- `core/auth.py:357`
+- `core/auth.py:370`
+- … +7551 more (grep the name in repo)
+
+## `Session.__getitem__` — method, line 208
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_

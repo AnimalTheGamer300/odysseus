@@ -55,6 +55,14 @@ ALWAYS_AVAILABLE = frozenset({
     # of topic. Without this, RAG drops it and the agent falls back to
     # app_api /api/memory/add which fails with 422 on first attempt.
     "manage_memory",
+    # Skills ride in lockstep with the skill index: whenever the owner has
+    # indexed skills, the agent prompt injects an index that instructs the
+    # model to fetch procedures via `manage_skills action=view`. The tool
+    # must always ship alongside that instruction — otherwise the model is
+    # told to call a tool that was stripped from its schema list. Execution
+    # gates (incognito, can_manage_memory privilege, global disabled_tools,
+    # capability/approval scopes) still apply downstream.
+    "manage_skills",
     # Ask the user a multiple-choice question for a decision/clarification.
     # Always reachable so the agent can pause and ask at any point.
     "ask_user",
@@ -131,6 +139,8 @@ BUILTIN_TOOL_DESCRIPTIONS: Dict[str, str] = {
     "suggest_document": "Suggest changes to the active document with explanations. For code review, proofreading, feedback requests.",
     "generate_image": "Generate an AI image from a text prompt. Specify model, size, and quality. Art, illustrations, photos.",
     "chat_with_model": "Send a message to a different AI model. Compare responses, get specialized help, delegate tasks.",
+    "spawn_agent": "Spawn a sub-agent — a fresh AI agent with full tool access — to autonomously complete a self-contained task and report back. For delegating subtasks or isolating context-heavy work; use background=true for long-running or parallel work. Unlike chat_with_model, the sub-agent can use tools. Sub-agents run headlessly — they never pause for interactive tool approvals.",
+    "check_agents": "Check background sub-agents launched with spawn_agent(background=true): list their status and collect finished reports. Use after launching background agents, or when the user asks about delegated tasks.",
     "ask_teacher": "Ask a more capable model for help with a difficult problem. Escalate complex tasks.",
     "pipeline": "Run a multi-step AI pipeline with multiple models. Chain tasks together in sequence.",
     "list_models": "List all available AI models and their endpoints.",
@@ -195,6 +205,7 @@ BUILTIN_TOOL_DESCRIPTIONS: Dict[str, str] = {
     "run_editor_command": "Run one deterministic editor op (adjustments, masked filters, selection, layers, import/place, export, screenshot) on the open image editor.",
     "get_editor_screenshot": "Capture the open image editor's current canvas as a PNG data URL for inspection.",
     "ai_edit_image": "Apply an AI image edit (remove/inpaint objects, generative replace, remove-bg, upscale, denoise, enhance-face) to the open image and place the result as a new layer. Use for object removal/addition/replacement; never approximate those with selection/adjustment/filter ops.",
+    "fetch_image": "Fetch an image (from a URL or a local path) so YOU can see and analyze it yourself — vision analysis, description, OCR, screenshots, etc. The image is attached back to you as a vision message in the next round. Pass save_to_gallery=true ONLY when the user explicitly wants it stored in their gallery (that surfaces it in the UI).",
     "trigger_research": "Start a deep research job on any topic — appears in the Deep Research sidebar, streams progress, produces a detailed report. Use for 'research X', 'look into Y', 'do deep research on Z', 'investigate'. NOT a scheduled task — it runs now and surfaces in the sidebar.",
     "manage_bg_jobs": "Inspect and control detached background `bash` jobs (the ones started with a `#!bg` marker). action='list' shows this chat's jobs (id/status/age/command); action='output' returns a job's captured output so far (check on a long-running job, or re-read a finished one); action='kill' stops a runaway job by id. Use for 'is the background job done', 'check on that job', 'show the build output', 'kill the background job', 'stop the bg task'. output/kill need a job_id from list.",
 }
@@ -486,7 +497,7 @@ class ToolIndex:
                    "what does", "what would", "second opinion", "other model",
                    "different model", "compare answers", "compare models",
                    "delegate to", "have model"}):
-            {"chat_with_model", "ask_teacher", "list_models"},
+            {"chat_with_model", "ask_teacher", "list_models", "spawn_agent", "check_agents"},
         # Deep research intent (incl. common typo "reserach")
         frozenset({"web search", "search the web", "search online", "look up",
                    "find info online", "find information online",

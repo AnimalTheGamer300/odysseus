@@ -11,7 +11,7 @@ import sessionModule from './sessions.js';
 import chatRenderer, { renderToolIcon } from './chatRenderer.js?v=20260914metricssummary1';
 import chatStream from './chatStream.js?v=20261026devsync1';
 import { addAITTSButton } from './tts-ai.js';
-import markdownModule from './markdown.js';
+import markdownModule from './markdown.js?v=20261023merge2';
 import spinnerModule from './spinner.js';
 import presetsModule from './presets.js?v=20260908personaname1';
 import fileHandlerModule from './fileHandler.js?v=20260909mobileattachmentedit1';
@@ -24,6 +24,7 @@ import createResearchSynapse from './researchSynapse.js?v=20260910roundlabels2';
 import { createStreamRenderer } from './streamingRenderer.js';
 import { createTurnRendering, startsContinuationRound } from './turnRendering.js?v=20260910round1stable1';
 import { wireArrowUpRecall, getUserMessagesFromChatHistory } from './composerArrowUpRecall.js?v=20260714promptrecall';
+import { wireHistoryRecall } from './composerHistoryRecall.js';
 import {
   createIncrementalDisplayProjector,
   createLiveThinkingThrottle,
@@ -38,6 +39,34 @@ import {
 import { createTerminalStreamError, isRecoverableStreamError } from './chatStreamErrors.js';
 import { loadPanel } from './panels.js?v=20260909movepicklayer1';
 import { invalidateSettings } from './appConfig.js';
+import { setFaviconBusy } from './theme.js';
+
+function _dbRowCountBefore(box, element) {
+  const allMsgs = Array.from(box.querySelectorAll('.msg'));
+  const idx = allMsgs.indexOf(element);
+  if (idx < 0) return 0;
+  // Every message bubble maps 1:1 to a DB row in DOM order: stamped ones
+  // carry their server dbId, live ones (optimistic user bubbles, queued
+  // sends, in-flight AI bubbles) will land as rows at their DOM position.
+  // Counting ONLY stamped rows undercounts when live bubbles precede the
+  // target, so truncate keeps too few rows and wipes recent turns (the
+  // "vanishing pairs" incident, 2026-08-07: a regenerate/edit fired a
+  // truncate keep_count 1-2 rows short and deleted whole pairs). Count
+  // unique stamped ids PLUS one per unstamped real bubble, excluding
+  // client-only bubbles that never become rows (thinking dots, research
+  // reconnect placeholders).
+  const seen = new Set();
+  let unstamped = 0;
+  for (let i = 0; i < idx; i++) {
+    const el = allMsgs[i];
+    if (el.classList.contains('agent-thinking-dots') || el.classList.contains('research-reconnect')) continue;
+    const id = el.dataset.dbId;
+    if (id) seen.add(id);
+    else unstamped++;
+  }
+  return seen.size + unstamped;
+}
+
 
   const RESEARCH_TIMEOUT_MS = 360000;
   const DEFAULT_TIMEOUT_MS = 120000;
@@ -1190,6 +1219,9 @@ import { invalidateSettings } from './appConfig.js';
     } catch (_) {}
   }
   let _pendingContinue = null; // Stores the stopped AI element to merge with new response
+  // The optimistic user bubble for the CURRENT stream (set by sendMessage,
+  // consumed by the user_message_saved handler to stamp its DB id — 2026-08-08).
+  let _activeUserMsgEl = null;
   function _createChatSendPerf() {
     const started = (performance && performance.now) ? performance.now() : Date.now();
     let last = started;
@@ -1246,7 +1278,19 @@ import { invalidateSettings } from './appConfig.js';
   }
 
   async function _adoptOpenedSessionBeforeAutoCreate() {
-    if (!sessionModule || !sessionModule.getCurrentSessionId || sessionModule.getCurrentSessionId()) return true;
+    if (!sessionModule || !sessionModule.getCurrentSessionId || sessionModule.getCurrentSessionId()) {
+      console.debug('[ODYS-HIJACK] adopt: skip (current=%s)', sessionModule?.getCurrentSessionId?.() ?? 'n/a');
+      return true;
+    }
+    // IRIS fix 2026-08-05 (ghost-message): if the user just clicked New Chat, their
+    // intent is a FRESH session. Never adopt a stale hash/lastSelected into the old
+    // chat — let the send path auto-create a brand-new session instead.
+    const newChatIntent = !!window.__odysseusNewChatIntent;
+    try { window.__odysseusNewChatIntent = false; } catch (_) {}
+    if (newChatIntent) {
+      console.debug('[ODYS-HIJACK] adopt: skip (new-chat intent)');
+      return false;
+    }
     // Don't adopt a stale session when the user explicitly started a New Chat
     // (pending state set) — the send path must materialize the pending session.
     if (sessionModule.hasPendingChat && sessionModule.hasPendingChat()) return false;
@@ -1254,6 +1298,8 @@ import { invalidateSettings } from './appConfig.js';
     const hashId = _hashSessionCandidate();
     const lastSelectedId = String(window.__odysseusLastSelectedSessionId || '').trim();
     const targetId = activeRowId || hashId || lastSelectedId;
+    console.debug('[ODYS-HIJACK] adopt: current=null activeRow=%s hash=%s lastSelected=%s -> target=%s',
+      activeRowId, hashId, lastSelectedId, targetId);
     if (!targetId) return false;
     try {
       window.__odysseusComposerUserEdited = true;
@@ -1474,7 +1520,7 @@ import { invalidateSettings } from './appConfig.js';
 
   // Background streaming support
   const _backgroundStreams = new Map(); // sessionId -> { status, accumulated, sourcesHtml, abortCtrl, query, metrics }
-  const _activeStreams = new Map();     // sessionId -> { abortCtrl, holder, query, startedAt, cancelViewWork, finalizeView }
+  const _activeStreams = new Map();     // sessionId -> { abortCtrl, holder, query, startedAt }
   const _resumingStreams = new Set();   // sessionId -> a resumeStream() reader is live (re-attach lock)
   const _terminalSavedStreams = new Set(); // sessionId -> canonical terminal event seen by active reader
   const _streamRunIds = new Map();      // sessionId -> opaque identity of the current send's detached run
@@ -1486,6 +1532,342 @@ import { invalidateSettings } from './appConfig.js';
   let _webLockRelease = null;  // Function to release the Web Lock held during streaming
   let _staleStreamProbeInFlight = false;
   const STALE_LOCAL_STREAM_MS = 15000;
+
+  // ==================================================================== //
+  // Tab sync — BroadcastChannel mirror so a second tab viewing the same
+  // session sees exactly what the streaming tab sees: live deltas, the
+  // saved final state, deletes, edits. No polling, no refresh. The server
+  // run fans out to multiple SSE subscribers (agent_runs), so takeover /
+  // resume races are safe by design.
+  // ==================================================================== //
+  const _tabSyncMirrors = new Map();   // sessionId -> { bubble, spinner, pendingText, raf, convergeTimer }
+  const _tabSyncTakeoverTimers = new Map(); // sessionId -> pending takeover probe
+  let _tabSyncChannel = null;
+  let _tabSyncLastPostAt = 0;
+  const TAB_SYNC_CHANNEL = 'odysseus-tab-sync-v1';
+  const TAB_SYNC_DELTA_MS = 120;       // throttle live-delta broadcasts
+  const TAB_SYNC_RELOAD_MS = 250;      // debounce reloads on chat-done
+  const TAB_SYNC_TAKEOVER_MS = 800;    // grace window before takeover probe
+  const TAB_SYNC_STALE_MS = 8000;      // mirror silent this long => may be orphaned
+  let _tabSyncSweepTimer = null;
+  const _tabSyncSweepInFlight = new Set(); // sessionIds currently being probed
+
+  function _tabSyncPost(kind, payload) {
+    if (!_tabSyncChannel) return;
+    try {
+      _tabSyncChannel.postMessage(Object.assign({ v: 1, src: 'odysseus-chat', kind }, payload));
+    } catch (e) { /* channel closed — ignore */ }
+  }
+
+  function _tabSyncPostDelta(sessionId, text) {
+    const now = Date.now();
+    if (now - _tabSyncLastPostAt < TAB_SYNC_DELTA_MS) return;
+    _tabSyncLastPostAt = now;
+    _tabSyncPost('chat-delta', { sessionId, text });
+  }
+
+  // ---- receiver side: this tab mirrors a stream owned by another tab ----
+  function _tabSyncCurrentSession() {
+    try {
+      return sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : null;
+    } catch (_) { return null; }
+  }
+
+  function _tabSyncEnsureBubble(sessionId) {
+    let entry = _tabSyncMirrors.get(sessionId);
+    if (entry && entry.bubble && entry.bubble.parentNode) return entry;
+    const box = document.getElementById('chat-history');
+    if (!box) return null;
+    const meta = sessionModule.getSessions().find(s => s.id === sessionId);
+    const roleLabel = _shortModel(meta && meta.model);
+    const roleTs = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const holder = document.createElement('div');
+    holder.className = 'msg msg-ai streaming tab-mirror';
+    holder.innerHTML = '<div class="role">' + uiModule.esc(roleLabel) +
+      ' <span class="role-timestamp">' + roleTs + '</span></div>' +
+      '<div class="body"><div class="stream-content"></div></div>';
+    _applyModelColor(holder.querySelector('.role'), meta && meta.model);
+    box.appendChild(holder);
+    const spinner = spinnerModule.create('Generating response...', 'right');
+    holder.querySelector('.body').appendChild(spinner.createElement());
+    spinner.start();
+    // Incremental renderer (same as the foreground stream): finalized blocks
+    // are frozen once and only the live tail re-renders, so a long mirror
+    // message never turns into per-frame full-DOM rebuilds (which pegged the
+    // main thread and black-screened the tab on big sessions).
+    const mirrorContent = holder.querySelector('.stream-content');
+    const renderer = createStreamRenderer(mirrorContent, {
+      render: (t) => markdownModule.processWithThinking(markdownModule.squashOutsideCode(t)),
+      hljs: window.hljs,
+    });
+    uiModule.scrollHistory();
+    entry = { bubble: holder, spinner, pendingText: '', raf: 0, convergeTimer: null, renderer, lastDeltaAt: 0, createdAt: Date.now() };
+    _tabSyncMirrors.set(sessionId, entry);
+    return entry;
+  }
+
+  function _tabSyncRenderDelta(sessionId) {
+    const entry = _tabSyncMirrors.get(sessionId);
+    if (!entry) return;
+    entry.raf = 0;
+    const holder = entry.bubble;
+    if (!holder || !holder.parentNode) return;
+    const text = entry.pendingText;
+    if (text && entry.spinner) {
+      try { entry.spinner.destroy(); } catch (_) {}
+      entry.spinner = null;
+    }
+    const contentDiv = holder.querySelector('.stream-content') || holder.querySelector('.body');
+    const dt = markdownModule.normalizeThinkingMarkup(_streamDisplayText(text, { final: false }));
+    if (entry.renderer) {
+      entry.renderer.update(dt);
+    } else {
+      // Fallback (defensive): same output as before if the renderer is absent.
+      contentDiv.innerHTML = markdownModule.mdToHtml(markdownModule.squashOutsideCode(dt));
+    }
+    uiModule.scrollHistory();
+  }
+
+  function _tabSyncQueueDelta(sessionId, text) {
+    const entry = _tabSyncEnsureBubble(sessionId);
+    if (!entry) return;
+    entry.lastDeltaAt = Date.now();
+    entry.pendingText = text;
+    // Live deltas mean the streaming tab is attached again — a pending
+    // takeover probe is moot.
+    const pt = _tabSyncTakeoverTimers.get(sessionId);
+    if (pt) { clearTimeout(pt); _tabSyncTakeoverTimers.delete(sessionId); }
+    if (!entry.raf) {
+      entry.raf = requestAnimationFrame(() => _tabSyncRenderDelta(sessionId));
+    }
+  }
+
+  function _tabSyncClearMirror(sessionId) {
+    const entry = _tabSyncMirrors.get(sessionId);
+    if (!entry) return;
+    if (entry.raf) cancelAnimationFrame(entry.raf);
+    if (entry.convergeTimer) clearTimeout(entry.convergeTimer);
+    if (entry.spinner) { try { entry.spinner.destroy(); } catch (_) {} }
+    // A cleared mirror must be GONE from the DOM too — otherwise a stale
+    // bubble survives (and gets reused by the next turn's deltas, landing in
+    // the wrong position). The reload path wipes innerHTML anyway, but
+    // takeover/sweep paths don't.
+    if (entry.bubble && entry.bubble.parentNode) {
+      try { entry.bubble.remove(); } catch (_) {}
+    }
+    const pt = _tabSyncTakeoverTimers.get(sessionId);
+    if (pt) { clearTimeout(pt); _tabSyncTakeoverTimers.delete(sessionId); }
+    _tabSyncMirrors.delete(sessionId);
+  }
+
+  function _tabSyncReloadSession(sessionId) {
+    _tabSyncClearMirror(sessionId);
+    try {
+      if (sessionModule && sessionModule.selectSession) {
+        sessionModule.selectSession(sessionId, { keepSidebar: true, showLoading: false });
+      }
+    } catch (_) {}
+  }
+
+  function _tabSyncScheduleReload(sessionId) {
+    const entry = _tabSyncMirrors.get(sessionId) || { convergeTimer: null };
+    if (entry.convergeTimer) clearTimeout(entry.convergeTimer);
+    entry.convergeTimer = setTimeout(() => {
+      if (_tabSyncCurrentSession() !== sessionId) return;
+      if (hasActiveStream(sessionId)) return;
+      _tabSyncReloadSession(sessionId);
+    }, TAB_SYNC_RELOAD_MS);
+  }
+
+  // The streaming tab aborted (timeout/offline/recovery/stale). Probe the
+  // run: still active -> resume live HERE; finished -> reload for the saved
+  // state. Delayed so the streaming tab gets a beat to re-attach first.
+  function _tabSyncScheduleTakeover(sessionId) {
+    const prev = _tabSyncTakeoverTimers.get(sessionId);
+    if (prev) clearTimeout(prev);
+    const t = setTimeout(() => {
+      _tabSyncTakeoverTimers.delete(sessionId);
+      _tabSyncTakeover(sessionId);
+    }, TAB_SYNC_TAKEOVER_MS);
+    _tabSyncTakeoverTimers.set(sessionId, t);
+  }
+
+  function _tabSyncTakeover(sessionId) {
+    if (_tabSyncCurrentSession() !== sessionId) return;
+    if (hasActiveStream(sessionId)) return; // local reader already owns it
+    (async () => {
+      let activeRun = false;
+      try {
+        const res = await fetch(`${API_BASE}/api/chat/stream_status/${encodeURIComponent(sessionId)}`, {
+          credentials: 'same-origin',
+          cache: 'no-store',
+        });
+        activeRun = res.ok;
+      } catch (_) {
+        return; // offline — leave the mirror as-is
+      }
+      if (_tabSyncCurrentSession() !== sessionId) return;
+      if (hasActiveStream(sessionId)) return;
+      const mirror = _tabSyncMirrors.get(sessionId);
+      if (mirror && mirror.bubble && mirror.bubble.parentNode) {
+        try { mirror.bubble.remove(); } catch (_) {}
+      }
+      _tabSyncClearMirror(sessionId);
+      if (activeRun) {
+        const attached = await resumeStream(sessionId);
+        if (attached) return;
+      }
+      _tabSyncReloadSession(sessionId);
+    })();
+  }
+
+  // Self-heal for orphaned mirrors: if the streaming tab died, errored, or was
+  // closed without broadcasting a finalize (BroadcastChannel delivers nothing
+  // when the sender vanishes mid-turn), a mirror bubble would sit frozen
+  // forever. Sweep periodically: mirror with no deltas for TAB_SYNC_STALE_MS
+  // and no local reader => probe the run. 404 -> reload the canonical saved
+  // state; 200 -> take over and finish the run live.
+  function _tabSyncStaleSweep() {
+    if (!_tabSyncMirrors.size) return;
+    const now = Date.now();
+    for (const [sessionId, entry] of _tabSyncMirrors) {
+      if (_tabSyncSweepInFlight.has(sessionId)) continue;
+      if (hasActiveStream(sessionId)) continue;
+      // Silent long enough? (delta-driven mirrors: 8s since last delta;
+      // spinner-only mirrors: 8s since creation — enough for the first token.)
+      const silentFor = now - (entry.lastDeltaAt || entry.createdAt || now);
+      if (silentFor < TAB_SYNC_STALE_MS) continue;
+      if (_tabSyncCurrentSession() !== sessionId) continue;
+      _tabSyncSweepInFlight.add(sessionId);
+      (async () => {
+        try {
+          const res = await fetch(`${API_BASE}/api/chat/stream_status/${encodeURIComponent(sessionId)}`, {
+            credentials: 'same-origin',
+            cache: 'no-store',
+          });
+          if (_tabSyncCurrentSession() !== sessionId) return;
+          if (hasActiveStream(sessionId)) return;
+          if (res.ok) {
+            _tabSyncTakeover(sessionId);
+          } else {
+            _tabSyncReloadSession(sessionId);
+          }
+        } catch (_) {
+          // offline — leave the mirror as-is
+        } finally {
+          _tabSyncSweepInFlight.delete(sessionId);
+        }
+      })();
+    }
+  }
+
+  function _tabSyncStampUserBubble(id) {
+    if (!id) return;
+    const box = document.getElementById('chat-history');
+    if (!box) return;
+    const users = box.querySelectorAll('.msg-user');
+    const last = users[users.length - 1];
+    if (last && !last.dataset.dbId) last.dataset.dbId = id;
+  }
+
+  function _tabSyncApplyDelete(msgIds) {
+    if (!Array.isArray(msgIds) || !msgIds.length) return;
+    const box = document.getElementById('chat-history');
+    if (!box) return;
+    for (const id of msgIds) {
+      const allMsgs = Array.from(box.querySelectorAll('.msg'));
+      const target = allMsgs.find(el => el.dataset.dbId === id);
+      if (!target) continue;
+      const toRemove = [target];
+      // Continuation / tool bubbles after the AI response belong to it.
+      let sib = target.nextElementSibling;
+      while (sib) {
+        if (sib.classList.contains('msg-user') ||
+            (sib.classList.contains('msg-ai') && !sib.classList.contains('msg-continuation'))) break;
+        toRemove.push(sib);
+        sib = sib.nextElementSibling;
+      }
+      // Tool bubbles between the preceding user message and this response.
+      let prev = target.previousElementSibling;
+      while (prev && !prev.classList.contains('msg-user') &&
+             !(prev.classList.contains('msg-ai') && !prev.classList.contains('msg-continuation'))) {
+        toRemove.push(prev);
+        prev = prev.previousElementSibling;
+      }
+      toRemove.forEach(el => { try { el.remove(); } catch (_) {} });
+    }
+  }
+
+  function _initTabSync() {
+    if (typeof BroadcastChannel === 'undefined') return;
+    try { _tabSyncChannel = new BroadcastChannel(TAB_SYNC_CHANNEL); }
+    catch (e) { _tabSyncChannel = null; return; }
+    _tabSyncChannel.onmessage = (ev) => {
+      const m = ev && ev.data;
+      if (!m || m.src !== 'odysseus-chat' || m.v !== 1) return;
+      const sid = m.sessionId;
+      if (!sid) return;
+      try {
+        switch (m.kind) {
+          case 'chat-start': {
+            if (_tabSyncCurrentSession() !== sid || hasActiveStream(sid)) return;
+            if (m.userText) {
+              // New user turn: a leftover mirror from a previous turn that
+              // died without converging (error / closed tab / stale) is stale
+              // by definition. Drop it (DOM + map) so the fresh user bubble
+              // and its mirror land in the correct order — otherwise the new
+              // mirror inherits the old bubble's position between messages.
+              _tabSyncClearMirror(sid);
+              const box = document.getElementById('chat-history');
+              const users = box ? box.querySelectorAll('.msg-user') : [];
+              const last = users[users.length - 1];
+              if (!last || (last.textContent || '').trim() !== m.userText) {
+                chatRenderer.addMessage('user', m.userText);
+              }
+            }
+            _tabSyncEnsureBubble(sid);
+            break;
+          }
+          case 'chat-delta': {
+            if (_tabSyncCurrentSession() !== sid || hasActiveStream(sid)) return;
+            _tabSyncQueueDelta(sid, m.text || '');
+            break;
+          }
+          case 'chat-done': {
+            if (_tabSyncCurrentSession() !== sid || hasActiveStream(sid)) return;
+            _tabSyncScheduleReload(sid);
+            break;
+          }
+          case 'chat-takeover': {
+            if (_tabSyncCurrentSession() !== sid || hasActiveStream(sid)) return;
+            _tabSyncScheduleTakeover(sid);
+            break;
+          }
+          case 'chat-delete': {
+            if (_tabSyncCurrentSession() !== sid) return;
+            _tabSyncApplyDelete(m.msgIds);
+            break;
+          }
+          case 'chat-user-saved': {
+            if (_tabSyncCurrentSession() !== sid) return;
+            _tabSyncStampUserBubble(m.id);
+            break;
+          }
+          case 'chat-edit': {
+            if (_tabSyncCurrentSession() !== sid || hasActiveStream(sid)) return;
+            _tabSyncScheduleReload(sid);
+            break;
+          }
+        }
+      } catch (e) {
+        console.warn('[tab-sync] handler error:', e);
+      }
+    };
+    // Stale-mirror self-heal sweep (5s cadence; no-op when no mirrors exist).
+    if (!_tabSyncSweepTimer) {
+      _tabSyncSweepTimer = setInterval(_tabSyncStaleSweep, 5000);
+    }
+  }
 
   /** Check if an SSE reader is still actively connected for a session. */
   function hasActiveStream(sessionId) {
@@ -1678,6 +2060,7 @@ import { invalidateSettings } from './appConfig.js';
    */
   export function init(apiBase) {
     API_BASE = apiBase;
+    _initTabSync();
     initSlashCommands({ apiBase, isStreaming: () => !!_getForegroundStreamState() });
     // Initialize email inbox
     emailInbox.init(documentModule);
@@ -1689,6 +2072,15 @@ import { invalidateSettings } from './appConfig.js';
       if (ta && mod.initSlashAutocomplete) mod.initSlashAutocomplete(ta);
     }).catch(() => {});
 
+    // The ↑/↓ buttons beside the chatbox recall previous user prompts from
+    // this chat (↑ = older, ↓ = newer). No keyboard shortcuts are bound —
+    // every arrow key (plain, Shift+, Ctrl+, Alt+) keeps its native
+    // caret/selection behavior. The in-progress draft is saved during the
+    // walk and restored when you walk back past the newest prompt.
+    const _wireHistoryRecall = (composer) =>
+      wireHistoryRecall(composer, () => getUserMessagesFromChatHistory(), {
+        autoResize: uiModule?.autoResize,
+      });
     // ArrowUp on the composer recalls previous user prompts from this chat.
     const _wireArrowUpRecall = (composer) =>
       wireArrowUpRecall(composer, () => getUserMessagesFromChatHistory(), {
@@ -1696,10 +2088,10 @@ import { invalidateSettings } from './appConfig.js';
       });
 
     const composer = document.getElementById('message');
-    if (!_wireArrowUpRecall(composer)) {
+    if (!_wireHistoryRecall(composer)) {
       // Init can run before #message exists (templated UI); short retries only.
-      try { requestAnimationFrame(() => _wireArrowUpRecall(document.getElementById('message'))); } catch (_) {}
-      setTimeout(() => _wireArrowUpRecall(document.getElementById('message')), 250);
+      try { requestAnimationFrame(() => _wireHistoryRecall(document.getElementById('message'))); } catch (_) {}
+      setTimeout(() => _wireHistoryRecall(document.getElementById('message')), 250);
     }
   }
 
@@ -1747,6 +2139,7 @@ import { invalidateSettings } from './appConfig.js';
       submitBtn.dataset.phase = 'processing';
       isStreaming = true;
       _setForegroundChatBusy(true);
+      setFaviconBusy(true);
       _startStallWatchdog();
     } else if (state === 'idle') {
       submitBtn.dataset.mode = '';
@@ -1754,6 +2147,7 @@ import { invalidateSettings } from './appConfig.js';
       submitBtn.classList.remove('recording');
       isStreaming = false;
       _setForegroundChatBusy(false);
+      setFaviconBusy(false);
       _stopStallWatchdog();
       // Defer to global updater which handles mic/newchat/send modes
       if (window._updateSendBtnIcon) {
@@ -2215,10 +2609,16 @@ import { invalidateSettings } from './appConfig.js';
         continueBtn.innerHTML = '<span class="resume-btn-label">Resume</span><svg class="resume-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 10 7-10 7z"></path></svg>';
         const _stoppedHolder = _stoppedViewHolder; // capture before globals are cleared
         continueBtn.addEventListener('click', () => {
+          const msgInput = uiModule.el('message');
+          // If a stream is still active the input is disabled — a mid-stream
+          // Continue click would set _pendingContinue and then silently fail to
+          // send (disabled send button), hijacking the NEXT completed turn into
+          // a spurious merge: the fresh turn visibly vanishes into the previous
+          // message and its DB row is deleted. Ignore the click entirely.
+          if (msgInput && msgInput.disabled) return;
           stoppedIndicator.remove();
           _hideUserBubble = true;
           _pendingContinue = _stoppedHolder;
-          const msgInput = uiModule.el('message');
           if (msgInput) {
             msgInput.value = 'Continue from where you left off.';
             const sb = document.querySelector('.send-btn');
@@ -2273,6 +2673,18 @@ import { invalidateSettings } from './appConfig.js';
       if (_earlyMessageInput) _earlyMessageInput.disabled = false;
       if (submitBtn) submitBtn.classList.remove('send-pending');
     };
+
+    // Consume pending-flow flags at entry — BEFORE any early return (setup
+    // mode, slash commands, missing session, API-key confirm cancelled) can
+    // leak them into the next send. The continue / regen / auto-recover /
+    // edit flows set these immediately before submitting, so capturing them
+    // here is equivalent to capturing at their set sites, and an aborted
+    // send leaves the globals clean. (2026-08-08 — Finding A, see changelog.)
+    const skipBubble = _hideUserBubble;                _hideUserBubble = false;
+    const reusePending = _pendingRegenUser;            _pendingRegenUser = false;
+    const pendingContinue = _pendingContinue;          _pendingContinue = null;
+    const pendingVariants = _pendingVariants;          _pendingVariants = null;
+    const pendingVariantLabel = _pendingVariantLabel;  _pendingVariantLabel = null;
 
     // --- Setup mode: intercept next message (but let slash commands through) ---
     if (!approvalForSend) {
@@ -2472,6 +2884,8 @@ import { invalidateSettings } from './appConfig.js';
     _streamRunIds.delete(streamSessionId);
     _streamSessionId = streamSessionId;
     _sendInFlight = false;
+    console.debug('[ODYS-HIJACK] send: current=%s lastSelected=%s inFlight=%s',
+      streamSessionId, String(window.__odysseusLastSelectedSessionId || ''), _streamSessionId);
 
     try {
       const pendingSwitch = window.__odysseusModelSwitchPromise;
@@ -2610,6 +3024,8 @@ import { invalidateSettings } from './appConfig.js';
 
       const userDisplay = _displayOverride || msg;
       _displayOverride = null;
+      // skipBubble was captured (and the global cleared) at send entry — see
+      // the pending-flow flag capture above (2026-08-08, Finding A).
       const skipBubble = _hideUserBubble || !!approvalForSend;
       _hideUserBubble = false;
       // Auto-recovery counter: carries across a turn's auto-continues, but resets
@@ -2646,6 +3062,11 @@ import { invalidateSettings } from './appConfig.js';
         }
         _userMsgEl = addMessage('user', userDisplay, null, _bubbleMeta);
       }
+      // Track the optimistic bubble so the user_message_saved event stamps the
+      // RIGHT element (2026-08-08) — not "the last user bubble", which could
+      // be a different turn if the user deletes mid-stream.
+      _activeUserMsgEl = _userMsgEl;
+      _tabSyncPost('chat-start', { sessionId: streamSessionId, userText: skipBubble ? '' : (userDisplay || '') });
       _sendPerf.mark('user_bubble_visible');
       messageInput.value = approvalForSend ? (approvalForSend.draft || '') : '';
       messageInput.style.height = '';
@@ -2839,6 +3260,14 @@ import { invalidateSettings } from './appConfig.js';
       const fd = new FormData();
       fd.append('message', approvalForSend ? '' : _finalMsgWithInject);
       fd.append('session', streamSessionId);
+      fd.append('reasoning_effort', getReasoningLevel(streamSessionId));
+      if (reusePending) {
+        // Regenerate: the user message row already exists (kept via the
+        // keep_through_id truncate) — the backend reuses it instead of
+        // persisting a new row (2026-08-08, see changelog). The flag was
+        // captured (and the global cleared) at send entry (Finding A).
+        fd.append('reuse_last_user', 'true');
+      }
 
       const selectedNoteIds = _selectedNoteIdsBySession.get(streamSessionId) || [];
       if(selectedNoteIds.length){
@@ -2987,9 +3416,14 @@ import { invalidateSettings } from './appConfig.js';
 	      const _tState = Storage.loadToggleState();
 	      const _isAgent = (_tState.mode || 'chat') === 'agent' || !!_tState.plan_mode || workspaceAgentIntent;
 
-      // Timeout: 6 min for research and agent mode, 3 min otherwise
+      // Timeout: 6 min for research and agent mode, 3 min otherwise.
+      // Rolling idle timeout (desync fix #2): re-armed on ANY reader activity —
+      // content deltas, tool events, and the server's `: heartbeat` SSE comments
+      // alike. A silent-but-alive turn (long prefill, provider hiccup, quiet tool
+      // run) stays alive because heartbeat comments arrive as bytes and reset
+      // this timer; only a stream with NO bytes at all (genuinely dead) trips it.
       const timeoutMs = el('research-toggle').checked || _isAgent ? RESEARCH_TIMEOUT_MS : DEFAULT_TIMEOUT_MS;
-      timeoutId = setTimeout(() => {
+      const _idleTimeoutHandler = () => {
         if (!abortCtrl.signal.aborted) {
           timedOut = true;
           abortCtrl._reason = 'timeout';
@@ -3016,7 +3450,13 @@ import { invalidateSettings } from './appConfig.js';
             }, RUN_ID_ABORT_GRACE_MS);
           }
         }
-      }, timeoutMs);
+      };
+      const _armIdleTimeout = () => {
+        if (responseTimeoutCleared) return;
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(_idleTimeoutHandler, timeoutMs);
+      };
+      _armIdleTimeout();
       clearResponseTimeout = () => {
         if (responseTimeoutCleared) return;
         responseTimeoutCleared = true;
@@ -3673,6 +4113,7 @@ import { invalidateSettings } from './appConfig.js';
       let _liveThinkLatestText = '';
       let _liveThinkTimerId = null;
       let _liveThinkReducedMotion = false;
+      let _liveThinkUserEngaged = false;  // user clicked/focused/scrolled the live box (feeds DONE-path collapse)
 
       function _estimateThinkingTokens(text) {
         const clean = (text || '').trim();
@@ -3961,7 +4402,7 @@ import { invalidateSettings } from './appConfig.js';
         let last = null;
         while ((match = closeRe.exec(text || '')) !== null) last = match;
         if (!last) return '';
-        return (text || '').slice(last.index + last[0].length).trimStart();
+        return markdownModule.restoreThinkTags((text || '').slice(last.index + last[0].length).trimStart());
       }
 
       function _suppressThinkingForPersona() {
@@ -4152,6 +4593,7 @@ import { invalidateSettings } from './appConfig.js';
         const { done, value } = await reader.read();
         _touchStreamActivity(streamSessionId);
         if (done) break;
+        _armIdleTimeout(); // any bytes (incl. heartbeat comments) reset the idle timer
 
         buffer += decoder.decode(value, { stream: true });
         const lines = buffer.split('\n');
@@ -4227,6 +4669,7 @@ import { invalidateSettings } from './appConfig.js';
                 } catch (dotErr) {
                   console.warn('[bg-stream] markStreamComplete error:', dotErr);
                 }
+                _tabSyncPost('chat-done', { sessionId: streamSessionId });
                 // Don't do foreground final render — the checkBackgroundStream poll
                 // will detect 'completed' and reload history cleanly
                 break streamReadLoop;
@@ -4247,8 +4690,8 @@ import { invalidateSettings } from './appConfig.js';
                 _finalizeLiveThinking(_closedThinkingText(roundText), false);
                 var _elapsedDone = thinkingStartTime ? ((Date.now() - thinkingStartTime) / 1000).toFixed(1) : null;
                 if (_elapsedDone) {
-                  accumulated = accumulated.replace(/<think>/i, '<think time="' + _elapsedDone + '">');
-                  roundText = roundText.replace(/<think>/i, '<think time="' + _elapsedDone + '">');
+                  accumulated = accumulated.replace(/<think(?:\s+[^>]*)?>/i, '<think time="' + _elapsedDone + '">');
+                  roundText = roundText.replace(/<think(?:\s+[^>]*)?>/i, '<think time="' + _elapsedDone + '">');
                 }
                 if (_liveThinkHeader) _liveThinkHeader.textContent = 'View thinking process';
                 _removeLiveThinkingSpinner();
@@ -4408,16 +4851,22 @@ import { invalidateSettings } from './appConfig.js';
                 // VLLM reasoning tokens: wrap in <think> tags for the thinking UI.
                 // Stateful open/close (not a whole-message substring check) so each round
                 // of a multi-round agent response gets its own <think>…</think> — otherwise
-	                // only round 1 is wrapped and rounds 2+ reasoning leaks into the answer.
-	                let _delta = json.delta;
-	                if (json.thinking && _suppressThinkingForPersona()) {
-	                  continue;
-	                }
-	                if (json.thinking) {
-	                  if (!_thinkOpen) { _delta = '<think>' + _delta; _thinkOpen = true; }
-	                } else if (_thinkOpen) {
+                // only round 1 is wrapped and rounds 2+ reasoning leaks into the answer.
+                let _delta = json.delta;
+                if (json.thinking) {
+                  // Reasoning content is genuine thinking — but the MODEL's own
+                  // reasoning can quote a think tag (e.g. while reasoning ABOUT
+                  // think tags). A literal close tag inside reasoning would end
+                  // the block early and leak the rest of the thought into the
+                  // reply. Neutralize literal tags inside the reasoning text
+                  // BEFORE wrapping — the wrapper's own tags (marked real="1")
+                  // are the ONLY boundary, so the content neutralizer can tell
+                  // genuine thinking from quoted tags in the reply.
+                  _delta = markdownModule.neutralizeStrayThinkTags(_delta, true);
+                  if (!_thinkOpen) { _delta = '<think real="1">' + _delta; _thinkOpen = true; }
+                } else if (_thinkOpen) {
                   _delta = '</think>' + _delta; _thinkOpen = false;
-	                }
+                }
 	                const wasEmpty = !accumulated;
 		                accumulated += _delta;
 		                if (!_isBg) currentAccumulated = accumulated; // Foreground stop-state text
@@ -4430,6 +4879,9 @@ import { invalidateSettings } from './appConfig.js';
                 if (_isBg) {
                   var bgEntry = _backgroundStreams.get(streamSessionId);
 	                  if (bgEntry) bgEntry.accumulated = accumulated;
+	                  // Tab sync: bg runs still mirror live (accumulated keeps
+	                  // growing even though this tab isn't rendering it).
+	                  _tabSyncPostDelta(streamSessionId, accumulated);
 	                  continue; // Skip all DOM writes
 	                }
 	                _ensureVisibleRoundForDelta();
@@ -4470,7 +4922,17 @@ import { invalidateSettings } from './appConfig.js';
                   continue;
                 }
                 const normalizedRoundText = markdownModule.normalizeThinkingMarkup(roundText);
-                let hasUnclosedThink = markdownModule.hasUnclosedThinkTag(normalizedRoundText);
+                // Genuine thinking-in-progress is ONLY:
+                //  a) the UI wrapper's own state (json.thinking deltas → _thinkOpen), or
+                //  b) a <think> opener at the very START of the stream that hasn't
+                //     been closed yet (backend auto-detected / repaired content tags).
+                // Everything else is content. Scanning the WHOLE accumulated text for
+                // unclosed tags made quoted tags mid-reply (stress-test case 4/6 — a
+                // line-start <think> inside the answer) open a second thinking box
+                // that swallowed the response. The reply can never flip this gate.
+                let hasUnclosedThink = _thinkOpen
+                  || (/^<(?:think(?:ing)?|thought)(?:\s+[^>]*)?>/i.test(normalizedRoundText)
+                      && !/^<(?:think(?:ing)?|thought)(?:\s+[^>]*)?>[\s\S]*?<\/(?:think(?:ing)?|thought)>/i.test(normalizedRoundText));
                 // Detect non-tag thinking patterns: "Thinking:", "Thinking Process:", Gemma-style reasoning
                 // These patterns don't use <think> tags, so we simulate unclosed thinking during streaming
                 const _replyPrefixes = ['Hey', 'Hi ', 'Hi!', 'Hello', 'Sure', 'Yes', 'No ', 'No,', 'Yo', 'OK', 'Here', 'Absolutely', 'Of course', 'Great', 'Alright', 'Thanks', 'Welcome', 'Good ', "I'm happy", "I'd be"];
@@ -4562,6 +5024,20 @@ import { invalidateSettings } from './appConfig.js';
                   _liveThinkLatestText = '';
                   _cancelLiveThinkingWork();
                   _queueLiveThinking(roundText);
+                  _liveThinkUserEngaged = false;
+                  // Any click/focus on the live box marks user engagement —
+                  // only then does completion preserve it open (default-open
+                  // boxes otherwise persist their hash and stay open forever).
+                  _liveThinkSection.addEventListener('click', function () { _liveThinkUserEngaged = true; }, true);
+                  _liveThinkSection.addEventListener('focusin', function () { _liveThinkUserEngaged = true; }, true);
+                  // Think-box scroll intent: a real user scroll AWAY from the
+                  // bottom counts as engagement (our own auto-pins are ignored
+                  // — they fire scroll events too and would poison the flag).
+                  _liveThinkContent.addEventListener('scroll', function () {
+                    var _atBottom = (_liveThinkContent.scrollHeight - _liveThinkContent.clientHeight - _liveThinkContent.scrollTop) < 40;
+                    if (_atBottom) return;
+                    _liveThinkUserEngaged = true;
+                  }, { passive: true });
                   // Whirlpool spinner
                   if (_liveThinkSpinnerSlot) {
                     _liveThinkSpinner = spinnerModule.createWhirlpool(12);
@@ -5014,6 +5490,34 @@ import { invalidateSettings } from './appConfig.js';
                 if (json.id) _savedAssistantMessageId = String(json.id);
                 if (holder && json.id) holder.dataset.dbId = json.id;
 
+              } else if (json.type === 'draft_saved') {
+                // First progressive checkpoint of the in-flight reply — stamp
+                // the bubble NOW so deletes/regenerate mid-stream target a
+                // real row id (2026-08-08 draft-checkpoint audit). The final
+                // message_saved event re-stamps the same id after promotion,
+                // so this is an early id, not a different one.
+                if (_isBg) continue;
+                if (holder && json.id) holder.dataset.dbId = json.id;
+
+              } else if (json.type === 'user_message_saved') {
+                // Stamp the persisted user-message id onto the optimistic user
+                // bubble so delete/regenerate can target it by exact id
+                // (2026-08-08 — the user bubble renders before persistence and
+                // previously never carried its row id).
+                if (_isBg) continue;
+                if (json.id) {
+                  let _stampEl = _activeUserMsgEl;
+                  if (!_stampEl || !_stampEl.parentNode) {
+                    // Bubble gone (deleted mid-stream) — fall back to the last
+                    // user bubble in the DOM.
+                    const _ubox = document.getElementById('chat-history');
+                    const _uEls = _ubox ? _ubox.querySelectorAll('.msg-user') : [];
+                    _stampEl = _uEls[_uEls.length - 1] || null;
+                  }
+                  if (_stampEl && !_stampEl.dataset.dbId) _stampEl.dataset.dbId = json.id;
+                  _tabSyncPost('chat-user-saved', { sessionId: streamSessionId, id: json.id });
+                }
+
               } else if (json.type === 'tool_start') {
                 _editorProgress = null;
                 // A tool call is the model's first completed output for this
@@ -5419,6 +5923,19 @@ import { invalidateSettings } from './appConfig.js';
                 }
                 // --- New round: create fresh AI bubble with spinner ---
                 currentToolBubble = null;
+                if (isThinking) {
+                  // Reasoning-only round rolled straight into the next one —
+                  // close the box + wrapper so each round gets its own
+                  // <think>…</think> (per the multi-round design) and the old
+                  // reasoning never finalizes as plain text.
+                  isThinking = false;
+                  _flushLiveThink(true);
+                  if (_liveThinkHeader) _liveThinkHeader.textContent = 'View thinking process';
+                  if (_liveThinkSpinnerSlot) _liveThinkSpinnerSlot.remove();
+                  accumulated += '</think>';
+                  roundText += '</think>';
+                  _thinkOpen = false;
+                }
                 roundFinalized = false;
                 terminalFinalResponseRendered = false;
                 roundFinalization = null;
@@ -5683,61 +6200,92 @@ import { invalidateSettings } from './appConfig.js';
 	              + (_findingsData ? chatRenderer.buildFindingsBox(_findingsData) : '');
 	          } else {
 
-	            // If thinking was collapsed in-place during streaming, preserve it
-	            var _liveReplyEl = _body4 && _body4.querySelector('.live-reply-content');
-	            var _extracted = _liveReplyEl ? markdownModule.extractThinkingBlocks(finalDisplay) : null;
-	            var _finalReply = '';
-	            if (_liveReplyEl) {
-	              // Try standard extraction first (for native <think> tags)
-	              if (_extracted?.thinkingBlocks?.length) {
-	                _finalReply = (_extracted.content || '').trim();
-	              } else {
-	                // Non-tag thinking: extract reply from raw text
-	                // Handle garbled thinking tag: "Thinking: reasoning\n<think>reply"
-	                const _garbledMatch = finalDisplay.match(/^[\s\S]+?<(?:think(?:ing)?|thought)(?:\s+[^>]*)?>\s*([\s\S]*?)(?:<\/(?:think(?:ing)?|thought)>)?\s*$/i);
-	                if (_garbledMatch && _garbledMatch[1].trim()) {
-	                  _finalReply = _garbledMatch[1].trim();
-	                } else {
-	                  // Pure non-tag: find reply boundary by prefix patterns
-	                  const _rs2 = ['Hey', 'Hi ', 'Hi!', 'Hello', 'Sure', 'Yes', 'No ', 'No,', 'Yo', 'OK', 'Here', 'Absolutely', 'Of course', 'Great', 'Alright', 'Thanks', 'Welcome', 'Good ', "I'm happy", "I'd be"];
-	                  const _fr = (finalDisplay || '').trimStart();
-	                  if (markdownModule.startsWithReasoningPrefix(_fr)) {
-	                    const _fLines = _fr.split('\n');
-	                    for (let _fi = 1; _fi < _fLines.length; _fi++) {
-	                      const _fl = _fLines[_fi].trim();
-	                      if (!_fl) continue;
-	                      if (_rs2.some(rp => _fl.startsWith(rp))) { _finalReply = _fLines.slice(_fi).join('\n'); break; }
-	                    }
-	                    // Within-line check
-	                    if (!_finalReply) {
-	                      for (const rp of _rs2) {
-	                        const rx = new RegExp('[.!?]\\s*(' + rp.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')');
-	                        const m = rx.exec(_fr);
-	                        if (m && m.index > 20) { _finalReply = _fr.slice(m.index + 1).trim(); break; }
-	                      }
-	                    }
-	                  }
-	                }
-	              }
-	            }
-	            if (_liveReplyEl && _finalReply) {
-	              // Render reply into the live-reply container (thinking bar already showing)
-	              var _replyHtml = markdownModule.mdToHtml(markdownModule.squashOutsideCode(_finalReply));
-	              _liveReplyEl.innerHTML = _replyHtml;
-	              _liveReplyEl.classList.remove('live-reply-content');
-	              if (_sourcesData) {
-	                var _srcEl = document.createElement('div');
-	                _srcEl.innerHTML = _buildSourcesBox(_sourcesData, _sourcesType, _wasExpanded);
-	                _body4.insertBefore(_srcEl.firstChild || _srcEl, _body4.firstChild);
-	              }
-	              if (_findingsData) _body4.insertAdjacentHTML('beforeend', chatRenderer.buildFindingsBox(_findingsData));
-	            } else {
-	              // Full re-render (reply empty or no live-reply container)
-	              _body4.innerHTML = (_sourcesData ? _buildSourcesBox(_sourcesData, _sourcesType, _wasExpanded) : '')
-	                + markdownModule.processWithThinking(markdownModule.squashOutsideCode(finalDisplay))
-	                + (_findingsData ? chatRenderer.buildFindingsBox(_findingsData) : '');
-	            }
-	          }
+          // If thinking was collapsed in-place during streaming, preserve it
+          var _liveReplyEl = _body4 && _body4.querySelector('.live-reply-content');
+          var _extracted = _liveReplyEl ? markdownModule.extractThinkingBlocks(finalDisplay) : null;
+          var _finalReply = '';
+          if (_liveReplyEl) {
+            // Try standard extraction first (for native <think> tags)
+            if (_extracted?.thinkingBlocks?.length) {
+              _finalReply = (_extracted.content || '').trim();
+            } else {
+              // Non-tag thinking: extract reply from raw text
+              // Handle garbled thinking tag: "Thinking: reasoning\n<think>reply"
+              const _garbledMatch = finalDisplay.match(/^[\s\S]+?<(?:think(?:ing)?|thought)(?:\s+[^>]*)?>\s*([\s\S]*?)(?:<\/(?:think(?:ing)?|thought)>)?\s*$/i);
+              if (_garbledMatch && _garbledMatch[1].trim()) {
+                _finalReply = _garbledMatch[1].trim();
+              } else {
+                // Pure non-tag: find reply boundary by prefix patterns
+                const _rs2 = ['Hey', 'Hi ', 'Hi!', 'Hello', 'Sure', 'Yes', 'No ', 'No,', 'Yo', 'OK', 'Here', 'Absolutely', 'Of course', 'Great', 'Alright', 'Thanks', 'Welcome', 'Good ', "I'm happy", "I'd be"];
+                const _fr = (finalDisplay || '').trimStart();
+                if (markdownModule.startsWithReasoningPrefix(_fr)) {
+                  const _fLines = _fr.split('\n');
+                  for (let _fi = 1; _fi < _fLines.length; _fi++) {
+                    const _fl = _fLines[_fi].trim();
+                    if (!_fl) continue;
+                    if (_rs2.some(rp => _fl.startsWith(rp))) { _finalReply = _fLines.slice(_fi).join('\n'); break; }
+                  }
+                  // Within-line check
+                  if (!_finalReply) {
+                    for (const rp of _rs2) {
+                      const rx = new RegExp('[.!?]\\s*(' + rp.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')');
+                      const m = rx.exec(_fr);
+                      if (m && m.index > 20) { _finalReply = _fr.slice(m.index + 1).trim(); break; }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          if (_liveReplyEl && _finalReply) {
+            // Render reply into the live-reply container (thinking bar already showing)
+            var _replyHtml = markdownModule.mdToHtml(markdownModule.squashOutsideCode(_finalReply));
+            _liveReplyEl.innerHTML = _replyHtml;
+            _liveReplyEl.classList.remove('live-reply-content');
+            if (_sourcesData) {
+              var _srcEl = document.createElement('div');
+              _srcEl.innerHTML = _buildSourcesBox(_sourcesData, _sourcesType, _wasExpanded);
+              _body4.insertBefore(_srcEl.firstChild || _srcEl, _body4.firstChild);
+            }
+            if (_findingsData) _body4.insertAdjacentHTML('beforeend', chatRenderer.buildFindingsBox(_findingsData));
+          } else {
+            // Full re-render (reply empty or no live-reply container).
+            // If the user had the live think box open when the round
+            // completed, keep it open: re-expand the freshly rendered static
+            // section and persist its hash so reloads honor it too.
+            // Only preserve-open if the user actually clicked/focused the live
+            // box — default-open boxes must not persist their hash (that left
+            // every block open forever).
+            var _wasLiveThinkOpen = !!(_liveThinkUserEngaged && _liveThinkContent && _liveThinkContent.classList.contains('expanded'));
+            var _liveThinkText = _liveThinkContent ? (_liveThinkContent.textContent || '').trim() : '';
+            _body4.innerHTML = (_sourcesData ? _buildSourcesBox(_sourcesData, _sourcesType, _wasExpanded) : '')
+              + markdownModule.processWithThinking(markdownModule.squashOutsideCode(finalDisplay))
+              + (_findingsData ? chatRenderer.buildFindingsBox(_findingsData) : '');
+            if (_wasLiveThinkOpen && _liveThinkText) {
+              var _secs = _body4.querySelectorAll('.thinking-section');
+              var _target = null;
+              for (var _i = 0; _i < _secs.length; _i++) {
+                var _c = _secs[_i].querySelector('.thinking-content');
+                if (_c && (_c.textContent || '').trim() === _liveThinkText) { _target = _secs[_i]; break; }
+              }
+              if (!_target && _secs.length === 1) _target = _secs[0];
+              if (_target) {
+                var _content = _target.querySelector('.thinking-content');
+                var _toggle = _target.querySelector('.thinking-toggle');
+                var _header = _target.querySelector('.thinking-header[data-thinking-id]');
+                if (_content) {
+                  markdownModule.setThinkingExpanded(_content, _toggle, _header, true);
+                  var _h = markdownModule.hashThinkingContent(_content);
+                  if (_h) {
+                    var _set = markdownModule.loadExpandedSet();
+                    _set.add(_h);
+                    markdownModule.saveExpandedSet(_set);
+                  }
+                }
+              }
+            }
+          }
+          }
         } else if (_sourcesHtml) {
           var _body4b = roundHolder.querySelector('.body');
           var _wasExpanded2 = _sourcesExpanded || !!(_body4b && _body4b.querySelector('.sources-content.expanded'));
@@ -5847,13 +6395,13 @@ import { invalidateSettings } from './appConfig.js';
         if (metrics) {
           displayMetrics(_metricsTargetForTurn() || footerTarget, metrics);
         }
-        // Attach variant navigation if this was a regeneration
-        _attachVariantNav(footerTarget);
+        // Attach variant navigation if this was a regeneration (variants were
+        // captured at send entry — the globals are cleared there, Finding A)
+        _attachVariantNav(footerTarget, pendingVariants, pendingVariantLabel);
 
         // Merge with previous stopped message if this was a continue
-        if (_pendingContinue) {
-          const prevEl = _pendingContinue;
-          _pendingContinue = null;
+        if (pendingContinue) {
+          const prevEl = pendingContinue;
           const prevBody = prevEl.querySelector('.body');
           const newBody = footerTarget.querySelector('.body');
           if (prevBody && newBody && prevEl.parentNode) {
@@ -5904,6 +6452,7 @@ import { invalidateSettings } from './appConfig.js';
             _streamTurnMarker.remove();
           }
         }
+        _tabSyncPost('chat-done', { sessionId: streamSessionId, messageId: (holder && holder.dataset.dbId) || null });
       } // end if (!_isBgFinal)
 
     } catch (err) {
@@ -6003,6 +6552,14 @@ import { invalidateSettings } from './appConfig.js';
               _catchViewHolder.querySelector('.body').appendChild(timeoutNote);
             }
             if (currentAbort === abortCtrl) currentAbort = null;
+            // Desync fix #2: converge to server truth after a non-user abort — the
+            // detached run may still be generating (resume it live) or may already
+            // have finished and saved (reload from DB). No more refresh surprises.
+            // Tab sync: tell mirror tabs the run detached so they can take over.
+            setTimeout(() => {
+              _tabSyncPost('chat-takeover', { sessionId: streamSessionId });
+              _convergeAfterAbort(streamSessionId, holder);
+            }, 500);
             return;
           }
 
@@ -6019,6 +6576,10 @@ import { invalidateSettings } from './appConfig.js';
               _catchViewHolder.querySelector('.body').appendChild(offlineNote);
             }
             if (currentAbort === abortCtrl) currentAbort = null;
+            setTimeout(() => {
+              _tabSyncPost('chat-takeover', { sessionId: streamSessionId });
+              _convergeAfterAbort(streamSessionId, holder);
+            }, 500);
             return;
           }
 
@@ -6035,6 +6596,10 @@ import { invalidateSettings } from './appConfig.js';
               _catchViewHolder.querySelector('.body').appendChild(recoveryNote);
             }
             if (currentAbort === abortCtrl) currentAbort = null;
+            setTimeout(() => {
+              _tabSyncPost('chat-takeover', { sessionId: streamSessionId });
+              _convergeAfterAbort(streamSessionId, holder);
+            }, 500);
             return;
           }
 
@@ -6050,6 +6615,10 @@ import { invalidateSettings } from './appConfig.js';
               _catchViewHolder.querySelector('.body').appendChild(staleNote);
             }
             if (currentAbort === abortCtrl) currentAbort = null;
+            setTimeout(() => {
+              _tabSyncPost('chat-takeover', { sessionId: streamSessionId });
+              _convergeAfterAbort(streamSessionId, holder);
+            }, 500);
             return;
           }
 
@@ -6098,6 +6667,9 @@ import { invalidateSettings } from './appConfig.js';
 
             uiModule.scrollHistory();
           }
+
+          // Tab sync: the stopped/partial state is persisted — mirror tabs reload.
+          _tabSyncPost('chat-done', { sessionId: streamSessionId, messageId: (holder && holder.dataset.dbId) || null });
 
           // Now clear the abort controller
           if (currentAbort === abortCtrl) currentAbort = null;
@@ -6159,8 +6731,17 @@ import { invalidateSettings } from './appConfig.js';
               if (err.message && (err.message.includes('tool') || err.message.includes('auto'))) {
                 errMsg += '\n\nThis model may not support tools — try switching to Chat mode.';
               }
-              typewriterInto(errorHolder, errMsg);
+            } else {
+              const errorHolder = document.querySelector('.msg-ai:last-of-type .body');
+              if (errorHolder) typewriterInto(errorHolder, errMsg);
             }
+            // Errored blocks previously carried no action footer, so the
+            // Continue button was unreachable exactly when it's most wanted.
+            // Attach one now — same actions as any other assistant message.
+            if (holder && !holder.querySelector('.msg-footer')) {
+              holder.appendChild(createMsgFooter(holder));
+            }
+            uiModule.scrollHistory();
           }
         }
       }
@@ -6456,6 +7037,9 @@ import { invalidateSettings } from './appConfig.js';
       }
       _activeStreams.delete(sid);
       _syncForegroundStreamGlobals();
+      // Mirror tabs may still hold a frozen mirror for this session — nudge
+      // them to reload the canonical saved state now that the run is dead.
+      _tabSyncPost('chat-done', { sessionId: sid });
       _sendInFlight = false;
       if (_webLockRelease) {
         _webLockRelease();
@@ -6471,6 +7055,51 @@ import { invalidateSettings } from './appConfig.js';
     } finally {
       _staleStreamProbeInFlight = false;
     }
+  }
+
+  /**
+   * Post-abort convergence (desync fix #2): after a NON-user abort (timeout,
+   * recovery, stale-local, offline), the server-side detached run may still be
+   * alive — or may already have finished and saved the final message. Instead of
+   * leaving a frozen partial + note (which only syncs up on manual refresh),
+   * converge the view to the server's truth:
+   *   - run still active  -> resumeStream() re-attaches and finishes it live;
+   *   - run done/dead     -> quietly reload the session so the saved record
+   *                          (full or partial) replaces the stale bubble.
+   * No-op if the user has navigated away or another reader is already attached.
+   */
+  async function _convergeAfterAbort(sessionId, staleHolder) {
+    try {
+      if (!sessionId) return;
+      const cur = sessionModule && sessionModule.getCurrentSessionId && sessionModule.getCurrentSessionId();
+      if (cur !== sessionId) return; // user navigated away — nothing to converge here
+      if (hasActiveStream(sessionId)) return; // another reader attached meanwhile
+    } catch (_) { return; }
+
+    let activeRun = false;
+    try {
+      const res = await fetch(`${API_BASE}/api/chat/stream_status/${encodeURIComponent(sessionId)}`, {
+        credentials: 'same-origin',
+        cache: 'no-store',
+      });
+      activeRun = res.ok; // 200 = active run, 404 = none
+    } catch (_) {
+      return; // can't reach the server (offline) — leave the note in place
+    }
+
+    if (activeRun) {
+      // The run survived the abort — drop the frozen partial and re-attach live.
+      if (staleHolder && staleHolder.remove) { try { staleHolder.remove(); } catch (_) {} }
+      const attached = await resumeStream(sessionId);
+      if (attached) return;
+      // Run finished between the probe and the resume — fall through to reload.
+    }
+    // Run is done/dead server-side — quietly re-render from the saved record.
+    try {
+      if (sessionModule && sessionModule.selectSession) {
+        await sessionModule.selectSession(sessionId, { keepSidebar: true, showLoading: false });
+      }
+    } catch (_) {}
   }
 
   function _startStallWatchdog() {
@@ -6601,13 +7230,44 @@ import { invalidateSettings } from './appConfig.js';
    * reloaded from the DB so its full render stays faithful. Returns true if it
    * attached, false to let the caller fall back to spinner+poll.
    */
+  // Tool label/icon maps for agent-thread cards — shared by the live send
+  // path and the resume path (hoisted from the send handler 2026-10-12).
+  const _searchIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:-2px;margin-right:4px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+  const _toolLabels = {
+    'web_search': 'Searching',
+    'bash': 'Running',
+    'python': 'Running',
+    'read_document': 'Reading',
+    'edit_file': 'Editing',
+    'read_file': 'Reading',
+    'write_file': 'Writing',
+    'create_document': 'Writing',
+    'edit_document': 'Editing',
+    'update_document': 'Rewriting',
+    'suggest_document': 'Reviewing',
+    'list_files': 'Browsing',
+    'image_gen': 'Generating',
+    'generate_image': 'Generating',
+    'manage_memory': 'Remembering',
+    'save_memory': 'Remembering',
+    'search_memory': 'Recalling',
+    'manage_session': 'Organizing',
+    'deep_research': 'Researching',
+    'list_models': 'Browsing',
+    'ui_control': 'Adjusting',
+  };
+  const _toolIcons = {
+    'web_search': _searchIcon,
+  };
+
   export async function resumeStream(sessionId, replaceHolder = null) {
     if (!sessionId) return false;
     if (hasActiveStream(sessionId)) return false;
 
+    const abortCtrl = new AbortController();
     let res;
     try {
-      res = await fetch(`${API_BASE}/api/chat/resume/${sessionId}`);
+      res = await fetch(`${API_BASE}/api/chat/resume/${sessionId}`, { signal: abortCtrl.signal });
     } catch (e) {
       return false;
     }
@@ -6652,6 +7312,24 @@ import { invalidateSettings } from './appConfig.js';
     spinner.start();
     uiModule.scrollHistory();
 
+    // Arm the foreground stream state + stop button for the re-attached run
+    // (2026-10-12: the resume path never registered in _activeStreams, so
+    // isStreaming stayed false, the send button never flipped to stop mode,
+    // and a turn re-opened mid-stream was unstoppable without killing the
+    // server).
+    const _resumeSubmitBtn = document.querySelector('.send-btn');
+    _activeStreams.set(sessionId, {
+      abortCtrl,
+      holder,
+      query: '',
+      startedAt: Date.now(),
+      lastActivity: Date.now(),
+    });
+    if (_resumeSubmitBtn && sessionModule.getCurrentSessionId &&
+        sessionModule.getCurrentSessionId() === sessionId) {
+      updateSubmitButton('streaming', _resumeSubmitBtn);
+    }
+
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
     let buffer = '';
@@ -6670,6 +7348,12 @@ import { invalidateSettings } from './appConfig.js';
     // full canonical render, which is rebuilt from the saved DB record on reload.
     // Plain text replies can be finalized in place without a reload.
     let rich = false;
+    let _thinkOpen = false;          // stateful <think> wrapper across reasoning deltas
+    let _renderQueued = false;       // coalesced-render pending flag
+    let _resumeClosed = false;       // set by cleanup — kills queued renders
+    let _lastTabSyncPost = 0;        // tab-sync mirror throttle (ms)
+    let _toolThread = null;          // live tool card container (resume)
+    let _toolNode = null;            // live tool card node (resume)
 
     const cleanup = () => {
       replayRendering.settle();
@@ -6819,6 +7503,7 @@ import { invalidateSettings } from './appConfig.js';
             if (json.thinking) replayThinking += json.delta;
             else
             roundText += json.delta;
+            _tabSyncPostDelta(sessionId, roundText);
             if (!docFenceOpened && (roundText.includes('```create_document\n') || roundText.includes('```document\n') || roundText.includes('```documen\n'))) {
               docFenceOpened = true;
               rich = true;
@@ -6993,6 +7678,7 @@ import { invalidateSettings } from './appConfig.js';
     replayRendering.settle();
     replayMarker.remove();
     uiModule.restoreHistoryScroll?.(scrollSnapshot);
+    _tabSyncPost('chat-done', { sessionId, messageId: null });
     return true;
   }
 
@@ -7070,10 +7756,183 @@ import { invalidateSettings } from './appConfig.js';
     obs.observe(document.body, { childList: true, subtree: true });
   })();
 
+  // ── Chat-box thinking control (per-session reasoning_effort override) ──
+  // Level is stored per session in localStorage; 'default' means "use the
+  // global thinking_enabled setting from the Settings panel" and is sent as
+  // 'default', which the backend normalizes to no-override.
+  const REASONING_LEVELS = ['default', 'off', 'low', 'medium', 'high', 'xhigh', 'max'];
+  const REASONING_LABELS = { default: 'Default', off: 'Off', low: 'Low', medium: 'Medium', high: 'High', xhigh: 'XHigh', max: 'Max' };
+  const REASONING_LEVEL_ORDER = ['low', 'medium', 'high', 'xhigh', 'max'];
+  function _reasoningKey(sid) { return 'odysseus:reasoning:' + (sid || '__none__'); }
+  function getReasoningLevel(sid) {
+    try {
+      const v = localStorage.getItem(_reasoningKey(sid));
+      return REASONING_LEVELS.includes(v) ? v : 'default';
+    } catch (_) { return 'default'; }
+  }
+  function setReasoningLevel(sid, level) {
+    try {
+      if (level === 'default') localStorage.removeItem(_reasoningKey(sid));
+      else localStorage.setItem(_reasoningKey(sid), level);
+    } catch (_) {}
+    updateThinkingUI(sid);
+  }
+  function updateThinkingUI(sid) {
+    const lvl = getReasoningLevel(sid);
+    const lbl = document.getElementById('thinking-label');
+    if (lbl) lbl.textContent = REASONING_LABELS[lvl] || 'Default';
+    const btn = document.getElementById('thinking-btn');
+    if (btn) {
+      const custom = lvl !== 'default';
+      btn.classList.toggle('active', custom);
+      btn.setAttribute('aria-pressed', custom ? 'true' : 'false');
+      btn.title = 'Thinking: ' + (custom ? lvl : 'default (global setting in Settings panel)');
+    }
+    document.querySelectorAll('#thinking-menu .thinking-menu-item').forEach((it) => {
+      it.classList.toggle('active', it.getAttribute('data-level') === lvl);
+    });
+  }
+  window.updateThinkingUI = updateThinkingUI;
+
+  // ── Dynamic per-model menu ──
+  // Ask the backend which levels the CURRENT model accepts and which value
+  // turns thinking off (NIM is model-specific: nemotron off="none", glm
+  // off="low", minimax/mistral off="low" best-effort), then rebuild the menu
+  // so it only offers levels the model actually supports.
+  let _thinkingRefreshTimer = null;
+  function refreshThinkingControl() {
+    if (_thinkingRefreshTimer) clearTimeout(_thinkingRefreshTimer);
+    _thinkingRefreshTimer = setTimeout(_refreshThinkingControlNow, 250);
+  }
+  async function _refreshThinkingControlNow() {
+    const menu = document.getElementById('thinking-menu');
+    if (!menu) return;
+    const model = sessionModule && sessionModule.getCurrentModel ? (sessionModule.getCurrentModel() || '') : '';
+    const url = sessionModule && sessionModule.getCurrentEndpointUrl ? (sessionModule.getCurrentEndpointUrl() || '') : '';
+    let levels = ['low', 'medium', 'high', 'max'];  // fallback = static set
+    try {
+      const r = await fetch('/api/chat/reasoning-control?model=' + encodeURIComponent(model) + '&url=' + encodeURIComponent(url));
+      if (r.ok) {
+        const d = await r.json();
+        if (Array.isArray(d.levels) && d.levels.length) levels = d.levels;
+      }
+    } catch (_) {}
+    menu.innerHTML = '';
+    const mk = (level, label, sub) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'thinking-menu-item';
+      b.setAttribute('data-level', level);
+      b.setAttribute('role', 'menuitem');
+      b.innerHTML = sub
+        ? '<span>' + label + '</span><span class="thinking-menu-sub">' + sub + '</span>'
+        : '<span>' + label + '</span>';
+      menu.appendChild(b);
+    };
+    mk('default', 'Default', 'global setting');
+    mk('off', 'Off');
+    for (const lvl of levels) mk(lvl, lvl[0].toUpperCase() + lvl.slice(1));
+    // Clamp a stored level the current model doesn't support (same order
+    // logic as the backend) so the label never lies about what gets sent.
+    const sid = sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : '';
+    const cur = getReasoningLevel(sid);
+    if (cur !== 'default' && cur !== 'off' && !levels.includes(cur)) {
+      const i = REASONING_LEVEL_ORDER.indexOf(cur);
+      let clamped = levels[0];
+      for (let j = i; j >= 0; j--) {
+        if (levels.includes(REASONING_LEVEL_ORDER[j])) { clamped = REASONING_LEVEL_ORDER[j]; break; }
+      }
+      setReasoningLevel(sid, clamped);
+    } else {
+      updateThinkingUI(sid);
+    }
+  }
+  window.refreshThinkingControl = refreshThinkingControl;
+
+  function initThinkingControl() {
+    const btn = document.getElementById('thinking-btn');
+    const menu = document.getElementById('thinking-menu');
+    const wrap = document.getElementById('thinking-wrap');
+    if (!btn || !menu || !wrap) return;
+    if (window.__odysseus_thinking_bound) return;
+    window.__odysseus_thinking_bound = true;
+
+    // `.chat-input-left` is overflow:hidden and `.chat-input-bar` has
+    // container-type:inline-size, so an in-place absolute/fixed menu gets
+    // clipped to a sliver (the "line with shading" bug). Portal the menu to
+    // <body> while open — same trick as the overflow "+" menu in app.js —
+    // and pin it viewport-relative above the button.
+    function _position() {
+      const r = btn.getBoundingClientRect();
+      menu.style.left = Math.max(8, r.left) + 'px';
+      const h = menu.offsetHeight || 200;
+      menu.style.top = Math.max(8, r.top - h - 8) + 'px';
+    }
+    function _open() {
+      if (menu.parentElement !== document.body) document.body.appendChild(menu);
+      menu.classList.remove('hidden');
+      _position();
+    }
+    function _close() {
+      menu.classList.add('hidden');
+      if (menu.parentElement === document.body) wrap.appendChild(menu);
+      menu.style.left = '';
+      menu.style.top = '';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (menu.classList.contains('hidden')) _open(); else _close();
+    });
+    menu.addEventListener('click', (e) => {
+      const item = e.target.closest('.thinking-menu-item');
+      if (!item) return;
+      e.stopPropagation();
+      const sid = sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : '';
+      setReasoningLevel(sid, item.getAttribute('data-level') || 'default');
+      _close();
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#thinking-wrap') && !e.target.closest('#thinking-menu')) _close();
+    });
+    window.addEventListener('resize', () => { if (!menu.classList.contains('hidden')) _position(); });
+    document.addEventListener('scroll', () => { if (!menu.classList.contains('hidden')) _position(); }, true);
+    updateThinkingUI(sessionModule && sessionModule.getCurrentSessionId ? sessionModule.getCurrentSessionId() : '');
+    refreshThinkingControl();
+  }
+
   /**
    * Initialize event listeners
    */
   export function initListeners() {
+    initThinkingControl();
+    // Watchdog: log any message bubble that leaves #chat-history outside the
+    // known flows (truncate/regenerate/delete all remove bubbles deliberately,
+    // right after their server-side counterpart). A spontaneous removal here
+    // is the "vanishing pairs" bug — catch it live with the element's identity
+    // instead of it disappearing silently (2026-08-07 pair-loss incident).
+    if (window.MutationObserver && !window.__msgRemovalWatchdog) {
+      window.__msgRemovalWatchdog = new MutationObserver((muts) => {
+        for (const m of muts) {
+          for (const n of m.removedNodes) {
+            if (n.nodeType === 1 && n.classList && n.classList.contains('msg')) {
+              console.warn(
+                '[msg-removal] bubble removed from chat DOM:',
+                n.className,
+                'dbId=' + (n.dataset.dbId || 'unstamped'),
+                (n.textContent || '').slice(0, 100).replace(/\s+/g, ' ')
+              );
+            }
+          }
+        }
+      });
+      const _observeChatHistory = () => {
+        const _hist = document.getElementById('chat-history');
+        if (_hist) window.__msgRemovalWatchdog.observe(_hist, { childList: true });
+        else setTimeout(_observeChatHistory, 500);
+      };
+      _observeChatHistory();
+    }
+
     // Global event delegation for copy-code buttons
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.copy-code');
@@ -7316,6 +8175,17 @@ import { invalidateSettings } from './appConfig.js';
       const sessionId = sessionModule.getCurrentSessionId();
       if (!sessionId) return;
 
+      // [SIR] If a stream is active the input is disabled and the submit
+      // below would silently no-op — the truncate would fire, wipe the tail,
+      // and nothing would replace it (the pair-loss bug). Abort loudly
+      // instead of prompting.
+      const messageInput = uiModule.el('message');
+      if (messageInput && messageInput.disabled) {
+        if (uiModule) uiModule.showError("Can't edit while a response is still streaming — wait for it to finish, then try again.");
+        bodyEl.innerHTML = originalHTML;
+        return;
+      }
+
       // Everything after the original reply to this message would also be
       // destroyed. Cancelling leaves the editor open with the draft intact.
       const extraCount = allMsgs.length - msgIndex - 2;
@@ -7334,7 +8204,7 @@ import { invalidateSettings } from './appConfig.js';
         return;
       }
 
-      const keepCount = msgIndex;
+      const keepCount = _dbRowCountBefore(box, userMsgElement);
       // Cut at the message's database id: msgIndex counts only the messages
       // loaded in the page, so it is too small when older history has not
       // been scrolled in yet.
@@ -7473,6 +8343,14 @@ import { invalidateSettings } from './appConfig.js';
     if (!sessionId) return;
 
     try {
+    // [SIR] Same guard as edit/regenerate: with a stream active the submit
+    // below no-ops, so the truncate would delete the tail with nothing
+    // coming back. Refuse to truncate until the input is usable.
+    const _inputGuard = uiModule.el('message');
+    if (_inputGuard && _inputGuard.disabled) {
+      if (uiModule) uiModule.showError("Can't resend while a response is still streaming — wait for it to finish, then try again.");
+      return;
+    }
       if (replaceFromHere) {
         // Everything strictly after the immediate AI reply to this user
         // message would also be destroyed — that's the part a click on
@@ -7488,7 +8366,7 @@ import { invalidateSettings } from './appConfig.js';
         }
         // Resend/regenerate trims history to this point before resubmitting so
         // the replacement request is the only copy the backend sees.
-        const keepCount = msgIndex;
+        const keepCount = _dbRowCountBefore(box, userMsgElement);
         const beforeMsgId = userMsgElement.dataset.dbId || '';
         const truncateBody = beforeMsgId ? { before_msg_id: beforeMsgId } : { keep_count: keepCount };
         const truncateRes = await fetch(`${API_BASE}/api/session/${sessionId}/truncate`, {
@@ -7550,6 +8428,20 @@ import { invalidateSettings } from './appConfig.js';
       return;
     }
 
+    // [SIR] Finding B guard: after a user-message delete this AI response can
+    // be orphaned — walking back lands on an EARLIER turn's prompt, and a
+    // truncate back to that turn would wipe everything in between. Only
+    // regenerate when the found user message is this response's own prompt:
+    // no other standalone AI response may sit between them (continuations
+    // and agent tool bubbles belong to this response and are allowed).
+    // (2026-08-08 — see changelog.)
+    for (let i = userIndex + 1; i < aiIndex; i++) {
+      if (allMsgs[i].classList.contains('msg-ai') && !allMsgs[i].classList.contains('msg-continuation')) {
+        if (uiModule) uiModule.showError("Can't regenerate — the user message for this response was deleted.");
+        return;
+      }
+    }
+
     // Everything strictly after the AI reply being regenerated would also
     // be destroyed — that's the part a click on "Regenerate from here"
     // doesn't expect to lose.
@@ -7557,7 +8449,20 @@ import { invalidateSettings } from './appConfig.js';
     const choice = await _confirmTruncateIfDestructive(extraCount, 'regenerate');
     if (!choice) return;
 
-    const _regenIds = _userMessageAttachmentIds(userMsgEl);
+    // [SIR] Collect any file_ids attached to the original user message so
+    // the regenerated send re-uses them. Falls back to sniffing the file id
+    // out of `.attach-image-preview img` src URLs for bubbles rendered
+    // before the data-file-id stamp landed (otherwise an older bubble would
+    // regen with zero attachments and the photo would be lost).
+    const _attachEls = userMsgEl ? userMsgEl.querySelectorAll('[data-file-id]') : [];
+    let _regenIds = Array.from(_attachEls).map(el => el.dataset.fileId).filter(Boolean);
+    if (!_regenIds.length && userMsgEl) {
+      const _imgs = userMsgEl.querySelectorAll('.attach-image-preview img, .attach-card img');
+      for (const _im of _imgs) {
+        const _m = (_im.getAttribute('src') || '').match(/\/api\/upload\/([A-Za-z0-9_\-]+)/);
+        if (_m && _m[1] && !_regenIds.includes(_m[1])) _regenIds.push(_m[1]);
+      }
+    }
 
     // Rescue: earlier-version regens (before the dataset.raw fix) stored the
     // photo's filename as the user-message content. On a follow-up regen,
@@ -7581,6 +8486,15 @@ import { invalidateSettings } from './appConfig.js';
 
     const sessionId = sessionModule.getCurrentSessionId();
     if (!sessionId) return;
+
+    // [SIR] A regenerate truncates the tail BEFORE re-sending. If a stream is
+    // still active the input is disabled, the submit silently no-ops, and the
+    // wiped turns never come back — abort the whole flow instead.
+    const messageInput = uiModule.el('message');
+    if (messageInput && messageInput.disabled) {
+      if (uiModule) uiModule.showError("Can't regenerate while a response is still streaming — wait for it to finish, then try again.");
+      return;
+    }
 
     if (choice === 'fork') {
       // Branch just before the user turn and send it again there, so the new
@@ -7606,7 +8520,7 @@ import { invalidateSettings } from './appConfig.js';
       variants.push({ raw: oldRaw, html: oldHtml, label: 'original' });
     }
 
-    const keepCount = userIndex;
+    const keepCount = _dbRowCountBefore(box, userMsgEl);
     // Same as resend: cut at the user message's database id, because
     // userIndex counts only the messages loaded in the page.
     const regenBeforeId = (userMsgEl && userMsgEl.dataset.dbId) || '';
@@ -7657,20 +8571,24 @@ import { invalidateSettings } from './appConfig.js';
   let _pendingRegenAttachments = null;
   // Read-only view for tests.
   export function _pendingRegenAttachmentIds() { return _pendingRegenAttachments; }
+  // True while a regenerate send is in flight — the send appends
+  // reuse_last_user so the backend reuses the existing user row instead of
+  // persisting a new one (2026-08-08, see changelog). Consumed once.
+  let _pendingRegenUser = false;
 
   /**
-   * Called after streaming completes to attach variant navigation if this was a regen.
+   * Called after streaming completes to attach variant navigation if this was
+   * a regen. `variants`/`varLabel` are passed in from the send entry capture —
+   * the globals are cleared there so an aborted send can't leak them into the
+   * next send (2026-08-08, Finding A).
    */
-  function _attachVariantNav(msgElement) {
-    if (!_pendingVariants) return;
-    const variants = _pendingVariants;
-    _pendingVariants = null;
+  function _attachVariantNav(msgElement, variants, varLabel) {
+    if (!variants) return;
 
     // Add the new response as the latest variant
     const newRaw = msgElement.dataset.raw || msgElement.querySelector('.body')?.textContent || '';
     const newHtml = msgElement.querySelector('.body')?.innerHTML || '';
-    const varLabel = _pendingVariantLabel || 'regen';
-    _pendingVariantLabel = null;
+    varLabel = varLabel || 'regen';
     variants.push({ raw: newRaw, html: newHtml, label: varLabel });
 
     msgElement.dataset.variants = JSON.stringify(variants);
@@ -8045,7 +8963,14 @@ import { invalidateSettings } from './appConfig.js';
   }
 
   /**
-   * Delete an AI message and its preceding user message from the conversation.
+   * Delete EXACTLY the clicked message — no pair resolution, nothing else.
+   *
+   * Sir's spec (2026-08-08): deleting an AI message must NOT wipe the user
+   * message before it, and vice versa. Each message is deleted on its own
+   * terms, in the DOM and in the DB (exact id delete, no resolve_pairs).
+   * An AI delete also removes the DOM-only artifacts that belong to that
+   * response (agent-thread tool bubbles, continuation bubbles) — those have
+   * no DB rows, so removing them from the DOM mirrors the DB exactly.
    */
   export async function deleteMessage(msgElement) {
     if (uiModule && uiModule.styledConfirm) {
@@ -8068,69 +8993,41 @@ import { invalidateSettings } from './appConfig.js';
     // below; without one we fall back to removing the DOM.
     const sessionId = sessionModule.getCurrentSessionId();
 
-    const clickedIsUser = msgElement.classList.contains('msg-user');
+    const msgIds = [];
+    const domToRemove = [];
 
-    // Find the user+AI pair
-    let userIndex = -1;
-    let aiIndex = -1;
-    if (clickedIsUser) {
-      userIndex = clickedIndex;
-      // Find the following AI message
-      for (let i = clickedIndex + 1; i < allMsgs.length; i++) {
-        if (allMsgs[i].classList.contains('msg-ai') && !allMsgs[i].classList.contains('msg-continuation')) {
-          aiIndex = i;
-          break;
-        }
-        if (allMsgs[i].classList.contains('msg-user')) break; // next user msg, no AI response
-      }
+    if (msgElement.classList.contains('msg-user')) {
+      // User message: delete ONLY this message. The AI reply stays put.
+      domToRemove.push(msgElement);
+      if (msgElement.dataset.dbId) msgIds.push(msgElement.dataset.dbId);
     } else {
-      // If clicked on a continuation, walk back to the main AI message
-      let mainAiIndex = clickedIndex;
-      if (allMsgs[mainAiIndex].classList.contains('msg-continuation')) {
-        for (let i = mainAiIndex - 1; i >= 0; i--) {
+      // AI message: delete this response + the DOM-only artifacts that belong
+      // to it (continuation bubbles, agent-thread tool bubbles). The preceding
+      // user message is NEVER touched.
+      let aiIndex = clickedIndex;
+      if (msgElement.classList.contains('msg-continuation')) {
+        // Clicked a continuation — walk back to the main AI message so the
+        // whole response goes, not just the tail.
+        for (let i = clickedIndex - 1; i >= 0; i--) {
           if (allMsgs[i].classList.contains('msg-ai') && !allMsgs[i].classList.contains('msg-continuation')) {
-            mainAiIndex = i;
+            aiIndex = i;
             break;
           }
         }
       }
-      aiIndex = mainAiIndex;
-      // Find the preceding user message
-      for (let i = aiIndex - 1; i >= 0; i--) {
-        if (allMsgs[i].classList.contains('msg-user')) {
-          userIndex = i;
-          break;
-        }
-      }
-    }
-
-    // Collect DB message IDs and DOM elements to remove
-    const msgIds = [];
-    const domToRemove = [];
-
-    // Add the user message if found
-    if (userIndex >= 0) {
-      domToRemove.push(allMsgs[userIndex]);
-      const uid = allMsgs[userIndex].dataset.dbId;
-      if (uid) msgIds.push(uid);
-    }
-
-    // Add the AI message if found
-    if (aiIndex >= 0) {
-      domToRemove.push(allMsgs[aiIndex]);
-      const aid = allMsgs[aiIndex].dataset.dbId;
-      if (aid) msgIds.push(aid);
-
       const aiEl = allMsgs[aiIndex];
-      // Also remove agent-thread elements BETWEEN user and AI
-      if (userIndex >= 0) {
-        let between = allMsgs[userIndex].nextElementSibling;
-        while (between && between !== aiEl) {
-          domToRemove.push(between);
-          between = between.nextElementSibling;
-        }
+      domToRemove.push(aiEl);
+      if (aiEl.dataset.dbId) msgIds.push(aiEl.dataset.dbId);
+
+      // Agent-thread elements between the preceding user message and this AI
+      // response belong to it (tool bubbles, etc.) — remove them too.
+      let between = aiEl.previousElementSibling;
+      while (between && !between.classList.contains('msg-user') &&
+             !(between.classList.contains('msg-ai') && !between.classList.contains('msg-continuation'))) {
+        domToRemove.push(between);
+        between = between.previousElementSibling;
       }
-      // Walk forward from the AI element to remove continuations and tool bubbles
+      // Continuation / tool bubbles after the AI response (same response).
       let sibling = aiEl.nextElementSibling;
       while (sibling) {
         if (sibling.classList.contains('msg-user') ||
@@ -8143,15 +9040,17 @@ import { invalidateSettings } from './appConfig.js';
     }
 
     if (!msgIds.length || !sessionId) {
-      // No persisted rows to delete (no DB IDs, or no session at all — e.g. an
-      // error output shown before a model was selected, #1428). Just remove the
-      // DOM so the "x" works regardless.
+      // No persisted rows to delete (no DB IDs on the DOM, or no session at
+      // all — e.g. an error output before a model was selected, #1428). Just
+      // remove the DOM so the "x" works regardless. With user_message_saved
+      // stamping this is now a rare race window, not the norm.
       domToRemove.forEach(el => el.remove());
       if (uiModule) uiModule.showToast('Message deleted');
       return;
     }
 
     try {
+      // Exact-id delete only — no resolve_pairs, no turn-partner walking.
       const res = await fetch(`${API_BASE}/api/session/${sessionId}/delete-messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -8159,6 +9058,7 @@ import { invalidateSettings } from './appConfig.js';
       });
       if (!res.ok) throw new Error('Server error ' + res.status);
       domToRemove.forEach(el => el.remove());
+      _tabSyncPost('chat-delete', { sessionId, msgIds });
       if (uiModule) uiModule.showToast('Message deleted');
     } catch (err) {
       console.error('Delete failed:', err);
@@ -8234,6 +9134,7 @@ import { invalidateSettings } from './appConfig.js';
         // Re-render body with markdown
         body.innerHTML = markdownModule.processWithThinking(markdownModule.squashOutsideCode(newContent));
         msgElement.dataset.raw = newContent;
+        _tabSyncPost('chat-edit', { sessionId, msgId });
 
         // Add edited indicator if not already present
         if (!msgElement.querySelector('.edited-indicator')) {

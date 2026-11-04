@@ -11,6 +11,7 @@ This is the single place that handles:
 import json
 import uuid
 import logging
+import time
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional
 
@@ -20,11 +21,52 @@ from .database import Session as DbSession, ChatMessage as DbChatMessage, Docume
 from .models import Session, ChatMessage
 from src.attachment_refs import persistable_message_content
 from src.upload_handler import reserve_message_upload_references
+from sqlalchemy.exc import OperationalError
 
 # Re-export singleton accessors from models for convenience
 from .models import set_session_manager_instance, get_session_manager_instance
 
 logger = logging.getLogger(__name__)
+
+
+# ── Draft-write lock retry ──────────────────────────────────────────────────
+# Draft checkpoints sit on the hot path (every ~4s per streaming agent) and
+# the row write is idempotent, so a transient SQLite 'database is locked'
+# should wait-and-retry instead of killing the whole stream (the agent_run
+# dies with sqlite3.OperationalError when a checkpoint commit collides with
+# another session's write). WAL + busy_timeout (core/database.py) make real
+# contention rare; this is the belt-and-suspenders so a rare collision never
+# takes down a live reply.
+_DRAFT_LOCK_RETRIES = 4
+_DRAFT_LOCK_BASE_DELAY = 0.1  # 0.1/0.2/0.4s backoff — invisible on a 4s cadence
+
+
+def _commit_draft_with_retry(operation, what: str):
+    """Run `operation(db)` retrying on SQLite write-lock contention.
+
+    Each attempt gets a fresh session so a poisoned connection is never
+    reused. Non-lock errors propagate immediately. Re-raises the last error
+    if contention outlasts the retry budget.
+    """
+    last_exc = None
+    for attempt in range(_DRAFT_LOCK_RETRIES):
+        db = SessionLocal()
+        try:
+            return operation(db)
+        except OperationalError as e:
+            db.rollback()
+            last_exc = e
+            if "locked" not in str(e).lower():
+                raise
+            if attempt < _DRAFT_LOCK_RETRIES - 1:
+                logger.warning(
+                    "Draft %s hit DB lock (attempt %d/%d): %s",
+                    what, attempt + 1, _DRAFT_LOCK_RETRIES, e,
+                )
+                time.sleep(_DRAFT_LOCK_BASE_DELAY * (2 ** attempt))
+        finally:
+            db.close()
+    raise last_exc
 
 
 def _message_timestamp_iso(value: Optional[datetime]) -> Optional[str]:
@@ -106,6 +148,10 @@ class SessionManager:
                 message_counts = dict(
                     db.query(DbChatMessage.session_id, func.count(DbChatMessage.id))
                     .filter(DbChatMessage.session_id.in_([row.id for row in db_sessions]))
+                    .filter(
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                        ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                    )
                     .group_by(DbChatMessage.session_id)
                     .all()
                 )
@@ -166,11 +212,41 @@ class SessionManager:
         """Convert a database session to a Session object."""
         history = []
 
+        def _draft_ok(db_msg, meta) -> bool:
+            """Draft-row policy at hydration time (2026-08-08
+            draft-checkpoint audit): a live draft (an active stream is still
+            checkpointing it) must NEVER enter the model's context, so it is
+            skipped; an orphaned draft (no active stream — the server died
+            mid-turn) is finalized to a stopped partial and kept, so the
+            crashed turn survives as a visible, resumable message."""
+            if not meta.get("draft"):
+                return True
+            try:
+                from routes.chat_routes import _active_streams
+                rec = _active_streams.get(db_msg.session_id)
+            except Exception:
+                rec = None
+            if rec and rec.get("status") == "streaming":
+                return False
+            meta.pop("draft", None)
+            meta["stopped"] = True
+            try:
+                self.finalize_orphan_draft(db_msg.session_id, db_msg.id)
+            except Exception:
+                logger.exception("Failed to finalize orphan draft %s", db_msg.id)
+            return True
+
         # Try relationship first, then direct query
         if db_session.messages:
             for db_msg in db_session.messages:
                 meta = json.loads(db_msg.meta_data) if db_msg.meta_data else {}
                 if meta is None: meta = {}
+                # Compaction archive (2026-10-23): flagged rows stay on disk
+                # but never re-enter the live transcript or model context.
+                if meta.get("archived"):
+                    continue
+                if not _draft_ok(db_msg, meta):
+                    continue
                 meta['_db_id'] = db_msg.id
                 meta.setdefault('timestamp', _message_timestamp_iso(db_msg.timestamp))
                 history.append(ChatMessage(
@@ -181,11 +257,16 @@ class SessionManager:
         else:
             db_messages = db.query(DbChatMessage).filter(
                 DbChatMessage.session_id == db_session.id
+            ).filter(
+                ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
             ).order_by(DbChatMessage.timestamp).all()
 
             for db_msg in db_messages:
                 meta = json.loads(db_msg.meta_data) if db_msg.meta_data else {}
                 if meta is None: meta = {}
+                if not _draft_ok(db_msg, meta):
+                    continue
                 meta['_db_id'] = db_msg.id
                 meta.setdefault('timestamp', _message_timestamp_iso(db_msg.timestamp))
                 history.append(ChatMessage(
@@ -246,6 +327,13 @@ class SessionManager:
         manager directly so tests and temporary managers do not depend on the
         process-wide session-manager singleton.
 
+        Persistence happens after the in-memory append, but a failed persist
+        rolls the append back: a message that lives only in memory is
+        invisible to refresh, undeletable by id, and desyncs the model's
+        context from the DB (2026-08-08, see changelog). Real persist
+        failures re-raise so callers surface them; a soft drop for an
+        already-deleted session is silent.
+
         Args:
             session_id: Session ID
             message: ChatMessage to add
@@ -255,10 +343,28 @@ class SessionManager:
         session._history = session.history
         session.message_count = len(session.history)
 
-        self._persist_message(session_id, message)
+        try:
+            persisted = self._persist_message(session_id, message)
+        except Exception:
+            session.history.pop()
+            session._history = session.history
+            session.message_count = len(session.history)
+            raise
 
-    def _persist_message(self, session_id: str, message: ChatMessage):
-        """Persist a single message to the database."""
+        if not persisted:
+            # Session was deleted mid-flight — drop the orphaned copy too so
+            # memory and DB agree.
+            session.history.pop()
+            session._history = session.history
+            session.message_count = len(session.history)
+
+    def _persist_message(self, session_id: str, message: ChatMessage) -> bool:
+        """Persist a single message to the database.
+
+        Returns True on success, False when the session no longer exists
+        (message intentionally dropped). Raises on real persist failures so
+        callers surface them instead of ghosting a memory-only message.
+        """
         db = SessionLocal()
         try:
             db_session = db.query(DbSession).filter(DbSession.id == session_id).first()
@@ -268,7 +374,18 @@ class SessionManager:
                 # any stale cached session so later writes fail closed too.
                 self.sessions.pop(session_id, None)
                 logger.warning("Dropping message for deleted session %s", session_id)
-                return
+                return False
+
+            missing_upload_id = reserve_message_upload_references(
+                getattr(self, "upload_handler", None),
+                getattr(db_session, "owner", None),
+                message.content,
+                message.metadata,
+            )
+            if missing_upload_id:
+                raise ValueError(
+                    f"Referenced upload is no longer available: {missing_upload_id}"
+                )
 
             missing_upload_id = reserve_message_upload_references(
                 getattr(self, "upload_handler", None),
@@ -317,10 +434,187 @@ class SessionManager:
             message.metadata['_db_id'] = msg_id
 
             logger.debug(f"Persisted message to session {session_id}")
+            return True
 
         except Exception as e:
             logger.error(f"Error persisting message: {e}")
             db.rollback()
+            raise
+        finally:
+            db.close()
+
+    # ── Progressive draft checkpoint (2026-08-08 draft-checkpoint audit) ──
+    # While a turn streams, the in-flight reply is checkpointed every few
+    # seconds into a DB-only "draft" row (metadata["draft"]=True). If the
+    # process dies mid-turn the partial survives on disk; the history reader
+    # finalizes orphaned drafts as stopped partials on next read. Drafts are
+    # never appended to in-memory history (the model's context must never see
+    # half-written replies) and are promoted IN PLACE on completion so the
+    # frontend's stamped bubble keeps the same row id with no duplicate.
+
+    def create_draft(self, session_id: str, content: str, metadata: dict) -> Optional[str]:
+        """Create a checkpointed draft row for an in-flight assistant reply.
+
+        DB-only — nothing touches in-memory history. Returns the new row id,
+        or None when the session is gone (soft-drop, mirrors _persist_message).
+        """
+        if metadata is None:
+            metadata = {}
+        def _create(db):
+            db_session = db.query(DbSession).filter(DbSession.id == session_id).first()
+            if db_session is None:
+                self.sessions.pop(session_id, None)
+                logger.warning("Dropping draft for deleted session %s", session_id)
+                return None
+            metadata.setdefault('timestamp', _message_timestamp_iso(datetime.utcnow()))
+            metadata['draft'] = True
+            msg_id = str(uuid.uuid4())
+            db_message = DbChatMessage(
+                id=msg_id,
+                session_id=session_id,
+                role="assistant",
+                content=persistable_message_content(content, metadata),
+                meta_data=json.dumps(metadata) if metadata else None,
+                timestamp=datetime.utcnow(),
+            )
+            db.add(db_message)
+            db.commit()
+            logger.debug(f"Checkpointed draft {msg_id} for session {session_id}")
+            return msg_id
+        try:
+            return _commit_draft_with_retry(_create, "create")
+        except Exception as e:
+            logger.error(f"Error creating draft for session {session_id}: {e}")
+            raise
+
+    def update_draft(self, session_id: str, draft_id: str, content: str, metadata: dict) -> bool:
+        """In-place content/metadata update of a draft row (throttled checkpoint).
+
+        Only the message row is touched — session timestamps/counts are not
+        bumped per checkpoint. Returns False when the row is gone (caller
+        falls back to creating a fresh draft).
+        """
+        def _update(db):
+            db_message = db.query(DbChatMessage).filter(
+                DbChatMessage.id == draft_id,
+                DbChatMessage.session_id == session_id,
+            ).first()
+            if db_message is None:
+                return False
+            db_message.content = persistable_message_content(content, metadata)
+            db_message.meta_data = json.dumps(metadata) if metadata else None
+            db.commit()
+            return True
+        try:
+            return _commit_draft_with_retry(_update, "update")
+        except Exception as e:
+            logger.error(f"Error updating draft {draft_id}: {e}")
+            raise
+
+    def promote_draft(self, session_id: str, draft_id: str, message: ChatMessage) -> str:
+        """Promote a checkpointed draft row to a final message.
+
+        Updates the draft row IN PLACE (same id — the frontend already
+        stamped the bubble via the draft_saved event), appends the message to
+        in-memory history, and stamps metadata['_db_id'] = draft_id. Falls
+        back to a fresh _persist_message when the draft row vanished (e.g.
+        the session was wiped mid-turn). Returns the final row id, or '' when
+        the session no longer exists.
+        """
+        session = self.get_session(session_id)
+        db = SessionLocal()
+        try:
+            db_session = db.query(DbSession).filter(DbSession.id == session_id).first()
+            if db_session is None:
+                self.sessions.pop(session_id, None)
+                logger.warning("Dropping promoted draft for deleted session %s", session_id)
+                return ""
+            db_message = db.query(DbChatMessage).filter(
+                DbChatMessage.id == draft_id,
+                DbChatMessage.session_id == session_id,
+            ).first()
+            if db_message is None:
+                # Draft gone (session wiped mid-turn) — plain persist path.
+                session.history.append(message)
+                session._history = session.history
+                session.message_count = len(session.history)
+                self._persist_message(session_id, message)
+                _meta = getattr(message, "metadata", None) or {}
+                return _meta.get("_db_id", "")
+
+            missing_upload_id = reserve_message_upload_references(
+                getattr(self, "upload_handler", None),
+                getattr(db_session, "owner", None),
+                message.content,
+                message.metadata,
+            )
+            if missing_upload_id:
+                raise ValueError(
+                    f"Referenced upload is no longer available: {missing_upload_id}"
+                )
+
+            if message.metadata is None:
+                message.metadata = {}
+            message.metadata.setdefault('timestamp', _message_timestamp_iso(datetime.utcnow()))
+            _content = persistable_message_content(message.content, message.metadata)
+            db_message.content = _content
+            db_message.meta_data = json.dumps(message.metadata) if message.metadata else None
+            # Keep the draft row's original timestamp — ordering is stable and
+            # the turn's "first byte" time is closer to when it was received.
+            _now = datetime.now(timezone.utc)
+            db_session.last_accessed = _now
+            db_session.last_message_at = _now
+            if session_id in self.sessions:
+                db_session.message_count = len(self.sessions[session_id].history) + 1
+            else:
+                db_session.message_count = (db_session.message_count or 0) + 1
+            db.commit()
+
+            message.metadata['_db_id'] = draft_id
+            session.history.append(message)
+            session._history = session.history
+            session.message_count = len(session.history)
+            logger.debug(f"Promoted draft {draft_id} for session {session_id}")
+            return draft_id
+        except Exception as e:
+            logger.error(f"Error promoting draft {draft_id}: {e}")
+            db.rollback()
+            raise
+        finally:
+            db.close()
+
+    def finalize_orphan_draft(self, session_id: str, draft_id: str) -> bool:
+        """Turn an orphaned draft row into a stopped partial.
+
+        Called lazily by the history reader when a draft row has no active
+        stream — i.e. the server died mid-turn and the checkpoint is all that
+        survives. Drops the draft flag and marks it stopped so it renders as
+        a resumable "[Message interrupted]" partial instead of vanishing or
+        masquerading as a finished reply. Returns False when the row is gone.
+        """
+        db = SessionLocal()
+        try:
+            db_message = db.query(DbChatMessage).filter(
+                DbChatMessage.id == draft_id,
+                DbChatMessage.session_id == session_id,
+            ).first()
+            if db_message is None:
+                return False
+            try:
+                meta = json.loads(db_message.meta_data) if db_message.meta_data else {}
+            except (TypeError, ValueError):
+                meta = {}
+            if not isinstance(meta, dict):
+                meta = {}
+            meta.pop("draft", None)
+            meta["stopped"] = True
+            db_message.meta_data = json.dumps(meta) if meta else None
+            db.commit()
+            return True
+        except Exception as e:
+            logger.error(f"Error finalizing orphan draft {draft_id}: {e}")
+            db.rollback()
+            raise
         finally:
             db.close()
 
@@ -356,7 +650,13 @@ class SessionManager:
             session.history = session.history[:keep_count]
             session._history = session.history
 
-            logger.info(f"Truncated session {session_id} to {keep_count} messages")
+            if deleted:
+                logger.info(
+                    "Truncated session %s to %d messages (deleted %d rows from tail: indices %d-%d)",
+                    session_id, keep_count, deleted, keep_count, len(db_messages) - 1,
+                )
+            else:
+                logger.info(f"Truncated session {session_id} to {keep_count} messages (no rows deleted)")
             return True
 
         except Exception as e:
@@ -393,10 +693,63 @@ class SessionManager:
                         f"Referenced upload is no longer available: {missing_upload_id}"
                     )
 
-            db.query(DbChatMessage).filter(DbChatMessage.session_id == session_id).delete()
+            # ------------------------------------------------------------------
+            # Reconcile, don't incinerate (2026-10-23 compaction reform):
+            # rows the incoming history no longer references are ARCHIVED in
+            # place — flagged, never deleted — so compaction stays reversible
+            # and the transcript remains whole on disk. Rows still referenced
+            # via metadata._db_id keep their original ids and timestamps
+            # instead of being churned through delete + re-insert.
+            # ------------------------------------------------------------------
+            existing_rows = {
+                row.id: row
+                for row in db.query(DbChatMessage)
+                .filter(DbChatMessage.session_id == session_id)
+                .all()
+            }
+            kept_ids = set()
+            for message in messages:
+                mid = (message.metadata or {}).get("_db_id") if isinstance(message.metadata, dict) else None
+                if mid and mid in existing_rows:
+                    kept_ids.add(mid)
+
             now = datetime.now(timezone.utc)
+            archived_count = 0
+            for row_id, row in existing_rows.items():
+                if row_id in kept_ids:
+                    continue
+                try:
+                    meta = json.loads(row.meta_data) if row.meta_data else {}
+                except Exception:
+                    meta = {}
+                if not isinstance(meta, dict):
+                    meta = {}
+                if meta.get("archived"):
+                    continue  # already archived by an earlier pass
+                meta["archived"] = True
+                meta["archived_at"] = now.isoformat()
+                meta["archived_by"] = "replace_messages"
+                row.meta_data = json.dumps(meta, ensure_ascii=False)
+                archived_count += 1
+
             for i, message in enumerate(messages):
+                mid = (message.metadata or {}).get("_db_id") if isinstance(message.metadata, dict) else None
+                if mid and mid in existing_rows:
+                    # Already persisted: keep the original row untouched
+                    # (id, timestamp, content and metadata all survive).
+                    continue
                 msg_id = str(uuid.uuid4())
+                ts = now + timedelta(microseconds=i)
+                if isinstance(message.metadata, dict) and message.metadata.get("timestamp"):
+                    try:
+                        _ts = datetime.fromisoformat(
+                            str(message.metadata["timestamp"]).replace("Z", "+00:00")
+                        )
+                        if _ts.tzinfo is not None:
+                            _ts = _ts.astimezone(timezone.utc).replace(tzinfo=None)
+                        ts = _ts
+                    except Exception:
+                        pass
                 db_message = DbChatMessage(
                     id=msg_id,
                     session_id=session_id,
@@ -405,7 +758,7 @@ class SessionManager:
                     # persisted transcript and search index.
                     content=persistable_message_content(message.content, message.metadata),
                     meta_data=json.dumps(message.metadata) if message.metadata else None,
-                    timestamp=now + timedelta(microseconds=i),
+                    timestamp=ts,
                 )
                 db.add(db_message)
                 if message.metadata is None:
@@ -421,7 +774,10 @@ class SessionManager:
             session.history = list(messages)
             session._history = session.history
             session.message_count = len(messages)
-            logger.info("Replaced session %s history with %d messages", session_id, len(messages))
+            logger.info(
+                "Replaced session %s history with %d messages (archived %d rows)",
+                session_id, len(messages), archived_count,
+            )
             return True
         except Exception as e:
             logger.error("Error replacing session history: %s", e)
@@ -506,6 +862,10 @@ class SessionManager:
             session.message_count = (
                 db.query(DbChatMessage)
                 .filter(DbChatMessage.session_id == session_id)
+                .filter(
+                    ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived": true%'),
+                    ~func.coalesce(DbChatMessage.meta_data, "").like('%"archived":true%'),
+                )
                 .count()
             )
             return True

@@ -13,8 +13,20 @@ class ChatRequest(BaseModel):
     time_filter: Optional[str] = Field(default=None, description="Time filter for search")
     preset_id: Optional[str] = Field(default=None, description="Preset identifier")
     selected_endpoint_id: Optional[str] = Field(default=None, description="Selected model endpoint ID")
-    reasoning_effort: Optional[str] = Field(default=None, description="Reasoning effort override")
+    reasoning_effort: Optional[str] = Field(default=None, description="Per-request reasoning override: off|low|medium|high|xhigh|max; default/None = global thinking setting")
     
+    @field_validator('reasoning_effort')
+    @classmethod
+    def validate_reasoning_effort(cls, v):
+        if v is None:
+            return None
+        v = str(v).strip().lower()
+        if v in ('', 'default', 'auto', 'on'):
+            return None
+        if v == 'none':
+            return 'off'
+        return v if v in ('off', 'low', 'medium', 'high', 'xhigh', 'max') else None
+
     @field_validator('message')
     @classmethod
     def clean_message(cls, v):
@@ -58,7 +70,7 @@ class PresetUpdateRequest(BaseModel):
     """Request model for updating custom preset configuration."""
     name: str = Field(
         "",
-        max_length=50,
+        max_length=100,
         description="Character display name (shown next to model name)"
     )
     enabled: bool = Field(
@@ -83,17 +95,17 @@ class PresetUpdateRequest(BaseModel):
     )
     system_prompt: str = Field(
         "",
-        max_length=10000,
+        max_length=100000,
         description="System prompt to guide assistant behavior (empty = default)"
     )
     inject_prefix: str = Field(
         "",
-        max_length=5000,
+        max_length=50000,
         description="Text to prepend to each outgoing user message"
     )
     inject_suffix: str = Field(
         "",
-        max_length=5000,
+        max_length=50000,
         description="Text to append to each outgoing user message"
     )
     thinking_mode: str = Field(

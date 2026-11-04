@@ -76,6 +76,7 @@ EMBEDDING_ENDPOINT_FILE = os.path.join(DATA_DIR, "embedding_endpoint.json")
 COOKBOOK_STATE_FILE = os.path.join(DATA_DIR, "cookbook_state.json")
 BG_JOBS_FILE = os.path.join(DATA_DIR, "bg_jobs.json")
 CONTAINMENT_STATE_FILE = os.path.join(DATA_DIR, "containment_grants.json")
+AGENT_JOBS_FILE = os.path.join(DATA_DIR, "agent_jobs.json")
 VAULT_FILE = os.path.join(DATA_DIR, "vault.json")
 TIDY_CALENDAR_STATE_FILE = os.path.join(DATA_DIR, "tidy_calendar_state.json")
 SKILLS_FILE = os.path.join(DATA_DIR, "skills.json")
@@ -118,8 +119,8 @@ FASTEMBED_CACHE_DIR = os.getenv("FASTEMBED_CACHE_PATH") or os.path.join(DATA_DIR
 
 # Agent tool output limits (single source of truth — imported by tool_execution.py,
 # tool_implementations.py, agent_tools.py, and any other module that needs them)
-MAX_OUTPUT_CHARS = 10_000       # cap for bash/python/web_search/web_fetch output
-MAX_READ_CHARS = 20_000         # cap for read_file / document preview
+MAX_OUTPUT_CHARS = 50_000       # cap for bash/python/web_search/web_fetch output
+MAX_READ_CHARS = 200_000        # cap for read_file / document preview (whole-file reads; paging still available via offset/limit)
 MAX_DIFF_LINES = 400            # cap for edit_file unified-diff display
 
 # web_fetch response-size policy (#3812). MAX_OUTPUT_CHARS above only trims

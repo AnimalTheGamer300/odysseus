@@ -584,6 +584,37 @@ async function initUtilityModel() {
   });
 }
 
+/* ── Thinking toggle ── */
+// Master switch for reasoning/"thinking" mode on models that support
+// it (Ollama think, DeepSeek V4, Mistral reasoning_effort, vLLM/NIM
+// chat_template_kwargs, OpenRouter reasoning). Stored as the
+// `thinking_enabled` flag; internal utility calls (compaction,
+// summaries, titles) always run with thinking off regardless.
+async function initThinkingToggle() {
+  var toggle = document.getElementById('set-thinkingEnabledToggle');
+  var msg = document.getElementById('set-thinkingMsg');
+  if (!toggle) return;
+  try {
+    var res = await fetch('/api/auth/settings', { credentials: 'same-origin' });
+    var settings = await res.json();
+    toggle.checked = settings.thinking_enabled !== false;
+  } catch (e) { console.warn('Failed to load thinking setting', e); }
+  toggle.addEventListener('change', async function() {
+    try {
+      await fetch('/api/auth/settings', { method: 'POST', credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ thinking_enabled: !!toggle.checked })
+      });
+      if (msg) {
+        msg.textContent = 'Saved';
+        setTimeout(function() { msg.textContent = ''; }, 2000);
+      }
+    } catch (e) {
+      if (msg) { msg.textContent = 'Failed to save'; msg.style.color = 'var(--red)'; }
+    }
+  });
+}
+
 /* ── Teacher Model ── */
 // SOTA model called automatically when a self-hosted student model
 // fails an agent-mode task. Stored as a single `teacher_model` string
@@ -689,6 +720,8 @@ async function initVisionSettings() {
   const vlSel = el('set-vlModelSelect');
   const msg = el('set-visionSettingsMsg');
   const enabledToggle = el('set-visionEnabledToggle');
+  const capableInput = el('set-visionCapableModels');
+  const textOnlyInput = el('setTextOnlyModels');
   const configWrap = vlSel ? vlSel.closest('div[style*="flex-direction"]') : null;
   var _visionEndpoints = [];
   var visionFallbackWidget = null;
@@ -724,6 +757,14 @@ async function initVisionSettings() {
     if (settings.vision_model) vlSel.value = settings.vision_model;
     _syncModelLogo(vlSel);
     if (enabledToggle) enabledToggle.checked = settings.vision_enabled !== false;
+    if (capableInput) {
+      capableInput.value = Array.isArray(settings.vision_capable_models)
+        ? settings.vision_capable_models.join(', ') : (settings.vision_capable_models || '');
+    }
+    if (textOnlyInput) {
+      textOnlyInput.value = Array.isArray(settings.text_only_models)
+        ? settings.text_only_models.join(', ') : (settings.text_only_models || '');
+    }
     visionFallbackWidget = _bindFallbackWidget({
       containerId: 'set-visionFallbacks',
       addBtnId: 'set-visionAddFallback',
@@ -748,11 +789,20 @@ async function initVisionSettings() {
 
   async function saveSettings() {
     try {
-      await _postSettings({ vision_enabled: enabledToggle ? enabledToggle.checked : true, vision_model: vlSel.value });
+      function _csvToList(v) {
+        return String(v || '').split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+      }
+      await _postSettings({
+        vision_enabled: enabledToggle ? enabledToggle.checked : true,
+        vision_model: vlSel.value,
+        vision_capable_models: capableInput ? _csvToList(capableInput.value) : []
+      });
       msg.textContent = 'Saved'; msg.style.color = 'var(--fg)'; setTimeout(() => { msg.textContent = ''; }, 2000);
     } catch (e) { msg.textContent = e.status === 403 ? 'Admin access is required to change these settings.' : 'Failed to save'; msg.style.color = 'var(--red)'; }
   }
   vlSel.addEventListener('change', saveSettings);
+  if (capableInput) capableInput.addEventListener('change', saveSettings);
+  if (textOnlyInput) textOnlyInput.addEventListener('change', saveSettings);
   if (enabledToggle) enabledToggle.addEventListener('change', function() { syncVisionDisabled(); saveSettings(); });
 
   _registerAiEndpointRefresh(function(endpoints) {
@@ -1920,6 +1970,7 @@ function initAll() {
   initialized = true;
   initDefaultChat();
   initTeacherModel();
+  initThinkingToggle();
   initUtilityModel();
   initImageSettings();
   initVisionSettings();

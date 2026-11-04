@@ -1,0 +1,337 @@
+# `src/agent_tools/session_tools.py` — definitions & call sites
+
+14 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `create_session` — function (async), line 22
+- **called from:**
+- `core/session_manager.py:1308`
+- `routes/compare/compare_routes.py:187`
+- `routes/history/history_routes.py:885`
+- `routes/research/research_routes.py:737`
+- `routes/session_routes.py:494`
+- `routes/session_routes.py:1133`
+- `routes/webhook/webhook_routes.py:306`
+- `routes/webhook/webhook_routes.py:367`
+- `src/agent_tools/session_tools.py:50`
+- `src/agent_tools/session_tools.py:437`
+- `src/agent_tools/session_tools.py:478`
+- `tests/test_auth_session_revocation.py:51`
+- `tests/test_auth_session_revocation.py:52`
+- `tests/test_auth_session_revocation.py:53`
+- `tests/test_auth_session_revocation.py:65`
+- `tests/test_auth_session_revocation.py:66`
+- `tests/test_auth_session_revocation.py:79`
+- `tests/test_auth_session_revocation.py:80`
+- `tests/test_delete_user_revokes_api_tokens.py:120`
+- `tests/test_session_discovery_message_count.py:33`
+- `tests/test_truncate_message_count_regression.py:37`
+- `tests/test_truncate_message_count_regression.py:67`
+
+## `list_sessions` — function (async), line 73
+- **called from:**
+- `src/agent_tools/session_tools.py:303`
+- `src/agent_tools/session_tools.py:483`
+
+## `_rel` — function, line 121
+- **called from:**
+- `src/agent_tools/document_tools.py:823`
+- `src/agent_tools/session_tools.py:146`
+
+## `send_to_session` — function (async), line 162
+- **called from:**
+- `src/agent_tools/session_tools.py:488`
+- `tests/test_session_tools_registry.py:175`
+- `tests/test_session_tools_registry.py:181`
+- `tests/test_session_tools_registry.py:185`
+
+## `manage_session` — function (async), line 248
+- **called from:**
+- `src/agent_tools/session_tools.py:493`
+
+## `_session_query` — function, line 319
+- **called from:**
+- `src/agent_tools/session_tools.py:328`
+- `src/agent_tools/session_tools.py:347`
+- `src/agent_tools/session_tools.py:357`
+- `src/agent_tools/session_tools.py:366`
+- `src/agent_tools/session_tools.py:377`
+- `src/agent_tools/session_tools.py:393`
+- `src/agent_tools/session_tools.py:406`
+- `src/agent_tools/session_tools.py:422`
+
+## `CreateSessionTool` — class, line 476
+- **called from:**
+- `src/agent_tools/__init__.py:65`
+- `tests/test_session_tools_registry.py:76`
+
+## `CreateSessionTool.execute` — method (async), line 477
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:509`
+- `core/database.py:902`
+- `core/database.py:905`
+- `core/database.py:908`
+- `core/database.py:920`
+- `core/database.py:947`
+- `core/database.py:950`
+- `core/database.py:951`
+- `core/database.py:974`
+- `core/database.py:977`
+- `core/database.py:998`
+- `core/database.py:1001`
+- `core/database.py:1002`
+- `core/database.py:1022`
+- `core/database.py:1025`
+- `core/database.py:1045`
+- `core/database.py:1048`
+- `core/database.py:1075`
+- `core/database.py:1078`
+- `core/database.py:1079`
+- `core/database.py:1100`
+- `core/database.py:1103`
+- `core/database.py:1104`
+- `core/database.py:1125`
+- `core/database.py:1128`
+- `core/database.py:1148`
+- `core/database.py:1151`
+- `core/database.py:1153`
+- `core/database.py:1155`
+- `core/database.py:1157`
+- `core/database.py:1176`
+- `core/database.py:1179`
+- `core/database.py:1199`
+- `core/database.py:1202`
+- `core/database.py:1223`
+- `core/database.py:1226`
+- `core/database.py:1245`
+- `core/database.py:1248`
+- `core/database.py:1268`
+- `core/database.py:1271`
+- `core/database.py:1273`
+- `core/database.py:1275`
+- `core/database.py:1277`
+- `core/database.py:1279`
+- `core/database.py:1281`
+- `core/database.py:1300`
+- `core/database.py:1303`
+- `core/database.py:1323`
+- `core/database.py:1326`
+- `core/database.py:1346`
+- `core/database.py:1349`
+- `core/database.py:1350`
+- `core/database.py:1370`
+- `core/database.py:1373`
+- `core/database.py:1374`
+- `core/database.py:1406`
+- … +335 more (grep the name in repo)
+
+## `ListSessionsTool` — class, line 481
+- **called from:**
+- `src/agent_tools/__init__.py:66`
+- `tests/test_session_tools_registry.py:38`
+- `tests/test_session_tools_registry.py:135`
+
+## `ListSessionsTool.execute` — method (async), line 482
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:509`
+- `core/database.py:902`
+- `core/database.py:905`
+- `core/database.py:908`
+- `core/database.py:920`
+- `core/database.py:947`
+- `core/database.py:950`
+- `core/database.py:951`
+- `core/database.py:974`
+- `core/database.py:977`
+- `core/database.py:998`
+- `core/database.py:1001`
+- `core/database.py:1002`
+- `core/database.py:1022`
+- `core/database.py:1025`
+- `core/database.py:1045`
+- `core/database.py:1048`
+- `core/database.py:1075`
+- `core/database.py:1078`
+- `core/database.py:1079`
+- `core/database.py:1100`
+- `core/database.py:1103`
+- `core/database.py:1104`
+- `core/database.py:1125`
+- `core/database.py:1128`
+- `core/database.py:1148`
+- `core/database.py:1151`
+- `core/database.py:1153`
+- `core/database.py:1155`
+- `core/database.py:1157`
+- `core/database.py:1176`
+- `core/database.py:1179`
+- `core/database.py:1199`
+- `core/database.py:1202`
+- `core/database.py:1223`
+- `core/database.py:1226`
+- `core/database.py:1245`
+- `core/database.py:1248`
+- `core/database.py:1268`
+- `core/database.py:1271`
+- `core/database.py:1273`
+- `core/database.py:1275`
+- `core/database.py:1277`
+- `core/database.py:1279`
+- `core/database.py:1281`
+- `core/database.py:1300`
+- `core/database.py:1303`
+- `core/database.py:1323`
+- `core/database.py:1326`
+- `core/database.py:1346`
+- `core/database.py:1349`
+- `core/database.py:1350`
+- `core/database.py:1370`
+- `core/database.py:1373`
+- `core/database.py:1374`
+- `core/database.py:1406`
+- … +335 more (grep the name in repo)
+
+## `SendToSessionTool` — class, line 486
+- **called from:**
+- `src/agent_tools/__init__.py:67`
+
+## `SendToSessionTool.execute` — method (async), line 487
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:509`
+- `core/database.py:902`
+- `core/database.py:905`
+- `core/database.py:908`
+- `core/database.py:920`
+- `core/database.py:947`
+- `core/database.py:950`
+- `core/database.py:951`
+- `core/database.py:974`
+- `core/database.py:977`
+- `core/database.py:998`
+- `core/database.py:1001`
+- `core/database.py:1002`
+- `core/database.py:1022`
+- `core/database.py:1025`
+- `core/database.py:1045`
+- `core/database.py:1048`
+- `core/database.py:1075`
+- `core/database.py:1078`
+- `core/database.py:1079`
+- `core/database.py:1100`
+- `core/database.py:1103`
+- `core/database.py:1104`
+- `core/database.py:1125`
+- `core/database.py:1128`
+- `core/database.py:1148`
+- `core/database.py:1151`
+- `core/database.py:1153`
+- `core/database.py:1155`
+- `core/database.py:1157`
+- `core/database.py:1176`
+- `core/database.py:1179`
+- `core/database.py:1199`
+- `core/database.py:1202`
+- `core/database.py:1223`
+- `core/database.py:1226`
+- `core/database.py:1245`
+- `core/database.py:1248`
+- `core/database.py:1268`
+- `core/database.py:1271`
+- `core/database.py:1273`
+- `core/database.py:1275`
+- `core/database.py:1277`
+- `core/database.py:1279`
+- `core/database.py:1281`
+- `core/database.py:1300`
+- `core/database.py:1303`
+- `core/database.py:1323`
+- `core/database.py:1326`
+- `core/database.py:1346`
+- `core/database.py:1349`
+- `core/database.py:1350`
+- `core/database.py:1370`
+- `core/database.py:1373`
+- `core/database.py:1374`
+- `core/database.py:1406`
+- … +335 more (grep the name in repo)
+
+## `ManageSessionTool` — class, line 491
+- **called from:**
+- `src/agent_tools/__init__.py:68`
+- `tests/test_session_tools_registry.py:57`
+- `tests/test_session_tools_registry.py:125`
+
+## `ManageSessionTool.execute` — method (async), line 492
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:509`
+- `core/database.py:902`
+- `core/database.py:905`
+- `core/database.py:908`
+- `core/database.py:920`
+- `core/database.py:947`
+- `core/database.py:950`
+- `core/database.py:951`
+- `core/database.py:974`
+- `core/database.py:977`
+- `core/database.py:998`
+- `core/database.py:1001`
+- `core/database.py:1002`
+- `core/database.py:1022`
+- `core/database.py:1025`
+- `core/database.py:1045`
+- `core/database.py:1048`
+- `core/database.py:1075`
+- `core/database.py:1078`
+- `core/database.py:1079`
+- `core/database.py:1100`
+- `core/database.py:1103`
+- `core/database.py:1104`
+- `core/database.py:1125`
+- `core/database.py:1128`
+- `core/database.py:1148`
+- `core/database.py:1151`
+- `core/database.py:1153`
+- `core/database.py:1155`
+- `core/database.py:1157`
+- `core/database.py:1176`
+- `core/database.py:1179`
+- `core/database.py:1199`
+- `core/database.py:1202`
+- `core/database.py:1223`
+- `core/database.py:1226`
+- `core/database.py:1245`
+- `core/database.py:1248`
+- `core/database.py:1268`
+- `core/database.py:1271`
+- `core/database.py:1273`
+- `core/database.py:1275`
+- `core/database.py:1277`
+- `core/database.py:1279`
+- `core/database.py:1281`
+- `core/database.py:1300`
+- `core/database.py:1303`
+- `core/database.py:1323`
+- `core/database.py:1326`
+- `core/database.py:1346`
+- `core/database.py:1349`
+- `core/database.py:1350`
+- `core/database.py:1370`
+- `core/database.py:1373`
+- `core/database.py:1374`
+- `core/database.py:1406`
+- … +335 more (grep the name in repo)

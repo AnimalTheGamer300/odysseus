@@ -363,12 +363,17 @@ def with_completion_gate(func):
             replaced_answer = not disclosure_only and bool(
                 presentation_replaced or reason or unsafe_draft or safe_answer != answer)
             if replaced_answer:
-                reasoning = [event for event in answer_events if event.get('thinking') is True]
+                # Replay reasoning plus typed control events (e.g. the
+                # tool-verification guard's warning delta). Untyped answer
+                # deltas are superseded by the replaced final_response.
+                replay = [event for event in answer_events
+                          if event.get('thinking') is True
+                          or (event.get('type') is not None and event.get('type') != 'final_response')]
                 _, unsafe_reasoning = completion_answer(
-                    ''.join(str(event.get('delta') or '') for event in reasoning), ledger,
+                    ''.join(str(event.get('delta') or '') for event in replay), ledger,
                     replace(presentation_decision, can_complete=True))
                 if not unsafe_reasoning:
-                    for event in reasoning:
+                    for event in replay:
                         yield _event(event)
                 yield _event({'type': 'final_response', 'content': safe_answer})
             else:

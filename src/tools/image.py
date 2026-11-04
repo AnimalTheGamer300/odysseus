@@ -10,10 +10,91 @@ import hashlib
 import io
 import uuid
 import re
+import base64
+import mimetypes
 from pathlib import Path
 from typing import Dict, Optional
 
 from src.tools._common import _parse_tool_args
+
+
+async def do_fetch_image(content: str, owner: Optional[str] = None) -> Dict:
+    """Fetch an image from a URL or local path for vision analysis.
+
+    Returns ``image_data_url`` (data: URL) so the agent loop can inject it
+    as a vision message in the next round. Pass save_to_gallery=true to
+    also store it in the user's gallery.
+    """
+    try:
+        args = _parse_tool_args(content)
+    except ValueError:
+        return {"error": "Invalid JSON arguments", "exit_code": 1}
+
+    url = args.get("url", "")
+    path = args.get("path", "")
+    save_to_gallery = bool(args.get("save_to_gallery", False))
+
+    if not url and not path:
+        return {"error": "url or path is required", "exit_code": 1}
+
+    try:
+        if url:
+            async with httpx.AsyncClient(timeout=60) as client:
+                resp = await client.get(url, follow_redirects=True)
+                resp.raise_for_status()
+                raw = resp.content
+                content_type = resp.headers.get("content-type", "").split(";")[0].strip() or "application/octet-stream"
+                suggested_name = Path(url).name or "fetched_image"
+        else:
+            p = Path(path).expanduser()
+            if not p.is_file():
+                return {"error": f"Image file not found: {path}", "exit_code": 1}
+            raw = p.read_bytes()
+            content_type = mimetypes.guess_type(str(p))[0] or "application/octet-stream"
+            suggested_name = p.name
+
+        if not content_type or not content_type.startswith("image/"):
+            return {"error": f"Not an image: {content_type}", "exit_code": 1}
+
+        b64 = base64.b64encode(raw).decode("ascii")
+        image_data_url = f"data:{content_type};base64,{b64}"
+
+        result: Dict = {
+            "output": f"Fetched image ({suggested_name}, {len(raw)} bytes)",
+            "exit_code": 0,
+            "image_data_url": image_data_url,
+            "image_url": image_data_url,
+            "image_name": suggested_name,
+            "image_size": len(raw),
+        }
+
+        if save_to_gallery:
+            from src.database import GalleryImage, SessionLocal
+            db = SessionLocal()
+            try:
+                img = GalleryImage(
+                    filename=suggested_name,
+                    prompt=args.get("prompt", ""),
+                    model="fetch_image",
+                    size=str(len(raw)),
+                    quality="",
+                    owner=owner,
+                )
+                db.add(img)
+                db.commit()
+                db.refresh(img)
+                result["image_id"] = img.id
+                result["gallery_saved"] = True
+            except Exception as e:
+                db.rollback()
+                result["gallery_error"] = str(e)
+            finally:
+                db.close()
+
+        return result
+
+    except Exception as e:
+        return {"error": str(e), "exit_code": 1}
 
 
 async def do_edit_image(content: str, owner: Optional[str] = None, *, incognito: bool = False) -> Dict:

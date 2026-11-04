@@ -873,6 +873,7 @@ async function _pick(m) {
  */
 export function updateModelPicker() {
   if (!_deps) return;
+  if (window.refreshThinkingControl) { try { window.refreshThinkingControl(); } catch (_) {} }
   const label = document.getElementById('model-picker-label');
   if (!label) return;
   // Hide model picker when group chat is active

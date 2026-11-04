@@ -1836,6 +1836,7 @@ def test_api_models_openrouter_defaults_cached_models_visible(monkeypatch):
         pinned_models=None,
         api_key="fake-key",
     )
+    row.hidden_models = json.dumps(["m2"])
     db = _RouteDb([row])
     router = model_routes.setup_model_routes(model_discovery=None)
 
