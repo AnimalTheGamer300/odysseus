@@ -3,7 +3,7 @@
 // What Fits? + Saved presets, inline action panels
 // ============================================
 
-import uiModule from './ui.js?v=20260916largetoolscroll1';
+import uiModule from './ui.js?v=20261104modfix1';
 import spinnerModule from './spinner.js';
 import { providerLogo } from './providers.js';
 import { makeWindowDraggable } from './windowDrag.js';
@@ -3434,7 +3434,7 @@ function _renderRecipes() {
 
 // ── Public API ──
 
-import * as Modals from './modalManager.js?v=20261023merge2';
+import * as Modals from './modalManager.js';
 
 let _rendered = false;
 

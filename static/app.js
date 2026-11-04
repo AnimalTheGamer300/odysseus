@@ -3,12 +3,12 @@
 // ES6 module — entry point, no exports (wires all modules together)
 // ============================================
 import Storage from './js/storage.js';
-import uiModule from './js/ui.js?v=20260916largetoolscroll1';
+import uiModule from './js/ui.js?v=20261104modfix1';
 import workspaceModule from './js/workspace.js';
 import fileHandlerModule from './js/fileHandler.js?v=20260909mobileattachmentedit1';
 import modelsModule from './js/models.js';
 import ragModule from './js/rag.js';
-import presetsModule from './js/presets.js?v=20260908personaname1';
+import presetsModule from './js/presets.js?v=20261104modfix1';
 import searchModule from './js/search.js';
 import chatModule from './js/chat.js?v=20260917toolttft1';
 import compareModule from './js/compare/index.js?v=20260909mobilepaneaddscroll1';
@@ -1062,7 +1062,7 @@ function initializeEventListeners() {
     toolCookbookBtn.addEventListener('click', async () => {
       if (!cookbookModule) return;
       // Try minimized→restore or open→minimize via the manager first
-      const Modals = await import('./js/modalManager.js?v=20261023merge2');
+      const Modals = await import('./js/modalManager.js');
       if (!Modals.toggle('cookbook-modal')) {
         // Not registered yet → fresh open
         cookbookModule.open();
@@ -1090,7 +1090,7 @@ function initializeEventListeners() {
   if (toolGalleryBtn) {
     toolGalleryBtn.addEventListener('click', async () => {
       if (!galleryModule) return;
-      const Modals = await import('./js/modalManager.js?v=20261023merge2');
+      const Modals = await import('./js/modalManager.js');
       if (!Modals.toggle('gallery-modal')) {
         if (galleryModule.isGalleryOpen()) galleryModule.closeGallery();
         else galleryModule.openGallery();
@@ -1119,7 +1119,7 @@ function initializeEventListeners() {
   if (toolCalendarBtn) {
     toolCalendarBtn.addEventListener('click', async () => {
       if (!calendarModule) return;
-      const Modals = await import('./js/modalManager.js?v=20261023merge2');
+      const Modals = await import('./js/modalManager.js');
       // toggle returns true when a registered modal was minimized/restored;
       // returns false when nothing is registered → open fresh.
       if (!Modals.toggle('calendar-modal')) {

@@ -1,7 +1,7 @@
 // static/js/settings.js — Settings panel module (ES6)
 // User-facing preferences: AI models, search, appearance
 
-import uiModule from './ui.js?v=20260916largetoolscroll1';
+import uiModule from './ui.js?v=20261104modfix1';
 import searchModule from './search.js';
 import { byId } from './settings/dom.js';
 import { postSettings as _postSettings } from './settings/api.js';
@@ -2261,7 +2261,7 @@ async function initReminderSettings() {
     const personaSel = el('set-reminder-llm-persona');
     if (personaSel) {
       try {
-        const presetsMod = await import('./presets.js?v=20260908personaname1');
+        const presetsMod = await import('./presets.js?v=20261104modfix1');
         const tpl = presetsMod.PROMPT_TEMPLATES || [];
         const chars = tpl.filter(t => t.isCharacter);
         for (const c of chars) {

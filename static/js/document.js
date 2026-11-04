@@ -6,7 +6,7 @@
  */
 
 
-import uiModule from './ui.js?v=20260916largetoolscroll1';
+import uiModule from './ui.js?v=20261104modfix1';
 import sessionModule from './sessions.js';
 import emojiPicker from './emojiPicker.js';
 import { readEmailReplyResponse } from './emailReplyStream.js';

@@ -417,7 +417,7 @@ function initPersistentChat() {
 
     try {
       // Get current model info from session module
-      const sessionModule = (await import('./sessions.js?v=20261023merge2'));
+      const sessionModule = (await import('./sessions.js'));
       const sessions = sessionModule.getSessions();
       const current = sessions.find(s => s.id === sessionModule.getCurrentSessionId());
 
@@ -1050,7 +1050,7 @@ async function _mergeUserMemories(charName) {
 }
 
 function _reloadMemoryList() {
-  import('./memory.js?v=20261023merge2').then(m => {
+  import('./memory.js').then(m => {
     if (m.renderMemoryList) m.renderMemoryList();
     if (m.updateMemoryCount) m.updateMemoryCount();
   }).catch(() => {});

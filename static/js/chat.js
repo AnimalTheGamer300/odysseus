@@ -6,14 +6,14 @@
 // ES6 module — IIFE removed
 
 import Storage from './storage.js';
-import uiModule from './ui.js?v=20260916largetoolscroll1';
+import uiModule from './ui.js?v=20261104modfix1';
 import sessionModule from './sessions.js';
 import chatRenderer, { renderToolIcon } from './chatRenderer.js?v=20260914metricssummary1';
 import chatStream from './chatStream.js?v=20261026devsync1';
 import { addAITTSButton } from './tts-ai.js';
-import markdownModule from './markdown.js?v=20261023merge2';
+import markdownModule from './markdown.js';
 import spinnerModule from './spinner.js';
-import presetsModule from './presets.js?v=20260908personaname1';
+import presetsModule from './presets.js?v=20261104modfix1';
 import fileHandlerModule from './fileHandler.js?v=20260909mobileattachmentedit1';
 import searchModule from './search.js';
 import documentModule from './document.js?v=20260916docctx2';
@@ -39,7 +39,7 @@ import {
 import { createTerminalStreamError, isRecoverableStreamError } from './chatStreamErrors.js';
 import { loadPanel } from './panels.js?v=20260909movepicklayer1';
 import { invalidateSettings } from './appConfig.js';
-import { setFaviconBusy } from './theme.js';
+import { setFaviconBusy } from './theme.js?v=20260911organsrain1';
 
 function _dbRowCountBefore(box, element) {
   const allMsgs = Array.from(box.querySelectorAll('.msg'));
@@ -323,7 +323,7 @@ function _dbRowCountBefore(box, element) {
         }
 
         if (typeof window.gePhotoEditorApply !== 'function') {
-          await import('/static/js/galleryEditor.js?v=20260909movepicklayer1');
+          await import('/static/js/galleryEditor.js');
         }
         await window.gePhotoEditorApply({
           imageId: (action && (action.imageId || action.image_id)) || null,
@@ -9414,7 +9414,7 @@ function _dbRowCountBefore(box, element) {
       }
     } catch (e) {
       console.error('open attachment as document failed', e);
-      import('./ui.js?v=20260916largetoolscroll1').then(m => m.showError && m.showError('Could not open attachment')).catch(() => {});
+      import('./ui.js?v=20261104modfix1').then(m => m.showError && m.showError('Could not open attachment')).catch(() => {});
       window.open(url, '_blank');  // fallback so the file is still reachable
     }
   }

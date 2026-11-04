@@ -65,7 +65,7 @@ const PRECACHE = [
   '/static/app.js?v=20261021confirmalign1',
   '/static/js/storage.js',
   '/static/js/appConfig.js',
-  '/static/js/ui.js?v=20260916largetoolscroll1',
+  '/static/js/ui.js?v=20261104modfix1',
   '/static/js/markdown.js',
   '/static/js/dragSort.js',
   '/static/js/sessions.js',
@@ -80,7 +80,7 @@ const PRECACHE = [
   '/static/js/modelSort.js',
   '/static/js/models.js',
   '/static/js/rag.js',
-  '/static/js/presets.js?v=20260908personaname1',
+  '/static/js/presets.js?v=20261104modfix1',
   '/static/js/search.js',
   '/static/js/spinner.js',
   '/static/js/tts-ai.js',
@@ -199,7 +199,7 @@ const PRECACHE = [
 // precached so the panel still opens with no network.
 const PANEL_PRECACHE = [
   // Image editor — galleryEditor.js and its js/editor/ graph.
-  '/static/js/galleryEditor.js?v=20260909movepicklayer1',
+  '/static/js/galleryEditor.js',
   '/static/js/editor/ai-inpaint.js?v=20260708match1',
   '/static/js/editor/ai-models.js',
   '/static/js/editor/ai-operation.js',

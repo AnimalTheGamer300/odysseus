@@ -21,6 +21,9 @@ let _lastPointerClientY = null;
 // Smooth scroll state
 let _scrollRafId = null;
 let _scrollBox = null;
+// Declared for restoreHistoryScroll's cleanup; never set since the fork
+// replaced upstream's 500ms throttle with _userScrolledAway intent tracking.
+let _scrollThrottleTimer = null;
 
 function _isTextEditingTarget(target) {
   const el = target && target.nodeType === 1 ? target : target?.parentElement;
