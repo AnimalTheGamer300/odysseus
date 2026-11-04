@@ -5094,9 +5094,15 @@ def setup_chat_routes(
                                         # saved as its own message downstream.
                                         yield chunk
                                     else:
-
-                                        full_response = _render_state.content
-                                        _stream_set(session, partial=full_response)
+                                        if data.get("thinking"):
+                                            # (fork) accumulate streamed reasoning so it is
+                                            # persisted to metadata.thinking — the merge
+                                            # dropped this in the agent path, so thinking
+                                            # was forwarded live but never saved.
+                                            thinking_response += data["delta"]
+                                        else:
+                                            full_response = _render_state.content
+                                            _stream_set(session, partial=full_response)
                                     yield chunk
                                 elif data.get("type") == "final_response":
                                     # Some deterministic post-processing
