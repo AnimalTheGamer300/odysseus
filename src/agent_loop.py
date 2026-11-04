@@ -21618,7 +21618,11 @@ AGENT_MIN_OUTPUT_TOKENS = 16384
 @with_request_authority
 @with_turn_contract
 @with_teacher_takeover
-@with_completion_gate
+# (fork) NO @with_completion_gate — upstream's gate buffers every delta until
+# the stream ends and replays it in one burst, which kills live streaming
+# (reply appears instantly once finished) and holds thinking deltas back too.
+# The fork streams deltas live; the frontend has no completion_decision
+# consumer. The gate module itself stays (test_completion_boundary covers it).
 async def stream_agent_loop(
     endpoint_url: str,
     model: str,
