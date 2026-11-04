@@ -5175,8 +5175,9 @@ def setup_chat_routes(
                                     yield f'data: {json.dumps(data)}\n\n'
                                 elif data.get("type") == "agent_terminal":
                                     terminal_metadata = _render_state.metadata(data.get("data"))
-                                    if thinking_mode == "off":
-                                        terminal_metadata.pop("thinking", None)
+                                    # (fork) thinking_mode=off only stops the model from being
+                                    # asked to reason; streamed reasoning is still saved to
+                                    # metadata.thinking so the thinking box survives refresh.
                                     last_metrics = terminal_metadata
                                     failure = terminal_metadata.get("failure") or {}
                                     failure_status = _normalize_http_status(
@@ -5218,8 +5219,7 @@ def setup_chat_routes(
                                     yield chunk
                                 elif data.get("type") == "metrics":
                                     last_metrics = _render_state.metadata(data.get("data"))
-                                    if thinking_mode == "off":
-                                        last_metrics.pop("thinking", None)
+                                    # (fork) keep metadata.thinking regardless of thinking_mode.
                                     _reported_model = last_metrics.get("model")
                                     last_metrics["requested_model"] = last_metrics.get("requested_model") or _requested_model
                                     last_metrics["model"] = _reported_model or _actual_model or _answered_by or _requested_model

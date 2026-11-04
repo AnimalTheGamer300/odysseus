@@ -10,7 +10,7 @@ test('static editor modules survive a cache upgrade and offline reopen', async (
   const page = await context.newPage();
   const pickerUrl = '/static/js/colorPicker.js?v=20260910eyedropper1';
   const cssUrl = '/static/css/13-image-editor.css?v=20260929csssplit';
-  const editorUrl = '/static/js/galleryEditor.js?v=20260909movepicklayer1';
+  const editorUrl = '/static/js/galleryEditor.js';
   try {
     // The app's worker intentionally controls /static/, not the SPA root.
     await page.goto('/static/js/panels.js?v=20260909movepicklayer1');

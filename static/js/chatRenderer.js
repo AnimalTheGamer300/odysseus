@@ -345,12 +345,10 @@ function _browserPreviewHtml(command, screenshotSrc, fallbackUrl = '') {
 }
 
 function _renderAssistantBody(text, metadata) {
-  const suppressThinking = !!(metadata && metadata.character_name);
-  if (suppressThinking) {
-    const extracted = markdownModule.extractThinkingBlocks(text || '');
-    const visible = (extracted && typeof extracted.content === 'string') ? extracted.content : String(text || '');
-    return markdownModule.mdToHtml(markdownModule.squashOutsideCode(visible));
-  }
+  // (fork) character/persona chats do NOT suppress thinking on refresh — the
+  // live path renders the thinking box regardless of character_name, so the
+  // refresh path must match (upstream's suppressThinking guard made the box
+  // vanish on reload in persona chats).
   return markdownModule.processWithThinking(text);
 }
 
@@ -3632,9 +3630,9 @@ export function addMessage(role, content, modelName, metadata) {
       findingsSuffix += buildRagSourcesBox(metadata.rag_sources);
     }
     // If thinking is stored in metadata (not in text), reconstruct the full display.
-    // Persona/character chats suppress the thinking UI so the persona answer stays
-    // in-character; the metadata remains saved for debugging/export.
-    if (role === 'assistant' && metadata?.thinking && !metadata?.character_name) {
+    // (fork) no character_name suppression — persona chats show the thinking box
+    // on refresh exactly like the live path does.
+    if (role === 'assistant' && metadata?.thinking) {
       const thinkTime = metadata.thinking_time || null;
       // The stored reasoning is genuine thinking — but it can itself QUOTE a
       // think tag (the model reasoning ABOUT think tags). Wrapping it raw lets

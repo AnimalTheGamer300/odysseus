@@ -7,7 +7,7 @@ async function openBlankEditor(page, size = { width: 640, height: 480 }, name = 
   await page.locator('#tool-gallery-btn').waitFor({ state: 'attached', timeout: 20_000 });
   await page.evaluate(async () => {
     window.__photoEditorImport = path => import(path);
-    const gallery = await window.__photoEditorImport('/static/js/gallery.js?v=20260830editor4');
+    const gallery = await window.__photoEditorImport('/static/js/gallery.js?v=20260910promptcopy1');
     gallery.openGallery();
   });
   await page.locator('#gallery-editor-tab').waitFor({ state: 'visible', timeout: 20_000 });

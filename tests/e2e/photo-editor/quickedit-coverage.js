@@ -98,7 +98,7 @@ function selected() {
       await page.goto(BASE + '/?nodraft=1', { waitUntil: 'domcontentloaded' });
       await page.locator('#tool-gallery-btn').waitFor({ state: 'attached', timeout: 30000 });
       await page.evaluate(async () => {
-        const gallery = await import('/static/js/gallery.js?v=20260830editor4');
+        const gallery = await import('/static/js/gallery.js?v=20260910promptcopy1');
         gallery.openGallery();
       });
       await page.locator('#gallery-editor-tab').first().waitFor({ state: 'attached', timeout: 30000 });
