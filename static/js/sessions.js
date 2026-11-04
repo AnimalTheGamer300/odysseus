@@ -373,45 +373,47 @@ function _installHistoryPager(id, pageInfo, modelName) {
     handler: null,
   };
 
-  const loadOlder = async (viaButton = false) => {
-    if (!_historyPager || _historyPager.loading || _historyPager.done) return;
-    if (_historyPager.sessionId !== currentSessionId) return;
-    if (!viaButton && box.scrollTop > 90) return;
+  const loadOlder = async (force = false) => {
+    const pager = _historyPager;
+    if (!pager || pager.loading || pager.done) return;
+    if (pager.sessionId !== currentSessionId) return;
+    if (!force && box.scrollTop > 90) return;
 
-    const nextOffset = Math.max(0, _historyPager.offset - _historyPager.limit);
-    const nextLimit = _historyPager.offset - nextOffset;
+    const nextOffset = Math.max(0, pager.offset - pager.limit);
+    const nextLimit = pager.offset - nextOffset;
     if (nextLimit <= 0) {
-      _historyPager.done = true;
+      pager.done = true;
       return;
     }
 
-    _historyPager.loading = true;
+    pager.loading = true;
     const anchor = box.querySelector('.msg, .agent-thread, .gallery-bubble');
     const beforeHeight = box.scrollHeight;
     try {
-      const res = await fetch(_historyUrl(_historyPager.sessionId, { limit: nextLimit, offset: nextOffset }));
+      const res = await fetch(_historyUrl(pager.sessionId, { limit: nextLimit, offset: nextOffset }));
+      if (!res.ok) throw new Error(`Chat history request failed (HTTP ${res.status})`);
       const data = await res.json();
-      if (!_historyPager || _historyPager.sessionId !== currentSessionId) return;
+      if (_historyPager !== pager || pager.sessionId !== currentSessionId) return;
       const newEls = [];
       for (const msg of data.history || []) {
         // (2026-11-01) Render every role the DB returns — filtering to
         // user/assistant here silently dropped system/other rows, breaking
         // frontend↔DB parity on paged loads.
-        const els = _renderHistoryMessage(msg, _historyPager.modelName);
+        const els = _renderHistoryMessage(msg, pager.modelName);
         if (Array.isArray(els)) newEls.push(...els);
       }
       for (const el of newEls) {
         box.insertBefore(el, anchor || box.firstChild);
       }
-      _historyPager.offset = Number(data.offset || nextOffset);
-      _historyPager.done = !data.has_more_before;
-      if (_historyPager.btn) {
-        if (_historyPager.done) {
-          _historyPager.btn.remove();
-          _historyPager.btn = null;
+      pager.offset = Number(data.offset || nextOffset);
+      pager.done = !data.has_more_before;
+      if (pager.btn) {
+        if (pager.done) {
+          pager.btn.remove();
+          pager.btn = null;
         } else {
-          const more = Math.max(0, _historyPager.offset);
-          _historyPager.btn.textContent = `⬆ Load earlier messages${more ? ` (${more} more)` : ''}`;
+          const more = Math.max(0, pager.offset);
+          pager.btn.textContent = `⬆ Load earlier messages${more ? ` (${more} more)` : ''}`;
         }
       }
       if (window.hljs) {
@@ -428,12 +430,15 @@ function _installHistoryPager(id, pageInfo, modelName) {
     } catch (e) {
       console.warn('Failed to load older chat history:', e);
     } finally {
-      if (_historyPager) _historyPager.loading = false;
+      pager.loading = false;
     }
   };
 
+  _historyPager.loadOlder = loadOlder;
   _historyPager.handler = () => {
-    if (box.scrollTop <= 90) loadOlder();
+    if (box.scrollTop <= 90 && _historyPager && !_historyPager.loading) {
+      _historyPager.pending = loadOlder();
+    }
   };
   box.addEventListener('scroll', _historyPager.handler, { passive: true });
 
@@ -451,6 +456,29 @@ function _installHistoryPager(id, pageInfo, modelName) {
     box.insertBefore(btn, box.firstChild);
     _historyPager.btn = btn;
   }
+}
+
+export async function prepareHistoryForPrint() {
+  const pager = _historyPager;
+  if (!pager) return;
+  const ensureCurrentChat = () => {
+    if (_historyPager !== pager || currentSessionId !== pager.sessionId) {
+      throw new Error('Chat changed while preparing the PDF. Export again from the intended chat.');
+    }
+  };
+  while (!pager.done) {
+    await pager.pending;
+    ensureCurrentChat();
+    if (pager.done) break;
+    const previousOffset = pager.offset;
+    pager.pending = pager.loadOlder(true);
+    await pager.pending;
+    ensureCurrentChat();
+    if (!pager.done && pager.offset >= previousOffset) {
+      throw new Error('Could not load the complete chat for PDF export. Please try again.');
+    }
+  }
+  ensureCurrentChat();
 }
 
 function _getIncognitoIds() {
@@ -4164,6 +4192,7 @@ const sessionModule = {
   renderSessionList,
   loadSessions,
   selectSession,
+  prepareHistoryForPrint,
   createDirectChat,
   materializePendingSession,
   preMaterializePendingSession,
