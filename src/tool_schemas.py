@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 _REQUIRED_NATIVE_TOOL_ARGS = {
-    "web_search": ("query", "queries"),
+    "web_search": ("query", "queries", "command"),
     "web_fetch": ("url",),
     "read_file": ("path",),
     "write_file": ("path",),
@@ -948,7 +948,7 @@ def function_call_to_tool_block(name: str, arguments: str) -> Optional[ToolBlock
         elif queries:
             content = str(queries)
         else:
-            content = args.get("query", "")
+            content = args.get("query") or args.get("command") or ""
         # Preserve the model-requested freshness filter — the web_search schema
         # advertises time_filter and the executor parses {"query","time_filter"},
         # but a bare query string dropped it. Mirrors the read_file JSON idiom.

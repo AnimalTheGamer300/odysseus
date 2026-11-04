@@ -5022,6 +5022,23 @@ import { setFaviconBusy } from './theme.js';
           // errors (unsupported tools, 4xx/5xx, parse failures) surface right away
           // instead of burning the nudge budget on a guaranteed-to-fail retry.
           if (!(isRecoverableStreamError(err) && _tryAutoRecover(_catchViewHolder, accumulated, streamSessionId))) {
+            // Stream died unexpectedly (not from user stop/timeout). Probe the
+            // server before surfacing a dead-end error — the detached backend
+            // run may still be alive and worth re-attaching to.
+            const _recoverSid = streamSessionId;
+            try {
+              const _recoverRes = await fetch(`${API_BASE}/api/chat/stream_status/${encodeURIComponent(_recoverSid)}`, {
+                credentials: 'same-origin', cache: 'no-store',
+              });
+              if (_recoverRes.ok) {
+                setTimeout(() => {
+                  _tabSyncPost('chat-takeover', { sessionId: _recoverSid });
+                  _convergeAfterAbort(_recoverSid, holder);
+                }, 500);
+                return;
+              }
+            } catch (_) {}
+
             if (err.terminalStreamError) {
               if (_canonicalTerminalSaved || accumulated.trim()) {
                 // Let this stream's finally block clear foreground state before
@@ -5330,7 +5347,19 @@ import { setFaviconBusy } from './theme.js';
         cache: 'no-store',
       });
       if (!_getForegroundStreamState() || _backgroundStreams.has(sid)) return;
-      if (res.status !== 404) return;
+      if (res.status !== 404) {
+        // Server still has an active detached run — re-attach live instead of
+        // giving up. The local reader died but the backend keeps grinding.
+        console.warn('[stream-watchdog] Local stream stale but server run still active — re-attaching.');
+        if (active.abortCtrl && !active.abortCtrl.signal.aborted) {
+          active.abortCtrl._reason = 'stale-local';
+          active.abortCtrl.abort();
+        }
+        _activeStreams.delete(sid);
+        _syncForegroundStreamGlobals();
+        await resumeStream(sid);
+        return;
+      }
 
       console.warn('[stream-watchdog] Local stream was stale and server has no active stream. Unlocking composer.');
       if (active.abortCtrl && !active.abortCtrl.signal.aborted) {

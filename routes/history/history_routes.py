@@ -157,6 +157,11 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 meta = {}
         if m.timestamp and "timestamp" not in meta:
             meta["timestamp"] = m.timestamp.isoformat() + "Z"
+        # The DB row id IS the _db_id the frontend uses as the edit/delete
+        # key. Without it, paged history renders bubbles with no dataset.dbId,
+        # so deleteMessage falls back to DOM-only removal and the message
+        # survives in the DB (reappears on refresh).
+        meta["_db_id"] = m.id
         if meta:
             entry["metadata"] = meta
         return entry
@@ -170,6 +175,10 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
                 meta = {}
         if m.timestamp and "timestamp" not in meta:
             meta["timestamp"] = m.timestamp.isoformat() + "Z"
+        # Same as _db_history_entry: stamp the row id so DB-served history
+        # carries the _db_id edit/delete key (matches the in-memory path,
+        # which gets it from session_manager at persist time).
+        meta["_db_id"] = m.id
         return meta
 
     def _draft_is_live(session_id: str) -> bool:
