@@ -8006,3 +8006,7 @@ pre { background: var(--code-bg, var(--hl-bg, #282c34)) !important; }
   display: flex; flex-direction: column;
   max-height: 60vh; overflow-y: auto;
 }
+/* Compound selector (specificity 0-2-0) so it beats the base display:flex
+   above — this line was dropped in the style.css → split-stylesheet port,
+   which made the menu always visible. */
+.thinking-menu.hidden { display: none; }
