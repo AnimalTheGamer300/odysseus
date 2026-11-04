@@ -584,37 +584,6 @@ async function initUtilityModel() {
   });
 }
 
-/* ── Thinking toggle ── */
-// Master switch for reasoning/"thinking" mode on models that support
-// it (Ollama think, DeepSeek V4, Mistral reasoning_effort, vLLM/NIM
-// chat_template_kwargs, OpenRouter reasoning). Stored as the
-// `thinking_enabled` flag; internal utility calls (compaction,
-// summaries, titles) always run with thinking off regardless.
-async function initThinkingToggle() {
-  var toggle = document.getElementById('set-thinkingEnabledToggle');
-  var msg = document.getElementById('set-thinkingMsg');
-  if (!toggle) return;
-  try {
-    var res = await fetch('/api/auth/settings', { credentials: 'same-origin' });
-    var settings = await res.json();
-    toggle.checked = settings.thinking_enabled !== false;
-  } catch (e) { console.warn('Failed to load thinking setting', e); }
-  toggle.addEventListener('change', async function() {
-    try {
-      await fetch('/api/auth/settings', { method: 'POST', credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ thinking_enabled: !!toggle.checked })
-      });
-      if (msg) {
-        msg.textContent = 'Saved';
-        setTimeout(function() { msg.textContent = ''; }, 2000);
-      }
-    } catch (e) {
-      if (msg) { msg.textContent = 'Failed to save'; msg.style.color = 'var(--red)'; }
-    }
-  });
-}
-
 /* ── Teacher Model ── */
 // SOTA model called automatically when a self-hosted student model
 // fails an agent-mode task. Stored as a single `teacher_model` string
@@ -1970,7 +1939,6 @@ function initAll() {
   initialized = true;
   initDefaultChat();
   initTeacherModel();
-  initThinkingToggle();
   initUtilityModel();
   initImageSettings();
   initVisionSettings();
