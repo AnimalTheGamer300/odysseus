@@ -299,9 +299,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `typewriterInto` — function, line 593
 - **called from:**
-- `static/js/chat.js:2552`
-- `static/js/chat.js:5081`
-- `static/js/chat.js:5294`
+- `static/js/chat.js:2544`
+- `static/js/chat.js:5079`
+- `static/js/chat.js:5292`
 - `static/js/slashCommands.js:593`
 
 ## `maskKey` — function, line 608
@@ -334,13 +334,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleSetupInput` — function, line 732
 - **called from:**
-- `static/js/chat.js:1676`
+- `static/js/chat.js:1679`
 - `static/js/slashCommands.js:732`
 - `static/js/slashCommands.js:776`
 
 ## `handleSetupWizard` — function, line 772
 - **called from:**
-- `static/js/chat.js:1678`
+- `static/js/chat.js:1681`
 - `static/js/slashCommands.js:772`
 
 ## `_syncToggleUI` — function, line 909
@@ -633,7 +633,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `on` — class, line 2289
 - **called from:**
-- `static/js/chat.js:2034`
+- `static/js/chat.js:2032`
 - `static/js/compare/index.js:937`
 - `static/js/cookbook-hwfit.js:2477`
 - `static/js/gallery.js:2509`
@@ -652,9 +652,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -707,8 +706,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `destroy` — method?, line 2308
 - **called from:**
@@ -716,32 +716,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:1512`
 - `static/js/admin.js:1749`
 - `static/js/calendar.js:2079`
-- `static/js/chat.js:518`
-- `static/js/chat.js:737`
-- `static/js/chat.js:770`
-- `static/js/chat.js:1538`
-- `static/js/chat.js:1543`
-- `static/js/chat.js:2668`
-- `static/js/chat.js:2928`
-- `static/js/chat.js:3267`
-- `static/js/chat.js:3290`
-- `static/js/chat.js:3365`
-- `static/js/chat.js:3452`
-- `static/js/chat.js:3512`
-- `static/js/chat.js:3973`
-- `static/js/chat.js:4359`
-- `static/js/chat.js:4400`
-- `static/js/chat.js:4442`
-- `static/js/chat.js:4477`
-- `static/js/chat.js:4863`
-- `static/js/chat.js:5672`
-- `static/js/chat.js:5796`
-- `static/js/chat.js:5995`
-- `static/js/chat.js:6006`
-- `static/js/chat.js:7188`
-- `static/js/chat.js:7202`
-- `static/js/chat.js:7218`
-- `static/js/chat.js:7584`
+- `static/js/chat.js:517`
+- `static/js/chat.js:736`
+- `static/js/chat.js:769`
+- `static/js/chat.js:1537`
+- `static/js/chat.js:1542`
+- `static/js/chat.js:2660`
+- `static/js/chat.js:2920`
+- `static/js/chat.js:3259`
+- `static/js/chat.js:3282`
+- `static/js/chat.js:3357`
+- `static/js/chat.js:3444`
+- `static/js/chat.js:3504`
+- `static/js/chat.js:3965`
+- `static/js/chat.js:4351`
+- `static/js/chat.js:4392`
+- `static/js/chat.js:4434`
+- `static/js/chat.js:4469`
+- `static/js/chat.js:4837`
+- `static/js/chat.js:5675`
+- `static/js/chat.js:5770`
+- `static/js/chat.js:5957`
+- `static/js/chat.js:5968`
+- `static/js/chat.js:7106`
+- `static/js/chat.js:7120`
+- `static/js/chat.js:7136`
+- `static/js/chat.js:7423`
 - `static/js/codeRunner.js:225`
 - `static/js/compare/panes.js:66`
 - `static/js/compare/stream.js:161`
@@ -768,8 +768,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/cookbookServe.js:4221`
 - `static/js/document.js:588`
 - `static/js/document.js:3998`
-- `static/js/documentLibrary.js:3511`
-- `static/js/documentLibrary.js:3522`
+- `static/js/documentLibrary.js:3296`
+- `static/js/documentLibrary.js:3307`
 - `static/js/editor/ai-inpaint.js:248`
 - `static/js/editor/ai-inpaint.js:249`
 - … +67 more (grep the name in repo)
@@ -814,13 +814,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -874,8 +874,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `delay` — arrow, line 2477
 - **called from:**
-- `static/app.js:3874`
-- `static/js/chat.js:5219`
+- `static/app.js:3873`
+- `static/js/chat.js:5217`
 - `static/js/slashCommands.js:2482`
 - `static/js/slashCommands.js:2536`
 - `static/js/slashCommands.js:2544`
@@ -887,7 +887,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:5052`
 - `static/js/document.js:5053`
 - `static/js/document.js:5054`
-- `static/js/markdown.js:570`
+- `static/js/markdown.js:522`
 - `static/js/slashCommands.js:2516`
 - `static/js/slashCommands.js:2524`
 - `static/js/slashCommands.js:2530`
@@ -909,7 +909,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:5052`
 - `static/js/document.js:5053`
 - `static/js/document.js:5054`
-- `static/js/markdown.js:570`
+- `static/js/markdown.js:522`
 - `static/js/slashCommands.js:2516`
 - `static/js/slashCommands.js:2524`
 - `static/js/slashCommands.js:2530`
@@ -957,9 +957,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -1012,8 +1011,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `destroy` — method?, line 2626
 - **called from:**
@@ -1021,32 +1021,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:1512`
 - `static/js/admin.js:1749`
 - `static/js/calendar.js:2079`
-- `static/js/chat.js:518`
-- `static/js/chat.js:737`
-- `static/js/chat.js:770`
-- `static/js/chat.js:1538`
-- `static/js/chat.js:1543`
-- `static/js/chat.js:2668`
-- `static/js/chat.js:2928`
-- `static/js/chat.js:3267`
-- `static/js/chat.js:3290`
-- `static/js/chat.js:3365`
-- `static/js/chat.js:3452`
-- `static/js/chat.js:3512`
-- `static/js/chat.js:3973`
-- `static/js/chat.js:4359`
-- `static/js/chat.js:4400`
-- `static/js/chat.js:4442`
-- `static/js/chat.js:4477`
-- `static/js/chat.js:4863`
-- `static/js/chat.js:5672`
-- `static/js/chat.js:5796`
-- `static/js/chat.js:5995`
-- `static/js/chat.js:6006`
-- `static/js/chat.js:7188`
-- `static/js/chat.js:7202`
-- `static/js/chat.js:7218`
-- `static/js/chat.js:7584`
+- `static/js/chat.js:517`
+- `static/js/chat.js:736`
+- `static/js/chat.js:769`
+- `static/js/chat.js:1537`
+- `static/js/chat.js:1542`
+- `static/js/chat.js:2660`
+- `static/js/chat.js:2920`
+- `static/js/chat.js:3259`
+- `static/js/chat.js:3282`
+- `static/js/chat.js:3357`
+- `static/js/chat.js:3444`
+- `static/js/chat.js:3504`
+- `static/js/chat.js:3965`
+- `static/js/chat.js:4351`
+- `static/js/chat.js:4392`
+- `static/js/chat.js:4434`
+- `static/js/chat.js:4469`
+- `static/js/chat.js:4837`
+- `static/js/chat.js:5675`
+- `static/js/chat.js:5770`
+- `static/js/chat.js:5957`
+- `static/js/chat.js:5968`
+- `static/js/chat.js:7106`
+- `static/js/chat.js:7120`
+- `static/js/chat.js:7136`
+- `static/js/chat.js:7423`
 - `static/js/codeRunner.js:225`
 - `static/js/compare/panes.js:66`
 - `static/js/compare/stream.js:161`
@@ -1073,8 +1073,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/cookbookServe.js:4221`
 - `static/js/document.js:588`
 - `static/js/document.js:3998`
-- `static/js/documentLibrary.js:3511`
-- `static/js/documentLibrary.js:3522`
+- `static/js/documentLibrary.js:3296`
+- `static/js/documentLibrary.js:3307`
 - `static/js/editor/ai-inpaint.js:248`
 - `static/js/editor/ai-inpaint.js:249`
 - … +67 more (grep the name in repo)
@@ -1263,9 +1263,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -1318,8 +1317,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 2912
 - **called from:**
@@ -1489,9 +1489,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -1544,8 +1543,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 3141
 - **called from:**
@@ -1655,13 +1655,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1779,9 +1779,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -1834,8 +1833,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `tick` — arrow, line 3379
 - **called from:**
@@ -2004,9 +2004,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -2059,8 +2058,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `tick` — arrow, line 3611
 - **called from:**
@@ -2239,9 +2239,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -2294,8 +2293,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `tick` — arrow, line 3824
 - **called from:**
@@ -2449,9 +2449,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -2504,8 +2503,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `tick` — arrow, line 4024
 - **called from:**
@@ -2663,9 +2663,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -2718,8 +2717,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `tick` — arrow, line 4243
 - **called from:**
@@ -2737,7 +2737,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/admin_wipe/admin_wipe_routes.py:101`
 - `routes/email_routes.py:1643`
 - `routes/model_routes.py:1394`
-- `routes/session_routes.py:841`
+- `routes/session_routes.py:832`
 - `routes/skills_routes.py:462`
 - `scripts/diffusion_server.py:101`
 - `services/search/core.py:228`
@@ -2747,7 +2747,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/email_thread_parser.py:318`
 - `src/llm_core.py:126`
 - `src/llm_core.py:141`
-- `src/llm_core.py:4116`
+- `src/llm_core.py:4084`
 - `src/task_scheduler.py:441`
 - `tests/test_api_token_routes.py:160`
 - `tests/test_budget_auto_sentinel.py:72`
@@ -2792,7 +2792,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_mcp_email_decode_header_spaces.py:98`
 - `tests/test_mcp_email_decode_header_spaces.py:112`
 - `tests/test_mcp_email_decode_header_spaces.py:170`
-- … +110 more (grep the name in repo)
+- … +105 more (grep the name in repo)
 
 ## `positionTooltip` — function, line 4263
 - **called from:**
@@ -2866,9 +2866,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -2921,8 +2920,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 4476
 - **called from:**
@@ -3071,9 +3071,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -3126,8 +3125,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 4690
 - **called from:**
@@ -3237,13 +3237,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -3327,9 +3327,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -3382,8 +3381,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `cleanup` — arrow, line 4976
 - **called from:**
@@ -3391,13 +3391,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -3610,7 +3610,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleSlashCommand` — function, line 6281
 - **called from:**
-- `static/js/chat.js:1698`
+- `static/js/chat.js:1699`
 - `static/js/slashCommands.js:6281`
 - `static/js/tourAutoplay.js:61`
 
@@ -3626,23 +3626,23 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `initSlashCommands` — function, line 6422
 - **called from:**
-- `static/js/chat.js:1169`
+- `static/js/chat.js:1168`
 - `static/js/slashCommands.js:6422`
 
 ## `isCommand` — function, line 6487
 - **called from:**
-- `static/js/chat.js:1669`
-- `static/js/chat.js:1683`
-- `static/js/chat.js:1697`
+- `static/js/chat.js:1672`
+- `static/js/chat.js:1686`
+- `static/js/chat.js:1698`
 - `static/js/slashCommands.js:6487`
 
 ## `getSetupMode` — function, line 6494
 - **called from:**
-- `static/js/chat.js:1668`
+- `static/js/chat.js:1671`
 - `static/js/slashCommands.js:6494`
 
 ## `clearSetupMode` — function, line 6501
 - **called from:**
-- `static/js/chat.js:1671`
-- `static/js/chat.js:1684`
+- `static/js/chat.js:1674`
+- `static/js/chat.js:1687`
 - `static/js/slashCommands.js:6501`

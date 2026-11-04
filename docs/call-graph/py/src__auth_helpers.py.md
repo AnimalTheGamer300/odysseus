@@ -79,7 +79,7 @@
 - `routes/chat_routes.py:1528`
 - `routes/chat_routes.py:3147`
 - `routes/history/history_routes.py:138`
-- `routes/history/history_routes.py:1090`
+- `routes/history/history_routes.py:1053`
 - `routes/model_routes.py:1631`
 - `routes/preset_routes.py:105`
 - `routes/session_routes.py:145`
@@ -88,13 +88,11 @@
 - `routes/session_routes.py:493`
 - `routes/session_routes.py:557`
 - `routes/session_routes.py:696`
-- `routes/session_routes.py:858`
-- `routes/session_routes.py:868`
-- `routes/session_routes.py:981`
-- `routes/session_routes.py:1114`
-- `routes/session_routes.py:1132`
-- `routes/session_routes.py:1216`
-- `routes/session_routes.py:1288`
+- `routes/session_routes.py:913`
+- `routes/session_routes.py:1046`
+- `routes/session_routes.py:1064`
+- `routes/session_routes.py:1148`
+- `routes/session_routes.py:1220`
 - `routes/upload_routes.py:290`
 - `routes/upload_routes.py:372`
 - `routes/upload_routes.py:461`
@@ -118,7 +116,7 @@
 - `routes/chat_routes.py:1679`
 - `routes/session_routes.py:173`
 - `routes/session_routes.py:212`
-- `routes/session_routes.py:1127`
+- `routes/session_routes.py:1059`
 
 ## `require_api_token_scope` — function, line 60
 - **called from:**
@@ -148,7 +146,7 @@
 - `routes/model_routes.py:1636`
 - `routes/research/research_routes.py:219`
 - `routes/session_routes.py:146`
-- `routes/session_routes.py:1289`
+- `routes/session_routes.py:1221`
 - `src/auth_helpers.py:144`
 - `src/task_action_policy.py:20`
 - `src/tool_security.py:253`
@@ -164,7 +162,7 @@
 - `routes/calendar_routes.py:75`
 - `routes/codex_routes.py:96`
 - `routes/codex_routes.py:110`
-- `routes/history/history_routes.py:968`
+- `routes/history/history_routes.py:931`
 - `routes/memory/memory_routes.py:241`
 - `routes/note/note_routes.py:598`
 - `routes/note/note_routes.py:852`
@@ -231,6 +229,6 @@
 - `src/endpoint_resolver.py:403`
 - `src/endpoint_resolver.py:459`
 - `src/endpoint_resolver.py:548`
-- `src/llm_core.py:2181`
+- `src/llm_core.py:2149`
 - `src/task_scheduler.py:1877`
 - `src/task_scheduler.py:2053`

@@ -68,10 +68,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:1044`
 - `app.py:1045`
 - `core/auth.py:309`
-- `core/database.py:2699`
-- `core/session_manager.py:1092`
-- `core/session_manager.py:1097`
-- `core/session_manager.py:1348`
+- `core/database.py:2660`
+- `core/session_manager.py:620`
+- `core/session_manager.py:963`
+- `core/session_manager.py:968`
+- `core/session_manager.py:1120`
 - `routes/admin_wipe/admin_wipe_routes.py:80`
 - `routes/admin_wipe/admin_wipe_routes.py:81`
 - `routes/admin_wipe/admin_wipe_routes.py:91`
@@ -124,8 +125,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:1239`
 - `routes/gallery/gallery_routes.py:1136`
 - `routes/gallery/gallery_routes.py:2171`
-- `routes/gallery/gallery_routes.py:2161`
-- … +97 more (grep the name in repo)
+- … +95 more (grep the name in repo)
 
 ## `MemoryProvider.get_tool_schemas` — method, line 87
 - **called from:**
@@ -204,10 +204,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:1044`
 - `app.py:1045`
 - `core/auth.py:309`
-- `core/database.py:2699`
-- `core/session_manager.py:1092`
-- `core/session_manager.py:1097`
-- `core/session_manager.py:1348`
+- `core/database.py:2660`
+- `core/session_manager.py:620`
+- `core/session_manager.py:963`
+- `core/session_manager.py:968`
+- `core/session_manager.py:1120`
 - `routes/admin_wipe/admin_wipe_routes.py:80`
 - `routes/admin_wipe/admin_wipe_routes.py:81`
 - `routes/admin_wipe/admin_wipe_routes.py:91`
@@ -260,8 +261,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:1239`
 - `routes/gallery/gallery_routes.py:1136`
 - `routes/gallery/gallery_routes.py:2171`
-- `routes/gallery/gallery_routes.py:2161`
-- … +97 more (grep the name in repo)
+- … +95 more (grep the name in repo)
 
 ## `NativeMemoryProvider._vector_available` — method, line 254
 - **called from:**
@@ -376,7 +376,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:349`
 - `core/auth.py:357`
 - `core/auth.py:370`
-- … +7551 more (grep the name in repo)
+- … +7528 more (grep the name in repo)
 
 ## `MemoryProviderRegistry.all` — method, line 274
 - **called from:**
@@ -384,16 +384,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:1042`
 - `app.py:1168`
 - `companion/routes.py:141`
-- `core/database.py:2804`
+- `core/database.py:2763`
 - `core/session_manager.py:99`
 - `core/session_manager.py:137`
-- `core/session_manager.py:150`
-- `core/session_manager.py:264`
-- `core/session_manager.py:630`
-- `core/session_manager.py:702`
-- `core/session_manager.py:799`
-- `core/session_manager.py:1190`
-- `core/session_manager.py:1329`
+- `core/session_manager.py:149`
+- `core/session_manager.py:250`
+- `core/session_manager.py:614`
+- `core/session_manager.py:690`
+- `core/session_manager.py:1103`
 - `mcp_servers/email_server.py:926`
 - `routes/api_token_routes.py:83`
 - `routes/assistant_routes.py:145`
@@ -440,7 +438,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:769`
 - `routes/gallery/gallery_routes.py:776`
 - `routes/gallery/gallery_routes.py:791`
-- … +282 more (grep the name in repo)
+- `routes/gallery/gallery_routes.py:819`
+- `routes/gallery/gallery_routes.py:914`
+- … +276 more (grep the name in repo)
 
 ## `MemoryProviderRegistry.active` — method, line 277
 - **called from:**
@@ -450,7 +450,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_rename_user_owner_sync.py:307`
 - `static/app.js:988`
 - `static/app.js:989`
-- `static/js/chat.js:5195`
+- `static/js/chat.js:5193`
 - `static/js/document.js:1333`
 - `static/js/gallery.js:2504`
 - `static/js/gallery.js:2603`

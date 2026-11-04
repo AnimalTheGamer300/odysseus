@@ -37,16 +37,15 @@
 
 ## `persistable_message_content` — function, line 124
 - **called from:**
-- `core/session_manager.py:407`
-- `core/session_manager.py:474`
-- `core/session_manager.py:502`
-- `core/session_manager.py:557`
-- `core/session_manager.py:645`
-- `core/session_manager.py:852`
+- `core/session_manager.py:393`
+- `core/session_manager.py:460`
+- `core/session_manager.py:488`
+- `core/session_manager.py:543`
+- `core/session_manager.py:743`
 - `src/attachment_refs.py:164`
 - `tests/test_attachment_refs.py:32`
 
 ## `search_index_text` — function, line 150
 - **called from:**
-- `core/database.py:2370`
+- `core/database.py:2331`
 - `tests/test_attachment_refs.py:52`

@@ -24,7 +24,7 @@
 
 ## `revealApplicationShellAfterPaint` — function, line 50
 - **called from:**
-- `static/app.js:4308`
+- `static/app.js:4307`
 - `static/js/startupShell.js:50`
 
 ## `removeApplicationLoader` — function, line 58
@@ -49,14 +49,14 @@
 
 ## `runDeferredRouteOpener` — function, line 104
 - **called from:**
-- `static/app.js:4324`
+- `static/app.js:4323`
 - `static/js/startupShell.js:104`
 - `static/js/startupShell.js:132`
 
 ## `settleSessionHydration` — function, line 122
 - **called from:**
-- `static/app.js:4328`
-- `static/app.js:4333`
+- `static/app.js:4327`
+- `static/app.js:4332`
 - `static/js/startupShell.js:122`
 
 ## `settle` — arrow, line 123

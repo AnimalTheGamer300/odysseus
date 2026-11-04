@@ -10,7 +10,7 @@
 
 ## `begin` — method?, line 23
 - **called from:**
-- `core/database.py:1990`
+- `core/database.py:1952`
 - `tests/test_email_account_default_serialization.py:241`
 - `tests/test_email_account_default_serialization.py:278`
 - `static/js/editor/tools/clone.js:7`

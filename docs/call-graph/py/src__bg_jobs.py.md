@@ -121,6 +121,7 @@
 - `src/bg_jobs.py:263`
 - `src/chatgpt_subscription.py:271`
 - `src/chatgpt_subscription.py:281`
+- `src/tools/image.py:83`
 - `static/js/chatRenderer.js:3112`
 - `static/js/chatStream.js:171`
 - `static/js/cookbookDownload.js:174`
@@ -208,7 +209,7 @@
 - `core/auth.py:349`
 - `core/auth.py:357`
 - `core/auth.py:370`
-- … +7551 more (grep the name in repo)
+- … +7528 more (grep the name in repo)
 
 ## `list_for_session` — function, line 262
 - **called from:**

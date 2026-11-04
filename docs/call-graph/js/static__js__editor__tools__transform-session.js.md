@@ -54,6 +54,7 @@
 - `src/bg_jobs.py:263`
 - `src/chatgpt_subscription.py:271`
 - `src/chatgpt_subscription.py:281`
+- `src/tools/image.py:83`
 - `static/js/chatRenderer.js:3112`
 - `static/js/chatStream.js:171`
 - `static/js/cookbookDownload.js:174`

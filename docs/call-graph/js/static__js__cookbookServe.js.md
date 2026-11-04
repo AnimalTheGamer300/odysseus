@@ -335,13 +335,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -396,7 +396,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `onCancel` — function, line 1040
 - **called from:**
 - `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
+- `static/js/documentLibrary.js:226`
 - `static/js/galleryEditor.js:3971`
 - `static/js/skills.js:1464`
 - `static/js/skills.js:1465`
@@ -520,11 +520,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:9232`
 - `static/js/document.js:9235`
 - `static/js/document.js:9237`
-- `static/js/documentLibrary.js:685`
-- `static/js/documentLibrary.js:701`
-- `static/js/documentLibrary.js:711`
-- `static/js/documentLibrary.js:736`
-- `static/js/documentLibrary.js:758`
+- `static/js/documentLibrary.js:683`
+- `static/js/documentLibrary.js:699`
+- `static/js/documentLibrary.js:709`
+- `static/js/documentLibrary.js:734`
+- `static/js/documentLibrary.js:756`
 
 ## `svm` — arrow, line 1412
 - **called from:**
@@ -853,21 +853,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 2697
 - **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
+- `static/js/chat.js:6093`
+- `static/js/chat.js:6094`
+- `static/js/chat.js:6095`
 - `static/js/cookbookServe.js:2709`
 - `static/js/cookbookServe.js:2717`
 - `static/js/cookbookServe.js:2722`
 - `static/js/cookbookServe.js:2723`
 - `static/js/cookbookServe.js:2769`
 - `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
+- `static/js/documentLibrary.js:2161`
+- `static/js/documentLibrary.js:2162`
+- `static/js/documentLibrary.js:2593`
+- `static/js/documentLibrary.js:2594`
+- `static/js/documentLibrary.js:2595`
+- `static/js/documentLibrary.js:2596`
 - `static/js/skills.js:404`
 - `static/js/skills.js:405`
 - `static/js/skills.js:420`
@@ -899,21 +899,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 2757
 - **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
+- `static/js/chat.js:6093`
+- `static/js/chat.js:6094`
+- `static/js/chat.js:6095`
 - `static/js/cookbookServe.js:2709`
 - `static/js/cookbookServe.js:2717`
 - `static/js/cookbookServe.js:2722`
 - `static/js/cookbookServe.js:2723`
 - `static/js/cookbookServe.js:2769`
 - `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
+- `static/js/documentLibrary.js:2161`
+- `static/js/documentLibrary.js:2162`
+- `static/js/documentLibrary.js:2593`
+- `static/js/documentLibrary.js:2594`
+- `static/js/documentLibrary.js:2595`
+- `static/js/documentLibrary.js:2596`
 - `static/js/skills.js:404`
 - `static/js/skills.js:405`
 - `static/js/skills.js:420`
@@ -1063,8 +1063,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
+- `static/js/chat.js:4679`
+- `static/js/chat.js:4679`
 - `static/js/cookbookServe.js:4003`
 - `static/js/cookbookServe.js:4005`
 - `static/js/document.js:313`
@@ -1073,20 +1073,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:8966`
 - `static/js/documentLibrary.js:70`
 - `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
+- `static/js/documentLibrary.js:582`
+- `static/js/documentLibrary.js:586`
 - `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
+- `static/js/documentLibrary.js:1957`
+- `static/js/documentLibrary.js:1962`
+- `static/js/documentLibrary.js:2110`
+- `static/js/documentLibrary.js:2466`
+- `static/js/documentLibrary.js:2510`
+- `static/js/documentLibrary.js:2547`
+- `static/js/documentLibrary.js:2696`
+- `static/js/documentLibrary.js:2737`
+- `static/js/documentLibrary.js:2750`
+- `static/js/documentLibrary.js:2904`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
@@ -1094,7 +1093,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/emailInbox.js:524`
+- … +188 more (grep the name in repo)
 
 ## `_renderCachedModelsData` — function, line 4033
 - **called from:**

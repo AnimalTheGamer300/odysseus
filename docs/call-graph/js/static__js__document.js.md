@@ -71,24 +71,24 @@
 
 ## `init` — function, line 154
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -123,8 +123,8 @@
 - `static/js/document.js:10360`
 - `static/js/document.js:10713`
 - `static/js/document.js:11127`
-- `static/js/documentLibrary.js:1041`
-- `static/js/documentLibrary.js:1112`
+- `static/js/documentLibrary.js:1039`
+- `static/js/documentLibrary.js:1110`
 
 ## `updateArrowVisibility` — function, line 207
 - **called from:**
@@ -265,58 +265,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `apply` — arrow, line 795
 - **called from:**
@@ -345,7 +345,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/admin_wipe/admin_wipe_routes.py:101`
 - `routes/email_routes.py:1643`
 - `routes/model_routes.py:1394`
-- `routes/session_routes.py:841`
+- `routes/session_routes.py:832`
 - `routes/skills_routes.py:462`
 - `scripts/diffusion_server.py:101`
 - `services/search/core.py:228`
@@ -355,7 +355,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/email_thread_parser.py:318`
 - `src/llm_core.py:126`
 - `src/llm_core.py:141`
-- `src/llm_core.py:4116`
+- `src/llm_core.py:4084`
 - `src/task_scheduler.py:441`
 - `tests/test_api_token_routes.py:160`
 - `tests/test_budget_auto_sentinel.py:72`
@@ -400,7 +400,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_mcp_email_decode_header_spaces.py:98`
 - `tests/test_mcp_email_decode_header_spaces.py:112`
 - `tests/test_mcp_email_decode_header_spaces.py:170`
-- … +110 more (grep the name in repo)
+- … +105 more (grep the name in repo)
 
 ## `_slug` — arrow, line 916
 - **called from:**
@@ -853,9 +853,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/routes.py:151`
 - `core/auth.py:207`
 - `core/database.py:67`
-- `core/database.py:2003`
+- `core/database.py:1965`
 - `core/platform_compat.py:199`
-- `core/session_manager.py:803`
+- `core/session_manager.py:694`
 - `mcp_servers/email_server.py:542`
 - `mcp_servers/email_server.py:1822`
 - `mcp_servers/email_server.py:2458`
@@ -906,7 +906,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:695`
 - `routes/gallery/gallery_routes.py:957`
 - `routes/gallery/gallery_routes.py:1017`
-- … +598 more (grep the name in repo)
+- … +594 more (grep the name in repo)
 
 ## `syncActive` — arrow, line 2584
 - **called from:**
@@ -1258,7 +1258,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `setActive` — arrow, line 3726
 - **called from:**
-- `static/app.js:2554`
+- `static/app.js:2553`
 - `static/js/document.js:3745`
 - `static/js/document.js:3751`
 - `static/js/group.js:161`
@@ -1293,13 +1293,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1470,13 +1470,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1596,8 +1596,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `openPanel` — function, line 4757
 - **called from:**
 - `static/app.js:1180`
-- `static/js/chat.js:7756`
-- `static/js/chat.js:7797`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:7636`
 - `static/js/document.js:4757`
 - `static/js/document.js:6886`
 - `static/js/document.js:7048`
@@ -1668,10 +1668,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_close` — arrow, line 5304
 - **called from:**
-- `static/js/chat.js:6178`
-- `static/js/chat.js:6186`
-- `static/js/chat.js:6194`
-- `static/js/chat.js:6197`
+- `static/js/chat.js:6137`
+- `static/js/chat.js:6145`
+- `static/js/chat.js:6153`
+- `static/js/chat.js:6156`
 - `static/js/chatRenderer.js:261`
 - `static/js/document.js:5281`
 - `static/js/document.js:5311`
@@ -1809,7 +1809,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_upload_handler_cleanup.py:318`
 - `tests/test_upload_handler_cleanup.py:346`
 - `tests/test_upload_handler_cleanup.py:348`
-- `static/js/chat.js:7262`
+- `static/js/chat.js:7180`
 - `static/js/chatRenderer.js:2543`
 - `static/js/document.js:6140`
 - `static/js/document.js:6151`
@@ -1899,58 +1899,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `initMdToolbar` — function, line 6565
 - **called from:**
@@ -2061,8 +2061,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/research/panel.js:732`
 - `static/js/research/panel.js:792`
 - `static/js/research/panel.js:1232`
-- `static/js/sessions.js:2235`
-- `static/js/sessions.js:2343`
+- `static/js/sessions.js:2232`
+- `static/js/sessions.js:2340`
 - `static/js/slashCommands.js:1241`
 
 ## `_dropKb` — arrow, line 6909
@@ -2093,7 +2093,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `injectFreshDoc` — function, line 7084
 - **called from:**
-- `static/js/chat.js:7798`
+- `static/js/chat.js:7637`
 - `static/js/document.js:7084`
 - `static/js/emailInbox.js:1077`
 - `static/js/emailInbox.js:1431`
@@ -2125,8 +2125,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `loadDocument` — function, line 7236
 - **called from:**
 - `static/app.js:556`
-- `static/js/chat.js:7757`
-- `static/js/chat.js:7799`
+- `static/js/chat.js:7596`
+- `static/js/chat.js:7638`
 - `static/js/chatStream.js:229`
 - `static/js/document.js:2992`
 - `static/js/document.js:7236`
@@ -2161,11 +2161,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `loadSessionDocs` — function, line 7321
 - **called from:**
 - `static/app.js:2018`
-- `static/app.js:3743`
+- `static/app.js:3742`
 - `static/js/document.js:7284`
 - `static/js/document.js:7321`
-- `static/js/sessions.js:2233`
-- `static/js/sessions.js:3542`
+- `static/js/sessions.js:2230`
+- `static/js/sessions.js:3539`
 - `static/js/slashCommands.js:1248`
 
 ## `addDocToTabs` — function, line 7388
@@ -2345,7 +2345,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_agent_state_dir_confinement.py:609`
 - `tests/test_agent_state_dir_confinement.py:629`
 - `tests/test_agent_state_dir_confinement.py:689`
-- … +553 more (grep the name in repo)
+- … +546 more (grep the name in repo)
 
 ## `_ensureLineNumberResizeObserver` — function, line 7735
 - **called from:**
@@ -2450,12 +2450,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:8183`
 - `static/js/document.js:8206`
 - `static/js/document.js:8211`
-- `static/js/sessions.js:1953`
-- `static/js/sessions.js:2439`
+- `static/js/sessions.js:1951`
+- `static/js/sessions.js:2436`
 
 ## `getSelectionContext` — function, line 8196
 - **called from:**
-- `static/js/chat.js:1962`
+- `static/js/chat.js:1963`
 - `static/js/document.js:8196`
 
 ## `_saveSuggestionsToStorage` — function, line 8220
@@ -2472,7 +2472,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleDocSuggestions` — function, line 8250
 - **called from:**
-- `static/js/chat.js:4268`
+- `static/js/chat.js:4260`
 - `static/js/document.js:8250`
 
 ## `_showCurrentSuggestion` — function, line 8299
@@ -2632,8 +2632,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
+- `static/js/chat.js:4679`
+- `static/js/chat.js:4679`
 - `static/js/cookbookServe.js:4003`
 - `static/js/cookbookServe.js:4005`
 - `static/js/document.js:313`
@@ -2642,20 +2642,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:8966`
 - `static/js/documentLibrary.js:70`
 - `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
+- `static/js/documentLibrary.js:582`
+- `static/js/documentLibrary.js:586`
 - `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
+- `static/js/documentLibrary.js:1957`
+- `static/js/documentLibrary.js:1962`
+- `static/js/documentLibrary.js:2110`
+- `static/js/documentLibrary.js:2466`
+- `static/js/documentLibrary.js:2510`
+- `static/js/documentLibrary.js:2547`
+- `static/js/documentLibrary.js:2696`
+- `static/js/documentLibrary.js:2737`
+- `static/js/documentLibrary.js:2750`
+- `static/js/documentLibrary.js:2904`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
@@ -2663,7 +2662,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/emailInbox.js:524`
+- … +188 more (grep the name in repo)
 
 ## `acceptSuggestion` — function, line 8971
 - **called from:**
@@ -2728,11 +2728,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:9232`
 - `static/js/document.js:9235`
 - `static/js/document.js:9237`
-- `static/js/documentLibrary.js:685`
-- `static/js/documentLibrary.js:701`
-- `static/js/documentLibrary.js:711`
-- `static/js/documentLibrary.js:736`
-- `static/js/documentLibrary.js:758`
+- `static/js/documentLibrary.js:683`
+- `static/js/documentLibrary.js:699`
+- `static/js/documentLibrary.js:709`
+- `static/js/documentLibrary.js:734`
+- `static/js/documentLibrary.js:756`
 
 ## `_sendSignedReply` — function, line 9304
 - **called from:**
@@ -2742,8 +2742,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `saveDocument` — function, line 9403
 - **called from:**
-- `static/js/chat.js:2163`
-- `static/js/chat.js:2257`
+- `static/js/chat.js:2161`
+- `static/js/chat.js:2254`
 - `static/js/document.js:2545`
 - `static/js/document.js:3194`
 - `static/js/document.js:3289`
@@ -2974,9 +2974,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `streamDocOpen` — function, line 10309
 - **called from:**
-- `static/js/chat.js:4245`
-- `static/js/chat.js:5806`
-- `static/js/chat.js:5969`
+- `static/js/chat.js:4237`
+- `static/js/chat.js:5774`
+- `static/js/chat.js:5931`
 - `static/js/document.js:10309`
 
 ## `_animateDocEdit` — function, line 10407
@@ -2995,10 +2995,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `streamDocDelta` — function, line 10485
 - **called from:**
-- `static/js/chat.js:4255`
-- `static/js/chat.js:5809`
-- `static/js/chat.js:5971`
-- `static/js/chat.js:6002`
+- `static/js/chat.js:4247`
+- `static/js/chat.js:5777`
+- `static/js/chat.js:5933`
+- `static/js/chat.js:5964`
 - `static/js/document.js:10485`
 
 ## `streamDocFinalize` — function, line 10521
@@ -3026,8 +3026,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleDocUpdate` — function, line 10580
 - **called from:**
-- `static/js/chat.js:4218`
-- `static/js/chat.js:4262`
+- `static/js/chat.js:4210`
+- `static/js/chat.js:4254`
 - `static/js/document.js:10580`
 
 ## `toggleVersionHistory` — function, line 10842
@@ -3138,24 +3138,24 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:960`
 - `static/app.js:1985`
 - `static/app.js:2006`
-- `static/app.js:3836`
+- `static/app.js:3835`
 - `static/js/document.js:6038`
 - `static/js/document.js:11130`
 - `static/js/emailInbox.js:1008`
 - `static/js/emailInbox.js:1068`
 - `static/js/notes.js:1698`
 - `static/js/notes.js:5317`
-- `static/js/sessions.js:2342`
+- `static/js/sessions.js:2339`
 - `static/js/slashCommands.js:1240`
 
 ## `getCurrentDocId` — function, line 11134
 - **called from:**
-- `static/js/chat.js:2151`
+- `static/js/chat.js:2149`
 - `static/js/document.js:11134`
 
 ## `getActiveEmailComposerContext` — function, line 11138
 - **called from:**
-- `static/js/chat.js:2148`
+- `static/js/chat.js:2146`
 - `static/js/chatStream.js:218`
 - `static/js/document.js:11138`
 

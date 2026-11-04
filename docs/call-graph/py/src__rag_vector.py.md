@@ -75,14 +75,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `VectorRAG.add` — method, line 147
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -134,7 +134,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `VectorRAG.add_document` — method, line 182
 - **called from:**
@@ -223,7 +223,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/document/document_helpers.py:227`
 - `routes/document/document_routes.py:63`
 - `routes/document/document_routes.py:64`
-- … +331 more (grep the name in repo)
+- … +326 more (grep the name in repo)
 
 ## `VectorRAG._keyword_search_fallback` — method, line 405
 - **called from:**

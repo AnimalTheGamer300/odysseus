@@ -74,15 +74,15 @@
 - `static/js/emailLibrary.js:7919`
 - `static/js/emailLibrary.js:8109`
 - `static/js/emailLibrary.js:8126`
-- `static/js/sessions.js:741`
-- `static/js/sessions.js:745`
-- `static/js/sessions.js:749`
-- `static/js/sessions.js:760`
-- `static/js/sessions.js:767`
-- `static/js/sessions.js:801`
-- `static/js/sessions.js:817`
-- `static/js/sessions.js:859`
-- `static/js/sessions.js:894`
+- `static/js/sessions.js:739`
+- `static/js/sessions.js:743`
+- `static/js/sessions.js:747`
+- `static/js/sessions.js:758`
+- `static/js/sessions.js:765`
+- `static/js/sessions.js:799`
+- `static/js/sessions.js:815`
+- `static/js/sessions.js:857`
+- `static/js/sessions.js:892`
 
 ## `_splitEmailAddresses` — function, line 32
 - **called from:**
@@ -154,24 +154,24 @@
 
 ## `init` — function, line 157
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -552,10 +552,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1689`
 - `static/app.js:1987`
 - `static/app.js:2008`
+- `static/app.js:2164`
 - `static/app.js:2165`
-- `static/app.js:2166`
-- `static/app.js:2192`
-- … +1230 more (grep the name in repo)
+- `static/app.js:2191`
+- … +1229 more (grep the name in repo)
 
 ## `_toggleDone` — function, line 1306
 - **called from:**
@@ -611,8 +611,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
+- `static/js/chat.js:4679`
+- `static/js/chat.js:4679`
 - `static/js/cookbookServe.js:4003`
 - `static/js/cookbookServe.js:4005`
 - `static/js/document.js:313`
@@ -621,20 +621,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:8966`
 - `static/js/documentLibrary.js:70`
 - `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
+- `static/js/documentLibrary.js:582`
+- `static/js/documentLibrary.js:586`
 - `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
+- `static/js/documentLibrary.js:1957`
+- `static/js/documentLibrary.js:1962`
+- `static/js/documentLibrary.js:2110`
+- `static/js/documentLibrary.js:2466`
+- `static/js/documentLibrary.js:2510`
+- `static/js/documentLibrary.js:2547`
+- `static/js/documentLibrary.js:2696`
+- `static/js/documentLibrary.js:2737`
+- `static/js/documentLibrary.js:2750`
+- `static/js/documentLibrary.js:2904`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
@@ -642,7 +641,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/emailInbox.js:524`
+- … +188 more (grep the name in repo)
 
 ## `_senderColor` — function, line 1447
 - **called from:**

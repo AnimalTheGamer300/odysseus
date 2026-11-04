@@ -4,7 +4,7 @@
 
 ## `_is_private_address` — function, line 36
 - **called from:**
-- `services/search/content.py:34`
+- `services/search/content.py:29`
 - `src/outbound_fetch.py:83`
 - `src/outbound_fetch.py:87`
 - `src/outbound_fetch.py:106`
@@ -12,14 +12,14 @@
 
 ## `_resolve_hostname_ips` — function, line 50
 - **called from:**
-- `services/search/content.py:38`
+- `services/search/content.py:33`
 - `src/url_security.py:68`
 - `src/webhook_manager.py:106`
 - `src/webhook_manager.py:153`
 
 ## `_public_http_url` — function, line 64
 - **called from:**
-- `services/search/content.py:42`
+- `services/search/content.py:37`
 - `tests/test_search_content_url_guards.py:20`
 - `tests/test_search_content_url_guards.py:31`
 - `tests/test_search_content_url_guards.py:36`
@@ -34,7 +34,7 @@
 
 ## `_resolve_public_ips` — function, line 92
 - **called from:**
-- `services/search/content.py:46`
+- `services/search/content.py:41`
 - `tests/test_security_regressions.py:1299`
 
 ## `_PinnedBackend` — class, line 119
@@ -128,13 +128,13 @@
 - `src/cookbook_serve_lifecycle.py:219`
 - `src/integrations.py:416`
 - `src/llm_core.py:118`
-- `src/llm_core.py:2797`
-- `src/llm_core.py:2860`
-- `src/llm_core.py:2866`
-- `src/llm_core.py:2877`
-- `src/llm_core.py:2888`
-- `src/llm_core.py:2899`
-- `src/llm_core.py:2910`
+- `src/llm_core.py:2765`
+- `src/llm_core.py:2828`
+- `src/llm_core.py:2834`
+- `src/llm_core.py:2845`
+- `src/llm_core.py:2856`
+- `src/llm_core.py:2867`
+- `src/llm_core.py:2878`
 - `src/outbound_fetch.py:142`
 - `src/task_scheduler.py:611`
 - `src/task_scheduler.py:622`
@@ -209,58 +209,58 @@
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `BodyTooLargeError` — class, line 214
 - **called from:**
@@ -316,56 +316,56 @@
 ## `_CappedFetch.text` — method, line 258
 - decorator: `property`
 - **called from:**
-- `core/database.py:509`
-- `core/database.py:1581`
+- `core/database.py:502`
+- `core/database.py:1543`
+- `core/database.py:1546`
+- `core/database.py:1565`
+- `core/database.py:1567`
 - `core/database.py:1584`
-- `core/database.py:1603`
-- `core/database.py:1605`
-- `core/database.py:1622`
+- `core/database.py:1587`
+- `core/database.py:1590`
+- `core/database.py:1610`
+- `core/database.py:1614`
 - `core/database.py:1625`
-- `core/database.py:1628`
-- `core/database.py:1648`
-- `core/database.py:1652`
-- `core/database.py:1663`
+- `core/database.py:1626`
+- `core/database.py:1654`
 - `core/database.py:1664`
-- `core/database.py:1692`
-- `core/database.py:1702`
-- `core/database.py:1713`
-- `core/database.py:1722`
-- `core/database.py:1732`
-- `core/database.py:1734`
-- `core/database.py:1744`
-- `core/database.py:1746`
-- `core/database.py:1761`
-- `core/database.py:1763`
+- `core/database.py:1675`
+- `core/database.py:1684`
+- `core/database.py:1694`
+- `core/database.py:1696`
+- `core/database.py:1706`
+- `core/database.py:1708`
+- `core/database.py:1723`
+- `core/database.py:1725`
+- `core/database.py:1740`
+- `core/database.py:1743`
+- `core/database.py:1745`
+- `core/database.py:1760`
+- `core/database.py:1764`
+- `core/database.py:1776`
 - `core/database.py:1778`
-- `core/database.py:1781`
-- `core/database.py:1783`
-- `core/database.py:1798`
-- `core/database.py:1802`
-- `core/database.py:1814`
-- `core/database.py:1816`
-- `core/database.py:1827`
-- `core/database.py:1829`
-- `core/database.py:1832`
-- `core/database.py:1834`
-- `core/database.py:1844`
-- `core/database.py:1846`
-- `core/database.py:1850`
-- `core/database.py:1993`
-- `core/database.py:2014`
-- `core/database.py:2017`
-- `core/database.py:2063`
-- `core/database.py:2068`
-- `core/database.py:2131`
-- `core/database.py:2243`
-- `core/database.py:2246`
-- `core/database.py:2417`
-- `core/database.py:2421`
-- `core/database.py:2442`
-- `core/database.py:2454`
-- `core/database.py:2474`
-- `core/database.py:2488`
+- `core/database.py:1789`
+- `core/database.py:1791`
+- `core/database.py:1794`
+- `core/database.py:1796`
+- `core/database.py:1806`
+- `core/database.py:1808`
+- `core/database.py:1812`
+- `core/database.py:1955`
+- `core/database.py:1976`
+- `core/database.py:1979`
+- `core/database.py:2025`
+- `core/database.py:2030`
+- `core/database.py:2093`
+- `core/database.py:2204`
+- `core/database.py:2207`
+- `core/database.py:2378`
+- `core/database.py:2382`
+- `core/database.py:2403`
+- `core/database.py:2415`
+- `core/database.py:2435`
+- `core/database.py:2449`
 - `scripts/update_database.py:98`
 - `scripts/update_database.py:108`
 - `scripts/update_database.py:118`
@@ -375,7 +375,7 @@
 - `scripts/update_database.py:148`
 - `services/search/providers.py:430`
 - `src/session_search.py:121`
-- `src/session_search.py:265`
+- `src/session_search.py:263`
 - … +69 more (grep the name in repo)
 
 ## `_CappedFetch.raise_for_status` — method, line 261
@@ -389,7 +389,7 @@
 - `routes/model_routes.py:1053`
 - `routes/webhook/webhook_routes.py:346`
 - `scripts/import_from_vllm_recipes.py:113`
-- `services/search/content.py:395`
+- `services/search/content.py:230`
 - `services/search/providers.py:193`
 - `services/search/providers.py:325`
 - `services/search/providers.py:395`
@@ -405,12 +405,13 @@
 - `src/copilot.py:179`
 - `src/copilot.py:192`
 - `src/embeddings.py:123`
-- `src/llm_core.py:2227`
-- `src/llm_core.py:2244`
+- `src/llm_core.py:2195`
+- `src/llm_core.py:2212`
+- `src/tools/image.py:42`
 
 ## `_get_public_url` — function, line 271
 - **called from:**
-- `services/search/content.py:56`
-- `services/search/content.py:389`
+- `services/search/content.py:51`
+- `services/search/content.py:224`
 - `tests/test_security_regressions.py:963`
 - `tests/test_security_regressions.py:1496`

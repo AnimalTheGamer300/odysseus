@@ -22,7 +22,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ModelCapabilityRecord.to_dict` — method, line 60
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`

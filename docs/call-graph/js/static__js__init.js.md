@@ -36,7 +36,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `attribute` — class, line 173
 - **called from:**
 - `static/js/cookbook.js:2038`
-- `static/js/markdown.js:932`
+- `static/js/markdown.js:884`
 
 ## `_syncComposerClearance` — arrow, line 191
 - **called from:**
@@ -68,21 +68,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:350`
 - `static/app.js:1193`
 - `static/app.js:1229`
-- `static/app.js:2385`
-- `static/app.js:2390`
-- `static/app.js:2394`
-- `static/app.js:2398`
-- `static/app.js:2403`
-- `static/app.js:2459`
+- `static/app.js:2384`
+- `static/app.js:2389`
+- `static/app.js:2393`
+- `static/app.js:2397`
+- `static/app.js:2402`
+- `static/app.js:2458`
 - `static/js/admin.js:1298`
 - `static/js/calendar.js:1159`
 - `static/js/calendar.js:1635`
 - `static/js/calendar.js:2050`
 - `static/js/calendar.js:3290`
 - `static/js/calendar.js:3305`
-- `static/js/chat.js:761`
-- `static/js/chat.js:1198`
-- `static/js/chat.js:7859`
+- `static/js/chat.js:760`
+- `static/js/chat.js:1197`
+- `static/js/chat.js:7696`
 - `static/js/colorPicker.js:252`
 - `static/js/colorPicker.js:343`
 - `static/js/colorPicker.js:377`

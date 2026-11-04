@@ -4,8 +4,8 @@
 
 ## `safe_chmod` — function, line 40
 - **called from:**
-- `core/database.py:2161`
-- `core/database.py:2176`
+- `core/database.py:2123`
+- `core/database.py:2138`
 - `routes/cookbook_routes.py:839`
 - `routes/cookbook_routes.py:879`
 - `routes/cookbook_routes.py:942`

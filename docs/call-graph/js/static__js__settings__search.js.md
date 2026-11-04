@@ -45,13 +45,13 @@
 - `static/js/admin.js:1248`
 - `static/js/admin.js:1253`
 - `static/js/admin.js:1258`
-- `static/js/chat.js:2658`
-- `static/js/chat.js:2659`
-- `static/js/chat.js:2660`
-- `static/js/chat.js:3072`
-- `static/js/chat.js:4328`
-- `static/js/chat.js:4329`
-- `static/js/chat.js:4330`
+- `static/js/chat.js:2650`
+- `static/js/chat.js:2651`
+- `static/js/chat.js:2652`
+- `static/js/chat.js:3064`
+- `static/js/chat.js:4320`
+- `static/js/chat.js:4321`
+- `static/js/chat.js:4322`
 - `static/js/compare/state.js:39`
 - `static/js/cookbookDownload.js:173`
 - `static/js/liveThinkingThrottle.js:116`
@@ -73,9 +73,9 @@
 - **called from:**
 - `static/js/calendar.js:1259`
 - `static/js/calendar.js:2092`
-- `static/js/chat.js:3658`
-- `static/js/chat.js:4482`
-- `static/js/chat.js:4621`
+- `static/js/chat.js:3650`
+- `static/js/chat.js:4474`
+- `static/js/chat.js:4602`
 - `static/js/editor/layer-panel.js:67`
 - `static/js/editor/layer-panel.js:144`
 - `static/js/editor/layer-panel.js:157`
@@ -98,7 +98,7 @@
 - `static/js/group.js:478`
 - `static/js/group.js:515`
 - `static/js/group.js:516`
-- `static/js/markdown.js:1361`
+- `static/js/markdown.js:1299`
 - `static/js/notes.js:3281`
 - `static/js/notes.js:3386`
 - `static/js/notes.js:3389`

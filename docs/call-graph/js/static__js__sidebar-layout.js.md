@@ -8,11 +8,11 @@
 - `static/app.js:1144`
 - `static/app.js:1146`
 - `static/app.js:1158`
-- `static/app.js:3813`
+- `static/app.js:3812`
 - `static/js/calendar.js:626`
 - `static/js/calendar.js:633`
 - `static/js/compare/index.js:277`
-- `static/js/documentLibrary.js:2064`
+- `static/js/documentLibrary.js:2021`
 - `static/js/init.js:306`
 - `static/js/init.js:342`
 - `static/js/init.js:349`
@@ -20,7 +20,7 @@
 - `static/js/modalSnap.js:319`
 - `static/js/modalSnap.js:601`
 - `static/js/search-chat.js:30`
-- `static/js/sessions.js:1572`
+- `static/js/sessions.js:1570`
 - `static/js/sidebar-layout.js:11`
 - `static/js/sidebar-layout.js:127`
 - `static/js/sidebar-layout.js:180`
@@ -42,7 +42,7 @@
 
 ## `initSidebarLayout` — function, line 28
 - **called from:**
-- `static/app.js:3241`
+- `static/app.js:3240`
 - `static/js/sidebar-layout.js:28`
 
 ## `_setSidebarModeClasses` — function, line 39
@@ -109,13 +109,13 @@
 - `static/js/admin.js:1248`
 - `static/js/admin.js:1253`
 - `static/js/admin.js:1258`
-- `static/js/chat.js:2658`
-- `static/js/chat.js:2659`
-- `static/js/chat.js:2660`
-- `static/js/chat.js:3072`
-- `static/js/chat.js:4328`
-- `static/js/chat.js:4329`
-- `static/js/chat.js:4330`
+- `static/js/chat.js:2650`
+- `static/js/chat.js:2651`
+- `static/js/chat.js:2652`
+- `static/js/chat.js:3064`
+- `static/js/chat.js:4320`
+- `static/js/chat.js:4321`
+- `static/js/chat.js:4322`
 - `static/js/compare/state.js:39`
 - `static/js/cookbookDownload.js:173`
 - `static/js/liveThinkingThrottle.js:116`

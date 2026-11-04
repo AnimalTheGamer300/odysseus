@@ -1,25 +1,25 @@
 # `services/search/content.py` — definitions & call sites
 
-25 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+18 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_is_private_address` — function, line 33
+## `_is_private_address` — function, line 28
 - **called from:**
-- `services/search/content.py:34`
+- `services/search/content.py:29`
 - `src/outbound_fetch.py:83`
 - `src/outbound_fetch.py:87`
 - `src/outbound_fetch.py:106`
 - `src/outbound_fetch.py:114`
 
-## `_resolve_hostname_ips` — function, line 37
+## `_resolve_hostname_ips` — function, line 32
 - **called from:**
-- `services/search/content.py:38`
+- `services/search/content.py:33`
 - `src/url_security.py:68`
 - `src/webhook_manager.py:106`
 - `src/webhook_manager.py:153`
 
-## `_public_http_url` — function, line 41
+## `_public_http_url` — function, line 36
 - **called from:**
-- `services/search/content.py:42`
+- `services/search/content.py:37`
 - `tests/test_search_content_url_guards.py:20`
 - `tests/test_search_content_url_guards.py:31`
 - `tests/test_search_content_url_guards.py:36`
@@ -32,83 +32,55 @@
 - `tests/test_security_regressions.py:912`
 - `tests/test_security_regressions.py:919`
 
-## `_resolve_public_ips` — function, line 45
+## `_resolve_public_ips` — function, line 40
 - **called from:**
-- `services/search/content.py:46`
+- `services/search/content.py:41`
 - `tests/test_security_regressions.py:1299`
 
-## `_get_public_url` — function, line 55
+## `_get_public_url` — function, line 50
 - **called from:**
-- `services/search/content.py:56`
-- `services/search/content.py:389`
+- `services/search/content.py:51`
+- `services/search/content.py:224`
 - `tests/test_security_regressions.py:963`
 - `tests/test_security_regressions.py:1496`
 
-## `_extract_meta` — function, line 77
+## `_extract_meta` — function, line 72
 - **called from:**
-- `services/search/content.py:504`
+- `services/search/content.py:339`
 
-## `_extract_og_image` — function, line 90
+## `_extract_og_image` — function, line 85
 - **called from:**
-- `services/search/content.py:505`
+- `services/search/content.py:340`
 - `tests/test_og_image_extraction.py:19`
 - `tests/test_og_image_extraction.py:24`
 - `tests/test_og_image_extraction.py:32`
 
-## `_extract_lists` — function, line 112
+## `_extract_lists` — function, line 107
 - **called from:**
-- `services/search/content.py:575`
+- `services/search/content.py:376`
 
-## `_extract_tables` — function, line 122
+## `_extract_tables` — function, line 117
 - **called from:**
-- `services/search/content.py:576`
+- `services/search/content.py:377`
 
-## `_extract_code_blocks` — function, line 136
+## `_extract_code_blocks` — function, line 131
 - **called from:**
-- `services/search/content.py:577`
+- `services/search/content.py:378`
 
-## `_detect_js_frameworks` — function, line 146
+## `_detect_js_frameworks` — function, line 141
 - **called from:**
-- `services/search/content.py:506`
+- `services/search/content.py:341`
 
-## `_empty_result` — function, line 165
+## `_empty_result` — function, line 160
 - **called from:**
-- `services/search/content.py:398`
-- `services/search/content.py:401`
-- `services/search/content.py:404`
-- `services/search/content.py:407`
-- `services/search/content.py:424`
-- `services/search/content.py:498`
+- `services/search/content.py:233`
+- `services/search/content.py:236`
+- `services/search/content.py:239`
+- `services/search/content.py:242`
+- `services/search/content.py:259`
+- `services/search/content.py:333`
 
-## `_h1_ancestor_ids` — function, line 207
-- **called from:**
-- `services/search/content.py:268`
-- `services/search/content.py:320`
-
-## `_attr_tokens` — function, line 224
-- **called from:**
-- `services/search/content.py:255`
-- `services/search/content.py:294`
-- `services/search/content.py:294`
-
-## `_is_boilerplate` — function, line 234
-- **called from:**
-- `services/search/content.py:271`
-- `services/search/content.py:323`
-
-## `_strip_boilerplate` — function, line 261
-- **called from:**
-- `services/search/content.py:516`
-
-## `_content_attr_text` — function, line 293
-- **called from:**
-- `services/search/content.py:316`
-
-## `_extract_main_content` — function, line 297
-- **called from:**
-- `services/search/content.py:529`
-
-## `fetch_webpage_content` — function, line 346
+## `fetch_webpage_content` — function, line 181
 - **called from:**
 - `services/search/service.py:98`
 - `src/agent_tools/web_tools.py:124`
@@ -134,22 +106,22 @@
 - `tests/test_web_fetch_size_caps.py:186`
 - `tests/test_web_fetch_size_caps.py:197`
 
-## `_cache_result` — function, line 591
+## `_cache_result` — function, line 392
 - **called from:**
-- `services/search/content.py:455`
-- `services/search/content.py:490`
-- `services/search/content.py:499`
-- `services/search/content.py:587`
+- `services/search/content.py:290`
+- `services/search/content.py:325`
+- `services/search/content.py:334`
+- `services/search/content.py:388`
 
-## `extract_key_points` — function, line 643
+## `extract_key_points` — function, line 407
 - **called from:**
 - `services/search/core.py:438`
 
-## `get_tldr` — function, line 655
+## `get_tldr` — function, line 419
 - **called from:**
 - `services/search/core.py:444`
 
-## `extract_quotes` — function, line 676
+## `extract_quotes` — function, line 426
 - **called from:**
 - `services/search/core.py:449`
 - `tests/test_extract_quotes.py:10`
@@ -157,24 +129,10 @@
 - `tests/test_extract_quotes.py:24`
 - `tests/test_extract_quotes.py:28`
 
-## `extract_statistics` — function, line 683
+## `extract_statistics` — function, line 433
 - **called from:**
 - `services/search/core.py:455`
 - `tests/test_extract_statistics.py:12`
 - `tests/test_extract_statistics.py:17`
 - `tests/test_extract_statistics.py:21`
-- `tests/test_extract_statistics.py:29`
-- `tests/test_extract_statistics.py:39`
-- `tests/test_extract_statistics.py:47`
-- `tests/test_extract_statistics.py:54`
-
-## `_classify` — function, line 709
-- **called from:**
-- `services/search/content.py:744`
-- `src/url_safety.py:103`
-- `tests/test_tool_rag_contacts_domain.py:40`
-- `tests/test_tool_rag_contacts_domain.py:49`
-- `tests/test_tool_rag_contacts_domain.py:69`
-- `tests/test_tool_rag_contacts_domain.py:70`
-- `tests/test_tool_rag_contacts_domain.py:71`
-- `tests/test_tool_rag_contacts_domain.py:72`
+- `tests/test_extract_statistics.py:25`

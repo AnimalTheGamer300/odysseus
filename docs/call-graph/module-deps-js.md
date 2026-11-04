@@ -2,7 +2,7 @@
 
 ## Import edges (file → imports)
 
-- `static/app.js` → `static/js/appConfig.js`, `static/js/calendar.js`, `static/js/censor.js`, `static/js/cookbook.js`, `static/js/fileHandler.js`, `static/js/group.js`, `static/js/keyboard-shortcuts.js`, `static/js/notes.js`, `static/js/presets.js`, `static/js/rag.js`, `static/js/search-chat.js`, `static/js/search.js`, `static/js/section-management.js`, `static/js/sidebar-layout.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/tileManager.js`, `static/js/tts-ai.js`, `static/js/ui.js`, `static/js/ui_visibility.js`, `static/js/voiceRecorder.js`, `static/js/windowDrag.js`, `static/js/workspace.js`
+- `static/app.js` → `static/js/appConfig.js`, `static/js/calendar.js`, `static/js/censor.js`, `static/js/cookbook.js`, `static/js/fileHandler.js`, `static/js/group.js`, `static/js/keyboard-shortcuts.js`, `static/js/notes.js`, `static/js/presets.js`, `static/js/rag.js`, `static/js/search-chat.js`, `static/js/search.js`, `static/js/section-management.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/tileManager.js`, `static/js/tts-ai.js`, `static/js/ui.js`, `static/js/ui_visibility.js`, `static/js/voiceRecorder.js`, `static/js/windowDrag.js`, `static/js/workspace.js`
 - `static/js/admin.js` → `static/js/appConfig.js`, `static/js/modelSort.js`, `static/js/providerDeviceFlow.js`, `static/js/providers.js`, `static/js/ui.js`
 - `static/js/assistant.js` → `static/js/modelSort.js`, `static/js/ui.js`
 - `static/js/calendar.js` → `static/js/colorPicker.js`, `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
@@ -188,7 +188,6 @@
 - `static/js/settings/registry.js` ← `static/js/settings/navigation.js`
 - `static/js/settings/search.js` ← `static/js/settings.js`
 - `static/js/settings/sidebar.js` ← `static/js/settings.js`
-- `static/js/sidebar-layout.js` ← `static/app.js`
 - `static/js/signature.js` ← `static/js/document.js`
 - `static/js/spinner.js` ← `static/app.js`, `static/js/calendar.js`, `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/compare/probe.js`, `static/js/compare/selector.js`, `static/js/compare/stream.js`, `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/cookbook.js`, `static/js/cookbookServe.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/emailInbox.js`, `static/js/emailLibrary.js`, `static/js/fileHandler.js`, `static/js/gallery.js`, `static/js/galleryEditor.js`, `static/js/group.js`, `static/js/memory.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/rag.js`, `static/js/research/panel.js`, `static/js/sessions.js`, `static/js/skills.js`, `static/js/slashCommands.js`, `static/js/tasks.js`, `static/js/ui.js`
 - `static/js/storage.js` ← `static/app.js`, `static/js/chat.js`, `static/js/chatStream.js`, `static/js/compare/index.js`, `static/js/compare/models.js`, `static/js/compare/panes.js`, `static/js/compare/scoreboard.js`, `static/js/compare/selector.js`, `static/js/compare/vote.js`, `static/js/dragSort.js`, `static/js/group.js`, `static/js/init.js`, `static/js/models.js`, `static/js/sessions.js`, `static/js/slashCommands.js`, `static/js/theme.js`, `static/js/workspace.js`

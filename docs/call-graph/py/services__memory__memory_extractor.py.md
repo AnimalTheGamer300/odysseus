@@ -63,13 +63,13 @@
 
 ## `_message_text` — function, line 192
 - **called from:**
-- `routes/history/history_routes.py:1121`
-- `routes/session_routes.py:1225`
+- `routes/history/history_routes.py:1084`
+- `routes/session_routes.py:1157`
 - `services/memory/memory_extractor.py:294`
 
 ## `_message_role` — function, line 209
 - **called from:**
-- `routes/history/history_routes.py:1120`
+- `routes/history/history_routes.py:1083`
 - `routes/session_routes.py:624`
 - `routes/session_routes.py:674`
 - `services/memory/memory_extractor.py:292`
@@ -100,14 +100,14 @@
 ## `add` — function, line 281
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -159,7 +159,7 @@
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `_dedup_tokens` — function, line 364
 - **called from:**

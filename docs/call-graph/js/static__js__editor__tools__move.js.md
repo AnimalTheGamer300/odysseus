@@ -16,7 +16,7 @@
 
 ## `begin` — method?, line 38
 - **called from:**
-- `core/database.py:1990`
+- `core/database.py:1952`
 - `tests/test_email_account_default_serialization.py:241`
 - `tests/test_email_account_default_serialization.py:278`
 - `static/js/editor/tools/clone.js:7`
@@ -83,7 +83,7 @@
 - `static/js/editor/tools/move.js:74`
 - `static/js/galleryEditor.js:1454`
 - `static/js/galleryEditor.js:3179`
-- `static/js/markdown.js:972`
+- `static/js/markdown.js:924`
 - `static/js/windowResize.js:141`
 - `static/js/windowResize.js:172`
 - `static/js/windowResize.js:198`

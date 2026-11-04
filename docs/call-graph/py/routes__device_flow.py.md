@@ -60,8 +60,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/galleryEditor.js:1046`
 - `static/js/galleryEditor.js:2008`
 - `static/js/providerDeviceFlow.js:60`
-- `static/js/sessions.js:1785`
-- `static/js/sessions.js:2419`
+- `static/js/sessions.js:1783`
+- `static/js/sessions.js:2416`
 - `static/js/settings.js:4720`
 - `static/js/slashCommands.js:2107`
 - `static/js/slashCommands.js:5075`
@@ -109,14 +109,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `PendingDeviceFlowStore.add` — method, line 76
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -168,7 +168,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `PendingDeviceFlowStore.get_payload` — method, line 88
 - **called from:**
@@ -222,20 +222,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:640`
 - `core/auth.py:650`
 - `core/auth.py:663`
-- `core/session_manager.py:237`
-- `core/session_manager.py:347`
-- `core/session_manager.py:355`
-- `core/session_manager.py:373`
-- `core/session_manager.py:464`
-- `core/session_manager.py:527`
-- `core/session_manager.py:607`
-- `core/session_manager.py:609`
-- `core/session_manager.py:610`
-- `core/session_manager.py:617`
-- `core/session_manager.py:679`
-- `core/session_manager.py:1103`
-- `core/session_manager.py:1137`
-- `core/session_manager.py:1141`
+- `core/session_manager.py:223`
+- `core/session_manager.py:333`
+- `core/session_manager.py:341`
+- `core/session_manager.py:359`
+- `core/session_manager.py:450`
+- `core/session_manager.py:513`
+- `core/session_manager.py:593`
+- `core/session_manager.py:974`
 - `mcp_servers/email_server.py:2457`
 - `routes/auth_routes.py:468`
 - `routes/calendar_routes.py:827`
@@ -269,7 +263,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_routes.py:1621`
 - `routes/email_routes.py:1633`
 - `routes/email_routes.py:1650`
-- … +375 more (grep the name in repo)
+- `routes/email_routes.py:1678`
+- `routes/email_routes.py:1686`
+- `routes/email_routes.py:1797`
+- `routes/email_routes.py:5483`
+- `routes/email_routes.py:5484`
+- `routes/email_routes.py:5485`
+- … +366 more (grep the name in repo)
 
 ## `_maybe_await` — function (async), line 122
 - **called from:**

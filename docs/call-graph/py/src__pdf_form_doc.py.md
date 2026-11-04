@@ -29,7 +29,7 @@
 - **called from:**
 - `routes/document/document_routes.py:287`
 - `routes/email_routes.py:3603`
-- `src/document_processor.py:807`
+- `src/document_processor.py:790`
 
 ## `load_field_sidecar` — function, line 157
 - **called from:**
@@ -62,7 +62,7 @@
 - **called from:**
 - `routes/document/document_routes.py:296`
 - `routes/email_routes.py:3612`
-- `src/document_processor.py:826`
+- `src/document_processor.py:809`
 
 ## `parse_markdown_to_values` — function, line 261
 - **called from:**
@@ -99,4 +99,4 @@
 - **called from:**
 - `routes/document/document_routes.py:288`
 - `routes/email_routes.py:3604`
-- `src/document_processor.py:808`
+- `src/document_processor.py:791`

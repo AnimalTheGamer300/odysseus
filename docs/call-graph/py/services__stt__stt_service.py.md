@@ -74,7 +74,7 @@
 - **called from:**
 - `static/js/calendar.js:2181`
 - `static/js/chatRenderer.js:1789`
-- `static/js/sessions.js:1767`
+- `static/js/sessions.js:1765`
 - `static/js/skills.js:1011`
 
 ## `STTService._get_whisper` — method, line 58

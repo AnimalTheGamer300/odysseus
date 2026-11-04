@@ -85,7 +85,7 @@
 - **called from:**
 - `static/js/modelPicker.js:83`
 - `static/js/modelPicker.js:192`
-- `static/js/sessions.js:2900`
+- `static/js/sessions.js:2897`
 
 ## `_initModelPickerDropdown` — function, line 197
 - **called from:**
@@ -94,10 +94,10 @@
 
 ## `_close` — function, line 209
 - **called from:**
-- `static/js/chat.js:6178`
-- `static/js/chat.js:6186`
-- `static/js/chat.js:6194`
-- `static/js/chat.js:6197`
+- `static/js/chat.js:6137`
+- `static/js/chat.js:6145`
+- `static/js/chat.js:6153`
+- `static/js/chat.js:6156`
 - `static/js/chatRenderer.js:261`
 - `static/js/document.js:5281`
 - `static/js/document.js:5311`
@@ -223,7 +223,7 @@
 
 ## `updateModelPicker` — function, line 855
 - **called from:**
-- `static/app.js:4362`
+- `static/app.js:4361`
 - `static/js/admin.js:444`
 - `static/js/admin.js:479`
 - `static/js/cookbookRunning.js:573`
@@ -232,8 +232,8 @@
 - `static/js/cookbookRunning.js:3696`
 - `static/js/cookbookRunning.js:4098`
 - `static/js/cookbookRunning.js:4335`
-- `static/js/markdown.js:1534`
-- `static/js/markdown.js:1563`
+- `static/js/markdown.js:1464`
+- `static/js/markdown.js:1493`
 - `static/js/modelPicker.js:162`
 - `static/js/modelPicker.js:176`
 - `static/js/modelPicker.js:687`
@@ -242,8 +242,8 @@
 - `static/js/modelPicker.js:799`
 - `static/js/modelPicker.js:824`
 - `static/js/modelPicker.js:855`
-- `static/js/sessions.js:1903`
-- `static/js/sessions.js:2049`
-- `static/js/sessions.js:2103`
-- `static/js/sessions.js:2313`
-- `static/js/sessions.js:2361`
+- `static/js/sessions.js:1901`
+- `static/js/sessions.js:2046`
+- `static/js/sessions.js:2100`
+- `static/js/sessions.js:2310`
+- `static/js/sessions.js:2358`

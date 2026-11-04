@@ -94,7 +94,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `Modalities.to_dict` — method, line 468
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`
@@ -155,7 +155,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ModelCapability.to_dict` — method, line 534
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`
@@ -216,7 +216,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `CapabilityAssertion.to_dict` — method, line 592
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`
@@ -277,7 +277,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `DeterministicControl.to_dict` — method, line 649
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`
@@ -343,7 +343,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `CapabilityProbeResult.to_dict` — method, line 750
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`

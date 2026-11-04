@@ -26,7 +26,7 @@
 - **called from:**
 - `src/llm_core.py:1020`
 - `src/llm_core.py:1155`
-- `src/model_context.py:509`
+- `src/model_context.py:506`
 - `tests/test_copilot.py:21`
 
 ## `copilot_headers` — function, line 108
@@ -82,7 +82,7 @@
 
 ## `apply_request_headers` — function, line 248
 - **called from:**
-- `src/llm_core.py:2333`
-- `src/llm_core.py:2753`
-- `src/llm_core.py:3051`
+- `src/llm_core.py:2301`
+- `src/llm_core.py:2721`
+- `src/llm_core.py:3019`
 - `tests/test_copilot.py:106`

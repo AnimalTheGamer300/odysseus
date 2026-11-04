@@ -20,12 +20,12 @@
 
 ## `initKeyboardShortcuts` — function, line 50
 - **called from:**
-- `static/app.js:3672`
+- `static/app.js:3671`
 - `static/js/keyboard-shortcuts.js:50`
 
 ## `visible` — arrow, line 79
 - **called from:**
-- `static/app.js:2753`
+- `static/app.js:2752`
 - `static/js/calendar.js:3703`
 - `static/js/cookbookRunning.js:2133`
 - `static/js/cookbookServe.js:3557`

@@ -68,10 +68,10 @@
 
 ## `reserve_message_upload_references` — function, line 163
 - **called from:**
-- `core/session_manager.py:377`
-- `core/session_manager.py:388`
-- `core/session_manager.py:543`
-- `core/session_manager.py:778`
+- `core/session_manager.py:363`
+- `core/session_manager.py:374`
+- `core/session_manager.py:529`
+- `core/session_manager.py:669`
 - `routes/history/history_routes.py:136`
 - `routes/session_routes.py:699`
 - `tests/test_upload_handler_cleanup.py:622`
@@ -170,17 +170,17 @@
 
 ## `UploadHandler.is_document_file` — method, line 318
 - **called from:**
-- `src/document_processor.py:763`
+- `src/document_processor.py:746`
 - `tests/test_nix_upload_text.py:8`
 
 ## `UploadHandler.is_audio_file` — method, line 348
 - **called from:**
-- `src/document_processor.py:747`
+- `src/document_processor.py:730`
 
 ## `UploadHandler.is_video_file` — method, line 366
 - **called from:**
 - `src/chat_handler.py:221`
-- `src/document_processor.py:726`
+- `src/document_processor.py:709`
 - `src/upload_handler.py:1284`
 - `tests/test_gif_video_frames.py:159`
 - `tests/test_gif_video_frames.py:160`

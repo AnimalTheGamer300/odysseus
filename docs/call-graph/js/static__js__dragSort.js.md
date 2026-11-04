@@ -11,9 +11,9 @@
 - `static/js/editor/layer-panel.js:579`
 - `static/js/models.js:506`
 - `static/js/models.js:513`
-- `static/js/sessions.js:2616`
-- `static/js/sessions.js:2624`
-- `static/js/sessions.js:2637`
+- `static/js/sessions.js:2613`
+- `static/js/sessions.js:2621`
+- `static/js/sessions.js:2634`
 
 ## `getItems` — function, line 42
 - **called from:**

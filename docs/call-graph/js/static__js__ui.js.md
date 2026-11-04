@@ -65,12 +65,12 @@
 - **called from:**
 - `static/app.js:495`
 - `static/js/admin.js:593`
-- `static/js/chat.js:6245`
+- `static/js/chat.js:6204`
 - `static/js/chatRenderer.js:1482`
 - `static/js/chatRenderer.js:1746`
 - `static/js/chatRenderer.js:1954`
 - `static/js/document.js:9143`
-- `static/js/documentLibrary.js:151`
+- `static/js/documentLibrary.js:149`
 - `static/js/skills.js:1411`
 - `static/js/slashCommands.js:407`
 - `static/js/slashCommands.js:539`
@@ -103,13 +103,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1658`
 - `static/app.js:1765`
 - `static/app.js:1800`
-- `static/app.js:2570`
-- `static/app.js:2791`
-- `static/app.js:2812`
-- `static/app.js:3423`
-- `static/app.js:4203`
-- `static/app.js:4227`
-- `static/app.js:4300`
+- `static/app.js:2569`
+- `static/app.js:2790`
+- `static/app.js:2811`
+- `static/app.js:3422`
+- `static/app.js:4202`
+- `static/app.js:4226`
+- `static/app.js:4299`
 - `static/js/admin.js:691`
 - `static/js/admin.js:1476`
 - `static/js/admin.js:1509`
@@ -132,25 +132,25 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar/reminders.js:94`
 - `static/js/chat.js:269`
 - `static/js/chat.js:275`
-- `static/js/chat.js:1418`
-- `static/js/chat.js:1435`
-- `static/js/chat.js:3674`
-- `static/js/chat.js:3711`
+- `static/js/chat.js:1417`
+- `static/js/chat.js:1434`
+- `static/js/chat.js:3666`
+- `static/js/chat.js:3703`
+- `static/js/chat.js:3849`
 - `static/js/chat.js:3857`
-- `static/js/chat.js:3865`
-- `static/js/chat.js:5838`
-- `static/js/chat.js:6563`
-- `static/js/chat.js:7023`
-- `static/js/chat.js:7407`
-- `static/js/chat.js:7423`
-- `static/js/chat.js:7534`
+- `static/js/chat.js:5806`
+- `static/js/chat.js:6943`
+- `static/js/chat.js:7273`
+- `static/js/chat.js:7287`
+- `static/js/chat.js:7373`
 - `static/js/chatRenderer.js:346`
 - `static/js/chatRenderer.js:371`
 - `static/js/chatRenderer.js:1536`
 - `static/js/chatRenderer.js:1541`
 - `static/js/chatStream.js:231`
 - `static/js/codeRunner.js:69`
-- … +420 more (grep the name in repo)
+- `static/js/codeRunner.js:72`
+- … +417 more (grep the name in repo)
 
 ## `showError` — function, line 413
 - **called from:**
@@ -162,8 +162,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1603`
 - `static/app.js:1645`
 - `static/app.js:1674`
-- `static/app.js:3425`
-- `static/app.js:3428`
+- `static/app.js:3424`
+- `static/app.js:3427`
 - `static/js/admin.js:149`
 - `static/js/admin.js:178`
 - `static/js/admin.js:187`
@@ -178,34 +178,28 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2075`
 - `static/js/calendar.js:2640`
 - `static/js/chat.js:281`
-- `static/js/chat.js:1391`
-- `static/js/chat.js:1445`
-- `static/js/chat.js:2060`
-- `static/js/chat.js:2175`
-- `static/js/chat.js:2193`
-- `static/js/chat.js:6528`
-- `static/js/chat.js:6532`
-- `static/js/chat.js:6539`
-- `static/js/chat.js:6566`
-- `static/js/chat.js:6626`
-- `static/js/chat.js:6655`
-- `static/js/chat.js:6668`
-- `static/js/chat.js:6702`
-- `static/js/chat.js:6732`
-- `static/js/chat.js:6745`
-- `static/js/chat.js:6786`
-- `static/js/chat.js:6799`
-- `static/js/chat.js:6825`
-- `static/js/chat.js:6857`
-- `static/js/chat.js:7026`
-- `static/js/chat.js:7401`
-- `static/js/chat.js:7426`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
+- `static/js/chat.js:1390`
+- `static/js/chat.js:1444`
+- `static/js/chat.js:2058`
+- `static/js/chat.js:2173`
+- `static/js/chat.js:2191`
+- `static/js/chat.js:6494`
+- `static/js/chat.js:6519`
+- `static/js/chat.js:6579`
+- `static/js/chat.js:6593`
+- `static/js/chat.js:6627`
+- `static/js/chat.js:6657`
+- `static/js/chat.js:6670`
+- `static/js/chat.js:6711`
+- `static/js/chat.js:6724`
+- `static/js/chat.js:6777`
+- `static/js/chat.js:6946`
+- `static/js/chat.js:7290`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7376`
+- `static/js/chat.js:7395`
 - `static/js/chat.js:7537`
-- `static/js/chat.js:7556`
-- `static/js/chat.js:7698`
-- `static/js/chat.js:7803`
+- `static/js/chat.js:7642`
 - `static/js/chatRenderer.js:351`
 - `static/js/chatRenderer.js:376`
 - `static/js/chatRenderer.js:1272`
@@ -214,7 +208,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/compare/index.js:877`
 - `static/js/compare/index.js:1007`
 - `static/js/compare/index.js:1434`
-- … +218 more (grep the name in repo)
+- `static/js/compare/stream.js:96`
+- `static/js/compare/stream.js:149`
+- `static/js/cookbook-hwfit.js:1767`
+- `static/js/cookbook-hwfit.js:1771`
+- `static/js/cookbook-hwfit.js:1810`
+- `static/js/cookbook-hwfit.js:1824`
+- … +212 more (grep the name in repo)
 
 ## `_bindScrollIntent` — function, line 465
 - **called from:**
@@ -224,48 +224,48 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `scrollHistory` — function, line 479
 - **called from:**
 - `static/app.js:1946`
-- `static/js/chat.js:723`
-- `static/js/chat.js:748`
-- `static/js/chat.js:1112`
-- `static/js/chat.js:1370`
-- `static/js/chat.js:1616`
-- `static/js/chat.js:2487`
-- `static/js/chat.js:2702`
-- `static/js/chat.js:2801`
-- `static/js/chat.js:3084`
-- `static/js/chat.js:3113`
-- `static/js/chat.js:3124`
-- `static/js/chat.js:3133`
-- `static/js/chat.js:3770`
-- `static/js/chat.js:4053`
-- `static/js/chat.js:4100`
-- `static/js/chat.js:4158`
-- `static/js/chat.js:4231`
-- `static/js/chat.js:4367`
-- `static/js/chat.js:4415`
-- `static/js/chat.js:4425`
-- `static/js/chat.js:4436`
-- `static/js/chat.js:4447`
-- `static/js/chat.js:4686`
-- `static/js/chat.js:5017`
-- `static/js/chat.js:5089`
-- `static/js/chat.js:5203`
-- `static/js/chat.js:5336`
-- `static/js/chat.js:5629`
-- `static/js/chat.js:5700`
-- `static/js/chat.js:5904`
-- `static/js/chat.js:5917`
-- `static/js/chat.js:5989`
-- `static/js/chat.js:7089`
-- `static/js/chat.js:7691`
+- `static/js/chat.js:722`
+- `static/js/chat.js:747`
+- `static/js/chat.js:1111`
+- `static/js/chat.js:1369`
+- `static/js/chat.js:1620`
+- `static/js/chat.js:2479`
+- `static/js/chat.js:2694`
+- `static/js/chat.js:2793`
+- `static/js/chat.js:3076`
+- `static/js/chat.js:3105`
+- `static/js/chat.js:3116`
+- `static/js/chat.js:3125`
+- `static/js/chat.js:3762`
+- `static/js/chat.js:4045`
+- `static/js/chat.js:4092`
+- `static/js/chat.js:4150`
+- `static/js/chat.js:4223`
+- `static/js/chat.js:4359`
+- `static/js/chat.js:4407`
+- `static/js/chat.js:4417`
+- `static/js/chat.js:4428`
+- `static/js/chat.js:4439`
+- `static/js/chat.js:4667`
+- `static/js/chat.js:4998`
+- `static/js/chat.js:5087`
+- `static/js/chat.js:5201`
+- `static/js/chat.js:5334`
+- `static/js/chat.js:5632`
+- `static/js/chat.js:5703`
+- `static/js/chat.js:5867`
+- `static/js/chat.js:5879`
+- `static/js/chat.js:5951`
+- `static/js/chat.js:7007`
+- `static/js/chat.js:7530`
 - `static/js/chatRenderer.js:2323`
 - `static/js/chatStream.js:294`
 - `static/js/group.js:754`
 - `static/js/group.js:785`
 - `static/js/group.js:887`
 - `static/js/group.js:903`
-- `static/js/sessions.js:2843`
-- `static/js/sessions.js:3045`
+- `static/js/sessions.js:2840`
+- `static/js/sessions.js:3042`
 - `static/js/slashCommands.js:336`
 - `static/js/slashCommands.js:442`
 - `static/js/slashCommands.js:447`
@@ -288,8 +288,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `scrollHistoryInstant` — function, line 525
 - **called from:**
-- `static/js/chat.js:1956`
-- `static/js/sessions.js:2168`
+- `static/js/chat.js:1957`
+- `static/js/sessions.js:2165`
 - `static/js/ui.js:525`
 
 ## `setAutoScroll` — function, line 537
@@ -297,7 +297,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:333`
 - `static/app.js:343`
 - `static/app.js:349`
-- `static/js/chat.js:1955`
+- `static/js/chat.js:1956`
 - `static/js/ui.js:537`
 
 ## `getAutoScroll` — function, line 544
@@ -306,27 +306,27 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `autoResize` — function, line 551
 - **called from:**
-- `static/app.js:3438`
-- `static/app.js:3458`
-- `static/app.js:3462`
-- `static/js/chat.js:1387`
-- `static/js/chat.js:1451`
-- `static/js/chat.js:1674`
-- `static/js/chat.js:1702`
-- `static/js/chat.js:1801`
-- `static/js/chat.js:1812`
+- `static/app.js:3437`
+- `static/app.js:3457`
+- `static/app.js:3461`
+- `static/js/chat.js:1386`
+- `static/js/chat.js:1450`
+- `static/js/chat.js:1677`
+- `static/js/chat.js:1703`
+- `static/js/chat.js:1802`
+- `static/js/chat.js:1813`
 - `static/js/composerArrowUpRecall.js:127`
 - `static/js/composerArrowUpRecall.js:140`
 - `static/js/composerArrowUpRecall.js:165`
 - `static/js/composerHistoryRecall.js:113`
 - `static/js/sessions.js:67`
-- `static/js/sessions.js:2021`
+- `static/js/sessions.js:2018`
 - `static/js/ui.js:551`
 
 ## `debounce` — function, line 582
 - **called from:**
 - `static/app.js:330`
-- `static/app.js:4120`
+- `static/app.js:4119`
 - `static/js/ui.js:582`
 
 ## `later` — arrow, line 585
@@ -395,11 +395,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1100`
 - `static/app.js:1248`
 - `static/app.js:1258`
-- … +888 more (grep the name in repo)
+- … +889 more (grep the name in repo)
 
 ## `styledConfirm` — function, line 607
 - **called from:**
-- `static/app.js:3411`
+- `static/app.js:3410`
 - `static/js/admin.js:198`
 - `static/js/admin.js:215`
 - `static/js/admin.js:622`
@@ -413,8 +413,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:2908`
 - `static/js/calendar.js:493`
 - `static/js/calendar.js:2680`
-- `static/js/chat.js:1825`
-- `static/js/chat.js:7323`
+- `static/js/chat.js:1826`
+- `static/js/chat.js:7202`
 - `static/js/chatRenderer.js:1607`
 - `static/js/cookbook-hwfit.js:2622`
 - `static/js/cookbook.js:2308`
@@ -433,23 +433,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/cookbookServe.js:3809`
 - `static/js/cookbookServe.js:3918`
 - `static/js/document.js:9811`
-- `static/js/documentLibrary.js:1188`
-- `static/js/documentLibrary.js:1216`
-- `static/js/documentLibrary.js:2100`
-- `static/js/documentLibrary.js:2108`
-- `static/js/documentLibrary.js:2184`
-- `static/js/documentLibrary.js:2290`
-- `static/js/documentLibrary.js:2450`
-- `static/js/documentLibrary.js:2539`
-- `static/js/documentLibrary.js:2585`
-- `static/js/documentLibrary.js:2623`
-- `static/js/documentLibrary.js:2712`
-- `static/js/documentLibrary.js:2807`
-- `static/js/documentLibrary.js:2869`
-- `static/js/documentLibrary.js:2878`
-- `static/js/documentLibrary.js:3030`
-- `static/js/documentLibrary.js:3184`
-- `static/js/documentLibrary.js:3313`
+- `static/js/documentLibrary.js:1186`
+- `static/js/documentLibrary.js:1214`
+- `static/js/documentLibrary.js:2048`
+- `static/js/documentLibrary.js:2124`
+- `static/js/documentLibrary.js:2230`
+- `static/js/documentLibrary.js:2390`
+- `static/js/documentLibrary.js:2479`
+- `static/js/documentLibrary.js:2525`
+- `static/js/documentLibrary.js:2563`
+- `static/js/documentLibrary.js:2652`
+- `static/js/documentLibrary.js:2815`
+- `static/js/documentLibrary.js:2969`
+- `static/js/documentLibrary.js:3098`
 - `static/js/editor/layer-panel.js:359`
 - `static/js/emailInbox.js:1265`
 - `static/js/emailLibrary.js:1188`
@@ -459,7 +455,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailLibrary.js:2832`
 - `static/js/emailLibrary.js:4882`
 - `static/js/emailLibrary.js:7867`
-- … +57 more (grep the name in repo)
+- `static/js/emailLibrary.js:8085`
+- `static/js/emailLibrary.js:8211`
+- `static/js/gallery.js:773`
+- `static/js/gallery.js:858`
+- … +53 more (grep the name in repo)
 
 ## `cleanup` — function, line 654
 - **called from:**
@@ -467,13 +467,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -541,7 +541,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `onCancel` — function, line 667
 - **called from:**
 - `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
+- `static/js/documentLibrary.js:226`
 - `static/js/galleryEditor.js:3971`
 - `static/js/skills.js:1464`
 - `static/js/skills.js:1465`
@@ -572,8 +572,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/cookbookServe.js:2490`
 - `static/js/gallery.js:795`
 - `static/js/gallery.js:2774`
-- `static/js/sessions.js:484`
-- `static/js/sessions.js:1362`
+- `static/js/sessions.js:482`
+- `static/js/sessions.js:1360`
 - `static/js/ui.js:704`
 
 ## `cleanup` — function, line 753
@@ -582,13 +582,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -652,7 +652,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `onCancel` — function, line 765
 - **called from:**
 - `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
+- `static/js/documentLibrary.js:226`
 - `static/js/galleryEditor.js:3971`
 - `static/js/skills.js:1464`
 - `static/js/skills.js:1465`
@@ -749,9 +749,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/app.js:825`
 - `static/js/cookbook.js:3598`
-- `static/js/documentLibrary.js:3580`
+- `static/js/documentLibrary.js:3365`
 - `static/js/gallery.js:2792`
-- `static/js/sessions.js:3723`
+- `static/js/sessions.js:3720`
 - `static/js/settings.js:2218`
 - `static/js/settings/lifecycle.js:106`
 - `static/js/tasks.js:3026`
@@ -764,9 +764,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `emptyStateIcon` — function, line 862
 - **called from:**
-- `static/js/documentLibrary.js:2141`
-- `static/js/documentLibrary.js:2504`
-- `static/js/documentLibrary.js:2776`
+- `static/js/documentLibrary.js:2081`
+- `static/js/documentLibrary.js:2444`
 - `static/js/emailLibrary.js:4978`
 - `static/js/memory.js:706`
 - `static/js/notes.js:1966`
@@ -810,5 +809,5 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/editor/layer-panel.js:12`
 - `static/js/galleryEditor.js:1346`
 - `static/js/group.js:348`
-- `static/js/sessions.js:679`
+- `static/js/sessions.js:677`
 - `static/js/startupShell.js:8`

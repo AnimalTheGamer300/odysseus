@@ -479,10 +479,10 @@
 - `static/app.js:1689`
 - `static/app.js:1987`
 - `static/app.js:2008`
+- `static/app.js:2164`
 - `static/app.js:2165`
-- `static/app.js:2166`
-- `static/app.js:2192`
-- … +1230 more (grep the name in repo)
+- `static/app.js:2191`
+- … +1229 more (grep the name in repo)
 
 ## `_animateEmailCardRemoval` — function, line 1251
 - **called from:**
@@ -597,7 +597,6 @@
 - `tests/test_context_compactor.py:521`
 - `static/js/calendar.js:3484`
 - `static/js/cookbook.js:3354`
-- `static/js/documentLibrary.js:2081`
 - `static/js/editor/canvas-transforms.js:115`
 - `static/js/editor/layer-panel.js:525`
 - `static/js/editor/mask-utils.js:90`
@@ -649,14 +648,14 @@
 ## `add` — arrow, line 1412
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -708,7 +707,7 @@
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `_dedupeUnsubscribeCandidatesForDisplay` — function, line 1423
 - **called from:**
@@ -749,58 +748,58 @@
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `_rememberedEmailAccountId` — function, line 1778
 - **called from:**
@@ -936,16 +935,16 @@
 
 ## `setPull` — function, line 2049
 - **called from:**
-- `static/app.js:4397`
-- `static/app.js:4410`
-- `static/app.js:4414`
-- `static/app.js:4417`
-- `static/app.js:4431`
-- `static/app.js:4442`
-- `static/app.js:4449`
-- `static/app.js:4454`
-- `static/app.js:4462`
-- `static/app.js:4467`
+- `static/app.js:4396`
+- `static/app.js:4409`
+- `static/app.js:4413`
+- `static/app.js:4416`
+- `static/app.js:4430`
+- `static/app.js:4441`
+- `static/app.js:4448`
+- `static/app.js:4453`
+- `static/app.js:4461`
+- `static/app.js:4466`
 - `static/js/emailLibrary.js:2049`
 - `static/js/emailLibrary.js:2062`
 - `static/js/emailLibrary.js:2069`
@@ -957,8 +956,8 @@
 
 ## `runRefresh` — function, line 2059
 - **called from:**
-- `static/app.js:4407`
-- `static/app.js:4461`
+- `static/app.js:4406`
+- `static/app.js:4460`
 - `static/js/emailLibrary.js:2059`
 - `static/js/emailLibrary.js:2098`
 
@@ -1157,20 +1156,14 @@
 - `core/auth.py:640`
 - `core/auth.py:650`
 - `core/auth.py:663`
-- `core/session_manager.py:237`
-- `core/session_manager.py:347`
-- `core/session_manager.py:355`
-- `core/session_manager.py:373`
-- `core/session_manager.py:464`
-- `core/session_manager.py:527`
-- `core/session_manager.py:607`
-- `core/session_manager.py:609`
-- `core/session_manager.py:610`
-- `core/session_manager.py:617`
-- `core/session_manager.py:679`
-- `core/session_manager.py:1103`
-- `core/session_manager.py:1137`
-- `core/session_manager.py:1141`
+- `core/session_manager.py:223`
+- `core/session_manager.py:333`
+- `core/session_manager.py:341`
+- `core/session_manager.py:359`
+- `core/session_manager.py:450`
+- `core/session_manager.py:513`
+- `core/session_manager.py:593`
+- `core/session_manager.py:974`
 - `mcp_servers/email_server.py:2457`
 - `routes/auth_routes.py:468`
 - `routes/calendar_routes.py:827`
@@ -1204,7 +1197,13 @@
 - `routes/email_routes.py:1621`
 - `routes/email_routes.py:1633`
 - `routes/email_routes.py:1650`
-- … +375 more (grep the name in repo)
+- `routes/email_routes.py:1678`
+- `routes/email_routes.py:1686`
+- `routes/email_routes.py:1797`
+- `routes/email_routes.py:5483`
+- `routes/email_routes.py:5484`
+- `routes/email_routes.py:5485`
+- … +366 more (grep the name in repo)
 
 ## `onEnd` — arrow, line 2989
 - **called from:**
@@ -1709,14 +1708,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `add` — arrow, line 4345
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -1768,7 +1767,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `addIncoming` — arrow, line 4354
 - **called from:**
@@ -1808,58 +1807,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `open` — arrow, line 4534
 - **called from:**
@@ -1871,11 +1870,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/atomic_io.py:56`
 - `core/auth.py:117`
 - `core/auth.py:140`
-- `core/database.py:1467`
-- `core/database.py:1525`
-- `core/database.py:1533`
-- `core/database.py:1543`
-- `core/database.py:1565`
+- `core/database.py:1429`
+- `core/database.py:1487`
+- `core/database.py:1495`
+- `core/database.py:1505`
+- `core/database.py:1527`
 - `core/platform_compat.py:303`
 - `launcher.py:92`
 - `launcher.py:131`
@@ -1923,7 +1922,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/add_hwfit_models.py:189`
 - `scripts/add_hwfit_models.py:364`
 - `scripts/add_hwfit_models.py:405`
-- … +311 more (grep the name in repo)
+- … +307 more (grep the name in repo)
 
 ## `_renderEmailLoading` — function, line 4562
 - **called from:**
@@ -1988,8 +1987,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/emailLibrary.js:4904`
 - `static/js/emailLibrary.js:4905`
-- `static/js/sessions.js:1067`
-- `static/js/sessions.js:1068`
+- `static/js/sessions.js:1065`
+- `static/js/sessions.js:1066`
 
 ## `_createEmailDateHeader` — function, line 4920
 - **called from:**
@@ -2250,8 +2249,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1603`
 - `static/app.js:1645`
 - `static/app.js:1674`
-- `static/app.js:3425`
-- `static/app.js:3428`
+- `static/app.js:3424`
+- `static/app.js:3427`
 - `static/js/admin.js:149`
 - `static/js/admin.js:178`
 - `static/js/admin.js:187`
@@ -2266,34 +2265,28 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2075`
 - `static/js/calendar.js:2640`
 - `static/js/chat.js:281`
-- `static/js/chat.js:1391`
-- `static/js/chat.js:1445`
-- `static/js/chat.js:2060`
-- `static/js/chat.js:2175`
-- `static/js/chat.js:2193`
-- `static/js/chat.js:6528`
-- `static/js/chat.js:6532`
-- `static/js/chat.js:6539`
-- `static/js/chat.js:6566`
-- `static/js/chat.js:6626`
-- `static/js/chat.js:6655`
-- `static/js/chat.js:6668`
-- `static/js/chat.js:6702`
-- `static/js/chat.js:6732`
-- `static/js/chat.js:6745`
-- `static/js/chat.js:6786`
-- `static/js/chat.js:6799`
-- `static/js/chat.js:6825`
-- `static/js/chat.js:6857`
-- `static/js/chat.js:7026`
-- `static/js/chat.js:7401`
-- `static/js/chat.js:7426`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
+- `static/js/chat.js:1390`
+- `static/js/chat.js:1444`
+- `static/js/chat.js:2058`
+- `static/js/chat.js:2173`
+- `static/js/chat.js:2191`
+- `static/js/chat.js:6494`
+- `static/js/chat.js:6519`
+- `static/js/chat.js:6579`
+- `static/js/chat.js:6593`
+- `static/js/chat.js:6627`
+- `static/js/chat.js:6657`
+- `static/js/chat.js:6670`
+- `static/js/chat.js:6711`
+- `static/js/chat.js:6724`
+- `static/js/chat.js:6777`
+- `static/js/chat.js:6946`
+- `static/js/chat.js:7290`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7376`
+- `static/js/chat.js:7395`
 - `static/js/chat.js:7537`
-- `static/js/chat.js:7556`
-- `static/js/chat.js:7698`
-- `static/js/chat.js:7803`
+- `static/js/chat.js:7642`
 - `static/js/chatRenderer.js:351`
 - `static/js/chatRenderer.js:376`
 - `static/js/chatRenderer.js:1272`
@@ -2302,7 +2295,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/compare/index.js:877`
 - `static/js/compare/index.js:1007`
 - `static/js/compare/index.js:1434`
-- … +218 more (grep the name in repo)
+- `static/js/compare/stream.js:96`
+- `static/js/compare/stream.js:149`
+- `static/js/cookbook-hwfit.js:1767`
+- `static/js/cookbook-hwfit.js:1771`
+- `static/js/cookbook-hwfit.js:1810`
+- `static/js/cookbook-hwfit.js:1824`
+- … +212 more (grep the name in repo)
 
 ## `loadDirect` — arrow, line 5962
 - **called from:**
@@ -2366,7 +2365,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `core/atomic_io.py:37`
 - `core/atomic_io.py:58`
-- `core/database.py:525`
+- `core/database.py:518`
 - `routes/calendar_routes.py:317`
 - `routes/calendar_routes.py:325`
 - `routes/email_routes.py:5756`
@@ -2382,15 +2381,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3241`
-- `src/llm_core.py:3259`
-- `src/llm_core.py:3518`
-- `src/llm_core.py:3760`
+- `src/llm_core.py:3209`
+- `src/llm_core.py:3227`
+- `src/llm_core.py:3486`
+- `src/llm_core.py:3728`
 - `src/task_scheduler.py:2616`
 - `src/upload_handler.py:745`
 - `tests/test_atomic_io.py:101`
 - `tests/test_launcher.py:24`
-- `static/js/chat.js:2840`
+- `static/js/chat.js:2832`
 - `static/js/emailLibrary.js:6387`
 - `static/js/emailLibrary.js:6393`
 - `static/js/emailLibrary.js:6398`
@@ -2528,8 +2527,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_hwfit_gpu_count_nonnumeric.py:27`
 - `tests/test_hwfit_gpu_count_nonnumeric.py:37`
 - `static/app.js:384`
-- `static/app.js:3877`
-- `static/js/chat.js:4020`
+- `static/app.js:3876`
+- `static/js/chat.js:4012`
 - `static/js/chatRenderer.js:1743`
 - `static/js/chatRenderer.js:1750`
 - `static/js/chatRenderer.js:1759`
@@ -2674,15 +2673,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailLibrary.js:7919`
 - `static/js/emailLibrary.js:8109`
 - `static/js/emailLibrary.js:8126`
-- `static/js/sessions.js:741`
-- `static/js/sessions.js:745`
-- `static/js/sessions.js:749`
-- `static/js/sessions.js:760`
-- `static/js/sessions.js:767`
-- `static/js/sessions.js:801`
-- `static/js/sessions.js:817`
-- `static/js/sessions.js:859`
-- `static/js/sessions.js:894`
+- `static/js/sessions.js:739`
+- `static/js/sessions.js:743`
+- `static/js/sessions.js:747`
+- `static/js/sessions.js:758`
+- `static/js/sessions.js:765`
+- `static/js/sessions.js:799`
+- `static/js/sessions.js:815`
+- `static/js/sessions.js:857`
+- `static/js/sessions.js:892`
 
 ## `closeAndRemove` — arrow, line 7687
 - **called from:**
@@ -2706,19 +2705,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailLibrary.js:7919`
 - `static/js/emailLibrary.js:8109`
 - `static/js/emailLibrary.js:8126`
-- `static/js/sessions.js:741`
-- `static/js/sessions.js:745`
-- `static/js/sessions.js:749`
-- `static/js/sessions.js:760`
-- `static/js/sessions.js:767`
-- `static/js/sessions.js:801`
-- `static/js/sessions.js:817`
-- `static/js/sessions.js:859`
-- `static/js/sessions.js:894`
+- `static/js/sessions.js:739`
+- `static/js/sessions.js:743`
+- `static/js/sessions.js:747`
+- `static/js/sessions.js:758`
+- `static/js/sessions.js:765`
+- `static/js/sessions.js:799`
+- `static/js/sessions.js:815`
+- `static/js/sessions.js:857`
+- `static/js/sessions.js:892`
 
 ## `on` — class, line 7972
 - **called from:**
-- `static/js/chat.js:2034`
+- `static/js/chat.js:2032`
 - `static/js/compare/index.js:937`
 - `static/js/cookbook-hwfit.js:2477`
 - `static/js/gallery.js:2509`
@@ -2904,58 +2903,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `_createEmailReplyReminder` — function, line 8704
 - **called from:**

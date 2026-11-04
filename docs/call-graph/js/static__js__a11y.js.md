@@ -32,24 +32,24 @@
 
 ## `init` — function, line 121
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`

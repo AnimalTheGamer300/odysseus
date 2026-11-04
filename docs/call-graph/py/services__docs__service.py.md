@@ -47,49 +47,43 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:1168`
 - `companion/routes.py:135`
 - `core/auth.py:309`
-- `core/database.py:534`
-- `core/database.py:2699`
-- `core/database.py:2713`
-- `core/database.py:2714`
-- `core/database.py:2715`
+- `core/database.py:527`
+- `core/database.py:2660`
+- `core/database.py:2672`
+- `core/database.py:2673`
+- `core/database.py:2674`
+- `core/database.py:2675`
+- `core/database.py:2676`
+- `core/database.py:2701`
 - `core/database.py:2716`
-- `core/database.py:2717`
-- `core/database.py:2742`
-- `core/database.py:2757`
-- `core/database.py:2770`
-- `core/database.py:2779`
-- `core/database.py:2791`
-- `core/database.py:2810`
+- `core/database.py:2729`
+- `core/database.py:2738`
+- `core/database.py:2750`
+- `core/database.py:2769`
 - `core/session_manager.py:137`
-- `core/session_manager.py:150`
-- `core/session_manager.py:264`
-- `core/session_manager.py:368`
-- `core/session_manager.py:462`
-- `core/session_manager.py:496`
-- `core/session_manager.py:525`
-- `core/session_manager.py:530`
-- `core/session_manager.py:615`
+- `core/session_manager.py:149`
+- `core/session_manager.py:250`
+- `core/session_manager.py:354`
+- `core/session_manager.py:448`
+- `core/session_manager.py:482`
+- `core/session_manager.py:511`
+- `core/session_manager.py:516`
+- `core/session_manager.py:581`
+- `core/session_manager.py:614`
 - `core/session_manager.py:623`
-- `core/session_manager.py:630`
-- `core/session_manager.py:667`
-- `core/session_manager.py:702`
-- `core/session_manager.py:732`
-- `core/session_manager.py:767`
-- `core/session_manager.py:799`
-- `core/session_manager.py:936`
-- `core/session_manager.py:964`
-- `core/session_manager.py:990`
-- `core/session_manager.py:1020`
-- `core/session_manager.py:1087`
-- `core/session_manager.py:1092`
-- `core/session_manager.py:1095`
-- `core/session_manager.py:1133`
-- `core/session_manager.py:1156`
-- `core/session_manager.py:1187`
-- `core/session_manager.py:1222`
-- `core/session_manager.py:1242`
-- `core/session_manager.py:1259`
-- `core/session_manager.py:1329`
+- `core/session_manager.py:658`
+- `core/session_manager.py:690`
+- `core/session_manager.py:827`
+- `core/session_manager.py:845`
+- `core/session_manager.py:864`
+- `core/session_manager.py:891`
+- `core/session_manager.py:958`
+- `core/session_manager.py:963`
+- `core/session_manager.py:966`
+- `core/session_manager.py:1002`
+- `core/session_manager.py:1022`
+- `core/session_manager.py:1039`
+- `core/session_manager.py:1103`
 - `mcp_servers/email_server.py:1645`
 - `routes/admin_wipe/admin_wipe_routes.py:79`
 - `routes/admin_wipe/admin_wipe_routes.py:80`
@@ -99,7 +93,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/admin_wipe/admin_wipe_routes.py:127`
 - `routes/admin_wipe/admin_wipe_routes.py:128`
 - `routes/admin_wipe/admin_wipe_routes.py:134`
-- … +623 more (grep the name in repo)
+- `routes/admin_wipe/admin_wipe_routes.py:135`
+- `routes/admin_wipe/admin_wipe_routes.py:136`
+- `routes/admin_wipe/admin_wipe_routes.py:142`
+- `routes/admin_wipe/admin_wipe_routes.py:143`
+- `routes/admin_wipe/admin_wipe_routes.py:144`
+- `routes/admin_wipe/admin_wipe_routes.py:149`
+- … +615 more (grep the name in repo)
 
 ## `DocsService.index` — method (async), line 94
 - **called from:**
@@ -107,7 +107,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:579`
 - `routes/cookbook_helpers.py:324`
 - `routes/cookbook_routes.py:660`
-- `routes/history/history_routes.py:443`
+- `routes/history/history_routes.py:437`
 - `services/hwfit/profiles.py:155`
 - `services/youtube/youtube_handler.py:198`
 - `src/builtin_mcp.py:265`
@@ -150,7 +150,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_cookbook_windows_stop_tree_js.py:10`
 - `tests/test_cookbook_windows_stop_tree_js.py:11`
 - `tests/test_copy_message_strips_thinking_js.py:158`
-- `tests/test_delete_message_after_refresh.py:309`
 - `tests/test_delete_message_no_session.py:19`
 - `tests/test_deleted_session_sidebar_regression.py:10`
 - `tests/test_deleted_session_sidebar_regression.py:11`
@@ -163,7 +162,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_docker_devops_hardening.py:93`
 - `tests/test_docker_devops_hardening.py:94`
 - `tests/test_docker_devops_hardening.py:95`
-- … +133 more (grep the name in repo)
+- `tests/test_docker_devops_hardening.py:102`
+- … +132 more (grep the name in repo)
 
 ## `DocsService.add_document` — method (async), line 111
 - **called from:**

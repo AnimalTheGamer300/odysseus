@@ -13,7 +13,7 @@
 
 ## `sanitize_client_message_metadata` — function, line 74
 - **called from:**
-- `routes/history/history_routes.py:479`
+- `routes/history/history_routes.py:465`
 - `routes/session_routes.py:716`
 - `tests/test_api_token_tool_authority.py:283`
 - `tests/test_api_token_tool_authority.py:297`

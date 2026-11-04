@@ -5,8 +5,8 @@
 
 ## `getUserMessagesFromChatHistory` — function, line 21
 - **called from:**
-- `static/js/chat.js:1186`
-- `static/js/chat.js:1191`
+- `static/js/chat.js:1185`
+- `static/js/chat.js:1190`
 - `static/js/composerArrowUpRecall.js:12`
 - `static/js/composerArrowUpRecall.js:37`
 - `static/js/composerHistoryRecall.js:21`
@@ -19,7 +19,7 @@
 
 ## `wireHistoryRecall` — function, line 60
 - **called from:**
-- `static/js/chat.js:1186`
+- `static/js/chat.js:1185`
 - `static/js/composerHistoryRecall.js:60`
 
 ## `readHistory` — arrow, line 74
@@ -63,10 +63,10 @@
 - `app.py:1185`
 - `app.py:1211`
 - `app.py:1234`
-- `core/database.py:1807`
-- `core/session_manager.py:434`
-- `core/session_manager.py:480`
-- `core/session_manager.py:575`
+- `core/database.py:1769`
+- `core/session_manager.py:420`
+- `core/session_manager.py:466`
+- `core/session_manager.py:561`
 - `routes/chat_helpers.py:322`
 - `routes/chat_helpers.py:432`
 - `routes/chat_helpers.py:559`
@@ -110,7 +110,7 @@
 - `routes/email_routes.py:1180`
 - `routes/email_routes.py:1218`
 - `routes/email_routes.py:1251`
-- … +157 more (grep the name in repo)
+- … +155 more (grep the name in repo)
 
 ## `computeCurrentIndex` — arrow, line 89
 - **called from:**
@@ -199,8 +199,8 @@
 - `tests/test_webhook_emitters_use_manager.py:20`
 - `tests/tools/build_oversized_test_split_plan.py:53`
 - `static/js/composerHistoryRecall.js:214`
-- `static/js/documentLibrary.js:1396`
-- `static/js/documentLibrary.js:1431`
+- `static/js/documentLibrary.js:1394`
+- `static/js/documentLibrary.js:1429`
 
 ## `mkBtn` — arrow, line 204
 - **called from:**

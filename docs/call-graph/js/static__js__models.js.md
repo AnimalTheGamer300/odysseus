@@ -5,24 +5,24 @@
 
 ## `init` — function, line 27
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -129,7 +129,7 @@
 ## `refreshModels` — function, line 167
 - **called from:**
 - `static/app.js:1495`
-- `static/app.js:4361`
+- `static/app.js:4360`
 - `static/js/admin.js:434`
 - `static/js/admin.js:454`
 - `static/js/admin.js:477`
@@ -138,8 +138,8 @@
 - `static/js/cookbookRunning.js:3680`
 - `static/js/cookbookRunning.js:4097`
 - `static/js/cookbookRunning.js:4334`
-- `static/js/markdown.js:1533`
-- `static/js/markdown.js:1562`
+- `static/js/markdown.js:1463`
+- `static/js/markdown.js:1492`
 - `static/js/modelPicker.js:49`
 - `static/js/modelPicker.js:123`
 - `static/js/modelPicker.js:362`
@@ -171,7 +171,7 @@
 
 ## `refreshProviders` — function, line 600
 - **called from:**
-- `static/app.js:4365`
+- `static/app.js:4364`
 - `static/js/models.js:600`
 
 ## `getCachedItems` — function, line 632

@@ -42,7 +42,7 @@
 
 ## `begin` — function, line 87
 - **called from:**
-- `core/database.py:1990`
+- `core/database.py:1952`
 - `tests/test_email_account_default_serialization.py:241`
 - `tests/test_email_account_default_serialization.py:278`
 - `static/js/editor/tools/clone.js:7`
@@ -57,7 +57,7 @@
 
 ## `on` — class, line 92
 - **called from:**
-- `static/js/chat.js:2034`
+- `static/js/chat.js:2032`
 - `static/js/compare/index.js:937`
 - `static/js/cookbook-hwfit.js:2477`
 - `static/js/gallery.js:2509`
@@ -118,7 +118,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/editor/tools/move.js:74`
 - `static/js/galleryEditor.js:1454`
 - `static/js/galleryEditor.js:3179`
-- `static/js/markdown.js:972`
+- `static/js/markdown.js:924`
 - `static/js/windowResize.js:141`
 - `static/js/windowResize.js:172`
 - `static/js/windowResize.js:198`

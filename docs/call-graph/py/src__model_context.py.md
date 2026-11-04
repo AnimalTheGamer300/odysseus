@@ -18,17 +18,17 @@
 ## `_configured_endpoint_kind` — function, line 56
 - **called from:**
 - `src/model_context.py:92`
-- `src/model_context.py:313`
-- `src/model_context.py:470`
+- `src/model_context.py:310`
+- `src/model_context.py:467`
 
 ## `is_local_endpoint` — function, line 90
 - **called from:**
 - `src/llm_core.py:92`
 - `src/llm_core.py:1049`
 - `src/llm_core.py:1090`
-- `src/model_context.py:314`
-- `src/model_context.py:490`
-- `src/model_context.py:535`
+- `src/model_context.py:311`
+- `src/model_context.py:487`
+- `src/model_context.py:532`
 - `tests/test_model_context.py:59`
 - `tests/test_model_context.py:62`
 - `tests/test_model_context.py:65`
@@ -41,22 +41,22 @@
 - `tests/test_model_context.py:101`
 - `tests/test_model_context.py:104`
 
-## `_context_length_override` — function, line 280
+## `_context_length_override` — function, line 277
 - **called from:**
-- `src/model_context.py:309`
+- `src/model_context.py:306`
 
-## `_get_context_length_cached` — function, line 304
+## `_get_context_length_cached` — function, line 301
 - **called from:**
-- `src/model_context.py:340`
-- `src/model_context.py:349`
+- `src/model_context.py:337`
+- `src/model_context.py:346`
 
-## `get_context_length` — function, line 333
+## `get_context_length` — function, line 330
 - **called from:**
 - `routes/chat_helpers.py:969`
-- `routes/history/history_routes.py:993`
-- `routes/history/history_routes.py:1103`
-- `routes/session_routes.py:1234`
-- `routes/session_routes.py:1577`
+- `routes/history/history_routes.py:956`
+- `routes/history/history_routes.py:1066`
+- `routes/session_routes.py:1166`
+- `routes/session_routes.py:1507`
 - `scripts/dump_agent_prompt.py:303`
 - `src/context_compactor.py:433`
 - `src/context_compactor.py:478`
@@ -77,16 +77,16 @@
 - `tests/test_model_context.py:302`
 - `tests/test_model_context.py:314`
 
-## `get_context_length_known` — function, line 343
+## `get_context_length_known` — function, line 340
 - **called from:**
-- `src/llm_core.py:2323`
-- `src/llm_core.py:2742`
-- `src/llm_core.py:2999`
-- `src/model_context.py:363`
+- `src/llm_core.py:2291`
+- `src/llm_core.py:2710`
+- `src/llm_core.py:2967`
+- `src/model_context.py:360`
 - `tests/test_budget_auto_sentinel.py:74`
 - `tests/test_budget_auto_sentinel.py:77`
 
-## `budget_context_for_model` — function, line 352
+## `budget_context_for_model` — function, line 349
 - **called from:**
 - `src/agent_loop.py:4723`
 - `tests/test_budget_auto_sentinel.py:93`
@@ -95,9 +95,9 @@
 - `tests/test_budget_auto_sentinel.py:102`
 - `tests/test_budget_auto_sentinel.py:110`
 
-## `_lookup_known` — function, line 369
+## `_lookup_known` — function, line 366
 - **called from:**
-- `src/model_context.py:468`
+- `src/model_context.py:465`
 - `tests/test_model_context.py:156`
 - `tests/test_model_context.py:159`
 - `tests/test_model_context.py:162`
@@ -110,21 +110,21 @@
 - `tests/test_model_context.py:188`
 - `tests/test_model_context.py:191`
 
-## `_model_ctx_from_entry` — function, line 388
+## `_model_ctx_from_entry` — function, line 385
 - **called from:**
-- `src/model_context.py:446`
-- `src/model_context.py:527`
+- `src/model_context.py:443`
+- `src/model_context.py:524`
 
-## `_proxy_catalog_context` — function, line 423
+## `_proxy_catalog_context` — function, line 420
 - **called from:**
-- `src/model_context.py:483`
+- `src/model_context.py:480`
 
-## `_query_context_length` — function, line 465
+## `_query_context_length` — function, line 462
 - **called from:**
-- `src/model_context.py:323`
+- `src/model_context.py:320`
 - `tests/test_llama_server_models_url.py:54`
 
-## `estimate_tokens` — function, line 552
+## `estimate_tokens` — function, line 549
 - **called from:**
 - `routes/chat_helpers.py:976`
 - `routes/chat_helpers.py:980`
@@ -133,9 +133,9 @@
 - `routes/chat_routes.py:2348`
 - `routes/chat_routes.py:2396`
 - `routes/chat_routes.py:2483`
-- `routes/history/history_routes.py:992`
-- `routes/history/history_routes.py:1102`
-- `routes/history/history_routes.py:1232`
+- `routes/history/history_routes.py:955`
+- `routes/history/history_routes.py:1065`
+- `routes/history/history_routes.py:1195`
 - `scripts/dump_agent_prompt.py:261`
 - `scripts/dump_agent_prompt.py:458`
 - `scripts/dump_agent_prompt.py:528`

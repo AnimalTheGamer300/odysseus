@@ -207,7 +207,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/cookbook-hwfit.js:2315`
 - `static/js/cookbookRunning.js:2273`
 - `static/js/document.js:2243`
-- `static/js/documentLibrary.js:3236`
+- `static/js/documentLibrary.js:3021`
 - `static/js/editor/ai-inpaint.js:24`
 - `static/js/editor/ai-inpaint.js:299`
 - `static/js/editor/build/controls.js:201`

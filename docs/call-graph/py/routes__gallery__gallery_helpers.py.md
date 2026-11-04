@@ -38,7 +38,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:1054`
 - `routes/gallery/gallery_routes.py:1079`
 - `routes/gallery/gallery_routes.py:1106`
-- `src/session_search.py:214`
+- `src/session_search.py:212`
 - `tests/test_gallery_owner_filter_single_user.py:41`
 - `tests/test_gallery_owner_filter_single_user.py:51`
 - `tests/test_gallery_owner_filter_single_user.py:52`

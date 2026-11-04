@@ -5,4 +5,4 @@
 
 ## `resolveVisibility` — arrow, line 64
 - **called from:**
-- `static/app.js:2756`
+- `static/app.js:2755`

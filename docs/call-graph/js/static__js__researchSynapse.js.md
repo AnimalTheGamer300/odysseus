@@ -24,8 +24,8 @@
 
 ## `createResearchSynapse` — function, line 23
 - **called from:**
-- `static/js/chat.js:3562`
-- `static/js/chat.js:7168`
+- `static/js/chat.js:3554`
+- `static/js/chat.js:7086`
 - `static/js/research/panel.js:966`
 - `static/js/researchSynapse.js:23`
 
@@ -48,32 +48,32 @@
 
 ## `setPhase` — method?, line 172
 - **called from:**
-- `static/js/chat.js:3573`
-- `static/js/chat.js:7176`
-- `static/js/chat.js:7211`
+- `static/js/chat.js:3565`
+- `static/js/chat.js:7094`
+- `static/js/chat.js:7129`
 - `static/js/research/panel.js:979`
 - `static/js/researchSynapse.js:172`
 
 ## `setRound` — method?, line 185
 - **called from:**
-- `static/js/chat.js:3574`
-- `static/js/chat.js:7177`
-- `static/js/chat.js:7212`
+- `static/js/chat.js:3566`
+- `static/js/chat.js:7095`
+- `static/js/chat.js:7130`
 - `static/js/research/panel.js:980`
 - `static/js/researchSynapse.js:185`
 
 ## `setSourceCount` — method?, line 199
 - **called from:**
-- `static/js/chat.js:3575`
-- `static/js/chat.js:7178`
-- `static/js/chat.js:7213`
+- `static/js/chat.js:3567`
+- `static/js/chat.js:7096`
+- `static/js/chat.js:7131`
 - `static/js/research/panel.js:981`
 - `static/js/researchSynapse.js:199`
 
 ## `complete` — method?, line 212
 - **called from:**
-- `static/js/chat.js:515`
-- `static/js/chat.js:3576`
+- `static/js/chat.js:514`
+- `static/js/chat.js:3568`
 - `static/js/cookbook-hwfit.js:2660`
 - `static/js/research/panel.js:740`
 - `static/js/research/panel.js:745`
@@ -86,32 +86,32 @@
 - `static/js/admin.js:1512`
 - `static/js/admin.js:1749`
 - `static/js/calendar.js:2079`
-- `static/js/chat.js:518`
-- `static/js/chat.js:737`
-- `static/js/chat.js:770`
-- `static/js/chat.js:1538`
-- `static/js/chat.js:1543`
-- `static/js/chat.js:2668`
-- `static/js/chat.js:2928`
-- `static/js/chat.js:3267`
-- `static/js/chat.js:3290`
-- `static/js/chat.js:3365`
-- `static/js/chat.js:3452`
-- `static/js/chat.js:3512`
-- `static/js/chat.js:3973`
-- `static/js/chat.js:4359`
-- `static/js/chat.js:4400`
-- `static/js/chat.js:4442`
-- `static/js/chat.js:4477`
-- `static/js/chat.js:4863`
-- `static/js/chat.js:5672`
-- `static/js/chat.js:5796`
-- `static/js/chat.js:5995`
-- `static/js/chat.js:6006`
-- `static/js/chat.js:7188`
-- `static/js/chat.js:7202`
-- `static/js/chat.js:7218`
-- `static/js/chat.js:7584`
+- `static/js/chat.js:517`
+- `static/js/chat.js:736`
+- `static/js/chat.js:769`
+- `static/js/chat.js:1537`
+- `static/js/chat.js:1542`
+- `static/js/chat.js:2660`
+- `static/js/chat.js:2920`
+- `static/js/chat.js:3259`
+- `static/js/chat.js:3282`
+- `static/js/chat.js:3357`
+- `static/js/chat.js:3444`
+- `static/js/chat.js:3504`
+- `static/js/chat.js:3965`
+- `static/js/chat.js:4351`
+- `static/js/chat.js:4392`
+- `static/js/chat.js:4434`
+- `static/js/chat.js:4469`
+- `static/js/chat.js:4837`
+- `static/js/chat.js:5675`
+- `static/js/chat.js:5770`
+- `static/js/chat.js:5957`
+- `static/js/chat.js:5968`
+- `static/js/chat.js:7106`
+- `static/js/chat.js:7120`
+- `static/js/chat.js:7136`
+- `static/js/chat.js:7423`
 - `static/js/codeRunner.js:225`
 - `static/js/compare/panes.js:66`
 - `static/js/compare/stream.js:161`
@@ -138,8 +138,8 @@
 - `static/js/cookbookServe.js:4221`
 - `static/js/document.js:588`
 - `static/js/document.js:3998`
-- `static/js/documentLibrary.js:3511`
-- `static/js/documentLibrary.js:3522`
+- `static/js/documentLibrary.js:3296`
+- `static/js/documentLibrary.js:3307`
 - `static/js/editor/ai-inpaint.js:248`
 - `static/js/editor/ai-inpaint.js:249`
 - … +67 more (grep the name in repo)

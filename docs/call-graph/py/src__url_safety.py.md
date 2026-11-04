@@ -9,7 +9,6 @@
 
 ## `_classify` — function, line 42
 - **called from:**
-- `services/search/content.py:744`
 - `src/url_safety.py:103`
 - `tests/test_tool_rag_contacts_domain.py:40`
 - `tests/test_tool_rag_contacts_domain.py:49`

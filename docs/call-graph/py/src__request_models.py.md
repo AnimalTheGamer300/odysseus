@@ -19,14 +19,14 @@
 - `tests/test_foreground_model_routing.py:1787`
 - `tests/test_history_display_model_hydration.py:523`
 
-## `ChatRequest.clean_message` — method, line 20
-- decorator: `field_validator('message')`
+## `ChatRequest.validate_reasoning_effort` — method, line 20
+- decorator: `field_validator('reasoning_effort')`
 - decorator: `classmethod`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ChatRequest.validate_reasoning_effort` — method, line 25
-- decorator: `field_validator('reasoning_effort')`
+## `ChatRequest.clean_message` — method, line 32
+- decorator: `field_validator('message')`
 - decorator: `classmethod`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_

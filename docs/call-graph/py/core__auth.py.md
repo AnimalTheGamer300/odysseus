@@ -417,12 +417,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `AuthManager.create_session` — method, line 574
 - **called from:**
-- `core/session_manager.py:1308`
+- `core/session_manager.py:1082`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:885`
+- `routes/history/history_routes.py:848`
 - `routes/research/research_routes.py:737`
 - `routes/session_routes.py:494`
-- `routes/session_routes.py:1133`
+- `routes/session_routes.py:1065`
 - `routes/webhook/webhook_routes.py:306`
 - `routes/webhook/webhook_routes.py:367`
 - `src/agent_tools/session_tools.py:50`

@@ -8,17 +8,17 @@
 - `static/app.js:89`
 - `static/app.js:95`
 - `static/app.js:124`
-- `static/app.js:3465`
-- `static/app.js:4094`
-- `static/app.js:4123`
+- `static/app.js:3464`
+- `static/app.js:4093`
+- `static/app.js:4122`
 
 ## `_submitChatFormDirect` — function, line 68
 - **called from:**
 - `static/app.js:68`
 - `static/app.js:118`
-- `static/app.js:3486`
-- `static/app.js:3665`
-- `static/app.js:4113`
+- `static/app.js:3485`
+- `static/app.js:3664`
+- `static/app.js:4112`
 
 ## `_isForegroundChatBusy` — function, line 74
 - **called from:**
@@ -26,47 +26,47 @@
 - `static/app.js:90`
 - `static/app.js:96`
 - `static/app.js:124`
-- `static/app.js:3480`
-- `static/app.js:4107`
-- `static/app.js:4409`
+- `static/app.js:3479`
+- `static/app.js:4106`
+- `static/app.js:4408`
 
 ## `_shouldQueueFromMobileEnter` — function, line 82
 - **called from:**
 - `static/app.js:82`
-- `static/app.js:3467`
-- `static/app.js:4096`
+- `static/app.js:3466`
+- `static/app.js:4095`
 
 ## `_shouldQueueFromMobileLineBreak` — function, line 94
 - **called from:**
 - `static/app.js:94`
 - `static/app.js:108`
-- `static/app.js:3441`
-- `static/app.js:3451`
+- `static/app.js:3440`
+- `static/app.js:3450`
 
 ## `_isLineBreakInputEvent` — function, line 100
 - **called from:**
 - `static/app.js:100`
-- `static/app.js:3441`
-- `static/app.js:3449`
+- `static/app.js:3440`
+- `static/app.js:3448`
 
 ## `_submitMobileQueuedInput` — function, line 107
 - **called from:**
 - `static/app.js:107`
-- `static/app.js:3444`
-- `static/app.js:3454`
+- `static/app.js:3443`
+- `static/app.js:3453`
 
 ## `_syncMobileEnterKeyHint` — function, line 122
 - **called from:**
 - `static/app.js:122`
+- `static/app.js:3435`
 - `static/app.js:3436`
-- `static/app.js:3437`
-- `static/app.js:3459`
+- `static/app.js:3458`
 
 ## `_countLineBreaks` — function, line 127
 - **called from:**
 - `static/app.js:127`
-- `static/app.js:3450`
-- `static/app.js:3450`
+- `static/app.js:3449`
+- `static/app.js:3449`
 
 ## `initForegroundActivityHeartbeat` — function, line 131
 - **called from:**
@@ -83,9 +83,9 @@
 - `static/app.js:156`
 - `static/app.js:159`
 - `static/app.js:161`
-- `static/app.js:4090`
-- `static/js/chat.js:1594`
-- `static/js/chat.js:6876`
+- `static/app.js:4089`
+- `static/js/chat.js:1593`
+- `static/js/chat.js:6796`
 - `static/js/chatRenderer.js:2510`
 - `static/js/chatRenderer.js:2534`
 - `static/js/chatRenderer.js:2536`
@@ -94,7 +94,7 @@
 ## `initRailHoverLabels` — function, line 165
 - **called from:**
 - `static/app.js:165`
-- `static/app.js:3695`
+- `static/app.js:3694`
 
 ## `_refreshDefaultChat` — function, line 222
 - **called from:**
@@ -106,12 +106,12 @@
 ## `_createDirectChatFromPreferredModel` — function, line 240
 - **called from:**
 - `static/app.js:240`
-- `static/app.js:3343`
+- `static/app.js:3342`
 
 ## `initializeEventListeners` — function, line 276
 - **called from:**
 - `static/app.js:276`
-- `static/app.js:3717`
+- `static/app.js:3716`
 
 ## `_updateMsgCount` — arrow, line 315
 - **called from:**
@@ -138,65 +138,65 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `app.py:449`
 - `app.py:1047`
-- `core/database.py:924`
-- `core/database.py:955`
-- `core/database.py:978`
-- `core/database.py:1003`
-- `core/database.py:1026`
-- `core/database.py:1049`
-- `core/database.py:1080`
-- `core/database.py:1105`
-- `core/database.py:1129`
-- `core/database.py:1158`
-- `core/database.py:1180`
-- `core/database.py:1203`
-- `core/database.py:1227`
-- `core/database.py:1249`
-- `core/database.py:1282`
-- `core/database.py:1304`
-- `core/database.py:1327`
-- `core/database.py:1351`
-- `core/database.py:1375`
-- `core/database.py:1409`
-- `core/database.py:1438`
-- `core/database.py:1512`
-- `core/database.py:1591`
-- `core/database.py:1606`
-- `core/database.py:1632`
-- `core/database.py:1704`
-- `core/database.py:1723`
-- `core/database.py:1735`
-- `core/database.py:1747`
-- `core/database.py:1764`
-- `core/database.py:1784`
-- `core/database.py:1805`
-- `core/database.py:1817`
-- `core/database.py:1830`
-- `core/database.py:1835`
-- `core/database.py:1847`
-- `core/database.py:1851`
-- `core/database.py:2098`
-- `core/database.py:2251`
-- `core/database.py:2335`
-- `core/database.py:2396`
-- `core/database.py:2425`
-- `core/database.py:2457`
-- `core/database.py:2491`
-- `core/database.py:2512`
-- `core/database.py:2539`
-- `core/database.py:2565`
-- `core/database.py:2595`
-- `core/database.py:2618`
-- `core/database.py:2640`
-- `core/database.py:2669`
-- `core/database.py:2745`
-- `core/database.py:2813`
-- `core/session_manager.py:429`
-- `core/session_manager.py:479`
-- `core/session_manager.py:504`
-- `core/session_manager.py:569`
-- `core/session_manager.py:647`
-- … +406 more (grep the name in repo)
+- `core/database.py:917`
+- `core/database.py:940`
+- `core/database.py:965`
+- `core/database.py:988`
+- `core/database.py:1011`
+- `core/database.py:1042`
+- `core/database.py:1067`
+- `core/database.py:1091`
+- `core/database.py:1120`
+- `core/database.py:1142`
+- `core/database.py:1165`
+- `core/database.py:1189`
+- `core/database.py:1211`
+- `core/database.py:1244`
+- `core/database.py:1266`
+- `core/database.py:1289`
+- `core/database.py:1313`
+- `core/database.py:1337`
+- `core/database.py:1371`
+- `core/database.py:1400`
+- `core/database.py:1474`
+- `core/database.py:1553`
+- `core/database.py:1568`
+- `core/database.py:1594`
+- `core/database.py:1666`
+- `core/database.py:1685`
+- `core/database.py:1697`
+- `core/database.py:1709`
+- `core/database.py:1726`
+- `core/database.py:1746`
+- `core/database.py:1767`
+- `core/database.py:1779`
+- `core/database.py:1792`
+- `core/database.py:1797`
+- `core/database.py:1809`
+- `core/database.py:1813`
+- `core/database.py:2060`
+- `core/database.py:2212`
+- `core/database.py:2296`
+- `core/database.py:2357`
+- `core/database.py:2386`
+- `core/database.py:2418`
+- `core/database.py:2452`
+- `core/database.py:2473`
+- `core/database.py:2500`
+- `core/database.py:2526`
+- `core/database.py:2556`
+- `core/database.py:2579`
+- `core/database.py:2601`
+- `core/database.py:2630`
+- `core/database.py:2704`
+- `core/database.py:2772`
+- `core/session_manager.py:415`
+- `core/session_manager.py:465`
+- `core/session_manager.py:490`
+- `core/session_manager.py:555`
+- `core/session_manager.py:596`
+- `core/session_manager.py:631`
+- … +401 more (grep the name in repo)
 
 ## `dismissModal` — function, line 784
 - **called from:**
@@ -210,10 +210,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/app.js:835`
 - `static/app.js:1013`
-- `static/app.js:2556`
-- `static/app.js:3332`
-- `static/app.js:3345`
-- `static/app.js:3374`
+- `static/app.js:2555`
+- `static/app.js:3331`
+- `static/app.js:3344`
+- `static/app.js:3373`
 
 ## `_syncResearchIndicator` — function, line 875
 - **called from:**
@@ -223,31 +223,31 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1797`
 - `static/app.js:1857`
 - `static/app.js:1973`
-- `static/app.js:2243`
-- `static/app.js:2518`
-- `static/app.js:3342`
+- `static/app.js:2242`
+- `static/app.js:2517`
+- `static/app.js:3341`
 - `static/js/presets.js:816`
 - `static/js/slashCommands.js:914`
 
 ## `_syncGroupIndicator` — function, line 907
 - **called from:**
 - `static/app.js:907`
-- `static/app.js:2555`
-- `static/app.js:2572`
-- `static/app.js:2585`
+- `static/app.js:2554`
+- `static/app.js:2571`
+- `static/app.js:2584`
 - `static/js/group.js:162`
 - `static/js/presets.js:672`
 - `static/js/presets.js:761`
-- `static/js/sessions.js:2196`
-- `static/js/sessions.js:2203`
-- `static/js/sessions.js:2325`
+- `static/js/sessions.js:2193`
+- `static/js/sessions.js:2200`
+- `static/js/sessions.js:2322`
 
 ## `_closeCompareIfActive` — function, line 990
 - **called from:**
 - `static/app.js:990`
 - `static/app.js:1044`
-- `static/app.js:3328`
-- `static/app.js:3372`
+- `static/app.js:3327`
+- `static/app.js:3371`
 - `static/js/keyboard-shortcuts.js:224`
 
 ## `_iconRailWidth` — arrow, line 1120
@@ -313,16 +313,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:2023`
 - `static/app.js:2048`
 - `static/app.js:2060`
-- `static/app.js:2219`
-- `static/app.js:2254`
-- `static/app.js:2257`
-- `static/app.js:2469`
-- `static/app.js:2480`
-- `static/app.js:2529`
-- `static/app.js:2532`
-- `static/js/chat.js:2285`
-- `static/js/chat.js:2366`
-- `static/js/chat.js:4726`
+- `static/app.js:2218`
+- `static/app.js:2253`
+- `static/app.js:2256`
+- `static/app.js:2468`
+- `static/app.js:2479`
+- `static/app.js:2528`
+- `static/app.js:2531`
+- `static/js/chat.js:2282`
+- `static/js/chat.js:2358`
+- `static/js/chat.js:4707`
 - `static/js/compare/index.js:83`
 - `static/js/compare/index.js:297`
 - `static/js/storage.js:93`
@@ -342,9 +342,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:2009`
 - `static/app.js:2023`
 - `static/app.js:2048`
-- `static/app.js:2260`
-- `static/app.js:2480`
-- `static/app.js:2535`
+- `static/app.js:2259`
+- `static/app.js:2479`
+- `static/app.js:2534`
 - `static/js/compare/index.js:85`
 - `static/js/storage.js:97`
 - `static/js/storage.js:109`
@@ -367,9 +367,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:929`
 - `static/app.js:1751`
 - `static/app.js:1966`
-- `static/app.js:2236`
-- `static/app.js:2254`
-- `static/app.js:2529`
+- `static/app.js:2235`
+- `static/app.js:2253`
+- `static/app.js:2528`
 
 ## `showToolToggleToast` — function, line 1762
 - **called from:**
@@ -395,9 +395,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/app.js:1804`
 - `static/app.js:1851`
-- `static/app.js:2264`
-- `static/app.js:2539`
-- `static/app.js:2704`
+- `static/app.js:2263`
+- `static/app.js:2538`
+- `static/app.js:2703`
 
 ## `initModeToggle` — function, line 1823
 - **called from:**
@@ -419,8 +419,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/app.js:1927`
 - `static/app.js:1968`
-- `static/app.js:2245`
-- `static/app.js:2520`
+- `static/app.js:2244`
+- `static/app.js:2519`
 
 ## `setupToggle` — function, line 1950
 - **called from:**
@@ -437,8 +437,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/app.js:2038`
 - `static/app.js:2062`
-- `static/app.js:2503`
-- `static/app.js:2508`
+- `static/app.js:2502`
+- `static/app.js:2507`
 - `static/js/chatStream.js:61`
 - `static/js/slashCommands.js:912`
 
@@ -450,49 +450,49 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:2049`
 - `static/app.js:2066`
 - `static/app.js:2074`
-- `static/app.js:2270`
-- `static/app.js:2307`
-- `static/app.js:2481`
+- `static/app.js:2269`
+- `static/app.js:2306`
+- `static/app.js:2480`
 
 ## `_flagRefocus` — function, line 2082
 - **called from:**
 - `static/app.js:2082`
 
-## `initOverflowMenu` — function, line 2117
+## `initOverflowMenu` — function, line 2116
 - **called from:**
-- `static/app.js:2117`
+- `static/app.js:2116`
 
-## `positionMenu` — function, line 2134
+## `positionMenu` — function, line 2133
 - **called from:**
-- `static/app.js:2134`
-- `static/app.js:2174`
-- `static/app.js:2176`
+- `static/app.js:2133`
+- `static/app.js:2173`
+- `static/app.js:2175`
 
-## `closeOverflowMenu` — function, line 2181
+## `closeOverflowMenu` — function, line 2180
 - **called from:**
-- `static/app.js:2161`
-- `static/app.js:2181`
-- `static/app.js:2207`
-- `static/app.js:2210`
-- `static/app.js:2213`
+- `static/app.js:2160`
+- `static/app.js:2180`
+- `static/app.js:2206`
+- `static/app.js:2209`
+- `static/app.js:2212`
 
-## `initToolbarOverflow` — function, line 2274
+## `initToolbarOverflow` — function, line 2273
 - **called from:**
-- `static/app.js:2274`
+- `static/app.js:2273`
 
-## `syncMirrorStates` — function, line 2302
+## `syncMirrorStates` — function, line 2301
 - **called from:**
-- `static/app.js:2302`
-- `static/app.js:2357`
-- `static/app.js:2375`
-- `static/app.js:2379`
+- `static/app.js:2301`
+- `static/app.js:2356`
+- `static/app.js:2374`
+- `static/app.js:2378`
 
-## `checkToolbarOverflow` — function, line 2310
+## `checkToolbarOverflow` — function, line 2309
 - **called from:**
-- `static/app.js:2310`
-- `static/app.js:2387`
+- `static/app.js:2309`
+- `static/app.js:2386`
 
-## `changes` — class, line 2378
+## `changes` — class, line 2377
 - **called from:**
 - `static/js/admin.js:134`
 - `static/js/calendar.js:3645`
@@ -501,219 +501,218 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/settings.js:1323`
 - `static/js/tileManager.js:295`
 
-## `initModelPickerResponsive` — function, line 2408
+## `initModelPickerResponsive` — function, line 2407
 - **called from:**
-- `static/app.js:2408`
+- `static/app.js:2407`
 
-## `setComposerPlaceholder` — function, line 2421
+## `setComposerPlaceholder` — function, line 2420
 - **called from:**
-- `static/app.js:2421`
-- `static/app.js:2434`
-- `static/app.js:2445`
-- `static/app.js:2452`
+- `static/app.js:2420`
+- `static/app.js:2433`
+- `static/app.js:2444`
+- `static/app.js:2451`
 
-## `checkPickerOverflow` — function, line 2438
+## `checkPickerOverflow` — function, line 2437
 - **called from:**
-- `static/app.js:2438`
-- `static/app.js:2461`
+- `static/app.js:2437`
+- `static/app.js:2460`
 
-## `initTTSToggle` — function, line 2465
+## `initTTSToggle` — function, line 2464
 - **called from:**
-- `static/app.js:2465`
+- `static/app.js:2464`
 
-## `_syncSessionIncognitoIcon` — function, line 2597
+## `_syncSessionIncognitoIcon` — function, line 2596
 - **called from:**
-- `static/app.js:2597`
-- `static/app.js:2714`
+- `static/app.js:2596`
+- `static/app.js:2713`
 
-## `_deactivateIncognito` — function, line 2732
+## `_deactivateIncognito` — function, line 2731
 - **called from:**
-- `static/app.js:2732`
-- `static/app.js:3329`
-- `static/app.js:3373`
+- `static/app.js:2731`
+- `static/app.js:3328`
+- `static/app.js:3372`
 - `static/js/keyboard-shortcuts.js:225`
 
-## `loadUIVis` — function, line 2744
+## `loadUIVis` — function, line 2743
 - **called from:**
 - `static/app.js:1529`
-- `static/app.js:2744`
-- `static/app.js:2778`
-- `static/app.js:2785`
-- `static/app.js:2807`
-- `static/app.js:2983`
-- `static/app.js:3006`
+- `static/app.js:2743`
+- `static/app.js:2777`
+- `static/app.js:2784`
+- `static/app.js:2806`
+- `static/app.js:2982`
+- `static/app.js:3005`
 - `static/js/section-management.js:144`
 - `static/js/settings.js:1646`
 - `static/js/settings.js:1674`
 - `static/js/settings.js:1685`
 
-## `saveUIVis` — function, line 2748
+## `saveUIVis` — function, line 2747
 - **called from:**
-- `static/app.js:2748`
-- `static/app.js:2788`
-- `static/app.js:2809`
-- `static/app.js:2991`
+- `static/app.js:2747`
+- `static/app.js:2787`
+- `static/app.js:2808`
+- `static/app.js:2990`
 - `static/js/settings.js:1648`
 - `static/js/settings.js:1676`
 
-## `applyUIVis` — function, line 2752
+## `applyUIVis` — function, line 2751
 - **called from:**
 - `static/app.js:1529`
-- `static/app.js:2752`
-- `static/app.js:2789`
-- `static/app.js:2810`
-- `static/app.js:3006`
+- `static/app.js:2751`
+- `static/app.js:2788`
+- `static/app.js:2809`
+- `static/app.js:3005`
 - `static/js/settings.js:1649`
 - `static/js/settings.js:1679`
 
-## `so` — class, line 2761
+## `so` — class, line 2760
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `syncRearrangeChecks` — function, line 2777
+## `syncRearrangeChecks` — function, line 2776
 - **called from:**
-- `static/app.js:2777`
-- `static/app.js:2790`
-- `static/app.js:2811`
-- `static/app.js:2819`
+- `static/app.js:2776`
+- `static/app.js:2789`
+- `static/app.js:2810`
+- `static/app.js:2818`
 
-## `emojiToText` — function, line 2924
+## `emojiToText` — function, line 2923
 - **called from:**
-- `static/app.js:2924`
-- `static/app.js:2942`
-- `static/app.js:2952`
+- `static/app.js:2923`
+- `static/app.js:2941`
+- `static/app.js:2951`
 
-## `deEmojify` — function, line 2936
+## `deEmojify` — function, line 2935
 - **called from:**
-- `static/app.js:2936`
-- `static/js/markdown.js:690`
+- `static/app.js:2935`
+- `static/js/markdown.js:642`
 
-## `applyTextEmojis` — function, line 2958
+## `applyTextEmojis` — function, line 2957
 - **called from:**
-- `static/app.js:2769`
-- `static/app.js:2958`
+- `static/app.js:2768`
+- `static/app.js:2957`
 
-## `migrateOldToolbarVis` — function, line 2978
+## `migrateOldToolbarVis` — function, line 2977
 - **called from:**
-- `static/app.js:2978`
+- `static/app.js:2977`
 
-## `initUIVisibility` — function, line 3004
+## `initUIVisibility` — function, line 3003
 - **called from:**
-- `static/app.js:3004`
+- `static/app.js:3003`
 
-## `initModalMinimize` — function, line 3047
+## `initModalMinimize` — function, line 3046
 - **called from:**
-- `static/app.js:3047`
+- `static/app.js:3046`
 
-## `updateDockOffset` — function, line 3063
+## `updateDockOffset` — function, line 3062
 - **called from:**
-- `static/app.js:3063`
-- `static/app.js:3083`
+- `static/app.js:3062`
+- `static/app.js:3082`
 
-## `names` — class, line 3093
+## `names` — class, line 3092
 - **called from:**
 - `static/js/cookbook.js:2491`
 
-## `modalTitle` — function, line 3104
+## `modalTitle` — function, line 3103
 - **called from:**
-- `static/app.js:3104`
-- `static/app.js:3134`
-- `static/app.js:3138`
+- `static/app.js:3103`
+- `static/app.js:3133`
+- `static/app.js:3137`
 
-## `removeDockEntry` — function, line 3111
+## `removeDockEntry` — function, line 3110
 - **called from:**
-- `static/app.js:3111`
-- `static/app.js:3122`
-- `static/app.js:3149`
-- `static/app.js:3188`
+- `static/app.js:3110`
+- `static/app.js:3121`
+- `static/app.js:3148`
+- `static/app.js:3187`
 
-## `restoreModal` — function, line 3119
+## `restoreModal` — function, line 3118
 - **called from:**
-- `static/app.js:3119`
-- `static/app.js:3154`
+- `static/app.js:3118`
+- `static/app.js:3153`
 
-## `minimizeModal` — function, line 3127
+## `minimizeModal` — function, line 3126
 - **called from:**
-- `static/app.js:3127`
-- `static/app.js:3181`
+- `static/app.js:3126`
+- `static/app.js:3180`
 
-## `injectMinimizeButton` — function, line 3159
+## `injectMinimizeButton` — function, line 3158
 - **called from:**
-- `static/app.js:3159`
-- `static/app.js:3202`
+- `static/app.js:3158`
+- `static/app.js:3201`
 - `static/js/emailLibrary.js:7088`
 - `static/js/modalManager.js:1354`
 - `static/js/modalManager.js:1459`
 
-## `so` — class, line 3185
+## `so` — class, line 3184
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `initTabSwipe` — function, line 3251
+## `initTabSwipe` — function, line 3250
 - **called from:**
-- `static/app.js:3251`
+- `static/app.js:3250`
 
-## `initElasticScroll` — function, line 3300
+## `initElasticScroll` — function, line 3299
 - **called from:**
-- `static/app.js:3300`
+- `static/app.js:3299`
 
-## `_handleNewChatAction` — function, line 3326
+## `_handleNewChatAction` — function, line 3325
 - **called from:**
-- `static/app.js:3326`
-- `static/app.js:3360`
-- `static/app.js:3389`
-- `static/app.js:3397`
+- `static/app.js:3325`
+- `static/app.js:3359`
+- `static/app.js:3388`
+- `static/app.js:3396`
 
-## `initGhostAutocomplete` — function, line 3493
+## `initGhostAutocomplete` — function, line 3492
 - **called from:**
-- `static/app.js:3493`
+- `static/app.js:3492`
 
-## `fetchModels` — function, line 3505
+## `fetchModels` — function, line 3504
 - **called from:**
-- `static/app.js:3505`
-- `static/app.js:3567`
+- `static/app.js:3504`
+- `static/app.js:3566`
 - `static/js/compare/index.js:1433`
 - `static/js/compare/models.js:52`
 - `static/js/compare/selector.js:1300`
 
-## `hide` — function, line 3530
+## `hide` — function, line 3529
 - **called from:**
-- `static/app.js:3530`
-- `static/app.js:3564`
-- `static/app.js:3568`
-- `static/app.js:3576`
-- `static/app.js:3584`
-- `static/app.js:3635`
-- `static/app.js:3653`
-- `static/app.js:3659`
+- `static/app.js:3529`
+- `static/app.js:3563`
+- `static/app.js:3567`
+- `static/app.js:3575`
+- `static/app.js:3583`
+- `static/app.js:3634`
+- `static/app.js:3652`
+- `static/app.js:3658`
 - `static/js/slashAutocomplete.js:220`
 - `static/js/slashAutocomplete.js:233`
 - `static/js/slashAutocomplete.js:262`
 - `static/js/slashAutocomplete.js:287`
 - `static/js/slashAutocomplete.js:294`
 
-## `show` — function, line 3538
+## `show` — function, line 3537
 - **called from:**
-- `static/app.js:3538`
-- `static/app.js:3587`
-- `static/js/chat.js:2078`
+- `static/app.js:3537`
+- `static/app.js:3586`
+- `static/js/chat.js:2076`
 - `static/js/slashAutocomplete.js:239`
 
-## `syncSize` — function, line 3554
+## `syncSize` — function, line 3553
 - **called from:**
-- `static/app.js:3554`
-- `static/app.js:3586`
-- `static/app.js:3643`
+- `static/app.js:3553`
+- `static/app.js:3585`
+- `static/app.js:3642`
 
-## `update` — function, line 3561
+## `update` — function, line 3560
 - **called from:**
 - `app.py:335`
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -766,155 +765,156 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
-## `isActive` — method?, line 3648
+## `isActive` — method?, line 3647
 - **called from:**
 - `static/app.js:991`
 - `static/app.js:1003`
-- `static/app.js:2490`
-- `static/app.js:3469`
-- `static/app.js:3648`
-- `static/app.js:3878`
-- `static/app.js:3883`
-- `static/app.js:3967`
-- `static/js/chat.js:1488`
+- `static/app.js:2489`
+- `static/app.js:3468`
+- `static/app.js:3647`
+- `static/app.js:3877`
+- `static/app.js:3882`
+- `static/app.js:3966`
+- `static/js/chat.js:1487`
 - `static/js/group.js:377`
 - `static/js/modelPicker.js:862`
 - `static/js/models.js:81`
 - `static/js/presets.js:645`
 - `static/js/presets.js:759`
-- `static/js/sessions.js:1930`
-- `static/js/sessions.js:2012`
-- `static/js/sessions.js:2200`
-- `static/js/sessions.js:2323`
+- `static/js/sessions.js:1928`
+- `static/js/sessions.js:2009`
+- `static/js/sessions.js:2197`
+- `static/js/sessions.js:2320`
 
-## `accept` — method?, line 3649
+## `accept` — method?, line 3648
 - **called from:**
 - `src/service_health.py:248`
 - `tests/test_security_regressions.py:1358`
 - `tests/test_skill_importer_dns_pinning.py:174`
-- `static/app.js:3472`
-- `static/app.js:3649`
+- `static/app.js:3471`
+- `static/app.js:3648`
 
-## `startOdysseusApp` — function, line 3683
+## `startOdysseusApp` — function, line 3682
 - **called from:**
-- `static/app.js:3683`
-- `static/app.js:4603`
+- `static/app.js:3682`
+- `static/app.js:4602`
 
-## `_bumpChatPriority` — arrow, line 3687
+## `_bumpChatPriority` — arrow, line 3686
 - **called from:**
-- `static/app.js:3692`
+- `static/app.js:3691`
+- `static/app.js:3862`
 - `static/app.js:3863`
 - `static/app.js:3864`
-- `static/app.js:3865`
-- `static/app.js:3870`
+- `static/app.js:3869`
 
-## `_syncRailDynamic` — function, line 3834
+## `_syncRailDynamic` — function, line 3833
 - **called from:**
-- `static/app.js:3794`
-- `static/app.js:3834`
+- `static/app.js:3793`
+- `static/app.js:3833`
 - `static/js/cookbookRunning.js:1208`
 - `static/js/cookbookRunning.js:1220`
 - `static/js/research/panel.js:157`
-- `static/js/sessions.js:2792`
+- `static/js/sessions.js:2789`
 
-## `_show` — arrow, line 3842
+## `_show` — arrow, line 3841
 - **called from:**
+- `static/app.js:3842`
 - `static/app.js:3843`
-- `static/app.js:3844`
 - `static/js/tourHints.js:65`
 - `static/js/tourHints.js:68`
 
-## `handleSubmit` — function, line 3868
+## `handleSubmit` — function, line 3867
 - **called from:**
-- `static/app.js:3868`
-- `static/app.js:4050`
-- `static/app.js:4086`
+- `static/app.js:3867`
+- `static/app.js:4049`
+- `static/app.js:4085`
 
-## `_isSttEnabled` — function, line 3920
+## `_isSttEnabled` — function, line 3919
 - **called from:**
-- `static/app.js:3920`
-- `static/app.js:3957`
-- `static/app.js:3964`
-- `static/app.js:4072`
+- `static/app.js:3919`
+- `static/app.js:3956`
+- `static/app.js:3963`
+- `static/app.js:4071`
 
-## `_hasAttachments` — function, line 3924
+## `_hasAttachments` — function, line 3923
 - **called from:**
-- `static/app.js:3924`
-- `static/app.js:3955`
-- `static/app.js:4046`
+- `static/app.js:3923`
+- `static/app.js:3954`
+- `static/app.js:4045`
 
-## `_updateStreamingSubmitButton` — function, line 3928
+## `_updateStreamingSubmitButton` — function, line 3927
 - **called from:**
-- `static/app.js:3928`
-- `static/app.js:3948`
+- `static/app.js:3927`
+- `static/app.js:3947`
 
-## `_updateSendBtnIcon` — function, line 3945
+## `_updateSendBtnIcon` — function, line 3944
 - **called from:**
-- `static/app.js:3945`
-- `static/app.js:4101`
-- `static/app.js:4138`
-- `static/app.js:4159`
-- `static/js/chat.js:1452`
+- `static/app.js:3944`
+- `static/app.js:4100`
+- `static/app.js:4137`
+- `static/app.js:4158`
+- `static/js/chat.js:1451`
 - `static/js/fileHandler.js:195`
 - `static/js/fileHandler.js:230`
-- `static/js/sessions.js:356`
-- `static/js/sessions.js:2003`
-- `static/js/sessions.js:2026`
+- `static/js/sessions.js:354`
+- `static/js/sessions.js:2000`
+- `static/js/sessions.js:2023`
 - `static/js/settings.js:1012`
 - `static/js/voiceRecorder.js:36`
 
-## `_syncModelPickerAutohide` — arrow, line 4122
+## `_syncModelPickerAutohide` — arrow, line 4121
 - **called from:**
-- `static/app.js:4134`
-- `static/app.js:4136`
-- `static/js/chat.js:1673`
-- `static/js/chat.js:1701`
+- `static/app.js:4133`
+- `static/app.js:4135`
+- `static/js/chat.js:1676`
+- `static/js/chat.js:1702`
 
-## `_showDropHighlight` — function, line 4171
+## `_showDropHighlight` — function, line 4170
 - **called from:**
-- `static/app.js:4171`
-- `static/app.js:4193`
+- `static/app.js:4170`
+- `static/app.js:4192`
 
-## `_hideDropHighlight` — function, line 4181
+## `_hideDropHighlight` — function, line 4180
 - **called from:**
-- `static/app.js:4181`
-- `static/app.js:4199`
-- `static/app.js:4208`
+- `static/app.js:4180`
+- `static/app.js:4198`
+- `static/app.js:4207`
 
-## `_isFileDrag` — arrow, line 4250
+## `_isFileDrag` — arrow, line 4249
 - **called from:**
-- `static/app.js:4280`
-- `static/app.js:4283`
-- `static/app.js:4294`
+- `static/app.js:4279`
+- `static/app.js:4282`
+- `static/app.js:4293`
 
-## `_compareActive` — arrow, line 4254
+## `_compareActive` — arrow, line 4253
 - **called from:**
-- `static/app.js:4280`
-- `static/app.js:4283`
-- `static/app.js:4290`
-- `static/app.js:4294`
+- `static/app.js:4279`
+- `static/app.js:4282`
+- `static/app.js:4289`
+- `static/app.js:4293`
 
-## `_showCmpShield` — arrow, line 4258
+## `_showCmpShield` — arrow, line 4257
 - **called from:**
-- `static/app.js:4280`
-- `static/app.js:4286`
+- `static/app.js:4279`
+- `static/app.js:4285`
 
-## `_hideCmpShield` — arrow, line 4277
+## `_hideCmpShield` — arrow, line 4276
 - **called from:**
-- `static/app.js:4290`
-- `static/app.js:4296`
+- `static/app.js:4289`
+- `static/app.js:4295`
 
-## `runNonCriticalStartup` — arrow, line 4336
+## `runNonCriticalStartup` — arrow, line 4335
 - **called from:**
-- `static/app.js:4360`
+- `static/app.js:4359`
+- `static/app.js:4364`
 - `static/app.js:4365`
 - `static/app.js:4366`
-- `static/app.js:4367`
 
-## `run` — arrow, line 4338
+## `run` — arrow, line 4337
 - **called from:**
 - `app.py:1312`
 - `core/platform_compat.py:124`
@@ -976,24 +976,24 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_agent_state_dir_confinement.py:609`
 - `tests/test_agent_state_dir_confinement.py:629`
 - `tests/test_agent_state_dir_confinement.py:689`
-- … +553 more (grep the name in repo)
+- … +546 more (grep the name in repo)
 
-## `initMobileChatPullRefresh` — function, line 4374
+## `initMobileChatPullRefresh` — function, line 4373
 - **called from:**
-- `static/app.js:4374`
+- `static/app.js:4373`
 
-## `setPull` — function, line 4397
+## `setPull` — function, line 4396
 - **called from:**
-- `static/app.js:4397`
-- `static/app.js:4410`
-- `static/app.js:4414`
-- `static/app.js:4417`
-- `static/app.js:4431`
-- `static/app.js:4442`
-- `static/app.js:4449`
-- `static/app.js:4454`
-- `static/app.js:4462`
-- `static/app.js:4467`
+- `static/app.js:4396`
+- `static/app.js:4409`
+- `static/app.js:4413`
+- `static/app.js:4416`
+- `static/app.js:4430`
+- `static/app.js:4441`
+- `static/app.js:4448`
+- `static/app.js:4453`
+- `static/app.js:4461`
+- `static/app.js:4466`
 - `static/js/emailLibrary.js:2049`
 - `static/js/emailLibrary.js:2062`
 - `static/js/emailLibrary.js:2069`
@@ -1003,9 +1003,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailLibrary.js:2099`
 - `static/js/emailLibrary.js:2104`
 
-## `runRefresh` — function, line 4407
+## `runRefresh` — function, line 4406
 - **called from:**
-- `static/app.js:4407`
-- `static/app.js:4461`
+- `static/app.js:4406`
+- `static/app.js:4460`
 - `static/js/emailLibrary.js:2059`
 - `static/js/emailLibrary.js:2098`

@@ -152,7 +152,6 @@
 
 ## `parse_message_timestamp` — function, line 276
 - **called from:**
-- `src/llm_core.py:1972`
 - `tests/test_temporal_grounding_stamps.py:113`
 - `tests/test_temporal_grounding_stamps.py:114`
 - `tests/test_temporal_grounding_stamps.py:115`

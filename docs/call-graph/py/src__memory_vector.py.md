@@ -51,14 +51,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `MemoryVectorStore.count` — method, line 68
 - **called from:**
-- `core/database.py:2713`
-- `core/database.py:2714`
-- `core/database.py:2715`
-- `core/database.py:2716`
-- `core/database.py:2717`
-- `core/session_manager.py:150`
-- `core/session_manager.py:971`
-- `core/session_manager.py:973`
+- `core/database.py:2672`
+- `core/database.py:2673`
+- `core/database.py:2674`
+- `core/database.py:2675`
+- `core/database.py:2676`
+- `core/session_manager.py:149`
+- `core/session_manager.py:845`
 - `routes/admin_wipe/admin_wipe_routes.py:79`
 - `routes/admin_wipe/admin_wipe_routes.py:90`
 - `routes/admin_wipe/admin_wipe_routes.py:127`
@@ -81,11 +80,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:885`
 - `routes/gallery/gallery_routes.py:886`
 - `routes/gallery/gallery_routes.py:913`
-- `routes/history/history_routes.py:287`
-- `routes/session_routes.py:808`
-- `routes/session_routes.py:998`
-- `routes/session_routes.py:1319`
-- `routes/session_routes.py:1321`
+- `routes/history/history_routes.py:285`
+- `routes/session_routes.py:799`
+- `routes/session_routes.py:930`
+- `routes/session_routes.py:1251`
+- `routes/session_routes.py:1253`
 - `routes/task/task_routes.py:977`
 - `src/agent_loop.py:5958`
 - `src/agent_loop.py:5968`
@@ -111,7 +110,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/llm_core.py:417`
 - `src/memory_vector.py:53`
 - `src/memory_vector.py:139`
-- … +140 more (grep the name in repo)
+- `src/memory_vector.py:146`
+- … +139 more (grep the name in repo)
 
 ## `MemoryVectorStore._collections_for_delete` — method, line 74
 - **called from:**
@@ -123,14 +123,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `MemoryVectorStore.add` — method, line 78
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -182,19 +182,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `MemoryVectorStore.add` — method, line 104
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -246,7 +246,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `MemoryVectorStore.remove` — method, line 122
 - **called from:**
@@ -307,10 +307,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1689`
 - `static/app.js:1987`
 - `static/app.js:2008`
+- `static/app.js:2164`
 - `static/app.js:2165`
-- `static/app.js:2166`
-- `static/app.js:2192`
-- … +1230 more (grep the name in repo)
+- `static/app.js:2191`
+- … +1229 more (grep the name in repo)
 
 ## `MemoryVectorStore.search` — method, line 132
 - **called from:**
@@ -374,7 +374,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/document/document_helpers.py:227`
 - `routes/document/document_routes.py:63`
 - `routes/document/document_routes.py:64`
-- … +331 more (grep the name in repo)
+- … +326 more (grep the name in repo)
 
 ## `MemoryVectorStore.find_similar` — method, line 165
 - **called from:**

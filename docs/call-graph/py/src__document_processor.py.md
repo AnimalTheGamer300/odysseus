@@ -5,12 +5,12 @@
 ## `_is_text_file` — function, line 25
 - **called from:**
 - `services/memory/skill_importer.py:421`
-- `src/document_processor.py:862`
+- `src/document_processor.py:845`
 - `tests/test_nix_upload_text.py:9`
 
 ## `_process_text_file` — function, line 33
 - **called from:**
-- `src/document_processor.py:863`
+- `src/document_processor.py:846`
 - `tests/test_nix_upload_text.py:16`
 
 ## `_process_pdf` — function, line 118
@@ -18,8 +18,8 @@
 - `routes/document/document_routes.py:275`
 - `routes/document/document_routes.py:530`
 - `routes/memory/memory_routes.py:394`
-- `src/document_processor.py:778`
-- `src/document_processor.py:861`
+- `src/document_processor.py:761`
+- `src/document_processor.py:844`
 
 ## `_truncate_inline` — function, line 165
 - **called from:**
@@ -27,17 +27,17 @@
 
 ## `_fit_inline_attachment_text` — function, line 173
 - **called from:**
-- `src/document_processor.py:873`
+- `src/document_processor.py:856`
 
 ## `_process_office_document` — function, line 208
 - **called from:**
-- `src/document_processor.py:865`
+- `src/document_processor.py:848`
 
 ## `strip_pdf_content_marker` — function, line 291
 - **called from:**
 - `routes/document/document_routes.py:275`
 - `routes/document/document_routes.py:530`
-- `src/document_processor.py:778`
+- `src/document_processor.py:761`
 - `tests/test_document_pdf_marker.py:14`
 - `tests/test_document_pdf_marker.py:26`
 - `tests/test_document_pdf_marker.py:30`
@@ -101,7 +101,7 @@
 ## `_video_frames_as_jpeg` — function, line 584
 - **called from:**
 - `src/document_processor.py:361`
-- `src/document_processor.py:728`
+- `src/document_processor.py:711`
 - `tests/test_gif_video_frames.py:131`
 - `tests/test_gif_video_frames.py:139`
 - `tests/test_gif_video_frames.py:146`

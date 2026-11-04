@@ -90,7 +90,7 @@
 
 ## `Skill.to_dict` — method, line 408
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`

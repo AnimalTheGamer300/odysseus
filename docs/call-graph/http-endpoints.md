@@ -1,6 +1,6 @@
 # HTTP endpoints (FastAPI) ↔ JS fetch() callers
 
-508 route decorators found. JS side: 1015 literal `fetch('/...')` call sites.
+504 route decorators found. JS side: 1008 literal `fetch('/...')` call sites.
 
 Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 
@@ -405,7 +405,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `GET /api/chat/reasoning-control`
 - handler: `reasoning_control` — `routes/chat_routes.py:3163`
 - **JS callers:**
-  - `static/js/chat.js:6116` → `/api/chat/reasoning-control?model=`
+  - `static/js/chat.js:6075` → `/api/chat/reasoning-control?model=`
 
 ## `GET /api/chat/resume/{session_id}`
 - handler: `chat_resume` — `routes/chat_routes.py:3080`
@@ -414,7 +414,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/chat/stop/{session_id}`
 - handler: `chat_stop` — `routes/chat_routes.py:3096`
 - **JS callers:**
-  - `static/js/chat.js:1032` → `/api/chat/stop/${encodeURIComponent(sessionId)}`
+  - `static/js/chat.js:1031` → `/api/chat/stop/${encodeURIComponent(sessionId)}`
 
 ## `GET /api/chat/stream_status/{session_id}`
 - handler: `chat_stream_status` — `routes/chat_routes.py:3106`
@@ -423,7 +423,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/chat_stream`
 - handler: `chat_stream` — `routes/chat_routes.py:1123`
 - **JS callers:**
-  - `static/js/chat.js:2510` → `/api/chat_stream`
+  - `static/js/chat.js:2502` → `/api/chat_stream`
   - `static/js/compare/stream.js:243` → `/api/chat_stream`
   - `static/js/compare/stream.js:409` → `/api/chat_stream`
   - `static/js/group.js:855` → `/api/chat_stream`
@@ -437,8 +437,8 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/client-perf`
 - handler: `client_perf` — `app.py:960`
 - **JS callers:**
-  - `static/js/chat.js:372` → `/api/client-perf`
-  - `static/js/chat.js:377` → `/api/client-perf`
+  - `static/js/chat.js:371` → `/api/client-perf`
+  - `static/js/chat.js:376` → `/api/client-perf`
 
 ## `GET /api/codex/calendar/events`
 - handler: `codex_calendar_list` — `routes/codex_routes.py:421`
@@ -704,7 +704,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/settings.js:4163` → `/api/contacts/list`
 
 ## `GET /api/conversations/topics`
-- handler: `get_conversation_topics` — `routes/history/history_routes.py:966`
+- handler: `get_conversation_topics` — `routes/history/history_routes.py:929`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/cookbook/gpus`
@@ -820,13 +820,13 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - handler: `get_default_chat` — `routes/model_routes.py:2415`
 - **JS callers:**
   - `static/app.js:224` → `/api/default-chat`
-  - `static/js/chat.js:1779` → `/api/default-chat`
+  - `static/js/chat.js:1780` → `/api/default-chat`
   - `static/js/emailInbox.js:1357` → `/api/default-chat`
   - `static/js/gallery.js:1538` → `/api/default-chat`
   - `static/js/modelPicker.js:141` → `/api/default-chat`
   - `static/js/notes.js:4493` → `/api/default-chat`
   - `static/js/notes.js:4561` → `/api/default-chat`
-  - `static/js/sessions.js:2292` → `/api/default-chat`
+  - `static/js/sessions.js:2289` → `/api/default-chat`
   - `static/js/slashCommands.js:967` → `/api/default-chat`
   - `static/js/tasks.js:2540` → `/api/default-chat`
 
@@ -850,10 +850,10 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - **JS callers:**
   - `static/app.js:549` → `/api/document`
   - `static/app.js:549` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
+  - `static/js/chat.js:2119` → `/api/document`
+  - `static/js/chat.js:2119` → `/api/document`
+  - `static/js/chat.js:7627` → `/api/document`
+  - `static/js/chat.js:7627` → `/api/document`
   - `static/js/document.js:4665` → `/api/document`
   - `static/js/document.js:4665` → `/api/document`
   - `static/js/document.js:7033` → `/api/document`
@@ -862,12 +862,12 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/document.js:9361` → `/api/document`
   - `static/js/document.js:9580` → `/api/document`
   - `static/js/document.js:9580` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
+  - `static/js/documentLibrary.js:1091` → `/api/document`
+  - `static/js/documentLibrary.js:1091` → `/api/document`
+  - `static/js/documentLibrary.js:1541` → `/api/document`
+  - `static/js/documentLibrary.js:1541` → `/api/document`
+  - `static/js/documentLibrary.js:1551` → `/api/document`
+  - `static/js/documentLibrary.js:1551` → `/api/document`
   - … +4 more
 
 ## `POST /api/document`
@@ -875,10 +875,10 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - **JS callers:**
   - `static/app.js:549` → `/api/document`
   - `static/app.js:549` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
+  - `static/js/chat.js:2119` → `/api/document`
+  - `static/js/chat.js:2119` → `/api/document`
+  - `static/js/chat.js:7627` → `/api/document`
+  - `static/js/chat.js:7627` → `/api/document`
   - `static/js/document.js:4665` → `/api/document`
   - `static/js/document.js:4665` → `/api/document`
   - `static/js/document.js:7033` → `/api/document`
@@ -887,12 +887,12 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/document.js:9361` → `/api/document`
   - `static/js/document.js:9580` → `/api/document`
   - `static/js/document.js:9580` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
+  - `static/js/documentLibrary.js:1091` → `/api/document`
+  - `static/js/documentLibrary.js:1091` → `/api/document`
+  - `static/js/documentLibrary.js:1541` → `/api/document`
+  - `static/js/documentLibrary.js:1541` → `/api/document`
+  - `static/js/documentLibrary.js:1551` → `/api/document`
+  - `static/js/documentLibrary.js:1551` → `/api/document`
   - … +4 more
 
 ## `DELETE /api/document/{doc_id}`
@@ -966,31 +966,31 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/documents/ai-tidy`
 - handler: `ai_tidy_documents` — `routes/document/document_routes.py:968`
 - **JS callers:**
-  - `static/js/documentLibrary.js:3503` → `/api/documents/ai-tidy`
+  - `static/js/documentLibrary.js:3288` → `/api/documents/ai-tidy`
 
 ## `POST /api/documents/export-zip`
 - handler: `documents_export_zip` — `routes/document/document_routes.py:560`
 - **JS callers:**
-  - `static/js/documentLibrary.js:1309` → `/api/documents/export-zip`
+  - `static/js/documentLibrary.js:1307` → `/api/documents/export-zip`
 
 ## `POST /api/documents/import-pdf`
 - handler: `import_pdf` — `routes/document/document_routes.py:222`
 - **JS callers:**
-  - `static/js/chat.js:7783` → `/api/documents/import-pdf`
+  - `static/js/chat.js:7622` → `/api/documents/import-pdf`
   - `static/js/document.js:9565` → `/api/documents/import-pdf`
-  - `static/js/documentLibrary.js:1520` → `/api/documents/import-pdf`
+  - `static/js/documentLibrary.js:1518` → `/api/documents/import-pdf`
 
 ## `GET /api/documents/library`
 - handler: `documents_library` — `routes/document/document_routes.py:324`
 - **JS callers:**
   - `static/js/document.js:3374` → `/api/documents/library?`
   - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:332` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:332` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:2330` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/documentLibrary.js:2330` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/sessions.js:3522` → `/api/documents/library?`
+  - `static/js/sessions.js:3522` → `/api/documents/library?`
   - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
   - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
 
@@ -999,33 +999,33 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - **JS callers:**
   - `static/js/document.js:3374` → `/api/documents/library?`
   - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:332` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:332` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:2330` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/documentLibrary.js:2330` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/sessions.js:3522` → `/api/documents/library?`
+  - `static/js/sessions.js:3522` → `/api/documents/library?`
   - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
   - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
 
 ## `POST /api/documents/tidy`
 - handler: `tidy_documents` — `routes/document/document_routes.py:853`
 - **JS callers:**
-  - `static/js/documentLibrary.js:3492` → `/api/documents/tidy`
+  - `static/js/documentLibrary.js:3277` → `/api/documents/tidy`
 
 ## `GET /api/documents/{session_id}`
 - handler: `list_documents` — `routes/document/document_routes.py:446`
 - **JS callers:**
-  - `static/js/chat.js:7783` → `/api/documents/import-pdf`
+  - `static/js/chat.js:7622` → `/api/documents/import-pdf`
   - `static/js/document.js:3374` → `/api/documents/library?`
   - `static/js/document.js:9565` → `/api/documents/import-pdf`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:1309` → `/api/documents/export-zip`
-  - `static/js/documentLibrary.js:1520` → `/api/documents/import-pdf`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/documentLibrary.js:3492` → `/api/documents/tidy`
-  - `static/js/documentLibrary.js:3503` → `/api/documents/ai-tidy`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:332` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:1307` → `/api/documents/export-zip`
+  - `static/js/documentLibrary.js:1518` → `/api/documents/import-pdf`
+  - `static/js/documentLibrary.js:2330` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/documentLibrary.js:3277` → `/api/documents/tidy`
+  - `static/js/documentLibrary.js:3288` → `/api/documents/ai-tidy`
+  - `static/js/sessions.js:3522` → `/api/documents/library?`
   - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
 
 ## `GET /api/editor-drafts`
@@ -1597,7 +1597,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/history/{session_id}`
-- handler: `get_session_history` — `routes/history/history_routes.py:271`
+- handler: `get_session_history` — `routes/history/history_routes.py:269`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/hwfit/image-models`
@@ -1861,8 +1861,8 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/cookbookRunning.js:4297` → `/api/model-endpoints`
   - `static/js/cookbookRunning.js:4323` → `/api/model-endpoints`
   - `static/js/editor/ai-models.js:97` → `/api/model-endpoints`
-  - `static/js/markdown.js:1523` → `/api/model-endpoints`
-  - `static/js/markdown.js:1550` → `/api/model-endpoints`
+  - `static/js/markdown.js:1453` → `/api/model-endpoints`
+  - `static/js/markdown.js:1480` → `/api/model-endpoints`
   - … +6 more
 
 ## `POST /api/model-endpoints`
@@ -1886,15 +1886,15 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/cookbookRunning.js:4297` → `/api/model-endpoints`
   - `static/js/cookbookRunning.js:4323` → `/api/model-endpoints`
   - `static/js/editor/ai-models.js:97` → `/api/model-endpoints`
-  - `static/js/markdown.js:1523` → `/api/model-endpoints`
-  - `static/js/markdown.js:1550` → `/api/model-endpoints`
+  - `static/js/markdown.js:1453` → `/api/model-endpoints`
+  - `static/js/markdown.js:1480` → `/api/model-endpoints`
   - … +6 more
 
 ## `GET /api/model-endpoints/probe-local`
 - handler: `probe_local_endpoints` — `routes/model_routes.py:1677`
 - **JS callers:**
   - `static/js/admin.js:1472` → `/api/model-endpoints/probe-local`
-  - `static/js/chat.js:1154` → `/api/model-endpoints/probe-local`
+  - `static/js/chat.js:1153` → `/api/model-endpoints/probe-local`
   - `static/js/cookbookRunning.js:3843` → `/api/model-endpoints/probe-local`
   - `static/js/modelPicker.js:270` → `/api/model-endpoints/probe-local`
 
@@ -1911,7 +1911,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/admin.js:1063` → `/api/model-endpoints/test`
   - `static/js/admin.js:1472` → `/api/model-endpoints/probe-local`
   - `static/js/admin.js:1598` → `/api/model-endpoints/test`
-  - `static/js/chat.js:1154` → `/api/model-endpoints/probe-local`
+  - `static/js/chat.js:1153` → `/api/model-endpoints/probe-local`
   - `static/js/cookbookRunning.js:539` → `/api/model-endpoints/${ep.id}`
   - `static/js/cookbookRunning.js:2968` → `/api/model-endpoints/${ep.id}`
   - `static/js/cookbookRunning.js:3843` → `/api/model-endpoints/probe-local`
@@ -1924,7 +1924,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/admin.js:1063` → `/api/model-endpoints/test`
   - `static/js/admin.js:1472` → `/api/model-endpoints/probe-local`
   - `static/js/admin.js:1598` → `/api/model-endpoints/test`
-  - `static/js/chat.js:1154` → `/api/model-endpoints/probe-local`
+  - `static/js/chat.js:1153` → `/api/model-endpoints/probe-local`
   - `static/js/cookbookRunning.js:539` → `/api/model-endpoints/${ep.id}`
   - `static/js/cookbookRunning.js:2968` → `/api/model-endpoints/${ep.id}`
   - `static/js/cookbookRunning.js:3843` → `/api/model-endpoints/probe-local`
@@ -1980,8 +1980,8 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `GET /api/models`
 - handler: `api_models` — `routes/model_routes.py:1619`
 - **JS callers:**
-  - `static/app.js:3508` → `/api/models`
-  - `static/js/chat.js:1146` → `/api/models`
+  - `static/app.js:3507` → `/api/models`
+  - `static/js/chat.js:1145` → `/api/models`
   - `static/js/compare/models.js:57` → `/api/models`
   - `static/js/group.js:45` → `/api/models`
   - `static/js/group.js:458` → `/api/models`
@@ -2198,11 +2198,11 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `GET /api/research/library`
 - handler: `research_library` — `routes/research/research_routes.py:367`
 - **JS callers:**
-  - `static/js/documentLibrary.js:2391` → `/api/research/library?archived=true`
-  - `static/js/documentLibrary.js:2906` → `/api/research/library`
+  - `static/js/documentLibrary.js:2331` → `/api/research/library?archived=true`
+  - `static/js/documentLibrary.js:2691` → `/api/research/library`
   - `static/js/research/jobs.js:95` → `/api/research/library?sort=recent&limit=20`
   - `static/js/research/panel.js:190` → `/api/research/library?limit=1`
-  - `static/js/sessions.js:3563` → `/api/research/library?`
+  - `static/js/sessions.js:3560` → `/api/research/library?`
 
 ## `GET /api/research/report/{session_id}`
 - handler: `research_report` — `routes/research/research_routes.py:324`
@@ -2236,13 +2236,13 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `DELETE /api/research/{session_id}`
 - handler: `research_delete` — `routes/research/research_routes.py:456`
 - **JS callers:**
-  - `static/js/documentLibrary.js:2391` → `/api/research/library?archived=true`
-  - `static/js/documentLibrary.js:2906` → `/api/research/library`
+  - `static/js/documentLibrary.js:2331` → `/api/research/library?archived=true`
+  - `static/js/documentLibrary.js:2691` → `/api/research/library`
   - `static/js/research/jobs.js:62` → `/api/research/active`
   - `static/js/research/jobs.js:95` → `/api/research/library?sort=recent&limit=20`
   - `static/js/research/jobs.js:276` → `/api/research/start`
   - `static/js/research/panel.js:190` → `/api/research/library?limit=1`
-  - `static/js/sessions.js:3563` → `/api/research/library?`
+  - `static/js/sessions.js:3560` → `/api/research/library?`
 
 ## `POST /api/research/{session_id}/archive`
 - handler: `research_archive` — `routes/research/research_routes.py:438`
@@ -2259,7 +2259,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/rewrite`
 - handler: `rewrite_message` — `routes/chat_routes.py:3209`
 - **JS callers:**
-  - `static/js/chat.js:7587` → `/api/rewrite`
+  - `static/js/chat.js:7426` → `/api/rewrite`
 
 ## `GET /api/runtime`
 - handler: `runtime_info` — `app.py:999`
@@ -2301,7 +2301,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/session`
 - handler: `create_session` — `routes/session_routes.py:392`
 - **JS callers:**
-  - `static/js/chat.js:7770` → `/api/session`
+  - `static/js/chat.js:7609` → `/api/session`
   - `static/js/compare/index.js:257` → `/api/session`
   - `static/js/compare/panes.js:393` → `/api/session`
   - `static/js/compare/panes.js:597` → `/api/session`
@@ -2314,73 +2314,73 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/notes.js:4505` → `/api/session`
   - `static/js/notes.js:4571` → `/api/session`
   - `static/js/presets.js:415` → `/api/session`
-  - `static/js/sessions.js:2405` → `/api/session`
+  - `static/js/sessions.js:2402` → `/api/session`
   - `static/js/slashCommands.js:1010` → `/api/session`
   - `static/js/tasks.js:2569` → `/api/session`
 
 ## `POST /api/session/openai`
-- handler: `create_session_openai` — `routes/session_routes.py:1121`
+- handler: `create_session_openai` — `routes/session_routes.py:1053`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/compact`
-- handler: `compact_session` — `routes/history/history_routes.py:1086`
+- handler: `compact_session` — `routes/history/history_routes.py:1049`
 - **JS callers:**
   - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
   - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
 
 ## `POST /api/session/{session_id}/compact`
-- handler: `compact_session` — `routes/session_routes.py:1185`
+- handler: `compact_session` — `routes/session_routes.py:1117`
 - **JS callers:**
   - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
   - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
 
 ## `GET /api/session/{session_id}/context`
-- handler: `get_session_context_usage` — `routes/history/history_routes.py:975`
+- handler: `get_session_context_usage` — `routes/history/history_routes.py:938`
 - **JS callers:**
   - `static/js/chat.js:303` → `/api/session/${encodeURIComponent(sid)}/context`
 
 ## `GET /api/session/{session_id}/context_info`
-- handler: `get_context_info` — `routes/session_routes.py:1567`
+- handler: `get_context_info` — `routes/session_routes.py:1497`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/delete-messages`
-- handler: `delete_messages` — `routes/history/history_routes.py:488`
+- handler: `delete_messages` — `routes/history/history_routes.py:474`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/edit-message`
-- handler: `edit_message` — `routes/history/history_routes.py:559`
+- handler: `edit_message` — `routes/history/history_routes.py:545`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/fork`
-- handler: `fork_session` — `routes/history/history_routes.py:853`
+- handler: `fork_session` — `routes/history/history_routes.py:816`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/important`
-- handler: `mark_session_important` — `routes/session_routes.py:1148`
+- handler: `mark_session_important` — `routes/session_routes.py:1080`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/mark-stopped`
-- handler: `mark_stopped` — `routes/history/history_routes.py:637`
+- handler: `mark_stopped` — `routes/history/history_routes.py:600`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/merge-last-assistant`
-- handler: `merge_last_assistant` — `routes/history/history_routes.py:743`
+- handler: `merge_last_assistant` — `routes/history/history_routes.py:706`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/message`
-- handler: `add_message` — `routes/history/history_routes.py:470`
+- handler: `add_message` — `routes/history/history_routes.py:456`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/truncate`
-- handler: `truncate_session` — `routes/history/history_routes.py:419`
+- handler: `truncate_session` — `routes/history/history_routes.py:417`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/uncompact`
-- handler: `uncompact_session` — `routes/history/history_routes.py:1024`
+- handler: `uncompact_session` — `routes/history/history_routes.py:987`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/update-last-meta`
-- handler: `update_last_meta` — `routes/history/history_routes.py:692`
+- handler: `update_last_meta` — `routes/history/history_routes.py:655`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/session/{sid}`
@@ -2392,7 +2392,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/archive`
-- handler: `archive_session` — `routes/session_routes.py:911`
+- handler: `archive_session` — `routes/session_routes.py:843`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/delete`
@@ -2400,15 +2400,11 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/session/{sid}/export`
-- handler: `export_session` — `routes/session_routes.py:1023`
+- handler: `export_session` — `routes/session_routes.py:955`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/inject_messages`
 - handler: `inject_messages` — `routes/session_routes.py:686`
-- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
-
-## `DELETE /api/session/{sid}/purge`
-- handler: `purge_session_route` — `routes/session_routes.py:897`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/retitle`
@@ -2416,36 +2412,32 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/unarchive`
-- handler: `unarchive_session` — `routes/session_routes.py:949`
-- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
-
-## `POST /api/session/{sid}/untrash`
-- handler: `untrash_session` — `routes/session_routes.py:883`
+- handler: `unarchive_session` — `routes/session_routes.py:881`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/sessions`
 - handler: `list_sessions` — `routes/session_routes.py:283`
 - **JS callers:**
-  - `static/js/documentLibrary.js:1936` → `/api/sessions`
-  - `static/js/sessions.js:1774` → `/api/sessions`
+  - `static/js/documentLibrary.js:1901` → `/api/sessions`
+  - `static/js/sessions.js:1772` → `/api/sessions`
   - `static/js/slashCommands.js:2019` → `/api/sessions`
 
 ## `DELETE /api/sessions/all`
-- handler: `delete_all_sessions` — `routes/session_routes.py:799`
+- handler: `delete_all_sessions` — `routes/session_routes.py:790`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/sessions/archived`
-- handler: `list_archived_sessions` — `routes/session_routes.py:979`
+- handler: `list_archived_sessions` — `routes/session_routes.py:911`
 - **JS callers:**
-  - `static/js/documentLibrary.js:2389` → `/api/sessions/archived?limit=100&sort=recent`
-  - `static/js/sessions.js:3150` → `/api/sessions/archived?`
-  - `static/js/sessions.js:3494` → `/api/sessions/archived?`
+  - `static/js/documentLibrary.js:2329` → `/api/sessions/archived?limit=100&sort=recent`
+  - `static/js/sessions.js:3147` → `/api/sessions/archived?`
+  - `static/js/sessions.js:3491` → `/api/sessions/archived?`
 
 ## `POST /api/sessions/auto-sort`
-- handler: `auto_sort_sessions` — `routes/session_routes.py:1279`
+- handler: `auto_sort_sessions` — `routes/session_routes.py:1211`
 - **JS callers:**
   - `static/app.js:1436` → `/api/sessions/auto-sort`
-  - `static/js/documentLibrary.js:2351` → `/api/sessions/auto-sort`
+  - `static/js/documentLibrary.js:2291` → `/api/sessions/auto-sort`
   - `static/js/slashCommands.js:1163` → `/api/sessions/auto-sort`
 
 ## `POST /api/sessions/bulk-delete`
@@ -2454,20 +2446,8 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/compare/index.js:62` → `/api/sessions/bulk-delete`
 
 ## `POST /api/sessions/save`
-- handler: `sessions_save_now` — `routes/session_routes.py:1113`
+- handler: `sessions_save_now` — `routes/session_routes.py:1045`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
-
-## `DELETE /api/sessions/trash`
-- handler: `empty_trash` — `routes/session_routes.py:866`
-- **JS callers:**
-  - `static/js/documentLibrary.js:2746` → `/api/sessions/trash?limit=500`
-  - `static/js/documentLibrary.js:2879` → `/api/sessions/trash`
-
-## `GET /api/sessions/trash`
-- handler: `list_trash_sessions` — `routes/session_routes.py:856`
-- **JS callers:**
-  - `static/js/documentLibrary.js:2746` → `/api/sessions/trash?limit=500`
-  - `static/js/documentLibrary.js:2879` → `/api/sessions/trash`
 
 ## `POST /api/shell/exec`
 - handler: `shell_exec` — `routes/shell_routes.py:961`
@@ -3047,7 +3027,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/app.js:615` → `/api/session/`
 - `static/app.js:1590` → `/api/ai/name`
 - `static/app.js:1650` → `/api/session/`
-- `static/app.js:3417` → `/api/session/`
+- `static/app.js:3416` → `/api/session/`
 - `static/js/admin.js:144` → `/api/auth/users/`
 - `static/js/admin.js:170` → `/api/auth/users/`
 - `static/js/admin.js:218` → `/api/auth/users/`
@@ -3091,34 +3071,35 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/js/calendar/reminders.js:59` → `/api/notes?label=calendar`
 - `static/js/chat.js:273` → `/api/session/`
 - `static/js/chat.js:303` → `/api/session/`
-- `static/js/chat.js:821` → `/api/chat/stream_status/`
-- `static/js/chat.js:864` → `/api/chat/stream_status/`
-- `static/js/chat.js:1032` → `/api/chat/stop/`
-- `static/js/chat.js:1508` → `/api/research/cancel/`
-- `static/js/chat.js:1608` → `/api/session/`
-- `static/js/chat.js:3816` → `/api/upload/`
-- `static/js/chat.js:3818` → `/api/upload/`
-- `static/js/chat.js:3840` → `/api/upload/`
-- `static/js/chat.js:4804` → `/api/session/`
-- `static/js/chat.js:5011` → `/api/session/`
-- `static/js/chat.js:5347` → `/api/chat/stream_status/`
-- `static/js/chat.js:5402` → `/api/chat/stream_status/`
-- `static/js/chat.js:5477` → `/api/session/`
-- `static/js/chat.js:5588` → `/api/chat/resume/`
-- `static/js/chat.js:6544` → `/api/session/`
-- `static/js/chat.js:6671` → `/api/session/`
-- `static/js/chat.js:6829` → `/api/session/`
-- `static/js/chat.js:6895` → `/api/session/`
-- `static/js/chat.js:6993` → `/api/session/`
-- `static/js/chat.js:7013` → `/api/session/`
-- `static/js/chat.js:7038` → `/api/research/status/`
-- `static/js/chat.js:7049` → `/api/research/result/`
-- `static/js/chat.js:7199` → `/api/research/status/`
-- `static/js/chat.js:7225` → `/api/research/result/`
-- `static/js/chat.js:7415` → `/api/session/`
-- `static/js/chat.js:7493` → `/api/session/`
-- `static/js/chat.js:7680` → `/api/session/`
-- `static/js/chat.js:7735` → `/api/upload/`
+- `static/js/chat.js:820` → `/api/chat/stream_status/`
+- `static/js/chat.js:863` → `/api/chat/stream_status/`
+- `static/js/chat.js:1031` → `/api/chat/stop/`
+- `static/js/chat.js:1507` → `/api/research/cancel/`
+- `static/js/chat.js:1612` → `/api/session/`
+- `static/js/chat.js:3808` → `/api/upload/`
+- `static/js/chat.js:3810` → `/api/upload/`
+- `static/js/chat.js:3832` → `/api/upload/`
+- `static/js/chat.js:4779` → `/api/session/`
+- `static/js/chat.js:4992` → `/api/session/`
+- `static/js/chat.js:5030` → `/api/chat/stream_status/`
+- `static/js/chat.js:5345` → `/api/chat/stream_status/`
+- `static/js/chat.js:5412` → `/api/chat/stream_status/`
+- `static/js/chat.js:5487` → `/api/session/`
+- `static/js/chat.js:5598` → `/api/chat/resume/`
+- `static/js/chat.js:6501` → `/api/session/`
+- `static/js/chat.js:6601` → `/api/session/`
+- `static/js/chat.js:6749` → `/api/session/`
+- `static/js/chat.js:6815` → `/api/session/`
+- `static/js/chat.js:6913` → `/api/session/`
+- `static/js/chat.js:6933` → `/api/session/`
+- `static/js/chat.js:6958` → `/api/research/status/`
+- `static/js/chat.js:6969` → `/api/research/result/`
+- `static/js/chat.js:7117` → `/api/research/status/`
+- `static/js/chat.js:7143` → `/api/research/result/`
+- `static/js/chat.js:7279` → `/api/session/`
+- `static/js/chat.js:7352` → `/api/session/`
+- `static/js/chat.js:7519` → `/api/session/`
+- `static/js/chat.js:7574` → `/api/upload/`
 - `static/js/chatRenderer.js:150` → `/api/upload/`
 - `static/js/chatRenderer.js:203` → `/api/upload/`
 - `static/js/chatRenderer.js:249` → `/api/upload/`
@@ -3183,60 +3164,54 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/js/document.js:11012` → `/api/document/`
 - `static/js/document.js:11040` → `/api/document/`
 - `static/js/document.js:11107` → `/api/document/`
-- `static/js/documentLibrary.js:135` → `/api/history/`
-- `static/js/documentLibrary.js:716` → `/api/document/`
-- `static/js/documentLibrary.js:743` → `/api/document/`
-- `static/js/documentLibrary.js:836` → `/api/document/`
-- `static/js/documentLibrary.js:929` → `/api/document/`
-- `static/js/documentLibrary.js:943` → `/api/document/`
-- `static/js/documentLibrary.js:1030` → `/api/document/`
-- `static/js/documentLibrary.js:1073` → `/api/document/`
-- `static/js/documentLibrary.js:1194` → `/api/document/`
-- `static/js/documentLibrary.js:1230` → `/api/document/`
-- `static/js/documentLibrary.js:1264` → `/api/document/`
-- `static/js/documentLibrary.js:1340` → `/api/document/`
-- `static/js/documentLibrary.js:1977` → `/api/history/`
-- `static/js/documentLibrary.js:2071` → `/api/session/`
-- `static/js/documentLibrary.js:2082` → `/api/session/`
-- `static/js/documentLibrary.js:2087` → `/api/session/`
-- `static/js/documentLibrary.js:2101` → `/api/session/`
-- `static/js/documentLibrary.js:2109` → `/api/session/`
-- `static/js/documentLibrary.js:2182` → `/api/session/`
-- `static/js/documentLibrary.js:2185` → `/api/session/`
-- `static/js/documentLibrary.js:2266` → `/api/session/`
-- `static/js/documentLibrary.js:2310` → `/api/session/`
-- `static/js/documentLibrary.js:2428` → `/api/document/`
-- `static/js/documentLibrary.js:2451` → `/api/document/`
-- `static/js/documentLibrary.js:2456` → `/api/document/`
-- `static/js/documentLibrary.js:2537` → `/api/session/`
-- `static/js/documentLibrary.js:2540` → `/api/session/`
-- `static/js/documentLibrary.js:2584` → `/api/document/`
-- `static/js/documentLibrary.js:2585` → `/api/document/`
-- `static/js/documentLibrary.js:2621` → `/api/research/report/`
-- `static/js/documentLibrary.js:2622` → `/api/research/`
-- `static/js/documentLibrary.js:2623` → `/api/research/`
-- `static/js/documentLibrary.js:2692` → `/api/document/`
-- `static/js/documentLibrary.js:2693` → `/api/research/`
-- `static/js/documentLibrary.js:2694` → `/api/session/`
-- `static/js/documentLibrary.js:2698` → `/api/document/`
-- `static/js/documentLibrary.js:2699` → `/api/research/`
-- `static/js/documentLibrary.js:2700` → `/api/session/`
-- `static/js/documentLibrary.js:2805` → `/api/session/`
-- `static/js/documentLibrary.js:2808` → `/api/session/`
-- `static/js/documentLibrary.js:2860` → `/api/session/`
-- `static/js/documentLibrary.js:2870` → `/api/session/`
-- `static/js/documentLibrary.js:2947` → `/api/research/detail/`
-- `static/js/documentLibrary.js:3001` → `/api/research/spinoff/`
-- `static/js/documentLibrary.js:3019` → `/api/research/report/`
-- `static/js/documentLibrary.js:3034` → `/api/research/`
-- `static/js/documentLibrary.js:3054` → `/api/research/`
-- `static/js/documentLibrary.js:3166` → `/api/research/report/`
-- `static/js/documentLibrary.js:3177` → `/api/research/`
-- `static/js/documentLibrary.js:3192` → `/api/research/`
-- `static/js/documentLibrary.js:3260` → `/api/research/detail/`
-- `static/js/documentLibrary.js:3274` → `/api/research/`
-- `static/js/documentLibrary.js:3325` → `/api/research/`
-- `static/js/documentLibrary.js:3349` → `/api/research/`
+- `static/js/documentLibrary.js:133` → `/api/history/`
+- `static/js/documentLibrary.js:714` → `/api/document/`
+- `static/js/documentLibrary.js:741` → `/api/document/`
+- `static/js/documentLibrary.js:834` → `/api/document/`
+- `static/js/documentLibrary.js:927` → `/api/document/`
+- `static/js/documentLibrary.js:941` → `/api/document/`
+- `static/js/documentLibrary.js:1028` → `/api/document/`
+- `static/js/documentLibrary.js:1071` → `/api/document/`
+- `static/js/documentLibrary.js:1192` → `/api/document/`
+- `static/js/documentLibrary.js:1228` → `/api/document/`
+- `static/js/documentLibrary.js:1262` → `/api/document/`
+- `static/js/documentLibrary.js:1338` → `/api/document/`
+- `static/js/documentLibrary.js:1937` → `/api/history/`
+- `static/js/documentLibrary.js:2028` → `/api/session/`
+- `static/js/documentLibrary.js:2037` → `/api/session/`
+- `static/js/documentLibrary.js:2049` → `/api/session/`
+- `static/js/documentLibrary.js:2122` → `/api/session/`
+- `static/js/documentLibrary.js:2125` → `/api/session/`
+- `static/js/documentLibrary.js:2206` → `/api/session/`
+- `static/js/documentLibrary.js:2250` → `/api/session/`
+- `static/js/documentLibrary.js:2368` → `/api/document/`
+- `static/js/documentLibrary.js:2391` → `/api/document/`
+- `static/js/documentLibrary.js:2396` → `/api/document/`
+- `static/js/documentLibrary.js:2477` → `/api/session/`
+- `static/js/documentLibrary.js:2480` → `/api/session/`
+- `static/js/documentLibrary.js:2524` → `/api/document/`
+- `static/js/documentLibrary.js:2525` → `/api/document/`
+- `static/js/documentLibrary.js:2561` → `/api/research/report/`
+- `static/js/documentLibrary.js:2562` → `/api/research/`
+- `static/js/documentLibrary.js:2563` → `/api/research/`
+- `static/js/documentLibrary.js:2632` → `/api/document/`
+- `static/js/documentLibrary.js:2633` → `/api/research/`
+- `static/js/documentLibrary.js:2634` → `/api/session/`
+- `static/js/documentLibrary.js:2638` → `/api/document/`
+- `static/js/documentLibrary.js:2639` → `/api/research/`
+- `static/js/documentLibrary.js:2640` → `/api/session/`
+- `static/js/documentLibrary.js:2732` → `/api/research/detail/`
+- `static/js/documentLibrary.js:2786` → `/api/research/spinoff/`
+- `static/js/documentLibrary.js:2804` → `/api/research/report/`
+- `static/js/documentLibrary.js:2819` → `/api/research/`
+- `static/js/documentLibrary.js:2839` → `/api/research/`
+- `static/js/documentLibrary.js:2951` → `/api/research/report/`
+- `static/js/documentLibrary.js:2962` → `/api/research/`
+- `static/js/documentLibrary.js:2977` → `/api/research/`
+- `static/js/documentLibrary.js:3045` → `/api/research/detail/`
+- `static/js/documentLibrary.js:3059` → `/api/research/`
+- `static/js/documentLibrary.js:3110` → `/api/research/`
+- `static/js/documentLibrary.js:3134` → `/api/research/`
 - `static/js/emailInbox.js:674` → `/api/email/`
 - `static/js/emailInbox.js:798` → `/api/email/read/`
 - `static/js/emailInbox.js:1057` → `/api/document failed`
@@ -3313,7 +3288,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/js/group.js:965` → `/api/session/`
 - `static/js/keyboard-shortcuts.js:188` → `/api/session/`
 - `static/js/keyboard-shortcuts.js:207` → `/api/session/`
-- `static/js/markdown.js:680` → `/api/emoji/`
+- `static/js/markdown.js:632` → `/api/emoji/`
 - `static/js/memory.js:254` → `/api/prefs/`
 - `static/js/memory.js:274` → `/api/prefs/`
 - `static/js/memory.js:302` → `/api/prefs/`
@@ -3357,44 +3332,44 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/js/research/panel.js:1143` → `/api/research/result-peek/`
 - `static/js/research/panel.js:1220` → `/api/research/spinoff/`
 - `static/js/sessions.js:144` → `/api/history/`
-- `static/js/sessions.js:325` → `/api/session/`
-- `static/js/sessions.js:426` → `/api/session/`
-- `static/js/sessions.js:611` → `/api/session/`
-- `static/js/sessions.js:649` → `/api/session/`
-- `static/js/sessions.js:769` → `/api/session/`
-- `static/js/sessions.js:807` → `/api/session/`
-- `static/js/sessions.js:822` → `/api/history/`
-- `static/js/sessions.js:950` → `/api/session/`
-- `static/js/sessions.js:1000` → `/api/session/`
-- `static/js/sessions.js:1009` → `/api/session/`
-- `static/js/sessions.js:1334` → `/api/session/`
-- `static/js/sessions.js:1457` → `/api/session/`
-- `static/js/sessions.js:1717` → `/api/session/`
-- `static/js/sessions.js:1736` → `/api/session/`
-- `static/js/sessions.js:2428` → `/api/session/`
-- `static/js/sessions.js:2550` → `/api/session/`
-- `static/js/sessions.js:2594` → `/api/session/`
-- `static/js/sessions.js:2685` → `/api/research/status/`
-- `static/js/sessions.js:2808` → `/api/chat/stream_status/`
-- `static/js/sessions.js:2867` → `/api/chat/stream_status/`
-- `static/js/sessions.js:3018` → `/api/history/`
-- `static/js/sessions.js:3061` → `/api/session/`
-- `static/js/sessions.js:3073` → `/api/session/`
-- `static/js/sessions.js:3093` → `/api/session/`
-- `static/js/sessions.js:3111` → `/api/session/`
+- `static/js/sessions.js:323` → `/api/session/`
+- `static/js/sessions.js:424` → `/api/session/`
+- `static/js/sessions.js:609` → `/api/session/`
+- `static/js/sessions.js:647` → `/api/session/`
+- `static/js/sessions.js:767` → `/api/session/`
+- `static/js/sessions.js:805` → `/api/session/`
+- `static/js/sessions.js:820` → `/api/history/`
+- `static/js/sessions.js:948` → `/api/session/`
+- `static/js/sessions.js:998` → `/api/session/`
+- `static/js/sessions.js:1007` → `/api/session/`
+- `static/js/sessions.js:1332` → `/api/session/`
+- `static/js/sessions.js:1455` → `/api/session/`
+- `static/js/sessions.js:1715` → `/api/session/`
+- `static/js/sessions.js:1734` → `/api/session/`
+- `static/js/sessions.js:2425` → `/api/session/`
+- `static/js/sessions.js:2547` → `/api/session/`
+- `static/js/sessions.js:2591` → `/api/session/`
+- `static/js/sessions.js:2682` → `/api/research/status/`
+- `static/js/sessions.js:2805` → `/api/chat/stream_status/`
+- `static/js/sessions.js:2864` → `/api/chat/stream_status/`
+- `static/js/sessions.js:3015` → `/api/history/`
+- `static/js/sessions.js:3058` → `/api/session/`
+- `static/js/sessions.js:3070` → `/api/session/`
+- `static/js/sessions.js:3090` → `/api/session/`
+- `static/js/sessions.js:3108` → `/api/session/`
+- `static/js/sessions.js:3398` → `/api/session/`
 - `static/js/sessions.js:3401` → `/api/session/`
-- `static/js/sessions.js:3404` → `/api/session/`
-- `static/js/sessions.js:3418` → `/api/session/`
-- `static/js/sessions.js:3420` → `/api/document/`
-- `static/js/sessions.js:3422` → `/api/research/`
-- `static/js/sessions.js:3480` → `/api/session/`
-- `static/js/sessions.js:3481` → `/api/session/`
-- `static/js/sessions.js:3510` → `/api/session/`
-- `static/js/sessions.js:3511` → `/api/session/`
-- `static/js/sessions.js:3549` → `/api/document/`
-- `static/js/sessions.js:3588` → `/api/research/report/`
-- `static/js/sessions.js:3595` → `/api/research/report/`
-- `static/js/sessions.js:3605` → `/api/research/`
+- `static/js/sessions.js:3415` → `/api/session/`
+- `static/js/sessions.js:3417` → `/api/document/`
+- `static/js/sessions.js:3419` → `/api/research/`
+- `static/js/sessions.js:3477` → `/api/session/`
+- `static/js/sessions.js:3478` → `/api/session/`
+- `static/js/sessions.js:3507` → `/api/session/`
+- `static/js/sessions.js:3508` → `/api/session/`
+- `static/js/sessions.js:3546` → `/api/document/`
+- `static/js/sessions.js:3585` → `/api/research/report/`
+- `static/js/sessions.js:3592` → `/api/research/report/`
+- `static/js/sessions.js:3602` → `/api/research/`
 - `static/js/settings.js:1033` → `/api/`
 - `static/js/settings.js:2789` → `/api/email/accounts/`
 - `static/js/settings.js:2799` → `/api/email/accounts/`

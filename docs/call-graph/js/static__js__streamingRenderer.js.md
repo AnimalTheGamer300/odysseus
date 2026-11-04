@@ -5,10 +5,10 @@
 
 ## `createStreamRenderer` — function, line 29
 - **called from:**
-- `static/js/chat.js:719`
-- `static/js/chat.js:3077`
-- `static/js/chat.js:3128`
-- `static/js/chat.js:5689`
+- `static/js/chat.js:718`
+- `static/js/chat.js:3069`
+- `static/js/chat.js:3120`
+- `static/js/chat.js:5692`
 - `static/js/streamingRenderer.js:29`
 
 ## `start` — function, line 38
@@ -28,8 +28,6 @@
 - `routes/skills_routes.py:849`
 - `scripts/add_hwfit_models.py:64`
 - `services/hwfit/hf_discovery.py:115`
-- `services/search/content.py:720`
-- `services/search/content.py:720`
 - `src/agent_tools/document_tools.py:205`
 - `src/agent_tools/filesystem_tools.py:864`
 - `src/agent_tools/filesystem_tools.py:865`
@@ -73,12 +71,14 @@
 - `tests/test_compare_stop_disconnect_poll.py:227`
 - `tests/test_compare_stop_disconnect_poll.py:229`
 - `tests/test_compare_stop_disconnect_poll.py:262`
-- … +98 more (grep the name in repo)
+- `tests/test_compare_stop_disconnect_poll.py:266`
+- `tests/test_compare_stop_disconnect_poll.py:276`
+- … +95 more (grep the name in repo)
 
 ## `highlight` — function, line 45
 - **called from:**
-- `static/js/documentLibrary.js:784`
-- `static/js/documentLibrary.js:963`
+- `static/js/documentLibrary.js:782`
+- `static/js/documentLibrary.js:961`
 - `static/js/streamingRenderer.js:45`
 - `static/js/streamingRenderer.js:58`
 - `static/js/streamingRenderer.js:137`
@@ -136,9 +136,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -191,11 +190,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `finalize` — function, line 187
 - **called from:**
-- `static/js/chat.js:845`
+- `static/js/chat.js:844`
 - `static/js/streamingRenderer.js:157`
 - `static/js/streamingRenderer.js:187`

@@ -5,8 +5,8 @@
 
 ## `getUserMessagesFromChatHistory` — function, line 12
 - **called from:**
-- `static/js/chat.js:1186`
-- `static/js/chat.js:1191`
+- `static/js/chat.js:1185`
+- `static/js/chat.js:1190`
 - `static/js/composerArrowUpRecall.js:12`
 - `static/js/composerArrowUpRecall.js:37`
 - `static/js/composerHistoryRecall.js:21`
@@ -19,7 +19,7 @@
 
 ## `wireArrowUpRecall` — function, line 46
 - **called from:**
-- `static/js/chat.js:1191`
+- `static/js/chat.js:1190`
 - `static/js/composerArrowUpRecall.js:46`
 
 ## `readHistory` — arrow, line 57
@@ -63,10 +63,10 @@
 - `app.py:1185`
 - `app.py:1211`
 - `app.py:1234`
-- `core/database.py:1807`
-- `core/session_manager.py:434`
-- `core/session_manager.py:480`
-- `core/session_manager.py:575`
+- `core/database.py:1769`
+- `core/session_manager.py:420`
+- `core/session_manager.py:466`
+- `core/session_manager.py:561`
 - `routes/chat_helpers.py:322`
 - `routes/chat_helpers.py:432`
 - `routes/chat_helpers.py:559`
@@ -110,4 +110,4 @@
 - `routes/email_routes.py:1180`
 - `routes/email_routes.py:1218`
 - `routes/email_routes.py:1251`
-- … +157 more (grep the name in repo)
+- … +155 more (grep the name in repo)

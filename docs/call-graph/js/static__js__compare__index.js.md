@@ -29,24 +29,24 @@
 
 ## `init` — function, line 55
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -93,7 +93,7 @@
 
 ## `closeCompare` — function, line 121
 - **called from:**
-- `static/app.js:2491`
+- `static/app.js:2490`
 - `static/js/compare/index.js:121`
 
 ## `toggleMode` — function, line 130
@@ -109,8 +109,8 @@
 - `static/js/compare/index.js:132`
 - `static/js/compare/index.js:158`
 - `static/js/compare/index.js:428`
-- `static/js/sessions.js:1931`
-- `static/js/sessions.js:2012`
+- `static/js/sessions.js:1929`
+- `static/js/sessions.js:2009`
 
 ## `_buildCompareUI` — function, line 232
 - **called from:**
@@ -133,13 +133,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleCompareSubmit` — function, line 577
 - **called from:**
-- `static/app.js:3879`
-- `static/js/chat.js:1489`
+- `static/app.js:3878`
+- `static/js/chat.js:1488`
 - `static/js/compare/index.js:577`
 
 ## `_dropReadonly` — arrow, line 616
 - **called from:**
-- `static/js/chat.js:2040`
+- `static/js/chat.js:2038`
 - `static/js/compare/index.js:622`
 
 ## `_executeCompare` — function, line 638
@@ -216,7 +216,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/mcp/mcp_routes.py:622`
 - `routes/mcp/mcp_routes.py:683`
 - `routes/mcp/mcp_routes.py:684`
-- `routes/session_routes.py:1067`
+- `routes/session_routes.py:999`
 - `services/search/ranking.py:56`
 - `services/search/ranking.py:89`
 - `src/agent_tools/filesystem_tools.py:43`
@@ -290,7 +290,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/compare/index.js:1376`
 - `static/js/compare/index.js:1388`
-- `static/js/sessions.js:2013`
+- `static/js/sessions.js:2010`
 
 ## `removeOverlays` — function, line 1417
 - **called from:**

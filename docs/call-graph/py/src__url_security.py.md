@@ -4,7 +4,7 @@
 
 ## `_resolve_hostname_ips` — function, line 39
 - **called from:**
-- `services/search/content.py:38`
+- `services/search/content.py:33`
 - `src/url_security.py:68`
 - `src/webhook_manager.py:106`
 - `src/webhook_manager.py:153`

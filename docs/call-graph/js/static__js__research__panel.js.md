@@ -61,32 +61,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_updateResearchCount` — function, line 186
 - **called from:**
-- `static/js/documentLibrary.js:3135`
-- `static/js/documentLibrary.js:3221`
-- `static/js/documentLibrary.js:3305`
+- `static/js/documentLibrary.js:2920`
+- `static/js/documentLibrary.js:3006`
+- `static/js/documentLibrary.js:3090`
 - `static/js/research/panel.js:186`
 - `static/js/research/panel.js:299`
 
 ## `init` — function, line 210
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -151,28 +151,28 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:2045`
 - `static/app.js:2047`
 - `static/app.js:2071`
-- `static/app.js:2222`
-- `static/app.js:2226`
-- `static/app.js:2228`
-- `static/app.js:2305`
-- `static/app.js:2444`
-- `static/app.js:2449`
-- `static/app.js:2455`
-- `static/app.js:2464`
-- `static/app.js:2478`
-- `static/app.js:2590`
-- `static/app.js:2613`
-- `static/app.js:2763`
+- `static/app.js:2221`
+- `static/app.js:2225`
+- `static/app.js:2227`
+- `static/app.js:2304`
+- `static/app.js:2443`
+- `static/app.js:2448`
+- `static/app.js:2454`
+- `static/app.js:2463`
+- `static/app.js:2477`
+- `static/app.js:2589`
+- `static/app.js:2612`
+- `static/app.js:2762`
+- `static/app.js:2769`
 - `static/app.js:2770`
 - `static/app.js:2771`
 - `static/app.js:2772`
-- `static/app.js:2773`
-- `static/app.js:2959`
-- `static/app.js:4126`
-- `static/app.js:4130`
+- `static/app.js:2958`
+- `static/app.js:4125`
+- `static/app.js:4129`
+- `static/app.js:4401`
 - `static/app.js:4402`
 - `static/app.js:4403`
-- `static/app.js:4404`
 - `static/js/admin.js:120`
 - `static/js/admin.js:651`
 - `static/js/admin.js:911`
@@ -183,16 +183,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:2133`
 - `static/js/calendar.js:3218`
 - `static/js/censor.js:56`
-- `static/js/chat.js:2492`
-- `static/js/chat.js:4076`
-- `static/js/chat.js:6032`
-- … +302 more (grep the name in repo)
+- `static/js/chat.js:2484`
+- `static/js/chat.js:4068`
+- `static/js/chat.js:5994`
+- … +300 more (grep the name in repo)
 
 ## `openPanel` — function, line 236
 - **called from:**
 - `static/app.js:1180`
-- `static/js/chat.js:7756`
-- `static/js/chat.js:7797`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:7636`
 - `static/js/document.js:4757`
 - `static/js/document.js:6886`
 - `static/js/document.js:7048`
@@ -267,8 +267,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/research/panel.js:732`
 - `static/js/research/panel.js:792`
 - `static/js/research/panel.js:1232`
-- `static/js/sessions.js:2235`
-- `static/js/sessions.js:2343`
+- `static/js/sessions.js:2232`
+- `static/js/sessions.js:2340`
 - `static/js/slashCommands.js:1241`
 
 ## `_buildPanelHTML` — function, line 345
@@ -385,58 +385,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `onDocClick` — arrow, line 866
 - **called from:**
@@ -508,8 +508,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
+- `static/js/chat.js:4679`
+- `static/js/chat.js:4679`
 - `static/js/cookbookServe.js:4003`
 - `static/js/cookbookServe.js:4005`
 - `static/js/document.js:313`
@@ -518,20 +518,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:8966`
 - `static/js/documentLibrary.js:70`
 - `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
+- `static/js/documentLibrary.js:582`
+- `static/js/documentLibrary.js:586`
 - `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
+- `static/js/documentLibrary.js:1957`
+- `static/js/documentLibrary.js:1962`
+- `static/js/documentLibrary.js:2110`
+- `static/js/documentLibrary.js:2466`
+- `static/js/documentLibrary.js:2510`
+- `static/js/documentLibrary.js:2547`
+- `static/js/documentLibrary.js:2696`
+- `static/js/documentLibrary.js:2737`
+- `static/js/documentLibrary.js:2750`
+- `static/js/documentLibrary.js:2904`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
@@ -539,7 +538,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/emailInbox.js:524`
+- … +188 more (grep the name in repo)
 
 ## `_safeSourceHref` — function, line 1253
 - **called from:**

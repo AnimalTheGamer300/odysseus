@@ -53,8 +53,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `router.post("/api/editor-drafts")`
 - **called from:**
 - `routes/chat_routes.py:401`
-- `tests/test_draft_promotion_keeps_live_media.py:76`
-- `tests/test_draft_promotion_keeps_live_media.py:121`
 
 ## `update_draft` — function (async), line 138
 - **route:** `PUT /api/editor-drafts/{draft_id}`

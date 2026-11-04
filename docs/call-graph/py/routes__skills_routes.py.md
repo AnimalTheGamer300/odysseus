@@ -193,10 +193,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/skills_routes.py:1074`
 - `scripts/diffusion_server.py:1221`
 - `src/chat_processor.py:215`
-- `static/app.js:3884`
+- `static/app.js:3883`
+- `static/app.js:3886`
 - `static/app.js:3887`
-- `static/app.js:3888`
-- `static/app.js:4593`
+- `static/app.js:4592`
 - `static/js/cookbookRunning.js:4036`
 - `static/js/cookbookSchedule.js:50`
 - `static/js/editor/build/controls.js:13`

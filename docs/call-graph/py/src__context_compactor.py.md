@@ -40,15 +40,15 @@
 
 ## `_build_convo_text` — function, line 126
 - **called from:**
-- `routes/session_routes.py:1236`
+- `routes/session_routes.py:1168`
 - `src/context_compactor.py:480`
 - `tests/test_context_compactor.py:201`
 - `tests/test_context_compactor.py:209`
 
 ## `normalize_compaction_summary` — function, line 157
 - **called from:**
-- `routes/history/history_routes.py:1143`
-- `routes/session_routes.py:1253`
+- `routes/history/history_routes.py:1106`
+- `routes/session_routes.py:1185`
 - `src/context_compactor.py:565`
 - `src/context_compactor.py:708`
 - `tests/test_context_compactor.py:173`

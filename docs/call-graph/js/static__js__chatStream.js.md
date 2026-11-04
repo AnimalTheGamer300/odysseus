@@ -9,8 +9,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleUIControl` — function, line 45
 - **called from:**
-- `static/js/chat.js:4206`
-- `static/js/chat.js:4273`
+- `static/js/chat.js:4198`
+- `static/js/chat.js:4265`
 - `static/js/chatStream.js:45`
 
 ## `notifyStreamComplete` — function, line 252
@@ -26,21 +26,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1230`
 - `static/app.js:1231`
 - `static/app.js:1851`
-- `static/app.js:2110`
-- `static/app.js:2114`
-- `static/app.js:2196`
-- `static/app.js:2970`
-- `static/app.js:3318`
-- `static/app.js:3462`
-- `static/app.js:3663`
-- `static/app.js:3710`
-- `static/app.js:3875`
-- `static/app.js:4005`
-- `static/app.js:4163`
-- `static/app.js:4344`
-- `static/app.js:4349`
-- `static/app.js:4415`
-- `static/app.js:4497`
+- `static/app.js:2109`
+- `static/app.js:2113`
+- `static/app.js:2195`
+- `static/app.js:2969`
+- `static/app.js:3317`
+- `static/app.js:3461`
+- `static/app.js:3662`
+- `static/app.js:3709`
+- `static/app.js:3874`
+- `static/app.js:4004`
+- `static/app.js:4162`
+- `static/app.js:4343`
+- `static/app.js:4348`
+- `static/app.js:4414`
+- `static/app.js:4496`
 - `static/js/admin.js:475`
 - `static/js/admin.js:599`
 - `static/js/admin.js:1232`
@@ -71,14 +71,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/censor.js:122`
 - `static/js/chat.js:73`
 - `static/js/chat.js:243`
-- `static/js/chat.js:518`
-- `static/js/chat.js:795`
-- `static/js/chat.js:808`
-- `static/js/chat.js:1199`
-- `static/js/chat.js:1230`
-- `static/js/chat.js:1259`
-- `static/js/chat.js:1388`
-- `static/js/chat.js:1401`
+- `static/js/chat.js:517`
+- `static/js/chat.js:794`
+- `static/js/chat.js:807`
+- `static/js/chat.js:1198`
+- `static/js/chat.js:1229`
+- `static/js/chat.js:1258`
+- `static/js/chat.js:1387`
+- `static/js/chat.js:1400`
 - … +541 more (grep the name in repo)
 
 ## `insertStreamDoneToast` — function, line 275
@@ -98,21 +98,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:1230`
 - `static/app.js:1231`
 - `static/app.js:1851`
-- `static/app.js:2110`
-- `static/app.js:2114`
-- `static/app.js:2196`
-- `static/app.js:2970`
-- `static/app.js:3318`
-- `static/app.js:3462`
-- `static/app.js:3663`
-- `static/app.js:3710`
-- `static/app.js:3875`
-- `static/app.js:4005`
-- `static/app.js:4163`
-- `static/app.js:4344`
-- `static/app.js:4349`
-- `static/app.js:4415`
-- `static/app.js:4497`
+- `static/app.js:2109`
+- `static/app.js:2113`
+- `static/app.js:2195`
+- `static/app.js:2969`
+- `static/app.js:3317`
+- `static/app.js:3461`
+- `static/app.js:3662`
+- `static/app.js:3709`
+- `static/app.js:3874`
+- `static/app.js:4004`
+- `static/app.js:4162`
+- `static/app.js:4343`
+- `static/app.js:4348`
+- `static/app.js:4414`
+- `static/app.js:4496`
 - `static/js/admin.js:475`
 - `static/js/admin.js:599`
 - `static/js/admin.js:1232`
@@ -143,12 +143,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/censor.js:122`
 - `static/js/chat.js:73`
 - `static/js/chat.js:243`
-- `static/js/chat.js:518`
-- `static/js/chat.js:795`
-- `static/js/chat.js:808`
-- `static/js/chat.js:1199`
-- `static/js/chat.js:1230`
-- `static/js/chat.js:1259`
-- `static/js/chat.js:1388`
-- `static/js/chat.js:1401`
+- `static/js/chat.js:517`
+- `static/js/chat.js:794`
+- `static/js/chat.js:807`
+- `static/js/chat.js:1198`
+- `static/js/chat.js:1229`
+- `static/js/chat.js:1258`
+- `static/js/chat.js:1387`
+- `static/js/chat.js:1400`
 - … +541 more (grep the name in repo)

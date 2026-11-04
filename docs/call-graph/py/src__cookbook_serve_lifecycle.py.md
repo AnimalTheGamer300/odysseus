@@ -23,7 +23,6 @@
 - `src/tools/cookbook.py:1469`
 - `src/tools/cookbook.py:1514`
 - `src/tools/cookbook.py:1551`
-- `src/tools/image.py:132`
 - `src/tools/research.py:124`
 - `src/tools/system.py:629`
 - `src/tools/system.py:703`

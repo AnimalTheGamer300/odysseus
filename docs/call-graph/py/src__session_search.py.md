@@ -10,7 +10,7 @@
 
 ## `SessionSearchResult.to_dict` — method, line 34
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`
@@ -42,11 +42,11 @@
 ## `_snippet` — function, line 64
 - **called from:**
 - `src/session_search.py:180`
-- `src/session_search.py:216`
+- `src/session_search.py:214`
 
 ## `_sanitize_fts_query` — function, line 79
 - **called from:**
-- `src/session_search.py:248`
+- `src/session_search.py:246`
 
 ## `_is_sqlite_session` — function, line 108
 - **called from:**
@@ -54,7 +54,7 @@
 
 ## `_has_fts_table` — function, line 116
 - **called from:**
-- `src/session_search.py:249`
+- `src/session_search.py:247`
 
 ## `_owner_filter` — function, line 129
 - **called from:**
@@ -73,7 +73,7 @@
 - `routes/gallery/gallery_routes.py:1054`
 - `routes/gallery/gallery_routes.py:1079`
 - `routes/gallery/gallery_routes.py:1106`
-- `src/session_search.py:214`
+- `src/session_search.py:212`
 - `tests/test_gallery_owner_filter_single_user.py:41`
 - `tests/test_gallery_owner_filter_single_user.py:51`
 - `tests/test_gallery_owner_filter_single_user.py:52`
@@ -88,25 +88,25 @@
 
 ## `_rows_to_results` — function, line 168
 - **called from:**
-- `src/session_search.py:217`
-- `src/session_search.py:299`
+- `src/session_search.py:215`
+- `src/session_search.py:297`
 
 ## `_search_like` — function, line 189
 - **called from:**
-- `src/session_search.py:339`
-- `src/session_search.py:359`
+- `src/session_search.py:337`
+- `src/session_search.py:357`
 
-## `_fetch_messages_by_id` — function, line 220
+## `_fetch_messages_by_id` — function, line 218
 - **called from:**
-- `src/session_search.py:292`
+- `src/session_search.py:290`
 - `tests/test_session_search_batch_fetch.py:44`
 - `tests/test_session_search_batch_fetch.py:54`
 
-## `_search_fts` — function, line 238
+## `_search_fts` — function, line 236
 - **called from:**
-- `src/session_search.py:328`
+- `src/session_search.py:326`
 
-## `search_session_messages` — function, line 302
+## `search_session_messages` — function, line 300
 - **called from:**
 - `routes/chat_routes.py:3150`
 - `src/tools/search.py:25`

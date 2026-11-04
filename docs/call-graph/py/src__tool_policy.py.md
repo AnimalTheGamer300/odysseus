@@ -29,20 +29,20 @@
 - `tests/test_tool_policy.py:89`
 - `tests/test_tool_policy.py:90`
 
-## `ToolPolicy` — class, line 141
+## `ToolPolicy` — class, line 140
 - decorator: `dataclass(frozen=True)`
 - **called from:**
-- `src/tool_policy.py:230`
-- `src/tool_policy.py:239`
+- `src/tool_policy.py:229`
+- `src/tool_policy.py:238`
 - `tests/test_review_regressions.py:785`
 
-## `ToolPolicy.all_disabled_names` — method, line 151
+## `ToolPolicy.all_disabled_names` — method, line 150
 - **called from:**
 - `routes/chat_routes.py:1797`
 - `src/agent_loop.py:4069`
 - `tests/test_tool_policy.py:180`
 
-## `ToolPolicy.blocks` — method, line 154
+## `ToolPolicy.blocks` — method, line 153
 - **called from:**
 - `routes/chat_routes.py:977`
 - `routes/chat_routes.py:1003`
@@ -56,23 +56,23 @@
 - `tests/test_tool_policy.py:71`
 - `tests/test_tool_policy.py:80`
 - `tests/test_tool_policy.py:81`
-- `static/js/documentLibrary.js:1988`
+- `static/js/documentLibrary.js:1948`
 - `static/js/markdown.js:181`
-- `static/js/markdown.js:535`
-- `static/js/markdown.js:541`
+- `static/js/markdown.js:487`
+- `static/js/markdown.js:493`
 - `static/js/streamingRenderer.js:105`
 - `static/js/streamingRenderer.js:145`
 - `static/js/tasks.js:2696`
 - `static/js/tts-ai.js:72`
 
-## `ToolPolicy.reason_for` — method, line 159
+## `ToolPolicy.reason_for` — method, line 158
 - **called from:**
 - `routes/chat_routes.py:2111`
 - `src/agent_loop.py:6239`
 
-## `detect_guide_only_turn` — function, line 167
+## `detect_guide_only_turn` — function, line 166
 - **called from:**
-- `src/tool_policy.py:224`
+- `src/tool_policy.py:223`
 - `tests/test_tool_policy.py:46`
 - `tests/test_tool_policy.py:47`
 - `tests/test_tool_policy.py:48`
@@ -83,15 +83,15 @@
 - `tests/test_tool_policy.py:56`
 - `tests/test_tool_policy.py:57`
 
-## `known_tool_names` — function, line 179
+## `known_tool_names` — function, line 178
 - **called from:**
 - `scripts/dump_agent_prompt.py:184`
 - `src/agent_loop.py:4560`
 - `src/agent_loop.py:4663`
-- `src/tool_policy.py:226`
+- `src/tool_policy.py:225`
 - `tests/test_pr6020_rebase_regressions.py:118`
 
-## `build_effective_tool_policy` — function, line 208
+## `build_effective_tool_policy` — function, line 207
 - **called from:**
 - `routes/chat_routes.py:972`
 - `routes/chat_routes.py:1540`

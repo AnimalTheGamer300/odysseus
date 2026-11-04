@@ -119,10 +119,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_email_urgency_checkpoint.py:554`
 - `tests/test_task_scheduler_cache.py:34`
 - `tests/test_task_scheduler_cache.py:70`
-- `static/js/chat.js:2849`
-- `static/js/chat.js:5749`
-- `static/js/chat.js:5764`
-- `static/js/documentLibrary.js:182`
+- `static/js/chat.js:2841`
+- `static/js/chat.js:5741`
+- `static/js/chat.js:5756`
+- `static/js/documentLibrary.js:180`
 - `static/js/gallery.js:2576`
 - `static/js/gallery.js:2584`
 - `static/js/liveThinkingThrottle.js:20`

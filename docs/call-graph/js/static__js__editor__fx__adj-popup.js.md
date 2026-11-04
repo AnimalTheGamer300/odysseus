@@ -186,9 +186,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/routes.py:151`
 - `core/auth.py:207`
 - `core/database.py:67`
-- `core/database.py:2003`
+- `core/database.py:1965`
 - `core/platform_compat.py:199`
-- `core/session_manager.py:803`
+- `core/session_manager.py:694`
 - `mcp_servers/email_server.py:542`
 - `mcp_servers/email_server.py:1822`
 - `mcp_servers/email_server.py:2458`
@@ -239,7 +239,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:695`
 - `routes/gallery/gallery_routes.py:957`
 - `routes/gallery/gallery_routes.py:1017`
-- … +598 more (grep the name in repo)
+- … +594 more (grep the name in repo)
 
 ## `onMove` — arrow, line 623
 - **called from:**

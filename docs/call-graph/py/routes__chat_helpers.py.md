@@ -7,10 +7,6 @@
 - `routes/chat_helpers.py:774`
 - `src/agent_loop.py:1575`
 - `src/agent_loop.py:4110`
-- `tests/test_continuation_nudge_gating.py:26`
-- `tests/test_continuation_nudge_gating.py:40`
-- `tests/test_continuation_nudge_gating.py:51`
-- `tests/test_continuation_nudge_gating.py:53`
 
 ## `_spawn_bg` — function, line 83
 - **called from:**

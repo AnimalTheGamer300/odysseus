@@ -5,13 +5,13 @@
 ## `_history_display_content` — function, line 33
 - **called from:**
 - `routes/history/history_routes.py:151`
-- `routes/history/history_routes.py:238`
-- `routes/history/history_routes.py:359`
-- `routes/history/history_routes.py:368`
+- `routes/history/history_routes.py:236`
+- `routes/history/history_routes.py:357`
+- `routes/history/history_routes.py:366`
 
 ## `_merge_continue_rows_to_delete` — function, line 99
 - **called from:**
-- `routes/history/history_routes.py:828`
+- `routes/history/history_routes.py:791`
 - `tests/test_merge_last_assistant_rows.py:21`
 - `tests/test_merge_last_assistant_rows.py:29`
 - `tests/test_merge_last_assistant_rows.py:35`
@@ -20,11 +20,6 @@
 ## `setup_history_routes` — function, line 124
 - **called from:**
 - `app.py:716`
-- `tests/test_delete_message_after_refresh.py:165`
-- `tests/test_delete_message_after_refresh.py:194`
-- `tests/test_delete_message_after_refresh.py:218`
-- `tests/test_delete_message_after_refresh.py:259`
-- `tests/test_delete_message_after_refresh.py:283`
 - `tests/test_fork_session_metadata.py:75`
 - `tests/test_history_compact_tool_calls.py:123`
 - `tests/test_history_compact_tool_calls.py:165`
@@ -35,56 +30,55 @@
 
 ## `_reserve_message_uploads` — function, line 130
 - **called from:**
-- `routes/history/history_routes.py:480`
-- `routes/history/history_routes.py:573`
+- `routes/history/history_routes.py:466`
+- `routes/history/history_routes.py:555`
 
 ## `_db_history_entry` — function, line 150
 - **called from:**
-- `routes/history/history_routes.py:402`
+- `routes/history/history_routes.py:400`
 
-## `_db_message_metadata` — function, line 157
+## `_db_message_metadata` — function, line 169
 - **called from:**
-- `routes/history/history_routes.py:152`
-- `routes/history/history_routes.py:210`
+- `routes/history/history_routes.py:208`
+- `routes/history/history_routes.py:226`
+- `routes/history/history_routes.py:256`
+
+## `_draft_is_live` — function, line 184
+- **called from:**
+- `routes/history/history_routes.py:211`
 - `routes/history/history_routes.py:228`
-- `routes/history/history_routes.py:258`
 
-## `_draft_is_live` — function, line 186
+## `_finalize_or_hide_draft` — function, line 194
 - **called from:**
-- `routes/history/history_routes.py:213`
-- `routes/history/history_routes.py:230`
+- `routes/history/history_routes.py:324`
 
-## `_finalize_or_hide_draft` — function, line 196
-- **called from:**
-- `routes/history/history_routes.py:326`
-
-## `_entry_or_none` — function, line 223
-- **called from:**
-- `routes/history/history_routes.py:329`
-- `routes/history/history_routes.py:393`
-
-## `_hydrate_session_history_from_db` — function, line 243
+## `_entry_or_none` — function, line 221
 - **called from:**
 - `routes/history/history_routes.py:327`
-- `routes/history/history_routes.py:399`
+- `routes/history/history_routes.py:391`
 
-## `_session_needs_db_history_hydration` — function, line 263
+## `_hydrate_session_history_from_db` — function, line 241
 - **called from:**
-- `routes/history/history_routes.py:311`
+- `routes/history/history_routes.py:325`
+- `routes/history/history_routes.py:397`
 
-## `get_session_history` — function (async), line 271
+## `_session_needs_db_history_hydration` — function, line 261
+- **called from:**
+- `routes/history/history_routes.py:309`
+
+## `get_session_history` — function (async), line 269
 - **route:** `GET /api/history/{session_id}`
 - decorator: `router.get("/api/history/{session_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `truncate_session` — function (async), line 419
+## `truncate_session` — function (async), line 417
 - **route:** `POST /api/session/{session_id}/truncate`
 - decorator: `router.post("/api/session/{session_id}/truncate")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `add_message` — function (async), line 470
+## `add_message` — function (async), line 456
 - **route:** `POST /api/session/{session_id}/message`
 - decorator: `router.post("/api/session/{session_id}/message")`
 - **called from:**
@@ -95,8 +89,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:1904`
 - `routes/chat_routes.py:2200`
 - `routes/chat_routes.py:3129`
-- `routes/history/history_routes.py:482`
-- `routes/history/history_routes.py:910`
+- `routes/history/history_routes.py:468`
+- `routes/history/history_routes.py:873`
 - `routes/research/research_routes.py:770`
 - `routes/session_routes.py:713`
 - `routes/webhook/webhook_routes.py:377`
@@ -110,8 +104,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/chat_handler.py:352`
 - `src/task_scheduler.py:1752`
 - `src/task_scheduler.py:1760`
-- `tests/test_draft_promotion_keeps_live_media.py:74`
-- `tests/test_draft_promotion_keeps_live_media.py:120`
 - `tests/test_session_concurrent.py:32`
 - `tests/test_session_concurrent.py:62`
 - `tests/test_session_concurrent.py:92`
@@ -141,65 +133,65 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_truncate_message_count_regression.py:40`
 - `tests/test_truncate_message_count_regression.py:70`
 
-## `delete_messages` — function (async), line 488
+## `delete_messages` — function (async), line 474
 - **route:** `POST /api/session/{session_id}/delete-messages`
 - decorator: `router.post("/api/session/{session_id}/delete-messages")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_get_db_id` — function, line 507
+## `_get_db_id` — function, line 493
 - **called from:**
-- `routes/history/history_routes.py:523`
+- `routes/history/history_routes.py:509`
 
-## `edit_message` — function (async), line 559
+## `edit_message` — function (async), line 545
 - **route:** `POST /api/session/{session_id}/edit-message`
 - decorator: `router.post("/api/session/{session_id}/edit-message")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `mark_stopped` — function (async), line 637
+## `mark_stopped` — function (async), line 600
 - **route:** `POST /api/session/{session_id}/mark-stopped`
 - decorator: `router.post("/api/session/{session_id}/mark-stopped")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `update_last_meta` — function (async), line 692
+## `update_last_meta` — function (async), line 655
 - **route:** `POST /api/session/{session_id}/update-last-meta`
 - decorator: `router.post("/api/session/{session_id}/update-last-meta")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `merge_last_assistant` — function (async), line 743
+## `merge_last_assistant` — function (async), line 706
 - **route:** `POST /api/session/{session_id}/merge-last-assistant`
 - decorator: `router.post("/api/session/{session_id}/merge-last-assistant")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `fork_session` — function (async), line 853
+## `fork_session` — function (async), line 816
 - **route:** `POST /api/session/{session_id}/fork`
 - decorator: `router.post("/api/session/{session_id}/fork")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_conversation_topics` — function (async), line 966
+## `get_conversation_topics` — function (async), line 929
 - **route:** `GET /api/conversations/topics`
 - decorator: `router.get("/api/conversations/topics")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_session_context_usage` — function (async), line 975
+## `get_session_context_usage` — function (async), line 938
 - **route:** `GET /api/session/{session_id}/context`
 - decorator: `router.get("/api/session/{session_id}/context")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `uncompact_session` — function (async), line 1024
+## `uncompact_session` — function (async), line 987
 - **route:** `POST /api/session/{session_id}/uncompact`
 - decorator: `router.post("/api/session/{session_id}/uncompact")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `compact_session` — function (async), line 1086
+## `compact_session` — function (async), line 1049
 - **route:** `POST /api/session/{session_id}/compact`
 - decorator: `router.post("/api/session/{session_id}/compact")`
 - **called from:**

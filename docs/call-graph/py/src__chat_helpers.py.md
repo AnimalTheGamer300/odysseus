@@ -13,28 +13,28 @@
 - `tests/test_extract_urls.py:33`
 - `tests/test_extract_urls.py:38`
 
-## `is_vision_model` — function, line 78
+## `is_vision_model` — function, line 76
 - **called from:**
-- `src/chat_helpers.py:310`
-- `tests/test_vision_model_detection.py:23`
-- `tests/test_vision_model_detection.py:28`
-- `tests/test_vision_model_detection.py:32`
-- `tests/test_vision_model_detection.py:44`
-- `tests/test_vision_model_detection.py:50`
-- `tests/test_vision_model_detection.py:58`
-- `tests/test_vision_model_detection.py:65`
+- `src/chat_helpers.py:308`
+- `tests/test_vision_model_detection.py:21`
+- `tests/test_vision_model_detection.py:26`
+- `tests/test_vision_model_detection.py:30`
+- `tests/test_vision_model_detection.py:42`
+- `tests/test_vision_model_detection.py:48`
+- `tests/test_vision_model_detection.py:56`
+- `tests/test_vision_model_detection.py:63`
 
-## `_is_local_host` — function, line 96
+## `_is_local_host` — function, line 94
+- **called from:**
+- `src/chat_helpers.py:147`
+
+## `_probe_lmstudio_models` — function, line 110
 - **called from:**
 - `src/chat_helpers.py:149`
 
-## `_probe_lmstudio_models` — function, line 112
+## `lmstudio_supports_vision` — function, line 141
 - **called from:**
-- `src/chat_helpers.py:151`
-
-## `lmstudio_supports_vision` — function, line 143
-- **called from:**
-- `src/chat_helpers.py:299`
+- `src/chat_helpers.py:297`
 - `tests/test_lmstudio_vision.py:45`
 - `tests/test_lmstudio_vision.py:49`
 - `tests/test_lmstudio_vision.py:53`
@@ -43,27 +43,27 @@
 - `tests/test_lmstudio_vision.py:65`
 - `tests/test_lmstudio_vision.py:76`
 
-## `_models_list_url` — function, line 184
+## `_models_list_url` — function, line 182
 - **called from:**
-- `src/chat_helpers.py:205`
+- `src/chat_helpers.py:203`
 - `tests/test_lmstudio_vision.py:168`
 - `tests/test_lmstudio_vision.py:171`
 
-## `_fetch_models_with_modality` — function, line 194
+## `_fetch_models_with_modality` — function, line 192
 - **called from:**
-- `src/chat_helpers.py:260`
+- `src/chat_helpers.py:258`
 
-## `_model_entry_supports_vision` — function, line 223
-- **called from:**
-- `src/chat_helpers.py:274`
-
-## `_entry_matches_model` — function, line 244
+## `_model_entry_supports_vision` — function, line 221
 - **called from:**
 - `src/chat_helpers.py:272`
 
-## `advertised_supports_vision` — function, line 254
+## `_entry_matches_model` — function, line 242
 - **called from:**
-- `src/chat_helpers.py:305`
+- `src/chat_helpers.py:270`
+
+## `advertised_supports_vision` — function, line 252
+- **called from:**
+- `src/chat_helpers.py:303`
 - `tests/test_lmstudio_vision.py:141`
 - `tests/test_lmstudio_vision.py:145`
 - `tests/test_lmstudio_vision.py:149`
@@ -72,7 +72,7 @@
 - `tests/test_lmstudio_vision.py:161`
 - `tests/test_lmstudio_vision.py:165`
 
-## `model_supports_vision` — function, line 280
+## `model_supports_vision` — function, line 278
 - **called from:**
 - `tests/test_lmstudio_vision.py:92`
 - `tests/test_lmstudio_vision.py:97`
@@ -85,19 +85,19 @@
 - `tests/test_lmstudio_vision.py:203`
 - `tests/test_lmstudio_vision.py:208`
 
-## `_matches_override_pattern` — function, line 313
+## `_matches_override_pattern` — function, line 311
 - **called from:**
+- `src/chat_helpers.py:289`
 - `src/chat_helpers.py:291`
-- `src/chat_helpers.py:293`
 
-## `validate_message` — function, line 332
+## `validate_message` — function, line 330
 - **called from:**
-- `src/chat_helpers.py:435`
+- `src/chat_helpers.py:433`
 
-## `validate_file_upload` — function, line 347
+## `validate_file_upload` — function, line 345
 - **called from:**
 - `tests/test_chat_upload_limit_config.py:49`
 
-## `coerce_message_and_session` — function, line 411
+## `coerce_message_and_session` — function, line 409
 - **called from:**
 - `routes/chat_routes.py:1334`

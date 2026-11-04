@@ -5,7 +5,7 @@
 
 ## `initSectionCollapse` — function, line 9
 - **called from:**
-- `static/app.js:4531`
+- `static/app.js:4530`
 - `static/js/section-management.js:9`
 
 ## `toggleCollapse` — function, line 28
@@ -21,7 +21,7 @@
 
 ## `initSectionDrag` — function, line 120
 - **called from:**
-- `static/app.js:4532`
+- `static/app.js:4531`
 - `static/js/section-management.js:120`
 
 ## `getSections` — function, line 136

@@ -181,13 +181,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_tool_approval_task_scope.py:26`
 - `tests/test_tool_approvals.py:27`
 - `static/app.js:1429`
-- `static/js/chat.js:711`
-- `static/js/chat.js:2463`
-- `static/js/chat.js:2696`
-- `static/js/chat.js:4362`
-- `static/js/chat.js:5626`
-- `static/js/chat.js:5984`
-- `static/js/chat.js:7116`
+- `static/js/chat.js:710`
+- `static/js/chat.js:2455`
+- `static/js/chat.js:2688`
+- `static/js/chat.js:4354`
+- `static/js/chat.js:5629`
+- `static/js/chat.js:5946`
+- `static/js/chat.js:7034`
 - `static/js/compare/index.js:696`
 - `static/js/compare/index.js:773`
 - `static/js/compare/index.js:844`
@@ -200,9 +200,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/compare/stream.js:529`
 - `static/js/cookbook.js:110`
 - `static/js/document.js:581`
-- `static/js/documentLibrary.js:2344`
-- `static/js/documentLibrary.js:3245`
-- `static/js/documentLibrary.js:3478`
+- `static/js/documentLibrary.js:2284`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3263`
 - `static/js/editor/ai-inpaint.js:104`
 - `static/js/editor/ai-tool-runner.js:58`
 - `static/js/emailLibrary.js:8245`
@@ -213,7 +213,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/memory.js:513`
 - `static/js/models.js:187`
 - `static/js/presets.js:125`
-- `static/js/sessions.js:2839`
+- `static/js/sessions.js:2836`
 - `static/js/slashCommands.js:672`
 - `static/js/slashCommands.js:2059`
 - … +3 more (grep the name in repo)

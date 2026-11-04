@@ -17,11 +17,11 @@
 - `routes/chat_helpers.py:482`
 - `routes/document/document_routes.py:207`
 - `routes/email_routes.py:415`
-- `routes/history/history_routes.py:949`
+- `routes/history/history_routes.py:912`
 - `routes/memory/memory_routes.py:143`
 - `routes/research/research_routes.py:750`
 - `routes/session_routes.py:519`
-- `routes/session_routes.py:1144`
+- `routes/session_routes.py:1076`
 - `routes/skills_routes.py:1202`
 - `services/memory/memory_extractor.py:656`
 - `services/memory/skill_extractor.py:290`

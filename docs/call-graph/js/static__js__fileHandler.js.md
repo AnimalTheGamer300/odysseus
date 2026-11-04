@@ -49,7 +49,7 @@
 - `static/js/calendar.js:42`
 - `static/js/calendar.js:43`
 - `static/js/calendar.js:45`
-- `static/js/chat.js:1227`
+- `static/js/chat.js:1226`
 - `static/js/fileHandler.js:92`
 - `static/js/fileHandler.js:129`
 - `static/js/fileHandler.js:130`
@@ -78,24 +78,24 @@
 
 ## `init` — function, line 173
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -144,8 +144,8 @@
 
 ## `uploadPending` — function, line 270
 - **called from:**
-- `static/js/chat.js:2050`
-- `static/js/chat.js:2071`
+- `static/js/chat.js:2048`
+- `static/js/chat.js:2069`
 - `static/js/chatRenderer.js:226`
 - `static/js/fileHandler.js:13`
 - `static/js/fileHandler.js:14`
@@ -156,10 +156,10 @@
 - **called from:**
 - `static/app.js:284`
 - `static/app.js:299`
-- `static/app.js:4078`
-- `static/app.js:4202`
-- `static/app.js:4225`
-- `static/app.js:4299`
+- `static/app.js:4077`
+- `static/app.js:4201`
+- `static/app.js:4224`
+- `static/app.js:4298`
 - `static/js/chatRenderer.js:1532`
 - `static/js/fileHandler.js:359`
 - `static/js/gallery.js:1551`
@@ -179,20 +179,20 @@
 
 ## `getPendingCount` — function, line 407
 - **called from:**
-- `static/app.js:3925`
-- `static/js/chat.js:1444`
-- `static/js/chat.js:1694`
-- `static/js/chat.js:1988`
+- `static/app.js:3924`
+- `static/js/chat.js:1443`
+- `static/js/chat.js:1695`
+- `static/js/chat.js:1986`
 - `static/js/fileHandler.js:407`
 
 ## `getPendingRaw` — function, line 414
 - **called from:**
-- `static/js/chat.js:1995`
+- `static/js/chat.js:1993`
 - `static/js/fileHandler.js:414`
 
 ## `getPendingInfo` — function, line 421
 - **called from:**
-- `static/js/chat.js:1989`
+- `static/js/chat.js:1987`
 - `static/js/fileHandler.js:421`
 
 ## `clearPending` — function, line 436
@@ -207,17 +207,17 @@
 
 ## `isUploading` — function, line 448
 - **called from:**
-- `static/js/chat.js:1502`
+- `static/js/chat.js:1501`
 - `static/js/fileHandler.js:448`
 
 ## `wasLastUploadCancelled` — function, line 452
 - **called from:**
-- `static/js/chat.js:2059`
+- `static/js/chat.js:2057`
 - `static/js/fileHandler.js:452`
 
 ## `cancelUpload` — function, line 456
 - **called from:**
-- `static/js/chat.js:1503`
+- `static/js/chat.js:1502`
 - `static/js/fileHandler.js:261`
 - `static/js/fileHandler.js:437`
 - `static/js/fileHandler.js:456`

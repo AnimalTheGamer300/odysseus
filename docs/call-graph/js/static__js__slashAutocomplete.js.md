@@ -32,10 +32,10 @@
 
 ## `_position` — function, line 141
 - **called from:**
-- `static/js/chat.js:6167`
-- `static/js/chat.js:6176`
-- `static/js/chat.js:6199`
-- `static/js/chat.js:6200`
+- `static/js/chat.js:6126`
+- `static/js/chat.js:6135`
+- `static/js/chat.js:6158`
+- `static/js/chat.js:6159`
 - `static/js/modalSnap.js:1039`
 - `static/js/modalSnap.js:1078`
 - `static/js/slashAutocomplete.js:141`
@@ -137,8 +137,8 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
+- `static/js/chat.js:4679`
+- `static/js/chat.js:4679`
 - `static/js/cookbookServe.js:4003`
 - `static/js/cookbookServe.js:4005`
 - `static/js/document.js:313`
@@ -147,20 +147,19 @@
 - `static/js/document.js:8966`
 - `static/js/documentLibrary.js:70`
 - `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
+- `static/js/documentLibrary.js:582`
+- `static/js/documentLibrary.js:586`
 - `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
+- `static/js/documentLibrary.js:1957`
+- `static/js/documentLibrary.js:1962`
+- `static/js/documentLibrary.js:2110`
+- `static/js/documentLibrary.js:2466`
+- `static/js/documentLibrary.js:2510`
+- `static/js/documentLibrary.js:2547`
+- `static/js/documentLibrary.js:2696`
+- `static/js/documentLibrary.js:2737`
+- `static/js/documentLibrary.js:2750`
+- `static/js/documentLibrary.js:2904`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
@@ -168,23 +167,24 @@
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/emailInbox.js:524`
+- … +188 more (grep the name in repo)
 
 ## `initSlashAutocomplete` — function, line 191
 - **called from:**
-- `static/js/chat.js:1177`
+- `static/js/chat.js:1176`
 - `static/js/slashAutocomplete.js:191`
 
 ## `hide` — arrow, line 201
 - **called from:**
-- `static/app.js:3530`
-- `static/app.js:3564`
-- `static/app.js:3568`
-- `static/app.js:3576`
-- `static/app.js:3584`
-- `static/app.js:3635`
-- `static/app.js:3653`
-- `static/app.js:3659`
+- `static/app.js:3529`
+- `static/app.js:3563`
+- `static/app.js:3567`
+- `static/app.js:3575`
+- `static/app.js:3583`
+- `static/app.js:3634`
+- `static/app.js:3652`
+- `static/app.js:3658`
 - `static/js/slashAutocomplete.js:220`
 - `static/js/slashAutocomplete.js:233`
 - `static/js/slashAutocomplete.js:262`
@@ -193,9 +193,9 @@
 
 ## `show` — arrow, line 207
 - **called from:**
-- `static/app.js:3538`
-- `static/app.js:3587`
-- `static/js/chat.js:2078`
+- `static/app.js:3537`
+- `static/app.js:3586`
+- `static/js/chat.js:2076`
 - `static/js/slashAutocomplete.js:239`
 
 ## `refresh` — arrow, line 214
@@ -221,6 +221,7 @@
 - `src/bg_jobs.py:263`
 - `src/chatgpt_subscription.py:271`
 - `src/chatgpt_subscription.py:281`
+- `src/tools/image.py:83`
 - `static/js/chatRenderer.js:3112`
 - `static/js/chatStream.js:171`
 - `static/js/cookbookDownload.js:174`
@@ -248,7 +249,7 @@
 - `routes/chat_routes.py:1882`
 - `routes/contacts/contacts_routes.py:773`
 - `routes/cookbook_routes.py:819`
-- `routes/history/history_routes.py:800`
+- `routes/history/history_routes.py:763`
 - `routes/shell_routes.py:372`
 - `scripts/_lib/cli.py:45`
 - `scripts/claim_ownerless.py:14`
@@ -270,12 +271,12 @@
 - `src/agent_loop.py:3289`
 - `src/chat_handler.py:173`
 - `src/context_compactor.py:150`
-- `src/document_processor.py:724`
-- `src/document_processor.py:739`
-- `src/document_processor.py:745`
-- `src/document_processor.py:761`
-- `src/document_processor.py:881`
-- `src/document_processor.py:886`
+- `src/document_processor.py:707`
+- `src/document_processor.py:722`
+- `src/document_processor.py:728`
+- `src/document_processor.py:744`
+- `src/document_processor.py:864`
+- `src/document_processor.py:869`
 - `src/model_discovery.py:131`
 - `src/model_discovery.py:141`
 - `src/rag_vector.py:661`

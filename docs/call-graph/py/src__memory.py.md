@@ -140,9 +140,9 @@
 - `companion/pairing.py:168`
 - `core/auth.py:118`
 - `core/auth.py:141`
-- `core/database.py:1468`
-- `core/database.py:1526`
-- `core/database.py:1544`
+- `core/database.py:1430`
+- `core/database.py:1488`
+- `core/database.py:1506`
 - `routes/backup_routes.py:26`
 - `routes/backup_routes.py:32`
 - `routes/mcp/mcp_routes.py:446`
@@ -195,7 +195,7 @@
 - `services/memory/memory_extractor.py:699`
 - `services/memory/skill_extractor.py:257`
 - `services/memory/skills.py:93`
-- … +80 more (grep the name in repo)
+- … +79 more (grep the name in repo)
 
 ## `MemoryManager.claim_ownerless` — method, line 196
 - **called from:**
@@ -273,7 +273,7 @@
 - `src/preset_manager.py:155`
 - `src/preset_manager.py:175`
 - `src/preset_manager.py:181`
-- … +87 more (grep the name in repo)
+- … +85 more (grep the name in repo)
 
 ## `MemoryManager.add_entry` — method, line 280
 - **called from:**

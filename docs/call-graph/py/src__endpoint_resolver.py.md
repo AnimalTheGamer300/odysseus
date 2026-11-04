@@ -238,9 +238,9 @@
 - `routes/webhook/webhook_routes.py:342`
 - `src/agent_tools/model_interaction_tools.py:161`
 - `src/ai_interaction.py:156`
-- `src/llm_core.py:2225`
-- `src/model_context.py:436`
-- `src/model_context.py:517`
+- `src/llm_core.py:2193`
+- `src/model_context.py:433`
+- `src/model_context.py:514`
 - `tests/test_endpoint_resolver_urls.py:80`
 - `tests/test_endpoint_resolver_urls.py:83`
 - `tests/test_endpoint_resolver_urls.py:86`
@@ -312,7 +312,7 @@
 - `routes/email_routes.py:5245`
 - `routes/email_routes.py:5346`
 - `routes/email_routes.py:5352`
-- `routes/history/history_routes.py:1126`
+- `routes/history/history_routes.py:1089`
 - `routes/memory/memory_routes.py:368`
 - `routes/note/note_routes.py:214`
 - `routes/note/note_routes.py:216`
@@ -327,7 +327,7 @@
 - `routes/session_routes.py:252`
 - `routes/session_routes.py:264`
 - `routes/session_routes.py:642`
-- `routes/session_routes.py:1217`
+- `routes/session_routes.py:1149`
 - `routes/skills_routes.py:1112`
 - `routes/skills_routes.py:1507`
 - `routes/task/task_routes.py:1132`

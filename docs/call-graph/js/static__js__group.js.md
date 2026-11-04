@@ -5,24 +5,24 @@
 
 ## `init` — function, line 24
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -144,26 +144,26 @@
 - **called from:**
 - `static/app.js:991`
 - `static/app.js:1003`
-- `static/app.js:2490`
-- `static/app.js:3469`
-- `static/app.js:3648`
-- `static/app.js:3878`
-- `static/app.js:3883`
-- `static/app.js:3967`
-- `static/js/chat.js:1488`
+- `static/app.js:2489`
+- `static/app.js:3468`
+- `static/app.js:3647`
+- `static/app.js:3877`
+- `static/app.js:3882`
+- `static/app.js:3966`
+- `static/js/chat.js:1487`
 - `static/js/group.js:377`
 - `static/js/modelPicker.js:862`
 - `static/js/models.js:81`
 - `static/js/presets.js:645`
 - `static/js/presets.js:759`
-- `static/js/sessions.js:1930`
-- `static/js/sessions.js:2012`
-- `static/js/sessions.js:2200`
-- `static/js/sessions.js:2323`
+- `static/js/sessions.js:1928`
+- `static/js/sessions.js:2009`
+- `static/js/sessions.js:2197`
+- `static/js/sessions.js:2320`
 
 ## `setActive` — function, line 378
 - **called from:**
-- `static/app.js:2554`
+- `static/app.js:2553`
 - `static/js/document.js:3745`
 - `static/js/document.js:3751`
 - `static/js/group.js:161`
@@ -183,7 +183,7 @@
 
 ## `showModelPicker` — function, line 384
 - **called from:**
-- `static/app.js:2552`
+- `static/app.js:2551`
 - `static/js/group.js:384`
 
 ## `getAllModels` — function, line 452
@@ -196,9 +196,9 @@
 - **called from:**
 - `static/js/calendar.js:1259`
 - `static/js/calendar.js:2092`
-- `static/js/chat.js:3658`
-- `static/js/chat.js:4482`
-- `static/js/chat.js:4621`
+- `static/js/chat.js:3650`
+- `static/js/chat.js:4474`
+- `static/js/chat.js:4602`
 - `static/js/editor/layer-panel.js:67`
 - `static/js/editor/layer-panel.js:144`
 - `static/js/editor/layer-panel.js:157`
@@ -221,7 +221,7 @@
 - `static/js/group.js:478`
 - `static/js/group.js:515`
 - `static/js/group.js:516`
-- `static/js/markdown.js:1361`
+- `static/js/markdown.js:1299`
 - `static/js/notes.js:3281`
 - `static/js/notes.js:3386`
 - `static/js/notes.js:3389`
@@ -258,24 +258,24 @@
 
 ## `startGroup` — function, line 592
 - **called from:**
-- `static/app.js:2566`
+- `static/app.js:2565`
 - `static/js/group.js:167`
 - `static/js/group.js:592`
 
 ## `stopGroup` — function, line 697
 - **called from:**
-- `static/app.js:2573`
-- `static/app.js:2586`
+- `static/app.js:2572`
+- `static/app.js:2585`
 - `static/js/group.js:683`
 - `static/js/group.js:697`
 - `static/js/presets.js:671`
 - `static/js/presets.js:760`
-- `static/js/sessions.js:2202`
-- `static/js/sessions.js:2324`
+- `static/js/sessions.js:2199`
+- `static/js/sessions.js:2321`
 
 ## `sendMessage` — function, line 708
 - **called from:**
-- `static/app.js:3892`
+- `static/app.js:3891`
 - `static/js/group.js:708`
 
 ## `_createGroupBubble` — function, line 730
@@ -333,7 +333,7 @@
 ## `restoreState` — function, line 991
 - **called from:**
 - `static/js/group.js:991`
-- `static/js/sessions.js:2195`
+- `static/js/sessions.js:2192`
 
 ## `getModels` — function, line 1007
 - **called from:**

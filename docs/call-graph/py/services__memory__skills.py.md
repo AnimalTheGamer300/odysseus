@@ -200,9 +200,9 @@
 - `companion/pairing.py:168`
 - `core/auth.py:118`
 - `core/auth.py:141`
-- `core/database.py:1468`
-- `core/database.py:1526`
-- `core/database.py:1544`
+- `core/database.py:1430`
+- `core/database.py:1488`
+- `core/database.py:1506`
 - `routes/backup_routes.py:26`
 - `routes/backup_routes.py:32`
 - `routes/mcp/mcp_routes.py:446`
@@ -255,7 +255,7 @@
 - `services/memory/memory_extractor.py:699`
 - `services/memory/skill_extractor.py:257`
 - `services/memory/skills.py:93`
-- … +80 more (grep the name in repo)
+- … +79 more (grep the name in repo)
 
 ## `SkillsManager.add_skill` — method, line 293
 - **called from:**

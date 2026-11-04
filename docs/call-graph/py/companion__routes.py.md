@@ -81,34 +81,34 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:523`
 - `core/auth.py:545`
 - `core/auth.py:561`
-- `core/database.py:925`
-- `core/database.py:956`
-- `core/database.py:979`
-- `core/database.py:1004`
-- `core/database.py:1027`
-- `core/database.py:1050`
-- `core/database.py:1081`
-- `core/database.py:1106`
-- `core/database.py:1130`
-- `core/database.py:1181`
-- `core/database.py:1204`
-- `core/database.py:1250`
-- `core/database.py:1305`
-- `core/database.py:1328`
-- `core/database.py:1352`
-- `core/database.py:1376`
-- `core/database.py:1410`
-- `core/database.py:1439`
-- `core/database.py:1509`
-- `core/database.py:1535`
-- `core/database.py:1567`
-- `core/database.py:1593`
-- `core/database.py:1607`
-- `core/database.py:1626`
-- `core/database.py:1662`
-- `core/database.py:1705`
-- `core/database.py:1736`
-- … +495 more (grep the name in repo)
+- `core/database.py:918`
+- `core/database.py:941`
+- `core/database.py:966`
+- `core/database.py:989`
+- `core/database.py:1012`
+- `core/database.py:1043`
+- `core/database.py:1068`
+- `core/database.py:1092`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1212`
+- `core/database.py:1267`
+- `core/database.py:1290`
+- `core/database.py:1314`
+- `core/database.py:1338`
+- `core/database.py:1372`
+- `core/database.py:1401`
+- `core/database.py:1471`
+- `core/database.py:1497`
+- `core/database.py:1529`
+- `core/database.py:1555`
+- `core/database.py:1569`
+- `core/database.py:1588`
+- `core/database.py:1624`
+- `core/database.py:1667`
+- `core/database.py:1698`
+- `core/database.py:1710`
+- … +491 more (grep the name in repo)
 
 ## `models` — function, line 110
 - **route:** `GET /models`
@@ -122,7 +122,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/cookbook.js:2704`
 - `static/js/cookbookRunning.js:4080`
 - `static/js/cookbookServe.js:1718`
-- `static/js/markdown.js:565`
+- `static/js/markdown.js:517`
 - `static/js/providers.js:38`
 - `static/js/settings.js:737`
 

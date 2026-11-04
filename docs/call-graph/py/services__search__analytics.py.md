@@ -16,7 +16,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `RateLimitError` — class, line 49
 - **called from:**
-- `services/search/content.py:393`
+- `services/search/content.py:228`
 - `services/search/providers.py:324`
 - `services/search/providers.py:494`
 - `services/search/providers.py:552`

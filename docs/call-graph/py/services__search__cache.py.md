@@ -4,12 +4,12 @@
 
 ## `generate_cache_key` — function, line 35
 - **called from:**
-- `services/search/content.py:358`
+- `services/search/content.py:193`
 - `services/search/core.py:145`
 - `services/search/core.py:234`
 - `tests/test_search_cache_invalidation.py:31`
 
 ## `cleanup_cache` — function, line 40
 - **called from:**
-- `services/search/content.py:607`
+- `services/search/content.py:399`
 - `services/search/core.py:207`

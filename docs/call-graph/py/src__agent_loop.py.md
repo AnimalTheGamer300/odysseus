@@ -91,8 +91,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/dump_agent_prompt.py:90`
 - `scripts/dump_agent_prompt.py:329`
 - `src/agent_loop.py:1120`
-- `src/llm_core.py:2765`
-- `src/llm_core.py:3037`
+- `src/llm_core.py:2733`
+- `src/llm_core.py:3005`
 - `tests/test_llm_core_ollama_thinking.py:79`
 - `tests/test_llm_core_ollama_thinking.py:82`
 - `tests/test_llm_core_ollama_thinking.py:85`
@@ -124,14 +124,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `add` — function, line 1034
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -183,7 +183,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `_agent_route_tool_mode` — function, line 1053
 - **called from:**
@@ -307,7 +307,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_is_explicit_continuation` — function, line 1493
 - **called from:**
 - `src/agent_loop.py:1571`
-- `tests/test_continuation_nudge_gating.py:47`
 - `tests/test_redos_verdict_continuation.py:63`
 - `tests/test_redos_verdict_continuation.py:70`
 
@@ -316,10 +315,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:774`
 - `src/agent_loop.py:1575`
 - `src/agent_loop.py:4110`
-- `tests/test_continuation_nudge_gating.py:26`
-- `tests/test_continuation_nudge_gating.py:40`
-- `tests/test_continuation_nudge_gating.py:51`
-- `tests/test_continuation_nudge_gating.py:53`
 
 ## `_is_contextual_retry_continuation` — function, line 1514
 - **called from:**
@@ -363,8 +358,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:1640`
 - `src/agent_loop.py:1642`
 - `src/agent_loop.py:1650`
-- `static/app.js:3130`
-- `static/app.js:3161`
+- `static/app.js:3129`
+- `static/app.js:3160`
 - `static/js/admin.js:271`
 - `static/js/admin.js:821`
 - `static/js/admin.js:822`
@@ -391,18 +386,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2809`
 - `static/js/calendar/reminders.js:65`
 - `static/js/censor.js:108`
-- `static/js/chat.js:854`
+- `static/js/chat.js:853`
+- `static/js/chat.js:993`
+- `static/js/chat.js:993`
 - `static/js/chat.js:994`
-- `static/js/chat.js:994`
-- `static/js/chat.js:995`
-- `static/js/chat.js:1049`
-- `static/js/chat.js:1068`
-- `static/js/chat.js:1507`
-- `static/js/chat.js:2388`
-- `static/js/chat.js:3173`
-- `static/js/chat.js:4361`
-- `static/js/chat.js:4487`
-- … +280 more (grep the name in repo)
+- `static/js/chat.js:1048`
+- `static/js/chat.js:1067`
+- `static/js/chat.js:1506`
+- `static/js/chat.js:2380`
+- `static/js/chat.js:3165`
+- `static/js/chat.js:4353`
+- `static/js/chat.js:4479`
+- … +279 more (grep the name in repo)
 
 ## `_turn_targets_active_document` — function, line 1663
 - **called from:**

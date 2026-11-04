@@ -315,8 +315,8 @@
 
 ## `mkChip` — arrow, line 777
 - **called from:**
-- `static/js/sessions.js:3202`
-- `static/js/sessions.js:3203`
+- `static/js/sessions.js:3199`
+- `static/js/sessions.js:3200`
 - `static/js/tasks.js:784`
 - `static/js/tasks.js:785`
 
@@ -386,8 +386,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
+- `static/js/chat.js:4679`
+- `static/js/chat.js:4679`
 - `static/js/cookbookServe.js:4003`
 - `static/js/cookbookServe.js:4005`
 - `static/js/document.js:313`
@@ -396,20 +396,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:8966`
 - `static/js/documentLibrary.js:70`
 - `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
+- `static/js/documentLibrary.js:582`
+- `static/js/documentLibrary.js:586`
 - `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
+- `static/js/documentLibrary.js:1957`
+- `static/js/documentLibrary.js:1962`
+- `static/js/documentLibrary.js:2110`
+- `static/js/documentLibrary.js:2466`
+- `static/js/documentLibrary.js:2510`
+- `static/js/documentLibrary.js:2547`
+- `static/js/documentLibrary.js:2696`
+- `static/js/documentLibrary.js:2737`
+- `static/js/documentLibrary.js:2750`
+- `static/js/documentLibrary.js:2904`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
 - `static/js/emailInbox.js:75`
@@ -417,7 +416,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
 - `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/emailInbox.js:524`
+- … +188 more (grep the name in repo)
 
 ## `_attachTaskLongPress` — function, line 1061
 - **called from:**
@@ -465,10 +465,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_email_urgency_checkpoint.py:554`
 - `tests/test_task_scheduler_cache.py:34`
 - `tests/test_task_scheduler_cache.py:70`
-- `static/js/chat.js:2849`
-- `static/js/chat.js:5749`
-- `static/js/chat.js:5764`
-- `static/js/documentLibrary.js:182`
+- `static/js/chat.js:2841`
+- `static/js/chat.js:5741`
+- `static/js/chat.js:5756`
+- `static/js/documentLibrary.js:180`
 - `static/js/gallery.js:2576`
 - `static/js/gallery.js:2584`
 - `static/js/liveThinkingThrottle.js:20`
@@ -763,15 +763,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:397`
 - `core/auth.py:659`
 - `core/database.py:109`
-- `core/database.py:487`
-- `core/database.py:1471`
-- `core/database.py:1556`
-- `core/database.py:1623`
-- `core/database.py:1650`
-- `core/database.py:1779`
-- `core/session_manager.py:811`
-- `core/session_manager.py:1287`
-- `core/session_manager.py:1291`
+- `core/database.py:480`
+- `core/database.py:1433`
+- `core/database.py:1518`
+- `core/database.py:1585`
+- `core/database.py:1612`
+- `core/database.py:1741`
+- `core/session_manager.py:702`
+- `core/session_manager.py:1065`
 - `mcp_servers/email_server.py:192`
 - `routes/auth_routes.py:575`
 - `routes/auth_routes.py:776`
@@ -810,8 +809,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/prefs_routes.py:82`
 - `routes/research/research_routes.py:264`
 - `routes/search/search_routes.py:72`
-- `routes/session_routes.py:1510`
-- … +193 more (grep the name in repo)
+- `routes/session_routes.py:1440`
+- `routes/session_routes.py:1453`
+- … +192 more (grep the name in repo)
 
 ## `_isChatModel` — arrow, line 2550
 - **called from:**

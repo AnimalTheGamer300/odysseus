@@ -183,8 +183,8 @@
 
 ## `setFaviconBusy` — function, line 493
 - **called from:**
-- `static/js/chat.js:1247`
-- `static/js/chat.js:1255`
+- `static/js/chat.js:1246`
+- `static/js/chat.js:1254`
 - `static/js/theme.js:493`
 
 ## `_injectFontFace` — function, line 514
@@ -341,7 +341,7 @@
 - `src/preset_manager.py:155`
 - `src/preset_manager.py:175`
 - `src/preset_manager.py:181`
-- … +87 more (grep the name in repo)
+- … +85 more (grep the name in repo)
 
 ## `_syncToServer` — function, line 634
 - **called from:**
@@ -504,8 +504,8 @@
 - `static/js/compare/scoreboard.js:219`
 - `static/js/compare/selector.js:874`
 - `static/js/research/panel.js:293`
-- `static/js/sessions.js:3339`
-- `static/js/sessions.js:3705`
+- `static/js/sessions.js:3336`
+- `static/js/sessions.js:3702`
 - `static/js/theme.js:678`
 - `static/js/theme.js:1613`
 
@@ -550,10 +550,9 @@
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -642,10 +641,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -734,10 +732,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -841,10 +838,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -944,10 +940,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -1037,10 +1032,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -1136,10 +1130,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
+- `static/app.js:3641`
 - `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
+- `static/js/documentLibrary.js:3187`
 - `static/js/theme.js:1692`
 - `static/js/theme.js:1698`
 - `static/js/theme.js:1699`
@@ -1185,17 +1178,17 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `rgba` — function, line 2163
 - **called from:**
-- `static/app.js:4172`
-- `static/app.js:4215`
-- `static/app.js:4265`
+- `static/app.js:4171`
+- `static/app.js:4214`
+- `static/app.js:4264`
+- `static/app.js:4267`
 - `static/app.js:4268`
-- `static/app.js:4269`
 - `static/js/admin.js:2537`
 - `static/js/calendar.js:541`
-- `static/js/chat.js:4093`
-- `static/js/chat.js:4404`
-- `static/js/chat.js:4422`
-- `static/js/chat.js:4432`
+- `static/js/chat.js:4085`
+- `static/js/chat.js:4396`
+- `static/js/chat.js:4414`
+- `static/js/chat.js:4424`
 - `static/js/compare/index.js:1077`
 - `static/js/compare/panes.js:456`
 - `static/js/compare/selector.js:455`
@@ -1218,8 +1211,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:1864`
 - `static/js/document.js:4168`
 - `static/js/document.js:9180`
-- `static/js/documentLibrary.js:637`
-- `static/js/documentLibrary.js:661`
+- `static/js/documentLibrary.js:635`
+- `static/js/documentLibrary.js:659`
 - `static/js/editor/fx/histogram.js:46`
 - `static/js/editor/fx/histogram.js:51`
 - `static/js/editor/fx/histogram.js:62`

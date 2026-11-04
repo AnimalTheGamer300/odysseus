@@ -20,7 +20,7 @@
 
 ## `is_session_recently_active` — function, line 42
 - **called from:**
-- `routes/session_routes.py:1337`
+- `routes/session_routes.py:1269`
 - `src/session_actions.py:93`
 
 ## `run_auto_sort` — function (async), line 56

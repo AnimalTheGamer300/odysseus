@@ -14,13 +14,13 @@
 
 ## `_history_grants_chat_session_approval` — function, line 41
 - **called from:**
-- `core/models.py:187`
+- `core/models.py:169`
 
 ## `ChatMessage` — class, line 79
 - decorator: `dataclass`
 - **called from:**
-- `core/session_manager.py:258`
-- `core/session_manager.py:278`
+- `core/session_manager.py:244`
+- `core/session_manager.py:264`
 - `routes/chat_helpers.py:470`
 - `routes/chat_helpers.py:1309`
 - `routes/chat_helpers.py:1312`
@@ -30,14 +30,14 @@
 - `routes/chat_routes.py:1904`
 - `routes/chat_routes.py:2200`
 - `routes/chat_routes.py:3129`
-- `routes/history/history_routes.py:258`
-- `routes/history/history_routes.py:481`
-- `routes/history/history_routes.py:910`
-- `routes/history/history_routes.py:1147`
-- `routes/history/history_routes.py:1153`
+- `routes/history/history_routes.py:256`
+- `routes/history/history_routes.py:467`
+- `routes/history/history_routes.py:873`
+- `routes/history/history_routes.py:1110`
+- `routes/history/history_routes.py:1116`
 - `routes/research/research_routes.py:770`
 - `routes/session_routes.py:713`
-- `routes/session_routes.py:1258`
+- `routes/session_routes.py:1190`
 - `routes/webhook/webhook_routes.py:377`
 - `routes/webhook/webhook_routes.py:385`
 - `src/agent_jobs.py:326`
@@ -59,9 +59,6 @@
 - `tests/test_api_token_tool_authority.py:136`
 - `tests/test_api_token_tool_authority.py:314`
 - `tests/test_api_token_tool_authority.py:315`
-- `tests/test_draft_promotion_keeps_live_media.py:47`
-- `tests/test_draft_promotion_keeps_live_media.py:83`
-- `tests/test_draft_promotion_keeps_live_media.py:120`
 - `tests/test_fork_session_metadata.py:63`
 - `tests/test_fork_session_metadata.py:64`
 - `tests/test_history_compact_tool_calls.py:175`
@@ -79,11 +76,14 @@
 - `tests/test_history_compact_tool_calls.py:209`
 - `tests/test_history_compact_tool_calls.py:210`
 - `tests/test_history_compact_tool_calls.py:211`
-- … +66 more (grep the name in repo)
+- `tests/test_history_compact_tool_calls.py:212`
+- `tests/test_history_compact_tool_calls.py:228`
+- `tests/test_history_compact_tool_calls.py:229`
+- … +63 more (grep the name in repo)
 
 ## `ChatMessage.to_dict` — method, line 85
 - **called from:**
-- `core/models.py:175`
+- `core/models.py:164`
 - `routes/chat_routes.py:3149`
 - `services/memory/skills.py:226`
 - `services/memory/skills.py:382`
@@ -160,17 +160,16 @@
 - `core/auth.py:349`
 - `core/auth.py:357`
 - `core/auth.py:370`
-- … +7551 more (grep the name in repo)
+- … +7528 more (grep the name in repo)
 
 ## `Session` — class, line 98
 - decorator: `dataclass`
 - **called from:**
-- `core/session_manager.py:189`
-- `core/session_manager.py:295`
-- `core/session_manager.py:1056`
+- `core/session_manager.py:188`
+- `core/session_manager.py:281`
+- `core/session_manager.py:927`
 - `tests/test_api_token_tool_authority.py:24`
 - `tests/test_api_token_tool_authority.py:97`
-- `tests/test_draft_promotion_keeps_live_media.py:37`
 - `tests/test_external_context_tool_gate.py:221`
 - `tests/test_history_display_model_hydration.py:245`
 - `tests/test_history_display_model_hydration.py:326`
@@ -207,23 +206,23 @@
 - `tests/test_tool_approval_task_scope.py:145`
 - `tests/test_tool_approval_task_scope.py:175`
 
-## `Session.__post_init__` — method, line 124
+## `Session.__post_init__` — method, line 122
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `Session._history` — method, line 132
+## `Session._history` — method, line 130
 - decorator: `property`
 - **called from:**
 - `tests/test_compaction_summary_failure.py:82`
 - `tests/test_compaction_summary_failure.py:91`
 
-## `Session._history` — method, line 137
+## `Session._history` — method, line 135
 - decorator: `_history.setter`
 - **called from:**
 - `tests/test_compaction_summary_failure.py:82`
 - `tests/test_compaction_summary_failure.py:91`
 
-## `Session.add_message` — method, line 140
+## `Session.add_message` — method, line 138
 - **called from:**
 - `routes/chat_helpers.py:470`
 - `routes/chat_helpers.py:1312`
@@ -232,8 +231,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:1904`
 - `routes/chat_routes.py:2200`
 - `routes/chat_routes.py:3129`
-- `routes/history/history_routes.py:482`
-- `routes/history/history_routes.py:910`
+- `routes/history/history_routes.py:468`
+- `routes/history/history_routes.py:873`
 - `routes/research/research_routes.py:770`
 - `routes/session_routes.py:713`
 - `routes/webhook/webhook_routes.py:377`
@@ -247,8 +246,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/chat_handler.py:352`
 - `src/task_scheduler.py:1752`
 - `src/task_scheduler.py:1760`
-- `tests/test_draft_promotion_keeps_live_media.py:74`
-- `tests/test_draft_promotion_keeps_live_media.py:120`
 - `tests/test_session_concurrent.py:32`
 - `tests/test_session_concurrent.py:62`
 - `tests/test_session_concurrent.py:92`
@@ -278,12 +275,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_truncate_message_count_regression.py:40`
 - `tests/test_truncate_message_count_regression.py:70`
 
-## `Session.get_context_messages` — method, line 155
+## `Session.get_context_messages` — method, line 153
 - **called from:**
 - `routes/chat_helpers.py:887`
-- `routes/history/history_routes.py:991`
-- `routes/history/history_routes.py:1101`
-- `routes/history/history_routes.py:1232`
+- `routes/history/history_routes.py:954`
+- `routes/history/history_routes.py:1064`
+- `routes/history/history_routes.py:1195`
 - `routes/memory/memory_routes.py:258`
 - `services/memory/memory_extractor.py:448`
 - `services/memory/skill_extractor.py:150`
@@ -309,7 +306,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_tool_approval_task_scope.py:189`
 - `tests/test_truncate_message_count_regression.py:78`
 
-## `Session.get` — method, line 204
+## `Session.get` — method, line 186
 - **called from:**
 - `app.py:359`
 - `app.py:383`
@@ -371,8 +368,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:349`
 - `core/auth.py:357`
 - `core/auth.py:370`
-- … +7551 more (grep the name in repo)
+- … +7528 more (grep the name in repo)
 
-## `Session.__getitem__` — method, line 208
+## `Session.__getitem__` — method, line 190
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_

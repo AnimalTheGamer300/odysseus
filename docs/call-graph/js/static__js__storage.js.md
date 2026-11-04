@@ -6,14 +6,14 @@
 ## `getJSON` — function, line 35
 - **called from:**
 - `static/app.js:1931`
-- `static/app.js:2644`
-- `static/app.js:2664`
-- `static/app.js:2668`
-- `static/app.js:2692`
-- `static/app.js:2703`
-- `static/app.js:2745`
-- `static/app.js:2981`
-- `static/js/chat.js:2547`
+- `static/app.js:2643`
+- `static/app.js:2663`
+- `static/app.js:2667`
+- `static/app.js:2691`
+- `static/app.js:2702`
+- `static/app.js:2744`
+- `static/app.js:2980`
+- `static/js/chat.js:2539`
 - `static/js/chatStream.js:72`
 - `static/js/chatStream.js:84`
 - `static/js/compare/models.js:97`
@@ -30,9 +30,9 @@
 - `static/js/models.js:482`
 - `static/js/section-management.js:11`
 - `static/js/section-management.js:31`
-- `static/js/sessions.js:403`
-- `static/js/sessions.js:409`
-- `static/js/sessions.js:1088`
+- `static/js/sessions.js:401`
+- `static/js/sessions.js:407`
+- `static/js/sessions.js:1086`
 - `static/js/slashCommands.js:2497`
 - `static/js/slashCommands.js:5167`
 - `static/js/storage.js:35`
@@ -43,12 +43,12 @@
 ## `setJSON` — function, line 49
 - **called from:**
 - `static/app.js:1935`
-- `static/app.js:2646`
-- `static/app.js:2666`
-- `static/app.js:2670`
-- `static/app.js:2698`
-- `static/app.js:2749`
-- `static/js/chat.js:2549`
+- `static/app.js:2645`
+- `static/app.js:2665`
+- `static/app.js:2669`
+- `static/app.js:2697`
+- `static/app.js:2748`
+- `static/js/chat.js:2541`
 - `static/js/chatStream.js:74`
 - `static/js/chatStream.js:86`
 - `static/js/compare/models.js:41`
@@ -62,9 +62,9 @@
 - `static/js/models.js:67`
 - `static/js/section-management.js:33`
 - `static/js/section-management.js:240`
-- `static/js/sessions.js:406`
-- `static/js/sessions.js:412`
-- `static/js/sessions.js:1094`
+- `static/js/sessions.js:404`
+- `static/js/sessions.js:410`
+- `static/js/sessions.js:1092`
 - `static/js/slashCommands.js:2501`
 - `static/js/storage.js:49`
 - `static/js/storage.js:98`
@@ -134,7 +134,7 @@
 - `core/auth.py:349`
 - `core/auth.py:357`
 - `core/auth.py:370`
-- … +7551 more (grep the name in repo)
+- … +7528 more (grep the name in repo)
 
 ## `set` — function, line 72
 - **called from:**
@@ -145,9 +145,9 @@
 - `companion/routes.py:151`
 - `core/auth.py:207`
 - `core/database.py:67`
-- `core/database.py:2003`
+- `core/database.py:1965`
 - `core/platform_compat.py:199`
-- `core/session_manager.py:803`
+- `core/session_manager.py:694`
 - `mcp_servers/email_server.py:542`
 - `mcp_servers/email_server.py:1822`
 - `mcp_servers/email_server.py:2458`
@@ -198,7 +198,7 @@
 - `routes/gallery/gallery_routes.py:695`
 - `routes/gallery/gallery_routes.py:957`
 - `routes/gallery/gallery_routes.py:1017`
-- … +598 more (grep the name in repo)
+- … +594 more (grep the name in repo)
 
 ## `remove` — function, line 83
 - **called from:**
@@ -259,10 +259,10 @@
 - `static/app.js:1689`
 - `static/app.js:1987`
 - `static/app.js:2008`
+- `static/app.js:2164`
 - `static/app.js:2165`
-- `static/app.js:2166`
-- `static/app.js:2192`
-- … +1230 more (grep the name in repo)
+- `static/app.js:2191`
+- … +1229 more (grep the name in repo)
 
 ## `loadToggleState` — function, line 93
 - **called from:**
@@ -288,16 +288,16 @@
 - `static/app.js:2023`
 - `static/app.js:2048`
 - `static/app.js:2060`
-- `static/app.js:2219`
-- `static/app.js:2254`
-- `static/app.js:2257`
-- `static/app.js:2469`
-- `static/app.js:2480`
-- `static/app.js:2529`
-- `static/app.js:2532`
-- `static/js/chat.js:2285`
-- `static/js/chat.js:2366`
-- `static/js/chat.js:4726`
+- `static/app.js:2218`
+- `static/app.js:2253`
+- `static/app.js:2256`
+- `static/app.js:2468`
+- `static/app.js:2479`
+- `static/app.js:2528`
+- `static/app.js:2531`
+- `static/js/chat.js:2282`
+- `static/js/chat.js:2358`
+- `static/js/chat.js:4707`
 - `static/js/compare/index.js:83`
 - `static/js/compare/index.js:297`
 - `static/js/storage.js:93`
@@ -317,9 +317,9 @@
 - `static/app.js:2009`
 - `static/app.js:2023`
 - `static/app.js:2048`
-- `static/app.js:2260`
-- `static/app.js:2480`
-- `static/app.js:2535`
+- `static/app.js:2259`
+- `static/app.js:2479`
+- `static/app.js:2534`
 - `static/js/compare/index.js:85`
 - `static/js/storage.js:97`
 - `static/js/storage.js:109`
@@ -330,7 +330,7 @@
 
 ## `setToggle` — function, line 106
 - **called from:**
-- `static/js/chat.js:5176`
+- `static/js/chat.js:5174`
 - `static/js/slashCommands.js:927`
 - `static/js/slashCommands.js:939`
 - `static/js/storage.js:106`

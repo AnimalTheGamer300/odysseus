@@ -36,7 +36,7 @@
 
 ## `setWorkspace` — function, line 60
 - **called from:**
-- `static/js/chat.js:3672`
+- `static/js/chat.js:3664`
 - `static/js/workspace.js:60`
 - `static/js/workspace.js:78`
 - `static/js/workspace.js:88`

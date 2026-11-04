@@ -88,7 +88,7 @@
 - `routes/model_routes.py:2661`
 - `routes/model_routes.py:2666`
 - `routes/model_routes.py:2713`
-- `routes/session_routes.py:802`
+- `routes/session_routes.py:793`
 - … +18 more (grep the name in repo)
 
 ## `SecurityHeadersMiddleware` — class, line 85

@@ -18,24 +18,24 @@
 
 ## `init` — function, line 79
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -113,7 +113,7 @@
 
 ## `loadPresets` — function, line 501
 - **called from:**
-- `static/app.js:4304`
+- `static/app.js:4303`
 - `static/js/presets.js:501`
 
 ## `setActivePreset` — function, line 541
@@ -122,7 +122,7 @@
 
 ## `openCustomPresetModal` — function, line 560
 - **called from:**
-- `static/app.js:3217`
+- `static/app.js:3216`
 - `static/js/presets.js:560`
 - `static/js/presets.js:1054`
 
@@ -144,8 +144,8 @@
 
 ## `getSelectedPreset` — function, line 901
 - **called from:**
-- `static/js/chat.js:2339`
-- `static/js/chat.js:2340`
+- `static/js/chat.js:2331`
+- `static/js/chat.js:2332`
 - `static/js/chatRenderer.js:787`
 - `static/js/compare/stream.js:405`
 - `static/js/compare/stream.js:406`
@@ -169,22 +169,22 @@
 
 ## `getCharacterName` — function, line 929
 - **called from:**
-- `static/js/chat.js:2453`
-- `static/js/chat.js:3692`
-- `static/js/chat.js:4499`
+- `static/js/chat.js:2445`
+- `static/js/chat.js:3684`
+- `static/js/chat.js:4491`
 - `static/js/presets.js:929`
 
 ## `getInject` — function, line 939
 - **called from:**
-- `static/js/chat.js:2221`
+- `static/js/chat.js:2219`
 - `static/js/presets.js:939`
 
 ## `deactivateCharacter` — function, line 956
 - **called from:**
 - `static/app.js:871`
-- `static/app.js:2247`
-- `static/app.js:2522`
-- `static/app.js:3339`
+- `static/app.js:2246`
+- `static/app.js:2521`
+- `static/app.js:3338`
 - `static/js/presets.js:674`
 - `static/js/presets.js:956`
 
@@ -210,7 +210,7 @@
 ## `onSessionSwitch` — function, line 1071
 - **called from:**
 - `static/js/presets.js:1071`
-- `static/js/sessions.js:1983`
+- `static/js/sessions.js:1980`
 
 ## `isPersistentChat` — function, line 1112
 - **called from:**
@@ -219,5 +219,5 @@
 ## `removePersistentChat` — function, line 1119
 - **called from:**
 - `static/js/presets.js:1119`
-- `static/js/sessions.js:987`
-- `static/js/sessions.js:2547`
+- `static/js/sessions.js:985`
+- `static/js/sessions.js:2544`

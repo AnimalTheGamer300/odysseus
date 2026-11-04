@@ -5,7 +5,7 @@
 
 ## `stripLiveThinkingTags` — function, line 25
 - **called from:**
-- `static/js/chat.js:2776`
+- `static/js/chat.js:2768`
 - `static/js/liveThinkingThrottle.js:25`
 
 ## `hasFreshMatch` — function, line 46
@@ -17,7 +17,7 @@
 
 ## `createThinkingAnalysisGate` — function, line 60
 - **called from:**
-- `static/js/chat.js:2726`
+- `static/js/chat.js:2718`
 - `static/js/liveThinkingThrottle.js:60`
 
 ## `reset` — method?, line 116
@@ -34,13 +34,13 @@
 - `static/js/admin.js:1248`
 - `static/js/admin.js:1253`
 - `static/js/admin.js:1258`
-- `static/js/chat.js:2658`
-- `static/js/chat.js:2659`
-- `static/js/chat.js:2660`
-- `static/js/chat.js:3072`
-- `static/js/chat.js:4328`
-- `static/js/chat.js:4329`
-- `static/js/chat.js:4330`
+- `static/js/chat.js:2650`
+- `static/js/chat.js:2651`
+- `static/js/chat.js:2652`
+- `static/js/chat.js:3064`
+- `static/js/chat.js:4320`
+- `static/js/chat.js:4321`
+- `static/js/chat.js:4322`
 - `static/js/compare/state.js:39`
 - `static/js/cookbookDownload.js:173`
 - `static/js/liveThinkingThrottle.js:116`
@@ -54,8 +54,8 @@
 
 ## `createIncrementalDisplayProjector` — function, line 127
 - **called from:**
-- `static/js/chat.js:2729`
-- `static/js/chat.js:2730`
+- `static/js/chat.js:2721`
+- `static/js/chat.js:2722`
 - `static/js/liveThinkingThrottle.js:127`
 
 ## `append` — method?, line 134
@@ -74,8 +74,8 @@
 - `companion/pairing.py:142`
 - `companion/routes.py:157`
 - `core/auth.py:197`
-- `core/database.py:2008`
-- `core/models.py:148`
+- `core/database.py:1970`
+- `core/models.py:146`
 - `core/platform_compat.py:193`
 - `core/platform_compat.py:195`
 - `core/platform_compat.py:206`
@@ -83,11 +83,11 @@
 - `core/platform_compat.py:391`
 - `core/platform_compat.py:428`
 - `core/platform_compat.py:430`
-- `core/session_manager.py:258`
-- `core/session_manager.py:278`
-- `core/session_manager.py:340`
-- `core/session_manager.py:536`
-- `core/session_manager.py:572`
+- `core/session_manager.py:244`
+- `core/session_manager.py:264`
+- `core/session_manager.py:326`
+- `core/session_manager.py:522`
+- `core/session_manager.py:558`
 - `integrations/claude/skills/odysseus/scripts/odysseus_api.py:43`
 - `integrations/claude/skills/odysseus/scripts/odysseus_api.py:45`
 - `integrations/codex/scripts/odysseus_api.py:43`
@@ -120,18 +120,18 @@
 - `mcp_servers/email_server.py:1565`
 - `mcp_servers/email_server.py:1567`
 - `mcp_servers/email_server.py:1568`
-- … +3064 more (grep the name in repo)
+- … +3053 more (grep the name in repo)
 
 ## `current` — method?, line 155
 - **called from:**
-- `static/js/chat.js:647`
-- `static/js/chat.js:2929`
-- `static/js/chat.js:3094`
-- `static/js/chat.js:3371`
-- `static/js/chat.js:3518`
+- `static/js/chat.js:646`
+- `static/js/chat.js:2921`
+- `static/js/chat.js:3086`
+- `static/js/chat.js:3363`
+- `static/js/chat.js:3510`
 - `static/js/chatRenderer.js:935`
 - `static/js/liveThinkingThrottle.js:155`
-- `static/js/sessions.js:2502`
+- `static/js/sessions.js:2499`
 
 ## `reset` — method?, line 158
 - **called from:**
@@ -147,13 +147,13 @@
 - `static/js/admin.js:1248`
 - `static/js/admin.js:1253`
 - `static/js/admin.js:1258`
-- `static/js/chat.js:2658`
-- `static/js/chat.js:2659`
-- `static/js/chat.js:2660`
-- `static/js/chat.js:3072`
-- `static/js/chat.js:4328`
-- `static/js/chat.js:4329`
-- `static/js/chat.js:4330`
+- `static/js/chat.js:2650`
+- `static/js/chat.js:2651`
+- `static/js/chat.js:2652`
+- `static/js/chat.js:3064`
+- `static/js/chat.js:4320`
+- `static/js/chat.js:4321`
+- `static/js/chat.js:4322`
 - `static/js/compare/state.js:39`
 - `static/js/cookbookDownload.js:173`
 - `static/js/liveThinkingThrottle.js:116`
@@ -167,7 +167,7 @@
 
 ## `createLiveThinkingThrottle` — function, line 167
 - **called from:**
-- `static/js/chat.js:2806`
+- `static/js/chat.js:2798`
 - `static/js/liveThinkingThrottle.js:13`
 - `static/js/liveThinkingThrottle.js:167`
 
@@ -181,9 +181,8 @@
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -236,14 +235,15 @@
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `flush` — method?, line 191
 - **called from:**
 - `core/atomic_io.py:37`
 - `core/atomic_io.py:58`
-- `core/database.py:525`
+- `core/database.py:518`
 - `routes/calendar_routes.py:317`
 - `routes/calendar_routes.py:325`
 - `routes/email_routes.py:5756`
@@ -259,15 +259,15 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3241`
-- `src/llm_core.py:3259`
-- `src/llm_core.py:3518`
-- `src/llm_core.py:3760`
+- `src/llm_core.py:3209`
+- `src/llm_core.py:3227`
+- `src/llm_core.py:3486`
+- `src/llm_core.py:3728`
 - `src/task_scheduler.py:2616`
 - `src/upload_handler.py:745`
 - `tests/test_atomic_io.py:101`
 - `tests/test_launcher.py:24`
-- `static/js/chat.js:2840`
+- `static/js/chat.js:2832`
 - `static/js/emailLibrary.js:6387`
 - `static/js/emailLibrary.js:6393`
 - `static/js/emailLibrary.js:6398`
@@ -315,10 +315,10 @@
 - `tests/test_email_urgency_checkpoint.py:554`
 - `tests/test_task_scheduler_cache.py:34`
 - `tests/test_task_scheduler_cache.py:70`
-- `static/js/chat.js:2849`
-- `static/js/chat.js:5749`
-- `static/js/chat.js:5764`
-- `static/js/documentLibrary.js:182`
+- `static/js/chat.js:2841`
+- `static/js/chat.js:5741`
+- `static/js/chat.js:5756`
+- `static/js/documentLibrary.js:180`
 - `static/js/gallery.js:2576`
 - `static/js/gallery.js:2584`
 - `static/js/liveThinkingThrottle.js:20`

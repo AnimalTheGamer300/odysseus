@@ -223,7 +223,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/contacts/contacts_routes.py:317`
 - `routes/contacts/contacts_routes.py:318`
 - `routes/contacts/contacts_routes.py:496`
-- `routes/session_routes.py:1490`
+- `routes/session_routes.py:1420`
 - `routes/shell_routes.py:482`
 - `routes/shell_routes.py:483`
 - `routes/skills_routes.py:211`
@@ -236,15 +236,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skill_extractor.py:85`
 - `services/memory/skill_extractor.py:94`
 - `services/memory/skill_format.py:157`
-- `services/search/content.py:81`
-- `services/search/content.py:84`
-- `services/search/content.py:97`
-- `services/search/content.py:100`
-- `services/search/content.py:103`
-- `services/search/content.py:160`
-- `services/search/content.py:160`
-- `services/search/content.py:502`
-- `services/search/content.py:546`
+- `services/search/content.py:76`
+- `services/search/content.py:79`
+- `services/search/content.py:92`
+- `services/search/content.py:95`
+- `services/search/content.py:98`
+- `services/search/content.py:155`
+- `services/search/content.py:155`
+- `services/search/content.py:337`
+- `services/search/content.py:361`
 - `src/agent_loop.py:1438`
 - `src/agent_loop.py:1442`
 - `src/agent_loop.py:2016`
@@ -255,9 +255,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/builtin_actions.py:2739`
 - `src/builtin_actions.py:2743`
 - `src/deep_research.py:857`
-- `src/llm_core.py:3655`
-- `src/llm_core.py:3663`
-- `src/llm_core.py:3678`
+- `src/llm_core.py:3623`
+- `src/llm_core.py:3631`
+- `src/llm_core.py:3646`
 - `src/session_actions.py:207`
 - `src/session_search.py:70`
 - `src/tool_parsing.py:986`
@@ -350,21 +350,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 397
 - **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
+- `static/js/chat.js:6093`
+- `static/js/chat.js:6094`
+- `static/js/chat.js:6095`
 - `static/js/cookbookServe.js:2709`
 - `static/js/cookbookServe.js:2717`
 - `static/js/cookbookServe.js:2722`
 - `static/js/cookbookServe.js:2723`
 - `static/js/cookbookServe.js:2769`
 - `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
+- `static/js/documentLibrary.js:2161`
+- `static/js/documentLibrary.js:2162`
+- `static/js/documentLibrary.js:2593`
+- `static/js/documentLibrary.js:2594`
+- `static/js/documentLibrary.js:2595`
+- `static/js/documentLibrary.js:2596`
 - `static/js/skills.js:404`
 - `static/js/skills.js:405`
 - `static/js/skills.js:420`
@@ -447,7 +447,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `on` — class, line 950
 - **called from:**
-- `static/js/chat.js:2034`
+- `static/js/chat.js:2032`
 - `static/js/compare/index.js:937`
 - `static/js/cookbook-hwfit.js:2477`
 - `static/js/gallery.js:2509`
@@ -506,14 +506,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `add` — arrow, line 1125
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
+- `core/database.py:517`
+- `core/database.py:1972`
 - `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
+- `core/session_manager.py:402`
+- `core/session_manager.py:464`
+- `core/session_manager.py:698`
+- `core/session_manager.py:747`
+- `core/session_manager.py:924`
 - `mcp_servers/email_server.py:552`
 - `mcp_servers/email_server.py:1665`
 - `mcp_servers/email_server.py:1706`
@@ -565,7 +565,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:1732`
 - `routes/email_helpers.py:1868`
 - `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +1221 more (grep the name in repo)
 
 ## `decide` — arrow, line 1160
 - **called from:**
@@ -612,13 +612,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -682,7 +682,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `onCancel` — function, line 1464
 - **called from:**
 - `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
+- `static/js/documentLibrary.js:226`
 - `static/js/galleryEditor.js:3971`
 - `static/js/skills.js:1464`
 - `static/js/skills.js:1465`
@@ -764,10 +764,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/notes.js:1329`
 - `static/js/notes.js:1456`
-- `static/js/sessions.js:863`
-- `static/js/sessions.js:1602`
-- `static/js/sessions.js:1660`
-- `static/js/sessions.js:1672`
+- `static/js/sessions.js:861`
+- `static/js/sessions.js:1600`
+- `static/js/sessions.js:1658`
+- `static/js/sessions.js:1670`
 - `static/js/skills.js:414`
 - `static/js/skills.js:1673`
 - `static/js/skills.js:2004`
@@ -788,12 +788,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/notes.js:1369`
 - `static/js/notes.js:1416`
 - `static/js/notes.js:1467`
-- `static/js/sessions.js:1633`
-- `static/js/sessions.js:1659`
-- `static/js/sessions.js:1664`
-- `static/js/sessions.js:1679`
-- `static/js/sessions.js:1720`
-- `static/js/sessions.js:1741`
+- `static/js/sessions.js:1631`
+- `static/js/sessions.js:1657`
+- `static/js/sessions.js:1662`
+- `static/js/sessions.js:1677`
+- `static/js/sessions.js:1718`
+- `static/js/sessions.js:1739`
 - `static/js/skills.js:641`
 - `static/js/skills.js:1684`
 - `static/js/skills.js:1754`

@@ -5,24 +5,24 @@
 
 ## `init` — function, line 14
 - **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -57,8 +57,8 @@
 
 ## `getProviderLabel` — function, line 37
 - **called from:**
-- `static/js/chat.js:2441`
-- `static/js/chat.js:2471`
+- `static/js/chat.js:2433`
+- `static/js/chat.js:2463`
 - `static/js/search.js:37`
 
 ## `refresh` — function, line 42
@@ -84,6 +84,7 @@
 - `src/bg_jobs.py:263`
 - `src/chatgpt_subscription.py:271`
 - `src/chatgpt_subscription.py:281`
+- `src/tools/image.py:83`
 - `static/js/chatRenderer.js:3112`
 - `static/js/chatStream.js:171`
 - `static/js/cookbookDownload.js:174`

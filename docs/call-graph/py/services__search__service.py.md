@@ -100,7 +100,7 @@
 - `routes/document/document_helpers.py:227`
 - `routes/document/document_routes.py:63`
 - `routes/document/document_routes.py:64`
-- … +331 more (grep the name in repo)
+- … +326 more (grep the name in repo)
 
 ## `SearchService.fetch_content` — method (async), line 96
 - **called from:**

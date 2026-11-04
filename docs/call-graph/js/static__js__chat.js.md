@@ -1,7 +1,7 @@
 # `static/js/chat.js` — definitions & call sites
 
-186 definitions (regex-based, best-effort).
-**Exports:** `abortCurrentRequest`, `checkBackgroundStream`, `checkPendingResearch`, `compactCurrentChatContext`, `continueFrom`, `continueFromBubble`, `default`, `deleteMessage`, `detachCurrentStream`, `editAIMessage`, `editUserMessage`, `forkFrom`, `handleChatSubmit`, `init`, `initListeners`, `queueStreamingComposerRequest`, `refreshChatContextHeader`, `regenerateFrom`, `resendUserMessage`, `resumeStream`, `rewriteWith`, `setContinuePrefill`, `setDisplayOverride`, `setHideUserBubble`, `setPendingContinue`
+182 definitions (regex-based, best-effort).
+**Exports:** `abortCurrentRequest`, `checkBackgroundStream`, `checkPendingResearch`, `compactCurrentChatContext`, `continueFrom`, `default`, `deleteMessage`, `detachCurrentStream`, `editAIMessage`, `editUserMessage`, `forkFrom`, `handleChatSubmit`, `init`, `initListeners`, `queueStreamingComposerRequest`, `refreshChatContextHeader`, `regenerateFrom`, `resendUserMessage`, `resumeStream`, `rewriteWith`, `setDisplayOverride`, `setHideUserBubble`, `setPendingContinue`
 
 ## `_submitToolApprovalWhenIdle` — function, line 67
 - **called from:**
@@ -84,58 +84,58 @@
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `_bindContextHeaderPill` — function, line 253
 - **called from:**
@@ -152,43 +152,42 @@
 - **called from:**
 - `static/js/chat.js:278`
 - `static/js/chat.js:287`
-- `static/js/chat.js:3926`
+- `static/js/chat.js:3918`
 - `static/js/modelPicker.js:726`
-- `static/js/sessions.js:2050`
-- `static/js/sessions.js:2362`
-- `static/js/sessions.js:2452`
+- `static/js/sessions.js:2047`
+- `static/js/sessions.js:2359`
+- `static/js/sessions.js:2449`
 
 ## `_setForegroundChatBusy` — function, line 333
 - **called from:**
 - `static/js/chat.js:333`
-- `static/js/chat.js:1012`
-- `static/js/chat.js:1246`
-- `static/js/chat.js:1254`
-- `static/js/chat.js:1638`
+- `static/js/chat.js:1011`
+- `static/js/chat.js:1245`
+- `static/js/chat.js:1253`
+- `static/js/chat.js:1642`
 
-## `_createChatSendPerf` — function, line 345
+## `_createChatSendPerf` — function, line 344
 - **called from:**
-- `static/js/chat.js:345`
-- `static/js/chat.js:1635`
+- `static/js/chat.js:344`
+- `static/js/chat.js:1639`
 
-## `now` — arrow, line 350
+## `now` — arrow, line 349
 - **called from:**
 - `app.py:957`
 - `app.py:1252`
 - `core/database.py:25`
 - `core/database.py:216`
 - `core/database.py:216`
-- `core/session_manager.py:422`
-- `core/session_manager.py:562`
-- `core/session_manager.py:727`
-- `core/session_manager.py:738`
-- `core/session_manager.py:809`
-- `core/session_manager.py:1022`
-- `core/session_manager.py:1050`
-- `core/session_manager.py:1051`
-- `core/session_manager.py:1225`
-- `core/session_manager.py:1245`
-- `core/session_manager.py:1262`
+- `core/session_manager.py:408`
+- `core/session_manager.py:548`
+- `core/session_manager.py:629`
+- `core/session_manager.py:700`
+- `core/session_manager.py:893`
+- `core/session_manager.py:921`
+- `core/session_manager.py:922`
+- `core/session_manager.py:1005`
+- `core/session_manager.py:1025`
+- `core/session_manager.py:1042`
 - `routes/backup_routes.py:46`
 - `routes/backup_routes.py:56`
 - `routes/calendar_routes.py:401`
@@ -196,17 +195,17 @@
 - `routes/document/document_routes.py:657`
 - `routes/document/document_routes.py:875`
 - `routes/email_routes.py:4314`
-- `routes/history/history_routes.py:546`
-- `routes/history/history_routes.py:839`
-- `routes/history/history_routes.py:1056`
-- `routes/history/history_routes.py:1180`
-- `routes/history/history_routes.py:1201`
-- `routes/history/history_routes.py:1225`
+- `routes/history/history_routes.py:532`
+- `routes/history/history_routes.py:802`
+- `routes/history/history_routes.py:1019`
+- `routes/history/history_routes.py:1143`
+- `routes/history/history_routes.py:1164`
+- `routes/history/history_routes.py:1188`
 - `routes/note/note_routes.py:192`
 - `routes/note/note_routes.py:554`
-- `routes/session_routes.py:1035`
-- `routes/session_routes.py:1043`
-- `routes/session_routes.py:1094`
+- `routes/session_routes.py:967`
+- `routes/session_routes.py:975`
+- `routes/session_routes.py:1026`
 - `routes/task/task_routes.py:104`
 - `routes/task/task_routes.py:1107`
 - `scripts/agent_migration_manifest.py:47`
@@ -218,9 +217,9 @@
 - `scripts/pr_blocker_audit.py:524`
 - `services/memory/skill_format.py:483`
 - `services/search/cache.py:42`
-- `services/search/content.py:367`
-- `services/search/content.py:603`
-- `services/search/content.py:606`
+- `services/search/content.py:202`
+- `services/search/content.py:395`
+- `services/search/content.py:398`
 - `services/search/core.py:155`
 - `services/search/core.py:198`
 - `services/search/core.py:200`
@@ -233,337 +232,338 @@
 - `src/agent_tools/spawn_agent_tools.py:171`
 - `src/builtin_actions.py:1792`
 - `src/builtin_actions.py:2170`
-- … +303 more (grep the name in repo)
+- `src/cleanup_service.py:15`
+- … +301 more (grep the name in repo)
 
-## `mark` — method?, line 352
+## `mark` — method?, line 351
 - **called from:**
-- `static/js/chat.js:352`
-- `static/js/chat.js:1748`
-- `static/js/chat.js:1750`
-- `static/js/chat.js:1778`
-- `static/js/chat.js:1781`
-- `static/js/chat.js:1793`
-- `static/js/chat.js:1795`
-- `static/js/chat.js:1797`
-- `static/js/chat.js:2012`
+- `static/js/chat.js:351`
+- `static/js/chat.js:1749`
+- `static/js/chat.js:1751`
+- `static/js/chat.js:1779`
+- `static/js/chat.js:1782`
+- `static/js/chat.js:1794`
+- `static/js/chat.js:1796`
+- `static/js/chat.js:1798`
+- `static/js/chat.js:2010`
+- `static/js/chat.js:2047`
 - `static/js/chat.js:2049`
-- `static/js/chat.js:2051`
-- `static/js/chat.js:2054`
-- `static/js/chat.js:2162`
-- `static/js/chat.js:2166`
-- `static/js/chat.js:2184`
-- `static/js/chat.js:2256`
-- `static/js/chat.js:2258`
-- `static/js/chat.js:2260`
+- `static/js/chat.js:2052`
+- `static/js/chat.js:2160`
+- `static/js/chat.js:2164`
+- `static/js/chat.js:2182`
+- `static/js/chat.js:2253`
+- `static/js/chat.js:2255`
+- `static/js/chat.js:2257`
+- `static/js/chat.js:2501`
+- `static/js/chat.js:2508`
+- `static/js/chat.js:2557`
+
+## `report` — method?, line 356
+- **called from:**
+- `static/js/chat.js:356`
 - `static/js/chat.js:2509`
-- `static/js/chat.js:2516`
-- `static/js/chat.js:2565`
+- `static/js/chat.js:2558`
 
-## `report` — method?, line 357
+## `_hashSessionCandidate` — function, line 388
 - **called from:**
-- `static/js/chat.js:357`
-- `static/js/chat.js:2517`
-- `static/js/chat.js:2566`
+- `static/js/chat.js:388`
+- `static/js/chat.js:417`
 
-## `_hashSessionCandidate` — function, line 389
-- **called from:**
-- `static/js/chat.js:389`
-- `static/js/chat.js:418`
-
-## `_adoptOpenedSessionBeforeAutoCreate` — function, line 400
+## `_adoptOpenedSessionBeforeAutoCreate` — function, line 399
 - **called from:**
 - `static/app.js:845`
-- `static/app.js:3333`
-- `static/js/chat.js:400`
-- `static/js/chat.js:1712`
+- `static/app.js:3332`
+- `static/js/chat.js:399`
+- `static/js/chat.js:1713`
 
-## `_setRoleModelLabel` — function, line 449
+## `_setRoleModelLabel` — function, line 448
 - **called from:**
-- `static/js/chat.js:449`
-- `static/js/chat.js:3694`
-- `static/js/chat.js:3722`
-- `static/js/chat.js:3775`
-- `static/js/chat.js:4502`
-- `static/js/chat.js:5825`
-- `static/js/chat.js:5847`
+- `static/js/chat.js:448`
+- `static/js/chat.js:3686`
+- `static/js/chat.js:3714`
+- `static/js/chat.js:3767`
+- `static/js/chat.js:4494`
+- `static/js/chat.js:5793`
+- `static/js/chat.js:5815`
 
-## `_bestKnownStreamModel` — function, line 482
+## `_bestKnownStreamModel` — function, line 481
 - **called from:**
-- `static/js/chat.js:482`
-- `static/js/chat.js:2436`
+- `static/js/chat.js:481`
+- `static/js/chat.js:2428`
 
-## `_clearResearchTimer` — function, line 509
+## `_clearResearchTimer` — function, line 508
 - **called from:**
-- `static/js/chat.js:509`
-- `static/js/chat.js:1510`
-- `static/js/chat.js:3610`
-- `static/js/chat.js:3632`
-- `static/js/chat.js:5167`
-- `static/js/chat.js:7189`
-- `static/js/chat.js:7203`
-- `static/js/chat.js:7219`
+- `static/js/chat.js:508`
+- `static/js/chat.js:1509`
+- `static/js/chat.js:3602`
+- `static/js/chat.js:3624`
+- `static/js/chat.js:5165`
+- `static/js/chat.js:7107`
+- `static/js/chat.js:7121`
+- `static/js/chat.js:7137`
 
-## `_appendViewReportLink` — function, line 525
+## `_appendViewReportLink` — function, line 524
 - **called from:**
-- `static/js/chat.js:525`
-- `static/js/chat.js:4721`
-- `static/js/chat.js:7087`
-- `static/js/chat.js:7238`
+- `static/js/chat.js:524`
+- `static/js/chat.js:4702`
+- `static/js/chat.js:7004`
+- `static/js/chat.js:7156`
 
-## `_stripDocumentFenceForChat` — function, line 530
+## `_stripDocumentFenceForChat` — function, line 529
 - **called from:**
-- `static/js/chat.js:530`
-- `static/js/chat.js:560`
-
-## `_stripIncompleteRawToolJsonForChat` — function, line 543
-- **called from:**
-- `static/js/chat.js:543`
-- `static/js/chat.js:560`
-
-## `_streamDisplayText` — function, line 559
-- **called from:**
+- `static/js/chat.js:529`
 - `static/js/chat.js:559`
-- `static/js/chat.js:741`
+
+## `_stripIncompleteRawToolJsonForChat` — function, line 542
+- **called from:**
+- `static/js/chat.js:542`
+- `static/js/chat.js:559`
+
+## `_streamDisplayText` — function, line 558
+- **called from:**
+- `static/js/chat.js:558`
+- `static/js/chat.js:740`
+- `static/js/chat.js:2767`
 - `static/js/chat.js:2775`
-- `static/js/chat.js:2783`
-- `static/js/chat.js:2984`
-- `static/js/chat.js:3035`
-- `static/js/chat.js:3095`
-- `static/js/chat.js:4555`
-- `static/js/chat.js:4663`
-- `static/js/chat.js:4667`
-- `static/js/chat.js:5694`
+- `static/js/chat.js:2976`
+- `static/js/chat.js:3027`
+- `static/js/chat.js:3087`
+- `static/js/chat.js:4547`
+- `static/js/chat.js:4644`
+- `static/js/chat.js:4648`
+- `static/js/chat.js:5697`
 
-## `_showDocumentWritingStatus` — function, line 563
+## `_showDocumentWritingStatus` — function, line 562
 - **called from:**
-- `static/js/chat.js:563`
-- `static/js/chat.js:3123`
-- `static/js/chat.js:5696`
+- `static/js/chat.js:562`
+- `static/js/chat.js:3115`
+- `static/js/chat.js:5699`
 
-## `_finishDocumentWritingStatus` — function, line 614
+## `_finishDocumentWritingStatus` — function, line 613
 - **called from:**
-- `static/js/chat.js:614`
-- `static/js/chat.js:4550`
-- `static/js/chat.js:5890`
+- `static/js/chat.js:613`
+- `static/js/chat.js:4542`
+- `static/js/chat.js:5853`
 
-## `_tabSyncPost` — function, line 675
+## `_tabSyncPost` — function, line 674
 - **called from:**
-- `static/js/chat.js:675`
-- `static/js/chat.js:686`
-- `static/js/chat.js:2011`
-- `static/js/chat.js:3218`
-- `static/js/chat.js:3960`
-- `static/js/chat.js:4815`
-- `static/js/chat.js:4915`
-- `static/js/chat.js:4935`
-- `static/js/chat.js:4955`
-- `static/js/chat.js:4974`
-- `static/js/chat.js:5021`
-- `static/js/chat.js:5363`
-- `static/js/chat.js:5918`
-- `static/js/chat.js:5931`
-- `static/js/chat.js:6562`
-- `static/js/chat.js:7422`
-- `static/js/chat.js:7523`
+- `static/js/chat.js:674`
+- `static/js/chat.js:685`
+- `static/js/chat.js:2009`
+- `static/js/chat.js:3210`
+- `static/js/chat.js:3952`
+- `static/js/chat.js:4789`
+- `static/js/chat.js:4889`
+- `static/js/chat.js:4909`
+- `static/js/chat.js:4929`
+- `static/js/chat.js:4948`
+- `static/js/chat.js:5002`
+- `static/js/chat.js:5035`
+- `static/js/chat.js:5373`
+- `static/js/chat.js:5880`
+- `static/js/chat.js:5893`
+- `static/js/chat.js:7286`
+- `static/js/chat.js:7362`
 
-## `_tabSyncPostDelta` — function, line 682
+## `_tabSyncPostDelta` — function, line 681
 - **called from:**
-- `static/js/chat.js:682`
-- `static/js/chat.js:3336`
-- `static/js/chat.js:5791`
+- `static/js/chat.js:681`
+- `static/js/chat.js:3328`
+- `static/js/chat.js:5765`
 
-## `_tabSyncCurrentSession` — function, line 690
+## `_tabSyncCurrentSession` — function, line 689
 - **called from:**
-- `static/js/chat.js:690`
+- `static/js/chat.js:689`
+- `static/js/chat.js:795`
+- `static/js/chat.js:815`
+- `static/js/chat.js:828`
+- `static/js/chat.js:859`
+- `static/js/chat.js:867`
+- `static/js/chat.js:932`
+- `static/js/chat.js:951`
+- `static/js/chat.js:956`
+- `static/js/chat.js:961`
+- `static/js/chat.js:966`
+- `static/js/chat.js:971`
+- `static/js/chat.js:976`
+
+## `_tabSyncEnsureBubble` — function, line 695
+- **called from:**
+- `static/js/chat.js:695`
+- `static/js/chat.js:751`
+- `static/js/chat.js:947`
+
+## `_tabSyncRenderDelta` — function, line 728
+- **called from:**
+- `static/js/chat.js:728`
+- `static/js/chat.js:760`
+
+## `_tabSyncQueueDelta` — function, line 750
+- **called from:**
+- `static/js/chat.js:750`
+- `static/js/chat.js:952`
+
+## `_tabSyncClearMirror` — function, line 764
+- **called from:**
+- `static/js/chat.js:764`
+- `static/js/chat.js:783`
+- `static/js/chat.js:834`
+- `static/js/chat.js:939`
+
+## `_tabSyncReloadSession` — function, line 782
+- **called from:**
+- `static/js/chat.js:782`
+- `static/js/chat.js:797`
+- `static/js/chat.js:839`
+- `static/js/chat.js:872`
+
+## `_tabSyncScheduleReload` — function, line 791
+- **called from:**
+- `static/js/chat.js:791`
+- `static/js/chat.js:957`
+- `static/js/chat.js:977`
+
+## `_tabSyncScheduleTakeover` — function, line 804
+- **called from:**
+- `static/js/chat.js:804`
+- `static/js/chat.js:962`
+
+## `_tabSyncTakeover` — function, line 814
+- **called from:**
+- `static/js/chat.js:809`
+- `static/js/chat.js:814`
+- `static/js/chat.js:870`
+
+## `_tabSyncStaleSweep` — function, line 849
+- **called from:**
+- `static/js/chat.js:849`
+
+## `_tabSyncStampUserBubble` — function, line 883
+- **called from:**
+- `static/js/chat.js:883`
+- `static/js/chat.js:972`
+
+## `_tabSyncApplyDelete` — function, line 892
+- **called from:**
+- `static/js/chat.js:892`
+- `static/js/chat.js:967`
+
+## `_initTabSync` — function, line 920
+- **called from:**
+- `static/js/chat.js:920`
+- `static/js/chat.js:1167`
+
+## `hasActiveStream` — function, line 992
+- **called from:**
 - `static/js/chat.js:796`
 - `static/js/chat.js:816`
 - `static/js/chat.js:829`
-- `static/js/chat.js:860`
+- `static/js/chat.js:854`
 - `static/js/chat.js:868`
-- `static/js/chat.js:933`
-- `static/js/chat.js:952`
-- `static/js/chat.js:957`
-- `static/js/chat.js:962`
-- `static/js/chat.js:967`
-- `static/js/chat.js:972`
-- `static/js/chat.js:977`
+- `static/js/chat.js:932`
+- `static/js/chat.js:951`
+- `static/js/chat.js:956`
+- `static/js/chat.js:961`
+- `static/js/chat.js:976`
+- `static/js/chat.js:992`
+- `static/js/chat.js:5407`
+- `static/js/chat.js:5593`
+- `static/js/sessions.js:2803`
 
-## `_tabSyncEnsureBubble` — function, line 696
+## `_getForegroundStreamState` — function, line 997
 - **called from:**
-- `static/js/chat.js:696`
-- `static/js/chat.js:752`
-- `static/js/chat.js:948`
-
-## `_tabSyncRenderDelta` — function, line 729
-- **called from:**
-- `static/js/chat.js:729`
-- `static/js/chat.js:761`
-
-## `_tabSyncQueueDelta` — function, line 751
-- **called from:**
-- `static/js/chat.js:751`
-- `static/js/chat.js:953`
-
-## `_tabSyncClearMirror` — function, line 765
-- **called from:**
-- `static/js/chat.js:765`
-- `static/js/chat.js:784`
-- `static/js/chat.js:835`
-- `static/js/chat.js:940`
-- `static/js/chat.js:5610`
-
-## `_tabSyncReloadSession` — function, line 783
-- **called from:**
-- `static/js/chat.js:783`
-- `static/js/chat.js:798`
-- `static/js/chat.js:840`
-- `static/js/chat.js:873`
-
-## `_tabSyncScheduleReload` — function, line 792
-- **called from:**
-- `static/js/chat.js:792`
-- `static/js/chat.js:958`
-- `static/js/chat.js:978`
-
-## `_tabSyncScheduleTakeover` — function, line 805
-- **called from:**
-- `static/js/chat.js:805`
-- `static/js/chat.js:963`
-
-## `_tabSyncTakeover` — function, line 815
-- **called from:**
-- `static/js/chat.js:810`
-- `static/js/chat.js:815`
-- `static/js/chat.js:871`
-
-## `_tabSyncStaleSweep` — function, line 850
-- **called from:**
-- `static/js/chat.js:850`
-
-## `_tabSyncStampUserBubble` — function, line 884
-- **called from:**
-- `static/js/chat.js:884`
-- `static/js/chat.js:973`
-
-## `_tabSyncApplyDelete` — function, line 893
-- **called from:**
-- `static/js/chat.js:893`
-- `static/js/chat.js:968`
-
-## `_initTabSync` — function, line 921
-- **called from:**
-- `static/js/chat.js:921`
-- `static/js/chat.js:1168`
-
-## `hasActiveStream` — function, line 993
-- **called from:**
-- `static/js/chat.js:797`
-- `static/js/chat.js:817`
-- `static/js/chat.js:830`
-- `static/js/chat.js:855`
-- `static/js/chat.js:869`
-- `static/js/chat.js:933`
-- `static/js/chat.js:952`
-- `static/js/chat.js:957`
-- `static/js/chat.js:962`
-- `static/js/chat.js:977`
-- `static/js/chat.js:993`
-- `static/js/chat.js:5397`
-- `static/js/chat.js:5583`
-- `static/js/sessions.js:2806`
-
-## `_getForegroundStreamState` — function, line 998
-- **called from:**
-- `static/js/chat.js:998`
-- `static/js/chat.js:1008`
-- `static/js/chat.js:1169`
-- `static/js/chat.js:1558`
-- `static/js/chat.js:5248`
-- `static/js/chat.js:5339`
-- `static/js/chat.js:5351`
-- `static/js/chat.js:5496`
-- `static/js/chat.js:6354`
-- `static/js/chat.js:6367`
-
-## `_syncForegroundStreamGlobals` — function, line 1007
-- **called from:**
+- `static/js/chat.js:997`
 - `static/js/chat.js:1007`
-- `static/js/chat.js:1646`
-- `static/js/chat.js:2433`
-- `static/js/chat.js:5121`
-- `static/js/chat.js:5360`
-- `static/js/chat.js:5531`
-- `static/js/chat.js:6383`
+- `static/js/chat.js:1168`
+- `static/js/chat.js:1557`
+- `static/js/chat.js:5246`
+- `static/js/chat.js:5337`
+- `static/js/chat.js:5349`
+- `static/js/chat.js:5506`
+- `static/js/chat.js:6313`
+- `static/js/chat.js:6326`
 
-## `_touchStreamActivity` — function, line 1016
+## `_syncForegroundStreamGlobals` — function, line 1006
 - **called from:**
-- `static/js/chat.js:1016`
-- `static/js/chat.js:1878`
-- `static/js/chat.js:3148`
+- `static/js/chat.js:1006`
+- `static/js/chat.js:1650`
+- `static/js/chat.js:2425`
+- `static/js/chat.js:5119`
+- `static/js/chat.js:5359`
+- `static/js/chat.js:5370`
+- `static/js/chat.js:5541`
+- `static/js/chat.js:6342`
 
-## `_metricsCostRecordId` — function, line 1025
+## `_touchStreamActivity` — function, line 1015
 - **called from:**
-- `static/js/chat.js:1025`
-- `static/js/chat.js:3876`
-- `static/js/chat.js:3910`
-- `static/js/chat.js:5813`
-- `static/js/chat.js:5868`
+- `static/js/chat.js:1015`
+- `static/js/chat.js:1879`
+- `static/js/chat.js:3140`
 
-## `_postExactStop` — function, line 1031
+## `_metricsCostRecordId` — function, line 1024
 - **called from:**
-- `static/js/chat.js:1031`
-- `static/js/chat.js:1054`
-- `static/js/chat.js:1071`
+- `static/js/chat.js:1024`
+- `static/js/chat.js:3868`
+- `static/js/chat.js:3902`
+- `static/js/chat.js:5781`
+- `static/js/chat.js:5835`
 
-## `_stopExactRun` — function, line 1040
+## `_postExactStop` — function, line 1030
 - **called from:**
-- `static/js/chat.js:1040`
-- `static/js/chat.js:2389`
-- `static/js/chat.js:2390`
-- `static/js/chat.js:5260`
+- `static/js/chat.js:1030`
+- `static/js/chat.js:1053`
+- `static/js/chat.js:1070`
 
-## `_rememberStreamRunId` — function, line 1058
+## `_stopExactRun` — function, line 1039
 - **called from:**
-- `static/js/chat.js:1058`
-- `static/js/chat.js:2557`
+- `static/js/chat.js:1039`
+- `static/js/chat.js:2381`
+- `static/js/chat.js:2382`
+- `static/js/chat.js:5258`
 
-## `_appendGeneratedImageBubble` — function, line 1089
+## `_rememberStreamRunId` — function, line 1057
 - **called from:**
-- `static/js/chat.js:1089`
-- `static/js/chat.js:3277`
-- `static/js/chat.js:4163`
-- `static/js/chat.js:4717`
+- `static/js/chat.js:1057`
+- `static/js/chat.js:2549`
 
-## `_normalizeEndpointForCompare` — function, line 1120
+## `_appendGeneratedImageBubble` — function, line 1088
 - **called from:**
-- `static/js/chat.js:1120`
-- `static/js/chat.js:1144`
-- `static/js/chat.js:1150`
+- `static/js/chat.js:1088`
+- `static/js/chat.js:3269`
+- `static/js/chat.js:4155`
+- `static/js/chat.js:4698`
 
-## `_probeCurrentEndpointStatus` — function, line 1143
+## `_normalizeEndpointForCompare` — function, line 1119
 - **called from:**
+- `static/js/chat.js:1119`
 - `static/js/chat.js:1143`
+- `static/js/chat.js:1149`
 
-## `init` — function, line 1166
+## `_probeCurrentEndpointStatus` — function, line 1142
 - **called from:**
+- `static/js/chat.js:1142`
+
+## `init` — function, line 1165
+- **called from:**
+- `static/app.js:3723`
 - `static/app.js:3724`
 - `static/app.js:3725`
 - `static/app.js:3726`
 - `static/app.js:3727`
 - `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
+- `static/app.js:3730`
+- `static/app.js:3733`
+- `static/app.js:3735`
+- `static/app.js:3738`
+- `static/app.js:3747`
+- `static/app.js:4369`
 - `static/app.js:4370`
-- `static/app.js:4371`
 - `static/js/a11y.js:121`
 - `static/js/a11y.js:163`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
+- `static/js/chat.js:1165`
+- `static/js/chat.js:1170`
 - `static/js/compare/index.js:55`
 - `static/js/cookbookDownload.js:10`
 - `static/js/cookbookRunning.js:333`
@@ -586,530 +586,530 @@
 - `static/js/tourHints.js:175`
 - `static/js/voiceRecorder.js:268`
 
-## `_wireHistoryRecall` — arrow, line 1185
+## `_wireHistoryRecall` — arrow, line 1184
 - **called from:**
-- `static/js/chat.js:1196`
+- `static/js/chat.js:1195`
+- `static/js/chat.js:1197`
 - `static/js/chat.js:1198`
-- `static/js/chat.js:1199`
 
-## `_wireArrowUpRecall` — arrow, line 1190
+## `_wireArrowUpRecall` — arrow, line 1189
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `updateSubmitButton` — function, line 1214
+## `updateSubmitButton` — function, line 1213
 - **called from:**
-- `static/js/chat.js:1214`
-- `static/js/chat.js:1549`
-- `static/js/chat.js:1620`
-- `static/js/chat.js:1839`
-- `static/js/chat.js:2062`
-- `static/js/chat.js:2178`
-- `static/js/chat.js:2196`
-- `static/js/chat.js:5145`
-- `static/js/chat.js:5370`
-- `static/js/chat.js:5534`
-- `static/js/chat.js:5646`
-- `static/js/chat.js:5680`
-- `static/js/chat.js:6393`
+- `static/js/chat.js:1213`
+- `static/js/chat.js:1548`
+- `static/js/chat.js:1624`
+- `static/js/chat.js:1840`
+- `static/js/chat.js:2060`
+- `static/js/chat.js:2176`
+- `static/js/chat.js:2194`
+- `static/js/chat.js:5143`
+- `static/js/chat.js:5380`
+- `static/js/chat.js:5544`
+- `static/js/chat.js:5649`
+- `static/js/chat.js:5683`
+- `static/js/chat.js:6352`
 
-## `_extractPlanText` — function, line 1284
+## `_extractPlanText` — function, line 1283
 - **called from:**
-- `static/js/chat.js:1284`
-- `static/js/chat.js:1304`
-- `static/js/chat.js:1324`
-
-## `_getStoredPlan` — function, line 1299
-- **called from:**
-- `static/js/chat.js:1299`
-- `static/js/chat.js:1324`
-
-## `_setStoredPlan` — function, line 1303
-- **called from:**
+- `static/js/chat.js:1283`
 - `static/js/chat.js:1303`
-- `static/js/chat.js:4289`
-- `static/js/chat.js:4728`
+- `static/js/chat.js:1323`
 
-## `_clearStoredPlan` — function, line 1309
+## `_getStoredPlan` — function, line 1298
 - **called from:**
-- `static/js/chat.js:1309`
-- `static/js/chat.js:1332`
+- `static/js/chat.js:1298`
+- `static/js/chat.js:1323`
 
-## `_attachPlanActions` — function, line 1313
+## `_setStoredPlan` — function, line 1302
 - **called from:**
-- `static/js/chat.js:1313`
-- `static/js/chat.js:4729`
+- `static/js/chat.js:1302`
+- `static/js/chat.js:4281`
+- `static/js/chat.js:4709`
 
-## `_escapeQueueText` — function, line 1338
+## `_clearStoredPlan` — function, line 1308
 - **called from:**
-- `static/js/chat.js:1338`
-- `static/js/chat.js:1364`
+- `static/js/chat.js:1308`
+- `static/js/chat.js:1331`
 
-## `_ensureQueuedBubbleHost` — function, line 1342
+## `_attachPlanActions` — function, line 1312
 - **called from:**
-- `static/js/chat.js:1342`
-- `static/js/chat.js:1358`
+- `static/js/chat.js:1312`
+- `static/js/chat.js:4710`
 
-## `_createQueuedBubble` — function, line 1357
+## `_escapeQueueText` — function, line 1337
 - **called from:**
+- `static/js/chat.js:1337`
+- `static/js/chat.js:1363`
+
+## `_ensureQueuedBubbleHost` — function, line 1341
+- **called from:**
+- `static/js/chat.js:1341`
 - `static/js/chat.js:1357`
-- `static/js/chat.js:1433`
 
-## `_removeQueuedRequest` — function, line 1374
+## `_createQueuedBubble` — function, line 1356
 - **called from:**
-- `static/js/chat.js:1374`
-- `static/js/chat.js:1412`
+- `static/js/chat.js:1356`
+- `static/js/chat.js:1432`
+
+## `_removeQueuedRequest` — function, line 1373
+- **called from:**
+- `static/js/chat.js:1373`
+- `static/js/chat.js:1411`
+- `static/js/chat.js:1464`
+
+## `_setComposerAndSend` — function, line 1381
+- **called from:**
+- `static/js/chat.js:1328`
+- `static/js/chat.js:1381`
+- `static/js/chat.js:1404`
+- `static/js/chat.js:1414`
 - `static/js/chat.js:1465`
 
-## `_setComposerAndSend` — function, line 1382
+## `handleChatSubmit` — method?, line 1388
 - **called from:**
-- `static/js/chat.js:1329`
-- `static/js/chat.js:1382`
-- `static/js/chat.js:1405`
-- `static/js/chat.js:1415`
-- `static/js/chat.js:1466`
+- `static/js/chat.js:1388`
+- `static/js/chat.js:1473`
 
-## `handleChatSubmit` — method?, line 1389
+## `_sendQueuedWhenIdle` — function, line 1396
 - **called from:**
-- `static/js/chat.js:1389`
-- `static/js/chat.js:1474`
-- `static/js/chat.js:7308`
+- `static/js/chat.js:1396`
+- `static/js/chat.js:1425`
 
-## `_sendQueuedWhenIdle` — function, line 1397
-- **called from:**
-- `static/js/chat.js:1397`
-- `static/js/chat.js:1426`
-
-## `trySend` — arrow, line 1399
+## `trySend` — arrow, line 1398
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_promoteQueuedRequest` — function, line 1411
+## `_promoteQueuedRequest` — function, line 1410
 - **called from:**
-- `static/js/chat.js:1367`
-- `static/js/chat.js:1411`
+- `static/js/chat.js:1366`
+- `static/js/chat.js:1410`
 
-## `_queueAgentRequest` — function, line 1429
+## `_queueAgentRequest` — function, line 1428
 - **called from:**
-- `static/js/chat.js:1429`
-- `static/js/chat.js:1448`
+- `static/js/chat.js:1428`
+- `static/js/chat.js:1447`
 
-## `queueStreamingComposerRequest` — function, line 1439
+## `queueStreamingComposerRequest` — function, line 1438
 - **called from:**
 - `static/app.js:113`
-- `static/app.js:3481`
-- `static/app.js:4108`
-- `static/js/chat.js:1439`
-- `static/js/chat.js:1499`
+- `static/app.js:3480`
+- `static/app.js:4107`
+- `static/js/chat.js:1438`
+- `static/js/chat.js:1498`
 
-## `_drainQueuedAgentRequests` — function, line 1457
+## `_drainQueuedAgentRequests` — function, line 1456
 - **called from:**
-- `static/js/chat.js:1457`
-- `static/js/chat.js:1553`
-- `static/js/chat.js:5225`
-- `static/js/chat.js:5373`
+- `static/js/chat.js:1456`
+- `static/js/chat.js:1552`
+- `static/js/chat.js:5223`
+- `static/js/chat.js:5383`
 
-## `handleChatSubmit` — function, line 1474
+## `handleChatSubmit` — function, line 1473
 - **called from:**
-- `static/js/chat.js:1389`
-- `static/js/chat.js:1474`
-- `static/js/chat.js:7308`
+- `static/js/chat.js:1388`
+- `static/js/chat.js:1473`
 
-## `_releaseSendFlag` — arrow, line 1644
+## `_releaseSendFlag` — arrow, line 1648
 - **called from:**
-- `static/js/chat.js:1680`
-- `static/js/chat.js:1694`
-- `static/js/chat.js:1703`
-- `static/js/chat.js:1751`
-- `static/js/chat.js:1761`
-- `static/js/chat.js:1798`
-- `static/js/chat.js:1807`
-- `static/js/chat.js:1818`
-- `static/js/chat.js:1826`
-- `static/js/chat.js:2063`
-- `static/js/chat.js:2179`
-- `static/js/chat.js:2197`
+- `static/js/chat.js:1683`
+- `static/js/chat.js:1695`
+- `static/js/chat.js:1704`
+- `static/js/chat.js:1752`
+- `static/js/chat.js:1762`
+- `static/js/chat.js:1799`
+- `static/js/chat.js:1808`
+- `static/js/chat.js:1819`
+- `static/js/chat.js:1827`
+- `static/js/chat.js:2061`
+- `static/js/chat.js:2177`
+- `static/js/chat.js:2195`
 
-## `selectedRouteForSend` — arrow, line 1715
+## `selectedRouteForSend` — arrow, line 1716
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_renderStream` — arrow, line 1901
+## `_renderStream` — arrow, line 1902
 - **called from:**
-- `static/js/chat.js:2929`
-- `static/js/chat.js:2965`
-- `static/js/chat.js:3369`
-- `static/js/chat.js:3371`
-- `static/js/chat.js:3516`
-- `static/js/chat.js:3518`
+- `static/js/chat.js:2921`
+- `static/js/chat.js:2957`
+- `static/js/chat.js:3361`
+- `static/js/chat.js:3363`
+- `static/js/chat.js:3508`
+- `static/js/chat.js:3510`
 
-## `_finalizeRoundRender` — arrow, line 1902
+## `_finalizeRoundRender` — arrow, line 1903
 - **called from:**
-- `static/js/chat.js:3004`
-- `static/js/chat.js:3974`
-- `static/js/chat.js:4301`
-
-## `_finalizeInterruptedView` — arrow, line 1903
-- **called from:**
-- `static/js/chat.js:2431`
-- `static/js/chat.js:4855`
-
-## `_cancelThinkingTimer` — arrow, line 1904
-- **called from:**
-- `static/js/chat.js:3282`
-- `static/js/chat.js:3288`
-- `static/js/chat.js:3296`
+- `static/js/chat.js:2996`
 - `static/js/chat.js:3966`
-- `static/js/chat.js:4280`
-- `static/js/chat.js:4294`
-- `static/js/chat.js:4370`
-- `static/js/chat.js:4380`
-- `static/js/chat.js:4396`
-- `static/js/chat.js:4478`
-- `static/js/chat.js:4864`
+- `static/js/chat.js:4293`
 
-## `_removeThinkingSpinner` — arrow, line 1905
+## `_finalizeInterruptedView` — arrow, line 1904
 - **called from:**
-- `static/js/chat.js:2706`
+- `static/js/chat.js:2423`
+- `static/js/chat.js:4829`
+
+## `_cancelThinkingTimer` — arrow, line 1905
+- **called from:**
+- `static/js/chat.js:3274`
+- `static/js/chat.js:3280`
+- `static/js/chat.js:3288`
+- `static/js/chat.js:3958`
+- `static/js/chat.js:4272`
+- `static/js/chat.js:4286`
+- `static/js/chat.js:4362`
+- `static/js/chat.js:4372`
+- `static/js/chat.js:4388`
+- `static/js/chat.js:4470`
+- `static/js/chat.js:4838`
+
+## `_removeThinkingSpinner` — arrow, line 1906
+- **called from:**
+- `static/js/chat.js:2698`
+- `static/js/chat.js:3281`
 - `static/js/chat.js:3289`
-- `static/js/chat.js:3297`
-- `static/js/chat.js:3967`
-- `static/js/chat.js:4281`
-- `static/js/chat.js:4295`
-- `static/js/chat.js:4371`
-- `static/js/chat.js:4381`
-- `static/js/chat.js:4397`
-- `static/js/chat.js:4479`
-- `static/js/chat.js:4865`
-
-## `_flushLiveThinking` — arrow, line 1906
-- **called from:**
-- `static/js/chat.js:2856`
-- `static/js/chat.js:3176`
-
-## `_cancelLiveThinkingWork` — arrow, line 1907
-- **called from:**
-- `static/js/chat.js:2430`
-- `static/js/chat.js:2857`
-- `static/js/chat.js:2884`
-- `static/js/chat.js:3177`
-- `static/js/chat.js:3479`
-- `static/js/chat.js:4299`
-- `static/js/chat.js:4476`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5094`
-
-## `_closeOpenThinkingMarkup` — arrow, line 1913
-- **called from:**
-- `static/js/chat.js:3002`
-- `static/js/chat.js:3194`
-- `static/js/chat.js:3964`
-- `static/js/chat.js:4292`
+- `static/js/chat.js:3959`
+- `static/js/chat.js:4273`
+- `static/js/chat.js:4287`
+- `static/js/chat.js:4363`
+- `static/js/chat.js:4373`
+- `static/js/chat.js:4389`
+- `static/js/chat.js:4471`
 - `static/js/chat.js:4839`
 
-## `_endThinkingOnTerminalPath` — arrow, line 1914
+## `_flushLiveThinking` — arrow, line 1907
 - **called from:**
-- `static/js/chat.js:3003`
-- `static/js/chat.js:4859`
+- `static/js/chat.js:2848`
+- `static/js/chat.js:3168`
 
-## `clearResponseTimeout` — arrow, line 1917
+## `_cancelLiveThinkingWork` — arrow, line 1908
 - **called from:**
-- `static/js/chat.js:2520`
-- `static/js/chat.js:3271`
+- `static/js/chat.js:2422`
+- `static/js/chat.js:2849`
+- `static/js/chat.js:2876`
+- `static/js/chat.js:3169`
+- `static/js/chat.js:3471`
+- `static/js/chat.js:4291`
+- `static/js/chat.js:4468`
+- `static/js/chat.js:4815`
+- `static/js/chat.js:5092`
+
+## `_closeOpenThinkingMarkup` — arrow, line 1914
+- **called from:**
+- `static/js/chat.js:2994`
+- `static/js/chat.js:3186`
+- `static/js/chat.js:3956`
+- `static/js/chat.js:4284`
+- `static/js/chat.js:4813`
+
+## `_endThinkingOnTerminalPath` — arrow, line 1915
+- **called from:**
+- `static/js/chat.js:2995`
+- `static/js/chat.js:4833`
+
+## `clearResponseTimeout` — arrow, line 1918
+- **called from:**
+- `static/js/chat.js:2512`
+- `static/js/chat.js:3263`
+- `static/js/chat.js:5093`
+
+## `clearFirstTokenWaitTimers` — arrow, line 1920
+- **called from:**
+- `static/js/chat.js:1925`
+- `static/js/chat.js:3135`
+- `static/js/chat.js:3265`
 - `static/js/chat.js:5095`
 
-## `clearFirstTokenWaitTimers` — arrow, line 1919
+## `scheduleFirstTokenWaitMessages` — arrow, line 1924
 - **called from:**
-- `static/js/chat.js:1924`
-- `static/js/chat.js:3143`
-- `static/js/chat.js:3273`
-- `static/js/chat.js:5097`
+- `static/js/chat.js:2470`
 
-## `scheduleFirstTokenWaitMessages` — arrow, line 1923
+## `clearProcessingProbe` — arrow, line 1937
 - **called from:**
-- `static/js/chat.js:2478`
+- `static/js/chat.js:3264`
+- `static/js/chat.js:5094`
 
-## `clearProcessingProbe` — arrow, line 1936
+## `_dropReadonly` — arrow, line 2024
 - **called from:**
-- `static/js/chat.js:3272`
-- `static/js/chat.js:5096`
-
-## `_dropReadonly` — arrow, line 2026
-- **called from:**
-- `static/js/chat.js:2040`
+- `static/js/chat.js:2038`
 - `static/js/compare/index.js:622`
 
-## `_idleTimeoutHandler` — arrow, line 2376
+## `_idleTimeoutHandler` — arrow, line 2368
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_armIdleTimeout` — arrow, line 2404
+## `_armIdleTimeout` — arrow, line 2396
 - **called from:**
-- `static/js/chat.js:2409`
-- `static/js/chat.js:3150`
+- `static/js/chat.js:2401`
+- `static/js/chat.js:3142`
 
-## `enableResearchBtn` — arrow, line 2489
+## `enableResearchBtn` — arrow, line 2481
 - **called from:**
-- `static/js/chat.js:2553`
+- `static/js/chat.js:2545`
 
-## `_tzName` — arrow, line 2505
+## `_tzName` — arrow, line 2497
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_rememberGeneratedImage` — function, line 2590
+## `_rememberGeneratedImage` — function, line 2582
+- **called from:**
+- `static/js/chat.js:2582`
+- `static/js/chat.js:3268`
+- `static/js/chat.js:4154`
+
+## `_metricsTargetForTurn` — function, line 2590
 - **called from:**
 - `static/js/chat.js:2590`
-- `static/js/chat.js:3276`
-- `static/js/chat.js:4162`
+- `static/js/chat.js:3896`
+- `static/js/chat.js:3916`
+- `static/js/chat.js:4746`
 
-## `_metricsTargetForTurn` — function, line 2598
+## `_ensureStreamLayout` — function, line 2600
 - **called from:**
-- `static/js/chat.js:2598`
-- `static/js/chat.js:3904`
-- `static/js/chat.js:3924`
-- `static/js/chat.js:4765`
+- `static/js/chat.js:2600`
+- `static/js/chat.js:2984`
+- `static/js/chat.js:3019`
+- `static/js/chat.js:3448`
 
-## `_ensureStreamLayout` — function, line 2608
+## `_ensureVisibleRoundForDelta` — function, line 2612
 - **called from:**
-- `static/js/chat.js:2608`
-- `static/js/chat.js:2992`
-- `static/js/chat.js:3027`
-- `static/js/chat.js:3456`
+- `static/js/chat.js:2612`
+- `static/js/chat.js:3331`
 
-## `_ensureVisibleRoundForDelta` — function, line 2620
+## `_thinkingLabel` — function, line 2669
 - **called from:**
-- `static/js/chat.js:2620`
-- `static/js/chat.js:3339`
+- `static/js/chat.js:2669`
+- `static/js/chat.js:2708`
 
-## `_thinkingLabel` — function, line 2677
+## `_showThinkingSpinner` — function, line 2682
 - **called from:**
-- `static/js/chat.js:2677`
-- `static/js/chat.js:2716`
+- `static/js/chat.js:2682`
+- `static/js/chat.js:2699`
+- `static/js/chat.js:2708`
 
-## `_showThinkingSpinner` — function, line 2690
+## `_replaceThinkingSpinner` — function, line 2697
 - **called from:**
-- `static/js/chat.js:2690`
-- `static/js/chat.js:2707`
-- `static/js/chat.js:2716`
+- `static/js/chat.js:2697`
+- `static/js/chat.js:3275`
 
-## `_replaceThinkingSpinner` — function, line 2705
+## `_scheduleThinkingSpinner` — function, line 2704
 - **called from:**
-- `static/js/chat.js:2705`
-- `static/js/chat.js:3283`
+- `static/js/chat.js:2704`
+- `static/js/chat.js:2922`
+- `static/js/chat.js:3365`
+- `static/js/chat.js:3512`
+- `static/js/chat.js:4222`
 
-## `_scheduleThinkingSpinner` — function, line 2712
+## `_estimateThinkingTokens` — function, line 2741
 - **called from:**
-- `static/js/chat.js:2712`
-- `static/js/chat.js:2930`
-- `static/js/chat.js:3373`
-- `static/js/chat.js:3520`
-- `static/js/chat.js:4230`
+- `static/js/chat.js:2741`
+- `static/js/chat.js:2785`
 
-## `_estimateThinkingTokens` — function, line 2749
+## `_formatThinkStats` — function, line 2747
 - **called from:**
-- `static/js/chat.js:2749`
-- `static/js/chat.js:2793`
+- `static/js/chat.js:2747`
+- `static/js/chat.js:2821`
+- `static/js/chat.js:2889`
+- `static/js/chat.js:2934`
+- `static/js/chat.js:3229`
 
-## `_formatThinkStats` — function, line 2755
+## `_stripThinkingWrappers` — function, line 2753
 - **called from:**
-- `static/js/chat.js:2755`
-- `static/js/chat.js:2829`
-- `static/js/chat.js:2897`
-- `static/js/chat.js:2942`
-- `static/js/chat.js:3237`
+- `static/js/chat.js:2753`
+- `static/js/chat.js:2768`
+- `static/js/chat.js:2779`
 
-## `_stripThinkingWrappers` — function, line 2761
+## `_liveThinkingText` — function, line 2766
 - **called from:**
-- `static/js/chat.js:2761`
-- `static/js/chat.js:2776`
-- `static/js/chat.js:2787`
+- `static/js/chat.js:2766`
+- `static/js/chat.js:2780`
+- `static/js/chat.js:2799`
 
-## `_liveThinkingText` — function, line 2774
+## `_closedThinkingText` — function, line 2774
 - **called from:**
 - `static/js/chat.js:2774`
-- `static/js/chat.js:2788`
-- `static/js/chat.js:2807`
+- `static/js/chat.js:2874`
+- `static/js/chat.js:2886`
+- `static/js/chat.js:2904`
+- `static/js/chat.js:3220`
 
-## `_closedThinkingText` — function, line 2782
+## `_commitLiveThinkingText` — function, line 2783
 - **called from:**
-- `static/js/chat.js:2782`
+- `static/js/chat.js:2783`
+
+## `_ensureLiveThinkingThrottle` — function, line 2796
+- **called from:**
+- `static/js/chat.js:2796`
+- `static/js/chat.js:2826`
+
+## `_stopLiveThinkTimer` — function, line 2805
+- **called from:**
+- `static/js/chat.js:2805`
+- `static/js/chat.js:2816`
+- `static/js/chat.js:2843`
+
+## `_startLiveThinkTimer` — function, line 2810
+- **called from:**
+- `static/js/chat.js:2810`
+- `static/js/chat.js:2827`
+
+## `_queueLiveThinking` — function, line 2825
+- **called from:**
+- `static/js/chat.js:2825`
+- `static/js/chat.js:2831`
+- `static/js/chat.js:3355`
+- `static/js/chat.js:3472`
+- `static/js/chat.js:3498`
+
+## `_finalizeLiveThinking` — function, line 2847
+- **called from:**
+- `static/js/chat.js:2847`
+- `static/js/chat.js:2874`
+- `static/js/chat.js:2886`
+- `static/js/chat.js:2906`
+- `static/js/chat.js:3220`
+
+## `_endLiveThinkingSection` — function, line 2882
+- **called from:**
 - `static/js/chat.js:2882`
-- `static/js/chat.js:2894`
-- `static/js/chat.js:2912`
-- `static/js/chat.js:3228`
+- `static/js/chat.js:3962`
+- `static/js/chat.js:4289`
 
-## `_commitLiveThinkingText` — function, line 2791
+## `_cancelThinkingGrace` — function, line 2893
 - **called from:**
-- `static/js/chat.js:2791`
+- `static/js/chat.js:2649`
+- `static/js/chat.js:2844`
+- `static/js/chat.js:2893`
+- `static/js/chat.js:2903`
+- `static/js/chat.js:3432`
 
-## `_ensureLiveThinkingThrottle` — function, line 2804
+## `_finishLiveThinkingTransition` — function, line 2899
 - **called from:**
-- `static/js/chat.js:2804`
-- `static/js/chat.js:2834`
+- `static/js/chat.js:2899`
+- `static/js/chat.js:2966`
+- `static/js/chat.js:3501`
 
-## `_stopLiveThinkTimer` — function, line 2813
+## `_scheduleThinkingGrace` — function, line 2960
 - **called from:**
-- `static/js/chat.js:2813`
-- `static/js/chat.js:2824`
-- `static/js/chat.js:2851`
+- `static/js/chat.js:2960`
+- `static/js/chat.js:3429`
+- `static/js/chat.js:3496`
 
-## `_startLiveThinkTimer` — function, line 2818
+## `_replyAfterClosedThinking` — function, line 3006
 - **called from:**
-- `static/js/chat.js:2818`
-- `static/js/chat.js:2835`
+- `static/js/chat.js:3006`
+- `static/js/chat.js:3028`
 
-## `_queueLiveThinking` — function, line 2833
+## `markFirstVisibleOutput` — arrow, line 3132
 - **called from:**
-- `static/js/chat.js:2833`
-- `static/js/chat.js:2839`
-- `static/js/chat.js:3363`
-- `static/js/chat.js:3480`
-- `static/js/chat.js:3506`
+- `static/js/chat.js:3157`
 
-## `_finalizeLiveThinking` — function, line 2855
-- **called from:**
-- `static/js/chat.js:2855`
-- `static/js/chat.js:2882`
-- `static/js/chat.js:2894`
-- `static/js/chat.js:2914`
-- `static/js/chat.js:3228`
-
-## `_endLiveThinkingSection` — function, line 2890
-- **called from:**
-- `static/js/chat.js:2890`
-- `static/js/chat.js:3970`
-- `static/js/chat.js:4297`
-
-## `_cancelThinkingGrace` — function, line 2901
-- **called from:**
-- `static/js/chat.js:2657`
-- `static/js/chat.js:2852`
-- `static/js/chat.js:2901`
-- `static/js/chat.js:2911`
-- `static/js/chat.js:3440`
-
-## `_finishLiveThinkingTransition` — function, line 2907
-- **called from:**
-- `static/js/chat.js:2907`
-- `static/js/chat.js:2974`
-- `static/js/chat.js:3509`
-
-## `_scheduleThinkingGrace` — function, line 2968
-- **called from:**
-- `static/js/chat.js:2968`
-- `static/js/chat.js:3437`
-- `static/js/chat.js:3504`
-
-## `_replyAfterClosedThinking` — function, line 3014
-- **called from:**
-- `static/js/chat.js:3014`
-- `static/js/chat.js:3036`
-
-## `markFirstVisibleOutput` — arrow, line 3140
-- **called from:**
-- `static/js/chat.js:3165`
-
-## `resetFn` — arrow, line 4741
+## `resetFn` — arrow, line 4722
 - **called from:**
 - `static/js/tts-ai.js:235`
 - `static/js/tts-ai.js:341`
 
-## `failures` — class, line 5040
+## `failures` — class, line 5021
 - **called from:**
-- `static/js/chat.js:5274`
+- `static/js/chat.js:5272`
 
-## `abortCurrentRequest` — function, line 5237
+## `abortCurrentRequest` — function, line 5235
 - **called from:**
 - `static/app.js:839`
-- `static/js/chat.js:1512`
-- `static/js/chat.js:5237`
-- `static/js/chat.js:5332`
-- `static/js/chat.js:5499`
+- `static/js/chat.js:1511`
+- `static/js/chat.js:5235`
+- `static/js/chat.js:5330`
+- `static/js/chat.js:5509`
 - `static/js/keyboard-shortcuts.js:247`
-- `static/js/sessions.js:979`
-- `static/js/sessions.js:1993`
-- `static/js/sessions.js:1999`
-- `static/js/sessions.js:2540`
+- `static/js/sessions.js:977`
+- `static/js/sessions.js:1990`
+- `static/js/sessions.js:1996`
+- `static/js/sessions.js:2537`
 
-## `failures` — class, line 5274
+## `failures` — class, line 5272
 - **called from:**
-- `static/js/chat.js:5274`
+- `static/js/chat.js:5272`
 
-## `_tryAutoRecover` — function, line 5278
+## `_tryAutoRecover` — function, line 5276
 - **called from:**
-- `static/js/chat.js:5043`
-- `static/js/chat.js:5278`
+- `static/js/chat.js:5024`
+- `static/js/chat.js:5276`
 
-## `_removeStallBanner` — function, line 5300
+## `_removeStallBanner` — function, line 5298
 - **called from:**
-- `static/js/chat.js:5300`
-- `static/js/chat.js:5321`
-- `static/js/chat.js:5332`
-- `static/js/chat.js:5430`
-- `static/js/chat.js:5435`
+- `static/js/chat.js:5298`
+- `static/js/chat.js:5319`
+- `static/js/chat.js:5330`
+- `static/js/chat.js:5440`
+- `static/js/chat.js:5445`
 
-## `_showStallBanner` — function, line 5305
+## `_showStallBanner` — function, line 5303
 - **called from:**
-- `static/js/chat.js:5305`
+- `static/js/chat.js:5303`
 
-## `_probeStaleLocalStream` — function, line 5338
+## `_probeStaleLocalStream` — function, line 5336
 - **called from:**
-- `static/js/chat.js:5338`
+- `static/js/chat.js:5336`
 
-## `_convergeAfterAbort` — function, line 5392
+## `_convergeAfterAbort` — function, line 5402
 - **called from:**
-- `static/js/chat.js:4916`
-- `static/js/chat.js:4936`
-- `static/js/chat.js:4956`
-- `static/js/chat.js:4975`
-- `static/js/chat.js:5392`
+- `static/js/chat.js:4890`
+- `static/js/chat.js:4910`
+- `static/js/chat.js:4930`
+- `static/js/chat.js:4949`
+- `static/js/chat.js:5036`
+- `static/js/chat.js:5402`
 
-## `_startStallWatchdog` — function, line 5426
+## `_startStallWatchdog` — function, line 5436
 - **called from:**
-- `static/js/chat.js:1248`
-- `static/js/chat.js:5426`
+- `static/js/chat.js:1247`
+- `static/js/chat.js:5436`
 
-## `_stopStallWatchdog` — function, line 5433
+## `_stopStallWatchdog` — function, line 5443
 - **called from:**
-- `static/js/chat.js:1256`
-- `static/js/chat.js:5433`
+- `static/js/chat.js:1255`
+- `static/js/chat.js:5443`
 
-## `_renderCancelledBubble` — function, line 5441
+## `_renderCancelledBubble` — function, line 5451
 - **called from:**
-- `static/js/chat.js:1547`
-- `static/js/chat.js:4984`
-- `static/js/chat.js:5441`
+- `static/js/chat.js:1546`
+- `static/js/chat.js:4958`
+- `static/js/chat.js:5451`
 
-## `detachCurrentStream` — function, line 5495
+## `detachCurrentStream` — function, line 5505
 - **called from:**
 - `static/app.js:838`
-- `static/js/chat.js:5495`
-- `static/js/sessions.js:1991`
-- `static/js/sessions.js:2319`
+- `static/js/chat.js:5505`
+- `static/js/sessions.js:1988`
+- `static/js/sessions.js:2316`
 
-## `resumeStream` — function, line 5581
+## `resumeStream` — function, line 5591
 - **called from:**
-- `static/js/chat.js:644`
-- `static/js/chat.js:837`
-- `static/js/chat.js:5291`
-- `static/js/chat.js:5387`
-- `static/js/chat.js:5414`
-- `static/js/chat.js:5581`
-- `static/js/sessions.js:2825`
-- `static/js/sessions.js:2858`
+- `static/js/chat.js:643`
+- `static/js/chat.js:836`
+- `static/js/chat.js:5289`
+- `static/js/chat.js:5360`
+- `static/js/chat.js:5397`
+- `static/js/chat.js:5424`
+- `static/js/chat.js:5591`
+- `static/js/sessions.js:2822`
+- `static/js/sessions.js:2855`
 
-## `cleanup` — arrow, line 5670
+## `cleanup` — arrow, line 5673
 - **called from:**
 - `static/js/calendar.js:2592`
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1161,100 +1161,95 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/skills.js:1464`
 - … +21 more (grep the name in repo)
 
-## `renderDelta` — arrow, line 5693
+## `renderDelta` — arrow, line 5696
 - **called from:**
-- `static/js/chat.js:5714`
+- `static/js/chat.js:5717`
+- `static/js/chat.js:5771`
 
-## `queueRender` — arrow, line 5708
+## `queueRender` — arrow, line 5711
 - **called from:**
-- `static/js/chat.js:5803`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `closeThinkIfOpen` — arrow, line 5723
+## `_finishToolNode` — arrow, line 5724
 - **called from:**
-- `static/js/chat.js:5864`
-- `static/js/chat.js:5880`
-- `static/js/chat.js:5912`
+- `static/js/chat.js:5678`
 
-## `_finishToolNode` — arrow, line 5732
+## `checkBackgroundStream` — function, line 5901
 - **called from:**
-- `static/js/chat.js:5675`
+- `static/js/chat.js:5901`
+- `static/js/sessions.js:2209`
 
-## `checkBackgroundStream` — function, line 5939
+## `_markCompactPre` — function, line 5986
 - **called from:**
-- `static/js/chat.js:5939`
-- `static/js/sessions.js:2212`
+- `static/js/chat.js:5986`
+- `static/js/chat.js:6012`
 
-## `_markCompactPre` — function, line 6024
+## `_scanCompactPres` — function, line 5996
 - **called from:**
-- `static/js/chat.js:6024`
-- `static/js/chat.js:6050`
+- `static/js/chat.js:5996`
+- `static/js/chat.js:6007`
+- `static/js/chat.js:6013`
 
-## `_scanCompactPres` — function, line 6034
+## `_initCompactPreObserver` — function, line 6004
+- **called from:**
+- `static/js/chat.js:6004`
+
+## `_reasoningKey` — function, line 6027
+- **called from:**
+- `static/js/chat.js:6027`
+- `static/js/chat.js:6030`
+- `static/js/chat.js:6036`
+- `static/js/chat.js:6037`
+
+## `getReasoningLevel` — function, line 6028
+- **called from:**
+- `static/js/chat.js:2227`
+- `static/js/chat.js:6028`
+- `static/js/chat.js:6042`
+- `static/js/chat.js:6099`
+
+## `setReasoningLevel` — function, line 6034
 - **called from:**
 - `static/js/chat.js:6034`
-- `static/js/chat.js:6045`
-- `static/js/chat.js:6051`
+- `static/js/chat.js:6106`
+- `static/js/chat.js:6152`
 
-## `_initCompactPreObserver` — function, line 6042
+## `updateThinkingUI` — function, line 6041
 - **called from:**
-- `static/js/chat.js:6042`
+- `static/js/chat.js:6039`
+- `static/js/chat.js:6041`
+- `static/js/chat.js:6108`
+- `static/js/chat.js:6160`
+- `static/js/sessions.js:1955`
 
-## `_reasoningKey` — function, line 6067
+## `refreshThinkingControl` — function, line 6064
 - **called from:**
-- `static/js/chat.js:6067`
-- `static/js/chat.js:6070`
-- `static/js/chat.js:6076`
-- `static/js/chat.js:6077`
-
-## `getReasoningLevel` — function, line 6068
-- **called from:**
-- `static/js/chat.js:2230`
-- `static/js/chat.js:6068`
-- `static/js/chat.js:6082`
-- `static/js/chat.js:6140`
-
-## `setReasoningLevel` — function, line 6074
-- **called from:**
-- `static/js/chat.js:6074`
-- `static/js/chat.js:6147`
-- `static/js/chat.js:6193`
-
-## `updateThinkingUI` — function, line 6081
-- **called from:**
-- `static/js/chat.js:6079`
-- `static/js/chat.js:6081`
-- `static/js/chat.js:6149`
-- `static/js/chat.js:6201`
-- `static/js/sessions.js:1958`
-
-## `refreshThinkingControl` — function, line 6105
-- **called from:**
-- `static/js/chat.js:6105`
-- `static/js/chat.js:6202`
+- `static/js/chat.js:6064`
+- `static/js/chat.js:6161`
 - `static/js/modelPicker.js:857`
-- `static/js/sessions.js:1959`
+- `static/js/sessions.js:1956`
 
-## `_refreshThinkingControlNow` — function, line 6109
+## `_refreshThinkingControlNow` — function, line 6068
 - **called from:**
-- `static/js/chat.js:6109`
+- `static/js/chat.js:6068`
 
-## `mk` — arrow, line 6123
+## `mk` — arrow, line 6082
 - **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
+- `static/js/chat.js:6093`
+- `static/js/chat.js:6094`
+- `static/js/chat.js:6095`
 - `static/js/cookbookServe.js:2709`
 - `static/js/cookbookServe.js:2717`
 - `static/js/cookbookServe.js:2722`
 - `static/js/cookbookServe.js:2723`
 - `static/js/cookbookServe.js:2769`
 - `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
+- `static/js/documentLibrary.js:2161`
+- `static/js/documentLibrary.js:2162`
+- `static/js/documentLibrary.js:2593`
+- `static/js/documentLibrary.js:2594`
+- `static/js/documentLibrary.js:2595`
+- `static/js/documentLibrary.js:2596`
 - `static/js/skills.js:404`
 - `static/js/skills.js:405`
 - `static/js/skills.js:420`
@@ -1262,35 +1257,35 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/skills.js:426`
 - `static/js/skills.js:427`
 
-## `initThinkingControl` — function, line 6154
+## `initThinkingControl` — function, line 6113
 - **called from:**
-- `static/js/chat.js:6154`
-- `static/js/chat.js:6209`
+- `static/js/chat.js:6113`
+- `static/js/chat.js:6168`
 
-## `_position` — function, line 6167
+## `_position` — function, line 6126
 - **called from:**
-- `static/js/chat.js:6167`
-- `static/js/chat.js:6176`
-- `static/js/chat.js:6199`
-- `static/js/chat.js:6200`
+- `static/js/chat.js:6126`
+- `static/js/chat.js:6135`
+- `static/js/chat.js:6158`
+- `static/js/chat.js:6159`
 - `static/js/modalSnap.js:1039`
 - `static/js/modalSnap.js:1078`
 - `static/js/slashAutocomplete.js:141`
 - `static/js/slashAutocomplete.js:211`
 - `static/js/slashAutocomplete.js:299`
 
-## `_open` — function, line 6173
+## `_open` — function, line 6132
 - **called from:**
-- `static/js/chat.js:6173`
-- `static/js/chat.js:6186`
+- `static/js/chat.js:6132`
+- `static/js/chat.js:6145`
 - `static/js/settings.js:3778`
 
-## `_close` — function, line 6178
+## `_close` — function, line 6137
 - **called from:**
-- `static/js/chat.js:6178`
-- `static/js/chat.js:6186`
-- `static/js/chat.js:6194`
-- `static/js/chat.js:6197`
+- `static/js/chat.js:6137`
+- `static/js/chat.js:6145`
+- `static/js/chat.js:6153`
+- `static/js/chat.js:6156`
 - `static/js/chatRenderer.js:261`
 - `static/js/document.js:5281`
 - `static/js/document.js:5311`
@@ -1304,133 +1299,115 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/settings.js:3778`
 - `static/js/settings.js:3787`
 
-## `initListeners` — function, line 6208
+## `initListeners` — function, line 6167
 - **called from:**
-- `static/app.js:3730`
-- `static/js/chat.js:6208`
+- `static/app.js:3729`
+- `static/js/chat.js:6167`
 
-## `_observeChatHistory` — arrow, line 6230
+## `_observeChatHistory` — arrow, line 6189
 - **called from:**
-- `static/js/chat.js:6235`
+- `static/js/chat.js:6194`
 
-## `_dbRowCountBefore` — function, line 6457
+## `_dbRowCountBefore` — function, line 6416
 - **called from:**
-- `static/js/chat.js:6457`
-- `static/js/chat.js:6663`
-- `static/js/chat.js:6813`
+- `static/js/chat.js:6416`
+- `static/js/chat.js:6499`
+- `static/js/chat.js:6600`
+- `static/js/chat.js:6738`
 
-## `editUserMessage` — function, line 6483
+## `editUserMessage` — function, line 6442
 - **called from:**
-- `static/js/chat.js:6483`
+- `static/js/chat.js:6442`
 - `static/js/chatRenderer.js:1945`
 
-## `resendUserMessage` — function, line 6586
+## `resendUserMessage` — function, line 6539
 - **called from:**
-- `static/js/chat.js:6586`
+- `static/js/chat.js:6539`
 - `static/js/chatRenderer.js:369`
 - `static/js/chatRenderer.js:1960`
 
-## `regenerateFrom` — function, line 6706
+## `regenerateFrom` — function, line 6631
 - **called from:**
-- `static/js/chat.js:6647`
-- `static/js/chat.js:6706`
+- `static/js/chat.js:6631`
 - `static/js/chatRenderer.js:1761`
 
-## `_attachVariantNav` — function, line 6878
+## `_attachVariantNav` — function, line 6798
 - **called from:**
-- `static/js/chat.js:4769`
-- `static/js/chat.js:6878`
+- `static/js/chat.js:4750`
+- `static/js/chat.js:6798`
 
-## `_variantTagText` — function, line 6904
+## `_variantTagText` — function, line 6824
 - **called from:**
-- `static/js/chat.js:6904`
-- `static/js/chat.js:6930`
+- `static/js/chat.js:6824`
+- `static/js/chat.js:6850`
 
-## `_renderVariantNav` — function, line 6908
+## `_renderVariantNav` — function, line 6828
 - **called from:**
-- `static/js/chat.js:6890`
+- `static/js/chat.js:6810`
+- `static/js/chat.js:6828`
 - `static/js/chat.js:6908`
-- `static/js/chat.js:6988`
-- `static/js/chat.js:7688`
+- `static/js/chat.js:7527`
 
-## `_switchVariant` — function, line 6978
+## `_switchVariant` — function, line 6898
 - **called from:**
-- `static/js/chat.js:6938`
-- `static/js/chat.js:6946`
-- `static/js/chat.js:6958`
-- `static/js/chat.js:6966`
-- `static/js/chat.js:6978`
+- `static/js/chat.js:6858`
+- `static/js/chat.js:6866`
+- `static/js/chat.js:6878`
+- `static/js/chat.js:6886`
+- `static/js/chat.js:6898`
 
-## `forkFrom` — function, line 7001
+## `forkFrom` — function, line 6921
 - **called from:**
-- `static/js/chat.js:7001`
+- `static/js/chat.js:6921`
 - `static/js/chatRenderer.js:1780`
 
-## `checkPendingResearch` — function, line 7035
+## `checkPendingResearch` — function, line 6955
 - **called from:**
-- `static/js/chat.js:7035`
-- `static/js/sessions.js:2192`
+- `static/js/chat.js:6955`
+- `static/js/sessions.js:2189`
 
-## `updateSpinnerFromProgress` — function, line 7121
+## `updateSpinnerFromProgress` — function, line 7039
 - **called from:**
-- `static/js/chat.js:7121`
-- `static/js/chat.js:7141`
-- `static/js/chat.js:7209`
+- `static/js/chat.js:7039`
+- `static/js/chat.js:7059`
+- `static/js/chat.js:7127`
 
-## `setDisplayOverride` — function, line 7258
+## `setDisplayOverride` — function, line 7176
 - **called from:**
-- `static/js/chat.js:7258`
+- `static/js/chat.js:7176`
 
-## `setHideUserBubble` — function, line 7263
+## `setHideUserBubble` — function, line 7181
 - **called from:**
-- `static/js/chat.js:7263`
+- `static/js/chat.js:7181`
 
-## `setPendingContinue` — function, line 7268
+## `setPendingContinue` — function, line 7186
 - **called from:**
-- `static/js/chat.js:7268`
+- `static/js/chat.js:7186`
 
-## `setContinuePrefill` — function, line 7273
+## `deleteMessage` — function, line 7200
 - **called from:**
-- `static/js/chat.js:7273`
-
-## `continueFromBubble` — function, line 7286
-- **called from:**
-- `static/js/chat.js:1601`
-- `static/js/chat.js:5004`
-- `static/js/chat.js:7286`
-- `static/js/chatRenderer.js:1768`
-- `static/js/chatRenderer.js:2998`
-
-## `handleChatSubmit` — method?, line 7308
-- **called from:**
-- `static/js/chat.js:1389`
-- `static/js/chat.js:1474`
-- `static/js/chat.js:7308`
-
-## `deleteMessage` — function, line 7321
-- **called from:**
-- `static/js/chat.js:7321`
+- `static/js/chat.js:7200`
 - `static/js/chatRenderer.js:1784`
 - `static/js/chatRenderer.js:1949`
 
-## `editAIMessage` — function, line 7433
+## `editAIMessage` — function, line 7297
 - **called from:**
-- `static/js/chat.js:7433`
+- `static/js/chat.js:7297`
 - `static/js/chatRenderer.js:1752`
 
-## `cleanup` — function, line 7465
+## `cleanup` — function, line 7329
 - **called from:**
 - `static/js/calendar.js:2592`
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1482,31 +1459,31 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/skills.js:1464`
 - … +21 more (grep the name in repo)
 
-## `rewriteWith` — function, line 7547
+## `rewriteWith` — function, line 7386
 - **called from:**
-- `static/js/chat.js:7547`
+- `static/js/chat.js:7386`
 - `static/js/chatRenderer.js:1772`
 - `static/js/chatRenderer.js:1776`
 
-## `_killRwSpin` — arrow, line 7584
+## `_killRwSpin` — arrow, line 7423
 - **called from:**
-- `static/js/chat.js:7630`
-- `static/js/chat.js:7695`
+- `static/js/chat.js:7469`
+- `static/js/chat.js:7534`
 
-## `_stripThink` — arrow, line 7649
+## `_stripThink` — arrow, line 7488
 - **called from:**
-- `static/js/chat.js:7655`
+- `static/js/chat.js:7494`
 
-## `continueFrom` — function, line 7705
+## `continueFrom` — function, line 7544
 - **called from:**
-- `static/js/chat.js:7705`
+- `static/js/chat.js:7544`
 
-## `_attachLang` — function, line 7722
+## `_attachLang` — function, line 7561
 - **called from:**
-- `static/js/chat.js:7722`
-- `static/js/chat.js:7790`
+- `static/js/chat.js:7561`
+- `static/js/chat.js:7629`
 
-## `openAttachment` — function, line 7732
+## `openAttachment` — function, line 7571
 - **called from:**
-- `static/js/chat.js:7732`
+- `static/js/chat.js:7571`
 - `static/js/chatRenderer.js:202`

@@ -32,9 +32,9 @@
 - `scripts/demo_email/demo_account.py:180`
 - `tests/test_email_account_default_serialization.py:521`
 - `static/js/document.js:4194`
-- `static/js/documentLibrary.js:211`
-- `static/js/documentLibrary.js:220`
-- `static/js/documentLibrary.js:228`
-- `static/js/documentLibrary.js:251`
+- `static/js/documentLibrary.js:209`
+- `static/js/documentLibrary.js:218`
+- `static/js/documentLibrary.js:226`
+- `static/js/documentLibrary.js:249`
 - `static/js/escMenuStack.js:18`
 - `static/js/keyboard-shortcuts.js:66`

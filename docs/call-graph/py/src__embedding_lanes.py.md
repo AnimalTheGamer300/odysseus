@@ -90,14 +90,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `EmbeddingLane.count` — method, line 42
 - **called from:**
-- `core/database.py:2713`
-- `core/database.py:2714`
-- `core/database.py:2715`
-- `core/database.py:2716`
-- `core/database.py:2717`
-- `core/session_manager.py:150`
-- `core/session_manager.py:971`
-- `core/session_manager.py:973`
+- `core/database.py:2672`
+- `core/database.py:2673`
+- `core/database.py:2674`
+- `core/database.py:2675`
+- `core/database.py:2676`
+- `core/session_manager.py:149`
+- `core/session_manager.py:845`
 - `routes/admin_wipe/admin_wipe_routes.py:79`
 - `routes/admin_wipe/admin_wipe_routes.py:90`
 - `routes/admin_wipe/admin_wipe_routes.py:127`
@@ -120,11 +119,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:885`
 - `routes/gallery/gallery_routes.py:886`
 - `routes/gallery/gallery_routes.py:913`
-- `routes/history/history_routes.py:287`
-- `routes/session_routes.py:808`
-- `routes/session_routes.py:998`
-- `routes/session_routes.py:1319`
-- `routes/session_routes.py:1321`
+- `routes/history/history_routes.py:285`
+- `routes/session_routes.py:799`
+- `routes/session_routes.py:930`
+- `routes/session_routes.py:1251`
+- `routes/session_routes.py:1253`
 - `routes/task/task_routes.py:977`
 - `src/agent_loop.py:5958`
 - `src/agent_loop.py:5968`
@@ -150,7 +149,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/llm_core.py:417`
 - `src/memory_vector.py:53`
 - `src/memory_vector.py:139`
-- … +140 more (grep the name in repo)
+- `src/memory_vector.py:146`
+- … +139 more (grep the name in repo)
 
 ## `EmbeddingLane.stats` — method, line 48
 - **called from:**

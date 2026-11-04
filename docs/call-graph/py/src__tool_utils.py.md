@@ -97,8 +97,8 @@
 - `src/tools/cookbook.py:1249`
 - `src/tools/cookbook.py:1459`
 - `src/tools/cookbook.py:1547`
-- `src/tools/image.py:24`
-- `src/tools/image.py:169`
+- `src/tools/image.py:27`
+- `src/tools/image.py:103`
 - `src/tools/notes.py:26`
 - `src/tools/research.py:24`
 - `src/tools/research.py:103`

@@ -19,9 +19,9 @@
 - **called from:**
 - `static/js/calendar.js:1259`
 - `static/js/calendar.js:2092`
-- `static/js/chat.js:3658`
-- `static/js/chat.js:4482`
-- `static/js/chat.js:4621`
+- `static/js/chat.js:3650`
+- `static/js/chat.js:4474`
+- `static/js/chat.js:4602`
 - `static/js/editor/layer-panel.js:67`
 - `static/js/editor/layer-panel.js:144`
 - `static/js/editor/layer-panel.js:157`
@@ -44,7 +44,7 @@
 - `static/js/group.js:478`
 - `static/js/group.js:515`
 - `static/js/group.js:516`
-- `static/js/markdown.js:1361`
+- `static/js/markdown.js:1299`
 - `static/js/notes.js:3281`
 - `static/js/notes.js:3386`
 - `static/js/notes.js:3389`
@@ -146,7 +146,7 @@
 - `src/preset_manager.py:155`
 - `src/preset_manager.py:175`
 - `src/preset_manager.py:181`
-- … +87 more (grep the name in repo)
+- … +85 more (grep the name in repo)
 
 ## `onUp` — arrow, line 180
 - **called from:**

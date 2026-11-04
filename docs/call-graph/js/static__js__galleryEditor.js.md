@@ -709,13 +709,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1052,13 +1052,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2629`
 - `static/js/calendar.js:2750`
 - `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
+- `static/js/chat.js:5852`
+- `static/js/chat.js:7329`
+- `static/js/chat.js:7337`
+- `static/js/chat.js:7343`
+- `static/js/chat.js:7346`
+- `static/js/chat.js:7349`
+- `static/js/chat.js:7372`
 - `static/js/codeRunner.js:262`
 - `static/js/codeRunner.js:283`
 - `static/js/compare/selector.js:102`
@@ -1122,7 +1122,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `onCancel` — function, line 3971
 - **called from:**
 - `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
+- `static/js/documentLibrary.js:226`
 - `static/js/galleryEditor.js:3971`
 - `static/js/skills.js:1464`
 - `static/js/skills.js:1465`
@@ -1183,7 +1183,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `openEditor` — function, line 4068
 - **called from:**
-- `static/js/chat.js:7741`
+- `static/js/chat.js:7580`
 - `static/js/chatRenderer.js:1574`
 - `static/js/gallery.js:39`
 - `static/js/gallery.js:53`

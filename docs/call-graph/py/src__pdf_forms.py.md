@@ -18,7 +18,7 @@
 - **called from:**
 - `routes/document/document_routes.py:281`
 - `routes/email_routes.py:3597`
-- `src/document_processor.py:784`
+- `src/document_processor.py:767`
 
 ## `_infer_label` — function, line 91
 - **called from:**
@@ -38,7 +38,7 @@
 - **called from:**
 - `routes/document/document_routes.py:286`
 - `routes/email_routes.py:3602`
-- `src/document_processor.py:806`
+- `src/document_processor.py:789`
 
 ## `stamp_signatures` — function, line 219
 - **called from:**

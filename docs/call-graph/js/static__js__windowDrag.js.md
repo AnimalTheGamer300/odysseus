@@ -32,10 +32,10 @@
 
 ## `makeWindowDraggable` — function, line 57
 - **called from:**
-- `static/app.js:3017`
+- `static/app.js:3016`
 - `static/js/calendar.js:692`
 - `static/js/cookbook.js:3452`
-- `static/js/documentLibrary.js:1826`
+- `static/js/documentLibrary.js:1796`
 - `static/js/emailLibrary.js:3397`
 - `static/js/gallery.js:1984`
 - `static/js/memory.js:125`

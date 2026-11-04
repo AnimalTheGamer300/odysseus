@@ -227,7 +227,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `isRegistered` — function, line 1222
 - **called from:**
-- `static/app.js:3166`
+- `static/app.js:3165`
 - `static/js/calendar.js:3607`
 - `static/js/cookbook.js:3485`
 - `static/js/document.js:4740`
@@ -307,7 +307,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_context_compactor.py:521`
 - `static/js/calendar.js:3484`
 - `static/js/cookbook.js:3354`
-- `static/js/documentLibrary.js:2081`
 - `static/js/editor/canvas-transforms.js:115`
 - `static/js/editor/layer-panel.js:525`
 - `static/js/editor/mask-utils.js:90`
@@ -364,28 +363,28 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:2045`
 - `static/app.js:2047`
 - `static/app.js:2071`
-- `static/app.js:2222`
-- `static/app.js:2226`
-- `static/app.js:2228`
-- `static/app.js:2305`
-- `static/app.js:2444`
-- `static/app.js:2449`
-- `static/app.js:2455`
-- `static/app.js:2464`
-- `static/app.js:2478`
-- `static/app.js:2590`
-- `static/app.js:2613`
-- `static/app.js:2763`
+- `static/app.js:2221`
+- `static/app.js:2225`
+- `static/app.js:2227`
+- `static/app.js:2304`
+- `static/app.js:2443`
+- `static/app.js:2448`
+- `static/app.js:2454`
+- `static/app.js:2463`
+- `static/app.js:2477`
+- `static/app.js:2589`
+- `static/app.js:2612`
+- `static/app.js:2762`
+- `static/app.js:2769`
 - `static/app.js:2770`
 - `static/app.js:2771`
 - `static/app.js:2772`
-- `static/app.js:2773`
-- `static/app.js:2959`
-- `static/app.js:4126`
-- `static/app.js:4130`
+- `static/app.js:2958`
+- `static/app.js:4125`
+- `static/app.js:4129`
+- `static/app.js:4401`
 - `static/app.js:4402`
 - `static/app.js:4403`
-- `static/app.js:4404`
 - `static/js/admin.js:120`
 - `static/js/admin.js:651`
 - `static/js/admin.js:911`
@@ -396,10 +395,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:2133`
 - `static/js/calendar.js:3218`
 - `static/js/censor.js:56`
-- `static/js/chat.js:2492`
-- `static/js/chat.js:4076`
-- `static/js/chat.js:6032`
-- … +302 more (grep the name in repo)
+- `static/js/chat.js:2484`
+- `static/js/chat.js:4068`
+- `static/js/chat.js:5994`
+- … +300 more (grep the name in repo)
 
 ## `close` — function, line 1307
 - **called from:**
@@ -412,58 +411,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `containing` — class, line 1353
 - **called from:**
@@ -471,8 +470,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `injectMinimizeButton` — function, line 1354
 - **called from:**
-- `static/app.js:3159`
-- `static/app.js:3202`
+- `static/app.js:3158`
+- `static/app.js:3201`
 - `static/js/emailLibrary.js:7088`
 - `static/js/modalManager.js:1354`
 - `static/js/modalManager.js:1459`

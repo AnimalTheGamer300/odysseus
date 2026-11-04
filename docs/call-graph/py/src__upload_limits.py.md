@@ -4,7 +4,7 @@
 
 ## `format_byte_limit` — function, line 11
 - **called from:**
-- `src/chat_helpers.py:378`
+- `src/chat_helpers.py:376`
 - `src/upload_handler.py:1291`
 - `src/upload_limits.py:81`
 - `tests/test_direct_upload_limits.py:33`
@@ -26,7 +26,7 @@
 
 ## `get_chat_upload_max_bytes` — function, line 32
 - **called from:**
-- `src/chat_helpers.py:372`
+- `src/chat_helpers.py:370`
 - `src/upload_handler.py:217`
 - `tests/test_chat_upload_limit_config.py:22`
 - `tests/test_chat_upload_limit_config.py:28`

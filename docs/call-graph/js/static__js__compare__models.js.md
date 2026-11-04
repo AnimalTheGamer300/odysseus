@@ -28,8 +28,8 @@
 
 ## `fetchModels` — function, line 52
 - **called from:**
-- `static/app.js:3505`
-- `static/app.js:3567`
+- `static/app.js:3504`
+- `static/app.js:3566`
 - `static/js/compare/index.js:1433`
 - `static/js/compare/models.js:52`
 - `static/js/compare/selector.js:1300`

@@ -18,7 +18,7 @@
 - `static/js/modelPicker.js:953`
 - `static/js/models.js:105`
 - `static/js/providers.js:93`
-- `static/js/sessions.js:570`
+- `static/js/sessions.js:568`
 - `static/js/settings.js:193`
 - `static/js/settings.js:203`
 - `static/js/settings.js:211`

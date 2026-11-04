@@ -50,9 +50,8 @@
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -105,8 +104,9 @@
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `ProgressReporter.finish_line` — method, line 141
 - **called from:**

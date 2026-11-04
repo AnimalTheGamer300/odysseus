@@ -55,9 +55,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:446`
 - `app.py:1152`
 - `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
+- `core/database.py:2729`
+- `core/session_manager.py:958`
 - `routes/auth_routes.py:424`
 - `routes/auth_routes.py:437`
 - `routes/backup_routes.py:197`
@@ -110,8 +109,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:2189`
 - `routes/gallery/gallery_routes.py:2208`
 - `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/history/history_routes.py:670`
+- `routes/history/history_routes.py:674`
+- … +204 more (grep the name in repo)
 
 ## `PipeTqdm.set_description` — method, line 93
 - **called from:**
@@ -139,13 +139,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:1248`
 - `static/js/admin.js:1253`
 - `static/js/admin.js:1258`
-- `static/js/chat.js:2658`
-- `static/js/chat.js:2659`
-- `static/js/chat.js:2660`
-- `static/js/chat.js:3072`
-- `static/js/chat.js:4328`
-- `static/js/chat.js:4329`
-- `static/js/chat.js:4330`
+- `static/js/chat.js:2650`
+- `static/js/chat.js:2651`
+- `static/js/chat.js:2652`
+- `static/js/chat.js:3064`
+- `static/js/chat.js:4320`
+- `static/js/chat.js:4321`
+- `static/js/chat.js:4322`
 - `static/js/compare/state.js:39`
 - `static/js/cookbookDownload.js:173`
 - `static/js/liveThinkingThrottle.js:116`
@@ -180,6 +180,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/bg_jobs.py:263`
 - `src/chatgpt_subscription.py:271`
 - `src/chatgpt_subscription.py:281`
+- `src/tools/image.py:83`
 - `static/js/chatRenderer.js:3112`
 - `static/js/chatStream.js:171`
 - `static/js/cookbookDownload.js:174`
@@ -203,58 +204,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:923`
+- `core/database.py:946`
+- `core/database.py:971`
+- `core/database.py:994`
+- `core/database.py:1017`
+- `core/database.py:1048`
+- `core/database.py:1073`
+- `core/database.py:1097`
+- `core/database.py:1125`
+- `core/database.py:1148`
+- `core/database.py:1171`
+- `core/database.py:1194`
+- `core/database.py:1217`
+- `core/database.py:1249`
+- `core/database.py:1272`
+- `core/database.py:1295`
+- `core/database.py:1319`
+- `core/database.py:1343`
+- `core/database.py:1377`
+- `core/database.py:1406`
+- `core/database.py:1479`
+- `core/database.py:2068`
+- `core/database.py:2301`
+- `core/database.py:2363`
+- `core/database.py:2479`
+- `core/database.py:2506`
+- `core/database.py:2532`
+- `core/database.py:2557`
+- `core/database.py:2584`
+- `core/database.py:2606`
+- `core/database.py:2619`
+- `core/database.py:2635`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:428`
+- `core/session_manager.py:568`
+- `core/session_manager.py:603`
+- `core/session_manager.py:651`
+- `core/session_manager.py:771`
+- `core/session_manager.py:858`
+- `core/session_manager.py:885`
+- `core/session_manager.py:899`
+- `core/session_manager.py:945`
+- `core/session_manager.py:989`
+- `core/session_manager.py:1013`
+- `core/session_manager.py:1033`
+- `core/session_manager.py:1054`
+- `core/session_manager.py:1140`
+- `mcp_servers/email_server.py:220`
+- `mcp_servers/email_server.py:815`
+- `mcp_servers/email_server.py:1351`
+- … +754 more (grep the name in repo)
 
 ## `PipeTqdm.clear` — method, line 114
 - **called from:**
@@ -263,7 +264,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/admin_wipe/admin_wipe_routes.py:101`
 - `routes/email_routes.py:1643`
 - `routes/model_routes.py:1394`
-- `routes/session_routes.py:841`
+- `routes/session_routes.py:832`
 - `routes/skills_routes.py:462`
 - `scripts/diffusion_server.py:101`
 - `services/search/core.py:228`
@@ -273,7 +274,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/email_thread_parser.py:318`
 - `src/llm_core.py:126`
 - `src/llm_core.py:141`
-- `src/llm_core.py:4116`
+- `src/llm_core.py:4084`
 - `src/task_scheduler.py:441`
 - `tests/test_api_token_routes.py:160`
 - `tests/test_budget_auto_sentinel.py:72`
@@ -318,7 +319,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_mcp_email_decode_header_spaces.py:98`
 - `tests/test_mcp_email_decode_header_spaces.py:112`
 - `tests/test_mcp_email_decode_header_spaces.py:170`
-- … +110 more (grep the name in repo)
+- … +105 more (grep the name in repo)
 
 ## `PipeTqdm.display` — method, line 117
 - **called from:**

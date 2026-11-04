@@ -22,17 +22,17 @@
 - `static/app.js:1410`
 - `static/app.js:1430`
 - `static/app.js:1942`
-- `static/app.js:2288`
-- `static/app.js:3056`
-- `static/app.js:3132`
-- `static/app.js:3136`
-- `static/app.js:3140`
-- `static/app.js:3173`
-- `static/app.js:3542`
-- `static/app.js:3546`
-- `static/app.js:4260`
-- `static/app.js:4267`
-- `static/app.js:4386`
+- `static/app.js:2287`
+- `static/app.js:3055`
+- `static/app.js:3131`
+- `static/app.js:3135`
+- `static/app.js:3139`
+- `static/app.js:3172`
+- `static/app.js:3541`
+- `static/app.js:3545`
+- `static/app.js:4259`
+- `static/app.js:4266`
+- `static/app.js:4385`
 - `static/js/admin.js:44`
 - `static/js/admin.js:48`
 - `static/js/admin.js:70`
@@ -77,7 +77,7 @@
 - `static/js/chat.js:192`
 - `static/js/chat.js:206`
 - `static/js/chat.js:208`
-- … +1481 more (grep the name in repo)
+- … +1479 more (grep the name in repo)
 
 ## `_createSineWaveElement` — method?, line 54
 - **called from:**
@@ -151,8 +151,6 @@
 - `routes/skills_routes.py:849`
 - `scripts/add_hwfit_models.py:64`
 - `services/hwfit/hf_discovery.py:115`
-- `services/search/content.py:720`
-- `services/search/content.py:720`
 - `src/agent_tools/document_tools.py:205`
 - `src/agent_tools/filesystem_tools.py:864`
 - `src/agent_tools/filesystem_tools.py:865`
@@ -196,7 +194,9 @@
 - `tests/test_compare_stop_disconnect_poll.py:227`
 - `tests/test_compare_stop_disconnect_poll.py:229`
 - `tests/test_compare_stop_disconnect_poll.py:262`
-- … +98 more (grep the name in repo)
+- `tests/test_compare_stop_disconnect_poll.py:266`
+- `tests/test_compare_stop_disconnect_poll.py:276`
+- … +95 more (grep the name in repo)
 
 ## `stop` — method?, line 367
 - **called from:**
@@ -208,14 +208,14 @@
 - `tests/test_compare_stop_disconnect_poll.py:233`
 - `tests/test_compare_stop_disconnect_poll.py:235`
 - `static/js/admin.js:673`
-- `static/js/chat.js:4889`
-- `static/js/chat.js:4980`
+- `static/js/chat.js:4863`
+- `static/js/chat.js:4954`
 - `static/js/chatRenderer.js:145`
 - `static/js/compare/stream.js:250`
 - `static/js/compare/stream.js:287`
 - `static/js/cookbookRunning.js:2895`
-- `static/js/documentLibrary.js:3280`
-- `static/js/documentLibrary.js:3433`
+- `static/js/documentLibrary.js:3065`
+- `static/js/documentLibrary.js:3218`
 - `static/js/emailLibrary.js:8414`
 - `static/js/fileHandler.js:347`
 - `static/js/galleryEditor.js:3664`
@@ -241,25 +241,25 @@
 
 ## `updateMessage` — method?, line 383
 - **called from:**
-- `static/js/chat.js:1932`
-- `static/js/chat.js:2471`
-- `static/js/chat.js:2472`
-- `static/js/chat.js:2474`
-- `static/js/chat.js:2475`
-- `static/js/chat.js:2477`
+- `static/js/chat.js:1933`
+- `static/js/chat.js:2463`
+- `static/js/chat.js:2464`
+- `static/js/chat.js:2466`
+- `static/js/chat.js:2467`
+- `static/js/chat.js:2469`
+- `static/js/chat.js:3572`
+- `static/js/chat.js:3574`
+- `static/js/chat.js:3578`
 - `static/js/chat.js:3580`
 - `static/js/chat.js:3582`
+- `static/js/chat.js:3584`
 - `static/js/chat.js:3586`
-- `static/js/chat.js:3588`
-- `static/js/chat.js:3590`
-- `static/js/chat.js:3592`
-- `static/js/chat.js:3594`
-- `static/js/chat.js:7125`
-- `static/js/chat.js:7127`
-- `static/js/chat.js:7131`
-- `static/js/chat.js:7133`
-- `static/js/chat.js:7135`
-- `static/js/chat.js:7137`
+- `static/js/chat.js:7043`
+- `static/js/chat.js:7045`
+- `static/js/chat.js:7049`
+- `static/js/chat.js:7051`
+- `static/js/chat.js:7053`
+- `static/js/chat.js:7055`
 - `static/js/compare/stream.js:444`
 - `static/js/compare/stream.js:446`
 - `static/js/compare/stream.js:448`
@@ -279,32 +279,32 @@
 - `static/js/admin.js:1512`
 - `static/js/admin.js:1749`
 - `static/js/calendar.js:2079`
-- `static/js/chat.js:518`
-- `static/js/chat.js:737`
-- `static/js/chat.js:770`
-- `static/js/chat.js:1538`
-- `static/js/chat.js:1543`
-- `static/js/chat.js:2668`
-- `static/js/chat.js:2928`
-- `static/js/chat.js:3267`
-- `static/js/chat.js:3290`
-- `static/js/chat.js:3365`
-- `static/js/chat.js:3452`
-- `static/js/chat.js:3512`
-- `static/js/chat.js:3973`
-- `static/js/chat.js:4359`
-- `static/js/chat.js:4400`
-- `static/js/chat.js:4442`
-- `static/js/chat.js:4477`
-- `static/js/chat.js:4863`
-- `static/js/chat.js:5672`
-- `static/js/chat.js:5796`
-- `static/js/chat.js:5995`
-- `static/js/chat.js:6006`
-- `static/js/chat.js:7188`
-- `static/js/chat.js:7202`
-- `static/js/chat.js:7218`
-- `static/js/chat.js:7584`
+- `static/js/chat.js:517`
+- `static/js/chat.js:736`
+- `static/js/chat.js:769`
+- `static/js/chat.js:1537`
+- `static/js/chat.js:1542`
+- `static/js/chat.js:2660`
+- `static/js/chat.js:2920`
+- `static/js/chat.js:3259`
+- `static/js/chat.js:3282`
+- `static/js/chat.js:3357`
+- `static/js/chat.js:3444`
+- `static/js/chat.js:3504`
+- `static/js/chat.js:3965`
+- `static/js/chat.js:4351`
+- `static/js/chat.js:4392`
+- `static/js/chat.js:4434`
+- `static/js/chat.js:4469`
+- `static/js/chat.js:4837`
+- `static/js/chat.js:5675`
+- `static/js/chat.js:5770`
+- `static/js/chat.js:5957`
+- `static/js/chat.js:5968`
+- `static/js/chat.js:7106`
+- `static/js/chat.js:7120`
+- `static/js/chat.js:7136`
+- `static/js/chat.js:7423`
 - `static/js/codeRunner.js:225`
 - `static/js/compare/panes.js:66`
 - `static/js/compare/stream.js:161`
@@ -331,8 +331,8 @@
 - `static/js/cookbookServe.js:4221`
 - `static/js/document.js:588`
 - `static/js/document.js:3998`
-- `static/js/documentLibrary.js:3511`
-- `static/js/documentLibrary.js:3522`
+- `static/js/documentLibrary.js:3296`
+- `static/js/documentLibrary.js:3307`
 - `static/js/editor/ai-inpaint.js:248`
 - `static/js/editor/ai-inpaint.js:249`
 - … +67 more (grep the name in repo)
@@ -364,13 +364,13 @@
 - `tests/test_tool_approval_task_scope.py:26`
 - `tests/test_tool_approvals.py:27`
 - `static/app.js:1429`
-- `static/js/chat.js:711`
-- `static/js/chat.js:2463`
-- `static/js/chat.js:2696`
-- `static/js/chat.js:4362`
-- `static/js/chat.js:5626`
-- `static/js/chat.js:5984`
-- `static/js/chat.js:7116`
+- `static/js/chat.js:710`
+- `static/js/chat.js:2455`
+- `static/js/chat.js:2688`
+- `static/js/chat.js:4354`
+- `static/js/chat.js:5629`
+- `static/js/chat.js:5946`
+- `static/js/chat.js:7034`
 - `static/js/compare/index.js:696`
 - `static/js/compare/index.js:773`
 - `static/js/compare/index.js:844`
@@ -383,9 +383,9 @@
 - `static/js/compare/stream.js:529`
 - `static/js/cookbook.js:110`
 - `static/js/document.js:581`
-- `static/js/documentLibrary.js:2344`
-- `static/js/documentLibrary.js:3245`
-- `static/js/documentLibrary.js:3478`
+- `static/js/documentLibrary.js:2284`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3263`
 - `static/js/editor/ai-inpaint.js:104`
 - `static/js/editor/ai-tool-runner.js:58`
 - `static/js/emailLibrary.js:8245`
@@ -396,22 +396,22 @@
 - `static/js/memory.js:513`
 - `static/js/models.js:187`
 - `static/js/presets.js:125`
-- `static/js/sessions.js:2839`
+- `static/js/sessions.js:2836`
 - `static/js/slashCommands.js:672`
 - `static/js/slashCommands.js:2059`
 - … +3 more (grep the name in repo)
 
 ## `createWhirlpool` — function, line 427
 - **called from:**
-- `static/app.js:4393`
+- `static/app.js:4392`
 - `static/js/admin.js:668`
 - `static/js/admin.js:1466`
 - `static/js/admin.js:1680`
 - `static/js/calendar.js:2022`
 - `static/js/calendar.js:3542`
 - `static/js/chat.js:227`
-- `static/js/chat.js:3497`
-- `static/js/chat.js:7578`
+- `static/js/chat.js:3489`
+- `static/js/chat.js:7417`
 - `static/js/chatRenderer.js:126`
 - `static/js/compare/probe.js:27`
 - `static/js/cookbook-diagnosis.js:990`
@@ -427,8 +427,8 @@
 - `static/js/cookbookServe.js:4192`
 - `static/js/document.js:2969`
 - `static/js/document.js:3899`
-- `static/js/documentLibrary.js:2901`
-- `static/js/documentLibrary.js:3424`
+- `static/js/documentLibrary.js:2686`
+- `static/js/documentLibrary.js:3209`
 - `static/js/editor/ai-inpaint.js:68`
 - `static/js/editor/ai-tools-misc.js:109`
 - `static/js/emailInbox.js:396`
@@ -468,14 +468,13 @@
 ## `createLoadingRow` — function, line 446
 - **called from:**
 - `static/js/document.js:3364`
-- `static/js/documentLibrary.js:1935`
-- `static/js/documentLibrary.js:2385`
-- `static/js/documentLibrary.js:2745`
+- `static/js/documentLibrary.js:1900`
+- `static/js/documentLibrary.js:2325`
 - `static/js/memory.js:700`
 - `static/js/modelPicker.js:346`
-- `static/js/sessions.js:3490`
-- `static/js/sessions.js:3521`
-- `static/js/sessions.js:3559`
+- `static/js/sessions.js:3487`
+- `static/js/sessions.js:3518`
+- `static/js/sessions.js:3556`
 - `static/js/spinner.js:446`
 - `static/js/tasks.js:816`
 - `static/js/tasks.js:1805`

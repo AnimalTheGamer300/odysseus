@@ -237,8 +237,6 @@
 - `routes/skills_routes.py:849`
 - `scripts/add_hwfit_models.py:64`
 - `services/hwfit/hf_discovery.py:115`
-- `services/search/content.py:720`
-- `services/search/content.py:720`
 - `src/agent_tools/document_tools.py:205`
 - `src/agent_tools/filesystem_tools.py:864`
 - `src/agent_tools/filesystem_tools.py:865`
@@ -282,7 +280,9 @@
 - `tests/test_compare_stop_disconnect_poll.py:227`
 - `tests/test_compare_stop_disconnect_poll.py:229`
 - `tests/test_compare_stop_disconnect_poll.py:262`
-- … +98 more (grep the name in repo)
+- `tests/test_compare_stop_disconnect_poll.py:266`
+- `tests/test_compare_stop_disconnect_poll.py:276`
+- … +95 more (grep the name in repo)
 
 ## `TaskScheduler.stop` — method (async), line 588
 - **called from:**
@@ -294,14 +294,14 @@
 - `tests/test_compare_stop_disconnect_poll.py:233`
 - `tests/test_compare_stop_disconnect_poll.py:235`
 - `static/js/admin.js:673`
-- `static/js/chat.js:4889`
-- `static/js/chat.js:4980`
+- `static/js/chat.js:4863`
+- `static/js/chat.js:4954`
 - `static/js/chatRenderer.js:145`
 - `static/js/compare/stream.js:250`
 - `static/js/compare/stream.js:287`
 - `static/js/cookbookRunning.js:2895`
-- `static/js/documentLibrary.js:3280`
-- `static/js/documentLibrary.js:3433`
+- `static/js/documentLibrary.js:3065`
+- `static/js/documentLibrary.js:3218`
 - `static/js/emailLibrary.js:8414`
 - `static/js/fileHandler.js:347`
 - `static/js/galleryEditor.js:3664`

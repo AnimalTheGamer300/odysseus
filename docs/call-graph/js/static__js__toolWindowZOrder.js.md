@@ -28,8 +28,8 @@
 - `static/js/cookbookServe.js:2528`
 - `static/js/cookbookServe.js:2726`
 - `static/js/cookbookServe.js:2773`
-- `static/js/documentLibrary.js:235`
-- `static/js/documentLibrary.js:637`
+- `static/js/documentLibrary.js:233`
+- `static/js/documentLibrary.js:635`
 - `static/js/emailLibrary.js:7674`
 - `static/js/emailLibrary.js:7940`
 - `static/js/emailLibrary.js:8147`

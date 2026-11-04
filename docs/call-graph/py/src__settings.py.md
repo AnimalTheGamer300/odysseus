@@ -40,7 +40,7 @@
 - `src/document_processor.py:307`
 - `src/endpoint_resolver.py:364`
 - `src/endpoint_resolver.py:616`
-- `src/model_context.py:292`
+- `src/model_context.py:289`
 - `src/service_health.py:422`
 - `src/settings.py:284`
 - `tests/test_budget_auto_sentinel.py:37`
@@ -94,8 +94,8 @@
 - `src/agent_tools/spawn_agent_tools.py:112`
 - `src/chat_handler.py:207`
 - `src/chat_handler.py:262`
+- `src/chat_helpers.py:289`
 - `src/chat_helpers.py:291`
-- `src/chat_helpers.py:293`
 - `src/llm_core.py:1508`
 - `src/research_handler.py:277`
 - `src/research_handler.py:791`
@@ -115,7 +115,6 @@
 - `src/teacher_escalation.py:563`
 - `src/teacher_escalation.py:588`
 - `src/tool_execution.py:336`
-- `src/vision_preprocessing.py:47`
 - `tests/test_agent_tool_budget_nonnumeric.py:67`
 - `tests/test_budget_auto_sentinel.py:50`
 - `tests/test_context_budget.py:111`

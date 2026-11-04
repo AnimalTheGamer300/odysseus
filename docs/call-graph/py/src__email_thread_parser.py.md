@@ -34,7 +34,7 @@
 - **called from:**
 - `core/atomic_io.py:37`
 - `core/atomic_io.py:58`
-- `core/database.py:525`
+- `core/database.py:518`
 - `routes/calendar_routes.py:317`
 - `routes/calendar_routes.py:325`
 - `routes/email_routes.py:5756`
@@ -50,15 +50,15 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3241`
-- `src/llm_core.py:3259`
-- `src/llm_core.py:3518`
-- `src/llm_core.py:3760`
+- `src/llm_core.py:3209`
+- `src/llm_core.py:3227`
+- `src/llm_core.py:3486`
+- `src/llm_core.py:3728`
 - `src/task_scheduler.py:2616`
 - `src/upload_handler.py:745`
 - `tests/test_atomic_io.py:101`
 - `tests/test_launcher.py:24`
-- `static/js/chat.js:2840`
+- `static/js/chat.js:2832`
 - `static/js/emailLibrary.js:6387`
 - `static/js/emailLibrary.js:6393`
 - `static/js/emailLibrary.js:6398`

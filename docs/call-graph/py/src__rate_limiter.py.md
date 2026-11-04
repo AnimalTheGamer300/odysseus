@@ -39,9 +39,9 @@
 - `routes/auth_routes.py:130`
 - `routes/auth_routes.py:148`
 - `routes/auth_routes.py:167`
-- `src/llm_core.py:3117`
-- `src/llm_core.py:3623`
-- `src/llm_core.py:3632`
+- `src/llm_core.py:3085`
+- `src/llm_core.py:3591`
+- `src/llm_core.py:3600`
 - `tests/markdown_browser_check.py:80`
 - `tests/markdown_browser_check.py:82`
 - `tests/markdown_browser_check.py:84`

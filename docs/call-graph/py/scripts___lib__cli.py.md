@@ -106,4 +106,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_agent_state_dir_confinement.py:609`
 - `tests/test_agent_state_dir_confinement.py:629`
 - `tests/test_agent_state_dir_confinement.py:689`
-- … +553 more (grep the name in repo)
+- … +546 more (grep the name in repo)

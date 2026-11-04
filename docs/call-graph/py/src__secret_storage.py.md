@@ -17,11 +17,11 @@
 ## `encrypt` — function, line 57
 - **called from:**
 - `core/database.py:180`
-- `core/database.py:2422`
-- `core/database.py:2449`
-- `core/database.py:2451`
-- `core/database.py:2482`
-- `core/database.py:2484`
+- `core/database.py:2383`
+- `core/database.py:2410`
+- `core/database.py:2412`
+- `core/database.py:2443`
+- `core/database.py:2445`
 - `routes/calendar_routes.py:882`
 - `routes/calendar_routes.py:935`
 - `routes/calendar_routes.py:967`
@@ -71,11 +71,11 @@
 
 ## `is_encrypted` — function, line 86
 - **called from:**
-- `core/database.py:2420`
-- `core/database.py:2448`
-- `core/database.py:2450`
-- `core/database.py:2481`
-- `core/database.py:2483`
+- `core/database.py:2381`
+- `core/database.py:2409`
+- `core/database.py:2411`
+- `core/database.py:2442`
+- `core/database.py:2444`
 - `src/integrations.py:195`
 - `tests/test_security_regressions.py:89`
 - `tests/test_security_regressions.py:90`

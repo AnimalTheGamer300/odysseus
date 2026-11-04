@@ -6,10 +6,10 @@
 - **called from:**
 - `src/agent_loop.py:4297`
 - `src/agent_loop.py:5615`
-- `src/llm_core.py:3135`
-- `src/llm_core.py:3246`
-- `src/llm_core.py:3417`
-- `src/llm_core.py:3582`
+- `src/llm_core.py:3103`
+- `src/llm_core.py:3214`
+- `src/llm_core.py:3385`
+- `src/llm_core.py:3550`
 
 ## `_count` — function, line 31
 - **called from:**
@@ -22,9 +22,9 @@
 - `routes/chat_routes.py:2820`
 - `src/agent_loop.py:4354`
 - `src/agent_loop.py:5531`
-- `src/llm_core.py:2516`
-- `src/llm_core.py:3815`
-- `src/llm_core.py:3900`
+- `src/llm_core.py:2484`
+- `src/llm_core.py:3783`
+- `src/llm_core.py:3868`
 
 ## `_local_model_gate_enabled` — function, line 75
 - **called from:**
@@ -37,8 +37,8 @@
 ## `_local_model_slot` — function (async), line 84
 - decorator: `asynccontextmanager`
 - **called from:**
-- `src/llm_core.py:2785`
-- `src/llm_core.py:2939`
+- `src/llm_core.py:2753`
+- `src/llm_core.py:2907`
 - `tests/test_email_summary_llm.py:156`
 - `tests/test_email_summary_llm.py:177`
 
@@ -48,22 +48,22 @@
 
 ## `_FallbackIneligibleHTTPException` — class, line 162
 - **called from:**
-- `src/llm_core.py:2542`
-- `src/llm_core.py:2849`
-- `src/llm_core.py:2882`
-- `src/llm_core.py:2893`
-- `src/llm_core.py:2904`
-- `src/llm_core.py:2917`
+- `src/llm_core.py:2510`
+- `src/llm_core.py:2817`
+- `src/llm_core.py:2850`
+- `src/llm_core.py:2861`
+- `src/llm_core.py:2872`
+- `src/llm_core.py:2885`
 
 ## `_call_timeout` — function, line 168
 - **called from:**
-- `src/llm_core.py:2779`
+- `src/llm_core.py:2747`
 - `tests/test_llm_core_connect_timeout.py:26`
 - `tests/test_llm_core_connect_timeout.py:46`
 
 ## `_stream_timeout` — function, line 173
 - **called from:**
-- `src/llm_core.py:3058`
+- `src/llm_core.py:3026`
 - `tests/test_llm_core_connect_timeout.py:35`
 - `tests/test_llm_core_connect_timeout.py:47`
 
@@ -73,13 +73,13 @@
 
 ## `_get_cache_key` — function, line 198
 - **called from:**
-- `src/llm_core.py:2308`
-- `src/llm_core.py:2657`
+- `src/llm_core.py:2276`
+- `src/llm_core.py:2625`
 - `tests/test_llm_core_fallback.py:543`
 
 ## `_strip_visible_chat_template_artifacts` — function, line 283
 - **called from:**
-- `src/llm_core.py:3629`
+- `src/llm_core.py:3597`
 
 ## `_harmony_suffix_hold_len` — function, line 287
 - **called from:**
@@ -87,8 +87,8 @@
 
 ## `_HarmonyStreamRouter` — class, line 297
 - **called from:**
-- `src/llm_core.py:3191`
-- `src/llm_core.py:3469`
+- `src/llm_core.py:3159`
+- `src/llm_core.py:3437`
 
 ## `_HarmonyStreamRouter.__init__` — method, line 300
 - **called from:**
@@ -114,17 +114,17 @@
 ## `_HarmonyStreamRouter.feed` — method, line 306
 - **called from:**
 - `routes/email_routes.py:1503`
-- `src/llm_core.py:3230`
-- `src/llm_core.py:3644`
-- `src/llm_core.py:3749`
-- `src/llm_core.py:3753`
+- `src/llm_core.py:3198`
+- `src/llm_core.py:3612`
+- `src/llm_core.py:3717`
+- `src/llm_core.py:3721`
 - `tests/test_chat_attachment_picker.py:24`
 
 ## `_HarmonyStreamRouter.flush` — method, line 312
 - **called from:**
 - `core/atomic_io.py:37`
 - `core/atomic_io.py:58`
-- `core/database.py:525`
+- `core/database.py:518`
 - `routes/calendar_routes.py:317`
 - `routes/calendar_routes.py:325`
 - `routes/email_routes.py:5756`
@@ -140,15 +140,15 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3241`
-- `src/llm_core.py:3259`
-- `src/llm_core.py:3518`
-- `src/llm_core.py:3760`
+- `src/llm_core.py:3209`
+- `src/llm_core.py:3227`
+- `src/llm_core.py:3486`
+- `src/llm_core.py:3728`
 - `src/task_scheduler.py:2616`
 - `src/upload_handler.py:745`
 - `tests/test_atomic_io.py:101`
 - `tests/test_launcher.py:24`
-- `static/js/chat.js:2840`
+- `static/js/chat.js:2832`
 - `static/js/emailLibrary.js:6387`
 - `static/js/emailLibrary.js:6393`
 - `static/js/emailLibrary.js:6398`
@@ -179,17 +179,17 @@
 
 ## `_stream_delta_event` — function, line 357
 - **called from:**
-- `src/llm_core.py:3227`
-- `src/llm_core.py:3231`
-- `src/llm_core.py:3242`
-- `src/llm_core.py:3260`
-- `src/llm_core.py:3486`
-- `src/llm_core.py:3494`
-- `src/llm_core.py:3627`
+- `src/llm_core.py:3195`
+- `src/llm_core.py:3199`
+- `src/llm_core.py:3210`
+- `src/llm_core.py:3228`
+- `src/llm_core.py:3454`
+- `src/llm_core.py:3462`
+- `src/llm_core.py:3595`
 
 ## `_DegenerateStreamGuard` — class, line 367
 - **called from:**
-- `src/llm_core.py:3064`
+- `src/llm_core.py:3032`
 - `tests/test_llm_core_fallback.py:1025`
 
 ## `_DegenerateStreamGuard.__init__` — method, line 376
@@ -218,9 +218,9 @@
 - `routes/auth_routes.py:130`
 - `routes/auth_routes.py:148`
 - `routes/auth_routes.py:167`
-- `src/llm_core.py:3117`
-- `src/llm_core.py:3623`
-- `src/llm_core.py:3632`
+- `src/llm_core.py:3085`
+- `src/llm_core.py:3591`
+- `src/llm_core.py:3600`
 - `tests/markdown_browser_check.py:80`
 - `tests/markdown_browser_check.py:82`
 - `tests/markdown_browser_check.py:84`
@@ -261,34 +261,34 @@
 - **called from:**
 - `src/llm_core.py:446`
 - `src/llm_core.py:456`
-- `src/llm_core.py:3541`
-- `src/llm_core.py:3601`
+- `src/llm_core.py:3509`
+- `src/llm_core.py:3569`
 
 ## `_reported_model_name` — function, line 438
 - **called from:**
 - `src/llm_core.py:445`
 - `src/llm_core.py:453`
-- `src/llm_core.py:3104`
-- `src/llm_core.py:3216`
-- `src/llm_core.py:3343`
+- `src/llm_core.py:3072`
+- `src/llm_core.py:3184`
+- `src/llm_core.py:3311`
 
 ## `_model_actual_event` — function, line 443
 - **called from:**
-- `src/llm_core.py:3110`
-- `src/llm_core.py:3220`
-- `src/llm_core.py:3351`
+- `src/llm_core.py:3078`
+- `src/llm_core.py:3188`
+- `src/llm_core.py:3319`
 
 ## `_annotate_usage_model` — function, line 451
 - **called from:**
-- `src/llm_core.py:3145`
-- `src/llm_core.py:3251`
-- `src/llm_core.py:3422`
+- `src/llm_core.py:3113`
+- `src/llm_core.py:3219`
+- `src/llm_core.py:3390`
 
 ## `note_model_activity` — function, line 461
 - **called from:**
-- `src/llm_core.py:2352`
-- `src/llm_core.py:2786`
-- `src/llm_core.py:3063`
+- `src/llm_core.py:2320`
+- `src/llm_core.py:2754`
+- `src/llm_core.py:3031`
 
 ## `seconds_since_model_activity` — function, line 467
 - **called from:**
@@ -299,60 +299,60 @@
 - `src/llm_core.py:480`
 - `src/llm_core.py:495`
 - `src/llm_core.py:505`
-- `src/llm_core.py:2777`
-- `src/llm_core.py:2859`
-- `src/llm_core.py:3061`
-- `src/llm_core.py:3172`
-- `src/llm_core.py:3266`
-- `src/llm_core.py:3443`
-- `src/llm_core.py:3771`
+- `src/llm_core.py:2745`
+- `src/llm_core.py:2827`
+- `src/llm_core.py:3029`
+- `src/llm_core.py:3140`
+- `src/llm_core.py:3234`
+- `src/llm_core.py:3411`
+- `src/llm_core.py:3739`
 - `tests/test_llm_core_concurrency.py:51`
 
 ## `_is_host_dead` — function, line 479
 - **called from:**
-- `src/llm_core.py:2776`
-- `src/llm_core.py:3060`
+- `src/llm_core.py:2744`
+- `src/llm_core.py:3028`
 
 ## `_mark_host_dead` — function, line 490
 - **called from:**
-- `src/llm_core.py:2854`
-- `src/llm_core.py:3169`
-- `src/llm_core.py:3263`
-- `src/llm_core.py:3440`
-- `src/llm_core.py:3768`
+- `src/llm_core.py:2822`
+- `src/llm_core.py:3137`
+- `src/llm_core.py:3231`
+- `src/llm_core.py:3408`
+- `src/llm_core.py:3736`
 - `tests/test_llm_core_concurrency.py:68`
 
 ## `_clear_host_dead` — function, line 504
 - **called from:**
-- `src/llm_core.py:2801`
-- `src/llm_core.py:3076`
-- `src/llm_core.py:3197`
-- `src/llm_core.py:3296`
-- `src/llm_core.py:3501`
+- `src/llm_core.py:2769`
+- `src/llm_core.py:3044`
+- `src/llm_core.py:3165`
+- `src/llm_core.py:3264`
+- `src/llm_core.py:3469`
 
 ## `_get_http_client` — function, line 517
 - **called from:**
-- `src/llm_core.py:2787`
-- `src/llm_core.py:3074`
-- `src/llm_core.py:3195`
-- `src/llm_core.py:3294`
-- `src/llm_core.py:3498`
+- `src/llm_core.py:2755`
+- `src/llm_core.py:3042`
+- `src/llm_core.py:3163`
+- `src/llm_core.py:3262`
+- `src/llm_core.py:3466`
 
 ## `_get_cached_response` — function, line 527
 - **called from:**
-- `src/llm_core.py:2312`
-- `src/llm_core.py:2661`
+- `src/llm_core.py:2280`
+- `src/llm_core.py:2629`
 
 ## `_get_cached_response_model` — function, line 532
 - **called from:**
-- `src/llm_core.py:2668`
+- `src/llm_core.py:2636`
 
 ## `_set_cached_response` — function, line 538
 - **called from:**
-- `src/llm_core.py:2376`
-- `src/llm_core.py:2699`
-- `src/llm_core.py:2726`
-- `src/llm_core.py:2838`
+- `src/llm_core.py:2344`
+- `src/llm_core.py:2667`
+- `src/llm_core.py:2694`
+- `src/llm_core.py:2806`
 - `tests/test_llm_core_concurrency.py:38`
 
 ## `_is_ollama_native_url` — function, line 568
@@ -381,8 +381,8 @@
 - `scripts/dump_agent_prompt.py:90`
 - `scripts/dump_agent_prompt.py:329`
 - `src/agent_loop.py:1120`
-- `src/llm_core.py:2765`
-- `src/llm_core.py:3037`
+- `src/llm_core.py:2733`
+- `src/llm_core.py:3005`
 - `tests/test_llm_core_ollama_thinking.py:79`
 - `tests/test_llm_core_ollama_thinking.py:82`
 - `tests/test_llm_core_ollama_thinking.py:85`
@@ -405,24 +405,24 @@
 - `src/endpoint_resolver.py:278`
 - `src/endpoint_resolver.py:302`
 - `src/llm_core.py:626`
-- `src/llm_core.py:2221`
+- `src/llm_core.py:2189`
 - `tests/test_provider_endpoints_normalization.py:49`
 
 ## `_normalize_ollama_url` — function, line 624
 - **called from:**
 - `scripts/dump_agent_prompt.py:300`
-- `src/llm_core.py:2322`
-- `src/llm_core.py:2738`
-- `src/llm_core.py:2927`
-- `src/llm_core.py:2995`
+- `src/llm_core.py:2290`
+- `src/llm_core.py:2706`
+- `src/llm_core.py:2895`
+- `src/llm_core.py:2963`
 
 ## `_normalize_openai_chat_url` — function, line 630
 - **called from:**
 - `scripts/dump_agent_prompt.py:309`
-- `src/llm_core.py:2330`
-- `src/llm_core.py:2749`
-- `src/llm_core.py:2930`
-- `src/llm_core.py:3010`
+- `src/llm_core.py:2298`
+- `src/llm_core.py:2717`
+- `src/llm_core.py:2898`
+- `src/llm_core.py:2978`
 
 ## `_ollama_normalize_messages` — function, line 642
 - **called from:**
@@ -432,9 +432,9 @@
 - **called from:**
 - `routes/model_routes.py:727`
 - `scripts/dump_agent_prompt.py:301`
-- `src/llm_core.py:2324`
-- `src/llm_core.py:2743`
-- `src/llm_core.py:3000`
+- `src/llm_core.py:2292`
+- `src/llm_core.py:2711`
+- `src/llm_core.py:2968`
 - `tests/test_llm_core_ollama.py:159`
 - `tests/test_llm_core_ollama.py:176`
 - `tests/test_llm_core_ollama.py:186`
@@ -452,8 +452,8 @@
 
 ## `_parse_ollama_response` — function, line 795
 - **called from:**
-- `src/llm_core.py:2363`
-- `src/llm_core.py:2821`
+- `src/llm_core.py:2331`
+- `src/llm_core.py:2789`
 
 ## `_host_match` — function, line 800
 - **called from:**
@@ -560,21 +560,21 @@
 ## `apply_kimi_code_headers_async` — function (async), line 913
 - **called from:**
 - `src/llm_core.py:976`
-- `src/llm_core.py:3499`
+- `src/llm_core.py:3467`
 
 ## `httpx_get_kimi_aware` — function, line 943
 - **called from:**
 - `routes/model_routes.py:1009`
-- `src/llm_core.py:2226`
+- `src/llm_core.py:2194`
 
 ## `httpx_post_kimi_aware` — function, line 959
 - **called from:**
-- `src/llm_core.py:2353`
+- `src/llm_core.py:2321`
 - `tests/test_kimi_code_user_agent.py:90`
 
 ## `httpx_post_kimi_aware_async` — function (async), line 975
 - **called from:**
-- `src/llm_core.py:2788`
+- `src/llm_core.py:2756`
 - `tests/test_kimi_code_user_agent.py:121`
 - `tests/test_kimi_code_user_agent.py:157`
 
@@ -592,13 +592,13 @@
 - `src/llm_core.py:1046`
 - `src/llm_core.py:1631`
 - `src/llm_core.py:1677`
-- `src/llm_core.py:2213`
+- `src/llm_core.py:2181`
+- `src/llm_core.py:2243`
+- `src/llm_core.py:2255`
 - `src/llm_core.py:2275`
-- `src/llm_core.py:2287`
-- `src/llm_core.py:2307`
-- `src/llm_core.py:2641`
-- `src/llm_core.py:2923`
-- `src/llm_core.py:2969`
+- `src/llm_core.py:2609`
+- `src/llm_core.py:2891`
+- `src/llm_core.py:2937`
 - `tests/test_cerebras_cache_affinity.py:12`
 - `tests/test_copilot.py:26`
 - `tests/test_copilot.py:27`
@@ -639,8 +639,8 @@
 ## `_apply_local_cache_affinity` — function, line 1052
 - **called from:**
 - `scripts/dump_agent_prompt.py:332`
-- `src/llm_core.py:2773`
-- `src/llm_core.py:3044`
+- `src/llm_core.py:2741`
+- `src/llm_core.py:3012`
 - `tests/test_cache_affinity_local_only.py:20`
 - `tests/test_cache_affinity_local_only.py:71`
 - `tests/test_cerebras_cache_affinity.py:25`
@@ -652,17 +652,17 @@
 ## `_apply_local_generation_stability` — function, line 1095
 - **called from:**
 - `scripts/dump_agent_prompt.py:333`
-- `src/llm_core.py:2344`
-- `src/llm_core.py:2774`
-- `src/llm_core.py:3045`
+- `src/llm_core.py:2312`
+- `src/llm_core.py:2742`
+- `src/llm_core.py:3013`
 - `tests/test_llm_core_temperature_reasoning.py:98`
 
 ## `_provider_headers` — function, line 1122
 - **called from:**
-- `src/llm_core.py:2275`
-- `src/llm_core.py:2750`
-- `src/llm_core.py:3007`
-- `src/llm_core.py:3048`
+- `src/llm_core.py:2243`
+- `src/llm_core.py:2718`
+- `src/llm_core.py:2975`
+- `src/llm_core.py:3016`
 
 ## `_provider_label` — function, line 1140
 - **called from:**
@@ -695,7 +695,7 @@
 ## `_alias_harmony_tools` — function, line 1231
 - **called from:**
 - `src/llm_core.py:791`
-- `src/llm_core.py:3025`
+- `src/llm_core.py:2993`
 - `tests/test_harmony_tool_aliasing.py:37`
 - `tests/test_harmony_tool_aliasing.py:44`
 - `tests/test_harmony_tool_aliasing.py:51`
@@ -704,8 +704,8 @@
 
 ## `_unalias_harmony_tool_name` — function, line 1246
 - **called from:**
-- `src/llm_core.py:3237`
-- `src/llm_core.py:3736`
+- `src/llm_core.py:3205`
+- `src/llm_core.py:3704`
 - `tests/test_harmony_tool_aliasing.py:56`
 - `tests/test_harmony_tool_aliasing.py:57`
 - `tests/test_harmony_tool_aliasing.py:59`
@@ -714,7 +714,7 @@
 ## `_scrub_openai_chat_tool_reasoning` — function, line 1253
 - **called from:**
 - `scripts/dump_agent_prompt.py:334`
-- `src/llm_core.py:3046`
+- `src/llm_core.py:3014`
 - `tests/test_llm_core_openai_reasoning_tools.py:18`
 - `tests/test_llm_core_openai_reasoning_tools.py:31`
 - `tests/test_llm_core_openai_reasoning_tools.py:43`
@@ -724,8 +724,8 @@
 ## `_normalize_chatgpt_subscription_url` — function, line 1263
 - **called from:**
 - `scripts/dump_agent_prompt.py:305`
-- `src/llm_core.py:2929`
-- `src/llm_core.py:3006`
+- `src/llm_core.py:2897`
+- `src/llm_core.py:2974`
 
 ## `_message_content_as_text` — function, line 1270
 - **called from:**
@@ -738,21 +738,21 @@
 ## `_build_chatgpt_responses_payload` — function, line 1301
 - **called from:**
 - `scripts/dump_agent_prompt.py:306`
-- `src/llm_core.py:3008`
+- `src/llm_core.py:2976`
 - `tests/test_llm_core_temperature_reasoning.py:115`
 - `tests/test_llm_core_temperature_reasoning.py:126`
 
 ## `_format_chatgpt_subscription_error` — function, line 1327
 - **called from:**
-- `src/llm_core.py:3079`
+- `src/llm_core.py:3047`
 
 ## `_format_upstream_error` — function, line 1335
 - **called from:**
 - `src/llm_core.py:1332`
-- `src/llm_core.py:2791`
-- `src/llm_core.py:3200`
-- `src/llm_core.py:3299`
-- `src/llm_core.py:3504`
+- `src/llm_core.py:2759`
+- `src/llm_core.py:3168`
+- `src/llm_core.py:3267`
+- `src/llm_core.py:3472`
 - `tests/test_provider_classification_errors.py:21`
 - `tests/test_provider_classification_errors.py:29`
 - `tests/test_provider_classification_errors.py:36`
@@ -772,9 +772,9 @@
 - `scripts/dump_agent_prompt.py:321`
 - `src/llm_core.py:1637`
 - `src/llm_core.py:1682`
-- `src/llm_core.py:2342`
-- `src/llm_core.py:2762`
-- `src/llm_core.py:3022`
+- `src/llm_core.py:2310`
+- `src/llm_core.py:2730`
+- `src/llm_core.py:2990`
 - `tests/test_provider_classification_token_params.py:26`
 - `tests/test_provider_classification_token_params.py:34`
 
@@ -796,9 +796,9 @@
 ## `_omit_temperature` — function, line 1417
 - **called from:**
 - `scripts/dump_agent_prompt.py:316`
-- `src/llm_core.py:2339`
-- `src/llm_core.py:2759`
-- `src/llm_core.py:3017`
+- `src/llm_core.py:2307`
+- `src/llm_core.py:2727`
+- `src/llm_core.py:2985`
 
 ## `_anthropic_rejects_temperature` — function, line 1429
 - **called from:**
@@ -810,9 +810,9 @@
 ## `_disable_deepseek_v4_thinking` — function, line 1470
 - **called from:**
 - `scripts/dump_agent_prompt.py:331`
-- `src/llm_core.py:2347`
-- `src/llm_core.py:2769`
-- `src/llm_core.py:3039`
+- `src/llm_core.py:2315`
+- `src/llm_core.py:2737`
+- `src/llm_core.py:3007`
 - `tests/test_sanitize_promotes_metadata_thinking.py:77`
 - `tests/test_sanitize_promotes_metadata_thinking.py:89`
 - `tests/test_sanitize_promotes_metadata_thinking.py:99`
@@ -821,9 +821,9 @@
 
 ## `_thinking_setting_off` — function, line 1497
 - **called from:**
-- `src/llm_core.py:2292`
-- `src/llm_core.py:2639`
-- `src/llm_core.py:2974`
+- `src/llm_core.py:2260`
+- `src/llm_core.py:2607`
+- `src/llm_core.py:2942`
 - `tests/test_thinking_toggle.py:46`
 - `tests/test_thinking_toggle.py:54`
 - `tests/test_thinking_toggle.py:65`
@@ -846,9 +846,9 @@
 ## `_request_reasoning` — function, line 1545
 - **called from:**
 - `src/llm_core.py:1628`
-- `src/llm_core.py:2291`
-- `src/llm_core.py:2638`
-- `src/llm_core.py:2973`
+- `src/llm_core.py:2259`
+- `src/llm_core.py:2606`
+- `src/llm_core.py:2941`
 - `tests/test_nim_reasoning_control.py:68`
 
 ## `_nim_model_family` — function, line 1577
@@ -890,16 +890,16 @@
 
 ## `_apply_request_reasoning_effort` — function, line 1617
 - **called from:**
-- `src/llm_core.py:2350`
-- `src/llm_core.py:2772`
-- `src/llm_core.py:3047`
+- `src/llm_core.py:2318`
+- `src/llm_core.py:2740`
+- `src/llm_core.py:3015`
 - `tests/test_nim_reasoning_control.py:70`
 
 ## `_apply_thinking_off_openai_compat` — function, line 1654
 - **called from:**
-- `src/llm_core.py:2349`
-- `src/llm_core.py:2771`
-- `src/llm_core.py:3043`
+- `src/llm_core.py:2317`
+- `src/llm_core.py:2739`
+- `src/llm_core.py:3011`
 - `tests/test_nim_reasoning_control.py:69`
 - `tests/test_thinking_toggle.py:77`
 
@@ -907,20 +907,20 @@
 - **called from:**
 - `scripts/dump_agent_prompt.py:327`
 - `scripts/dump_agent_prompt.py:329`
-- `src/llm_core.py:2345`
-- `src/llm_core.py:2765`
-- `src/llm_core.py:2767`
-- `src/llm_core.py:3032`
-- `src/llm_core.py:3037`
-- `src/llm_core.py:3465`
+- `src/llm_core.py:2313`
+- `src/llm_core.py:2733`
+- `src/llm_core.py:2735`
+- `src/llm_core.py:3000`
+- `src/llm_core.py:3005`
+- `src/llm_core.py:3433`
 - `tests/test_llm_core_thinking_models.py:22`
 - `tests/test_llm_core_thinking_models.py:27`
 
 ## `_normalize_mistral_content` — function, line 1708
 - **called from:**
-- `src/llm_core.py:2369`
-- `src/llm_core.py:2831`
-- `src/llm_core.py:3618`
+- `src/llm_core.py:2337`
+- `src/llm_core.py:2799`
+- `src/llm_core.py:3586`
 - `tests/test_llm_core_mistral_content.py:26`
 - `tests/test_llm_core_mistral_content.py:32`
 - `tests/test_llm_core_mistral_content.py:47`
@@ -943,9 +943,9 @@
 - **called from:**
 - `routes/model_routes.py:719`
 - `scripts/dump_agent_prompt.py:297`
-- `src/llm_core.py:2320`
-- `src/llm_core.py:2736`
-- `src/llm_core.py:2993`
+- `src/llm_core.py:2288`
+- `src/llm_core.py:2704`
+- `src/llm_core.py:2961`
 - `tests/test_approved_replay_message_shape.py:60`
 - `tests/test_llm_core_anthropic_cache.py:7`
 - `tests/test_llm_core_anthropic_temp_clamp.py:17`
@@ -960,14 +960,14 @@
 ## `_build_anthropic_headers` — function, line 1870
 - **called from:**
 - `routes/model_routes.py:718`
-- `src/llm_core.py:2319`
-- `src/llm_core.py:2735`
-- `src/llm_core.py:2992`
+- `src/llm_core.py:2287`
+- `src/llm_core.py:2703`
+- `src/llm_core.py:2960`
 
 ## `_parse_anthropic_response` — function, line 1881
 - **called from:**
-- `src/llm_core.py:2361`
-- `src/llm_core.py:2819`
+- `src/llm_core.py:2329`
+- `src/llm_core.py:2787`
 - `tests/test_anthropic_response_parse.py:13`
 - `tests/test_anthropic_response_parse.py:21`
 - `tests/test_anthropic_response_parse.py:25`
@@ -976,20 +976,20 @@
 
 ## `_as_content_blocks` — function, line 1896
 - **called from:**
-- `src/llm_core.py:2098`
-- `src/llm_core.py:2098`
+- `src/llm_core.py:2066`
+- `src/llm_core.py:2066`
 
 ## `_is_untrusted_context_content` — function, line 1910
 - **called from:**
 - `src/llm_core.py:1920`
-- `src/llm_core.py:2087`
+- `src/llm_core.py:2055`
 
-## `_sanitize_llm_messages` — function, line 1934
+## `_sanitize_llm_messages` — function, line 1929
 - **called from:**
 - `scripts/dump_agent_prompt.py:280`
-- `src/llm_core.py:2288`
-- `src/llm_core.py:2642`
-- `src/llm_core.py:2970`
+- `src/llm_core.py:2256`
+- `src/llm_core.py:2610`
+- `src/llm_core.py:2938`
 - `tests/test_approved_replay_message_shape.py:59`
 - `tests/test_approved_replay_message_shape.py:72`
 - `tests/test_llm_core_sanitize_tool_calls.py:53`
@@ -1015,30 +1015,30 @@
 - `tests/test_temporal_grounding_stamps.py:106`
 - `tests/test_temporal_grounding_stamps.py:165`
 
-## `_normalize_anthropic_url` — function, line 2118
+## `_normalize_anthropic_url` — function, line 2086
 - **called from:**
 - `routes/model_routes.py:716`
 - `scripts/dump_agent_prompt.py:296`
-- `src/llm_core.py:2318`
-- `src/llm_core.py:2734`
-- `src/llm_core.py:2925`
-- `src/llm_core.py:2991`
+- `src/llm_core.py:2286`
+- `src/llm_core.py:2702`
+- `src/llm_core.py:2893`
+- `src/llm_core.py:2959`
 
-## `_model_list_base` — function, line 2128
+## `_model_list_base` — function, line 2096
 - **called from:**
-- `src/llm_core.py:2167`
-- `src/llm_core.py:2184`
+- `src/llm_core.py:2135`
+- `src/llm_core.py:2152`
 
-## `_parse_model_cache` — function, line 2140
+## `_parse_model_cache` — function, line 2108
 - **called from:**
-- `src/llm_core.py:2186`
-- `src/llm_core.py:2189`
+- `src/llm_core.py:2154`
+- `src/llm_core.py:2157`
 
-## `_configured_cached_model_ids` — function, line 2160
+## `_configured_cached_model_ids` — function, line 2128
 - **called from:**
-- `src/llm_core.py:2210`
+- `src/llm_core.py:2178`
 
-## `list_model_ids` — function, line 2201
+## `list_model_ids` — function, line 2169
 - **called from:**
 - `routes/email_routes.py:5258`
 - `routes/session_routes.py:452`
@@ -1046,7 +1046,7 @@
 - `routes/skills_routes.py:1118`
 - `routes/skills_routes.py:1519`
 - `src/builtin_actions.py:1950`
-- `src/llm_core.py:2259`
+- `src/llm_core.py:2227`
 - `tests/test_llama_server_models_url.py:33`
 - `tests/test_llm_core_ollama.py:124`
 - `tests/test_lmstudio_models_url.py:133`
@@ -1054,16 +1054,16 @@
 - `tests/test_lmstudio_models_url.py:174`
 - `tests/test_model_routes.py:1978`
 
-## `normalize_model_id` — function, line 2250
+## `normalize_model_id` — function, line 2218
 - **called from:**
 - `routes/chat_helpers.py:876`
 
-## `llm_call` — function, line 2271
+## `llm_call` — function, line 2239
 - **called from:**
-- `routes/session_routes.py:1461`
+- `routes/session_routes.py:1391`
 - `src/chat_processor.py:420`
 - `src/document_processor.py:418`
-- `src/llm_core.py:2463`
+- `src/llm_core.py:2431`
 - `tests/test_llm_core_fallback.py:518`
 - `tests/test_llm_core_fallback.py:524`
 - `tests/test_llm_core_fallback.py:530`
@@ -1076,38 +1076,38 @@
 - `tests/test_llm_core_temperature_moonshot.py:72`
 - `tests/test_llm_core_temperature_reasoning.py:52`
 
-## `_candidate_is_configured` — function, line 2382
+## `_candidate_is_configured` — function, line 2350
 - **called from:**
-- `src/llm_core.py:2421`
-- `src/llm_core.py:2541`
-- `src/llm_core.py:3956`
+- `src/llm_core.py:2389`
+- `src/llm_core.py:2509`
+- `src/llm_core.py:3924`
 
-## `_safe_route_descriptor` — function, line 2393
+## `_safe_route_descriptor` — function, line 2361
 - **called from:**
-- `src/llm_core.py:2429`
+- `src/llm_core.py:2397`
 
-## `_dedupe_model_candidates_with_descriptors` — function, line 2413
+## `_dedupe_model_candidates_with_descriptors` — function, line 2381
 - **called from:**
-- `src/llm_core.py:2445`
-- `src/llm_core.py:3959`
+- `src/llm_core.py:2413`
+- `src/llm_core.py:3927`
 
-## `dedupe_model_candidates` — function, line 2433
+## `dedupe_model_candidates` — function, line 2401
 - **called from:**
 - `src/agent_loop.py:5346`
-- `src/llm_core.py:2457`
-- `src/llm_core.py:2496`
-- `src/llm_core.py:2544`
+- `src/llm_core.py:2425`
+- `src/llm_core.py:2464`
+- `src/llm_core.py:2512`
 - `tests/test_llm_core_fallback.py:1272`
 - `tests/test_llm_core_fallback.py:1277`
 - `tests/test_llm_core_fallback.py:1278`
 
-## `llm_call_with_fallback` — function, line 2449
+## `llm_call_with_fallback` — function, line 2417
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_extract_finish_reason` — function, line 2472
+## `_extract_finish_reason` — function, line 2440
 - **called from:**
-- `src/llm_core.py:2844`
+- `src/llm_core.py:2812`
 - `tests/test_llm_core_reasoning_content_fallback.py:131`
 - `tests/test_llm_core_reasoning_content_fallback.py:137`
 - `tests/test_llm_core_reasoning_content_fallback.py:143`
@@ -1115,7 +1115,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_llm_core_reasoning_content_fallback.py:150`
 - `tests/test_llm_core_reasoning_content_fallback.py:151`
 
-## `llm_call_async_with_fallback` — function (async), line 2494
+## `llm_call_async_with_fallback` — function (async), line 2462
 - **called from:**
 - `mcp_servers/email_server.py:1849`
 - `routes/email_routes.py:5071`
@@ -1126,12 +1126,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/builtin_actions.py:2729`
 - `src/task_endpoint.py:73`
 
-## `_nonstream_error_status` — function, line 2511
+## `_nonstream_error_status` — function, line 2479
 - **called from:**
-- `src/llm_core.py:2584`
-- `src/llm_core.py:3983`
+- `src/llm_core.py:2552`
+- `src/llm_core.py:3951`
 
-## `llm_call_async_with_route_fallback` — function (async), line 2524
+## `llm_call_async_with_route_fallback` — function (async), line 2492
 - **called from:**
 - `routes/chat_routes.py:1054`
 - `tests/test_llm_core_fallback.py:735`
@@ -1144,7 +1144,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_llm_core_fallback.py:1404`
 - `tests/test_llm_core_fallback.py:1430`
 
-## `llm_call_async` — function (async), line 2598
+## `llm_call_async` — function (async), line 2566
 - **called from:**
 - `routes/calendar_routes.py:1690`
 - `routes/chat_helpers.py:330`
@@ -1153,13 +1153,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email_helpers.py:325`
 - `routes/email_routes.py:4866`
 - `routes/email_routes.py:5396`
-- `routes/history/history_routes.py:1134`
+- `routes/history/history_routes.py:1097`
 - `routes/memory/memory_routes.py:265`
 - `routes/memory/memory_routes.py:457`
 - `routes/note/note_routes.py:220`
 - `routes/preset_routes.py:107`
 - `routes/session_routes.py:650`
-- `routes/session_routes.py:1238`
+- `routes/session_routes.py:1170`
 - `routes/skills_routes.py:259`
 - `routes/skills_routes.py:309`
 - `routes/skills_routes.py:397`
@@ -1178,8 +1178,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/ai_interaction.py:299`
 - `src/context_compactor.py:518`
 - `src/deep_research.py:385`
-- `src/llm_core.py:2502`
-- `src/llm_core.py:2563`
+- `src/llm_core.py:2470`
+- `src/llm_core.py:2531`
 - `src/research_handler.py:150`
 - `src/research_handler.py:182`
 - `src/research_handler.py:725`
@@ -1193,15 +1193,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_llm_core_reasoning_content_fallback.py:91`
 - `tests/test_llm_core_reasoning_content_fallback.py:116`
 
-## `_stream_target_url` — function, line 2922
+## `_stream_target_url` — function, line 2890
 - **called from:**
-- `src/llm_core.py:2938`
+- `src/llm_core.py:2906`
 
-## `stream_llm` — function (async), line 2933
+## `stream_llm` — function (async), line 2901
 - **called from:**
 - `routes/chat_routes.py:3249`
-- `src/llm_core.py:2677`
-- `src/llm_core.py:4014`
+- `src/llm_core.py:2645`
+- `src/llm_core.py:3982`
 - `tests/test_chat_metrics.py:66`
 - `tests/test_chat_metrics.py:94`
 - `tests/test_kimi_code_user_agent.py:200`
@@ -1217,54 +1217,54 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_llm_core_streaming.py:57`
 - `tests/test_llm_core_usage_finish_delta.py:58`
 
-## `_stream_llm_inner` — function (async), line 2956
+## `_stream_llm_inner` — function (async), line 2924
 - **called from:**
-- `src/llm_core.py:2940`
+- `src/llm_core.py:2908`
 - `tests/test_llm_core_fallback.py:80`
 - `tests/test_llm_core_fallback.py:1051`
 
-## `_emit_tool_calls` — function, line 3474
+## `_emit_tool_calls` — function, line 3442
 - **called from:**
-- `src/llm_core.py:3520`
-- `src/llm_core.py:3762`
+- `src/llm_core.py:3488`
+- `src/llm_core.py:3730`
 
-## `_format_routed_content` — function, line 3481
+## `_format_routed_content` — function, line 3449
 - **called from:**
-- `src/llm_core.py:3518`
-- `src/llm_core.py:3644`
-- `src/llm_core.py:3749`
-- `src/llm_core.py:3753`
-- `src/llm_core.py:3760`
+- `src/llm_core.py:3486`
+- `src/llm_core.py:3612`
+- `src/llm_core.py:3717`
+- `src/llm_core.py:3721`
+- `src/llm_core.py:3728`
 
-## `_summarize_stream_error` — function, line 3787
+## `_summarize_stream_error` — function, line 3755
 - **called from:**
-- `src/llm_core.py:4001`
-- `src/llm_core.py:4043`
-- `src/llm_core.py:4089`
-- `src/llm_core.py:4145`
+- `src/llm_core.py:3969`
+- `src/llm_core.py:4011`
+- `src/llm_core.py:4057`
+- `src/llm_core.py:4113`
 - `tests/test_llm_core_fallback.py:1491`
 - `tests/test_llm_core_fallback.py:1492`
 - `tests/test_llm_core_fallback.py:1493`
 
-## `_stream_error_status` — function, line 3805
+## `_stream_error_status` — function, line 3773
 - **called from:**
-- `src/llm_core.py:4024`
+- `src/llm_core.py:3992`
 
-## `_stream_error_fallback_override` — function, line 3821
+## `_stream_error_fallback_override` — function, line 3789
 - **called from:**
-- `src/llm_core.py:4025`
+- `src/llm_core.py:3993`
 
-## `_request_factory_error_chunk` — function, line 3837
+## `_request_factory_error_chunk` — function, line 3805
 - **called from:**
-- `src/llm_core.py:3994`
+- `src/llm_core.py:3962`
 
-## `_provider_stream_error_status` — function, line 3865
+## `_provider_stream_error_status` — function, line 3833
 - **called from:**
-- `src/llm_core.py:2805`
-- `src/llm_core.py:3164`
-- `src/llm_core.py:3212`
-- `src/llm_core.py:3433`
-- `src/llm_core.py:3532`
+- `src/llm_core.py:2773`
+- `src/llm_core.py:3132`
+- `src/llm_core.py:3180`
+- `src/llm_core.py:3401`
+- `src/llm_core.py:3500`
 - `tests/test_llm_core_fallback.py:596`
 - `tests/test_llm_core_fallback.py:607`
 - `tests/test_llm_core_fallback.py:614`
@@ -1272,7 +1272,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_llm_core_fallback.py:632`
 - `tests/test_llm_core_fallback.py:778`
 
-## `stream_llm_with_fallback` — function (async), line 3933
+## `stream_llm_with_fallback` — function (async), line 3901
 - **called from:**
 - `routes/chat_routes.py:2223`
 - `src/agent_loop.py:4273`

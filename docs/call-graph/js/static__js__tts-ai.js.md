@@ -73,14 +73,14 @@
 - `tests/test_compare_stop_disconnect_poll.py:233`
 - `tests/test_compare_stop_disconnect_poll.py:235`
 - `static/js/admin.js:673`
-- `static/js/chat.js:4889`
-- `static/js/chat.js:4980`
+- `static/js/chat.js:4863`
+- `static/js/chat.js:4954`
 - `static/js/chatRenderer.js:145`
 - `static/js/compare/stream.js:250`
 - `static/js/compare/stream.js:287`
 - `static/js/cookbookRunning.js:2895`
-- `static/js/documentLibrary.js:3280`
-- `static/js/documentLibrary.js:3433`
+- `static/js/documentLibrary.js:3065`
+- `static/js/documentLibrary.js:3218`
 - `static/js/emailLibrary.js:8414`
 - `static/js/fileHandler.js:347`
 - `static/js/galleryEditor.js:3664`
@@ -106,7 +106,7 @@
 
 ## `enqueue` — method?, line 256
 - **called from:**
-- `static/js/chat.js:4760`
+- `static/js/chat.js:4741`
 - `static/js/tts-ai.js:256`
 - `static/js/tts-ai.js:401`
 - `static/js/tts-ai.js:445`
@@ -129,13 +129,13 @@
 
 ## `streamingStart` — method?, line 347
 - **called from:**
-- `static/js/chat.js:2574`
+- `static/js/chat.js:2566`
 - `static/js/tts-ai.js:347`
 
 ## `streamingUpdate` — method?, line 354
 - **called from:**
-- `static/js/chat.js:3374`
-- `static/js/chat.js:3522`
+- `static/js/chat.js:3366`
+- `static/js/chat.js:3514`
 - `static/js/tts-ai.js:354`
 
 ## `_processStreamingSentences` — method?, line 363
@@ -151,12 +151,12 @@
 
 ## `streamingAttachButton` — method?, line 415
 - **called from:**
-- `static/js/chat.js:4750`
+- `static/js/chat.js:4731`
 - `static/js/tts-ai.js:415`
 
 ## `streamingEnd` — method?, line 426
 - **called from:**
-- `static/js/chat.js:4749`
+- `static/js/chat.js:4730`
 - `static/js/tts-ai.js:426`
 
 ## `clearCache` — method?, line 450
@@ -165,7 +165,7 @@
 
 ## `addAITTSButton` — function, line 462
 - **called from:**
-- `static/js/chat.js:4733`
+- `static/js/chat.js:4714`
 - `static/js/tts-ai.js:462`
 
 ## `resetButton` — function, line 491

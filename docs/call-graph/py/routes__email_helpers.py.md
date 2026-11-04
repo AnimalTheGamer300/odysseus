@@ -174,7 +174,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:75`
 - `routes/codex_routes.py:96`
 - `routes/codex_routes.py:110`
-- `routes/history/history_routes.py:968`
+- `routes/history/history_routes.py:931`
 - `routes/memory/memory_routes.py:241`
 - `routes/note/note_routes.py:598`
 - `routes/note/note_routes.py:852`
