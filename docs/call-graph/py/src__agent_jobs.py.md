@@ -60,7 +60,7 @@
 ## `_run_followup` — function (async), line 275
 - **called from:**
 - `src/agent_jobs.py:346`
-- `src/bg_monitor.py:151`
+- `src/bg_monitor.py:215`
 - `tests/test_agent_jobs.py:228`
 - `tests/test_agent_jobs.py:250`
 - `tests/test_agent_jobs.py:263`
@@ -70,12 +70,12 @@
 ## `_loop` — function (async), line 341
 - **called from:**
 - `src/agent_jobs.py:363`
-- `src/bg_monitor.py:166`
-- `src/task_scheduler.py:550`
+- `src/bg_monitor.py:245`
+- `src/task_scheduler.py:691`
 
 ## `start_agent_job_monitor` — function, line 358
 - **called from:**
-- `app.py:1070`
+- `app.py:1243`
 
 ## `_fmt_age` — function, line 372
 - **called from:**

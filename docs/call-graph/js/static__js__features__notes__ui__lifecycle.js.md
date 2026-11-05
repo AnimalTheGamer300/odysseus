@@ -1,0 +1,165 @@
+# `static/js/features/notes/ui/lifecycle.js` — definitions & call sites
+
+5 definitions (regex-based, best-effort).
+**Exports:** `createNotesLifecycle`
+
+## `createNotesLifecycle` — function, line 2
+- **called from:**
+- `static/js/features/notes/index.js:63`
+- `static/js/features/notes/ui/lifecycle.js:2`
+
+## `release` — function, line 5
+- **called from:**
+- `routes/contacts/contacts_routes.py:481`
+- `src/agent_tools/subprocess_tools.py:556`
+- `src/agent_tools/web_tools_prewave3.py:2676`
+- `src/bg_jobs.py:138`
+- `src/bg_jobs.py:193`
+- `src/containment.py:1066`
+- `src/containment.py:1077`
+- `src/containment.py:1587`
+- `src/containment.py:1633`
+- `src/containment_worker.py:96`
+- `src/llm_core.py:180`
+- `src/process_reaper.py:261`
+- `tests/test_agent_tmux_retirement.py:109`
+- `tests/test_browser_identity_transport.py:77`
+- `tests/test_containment_contract.py:448`
+- `tests/test_containment_enforcement.py:149`
+- `tests/test_containment_enforcement.py:180`
+- `tests/test_containment_enforcement.py:184`
+- `tests/test_containment_process_tree.py:171`
+- `tests/test_containment_process_tree.py:192`
+- `tests/test_containment_process_tree.py:219`
+- `tests/test_orphan_reaping.py:229`
+- `tests/test_runtime_resource_integration.py:148`
+- `tests/test_task_scheduler_cancel.py:104`
+- `tests/test_task_scheduler_cancel.py:168`
+- `static/js/features/notes/ui/cardReorder.js:9`
+- `static/js/features/notes/ui/checklistReorder.js:25`
+- `static/js/features/notes/ui/lifecycle.js:5`
+- `static/js/features/notes/ui/lifecycle.js:24`
+- `static/js/features/notes/ui/lifecycle.js:34`
+- `static/js/init.js:423`
+- `static/js/init.js:431`
+- `static/js/modalSnap.js:772`
+- `static/js/modalSnap.js:788`
+- `static/js/modalSnap.js:819`
+- `static/js/windowDrag.js:212`
+- `static/js/windowDrag.js:217`
+- `static/js/windowDrag.js:226`
+- `static/js/windowDrag.js:227`
+- `static/js/windowDrag.js:259`
+- `static/js/windowDrag.js:260`
+- `static/js/windowDrag.js:274`
+- `static/js/windowDrag.js:275`
+- `static/js/windowDrag.js:280`
+- `static/js/windowDrag.js:286`
+- `static/js/windowDrag.js:291`
+- `static/js/windowDrag.js:292`
+
+## `onDispose` — function, line 12
+- **called from:**
+- `static/js/features/notes/ui/cardReorder.js:129`
+- `static/js/features/notes/ui/lifecycle.js:12`
+- `static/js/features/notes/ui/lifecycle.js:31`
+- `static/js/features/notes/ui/mobileReorder.js:43`
+
+## `listen` — function, line 30
+- **called from:**
+- `core/database.py:518`
+- `tests/cli/test_dev_cli_isolation.py:100`
+- `tests/test_chroma_client.py:33`
+- `tests/test_cleanup_transcript_preservation.py:148`
+- `tests/test_cleanup_transcript_preservation.py:210`
+- `tests/test_cleanup_transcript_preservation.py:293`
+- `tests/test_cleanup_transcript_preservation.py:362`
+- `tests/test_codeql_python_residual_closure.py:128`
+- `tests/test_history_display_model_hydration.py:113`
+- `tests/test_replace_messages_upload_reservations.py:121`
+- `tests/test_replace_messages_upload_reservations.py:163`
+- `tests/test_review_document_conversion.py:131`
+- `tests/test_security_regressions.py:1356`
+- `tests/test_skill_importer_dns_pinning.py:164`
+- `static/js/editor/ai-models.js:175`
+- `static/js/editor/ai-models.js:185`
+- `static/js/editor/ai-models.js:194`
+- `static/js/editor/ai-models.js:234`
+- `static/js/editor/ai-models.js:351`
+- `static/js/editor/ai-models.js:369`
+- `static/js/editor/ai-models.js:422`
+- `static/js/features/notes/ui/cardReorder.js:69`
+- `static/js/features/notes/ui/cardReorder.js:75`
+- `static/js/features/notes/ui/cardReorder.js:131`
+- `static/js/features/notes/ui/cardReorder.js:150`
+- `static/js/features/notes/ui/cardReorder.js:175`
+- `static/js/features/notes/ui/cardReorder.js:176`
+- `static/js/features/notes/ui/checklistReorder.js:27`
+- `static/js/features/notes/ui/checklistReorder.js:28`
+- `static/js/features/notes/ui/checklistReorder.js:29`
+- `static/js/features/notes/ui/drawing.js:346`
+- `static/js/features/notes/ui/lifecycle.js:30`
+- `static/js/features/notes/ui/mobileReorder.js:56`
+- `static/js/features/notes/ui/mobileReorder.js:57`
+- `static/js/features/notes/ui/mobileReorder.js:58`
+- `static/js/features/notes/ui/panel.js:86`
+- `static/js/features/notes/ui/reminderPicker.js:247`
+
+## `dispose` — function, line 34
+- **called from:**
+- `tests/cli/test_gallery_cli_tag_filters.py:43`
+- `tests/helpers/database.py:27`
+- `tests/test_background_tool_jobs.py:21`
+- `tests/test_calendar_default_transaction.py:63`
+- `tests/test_calendar_default_transaction.py:212`
+- `tests/test_calendar_default_transaction.py:310`
+- `tests/test_calendar_default_transaction.py:538`
+- `tests/test_calendar_stream_links.py:86`
+- `tests/test_chat_image_preservation.py:40`
+- `tests/test_chat_image_preservation.py:58`
+- `tests/test_chat_tidy_content_preservation.py:38`
+- `tests/test_chatgpt_session_binding.py:38`
+- `tests/test_chatgpt_session_binding.py:162`
+- `tests/test_chatgpt_subscription_usage.py:31`
+- `tests/test_cleanup_transcript_preservation.py:31`
+- `tests/test_cookbook_endpoint_registration.py:326`
+- `tests/test_daily_brief_local_calendar.py:80`
+- `tests/test_document_export_zip_filenames.py:39`
+- `tests/test_document_followup_integrity.py:32`
+- `tests/test_document_read_pagination.py:29`
+- `tests/test_document_render_pdf_iframe.py:132`
+- `tests/test_email_account_default_serialization.py:42`
+- `tests/test_email_account_default_serialization.py:286`
+- `tests/test_email_account_default_serialization.py:339`
+- `tests/test_failed_call_correction.py:78`
+- `tests/test_history_display_model_hydration.py:118`
+- `tests/test_history_display_model_hydration.py:168`
+- `tests/test_history_display_model_hydration.py:269`
+- `tests/test_history_display_model_hydration.py:309`
+- `tests/test_history_display_model_hydration.py:345`
+- `tests/test_history_display_model_hydration.py:389`
+- `tests/test_history_display_model_hydration.py:548`
+- `tests/test_manage_tasks_cron.py:20`
+- `tests/test_notes_checklist_state.py:27`
+- `tests/test_owned_resource_identity.py:78`
+- `tests/test_pinned_model_route_selection.py:24`
+- `tests/test_replace_messages_upload_reservations.py:34`
+- `tests/test_request_authority.py:384`
+- `tests/test_request_authority.py:413`
+- `tests/test_review_calendar_invitation.py:24`
+- `tests/test_review_document_conversion.py:139`
+- `tests/test_review_endpoint_credentials.py:86`
+- `tests/test_upload_handler_cleanup.py:186`
+- `tests/test_upload_handler_cleanup.py:550`
+- `tests/test_upload_handler_cleanup.py:734`
+- `tests/tools/editor_writing_smoke.py:142`
+- `tests/tools/organizer_smoke.py:404`
+- `static/js/features/notes/application/reminders.js:180`
+- `static/js/features/notes/index.js:217`
+- `static/js/features/notes/index.js:217`
+- `static/js/features/notes/index.js:217`
+- `static/js/features/notes/index.js:217`
+- `static/js/features/notes/ui/checklistReorder.js:105`
+- `static/js/features/notes/ui/layout.js:118`
+- `static/js/features/notes/ui/lifecycle.js:34`
+- `static/js/features/notes/ui/mobileReorder.js:200`

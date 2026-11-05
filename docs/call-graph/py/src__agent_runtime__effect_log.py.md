@@ -1,0 +1,882 @@
+# `src/agent_runtime/effect_log.py` — definitions & call sites
+
+33 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `_fsync_directory` — function, line 53
+- **called from:**
+- `src/agent_runtime/effect_log.py:75`
+- `src/agent_runtime/effect_log.py:277`
+- `src/agent_runtime/effect_log.py:474`
+
+## `_ensure_directory` — function, line 64
+- **called from:**
+- `src/agent_runtime/effect_log.py:246`
+- `src/agent_runtime/effect_log.py:463`
+
+## `EffectPersistenceError` — class, line 78
+- **called from:**
+- `src/agent_runtime/effect_log.py:323`
+- `src/agent_runtime/effect_log.py:402`
+- `src/agent_runtime/effect_log.py:408`
+- `src/agent_runtime/effect_log.py:413`
+- `src/agent_runtime/effect_log.py:422`
+- `src/agent_runtime/effect_log.py:424`
+- `src/agent_runtime/effect_log.py:432`
+
+## `effects_dir` — function, line 82
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:506`
+- `src/agent_runtime/effect_log.py:143`
+- `src/agent_runtime/effect_log.py:443`
+- `src/agent_runtime/effect_log.py:480`
+- `tests/test_effect_journal_persistence.py:153`
+
+## `_parse` — function, line 86
+- **called from:**
+- `src/agent_runtime/effect_log.py:229`
+- `src/agent_runtime/effect_log.py:420`
+- `src/agent_tools/editor_tools.py:364`
+- `src/agent_tools/editor_tools.py:392`
+- `src/agent_tools/editor_tools.py:442`
+- `src/agent_tools/editor_tools.py:468`
+- `src/agent_tools/editor_tools.py:644`
+- `src/copilot.py:207`
+- `tests/test_calendar_config_body.py:23`
+- `tests/test_calendar_config_body.py:28`
+- `tests/test_calendar_config_body.py:34`
+- `static/js/cookbook-hwfit.js:1653`
+- `static/js/cookbook-hwfit.js:1653`
+- `static/js/emailLibrary/index.js:3728`
+- `static/js/emailLibrary/index.js:3729`
+
+## `_Index` — class, line 94
+- **called from:**
+- `src/agent_runtime/effect_log.py:147`
+- `src/agent_runtime/effect_log.py:156`
+- `src/agent_runtime/effect_log.py:168`
+
+## `_Index.__init__` — method, line 101
+- **called from:**
+- `core/exceptions.py:8`
+- `core/exceptions.py:15`
+- `core/exceptions.py:22`
+- `core/exceptions.py:29`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
+- `src/outbound_fetch.py:220`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
+- `tests/test_calendar_default_transaction.py:456`
+- `tests/test_chat_attachment_picker.py:10`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
+- `tests/test_embedding_lanes.py:257`
+- `tests/test_embedding_lanes.py:284`
+- `tests/test_integrations_store_shape.py:46`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
+- `tests/test_upload_handler_atomicity.py:42`
+- `tests/test_upload_multifile.py:154`
+- `static/js/cookbookDownload.js:155`
+
+## `_Index.accepts` — method, line 107
+- **called from:**
+- `src/agent_runtime/effect_log.py:175`
+- `src/agent_runtime/effect_log.py:232`
+- `src/agent_runtime/effect_log.py:306`
+- `src/agent_runtime/effect_log.py:306`
+- `src/agent_runtime/effect_log.py:333`
+- `src/agent_runtime/effect_log.py:423`
+- `static/js/chat.js:3708`
+- `static/js/chat.js:4788`
+- `static/js/chat.js:4827`
+- `static/js/chat.js:5903`
+- `static/js/chat.js:6013`
+- `static/js/chat.js:7491`
+- `static/js/chat.js:7499`
+- `static/js/chat.js:7603`
+- `static/js/turnRendering.js:58`
+- `static/js/turnRendering.js:129`
+
+## `_Index.add` — method, line 118
+- **called from:**
+- `companion/pairing.py:196`
+- `core/database.py:554`
+- `core/database.py:2269`
+- `core/platform_compat.py:227`
+- `core/session_manager.py:418`
+- `core/session_manager.py:480`
+- `core/session_manager.py:714`
+- `core/session_manager.py:763`
+- `core/session_manager.py:950`
+- `mcp_servers/email_server.py:65`
+- `mcp_servers/email_server.py:582`
+- `mcp_servers/email_server.py:1027`
+- `mcp_servers/email_server.py:1261`
+- `mcp_servers/email_server.py:1345`
+- `mcp_servers/email_server.py:2037`
+- `mcp_servers/email_server.py:2224`
+- `mcp_servers/email_server.py:2859`
+- `mcp_servers/email_server.py:2905`
+- `mcp_servers/email_server.py:2906`
+- `mcp_servers/email_server.py:3075`
+- `mcp_servers/email_server.py:3435`
+- `mcp_servers/email_server.py:3441`
+- `mcp_servers/email_server.py:3502`
+- `mcp_servers/image_gen_server.py:144`
+- `mcp_servers/memory_server.py:190`
+- `mcp_servers/memory_server.py:219`
+- `routes/api_token_routes.py:135`
+- `routes/api_token_routes.py:179`
+- `routes/backup_routes.py:105`
+- `routes/backup_routes.py:176`
+- `routes/backup_routes.py:178`
+- `routes/backup_routes.py:179`
+- `routes/calendar_routes.py:202`
+- `routes/calendar_routes.py:330`
+- `routes/calendar_routes.py:338`
+- `routes/calendar_routes.py:760`
+- `routes/calendar_routes.py:1390`
+- `routes/calendar_routes.py:1545`
+- `routes/calendar_routes.py:1612`
+- `routes/calendar_routes.py:1713`
+- `routes/chat_helpers.py:371`
+- `routes/chat_routes.py:1744`
+- `routes/chat_routes.py:3587`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3924`
+- `routes/chatgpt_subscription_routes.py:91`
+- `routes/chatgpt_subscription_routes.py:155`
+- `routes/chatgpt_subscription_routes.py:185`
+- `routes/compare/compare_routes.py:218`
+- `routes/compare/compare_routes.py:313`
+- `routes/contacts/contacts_routes.py:590`
+- `routes/contacts/contacts_routes.py:718`
+- `routes/cookbook_routes.py:1479`
+- `routes/cookbook_routes.py:1837`
+- `routes/cookbook_routes.py:2885`
+- `routes/cookbook_routes.py:3694`
+- `routes/cookbook_routes.py:3761`
+- `routes/cookbook_routes.py:3877`
+- `routes/cookbook_routes.py:3964`
+- `routes/copilot_routes.py:77`
+- … +2017 more (grep the name in repo)
+
+## `_records` — function, line 128
+- **called from:**
+- `src/agent_runtime/effect_log.py:147`
+- `src/agent_runtime/effect_log.py:156`
+- `src/agent_runtime/effect_log.py:168`
+
+## `EffectLog` — class, line 132
+- **called from:**
+- `src/agent_runtime/completion.py:233`
+- `tests/test_browser_resource_identity.py:115`
+- `tests/test_effect_journal_persistence.py:38`
+- `tests/test_effect_journal_persistence.py:51`
+- `tests/test_effect_journal_persistence.py:58`
+- `tests/test_effect_journal_persistence.py:71`
+- `tests/test_effect_journal_persistence.py:94`
+- `tests/test_effect_journal_persistence.py:104`
+- `tests/test_effect_journal_persistence.py:117`
+- `tests/test_effect_journal_persistence.py:129`
+- `tests/test_effect_journal_persistence.py:139`
+- `tests/test_effect_journal_persistence.py:148`
+- `tests/test_effect_journal_persistence.py:162`
+- `tests/test_effect_journal_persistence.py:181`
+- `tests/test_effect_journal_persistence.py:192`
+- `tests/test_effect_journal_persistence.py:205`
+- `tests/test_effect_journal_persistence.py:219`
+- `tests/test_effect_journal_persistence.py:219`
+- `tests/test_effect_journal_persistence.py:231`
+- `tests/test_effect_journal_persistence.py:280`
+- `tests/test_effect_journal_persistence.py:295`
+- `tests/test_effect_journal_persistence.py:352`
+- `tests/test_effect_resource_bindings.py:34`
+- `tests/test_effect_resource_bindings.py:100`
+- `tests/test_effect_verification_adapters.py:44`
+- `tests/test_effect_verification_adapters.py:362`
+- `tests/test_effect_verification_adapters.py:450`
+
+## `EffectLog.__init__` — method, line 139
+- **called from:**
+- `core/exceptions.py:8`
+- `core/exceptions.py:15`
+- `core/exceptions.py:22`
+- `core/exceptions.py:29`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
+- `src/outbound_fetch.py:220`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
+- `tests/test_calendar_default_transaction.py:456`
+- `tests/test_chat_attachment_picker.py:10`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
+- `tests/test_embedding_lanes.py:257`
+- `tests/test_embedding_lanes.py:284`
+- `tests/test_integrations_store_shape.py:46`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
+- `tests/test_upload_handler_atomicity.py:42`
+- `tests/test_upload_multifile.py:154`
+- `static/js/cookbookDownload.js:155`
+
+## `EffectLog._rebuild_view` — method, line 167
+- **called from:**
+- `src/agent_runtime/effect_log.py:240`
+- `src/agent_runtime/effect_log.py:429`
+
+## `EffectLog._add_durable` — method, line 179
+- **called from:**
+- `src/agent_runtime/effect_log.py:319`
+
+## `EffectLog._add_volatile` — method, line 186
+- **called from:**
+- `src/agent_runtime/effect_log.py:317`
+- `src/agent_runtime/effect_log.py:337`
+
+## `EffectLog._merged_history` — method, line 192
+- **called from:**
+- `src/agent_runtime/effect_log.py:380`
+- `src/agent_runtime/effect_log.py:430`
+
+## `EffectLog._read_tail` — method, line 198
+- **called from:**
+- `src/agent_runtime/effect_log.py:252`
+- `src/agent_runtime/effect_log.py:371`
+
+## `EffectLog._locked` — method, line 243
+- decorator: `contextmanager`
+- **called from:**
+- `src/agent_runtime/effect_log.py:302`
+
+## `EffectLog._write` — method, line 259
+- **called from:**
+- `src/agent_runtime/effect_log.py:312`
+- `tests/test_audit_c5_benchmark_evidence.py:87`
+- `tests/test_audit_c5_benchmark_evidence.py:109`
+- `tests/test_audit_c5_benchmark_evidence.py:149`
+- `tests/test_audit_c5_benchmark_evidence.py:165`
+- `tests/test_audit_c5_benchmark_evidence.py:290`
+- `tests/test_audit_c5_benchmark_evidence.py:291`
+- `tests/test_audit_c5_benchmark_evidence.py:312`
+- `tests/test_audit_c5_benchmark_evidence.py:313`
+- `tests/test_audit_c5_benchmark_evidence.py:341`
+- `tests/test_audit_c5_benchmark_evidence.py:343`
+- `tests/test_audit_c5_benchmark_evidence.py:344`
+- `tests/test_audit_c5_benchmark_evidence.py:375`
+- `tests/test_audit_c5_benchmark_evidence.py:420`
+- `tests/test_audit_c5_benchmark_evidence.py:652`
+- `tests/test_audit_c5_benchmark_evidence.py:665`
+- `tests/test_audit_c5_benchmark_evidence.py:666`
+- `tests/test_audit_c5_benchmark_evidence.py:681`
+- `tests/test_audit_c5_benchmark_evidence.py:682`
+- `tests/test_audit_c5_benchmark_evidence.py:710`
+- `tests/test_audit_c5_benchmark_evidence.py:736`
+- `tests/test_audit_c5_benchmark_evidence.py:737`
+- `tests/test_audit_c5_benchmark_evidence.py:763`
+- `tests/test_audit_c5_benchmark_evidence.py:764`
+- `tests/test_audit_c5_benchmark_evidence.py:774`
+- `tests/test_audit_c5_benchmark_evidence.py:790`
+- `tests/test_audit_c5_benchmark_evidence.py:813`
+- `tests/test_audit_c5_benchmark_evidence.py:832`
+- `tests/test_audit_c5_benchmark_evidence.py:850`
+- `tests/test_audit_c5_benchmark_evidence.py:851`
+- `tests/test_audit_c5_benchmark_evidence.py:879`
+- `tests/test_audit_c5_benchmark_evidence.py:1011`
+- `tests/test_audit_c5_benchmark_evidence.py:1023`
+- `tests/test_audit_c5_benchmark_evidence.py:1031`
+- `tests/test_audit_c5_benchmark_evidence.py:1039`
+- `tests/test_audit_c5_benchmark_evidence.py:1062`
+- `tests/test_audit_c5_benchmark_evidence.py:1209`
+- `tests/test_audit_c5_benchmark_evidence.py:1255`
+- `tests/test_audit_c5_benchmark_evidence.py:1256`
+- `tests/test_audit_c5_benchmark_evidence.py:1282`
+- `tests/test_audit_c5_benchmark_evidence.py:1302`
+- `tests/test_audit_c5_benchmark_evidence.py:1327`
+- `tests/test_audit_c5_benchmark_evidence.py:1351`
+- `tests/test_audit_c5_benchmark_evidence.py:1352`
+- `tests/test_audit_c5_benchmark_evidence.py:1418`
+- `tests/test_effects_foundation.py:92`
+- `tests/test_effects_foundation.py:108`
+- `tests/test_effects_foundation.py:109`
+- `tests/test_effects_foundation.py:322`
+- `tests/test_effects_foundation.py:328`
+- `tests/test_env_reference.py:50`
+- `tests/test_env_reference.py:61`
+- `tests/test_env_reference.py:204`
+- `tests/test_env_reference.py:210`
+- `tests/test_env_reference.py:247`
+- `tests/test_focused_test_guidance.py:110`
+- `tests/test_focused_test_guidance.py:116`
+- `tests/test_focused_test_guidance.py:122`
+- `tests/test_personal_index_hidden_dirs.py:23`
+- `tests/test_personal_index_hidden_dirs.py:24`
+- … +39 more (grep the name in repo)
+
+## `EffectLog._append` — method, line 290
+- **called from:**
+- `src/agent_evidence.py:842`
+- `src/agent_evidence.py:872`
+- `src/agent_evidence.py:894`
+- `src/agent_evidence.py:911`
+- `src/agent_evidence.py:922`
+- `src/agent_evidence.py:986`
+- `src/agent_runtime/effect_log.py:345`
+- `src/agent_runtime/effect_log.py:350`
+- `src/agent_runtime/effect_log.py:353`
+- `src/agent_runtime/effect_log.py:509`
+- `src/task_endpoint.py:60`
+- `src/task_endpoint.py:67`
+- `src/task_endpoint.py:68`
+- `src/task_endpoint.py:69`
+- `src/task_endpoint.py:71`
+
+## `EffectLog._append_volatile` — method, line 329
+- **called from:**
+- `src/agent_runtime/effect_log.py:300`
+- `src/agent_runtime/effect_log.py:327`
+
+## `EffectLog.claim` — method, line 342
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:263`
+- `src/agent_runtime/journal.py:89`
+- `src/agent_runtime/process_resources.py:422`
+- `src/tool_execution.py:1946`
+- `tests/test_effect_journal_persistence.py:26`
+- `tests/test_effect_journal_persistence.py:39`
+- `tests/test_effect_journal_persistence.py:53`
+- `tests/test_effect_journal_persistence.py:59`
+- `tests/test_effect_journal_persistence.py:72`
+- `tests/test_effect_journal_persistence.py:77`
+- `tests/test_effect_journal_persistence.py:95`
+- `tests/test_effect_journal_persistence.py:105`
+- `tests/test_effect_journal_persistence.py:118`
+- `tests/test_effect_journal_persistence.py:130`
+- `tests/test_effect_journal_persistence.py:135`
+- `tests/test_effect_journal_persistence.py:163`
+- `tests/test_effect_journal_persistence.py:182`
+- `tests/test_effect_journal_persistence.py:186`
+- `tests/test_effect_journal_persistence.py:193`
+- `tests/test_effect_journal_persistence.py:205`
+- `tests/test_effect_journal_persistence.py:209`
+- `tests/test_effect_journal_persistence.py:220`
+- `tests/test_effect_journal_persistence.py:221`
+- `tests/test_effect_journal_persistence.py:222`
+- `tests/test_effect_journal_persistence.py:237`
+- `tests/test_effect_journal_persistence.py:281`
+- `tests/test_effect_journal_persistence.py:296`
+- `tests/test_effect_journal_persistence.py:353`
+- `tests/test_effect_journal_persistence.py:354`
+- `tests/test_effect_verification_adapters.py:365`
+- `tests/test_effects_foundation.py:189`
+- `tests/test_effects_foundation.py:205`
+- `tests/test_effects_foundation.py:214`
+- `tests/test_effects_foundation.py:227`
+- `tests/test_effects_foundation.py:236`
+- `tests/test_effects_foundation.py:248`
+- `tests/test_effects_foundation.py:256`
+- `tests/test_effects_foundation.py:266`
+- `tests/test_effects_foundation.py:269`
+- `tests/test_effects_foundation.py:280`
+- `tests/test_effects_foundation.py:282`
+- `tests/test_effects_foundation.py:291`
+- `tests/test_effects_foundation.py:294`
+- `tests/test_effects_foundation.py:302`
+- `tests/test_effects_foundation.py:305`
+- `tests/test_effects_foundation.py:314`
+- `tests/test_effects_foundation.py:317`
+- `tests/test_effects_foundation.py:325`
+- `tests/test_effects_foundation.py:339`
+- `tests/test_effects_foundation.py:347`
+- `tests/test_effects_foundation.py:356`
+- `tests/test_effects_foundation.py:367`
+- `tests/test_effects_foundation.py:378`
+- `tests/test_effects_foundation.py:389`
+- `tests/test_effects_foundation.py:400`
+- `tests/test_effects_foundation.py:409`
+- `tests/test_effects_foundation.py:420`
+- `tests/test_effects_foundation.py:434`
+- `tests/test_effects_foundation.py:448`
+- `tests/test_tool_approvals.py:58`
+- … +3 more (grep the name in repo)
+
+## `EffectLog.outcome` — method, line 348
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:354`
+- `src/agent_runtime/effect_adapters.py:533`
+- `tests/test_effect_journal_persistence.py:61`
+- `tests/test_effect_journal_persistence.py:73`
+- `tests/test_effect_journal_persistence.py:96`
+- `tests/test_effect_journal_persistence.py:282`
+- `tests/test_effect_journal_persistence.py:284`
+- `tests/test_effect_journal_persistence.py:286`
+- `tests/test_effect_journal_persistence.py:298`
+- `tests/test_effect_verification_adapters.py:367`
+- `tests/test_effects_foundation.py:190`
+- `tests/test_effects_foundation.py:192`
+- `tests/test_effects_foundation.py:206`
+- `tests/test_effects_foundation.py:215`
+- `tests/test_effects_foundation.py:228`
+- `tests/test_effects_foundation.py:237`
+- `tests/test_effects_foundation.py:249`
+- `tests/test_effects_foundation.py:258`
+- `tests/test_effects_foundation.py:267`
+- `tests/test_effects_foundation.py:270`
+- `tests/test_effects_foundation.py:281`
+- `tests/test_effects_foundation.py:284`
+- `tests/test_effects_foundation.py:292`
+- `tests/test_effects_foundation.py:295`
+- `tests/test_effects_foundation.py:303`
+- `tests/test_effects_foundation.py:306`
+- `tests/test_effects_foundation.py:315`
+- `tests/test_effects_foundation.py:317`
+- `tests/test_effects_foundation.py:326`
+- `tests/test_effects_foundation.py:340`
+- `tests/test_effects_foundation.py:348`
+- `tests/test_effects_foundation.py:357`
+- `tests/test_effects_foundation.py:368`
+- `tests/test_effects_foundation.py:379`
+- `tests/test_effects_foundation.py:390`
+- `tests/test_effects_foundation.py:401`
+- `tests/test_effects_foundation.py:410`
+- `tests/test_effects_foundation.py:421`
+- `tests/test_effects_foundation.py:424`
+- `tests/test_effects_foundation.py:449`
+- `static/js/editor/editor-bridge.js:34`
+
+## `EffectLog.observe` — method, line 352
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:371`
+- `src/agent_runtime/process_resources.py:63`
+- `src/agent_runtime/resources.py:321`
+- `src/agent_runtime/resources.py:325`
+- `src/agent_runtime/resources.py:400`
+- `src/agent_runtime/resources.py:406`
+- `src/agent_runtime/resources.py:519`
+- `src/agent_tools/web_tools.py:2457`
+- `src/agent_tools/web_tools.py:2500`
+- `src/agent_tools/web_tools_prewave3.py:2466`
+- `src/agent_tools/web_tools_prewave3.py:2509`
+- `src/browser_identity.py:288`
+- `src/browser_lifecycle.py:155`
+- `src/clean_agent_preview.py:7902`
+- `tests/test_browser_progress.py:14`
+- `tests/test_browser_progress.py:16`
+- `tests/test_browser_progress.py:17`
+- `tests/test_browser_progress.py:18`
+- `tests/test_browser_progress.py:25`
+- `tests/test_browser_progress.py:31`
+- `tests/test_browser_progress.py:32`
+- `tests/test_browser_progress.py:33`
+- `tests/test_browser_progress.py:34`
+- `tests/test_browser_progress.py:35`
+- `tests/test_browser_progress.py:46`
+- `tests/test_effect_journal_persistence.py:75`
+- `tests/test_effect_journal_persistence.py:140`
+- `tests/test_effect_verification_adapters.py:368`
+- `tests/test_effects_foundation.py:216`
+- `tests/test_effects_foundation.py:229`
+- `tests/test_effects_foundation.py:238`
+- `tests/test_effects_foundation.py:240`
+- `tests/test_effects_foundation.py:247`
+- `tests/test_effects_foundation.py:257`
+- `tests/test_effects_foundation.py:268`
+- `tests/test_effects_foundation.py:283`
+- `tests/test_effects_foundation.py:293`
+- `tests/test_effects_foundation.py:304`
+- `tests/test_effects_foundation.py:316`
+- `tests/test_effects_foundation.py:327`
+- `tests/test_effects_foundation.py:330`
+- `tests/test_effects_foundation.py:341`
+- `tests/test_effects_foundation.py:342`
+- `tests/test_effects_foundation.py:349`
+- `tests/test_effects_foundation.py:358`
+- `tests/test_effects_foundation.py:360`
+- `tests/test_effects_foundation.py:369`
+- `tests/test_effects_foundation.py:380`
+- `tests/test_effects_foundation.py:393`
+- `tests/test_effects_foundation.py:411`
+- `tests/test_effects_foundation.py:422`
+- `tests/test_effects_foundation.py:427`
+- `tests/test_effects_foundation.py:450`
+- `tests/test_effects_foundation.py:451`
+- `tests/test_process_lifecycle.py:320`
+- `tests/test_process_lifecycle.py:326`
+- `tests/test_process_lifecycle.py:331`
+- `tests/test_process_lifecycle.py:340`
+- `tests/test_resource_identity.py:62`
+- `static/app.js:336`
+- … +99 more (grep the name in repo)
+
+## `EffectLog.refresh` — method, line 355
+- **called from:**
+- `routes/calendar_routes.py:1395`
+- `routes/calendar_routes.py:1470`
+- `routes/calendar_routes.py:1614`
+- `routes/document/document_routes.py:179`
+- `routes/document/document_routes.py:209`
+- `routes/document/document_routes.py:322`
+- `routes/document/document_routes.py:396`
+- `routes/document/document_routes.py:911`
+- `routes/document/document_routes.py:950`
+- `routes/document/document_routes.py:1065`
+- `routes/editor_draft_routes.py:181`
+- `routes/editor_draft_routes.py:217`
+- `routes/gallery/gallery_routes.py:1488`
+- `routes/note/note_routes.py:686`
+- `routes/note/note_routes.py:763`
+- `routes/signature_routes.py:121`
+- `routes/task/task_routes.py:570`
+- `routes/task/task_routes.py:823`
+- `routes/task/task_routes.py:924`
+- `scripts/eval_odysseus_app_route_smoke.py:59`
+- `scripts/eval_odysseus_everyday_live_hard.py:191`
+- `scripts/eval_odysseus_everyday_live_hard.py:241`
+- `scripts/eval_odysseus_live_hard_examples.py:249`
+- `scripts/eval_odysseus_live_hard_examples.py:322`
+- `scripts/run_sft_overnight_fixture_flows.py:86`
+- `scripts/run_sft_overnight_fixture_flows.py:141`
+- `src/agent_runtime/effect_log.py:378`
+- `src/bg_jobs.py:350`
+- `src/bg_jobs.py:395`
+- `src/chatgpt_subscription.py:425`
+- `src/chatgpt_subscription.py:435`
+- `src/tools/image.py:85`
+- `tests/test_background_resource_identity.py:106`
+- `tests/test_background_resource_identity.py:245`
+- `tests/test_runtime_resource_integration.py:251`
+- `static/js/chatRenderer.js:3852`
+- `static/js/chatStream.js:172`
+- `static/js/cookbookDownload.js:181`
+- `static/js/document.js:6424`
+- `static/js/document.js:6448`
+- `static/js/editor/panels/panels.js:526`
+- `static/js/editor/panels/studio-panels.js:294`
+- `static/js/editor/panels/studio-panels.js:300`
+- `static/js/editor/preflight.js:239`
+- `static/js/editor/tools/transform-session.js:384`
+- `static/js/editor/tools/transform-session.js:397`
+- `static/js/galleryEditor.js:10578`
+- `static/js/research/panel.js:1465`
+- `static/js/research/panel.js:1469`
+- `static/js/research/panel.js:1528`
+- `static/js/research/panel.js:1576`
+- `static/js/search.js:42`
+- `static/js/settings.js:583`
+- `static/js/settings.js:779`
+- `static/js/settings.js:933`
+- `static/js/slashAutocomplete.js:253`
+- `static/js/slashAutocomplete.js:266`
+
+## `EffectLog.history` — method, line 377
+- **called from:**
+- `scripts/eval_followup_domain_continuity.py:102`
+- `src/agent_runtime/effect_adapters.py:503`
+- `src/agent_runtime/effect_adapters.py:515`
+- `src/agent_runtime/effect_log.py:383`
+- `src/agent_runtime/effect_log.py:504`
+- `src/agent_runtime/journal.py:86`
+- `src/agent_runtime/journal.py:105`
+- `tests/test_browser_resource_identity.py:133`
+- `tests/test_effect_journal_persistence.py:54`
+- `tests/test_effect_journal_persistence.py:63`
+- `tests/test_effect_journal_persistence.py:66`
+- `tests/test_effect_journal_persistence.py:81`
+- `tests/test_effect_journal_persistence.py:85`
+- `tests/test_effect_journal_persistence.py:99`
+- `tests/test_effect_journal_persistence.py:108`
+- `tests/test_effect_journal_persistence.py:142`
+- `tests/test_effect_journal_persistence.py:165`
+- `tests/test_effect_journal_persistence.py:211`
+- `tests/test_effect_journal_persistence.py:223`
+- `tests/test_effect_journal_persistence.py:225`
+- `tests/test_effect_journal_persistence.py:244`
+- `tests/test_effect_journal_persistence.py:274`
+- `tests/test_effect_journal_persistence.py:289`
+- `tests/test_effect_journal_persistence.py:290`
+- `tests/test_effect_resource_bindings.py:86`
+- `tests/test_effect_resource_bindings.py:118`
+- `tests/test_effect_resource_bindings.py:126`
+- `tests/test_effect_resource_bindings.py:216`
+- `tests/test_effect_resource_bindings.py:227`
+- `tests/test_effect_resource_bindings.py:236`
+- `tests/test_effect_resource_bindings.py:246`
+- `tests/test_effect_resource_bindings.py:294`
+- `tests/test_effect_resource_bindings.py:302`
+- `tests/test_effect_resource_bindings.py:321`
+- `tests/test_effect_resource_bindings.py:328`
+- `tests/test_effect_resource_bindings.py:351`
+- `tests/test_effect_resource_bindings.py:376`
+- `tests/test_effect_resource_bindings.py:408`
+- `tests/test_effect_resource_bindings.py:438`
+- `tests/test_effect_resource_bindings.py:440`
+- `tests/test_effect_resource_bindings.py:444`
+- `tests/test_effect_resource_bindings.py:468`
+- `tests/test_effect_verification_adapters.py:91`
+- `tests/test_effect_verification_adapters.py:145`
+- `tests/test_effect_verification_adapters.py:149`
+- `tests/test_effect_verification_adapters.py:150`
+- `tests/test_effect_verification_adapters.py:157`
+- `tests/test_effect_verification_adapters.py:180`
+- `tests/test_effect_verification_adapters.py:202`
+- `tests/test_effect_verification_adapters.py:235`
+- `tests/test_effect_verification_adapters.py:248`
+- `tests/test_effect_verification_adapters.py:263`
+- `tests/test_effect_verification_adapters.py:265`
+- `tests/test_effect_verification_adapters.py:268`
+- `tests/test_effect_verification_adapters.py:303`
+- `tests/test_effect_verification_adapters.py:320`
+- `tests/test_effect_verification_adapters.py:321`
+- `tests/test_effect_verification_adapters.py:335`
+- `tests/test_effect_verification_adapters.py:354`
+- `tests/test_effect_verification_adapters.py:380`
+- … +9 more (grep the name in repo)
+
+## `EffectLog.assessments` — method, line 382
+- **called from:**
+- `src/agent_runtime/journal.py:88`
+- `tests/test_effect_resource_bindings.py:63`
+- `tests/test_effect_resource_bindings.py:168`
+- `tests/test_effect_resource_bindings.py:184`
+- `tests/test_effect_resource_bindings.py:192`
+- `tests/test_effect_verification_adapters.py:94`
+- `tests/test_effect_verification_adapters.py:110`
+- `tests/test_effect_verification_adapters.py:137`
+- `tests/test_effect_verification_adapters.py:193`
+- `tests/test_effect_verification_adapters.py:204`
+- `tests/test_effect_verification_adapters.py:237`
+- `tests/test_effect_verification_adapters.py:269`
+- `tests/test_effect_verification_adapters.py:278`
+- `tests/test_effect_verification_adapters.py:346`
+- `tests/test_effect_verification_adapters.py:355`
+- `tests/test_effect_verification_adapters.py:371`
+- `tests/test_effect_verification_adapters.py:386`
+- `tests/test_effect_verification_adapters.py:412`
+
+## `EffectLog.load` — method, line 388
+- decorator: `classmethod`
+- **called from:**
+- `app.py:1335`
+- `app.py:1390`
+- `companion/pairing.py:168`
+- `core/auth.py:136`
+- `core/auth.py:159`
+- `core/database.py:1682`
+- `core/database.py:1740`
+- `core/database.py:1758`
+- `routes/backup_routes.py:26`
+- `routes/backup_routes.py:32`
+- `routes/email/email_routes.py:4999`
+- `routes/mcp/mcp_routes.py:471`
+- `routes/mcp/mcp_routes.py:587`
+- `routes/memory/memory_routes.py:89`
+- `routes/memory/memory_routes.py:121`
+- `routes/memory/memory_routes.py:152`
+- `routes/memory/memory_routes.py:158`
+- `routes/memory/memory_routes.py:174`
+- `routes/memory/memory_routes.py:217`
+- `routes/memory/memory_routes.py:527`
+- `routes/prefs_routes.py:20`
+- `routes/session_routes.py:89`
+- `routes/skills_routes.py:318`
+- `routes/skills_routes.py:338`
+- `routes/skills_routes.py:566`
+- `routes/skills_routes.py:577`
+- `routes/skills_routes.py:612`
+- `routes/skills_routes.py:667`
+- `routes/skills_routes.py:721`
+- `routes/skills_routes.py:784`
+- `routes/skills_routes.py:831`
+- `routes/skills_routes.py:854`
+- `routes/skills_routes.py:871`
+- `scripts/add_hwfit_models.py:243`
+- `scripts/add_hwfit_models.py:445`
+- `scripts/agent_migration_manifest.py:73`
+- `scripts/analyze_odysseus_eval_targets.py:14`
+- `scripts/audit_c5_benchmark_evidence.py:1377`
+- `scripts/backfill_model_release_dates.py:70`
+- `scripts/claim_ownerless.py:53`
+- `scripts/dump_agent_prompt.py:388`
+- `scripts/dump_agent_prompt.py:421`
+- `scripts/import_from_vllm_recipes.py:262`
+- `scripts/migrate_faiss_to_chroma.py:32`
+- `scripts/pr_blocker_audit.py:157`
+- `scripts/summarize_odysseus_eval_delta.py:57`
+- `services/hwfit/hf_discovery.py:304`
+- `services/hwfit/hf_discovery.py:326`
+- `services/hwfit/models.py:273`
+- `services/memory/memory_extractor.py:58`
+- `services/memory/memory_extractor.py:96`
+- `services/memory/memory_extractor.py:992`
+- `services/memory/skill_extractor.py:263`
+- `services/memory/skills.py:114`
+- `services/memory/skills.py:309`
+- `services/memory/skills.py:705`
+- `services/search/analytics.py:75`
+- `services/search/content.py:307`
+- `services/search/core.py:869`
+- `services/skills/audit_workflow.py:62`
+- … +135 more (grep the name in repo)
+
+## `EffectLog.open` — method, line 437
+- decorator: `classmethod`
+- **called from:**
+- `app.py:1102`
+- `app.py:1168`
+- `app.py:1334`
+- `app.py:1389`
+- `companion/pairing.py:167`
+- `core/atomic_io.py:38`
+- `core/atomic_io.py:74`
+- `core/atomic_io.py:95`
+- `core/auth.py:135`
+- `core/auth.py:158`
+- `core/database.py:1681`
+- `core/database.py:1739`
+- `core/database.py:1747`
+- `core/database.py:1757`
+- `core/database.py:1779`
+- `core/platform_compat.py:325`
+- `launcher.py:92`
+- `launcher.py:131`
+- `mcp_servers/email_server.py:2400`
+- `routes/admin_wipe/admin_wipe_routes.py:48`
+- `routes/auth_routes.py:559`
+- `routes/chat_helpers.py:245`
+- `routes/chat_helpers.py:264`
+- `routes/chat_helpers.py:282`
+- `routes/chat_helpers.py:286`
+- `routes/chat_helpers.py:311`
+- `routes/chat_helpers.py:346`
+- `routes/chat_helpers.py:349`
+- `routes/chat_helpers.py:1425`
+- `routes/cookbook_routes.py:749`
+- `routes/diagnostics_routes.py:42`
+- `routes/document/document_routes.py:1385`
+- `routes/document/document_routes.py:1445`
+- `routes/document/document_routes.py:1520`
+- `routes/email/email_helpers.py:661`
+- `routes/email/email_helpers.py:1766`
+- `routes/email/email_routes.py:4974`
+- `routes/email/email_routes.py:4998`
+- `routes/email/email_routes.py:5005`
+- `routes/email/email_routes.py:5662`
+- `routes/email/email_routes.py:5686`
+- `routes/gallery/gallery_helpers.py:35`
+- `routes/gallery/gallery_routes.py:62`
+- `routes/gallery/gallery_routes.py:303`
+- `routes/gallery/gallery_routes.py:359`
+- `routes/gallery/gallery_routes.py:362`
+- `routes/gallery/gallery_routes.py:391`
+- `routes/gallery/gallery_routes.py:967`
+- `routes/gallery/gallery_routes.py:1040`
+- `routes/gallery/gallery_routes.py:1855`
+- `routes/gallery/gallery_routes.py:1856`
+- `routes/gallery/gallery_routes.py:1980`
+- `routes/gallery/gallery_routes.py:2861`
+- `routes/history/history_routes.py:62`
+- `routes/history/history_routes.py:88`
+- `routes/history/history_routes.py:93`
+- `routes/mcp/mcp_routes.py:249`
+- `routes/mcp/mcp_routes.py:470`
+- `routes/mcp/mcp_routes.py:586`
+- `routes/mcp/mcp_routes.py:616`
+- … +499 more (grep the name in repo)
+
+## `EffectLog.index_launch` — method, line 454
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:271`
+- `tests/test_effect_journal_persistence.py:198`
+
+## `EffectLog.launch_owner` — method, line 477
+- decorator: `staticmethod`
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:507`
+- `tests/test_effect_journal_persistence.py:200`
+
+## `EffectLog.recover_interrupted` — method, line 495
+- **called from:**
+- `src/agent_runtime/effect_log.py:449`
+- `tests/test_effect_journal_persistence.py:82`
+- `tests/test_effect_journal_persistence.py:89`
+- `tests/test_effect_journal_persistence.py:98`
+- `tests/test_effect_journal_persistence.py:299`
+
+## `EffectLog.build` — method, line 505
+- **called from:**
+- `scripts/dump_agent_prompt.py:424`
+- `scripts/generate_env_reference.py:1232`
+- `src/agent_runtime/effect_log.py:303`
+- `src/agent_runtime/effect_log.py:330`
+- `src/agent_trace.py:468`
+- `src/agent_trace.py:578`
+- `src/agent_trace.py:655`
+- `src/model_capabilities.py:523`
+- `src/model_capabilities.py:582`
+- `src/model_capabilities.py:583`
+- `src/model_capabilities.py:639`
+- `src/model_capabilities.py:640`
+- `src/model_capabilities.py:711`
+- `src/model_capabilities.py:712`
+- `src/model_capabilities.py:732`
+- `src/model_capabilities.py:774`
+- `src/model_capabilities.py:792`
+- `src/model_capabilities.py:911`
+- `src/model_capabilities.py:923`
+- `src/model_capabilities.py:929`
+- `src/model_capability_readers/base.py:259`
+- `src/model_capability_readers/google_ai_studio_mapping.py:89`
+- `src/model_capability_readers/llamacpp.py:172`
+- `src/model_capability_readers/llamacpp.py:182`
+- `tests/test_env_reference.py:37`
+- `tests/test_model_capabilities.py:85`
+- `tests/test_model_capabilities.py:107`
+- `tests/test_model_capabilities.py:115`
+- `tests/test_model_capabilities.py:116`
+- `tests/test_model_capabilities.py:117`
+- `tests/test_model_capabilities.py:118`
+- `tests/test_model_capabilities.py:122`
+- `tests/test_model_capabilities.py:129`
+- `tests/test_model_capabilities.py:142`
+- `tests/test_model_capabilities.py:165`
+- `tests/test_model_capabilities.py:177`

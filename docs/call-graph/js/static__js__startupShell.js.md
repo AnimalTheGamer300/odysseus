@@ -24,7 +24,7 @@
 
 ## `revealApplicationShellAfterPaint` — function, line 50
 - **called from:**
-- `static/app.js:4308`
+- `static/app.js:4424`
 - `static/js/startupShell.js:50`
 
 ## `removeApplicationLoader` — function, line 58
@@ -44,26 +44,35 @@
 
 ## `deferRouteOpener` — function, line 90
 - **called from:**
-- `static/app.js:1245`
+- `static/app.js:1287`
 - `static/js/startupShell.js:90`
 
 ## `runDeferredRouteOpener` — function, line 104
 - **called from:**
-- `static/app.js:4324`
+- `static/app.js:4440`
 - `static/js/startupShell.js:104`
 - `static/js/startupShell.js:132`
 
 ## `settleSessionHydration` — function, line 122
 - **called from:**
-- `static/app.js:4328`
-- `static/app.js:4333`
+- `static/app.js:4444`
+- `static/app.js:4449`
 - `static/js/startupShell.js:122`
 
 ## `settle` — arrow, line 123
 - **called from:**
-- `static/js/emailLibrary.js:5466`
+- `static/js/chat.js:3700`
+- `static/js/chat.js:3716`
+- `static/js/chat.js:6451`
+- `static/js/chat.js:7359`
+- `static/js/chat.js:7485`
+- `static/js/chat.js:7497`
+- `static/js/chat.js:7678`
+- `static/js/emailLibrary/index.js:5974`
 - `static/js/startupShell.js:136`
 - `static/js/startupShell.js:145`
 - `static/js/startupShell.js:148`
 - `static/js/startupShell.js:151`
-- `static/js/tourHints.js:64`
+- `static/js/tourHints.js:66`
+- `static/js/turnRendering.js:104`
+- `static/js/turnRendering.js:148`

@@ -5,6 +5,6 @@
 
 ## `matchModelKey` — function, line 10
 - **called from:**
-- `static/js/chatRenderer.js:703`
-- `static/js/chatRenderer.js:814`
+- `static/js/chatRenderer.js:1101`
+- `static/js/chatRenderer.js:1212`
 - `static/js/model/matchKey.js:10`

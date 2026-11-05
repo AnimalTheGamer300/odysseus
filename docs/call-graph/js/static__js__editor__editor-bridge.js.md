@@ -1,0 +1,125 @@
+# `static/js/editor/editor-bridge.js` — definitions & call sites
+
+4 definitions (regex-based, best-effort).
+**Exports:** `BRIDGE_VERSION`, `default`, `startEditorBridge`
+
+## `startEditorBridge` — function, line 14
+- **called from:**
+- `static/js/editor/editor-bridge.js:14`
+
+## `runAndReport` — function, line 35
+- **called from:**
+- `static/js/editor/editor-bridge.js:35`
+- `static/js/editor/editor-bridge.js:78`
+
+## `connect` — function, line 68
+- **called from:**
+- `companion/pairing.py:146`
+- `core/database.py:953`
+- `core/database.py:994`
+- `core/database.py:1016`
+- `core/database.py:1038`
+- `core/database.py:1059`
+- `core/database.py:1084`
+- `core/database.py:1108`
+- `core/database.py:1132`
+- `core/database.py:1155`
+- `core/database.py:1185`
+- `core/database.py:1210`
+- `core/database.py:1235`
+- `core/database.py:1258`
+- `core/database.py:1286`
+- `core/database.py:1309`
+- `core/database.py:1333`
+- `core/database.py:1357`
+- `core/database.py:1379`
+- `core/database.py:1422`
+- `core/database.py:1454`
+- `core/database.py:1477`
+- `core/database.py:1500`
+- `core/database.py:1536`
+- `core/database.py:1560`
+- `core/database.py:1583`
+- `core/database.py:1619`
+- `core/database.py:1647`
+- `core/database.py:1704`
+- `core/database.py:1794`
+- `core/database.py:1816`
+- `core/database.py:1835`
+- `core/database.py:1860`
+- `core/database.py:1884`
+- `core/database.py:1949`
+- `core/database.py:1968`
+- `core/database.py:1980`
+- `core/database.py:1997`
+- `core/database.py:2014`
+- `core/database.py:2033`
+- `core/database.py:2050`
+- `core/database.py:2063`
+- `core/database.py:2080`
+- `core/database.py:2398`
+- `core/database.py:2521`
+- `core/database.py:2548`
+- `core/database.py:2679`
+- `core/database.py:2711`
+- `core/database.py:2736`
+- `core/database.py:2768`
+- `core/database.py:2802`
+- `core/database.py:2828`
+- `core/database.py:2854`
+- `core/database.py:2878`
+- `core/database.py:2904`
+- `core/database.py:2931`
+- `core/database.py:2952`
+- `mcp_servers/email_server.py:235`
+- `mcp_servers/email_server.py:964`
+- `mcp_servers/email_server.py:1598`
+- … +163 more (grep the name in repo)
+
+## `stop` — method?, line 96
+- **called from:**
+- `app.py:1477`
+- `launcher.py:96`
+- `routes/chat_routes.py:5561`
+- `tests/smoke/stub_provider.py:172`
+- `tests/test_client_tool_routing.py:88`
+- `tests/test_compare_stop_disconnect_poll.py:147`
+- `tests/test_compare_stop_disconnect_poll.py:233`
+- `tests/test_compare_stop_disconnect_poll.py:234`
+- `tests/test_compare_stop_disconnect_poll.py:236`
+- `tests/test_nested_invocation_ownership.py:77`
+- `tests/test_notes_native_cleanup.py:30`
+- `static/js/admin.js:1379`
+- `static/js/chat.js:6534`
+- `static/js/chat.js:6625`
+- `static/js/chatRenderer.js:543`
+- `static/js/compare/stream.js:306`
+- `static/js/compare/stream.js:343`
+- `static/js/cookbookRunning.js:2951`
+- `static/js/documentLibrary.js:3346`
+- `static/js/documentLibrary.js:3499`
+- `static/js/editor/editor-bridge.js:96`
+- `static/js/emailLibrary/aiReply.js:56`
+- `static/js/fileHandler.js:389`
+- `static/js/galleryEditor.js:12858`
+- `static/js/galleryEditor.js:13203`
+- `static/js/galleryEditor.js:14092`
+- `static/js/keyboard-shortcuts.js:172`
+- `static/js/models.js:222`
+- `static/js/settings.js:2365`
+- `static/js/spinner.js:260`
+- `static/js/spinner.js:268`
+- `static/js/spinner.js:274`
+- `static/js/spinner.js:288`
+- `static/js/spinner.js:367`
+- `static/js/spinner.js:408`
+- `static/js/spinner.js:425`
+- `static/js/spinner.js:437`
+- `static/js/tasks.js:3011`
+- `static/js/tts-ai.js:179`
+- `static/js/tts-ai.js:224`
+- `static/js/tts-ai.js:503`
+- `static/js/tts-ai.js:517`
+- `static/js/voiceRecorder.js:102`
+- `static/js/voiceRecorder.js:178`
+- `static/js/voiceRecorder.js:251`

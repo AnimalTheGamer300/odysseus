@@ -3,27 +3,26 @@
 5 definitions (regex-based, best-effort).
 **Exports:** `wireClipboardAndDrop`
 
-## `wireClipboardAndDrop` — function, line 31
+## `wireClipboardAndDrop` — function, line 35
 - **called from:**
-- `static/js/editor/clipboard-and-drop.js:31`
-- `static/js/galleryEditor.js:3539`
+- `static/js/editor/clipboard-and-drop.js:35`
+- `static/js/galleryEditor.js:12891`
 
-## `pasteAsLayer` — function, line 39
-- **called from:**
-- `static/js/editor/clipboard-and-drop.js:39`
-- `static/js/editor/clipboard-and-drop.js:58`
-- `static/js/editor/clipboard-and-drop.js:72`
-
-## `hasFileType` — arrow, line 85
-- **called from:**
-- `static/js/editor/clipboard-and-drop.js:102`
-- `static/js/editor/clipboard-and-drop.js:108`
-
-## `showOverlay` — arrow, line 86
+## `pasteAsLayer` — arrow, line 43
 - **called from:**
 - `static/js/editor/clipboard-and-drop.js:105`
+- `static/js/editor/clipboard-and-drop.js:131`
 
-## `hideOverlay` — arrow, line 97
+## `hasFileType` — arrow, line 142
 - **called from:**
-- `static/js/editor/clipboard-and-drop.js:115`
-- `static/js/editor/clipboard-and-drop.js:120`
+- `static/js/editor/clipboard-and-drop.js:159`
+- `static/js/editor/clipboard-and-drop.js:165`
+
+## `showOverlay` — arrow, line 143
+- **called from:**
+- `static/js/editor/clipboard-and-drop.js:162`
+
+## `hideOverlay` — arrow, line 154
+- **called from:**
+- `static/js/editor/clipboard-and-drop.js:172`
+- `static/js/editor/clipboard-and-drop.js:177`

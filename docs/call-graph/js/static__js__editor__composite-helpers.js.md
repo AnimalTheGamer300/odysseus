@@ -1,7 +1,7 @@
 # `static/js/editor/composite-helpers.js` — definitions & call sites
 
-2 definitions (regex-based, best-effort).
-**Exports:** `buildMergedMaskCanvas`, `buildThumbnail`
+3 definitions (regex-based, best-effort).
+**Exports:** `buildMergedMaskCanvas`, `buildThumbnail`, `renderWithLayerMasks`
 
 ## `buildThumbnail` — function, line 23
 - **called from:**
@@ -9,7 +9,12 @@
 
 ## `buildMergedMaskCanvas` — function, line 64
 - **called from:**
-- `static/js/editor/ai-inpaint.js:55`
-- `static/js/editor/ai-inpaint.js:85`
-- `static/js/editor/ai-inpaint.js:135`
+- `static/js/editor/ai-inpaint.js:57`
+- `static/js/editor/ai-inpaint.js:111`
 - `static/js/editor/composite-helpers.js:64`
+
+## `renderWithLayerMasks` — function, line 88
+- **called from:**
+- `static/js/editor/adjustment-layer.js:112`
+- `static/js/editor/adjustment-layer.js:153`
+- `static/js/editor/composite-helpers.js:88`

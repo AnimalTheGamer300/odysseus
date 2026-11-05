@@ -1,61 +1,61 @@
 # `static/js/presets.js` — definitions & call sites
 
-32 definitions (regex-based, best-effort).
-**Exports:** `PROMPT_TEMPLATES`, `deactivateCharacter`, `default`, `getAllPresets`, `getCharacterName`, `getInject`, `getPreset`, `getSelectedPreset`, `getUserTemplates`, `init`, `isPersistentChat`, `loadPresets`, `loadStoredArray`, `loadStoredObject`, `onSessionSwitch`, `openCustomPresetModal`, `removePersistentChat`, `saveCustomPreset`, `setActivePreset`
+34 definitions (regex-based, best-effort).
+**Exports:** `PROMPT_TEMPLATES`, `deactivateCharacter`, `default`, `getAllPresets`, `getCharacterName`, `getInject`, `getPreset`, `getSelectedPreset`, `getShowPersonaName`, `getThinkingMode`, `getUserTemplates`, `init`, `isPersistentChat`, `loadPresets`, `loadStoredArray`, `loadStoredObject`, `onSessionSwitch`, `openCustomPresetModal`, `removePersistentChat`, `saveCustomPreset`, `setActivePreset`
 
 ## `loadStoredArray` — function, line 11
 - **called from:**
 - `static/js/presets.js:11`
-- `static/js/presets.js:249`
-- `static/js/presets.js:332`
+- `static/js/presets.js:254`
+- `static/js/presets.js:349`
 
 ## `loadStoredObject` — function, line 20
 - **called from:**
 - `static/js/presets.js:20`
-- `static/js/presets.js:426`
-- `static/js/presets.js:1072`
-- `static/js/presets.js:1120`
+- `static/js/presets.js:443`
+- `static/js/presets.js:1141`
+- `static/js/presets.js:1191`
 
 ## `init` — function, line 79
 - **called from:**
-- `static/app.js:3724`
-- `static/app.js:3725`
-- `static/app.js:3726`
-- `static/app.js:3727`
-- `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
-- `static/app.js:4370`
-- `static/app.js:4371`
-- `static/js/a11y.js:121`
-- `static/js/a11y.js:163`
+- `static/app.js:3824`
+- `static/app.js:3825`
+- `static/app.js:3826`
+- `static/app.js:3827`
+- `static/app.js:3828`
+- `static/app.js:3829`
+- `static/app.js:3833`
+- `static/app.js:3836`
+- `static/app.js:3838`
+- `static/app.js:3841`
+- `static/app.js:3850`
+- `static/app.js:4486`
+- `static/app.js:4487`
+- `static/js/a11y.js:174`
+- `static/js/a11y.js:223`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
-- `static/js/compare/index.js:55`
+- `static/js/chat.js:2061`
+- `static/js/chat.js:2066`
+- `static/js/compare/index.js:57`
 - `static/js/cookbookDownload.js:10`
-- `static/js/cookbookRunning.js:333`
-- `static/js/cookbookServe.js:16`
-- `static/js/document.js:154`
-- `static/js/emailInbox.js:157`
-- `static/js/fileHandler.js:173`
+- `static/js/cookbookRunning.js:337`
+- `static/js/cookbookServe.js:21`
+- `static/js/document.js:1065`
+- `static/js/emailInbox.js:159`
+- `static/js/fileHandler.js:201`
 - `static/js/group.js:24`
 - `static/js/models.js:27`
 - `static/js/presets.js:79`
 - `static/js/rag.js:12`
-- `static/js/research/jobs.js:35`
+- `static/js/research/jobs.js:66`
+- `static/js/research/panel.js:206`
 - `static/js/research/panel.js:210`
-- `static/js/research/panel.js:214`
-- `static/js/search-chat.js:198`
+- `static/js/search-chat.js:204`
 - `static/js/search.js:14`
 - `static/js/tourAutoplay.js:117`
 - `static/js/tourAutoplay.js:129`
-- `static/js/tourHints.js:163`
-- `static/js/tourHints.js:175`
+- `static/js/tourHints.js:158`
+- `static/js/tourHints.js:170`
 - `static/js/voiceRecorder.js:268`
 
 ## `initCharTabs` — function, line 91
@@ -78,146 +78,156 @@
 - `static/js/presets.js:83`
 - `static/js/presets.js:186`
 
-## `_tryLoadTemplate` — function, line 271
+## `_tryLoadTemplate` — function, line 276
 - **called from:**
-- `static/js/presets.js:229`
-- `static/js/presets.js:271`
+- `static/js/presets.js:234`
+- `static/js/presets.js:276`
 
-## `_populateCharSelect` — function, line 313
+## `_populateCharSelect` — function, line 330
 - **called from:**
-- `static/js/presets.js:313`
-- `static/js/presets.js:382`
+- `static/js/presets.js:330`
+- `static/js/presets.js:399`
 
-## `initResetButton` — function, line 352
+## `initResetButton` — function, line 369
 - **called from:**
 - `static/js/presets.js:84`
-- `static/js/presets.js:352`
+- `static/js/presets.js:369`
 
-## `loadUserTemplates` — function, line 371
+## `loadUserTemplates` — function, line 388
 - **called from:**
 - `static/js/presets.js:88`
-- `static/js/presets.js:262`
-- `static/js/presets.js:371`
-- `static/js/presets.js:482`
-- `static/js/presets.js:864`
+- `static/js/presets.js:267`
+- `static/js/presets.js:388`
+- `static/js/presets.js:501`
+- `static/js/presets.js:912`
 
-## `initPersistentChat` — function, line 392
+## `initPersistentChat` — function, line 409
 - **called from:**
 - `static/js/presets.js:87`
-- `static/js/presets.js:392`
+- `static/js/presets.js:409`
 
-## `initSaveAsTemplate` — function, line 446
+## `initSaveAsTemplate` — function, line 463
 - **called from:**
 - `static/js/presets.js:85`
-- `static/js/presets.js:446`
+- `static/js/presets.js:463`
 
-## `loadPresets` — function, line 501
+## `loadPresets` — function, line 520
 - **called from:**
-- `static/app.js:4304`
-- `static/js/presets.js:501`
+- `static/app.js:4420`
+- `static/js/presets.js:520`
 
-## `setActivePreset` — function, line 541
+## `setActivePreset` — function, line 565
 - **called from:**
-- `static/js/presets.js:541`
+- `static/js/presets.js:565`
 
-## `openCustomPresetModal` — function, line 560
+## `openCustomPresetModal` — function, line 584
 - **called from:**
-- `static/app.js:3217`
-- `static/js/presets.js:560`
-- `static/js/presets.js:1054`
+- `static/app.js:2647`
+- `static/app.js:3294`
+- `static/js/presets.js:584`
+- `static/js/presets.js:1123`
 
-## `_updateStartBtn` — function, line 615
+## `_updateStartBtn` — function, line 646
 - **called from:**
-- `static/js/presets.js:615`
-- `static/js/presets.js:692`
-- `static/js/presets.js:694`
+- `static/js/presets.js:646`
+- `static/js/presets.js:728`
+- `static/js/presets.js:730`
 
-## `_syncCharRows` — function, line 696
+## `_syncCharRows` — function, line 732
 - **called from:**
-- `static/js/presets.js:696`
-- `static/js/presets.js:704`
+- `static/js/presets.js:732`
+- `static/js/presets.js:740`
 
-## `saveCustomPreset` — function, line 746
+## `saveCustomPreset` — function, line 786
 - **called from:**
-- `static/app.js:655`
-- `static/js/presets.js:746`
+- `static/app.js:688`
+- `static/js/presets.js:786`
 
-## `getSelectedPreset` — function, line 901
+## `getSelectedPreset` — function, line 949
 - **called from:**
-- `static/js/chat.js:2339`
-- `static/js/chat.js:2340`
-- `static/js/chatRenderer.js:787`
-- `static/js/compare/stream.js:405`
-- `static/js/compare/stream.js:406`
-- `static/js/presets.js:805`
-- `static/js/presets.js:901`
+- `static/js/chat.js:3383`
+- `static/js/chat.js:3384`
+- `static/js/chatRenderer.js:1185`
+- `static/js/compare/stream.js:464`
+- `static/js/compare/stream.js:465`
+- `static/js/presets.js:851`
+- `static/js/presets.js:949`
 
-## `getPreset` — function, line 908
+## `getPreset` — function, line 956
 - **called from:**
-- `static/js/chatRenderer.js:788`
-- `static/js/presets.js:908`
-
-## `getAllPresets` — function, line 915
-- **called from:**
-- `static/js/presets.js:915`
-- `static/js/settings.js:2530`
-
-## `getUserTemplates` — function, line 922
-- **called from:**
-- `static/js/group.js:364`
-- `static/js/presets.js:922`
-
-## `getCharacterName` — function, line 929
-- **called from:**
-- `static/js/chat.js:2453`
-- `static/js/chat.js:3692`
-- `static/js/chat.js:4499`
-- `static/js/presets.js:929`
-
-## `getInject` — function, line 939
-- **called from:**
-- `static/js/chat.js:2221`
-- `static/js/presets.js:939`
-
-## `deactivateCharacter` — function, line 956
-- **called from:**
-- `static/app.js:871`
-- `static/app.js:2247`
-- `static/app.js:2522`
-- `static/app.js:3339`
-- `static/js/presets.js:674`
+- `static/js/chatRenderer.js:1186`
 - `static/js/presets.js:956`
 
-## `_mergeUserMemories` — function, line 972
+## `getAllPresets` — function, line 963
 - **called from:**
-- `static/js/presets.js:972`
+- `static/js/presets.js:963`
+- `static/js/settings.js:2243`
 
-## `_reloadMemoryList` — function, line 990
+## `getUserTemplates` — function, line 970
 - **called from:**
-- `static/js/presets.js:990`
+- `static/js/group.js:364`
+- `static/js/presets.js:970`
 
-## `_syncCharIndicator` — function, line 1000
+## `getCharacterName` — function, line 977
 - **called from:**
-- `static/js/presets.js:265`
-- `static/js/presets.js:364`
-- `static/js/presets.js:529`
-- `static/js/presets.js:827`
-- `static/js/presets.js:1000`
-- `static/js/presets.js:1078`
-- `static/js/presets.js:1101`
-- `static/js/presets.js:1129`
+- `static/js/chat.js:3512`
+- `static/js/chat.js:5236`
+- `static/js/chat.js:6127`
+- `static/js/presets.js:977`
 
-## `onSessionSwitch` — function, line 1071
+## `getShowPersonaName` — function, line 985
 - **called from:**
-- `static/js/presets.js:1071`
-- `static/js/sessions.js:1983`
+- `static/js/chatRenderer.js:3558`
+- `static/js/presets.js:985`
 
-## `isPersistentChat` — function, line 1112
+## `getInject` — function, line 994
 - **called from:**
-- `static/js/presets.js:1112`
+- `static/js/chat.js:3255`
+- `static/js/presets.js:994`
 
-## `removePersistentChat` — function, line 1119
+## `getThinkingMode` — function, line 1008
 - **called from:**
-- `static/js/presets.js:1119`
-- `static/js/sessions.js:987`
-- `static/js/sessions.js:2547`
+- `static/js/presets.js:1008`
+
+## `deactivateCharacter` — function, line 1018
+- **called from:**
+- `static/app.js:904`
+- `static/app.js:2303`
+- `static/app.js:2578`
+- `static/app.js:3432`
+- `static/js/presets.js:708`
+- `static/js/presets.js:1018`
+
+## `_mergeUserMemories` — function, line 1034
+- **called from:**
+- `static/js/presets.js:1034`
+
+## `_reloadMemoryList` — function, line 1052
+- **called from:**
+- `static/js/presets.js:1052`
+
+## `_syncCharIndicator` — function, line 1062
+- **called from:**
+- `static/js/presets.js:270`
+- `static/js/presets.js:381`
+- `static/js/presets.js:553`
+- `static/js/presets.js:873`
+- `static/js/presets.js:1062`
+- `static/js/presets.js:1147`
+- `static/js/presets.js:1172`
+- `static/js/presets.js:1200`
+
+## `onSessionSwitch` — function, line 1140
+- **called from:**
+- `static/js/presets.js:1140`
+- `static/js/sessions.js:2327`
+
+## `isPersistentChat` — function, line 1183
+- **called from:**
+- `static/js/presets.js:1183`
+
+## `removePersistentChat` — function, line 1190
+- **called from:**
+- `static/js/presets.js:1190`
+- `static/js/sessions.js:1323`
+- `static/js/sessions.js:2949`

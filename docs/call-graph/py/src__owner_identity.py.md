@@ -4,10 +4,17 @@
 
 ## `auth_disabled` — function, line 17
 - **called from:**
-- `app.py:258`
+- `app.py:298`
+- `app.py:566`
 - `core/middleware.py:76`
-- `src/auth_helpers.py:100`
+- `routes/chat_helpers.py:661`
+- `routes/chat_helpers.py:707`
+- `routes/upload_routes.py:208`
+- `routes/upload_routes.py:351`
+- `src/auth_helpers.py:121`
+- `src/chat_handler.py:216`
 - `src/owner_identity.py:49`
+- `src/task_scheduler.py:29`
 - `tests/test_owner_identity.py:86`
 
 ## `normalize_owner` — function, line 22
@@ -22,11 +29,18 @@
 
 ## `is_request_sentinel_owner` — function, line 33
 - **called from:**
+- `routes/chat_helpers.py:634`
+- `routes/upload_routes.py:219`
+- `routes/upload_routes.py:226`
+- `routes/upload_routes.py:360`
+- `routes/upload_routes.py:364`
+- `routes/upload_routes.py:392`
 - `src/owner_identity.py:46`
 
 ## `effective_storage_owner` — function, line 37
 - **called from:**
-- `src/auth_helpers.py:110`
+- `routes/vault/vault_routes.py:84`
+- `src/auth_helpers.py:131`
 - `tests/test_owner_identity.py:10`
 - `tests/test_owner_identity.py:11`
 - `tests/test_owner_identity.py:12`

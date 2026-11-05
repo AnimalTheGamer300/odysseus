@@ -5,26 +5,25 @@
 ## `infer_quantization_from_name` — function, line 88
 - **called from:**
 - `services/hwfit/models.py:132`
-- `tests/test_hwfit_quant_formats.py:33`
+- `tests/test_hwfit_quant_formats.py:39`
 
 ## `_normalize_model_entry` — function, line 129
 - **called from:**
 - `services/hwfit/models.py:325`
-- `services/hwfit/models.py:334`
+- `services/hwfit/models.py:335`
 
 ## `is_prequantized` — function, line 138
 - **called from:**
 - `services/hwfit/fit.py:459`
-- `services/hwfit/fit.py:792`
+- `services/hwfit/fit.py:793`
 - `services/hwfit/models.py:215`
 - `services/hwfit/profiles.py:138`
-- `tests/test_hwfit_gemma4_12b.py:44`
-- `tests/test_hwfit_gemma4_12b.py:45`
-- `tests/test_hwfit_models_nonstring_fields.py:25`
+- `tests/test_hwfit_gemma4_12b.py:76`
 - `tests/test_hwfit_models_nonstring_fields.py:26`
-- `tests/test_hwfit_models_nonstring_fields.py:30`
+- `tests/test_hwfit_models_nonstring_fields.py:27`
 - `tests/test_hwfit_models_nonstring_fields.py:31`
-- `tests/test_hwfit_quant_formats.py:41`
+- `tests/test_hwfit_models_nonstring_fields.py:32`
+- `tests/test_hwfit_quant_formats.py:47`
 
 ## `params_b` — function, line 152
 - **called from:**
@@ -35,10 +34,10 @@
 - `services/hwfit/models.py:207`
 - `services/hwfit/profiles.py:41`
 - `services/hwfit/profiles.py:57`
-- `tests/test_hwfit_models_nonstring_fields.py:15`
 - `tests/test_hwfit_models_nonstring_fields.py:16`
-- `tests/test_hwfit_models_nonstring_fields.py:20`
+- `tests/test_hwfit_models_nonstring_fields.py:17`
 - `tests/test_hwfit_models_nonstring_fields.py:21`
+- `tests/test_hwfit_models_nonstring_fields.py:22`
 - `tests/test_hwfit_params_b_malformed.py:13`
 - `tests/test_hwfit_params_b_malformed.py:14`
 - `tests/test_hwfit_params_b_malformed.py:18`
@@ -75,41 +74,51 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_load_model_file` — function, line 270
 - **called from:**
 - `services/hwfit/models.py:327`
-- `services/hwfit/models.py:337`
+- `services/hwfit/models.py:328`
+- `services/hwfit/models.py:338`
 
 ## `reset_model_cache` — function, line 278
 - **called from:**
 - `services/hwfit/models.py:297`
+- `tests/test_publication_plan_b.py:96`
+- `tests/test_publication_plan_b.py:101`
 
 ## `refresh_dynamic_catalogs` — function, line 282
 - **called from:**
-- `routes/hwfit_routes.py:211`
+- `routes/hwfit_routes.py:234`
+- `tests/test_publication_plan_b.py:91`
 
 ## `get_models` — function, line 300
 - **called from:**
-- `routes/hwfit_routes.py:214`
-- `routes/hwfit_routes.py:335`
+- `routes/hwfit_routes.py:237`
+- `routes/hwfit_routes.py:361`
 - `services/hwfit/fit.py:716`
-- `tests/test_hwfit_amd.py:40`
-- `tests/test_hwfit_amd.py:194`
-- `tests/test_hwfit_gemma4_12b.py:18`
-- `tests/test_hwfit_gemma4_12b.py:23`
-- `tests/test_hwfit_gemma4_12b.py:37`
+- `tests/test_hwfit_amd.py:46`
+- `tests/test_hwfit_amd.py:202`
 - `tests/test_hwfit_gemma4_12b.py:43`
-- `tests/test_hwfit_gemma4_12b.py:49`
-- `tests/test_hwfit_macos.py:70`
-- `tests/test_hwfit_macos.py:84`
-- `tests/test_hwfit_manual_backend.py:77`
-- `tests/test_hwfit_quant_formats.py:37`
-- `tests/test_hwfit_quant_formats.py:45`
-- `tests/test_hwfit_windows.py:41`
+- `tests/test_hwfit_gemma4_12b.py:74`
+- `tests/test_hwfit_macos.py:76`
+- `tests/test_hwfit_manual_backend.py:83`
+- `tests/test_hwfit_quant_formats.py:43`
+- `tests/test_hwfit_quant_formats.py:51`
+- `tests/test_hwfit_windows.py:47`
+- `tests/test_publication_plan_b.py:88`
+- `tests/test_publication_plan_b.py:92`
+- `tests/test_publication_plan_b.py:98`
+- `tests/test_publication_plan_b.py:102`
 
 ## `_append_models` — function, line 317
 - **called from:**
-- `services/hwfit/models.py:335`
+- `services/hwfit/models.py:327`
 - `services/hwfit/models.py:336`
 - `services/hwfit/models.py:337`
+- `services/hwfit/models.py:338`
 
-## `model_catalog_path` — function, line 342
+## `model_catalog_path` — function, line 343
 - **called from:**
-- `routes/hwfit_routes.py:218`
+- `scripts/add_hwfit_models.py:34`
+- `scripts/backfill_model_release_dates.py:36`
+- `scripts/import_from_vllm_recipes.py:50`
+- `services/hwfit/models.py:327`
+- `tests/hwfit_publication_fixtures.py:30`
+- `tests/test_publication_plan_b.py:99`

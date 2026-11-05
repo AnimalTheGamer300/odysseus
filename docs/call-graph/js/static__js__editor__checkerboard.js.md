@@ -6,4 +6,4 @@
 ## `drawCheckerboard` — function, line 12
 - **called from:**
 - `static/js/editor/checkerboard.js:12`
-- `static/js/editor/tools/crop.js:104`
+- `static/js/editor/tools/crop.js:180`

@@ -3,32 +3,32 @@
 6 definitions (regex-based, best-effort).
 **Exports:** `bindOpenPromptModalLink`, `bindSettingsClose`, `bindSettingsDrag`, `hideSettingsModal`, `resetSettingsWindowPlacement`, `showSettingsModal`
 
-## `bindSettingsDrag` — function, line 14
+## `bindSettingsDrag` — function, line 16
 - **called from:**
-- `static/js/settings.js:2214`
-- `static/js/settings/lifecycle.js:14`
+- `static/js/settings.js:1926`
+- `static/js/settings/lifecycle.js:16`
 
-## `resetSettingsWindowPlacement` — function, line 30
+## `resetSettingsWindowPlacement` — function, line 32
 - **called from:**
-- `static/js/settings/lifecycle.js:30`
-- `static/js/settings/lifecycle.js:151`
+- `static/js/settings/lifecycle.js:32`
+- `static/js/settings/lifecycle.js:157`
 
-## `bindOpenPromptModalLink` — function, line 58
+## `bindOpenPromptModalLink` — function, line 60
 - **called from:**
-- `static/js/settings.js:2221`
-- `static/js/settings/lifecycle.js:58`
+- `static/js/settings.js:1933`
+- `static/js/settings/lifecycle.js:60`
 
-## `bindSettingsClose` — function, line 93
+## `bindSettingsClose` — function, line 95
 - **called from:**
-- `static/js/settings.js:2216`
-- `static/js/settings/lifecycle.js:93`
+- `static/js/settings.js:1928`
+- `static/js/settings/lifecycle.js:95`
 
-## `showSettingsModal` — function, line 148
+## `showSettingsModal` — function, line 150
 - **called from:**
-- `static/js/settings.js:5639`
-- `static/js/settings/lifecycle.js:148`
+- `static/js/settings/lifecycle.js:150`
+- `static/js/settings/shell.js:73`
 
-## `hideSettingsModal` — function, line 156
+## `hideSettingsModal` — function, line 162
 - **called from:**
-- `static/js/settings.js:5665`
-- `static/js/settings/lifecycle.js:156`
+- `static/js/settings/lifecycle.js:162`
+- `static/js/settings/shell.js:101`

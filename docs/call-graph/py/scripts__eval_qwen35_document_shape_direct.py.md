@@ -1,0 +1,237 @@
+# `scripts/eval_qwen35_document_shape_direct.py` — definitions & call sites
+
+8 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `runtime_system_prompt` — function, line 31
+- **called from:**
+- `scripts/eval_odysseus_live_hard_direct.py:235`
+- `scripts/eval_qwen35_document_shape_direct.py:264`
+
+## `load_system_prompt` — function, line 110
+- **called from:**
+- `scripts/eval_qwen35_document_shape_direct.py:44`
+- `scripts/eval_qwen35_document_shape_direct.py:264`
+
+## `parse_args` — function, line 121
+- **called from:**
+- `scripts/_lib/cli.py:112`
+- `scripts/agent_migration_manifest.py:617`
+- `scripts/agent_migration_manifest.py:621`
+- `scripts/analyze_odysseus_eval_targets.py:120`
+- `scripts/assemble_sft_clean_corpus.py:24`
+- `scripts/audit_c5_benchmark_evidence.py:1558`
+- `scripts/audit_email_sft_with_deepseek.py:246`
+- `scripts/audit_historical_tool_routing.py:60`
+- `scripts/audit_sft_corpus_with_deepseek.py:216`
+- `scripts/audit_typo_tool_routing.py:60`
+- `scripts/backfill_model_release_dates.py:63`
+- `scripts/build_frontend.py:134`
+- `scripts/build_historical_harness_queue.py:323`
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:238`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:309`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:285`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:211`
+- `scripts/build_odysseus_sft_repair_manifest.py:208`
+- `scripts/build_odysseus_sft_repair_manifest.py:212`
+- `scripts/build_odysseus_tool_efficiency_sft_slice.py:416`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:427`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:454`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:476`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:252`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:208`
+- `scripts/build_odysseus_web_teacher_sft.py:378`
+- `scripts/build_odysseus_web_v53_repair_sft.py:415`
+- `scripts/build_sft_environment_inventories.py:54`
+- `scripts/build_sft_expansion_manifest.py:74`
+- `scripts/build_sft_expansion_splits.py:25`
+- `scripts/build_v66_calendar_heldout_cases.py:49`
+- `scripts/check_brotli.py:104`
+- `scripts/check_ca_trust.py:139`
+- `scripts/cook_sft_alex_conversations.py:248`
+- `scripts/cook_sft_alex_conversations.py:252`
+- `scripts/css_snapshot.py:247`
+- `scripts/curate_public_search_seed_cases.py:262`
+- `scripts/curate_sft_trace_run.py:157`
+- `scripts/demo_email/seed_demo_emails.py:360`
+- `scripts/diffusion_server.py:1492`
+- `scripts/dump_agent_prompt.py:382`
+- `scripts/eval_ajax_basic_tools.py:32`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_app_route_smoke.py:360`
+- `scripts/eval_odysseus_contextual_tool_use.py:861`
+- `scripts/eval_odysseus_crud.py:800`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_direct.py:67`
+- `scripts/eval_odysseus_live_hard_direct.py:232`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_odysseus_tool_use.py:1377`
+- `scripts/eval_qwen35_document_shape_direct.py:142`
+- `scripts/eval_qwen35_document_shape_direct.py:262`
+- `scripts/eval_qwen35_implicit_memory.py:206`
+- `scripts/eval_qwen35_tool_router_extended.py:450`
+- `scripts/eval_qwen_tool_groups_stream.py:226`
+- `scripts/filter_sft_seed_hygiene.py:46`
+- `scripts/generate_env_reference.py:1230`
+- `scripts/generate_sft_environment_expansion.py:307`
+- … +30 more (grep the name in repo)
+
+## `first_call` — function, line 133
+- **called from:**
+- `scripts/eval_odysseus_live_hard_direct.py:167`
+- `scripts/eval_odysseus_live_hard_direct.py:202`
+- `scripts/eval_qwen35_document_shape_direct.py:235`
+
+## `contains` — function, line 145
+- **called from:**
+- `scripts/eval_odysseus_app_route_smoke.py:167`
+- `scripts/eval_odysseus_app_route_smoke.py:167`
+- `scripts/eval_odysseus_app_route_smoke.py:170`
+- `scripts/eval_odysseus_app_route_smoke.py:170`
+- `scripts/eval_odysseus_app_route_smoke.py:172`
+- `scripts/eval_odysseus_everyday_live_hard.py:324`
+- `scripts/eval_odysseus_everyday_live_hard.py:324`
+- `scripts/eval_odysseus_everyday_live_hard.py:327`
+- `scripts/eval_odysseus_everyday_live_hard.py:327`
+- `scripts/eval_odysseus_everyday_live_hard.py:329`
+- `scripts/eval_qwen35_document_shape_direct.py:194`
+- `scripts/eval_qwen35_document_shape_direct.py:200`
+- `scripts/run_sft_overnight_fixture_flows.py:103`
+- `scripts/run_sft_overnight_fixture_flows.py:103`
+- `scripts/run_sft_overnight_fixture_flows.py:111`
+- `scripts/run_sft_overnight_fixture_flows.py:111`
+- `scripts/run_sft_overnight_fixture_flows.py:175`
+- `scripts/run_sft_overnight_fixture_flows.py:175`
+- `scripts/run_sft_overnight_fixture_flows.py:183`
+- `scripts/run_sft_overnight_fixture_flows.py:183`
+- `src/tools/system.py:451`
+- `src/tools/system.py:452`
+- `static/app.js:436`
+- `static/app.js:465`
+- `static/app.js:474`
+- `static/app.js:476`
+- `static/app.js:508`
+- `static/app.js:509`
+- `static/app.js:527`
+- `static/app.js:533`
+- `static/app.js:702`
+- `static/app.js:736`
+- `static/app.js:746`
+- `static/app.js:752`
+- `static/app.js:789`
+- `static/app.js:818`
+- `static/app.js:829`
+- `static/app.js:844`
+- `static/app.js:860`
+- `static/app.js:1179`
+- `static/app.js:1211`
+- `static/app.js:1230`
+- `static/app.js:2044`
+- `static/app.js:2216`
+- `static/app.js:2216`
+- `static/app.js:2239`
+- `static/app.js:2240`
+- `static/app.js:2266`
+- `static/app.js:2269`
+- `static/app.js:2361`
+- `static/app.js:2404`
+- `static/app.js:2533`
+- `static/app.js:2675`
+- `static/app.js:2783`
+- `static/app.js:2880`
+- `static/app.js:3044`
+- `static/app.js:3101`
+- `static/app.js:3103`
+- `static/app.js:3144`
+- `static/app.js:3146`
+- … +797 more (grep the name in repo)
+
+## `score_case` — function, line 149
+- **called from:**
+- `scripts/eval_odysseus_app_route_smoke.py:323`
+- `scripts/eval_odysseus_everyday_live_hard.py:359`
+- `scripts/eval_qwen35_document_shape_direct.py:236`
+- `scripts/odysseus_domain_audit.py:462`
+- `scripts/odysseus_related_flow_audit.py:375`
+- `scripts/odysseus_remaining_tool_audit.py:257`
+- `tests/test_odysseus_domain_audit.py:31`
+- `tests/test_odysseus_domain_audit.py:39`
+- `tests/test_odysseus_domain_audit.py:47`
+
+## `run_case` — function, line 219
+- **called from:**
+- `scripts/eval_followup_domain_continuity.py:183`
+- `scripts/eval_odysseus_everyday_live_hard.py:554`
+- `scripts/eval_odysseus_live_hard_direct.py:242`
+- `scripts/eval_odysseus_tool_use.py:1434`
+- `scripts/eval_qwen35_document_shape_direct.py:271`
+- `scripts/eval_qwen35_implicit_memory.py:223`
+- `scripts/eval_qwen35_tool_router_extended.py:503`
+- `scripts/run_sft_environment_expansion.py:819`
+- `scripts/run_sft_overnight_fixture_flows.py:782`
+- `tests/test_eval_script_contract.py:204`
+- `tests/test_eval_script_contract.py:266`
+
+## `main` — function, line 250
+- **called from:**
+- `integrations/claude/skills/odysseus/scripts/odysseus_api.py:218`
+- `integrations/codex/scripts/odysseus_api.py:218`
+- `scripts/add_hwfit_models.py:512`
+- `scripts/agent_migration_manifest.py:635`
+- `scripts/analyze_odysseus_eval_targets.py:180`
+- `scripts/assemble_sft_clean_corpus.py:74`
+- `scripts/audit_c5_benchmark_evidence.py:1637`
+- `scripts/audit_email_sft_with_deepseek.py:323`
+- `scripts/audit_historical_tool_routing.py:121`
+- `scripts/audit_sft_corpus_with_deepseek.py:344`
+- `scripts/audit_typo_tool_routing.py:99`
+- `scripts/backfill_model_release_dates.py:136`
+- `scripts/build_frontend.py:148`
+- `scripts/build_historical_harness_queue.py:333`
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:274`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:353`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:361`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:267`
+- `scripts/build_odysseus_sft_repair_manifest.py:230`
+- `scripts/build_odysseus_tool_efficiency_sft_slice.py:447`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:557`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:519`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:551`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:394`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:288`
+- `scripts/build_odysseus_web_teacher_sft.py:500`
+- `scripts/build_odysseus_web_v53_repair_sft.py:483`
+- `scripts/build_sft_environment_inventories.py:97`
+- `scripts/build_sft_expansion_manifest.py:161`
+- `scripts/build_sft_expansion_splits.py:110`
+- `scripts/build_v66_calendar_heldout_cases.py:113`
+- `scripts/check_brotli.py:122`
+- `scripts/check_ca_trust.py:180`
+- `scripts/claim_ownerless.py:106`
+- `scripts/cook_sft_alex_conversations.py:298`
+- `scripts/css_snapshot.py:295`
+- `scripts/curate_public_search_seed_cases.py:324`
+- `scripts/curate_sft_trace_run.py:178`
+- `scripts/demo_email/seed_demo_emails.py:394`
+- `scripts/dump_agent_prompt.py:545`
+- `scripts/eval_ajax_basic_tools.py:71`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_app_route_smoke.py:400`
+- `scripts/eval_odysseus_contextual_tool_use.py:944`
+- `scripts/eval_odysseus_crud.py:925`
+- `scripts/eval_odysseus_everyday_live_hard.py:590`
+- `scripts/eval_odysseus_live_hard_direct.py:261`
+- `scripts/eval_odysseus_live_hard_examples.py:468`
+- `scripts/eval_odysseus_tool_use.py:1490`
+- `scripts/eval_qwen35_document_shape_direct.py:303`
+- `scripts/eval_qwen35_implicit_memory.py:279`
+- `scripts/eval_qwen35_tool_router_extended.py:571`
+- `scripts/filter_sft_seed_hygiene.py:90`
+- `scripts/generate_env_reference.py:1270`
+- `scripts/generate_sft_environment_expansion.py:399`
+- `scripts/generate_sft_flow_variants_with_kimi.py:211`
+- `scripts/hf_download.py:182`
+- `scripts/import_from_vllm_recipes.py:348`
+- `scripts/index_documents.py:117`
+- … +139 more (grep the name in repo)

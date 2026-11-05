@@ -21,8 +21,8 @@
 
 ## `run_document_tidy` — function (async), line 53
 - **called from:**
-- `src/agent_tools/document_tools.py:890`
-- `src/builtin_actions.py:457`
+- `src/agent_tools/document_tools.py:1237`
+- `src/builtin_actions.py:581`
 - `tests/test_document_tidy_null_timestamp.py:60`
 
 ## `_updated` — function, line 160

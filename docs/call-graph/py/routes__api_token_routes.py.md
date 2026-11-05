@@ -18,7 +18,7 @@
 
 ## `setup_api_token_routes` — function, line 76
 - **called from:**
-- `app.py:852`
+- `app.py:936`
 - `tests/test_api_token_routes.py:90`
 
 ## `list_tokens` — function, line 80

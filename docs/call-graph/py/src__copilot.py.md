@@ -24,16 +24,17 @@
 
 ## `is_copilot_base` — function, line 89
 - **called from:**
-- `src/llm_core.py:1020`
-- `src/llm_core.py:1155`
-- `src/model_context.py:509`
+- `src/agent_runtime/context_resolution.py:355`
+- `src/llm_core.py:1165`
+- `src/llm_core.py:1399`
+- `src/model_context.py:525`
 - `tests/test_copilot.py:21`
 
 ## `copilot_headers` — function, line 108
 - **called from:**
 - `src/copilot.py:191`
-- `src/endpoint_resolver.py:329`
-- `src/llm_core.py:1135`
+- `src/endpoint_resolver.py:426`
+- `src/llm_core.py:1379`
 - `tests/test_copilot.py:41`
 - `tests/test_copilot.py:51`
 - `tests/test_copilot.py:57`
@@ -45,7 +46,7 @@
 
 ## `request_device_code` — function, line 150
 - **called from:**
-- `routes/chatgpt_subscription_routes.py:111`
+- `routes/chatgpt_subscription_routes.py:270`
 - `routes/copilot_routes.py:108`
 - `tests/test_copilot.py:159`
 
@@ -62,12 +63,21 @@
 
 ## `_parse` — function, line 195
 - **called from:**
-- `routes/skills_routes.py:272`
+- `src/agent_runtime/effect_log.py:229`
+- `src/agent_runtime/effect_log.py:420`
+- `src/agent_tools/editor_tools.py:364`
+- `src/agent_tools/editor_tools.py:392`
+- `src/agent_tools/editor_tools.py:442`
+- `src/agent_tools/editor_tools.py:468`
+- `src/agent_tools/editor_tools.py:644`
 - `src/copilot.py:207`
-- `static/js/cookbook-hwfit.js:1572`
-- `static/js/cookbook-hwfit.js:1572`
-- `static/js/emailLibrary.js:3637`
-- `static/js/emailLibrary.js:3638`
+- `tests/test_calendar_config_body.py:23`
+- `tests/test_calendar_config_body.py:28`
+- `tests/test_calendar_config_body.py:34`
+- `static/js/cookbook-hwfit.js:1653`
+- `static/js/cookbook-hwfit.js:1653`
+- `static/js/emailLibrary/index.js:3728`
+- `static/js/emailLibrary/index.js:3729`
 
 ## `request_flags` — function, line 222
 - **called from:**
@@ -82,7 +92,7 @@
 
 ## `apply_request_headers` — function, line 248
 - **called from:**
-- `src/llm_core.py:2333`
-- `src/llm_core.py:2753`
-- `src/llm_core.py:3051`
+- `src/llm_core.py:2677`
+- `src/llm_core.py:3143`
+- `src/llm_core.py:3468`
 - `tests/test_copilot.py:106`

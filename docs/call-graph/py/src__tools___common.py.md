@@ -4,26 +4,23 @@
 
 ## `_internal_headers` — function, line 20
 - **called from:**
-- `src/cookbook_serve_lifecycle.py:71`
-- `src/cookbook_serve_lifecycle.py:83`
-- `src/cookbook_serve_lifecycle.py:119`
-- `src/tools/cookbook.py:96`
-- `src/tools/cookbook.py:159`
-- `src/tools/cookbook.py:267`
-- `src/tools/cookbook.py:305`
-- `src/tools/cookbook.py:648`
-- `src/tools/cookbook.py:733`
-- `src/tools/cookbook.py:802`
-- `src/tools/cookbook.py:913`
-- `src/tools/cookbook.py:1034`
-- `src/tools/cookbook.py:1153`
-- `src/tools/cookbook.py:1205`
-- `src/tools/cookbook.py:1270`
-- `src/tools/cookbook.py:1420`
-- `src/tools/cookbook.py:1469`
-- `src/tools/cookbook.py:1514`
-- `src/tools/cookbook.py:1551`
-- `src/tools/image.py:132`
-- `src/tools/research.py:124`
-- `src/tools/system.py:629`
-- `src/tools/system.py:703`
+- `src/agent_runtime/local_model_control.py:42`
+- `src/agent_tools/editor_tools.py:94`
+- `src/agent_tools/editor_tools.py:492`
+- `src/cookbook_serve_lifecycle.py:52`
+- `src/cookbook_serve_lifecycle.py:99`
+- `src/tools/cookbook.py:225`
+- `src/tools/cookbook.py:288`
+- `src/tools/cookbook.py:396`
+- `src/tools/cookbook.py:434`
+- `src/tools/cookbook.py:935`
+- `src/tools/cookbook.py:1198`
+- `src/tools/cookbook.py:1358`
+- `src/tools/cookbook.py:1477`
+- `src/tools/cookbook.py:1658`
+- `src/tools/cookbook.py:1808`
+- `src/tools/cookbook.py:1858`
+- `src/tools/cookbook.py:1956`
+- `src/tools/research.py:145`
+- `src/tools/system.py:851`
+- `src/tools/system.py:929`

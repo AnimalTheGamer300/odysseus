@@ -2,275 +2,460 @@
 
 21 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_normalized_owner` — function, line 34
+## `_normalized_owner` — function, line 42
 - **called from:**
-- `src/tool_approvals.py:122`
-- `src/tool_approvals.py:452`
-- `src/tool_approvals.py:490`
+- `src/tool_approvals.py:136`
+- `src/tool_approvals.py:411`
+- `src/tool_approvals.py:417`
+- `src/tool_approvals.py:434`
+- `src/tool_approvals.py:446`
+- `src/tool_approvals.py:465`
+- `src/tool_approvals.py:581`
+- `src/tool_approvals.py:619`
 
-## `_normalized_workspace` — function, line 38
+## `_normalized_workspace` — function, line 46
 - **called from:**
-- `src/tool_approvals.py:127`
+- `src/tool_approvals.py:141`
 
-## `_normalized_selected_tools` — function, line 49
+## `_normalized_selected_tools` — function, line 57
 - **called from:**
-- `src/tool_approvals.py:135`
+- `src/tool_approvals.py:149`
 
-## `_normalized_continuation_query` — function, line 82
+## `_normalized_continuation_query` — function, line 90
 - **called from:**
-- `src/tool_approvals.py:137`
+- `src/tool_approvals.py:151`
 
-## `_canonical_digest` — function, line 89
+## `_canonical_digest` — function, line 97
 - **called from:**
-- `src/tool_approvals.py:274`
-- `src/tool_approvals.py:391`
+- `src/tool_approvals.py:310`
+- `src/tool_approvals.py:513`
 
-## `document_content_digest` — function, line 99
+## `document_content_digest` — function, line 107
 - **called from:**
-- `src/agent_loop.py:6311`
-- `src/agent_tools/document_tools.py:108`
-- `tests/test_external_context_tool_gate.py:1243`
-- `tests/test_foreground_model_routing.py:282`
-- `tests/test_tool_approvals.py:135`
-- `tests/test_tool_approvals.py:199`
-- `tests/test_tool_approvals.py:238`
-- `tests/test_tool_approvals.py:301`
-- `tests/test_tool_approvals.py:308`
+- `src/agent_loop.py:34193`
+- `src/agent_runtime/owned_resources.py:315`
+- `src/agent_tools/document_tools.py:143`
+- `tests/test_external_context_tool_gate.py:1344`
+- `tests/test_foreground_model_routing.py:336`
+- `tests/test_tool_approvals.py:152`
+- `tests/test_tool_approvals.py:235`
+- `tests/test_tool_approvals.py:274`
+- `tests/test_tool_approvals.py:337`
+- `tests/test_tool_approvals.py:344`
 
-## `_binding_payload` — function, line 104
+## `_binding_payload` — function, line 112
 - **called from:**
-- `src/tool_approvals.py:256`
-- `src/tool_approvals.py:359`
+- `src/tool_approvals.py:286`
+- `src/tool_approvals.py:475`
 
-## `PendingToolApproval` — class, line 144
+## `PendingToolApproval` — class, line 164
 - decorator: `dataclass(frozen=True)`
 - **called from:**
-- `src/tool_approvals.py:375`
+- `src/tool_approvals.py:497`
 
-## `PendingToolApproval.public_payload` — method, line 166
+## `PendingToolApproval.public_payload` — method, line 196
 - **called from:**
-- `src/agent_loop.py:6336`
-- `src/teacher_escalation.py:774`
-- `tests/test_scheduler_prompt_cache_time.py:87`
+- `src/agent_loop.py:34216`
+- `src/teacher_escalation.py:848`
+- `tests/test_remote_resource_identity.py:139`
+- `tests/test_request_authority.py:281`
+- `tests/test_resource_identity.py:588`
+- `tests/test_scheduler_prompt_cache_time.py:92`
+- `tests/test_skills_audit_services.py:329`
 - `tests/test_skills_routes_owner_update.py:173`
-- `tests/test_tool_approval_task_scope.py:46`
-- `tests/test_tool_approval_task_scope.py:113`
-- `tests/test_tool_approval_task_scope.py:173`
-- `tests/test_tool_approvals.py:138`
+- `tests/test_tool_approval_task_scope.py:55`
+- `tests/test_tool_approval_task_scope.py:122`
+- `tests/test_tool_approval_task_scope.py:182`
+- `tests/test_tool_approvals.py:155`
+- `tests/test_tool_approvals.py:171`
 
-## `ExactToolApproval` — class, line 219
+## `ExactToolApproval` — class, line 249
 - decorator: `dataclass`
 - **called from:**
-- `src/tool_approvals.py:465`
-- `src/tool_approvals.py:470`
-- `tests/test_tool_approval_task_scope.py:216`
+- `src/tool_approvals.py:594`
+- `src/tool_approvals.py:599`
+- `tests/test_request_authority.py:290`
+- `tests/test_tool_approval_task_scope.py:225`
 
-## `ExactToolApproval.grants_chat_session` — method, line 234
+## `ExactToolApproval.grants_chat_session` — method, line 264
 - decorator: `property`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ExactToolApproval._matches_unlocked` — method, line 237
+## `ExactToolApproval._matches_unlocked` — method, line 267
 - **called from:**
-- `src/tool_approvals.py:286`
-- `src/tool_approvals.py:304`
+- `src/tool_approvals.py:322`
+- `src/tool_approvals.py:340`
 
-## `ExactToolApproval.matches` — method, line 276
+## `ExactToolApproval.matches` — method, line 312
 - **called from:**
-- `src/agent_loop.py:5058`
+- `src/agent_loop.py:25951`
 - `src/model_capabilities.py:903`
+- `src/tool_execution.py:1773`
 - `tests/test_calendar_cli_overlap.py:85`
-- `tests/test_foreground_model_routing.py:303`
-- `tests/test_tool_approval_task_scope.py:217`
-- `static/js/a11y.js:105`
-- `static/js/a11y.js:116`
-- `static/js/a11y.js:135`
-- `static/js/a11y.js:152`
-- `static/js/dragSort.js:45`
-- `static/js/dragSort.js:163`
-- `static/js/dragSort.js:194`
+- `tests/test_foreground_model_routing.py:357`
+- `tests/test_owned_resource_identity.py:364`
+- `tests/test_request_authority.py:291`
+- `tests/test_resource_identity.py:579`
+- `tests/test_resource_identity.py:693`
+- `tests/test_tool_approval_task_scope.py:226`
+- `static/js/a11y.js:136`
+- `static/js/a11y.js:147`
+- `static/js/a11y.js:195`
+- `static/js/a11y.js:212`
+- `static/js/calendar.js:1502`
+- `static/js/document.js:5905`
+- `static/js/document.js:7885`
+- `static/js/document.js:8401`
+- `static/js/document.js:9832`
+- `static/js/dragSort.js:50`
+- `static/js/dragSort.js:175`
+- `static/js/dragSort.js:227`
+- `static/js/dragSort.js:289`
+- `static/js/editor/control-kit.js:145`
+- `static/js/editor/control-kit.js:146`
+- `static/js/editor/control-kit.js:147`
+- `static/js/editor/control-kit.js:148`
+- `static/js/editor/control-kit.js:177`
+- `static/js/editor/control-kit.js:186`
+- `static/js/editor/layer-panel.js:319`
+- `static/js/editor/layer-panel.js:340`
+- `static/js/editor/layer-style-menu.js:29`
+- `static/js/editor/panel-visibility.js:98`
 - `static/js/editor/slider-ux.js:97`
-- `static/js/emailLibrary.js:3806`
-- `static/js/ui.js:152`
+- `static/js/editor/tools/bucket.js:20`
+- `static/js/editor/tools/bucket.js:62`
+- `static/js/editor/wire-extra-menus.js:45`
+- `static/js/editor/wire-topbar-overflow.js:66`
+- `static/js/editor/wire-topbar-overflow.js:69`
+- `static/js/editor/wire-topbar-overflow.js:80`
+- `static/js/emailLibrary/index.js:3911`
+- `static/js/galleryEditor.js:6345`
+- `static/js/galleryEditor.js:6350`
+- `static/js/galleryEditor.js:11015`
+- `static/js/galleryEditor.js:11018`
+- `static/js/mobileBulkSelect.js:13`
+- `static/js/mobileBulkSelect.js:14`
+- `static/js/mobileBulkSelect.js:19`
+- `static/js/mobileBulkSelect.js:24`
+- `static/js/turnRendering.js:81`
+- `static/js/turnRendering.js:88`
+- `static/js/ui.js:223`
 
-## `ExactToolApproval.claim` — method, line 294
+## `ExactToolApproval.claim` — method, line 330
 - **called from:**
-- `src/tool_execution.py:921`
-- `tests/test_tool_approvals.py:41`
+- `src/agent_runtime/effect_adapters.py:263`
+- `src/agent_runtime/journal.py:89`
+- `src/agent_runtime/process_resources.py:422`
+- `src/tool_execution.py:1946`
+- `tests/test_effect_journal_persistence.py:26`
+- `tests/test_effect_journal_persistence.py:39`
+- `tests/test_effect_journal_persistence.py:53`
+- `tests/test_effect_journal_persistence.py:59`
+- `tests/test_effect_journal_persistence.py:72`
+- `tests/test_effect_journal_persistence.py:77`
+- `tests/test_effect_journal_persistence.py:95`
+- `tests/test_effect_journal_persistence.py:105`
+- `tests/test_effect_journal_persistence.py:118`
+- `tests/test_effect_journal_persistence.py:130`
+- `tests/test_effect_journal_persistence.py:135`
+- `tests/test_effect_journal_persistence.py:163`
+- `tests/test_effect_journal_persistence.py:182`
+- `tests/test_effect_journal_persistence.py:186`
+- `tests/test_effect_journal_persistence.py:193`
+- `tests/test_effect_journal_persistence.py:205`
+- `tests/test_effect_journal_persistence.py:209`
+- `tests/test_effect_journal_persistence.py:220`
+- `tests/test_effect_journal_persistence.py:221`
+- `tests/test_effect_journal_persistence.py:222`
+- `tests/test_effect_journal_persistence.py:237`
+- `tests/test_effect_journal_persistence.py:281`
+- `tests/test_effect_journal_persistence.py:296`
+- `tests/test_effect_journal_persistence.py:353`
+- `tests/test_effect_journal_persistence.py:354`
+- `tests/test_effect_verification_adapters.py:365`
+- `tests/test_effects_foundation.py:189`
+- `tests/test_effects_foundation.py:205`
+- `tests/test_effects_foundation.py:214`
+- `tests/test_effects_foundation.py:227`
+- `tests/test_effects_foundation.py:236`
+- `tests/test_effects_foundation.py:248`
+- `tests/test_effects_foundation.py:256`
+- `tests/test_effects_foundation.py:266`
+- `tests/test_effects_foundation.py:269`
+- `tests/test_effects_foundation.py:280`
+- `tests/test_effects_foundation.py:282`
+- `tests/test_effects_foundation.py:291`
+- `tests/test_effects_foundation.py:294`
+- `tests/test_effects_foundation.py:302`
+- `tests/test_effects_foundation.py:305`
+- `tests/test_effects_foundation.py:314`
+- `tests/test_effects_foundation.py:317`
+- `tests/test_effects_foundation.py:325`
+- `tests/test_effects_foundation.py:339`
+- `tests/test_effects_foundation.py:347`
+- `tests/test_effects_foundation.py:356`
+- `tests/test_effects_foundation.py:367`
+- `tests/test_effects_foundation.py:378`
+- `tests/test_effects_foundation.py:389`
+- `tests/test_effects_foundation.py:400`
+- `tests/test_effects_foundation.py:409`
+- `tests/test_effects_foundation.py:420`
+- `tests/test_effects_foundation.py:434`
+- `tests/test_effects_foundation.py:448`
+- `tests/test_tool_approvals.py:58`
+- … +3 more (grep the name in repo)
+
+## `ToolApprovalStore` — class, line 352
+- **called from:**
+- `src/tool_approvals.py:642`
+- `tests/test_exact_approval_ungranted_process.py:29`
+- `tests/test_local_mcp_capabilities.py:516`
+- `tests/test_owned_resource_identity.py:45`
+- `tests/test_remote_resource_identity.py:35`
+- `tests/test_request_authority.py:261`
+- `tests/test_request_authority.py:287`
+- `tests/test_request_authority.py:299`
+- `tests/test_resource_identity.py:544`
+- `tests/test_runtime_resource_integration.py:40`
+- `tests/test_skills_audit_services.py:318`
+- `tests/test_tool_approval_single_action_scope.py:38`
+- `tests/test_tool_approval_single_action_scope.py:62`
+- `tests/test_tool_approval_single_action_scope.py:78`
+- `tests/test_tool_approval_task_scope.py:51`
+- `tests/test_tool_approval_task_scope.py:77`
+- `tests/test_tool_approval_task_scope.py:106`
+- `tests/test_tool_approval_task_scope.py:171`
+- `tests/test_tool_approval_task_scope.py:209`
 - `tests/test_tool_approvals.py:48`
-- `tests/test_tool_approvals.py:55`
-- `static/sw.js:182`
+- `tests/test_tool_approvals.py:82`
+- `tests/test_tool_approvals.py:104`
+- `tests/test_tool_approvals.py:117`
+- `tests/test_tool_approvals.py:126`
+- `tests/test_tool_approvals.py:137`
+- `tests/test_tool_approvals.py:146`
+- `tests/test_tool_approvals.py:166`
+- `tests/test_tool_approvals.py:178`
+- `tests/test_tool_approvals.py:227`
+- `tests/test_tool_approvals.py:282`
+- `tests/test_tool_approvals.py:401`
+- `tests/test_tool_approvals.py:437`
+- `tests/test_tool_approvals.py:471`
+- `tests/test_turn_contract_integration.py:218`
 
-## `ToolApprovalStore` — class, line 316
-- **called from:**
-- `src/tool_approvals.py:513`
-- `tests/test_tool_approval_single_action_scope.py:30`
-- `tests/test_tool_approval_single_action_scope.py:54`
-- `tests/test_tool_approval_single_action_scope.py:70`
-- `tests/test_tool_approval_task_scope.py:42`
-- `tests/test_tool_approval_task_scope.py:68`
-- `tests/test_tool_approval_task_scope.py:97`
-- `tests/test_tool_approval_task_scope.py:162`
-- `tests/test_tool_approval_task_scope.py:200`
-- `tests/test_tool_approvals.py:31`
-- `tests/test_tool_approvals.py:65`
-- `tests/test_tool_approvals.py:87`
-- `tests/test_tool_approvals.py:100`
-- `tests/test_tool_approvals.py:109`
-- `tests/test_tool_approvals.py:120`
-- `tests/test_tool_approvals.py:129`
-- `tests/test_tool_approvals.py:152`
-- `tests/test_tool_approvals.py:191`
-- `tests/test_tool_approvals.py:246`
-- `tests/test_tool_approvals.py:359`
-- `tests/test_tool_approvals.py:395`
-- `tests/test_tool_approvals.py:429`
-
-## `ToolApprovalStore.__init__` — method, line 319
+## `ToolApprovalStore.__init__` — method, line 355
 - **called from:**
 - `core/exceptions.py:8`
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
-## `ToolApprovalStore._purge_expired_locked` — method, line 330
+## `ToolApprovalStore._purge_expired_locked` — method, line 366
 - **called from:**
-- `src/tool_approvals.py:398`
-- `src/tool_approvals.py:446`
-- `src/tool_approvals.py:479`
-- `src/tool_approvals.py:495`
+- `src/tool_approvals.py:527`
+- `src/tool_approvals.py:575`
+- `src/tool_approvals.py:608`
+- `src/tool_approvals.py:624`
 
-## `ToolApprovalStore.create` — method, line 339
+## `ToolApprovalStore.create` — method, line 375
 - **called from:**
-- `routes/chat_routes.py:398`
+- `core/database.py:1525`
+- `routes/chat_routes.py:1594`
+- `routes/email/email_routes.py:5310`
+- `routes/email/email_routes.py:5373`
 - `scripts/demo_email/seed_demo_emails.py:318`
-- `src/agent_loop.py:6297`
-- `src/teacher_escalation.py:764`
+- `src/agent_loop.py:34183`
+- `src/teacher_escalation.py:837`
+- `tests/test_agent_rounds_exhausted.py:3768`
+- `tests/test_daily_brief_local_calendar.py:39`
 - `tests/test_email_account_default_serialization.py:375`
+- `tests/test_email_account_host_ssrf.py:189`
+- `tests/test_email_account_host_ssrf.py:204`
+- `tests/test_email_account_host_ssrf.py:221`
+- `tests/test_email_account_host_ssrf.py:226`
 - `tests/test_email_account_port_validation.py:45`
-- `tests/test_foreground_model_routing.py:273`
-- `tests/test_foreground_model_routing.py:319`
-- `tests/test_foreground_model_routing.py:352`
-- `tests/test_foreground_model_routing.py:389`
-- `tests/test_foreground_model_routing.py:421`
-- `tests/test_model_routes.py:1407`
-- `tests/test_model_routes.py:1427`
-- `tests/test_model_routes.py:1452`
-- `tests/test_model_routes.py:1478`
-- `tests/test_model_routes.py:1498`
-- `tests/test_model_routes.py:1523`
-- `tests/test_model_routes.py:1544`
-- `tests/test_model_routes.py:1563`
-- `tests/test_scheduler_prompt_cache_time.py:77`
-- `tests/test_skills_routes_owner_update.py:158`
-- `tests/test_tool_approval_single_action_scope.py:17`
-- `tests/test_tool_approval_task_scope.py:26`
-- `tests/test_tool_approvals.py:27`
-- `static/app.js:1429`
-- `static/js/chat.js:711`
-- `static/js/chat.js:2463`
-- `static/js/chat.js:2696`
-- `static/js/chat.js:4362`
-- `static/js/chat.js:5626`
-- `static/js/chat.js:5984`
-- `static/js/chat.js:7116`
-- `static/js/compare/index.js:696`
-- `static/js/compare/index.js:773`
-- `static/js/compare/index.js:844`
-- `static/js/compare/index.js:920`
-- `static/js/compare/panes.js:109`
-- `static/js/compare/panes.js:161`
-- `static/js/compare/selector.js:387`
-- `static/js/compare/stream.js:77`
-- `static/js/compare/stream.js:469`
-- `static/js/compare/stream.js:529`
-- `static/js/cookbook.js:110`
-- `static/js/document.js:581`
-- `static/js/documentLibrary.js:2344`
-- `static/js/documentLibrary.js:3245`
-- `static/js/documentLibrary.js:3478`
-- `static/js/editor/ai-inpaint.js:104`
-- `static/js/editor/ai-tool-runner.js:58`
-- `static/js/emailLibrary.js:8245`
-- `static/js/fileHandler.js:284`
-- `static/js/galleryEditor.js:3655`
-- `static/js/galleryEditor.js:4052`
-- `static/js/group.js:742`
-- `static/js/memory.js:513`
-- `static/js/models.js:187`
-- `static/js/presets.js:125`
-- `static/js/sessions.js:2839`
-- `static/js/slashCommands.js:672`
-- `static/js/slashCommands.js:2059`
-- … +3 more (grep the name in repo)
-
-## `ToolApprovalStore.consume` — method, line 426
-- **called from:**
-- `routes/chat_routes.py:1376`
-- `routes/skills_routes.py:782`
-- `routes/skills_routes.py:1534`
-- `routes/skills_routes.py:1601`
-- `src/task_scheduler.py:1951`
-- `tests/test_external_context_tool_gate.py:1244`
-- `tests/test_teacher_eval_tier2.py:293`
-- `tests/test_tool_approval_single_action_scope.py:33`
-- `tests/test_tool_approval_single_action_scope.py:57`
-- `tests/test_tool_approval_single_action_scope.py:73`
-- `tests/test_tool_approval_task_scope.py:70`
-- `tests/test_tool_approval_task_scope.py:99`
-- `tests/test_tool_approval_task_scope.py:165`
-- `tests/test_tool_approvals.py:33`
-- `tests/test_tool_approvals.py:68`
-- `tests/test_tool_approvals.py:77`
-- `tests/test_tool_approvals.py:91`
-- `tests/test_tool_approvals.py:154`
-- `tests/test_tool_approvals.py:202`
-- `tests/test_tool_approvals.py:254`
-- `tests/test_tool_approvals.py:361`
-- `tests/test_tool_approvals.py:397`
-- `tests/test_tool_approvals.py:431`
-- `static/js/cookbookRunning.js:4090`
-
-## `ToolApprovalStore.peek` — method, line 476
-- **called from:**
-- `routes/chat_routes.py:1351`
-- `routes/skills_routes.py:1593`
-- `tests/test_external_context_tool_gate.py:1239`
-- `tests/test_foreground_model_routing.py:302`
-- `tests/test_foreground_model_routing.py:378`
+- `tests/test_endpoint_registered_authority.py:205`
+- `tests/test_endpoint_registered_authority.py:231`
+- `tests/test_endpoint_registered_authority.py:256`
+- `tests/test_endpoint_registered_authority.py:271`
+- `tests/test_exact_approval_ungranted_process.py:30`
+- `tests/test_featherless_provider.py:267`
+- `tests/test_foreground_model_routing.py:327`
+- `tests/test_foreground_model_routing.py:373`
 - `tests/test_foreground_model_routing.py:406`
-- `tests/test_scheduler_prompt_cache_time.py:114`
-- `tests/test_skills_routes_owner_update.py:205`
-- `tests/test_teacher_eval_tier2.py:288`
-- `tests/test_tool_approval_single_action_scope.py:80`
-- `tests/test_tool_approval_task_scope.py:171`
-- `tests/test_tool_approvals.py:74`
-- `tests/test_tool_approvals.py:83`
-- `tests/test_tool_approvals.py:104`
-- `tests/test_tool_approvals.py:105`
-- `tests/test_tool_approvals.py:113`
-- `tests/test_tool_approvals.py:115`
-- `tests/test_tool_approvals.py:124`
-- `tests/test_tool_approvals.py:125`
-- `static/js/editor/build/right-panel.js:147`
+- `tests/test_foreground_model_routing.py:443`
+- `tests/test_foreground_model_routing.py:475`
+- `tests/test_local_mcp_capabilities.py:517`
+- `tests/test_model_routes.py:1408`
+- `tests/test_model_routes.py:1428`
+- `tests/test_model_routes.py:1453`
+- `tests/test_model_routes.py:1479`
+- `tests/test_model_routes.py:1499`
+- `tests/test_model_routes.py:1524`
+- `tests/test_model_routes.py:1545`
+- `tests/test_model_routes.py:1564`
+- `tests/test_notes_checklist_state.py:16`
+- `tests/test_owned_resource_identity.py:46`
+- `tests/test_remote_resource_identity.py:36`
+- `tests/test_request_authority.py:267`
+- `tests/test_request_authority.py:287`
+- `tests/test_request_authority.py:300`
+- `tests/test_resource_identity.py:545`
+- `tests/test_review_endpoint_credentials.py:60`
+- `tests/test_runtime_resource_integration.py:41`
+- `tests/test_scheduler_prompt_cache_time.py:82`
+- `tests/test_skills_audit_services.py:325`
+- `tests/test_skills_routes_owner_update.py:158`
+- `tests/test_tool_approval_single_action_scope.py:25`
+- `tests/test_tool_approval_task_scope.py:35`
+- `tests/test_tool_approvals.py:44`
+- `tests/test_turn_contract_integration.py:219`
+- `tests/test_workspace_artifact_tool_floor.py:2226`
+- `static/app.js:1470`
+- `static/js/chat.js:1591`
+- `static/js/chat.js:3522`
+- `static/js/chat.js:4058`
+- `static/js/chat.js:5980`
+- `static/js/chat.js:7310`
+- `static/js/chat.js:8809`
+- `static/js/compare/index.js:809`
+- … +31 more (grep the name in repo)
 
-## `ToolApprovalStore.retire_for_session` — method, line 482
+## `ToolApprovalStore.consume` — method, line 555
 - **called from:**
-- `routes/chat_routes.py:1429`
-- `tests/test_tool_approvals.py:112`
-- `tests/test_tool_approvals.py:114`
-- `tests/test_tool_approvals.py:116`
+- `routes/chat_routes.py:3055`
+- `routes/chat_routes.py:5084`
+- `routes/skills_routes.py:700`
+- `services/skills/agent_runner.py:146`
+- `services/skills/agent_runner.py:277`
+- `services/skills/audit_workflow.py:119`
+- `services/skills/audit_workflow.py:153`
+- `services/skills/job_coordinator.py:24`
+- `src/task_scheduler.py:2134`
+- `tests/test_agent_render_ownership.py:23`
+- `tests/test_agent_render_ownership.py:24`
+- `tests/test_agent_render_ownership.py:31`
+- `tests/test_agent_render_ownership.py:32`
+- `tests/test_agent_render_ownership.py:44`
+- `tests/test_agent_render_ownership.py:45`
+- `tests/test_agent_render_ownership.py:46`
+- `tests/test_agent_render_ownership.py:47`
+- `tests/test_agent_render_ownership.py:58`
+- `tests/test_agent_render_ownership.py:59`
+- `tests/test_agent_render_ownership.py:60`
+- `tests/test_agent_render_ownership.py:74`
+- `tests/test_agent_render_ownership.py:80`
+- `tests/test_agent_render_ownership.py:81`
+- `tests/test_agent_rounds_exhausted.py:3779`
+- `tests/test_exact_approval_ungranted_process.py:33`
+- `tests/test_external_context_tool_gate.py:1345`
+- `tests/test_foreground_model_routing.py:49`
+- `tests/test_local_mcp_capabilities.py:531`
+- `tests/test_owned_resource_identity.py:49`
+- `tests/test_remote_resource_identity.py:39`
+- `tests/test_request_authority.py:271`
+- `tests/test_request_authority.py:303`
+- `tests/test_resource_identity.py:549`
+- `tests/test_runtime_evidence_contract.py:207`
+- `tests/test_runtime_resource_integration.py:45`
+- `tests/test_skills_audit_services.py:357`
+- `tests/test_teacher_eval_tier2.py:299`
+- `tests/test_tool_approval_single_action_scope.py:41`
+- `tests/test_tool_approval_single_action_scope.py:65`
+- `tests/test_tool_approval_single_action_scope.py:81`
+- `tests/test_tool_approval_task_scope.py:79`
+- `tests/test_tool_approval_task_scope.py:108`
+- `tests/test_tool_approval_task_scope.py:174`
+- `tests/test_tool_approvals.py:50`
+- `tests/test_tool_approvals.py:85`
+- `tests/test_tool_approvals.py:94`
+- `tests/test_tool_approvals.py:108`
+- `tests/test_tool_approvals.py:180`
+- `tests/test_tool_approvals.py:238`
+- `tests/test_tool_approvals.py:290`
+- `tests/test_tool_approvals.py:403`
+- `tests/test_tool_approvals.py:439`
+- `tests/test_tool_approvals.py:473`
+- `tests/test_turn_contract_integration.py:225`
+- `static/js/cookbookRunning.js:4167`
+
+## `ToolApprovalStore.peek` — method, line 605
+- **called from:**
+- `routes/chat_routes.py:3030`
+- `routes/skills_routes.py:692`
+- `src/agent_runtime/process_resources.py:124`
+- `src/agent_tools/bg_job_tools.py:96`
+- `tests/process_resource_helpers.py:31`
+- `tests/test_background_resource_identity.py:122`
+- `tests/test_external_context_tool_gate.py:1340`
+- `tests/test_foreground_model_routing.py:356`
+- `tests/test_foreground_model_routing.py:432`
+- `tests/test_foreground_model_routing.py:460`
+- `tests/test_runtime_resource_integration.py:238`
+- `tests/test_runtime_resource_integration.py:252`
+- `tests/test_scheduler_prompt_cache_time.py:119`
+- `tests/test_skills_audit_services.py:147`
+- `tests/test_skills_audit_services.py:342`
+- `tests/test_skills_audit_services.py:379`
+- `tests/test_skills_routes_owner_update.py:205`
+- `tests/test_teacher_eval_tier2.py:294`
+- `tests/test_tool_approval_single_action_scope.py:88`
+- `tests/test_tool_approval_task_scope.py:180`
+- `tests/test_tool_approvals.py:91`
+- `tests/test_tool_approvals.py:100`
+- `tests/test_tool_approvals.py:121`
+- `tests/test_tool_approvals.py:122`
+- `tests/test_tool_approvals.py:130`
+- `tests/test_tool_approvals.py:132`
+- `tests/test_tool_approvals.py:141`
+- `tests/test_tool_approvals.py:142`
+- `tests/test_wave3_background_followup.py:45`
+- `tests/test_wave3_background_followup.py:46`
+- `tests/test_wave3_background_followup.py:59`
+- `tests/test_wave3_background_followup.py:70`
+- `tests/test_wave3_background_followup.py:79`
+- `static/js/editor/build/right-panel.js:165`
+- `static/js/settings/peek.js:1`
+
+## `ToolApprovalStore.retire_for_session` — method, line 611
+- **called from:**
+- `routes/chat_routes.py:3108`
+- `tests/test_tool_approvals.py:129`
+- `tests/test_tool_approvals.py:131`
+- `tests/test_tool_approvals.py:133`

@@ -1,0 +1,302 @@
+# `static/js/editor/editor-agent.js` — definitions & call sites
+
+12 definitions (regex-based, best-effort).
+**Exports:** `DEFAULT_AGENT_ENDPOINT`, `EDITOR_AGENT_VERSION`, `createEditorAgent`, `default`
+
+## `createEditorAgent` — function, line 26
+- **called from:**
+- `static/js/editor/editor-agent.js:26`
+
+## `reportStep` — function, line 46
+- **called from:**
+- `static/js/editor/editor-agent.js:46`
+- `static/js/galleryEditor.js:12882`
+
+## `isRunning` — function, line 61
+- **called from:**
+- `static/js/editor/editor-agent.js:61`
+
+## `collectState` — function, line 63
+- **called from:**
+- `static/js/editor/editor-agent.js:63`
+- `static/js/editor/editor-agent.js:185`
+
+## `dataUrlDelta` — function, line 75
+- **called from:**
+- `static/js/editor/editor-agent.js:75`
+- `static/js/editor/editor-agent.js:321`
+
+## `load` — arrow, line 78
+- **called from:**
+- `app.py:1335`
+- `app.py:1390`
+- `companion/pairing.py:168`
+- `core/auth.py:136`
+- `core/auth.py:159`
+- `core/database.py:1682`
+- `core/database.py:1740`
+- `core/database.py:1758`
+- `routes/backup_routes.py:26`
+- `routes/backup_routes.py:32`
+- `routes/email/email_routes.py:4999`
+- `routes/mcp/mcp_routes.py:471`
+- `routes/mcp/mcp_routes.py:587`
+- `routes/memory/memory_routes.py:89`
+- `routes/memory/memory_routes.py:121`
+- `routes/memory/memory_routes.py:152`
+- `routes/memory/memory_routes.py:158`
+- `routes/memory/memory_routes.py:174`
+- `routes/memory/memory_routes.py:217`
+- `routes/memory/memory_routes.py:527`
+- `routes/prefs_routes.py:20`
+- `routes/session_routes.py:89`
+- `routes/skills_routes.py:318`
+- `routes/skills_routes.py:338`
+- `routes/skills_routes.py:566`
+- `routes/skills_routes.py:577`
+- `routes/skills_routes.py:612`
+- `routes/skills_routes.py:667`
+- `routes/skills_routes.py:721`
+- `routes/skills_routes.py:784`
+- `routes/skills_routes.py:831`
+- `routes/skills_routes.py:854`
+- `routes/skills_routes.py:871`
+- `scripts/add_hwfit_models.py:243`
+- `scripts/add_hwfit_models.py:445`
+- `scripts/agent_migration_manifest.py:73`
+- `scripts/analyze_odysseus_eval_targets.py:14`
+- `scripts/audit_c5_benchmark_evidence.py:1377`
+- `scripts/backfill_model_release_dates.py:70`
+- `scripts/claim_ownerless.py:53`
+- `scripts/dump_agent_prompt.py:388`
+- `scripts/dump_agent_prompt.py:421`
+- `scripts/import_from_vllm_recipes.py:262`
+- `scripts/migrate_faiss_to_chroma.py:32`
+- `scripts/pr_blocker_audit.py:157`
+- `scripts/summarize_odysseus_eval_delta.py:57`
+- `services/hwfit/hf_discovery.py:304`
+- `services/hwfit/hf_discovery.py:326`
+- `services/hwfit/models.py:273`
+- `services/memory/memory_extractor.py:58`
+- `services/memory/memory_extractor.py:96`
+- `services/memory/memory_extractor.py:992`
+- `services/memory/skill_extractor.py:263`
+- `services/memory/skills.py:114`
+- `services/memory/skills.py:309`
+- `services/memory/skills.py:705`
+- `services/search/analytics.py:75`
+- `services/search/content.py:307`
+- `services/search/core.py:869`
+- `services/skills/audit_workflow.py:62`
+- … +135 more (grep the name in repo)
+
+## `dataUrlClipFraction` — function, line 95
+- **called from:**
+- `static/js/editor/editor-agent.js:95`
+- `static/js/editor/editor-agent.js:333`
+- `static/js/editor/editor-agent.js:335`
+- `static/js/editor/editor-agent.js:340`
+
+## `load` — arrow, line 98
+- **called from:**
+- `app.py:1335`
+- `app.py:1390`
+- `companion/pairing.py:168`
+- `core/auth.py:136`
+- `core/auth.py:159`
+- `core/database.py:1682`
+- `core/database.py:1740`
+- `core/database.py:1758`
+- `routes/backup_routes.py:26`
+- `routes/backup_routes.py:32`
+- `routes/email/email_routes.py:4999`
+- `routes/mcp/mcp_routes.py:471`
+- `routes/mcp/mcp_routes.py:587`
+- `routes/memory/memory_routes.py:89`
+- `routes/memory/memory_routes.py:121`
+- `routes/memory/memory_routes.py:152`
+- `routes/memory/memory_routes.py:158`
+- `routes/memory/memory_routes.py:174`
+- `routes/memory/memory_routes.py:217`
+- `routes/memory/memory_routes.py:527`
+- `routes/prefs_routes.py:20`
+- `routes/session_routes.py:89`
+- `routes/skills_routes.py:318`
+- `routes/skills_routes.py:338`
+- `routes/skills_routes.py:566`
+- `routes/skills_routes.py:577`
+- `routes/skills_routes.py:612`
+- `routes/skills_routes.py:667`
+- `routes/skills_routes.py:721`
+- `routes/skills_routes.py:784`
+- `routes/skills_routes.py:831`
+- `routes/skills_routes.py:854`
+- `routes/skills_routes.py:871`
+- `scripts/add_hwfit_models.py:243`
+- `scripts/add_hwfit_models.py:445`
+- `scripts/agent_migration_manifest.py:73`
+- `scripts/analyze_odysseus_eval_targets.py:14`
+- `scripts/audit_c5_benchmark_evidence.py:1377`
+- `scripts/backfill_model_release_dates.py:70`
+- `scripts/claim_ownerless.py:53`
+- `scripts/dump_agent_prompt.py:388`
+- `scripts/dump_agent_prompt.py:421`
+- `scripts/import_from_vllm_recipes.py:262`
+- `scripts/migrate_faiss_to_chroma.py:32`
+- `scripts/pr_blocker_audit.py:157`
+- `scripts/summarize_odysseus_eval_delta.py:57`
+- `services/hwfit/hf_discovery.py:304`
+- `services/hwfit/hf_discovery.py:326`
+- `services/hwfit/models.py:273`
+- `services/memory/memory_extractor.py:58`
+- `services/memory/memory_extractor.py:96`
+- `services/memory/memory_extractor.py:992`
+- `services/memory/skill_extractor.py:263`
+- `services/memory/skills.py:114`
+- `services/memory/skills.py:309`
+- `services/memory/skills.py:705`
+- `services/search/analytics.py:75`
+- `services/search/content.py:307`
+- `services/search/core.py:869`
+- `services/skills/audit_workflow.py:62`
+- … +135 more (grep the name in repo)
+
+## `dataUrlExposure` — function, line 117
+- **called from:**
+- `static/js/editor/editor-agent.js:117`
+- `static/js/editor/editor-agent.js:173`
+
+## `load` — arrow, line 120
+- **called from:**
+- `app.py:1335`
+- `app.py:1390`
+- `companion/pairing.py:168`
+- `core/auth.py:136`
+- `core/auth.py:159`
+- `core/database.py:1682`
+- `core/database.py:1740`
+- `core/database.py:1758`
+- `routes/backup_routes.py:26`
+- `routes/backup_routes.py:32`
+- `routes/email/email_routes.py:4999`
+- `routes/mcp/mcp_routes.py:471`
+- `routes/mcp/mcp_routes.py:587`
+- `routes/memory/memory_routes.py:89`
+- `routes/memory/memory_routes.py:121`
+- `routes/memory/memory_routes.py:152`
+- `routes/memory/memory_routes.py:158`
+- `routes/memory/memory_routes.py:174`
+- `routes/memory/memory_routes.py:217`
+- `routes/memory/memory_routes.py:527`
+- `routes/prefs_routes.py:20`
+- `routes/session_routes.py:89`
+- `routes/skills_routes.py:318`
+- `routes/skills_routes.py:338`
+- `routes/skills_routes.py:566`
+- `routes/skills_routes.py:577`
+- `routes/skills_routes.py:612`
+- `routes/skills_routes.py:667`
+- `routes/skills_routes.py:721`
+- `routes/skills_routes.py:784`
+- `routes/skills_routes.py:831`
+- `routes/skills_routes.py:854`
+- `routes/skills_routes.py:871`
+- `scripts/add_hwfit_models.py:243`
+- `scripts/add_hwfit_models.py:445`
+- `scripts/agent_migration_manifest.py:73`
+- `scripts/analyze_odysseus_eval_targets.py:14`
+- `scripts/audit_c5_benchmark_evidence.py:1377`
+- `scripts/backfill_model_release_dates.py:70`
+- `scripts/claim_ownerless.py:53`
+- `scripts/dump_agent_prompt.py:388`
+- `scripts/dump_agent_prompt.py:421`
+- `scripts/import_from_vllm_recipes.py:262`
+- `scripts/migrate_faiss_to_chroma.py:32`
+- `scripts/pr_blocker_audit.py:157`
+- `scripts/summarize_odysseus_eval_delta.py:57`
+- `services/hwfit/hf_discovery.py:304`
+- `services/hwfit/hf_discovery.py:326`
+- `services/hwfit/models.py:273`
+- `services/memory/memory_extractor.py:58`
+- `services/memory/memory_extractor.py:96`
+- `services/memory/memory_extractor.py:992`
+- `services/memory/skill_extractor.py:263`
+- `services/memory/skills.py:114`
+- `services/memory/skills.py:309`
+- `services/memory/skills.py:705`
+- `services/search/analytics.py:75`
+- `services/search/content.py:307`
+- `services/search/core.py:869`
+- `services/skills/audit_workflow.py:62`
+- … +135 more (grep the name in repo)
+
+## `run` — function, line 138
+- **called from:**
+- `app.py:1228`
+- `app.py:1530`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:469`
+- `launcher.py:114`
+- `launcher.py:149`
+- `mcp_servers/email_server.py:4704`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/image_gen_server.py:188`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/memory_server.py:281`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/rag_server.py:156`
+- `mcp_servers/rag_server.py:160`
+- `mcp_servers/rag_server.py:160`
+- `routes/cookbook_routes.py:1527`
+- `routes/cookbook_routes.py:3626`
+- `routes/cookbook_routes.py:3639`
+- `routes/cookbook_routes.py:3650`
+- `routes/cookbook_routes.py:3711`
+- `routes/cookbook_routes.py:4177`
+- `routes/cookbook_routes.py:4179`
+- `routes/cookbook_routes.py:4201`
+- `routes/cookbook_routes.py:4203`
+- `routes/cookbook_routes.py:4368`
+- `routes/cookbook_routes.py:4378`
+- `routes/document/document_routes.py:489`
+- `routes/email/email_routes.py:5062`
+- `routes/email/email_routes.py:6861`
+- `routes/hwfit_routes.py:147`
+- `scripts/build_frontend.py:69`
+- `scripts/build_frontend.py:70`
+- `scripts/check_brotli.py:39`
+- `scripts/css_snapshot.py:92`
+- `scripts/css_snapshot.py:131`
+- `scripts/diffusion_server.py:1506`
+- `scripts/dump_agent_prompt.py:415`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_qwen_tool_groups_stream.py:276`
+- `scripts/mlx_image_server.py:207`
+- `scripts/mlx_image_server.py:281`
+- `scripts/mlx_image_server.py:379`
+- `scripts/mlx_image_server.py:466`
+- `scripts/pr_blocker_audit.py:253`
+- `scripts/probe_browser_budget.py:112`
+- `scripts/probe_empty_search_recovery.py:90`
+- `scripts/probe_fixed_search_evidence.py:81`
+- `scripts/ref_parity_audit.py:142`
+- `scripts/ref_parity_audit.py:232`
+- `scripts/review_sft_environment_expansion.py:115`
+- `scripts/run_odysseus_cases_chunked.py:107`
+- `scripts/run_odysseus_search_teacher_pipeline.py:305`
+- `scripts/run_odysseus_search_teacher_pipeline.py:412`
+- `scripts/test_clean_tool_loop.py:209`
+- … +1417 more (grep the name in repo)
+
+## `restoreInvoke` — arrow, line 171
+- **called from:**
+- `static/js/editor/editor-agent.js:211`
+- `static/js/editor/editor-agent.js:217`
+- `static/js/editor/editor-agent.js:353`
+- `static/js/editor/editor-agent.js:363`

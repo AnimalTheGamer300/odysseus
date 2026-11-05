@@ -1,236 +1,295 @@
 # `src/auth_helpers.py` — definitions & call sites
 
-12 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+13 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `get_current_user` — function, line 10
+## `is_direct_loopback_request` — function, line 10
 - **called from:**
-- `app.py:522`
+- `routes/shell_routes.py:72`
+- `src/agent_runtime/local_model_control.py:91`
+
+## `get_current_user` — function, line 31
+- **called from:**
 - `companion/routes.py:41`
 - `companion/routes.py:207`
 - `routes/api_token_routes.py:126`
 - `routes/api_token_routes.py:158`
 - `routes/api_token_routes.py:198`
-- `routes/assistant_routes.py:84`
+- `routes/assistant_routes.py:85`
 - `routes/backup_routes.py:23`
 - `routes/backup_routes.py:67`
-- `routes/chat_routes.py:525`
-- `routes/chat_routes.py:554`
-- `routes/chat_routes.py:1295`
-- `routes/chatgpt_subscription_routes.py:124`
+- `routes/chat_routes.py:1855`
+- `routes/chat_routes.py:1897`
+- `routes/chat_routes.py:2929`
+- `routes/chatgpt_subscription_routes.py:396`
+- `routes/chatgpt_subscription_routes.py:420`
 - `routes/cleanup/cleanup_routes.py:30`
 - `routes/cleanup/cleanup_routes.py:48`
 - `routes/compare/compare_routes.py:244`
 - `routes/compare/compare_routes.py:286`
 - `routes/compare/compare_routes.py:323`
 - `routes/compare/compare_routes.py:349`
-- `routes/cookbook_routes.py:1394`
-- `routes/cookbook_routes.py:2818`
+- `routes/cookbook_routes.py:1269`
+- `routes/cookbook_routes.py:2697`
 - `routes/copilot_routes.py:127`
-- `routes/document/document_routes.py:333`
-- `routes/document/document_routes.py:447`
-- `routes/document/document_routes.py:471`
-- `routes/document/document_routes.py:485`
-- `routes/document/document_routes.py:512`
-- `routes/document/document_routes.py:564`
-- `routes/document/document_routes.py:625`
-- `routes/document/document_routes.py:700`
-- `routes/document/document_routes.py:739`
-- `routes/document/document_routes.py:767`
-- `routes/document/document_routes.py:792`
-- `routes/document/document_routes.py:813`
-- `routes/document/document_routes.py:855`
-- `routes/document/document_routes.py:975`
-- `routes/document/document_routes.py:1073`
-- `routes/document/document_routes.py:1137`
-- `routes/document/document_routes.py:1204`
-- `routes/document/document_routes.py:1259`
-- `routes/document/document_routes.py:1407`
-- `routes/document/document_routes.py:1505`
-- `routes/document/document_routes.py:1642`
-- `routes/editor_draft_routes.py:83`
-- `routes/editor_draft_routes.py:96`
-- `routes/editor_draft_routes.py:113`
-- `routes/editor_draft_routes.py:139`
-- `routes/editor_draft_routes.py:171`
-- `routes/email_helpers.py:423`
-- `routes/gallery/gallery_routes.py:363`
-- `routes/gallery/gallery_routes.py:437`
-- `routes/gallery/gallery_routes.py:482`
-- `routes/gallery/gallery_routes.py:519`
-- `routes/gallery/gallery_routes.py:654`
-- `routes/gallery/gallery_routes.py:686`
-- `routes/gallery/gallery_routes.py:814`
-- `routes/gallery/gallery_routes.py:853`
-- `routes/gallery/gallery_routes.py:873`
-- `routes/gallery/gallery_routes.py:903`
-- `routes/gallery/gallery_routes.py:922`
-- … +28 more (grep the name in repo)
+- `routes/document/document_routes.py:522`
+- `routes/document/document_routes.py:637`
+- `routes/document/document_routes.py:661`
+- `routes/document/document_routes.py:676`
+- `routes/document/document_routes.py:701`
+- `routes/document/document_routes.py:728`
+- `routes/document/document_routes.py:780`
+- `routes/document/document_routes.py:849`
+- `routes/document/document_routes.py:924`
+- `routes/document/document_routes.py:963`
+- `routes/document/document_routes.py:991`
+- `routes/document/document_routes.py:1016`
+- `routes/document/document_routes.py:1037`
+- `routes/document/document_routes.py:1079`
+- `routes/document/document_routes.py:1199`
+- `routes/document/document_routes.py:1297`
+- `routes/document/document_routes.py:1361`
+- `routes/document/document_routes.py:1428`
+- `routes/document/document_routes.py:1483`
+- `routes/document/document_routes.py:1631`
+- `routes/document/document_routes.py:1729`
+- `routes/document/document_routes.py:1866`
+- `routes/editor_agent_routes.py:1310`
+- `routes/editor_agent_routes.py:1325`
+- `routes/editor_draft_routes.py:133`
+- `routes/editor_draft_routes.py:146`
+- `routes/editor_draft_routes.py:166`
+- `routes/editor_draft_routes.py:198`
+- `routes/editor_draft_routes.py:230`
+- `routes/email/email_helpers.py:552`
+- `routes/gallery/gallery_routes.py:869`
+- `routes/gallery/gallery_routes.py:943`
+- `routes/gallery/gallery_routes.py:988`
+- `routes/gallery/gallery_routes.py:1025`
+- `routes/gallery/gallery_routes.py:1160`
+- `routes/gallery/gallery_routes.py:1192`
+- `routes/gallery/gallery_routes.py:1324`
+- `routes/gallery/gallery_routes.py:1363`
+- … +32 more (grep the name in repo)
 
-## `effective_user` — function, line 15
+## `effective_user` — function, line 36
 - **called from:**
-- `routes/calendar_routes.py:811`
-- `routes/chat_helpers.py:200`
-- `routes/chat_helpers.py:222`
-- `routes/chat_helpers.py:481`
-- `routes/chat_helpers.py:762`
-- `routes/chat_routes.py:952`
-- `routes/chat_routes.py:1348`
-- `routes/chat_routes.py:1500`
-- `routes/chat_routes.py:1528`
-- `routes/chat_routes.py:3147`
-- `routes/history/history_routes.py:138`
-- `routes/history/history_routes.py:1090`
-- `routes/model_routes.py:1631`
-- `routes/preset_routes.py:105`
-- `routes/session_routes.py:145`
-- `routes/session_routes.py:284`
-- `routes/session_routes.py:403`
-- `routes/session_routes.py:493`
-- `routes/session_routes.py:557`
-- `routes/session_routes.py:696`
-- `routes/session_routes.py:858`
-- `routes/session_routes.py:868`
-- `routes/session_routes.py:981`
-- `routes/session_routes.py:1114`
-- `routes/session_routes.py:1132`
-- `routes/session_routes.py:1216`
-- `routes/session_routes.py:1288`
-- `routes/upload_routes.py:290`
-- `routes/upload_routes.py:372`
-- `routes/upload_routes.py:461`
-- `routes/upload_routes.py:507`
-- `src/auth_helpers.py:92`
-- `src/auth_helpers.py:110`
+- `app.py:567`
+- `routes/calendar_routes.py:960`
+- `routes/chat_helpers.py:487`
+- `routes/chat_helpers.py:509`
+- `routes/chat_helpers.py:963`
+- `routes/chat_helpers.py:1314`
+- `routes/chat_routes.py:1853`
+- `routes/chat_routes.py:2309`
+- `routes/chat_routes.py:2453`
+- `routes/chat_routes.py:3009`
+- `routes/chat_routes.py:3217`
+- `routes/chat_routes.py:3245`
+- `routes/chat_routes.py:3282`
+- `routes/chat_routes.py:3681`
+- `routes/chat_routes.py:5622`
+- `routes/chatgpt_subscription_routes.py:231`
+- `routes/chatgpt_subscription_routes.py:316`
+- `routes/chatgpt_subscription_routes.py:396`
+- `routes/chatgpt_subscription_routes.py:420`
+- `routes/contacts/contacts_routes.py:872`
+- `routes/contacts/contacts_routes.py:878`
+- `routes/contacts/contacts_routes.py:896`
+- `routes/contacts/contacts_routes.py:974`
+- `routes/contacts/contacts_routes.py:1023`
+- `routes/contacts/contacts_routes.py:1052`
+- `routes/contacts/contacts_routes.py:1060`
+- `routes/history/history_routes.py:286`
+- `routes/history/history_routes.py:627`
+- `routes/history/history_routes.py:739`
+- `routes/history/history_routes.py:1473`
+- `routes/model_routes.py:1458`
+- `routes/model_routes.py:1771`
+- `routes/preset_routes.py:111`
+- `routes/session_routes.py:255`
+- `routes/session_routes.py:421`
+- `routes/session_routes.py:565`
+- `routes/session_routes.py:655`
+- `routes/session_routes.py:737`
+- `routes/session_routes.py:890`
+- `routes/session_routes.py:945`
+- `routes/session_routes.py:983`
+- `routes/session_routes.py:1126`
+- `routes/session_routes.py:1260`
+- `routes/session_routes.py:1278`
+- `routes/session_routes.py:1363`
+- `routes/session_routes.py:1451`
+- `routes/session_routes.py:1706`
+- `routes/upload_routes.py:218`
+- `routes/upload_routes.py:359`
+- `routes/upload_routes.py:391`
+- `routes/upload_routes.py:585`
+- `routes/upload_routes.py:625`
+- `routes/vault/vault_routes.py:84`
+- `src/auth_helpers.py:113`
+- `src/auth_helpers.py:131`
+- `tests/test_chat_document_owner_context.py:33`
 - `tests/test_session_owner_attribution.py:78`
 - `tests/test_session_owner_attribution.py:83`
 - `tests/test_session_owner_attribution.py:88`
 
-## `_is_api_token_request` — function, line 39
+## `_is_api_token_request` — function, line 60
 - **called from:**
-- `src/auth_helpers.py:57`
-- `src/auth_helpers.py:67`
-- `src/auth_helpers.py:91`
-- `src/auth_helpers.py:132`
+- `src/auth_helpers.py:78`
+- `src/auth_helpers.py:88`
+- `src/auth_helpers.py:112`
+- `src/auth_helpers.py:153`
 
-## `is_delegated_credential` — function, line 44
+## `is_delegated_credential` — function, line 65
 - **called from:**
-- `routes/chat_routes.py:110`
-- `routes/chat_routes.py:1679`
-- `routes/session_routes.py:173`
-- `routes/session_routes.py:212`
-- `routes/session_routes.py:1127`
+- `routes/chat_routes.py:1306`
+- `routes/chat_routes.py:3578`
+- `routes/session_routes.py:283`
+- `routes/session_routes.py:322`
+- `routes/session_routes.py:1273`
+- `routes/session_routes.py:1731`
+- `routes/session_routes.py:1738`
+- `routes/upload_routes.py:224`
+- `routes/upload_routes.py:362`
 
-## `require_api_token_scope` — function, line 60
+## `require_api_token_scope` — function, line 81
 - **called from:**
-- `routes/chat_routes.py:930`
-- `routes/chat_routes.py:1124`
-- `src/auth_helpers.py:80`
+- `routes/chat_routes.py:2416`
+- `routes/chat_routes.py:2636`
+- `routes/editor_agent_routes.py:1323`
+- `src/auth_helpers.py:101`
 
-## `require_chat_api_token_scope` — function, line 78
+## `require_chat_api_token_scope` — function, line 99
 - **called from:**
-- `tests/test_api_token_tool_authority.py:177`
-- `tests/test_api_token_tool_authority.py:188`
+- `tests/test_api_token_tool_authority.py:540`
+- `tests/test_api_token_tool_authority.py:551`
 
-## `require_authenticated_request` — function, line 83
+## `require_authenticated_request` — function, line 104
 - **called from:**
-- `routes/codex_routes.py:220`
-- `routes/codex_routes.py:893`
+- `routes/codex_routes.py:266`
+- `routes/codex_routes.py:939`
 - `tests/test_api_token_user_route_gate.py:41`
 
-## `_auth_disabled` — function, line 96
+## `_auth_disabled` — function, line 117
 - **called from:**
 - `companion/routes.py:130`
-- `routes/document/document_helpers.py:83`
-- `routes/document/document_helpers.py:111`
-- `routes/document/document_routes.py:451`
-- `routes/email_helpers.py:426`
+- `routes/auth_routes.py:143`
+- `routes/auth_routes.py:781`
+- `routes/codex_routes.py:130`
+- `routes/document/document_helpers.py:84`
+- `routes/document/document_helpers.py:112`
+- `routes/document/document_routes.py:641`
+- `routes/editor_agent_routes.py:1292`
+- `routes/editor_agent_routes.py:1328`
+- `routes/email/email_helpers.py:555`
 - `routes/gallery/gallery_helpers.py:134`
-- `routes/model_routes.py:1636`
-- `routes/research/research_routes.py:219`
-- `routes/session_routes.py:146`
-- `routes/session_routes.py:1289`
-- `src/auth_helpers.py:144`
+- `routes/model_routes.py:1776`
+- `routes/research/research_routes.py:221`
+- `routes/session_routes.py:256`
+- `routes/session_routes.py:1452`
+- `routes/shell_routes.py:70`
+- `src/auth_helpers.py:165`
+- `src/editor_agent_model.py:456`
+- `src/editor_agent_model.py:506`
 - `src/task_action_policy.py:20`
-- `src/tool_security.py:253`
+- `src/tool_security.py:276`
 
-## `storage_owner_for_request` — function, line 103
+## `storage_owner_for_request` — function, line 124
 - **called from:**
 - `tests/test_owner_identity.py:37`
 - `tests/test_owner_identity.py:53`
 - `tests/test_owner_identity.py:63`
 
-## `require_user` — function, line 113
+## `require_user` — function, line 134
 - **called from:**
 - `routes/calendar_routes.py:75`
-- `routes/codex_routes.py:96`
-- `routes/codex_routes.py:110`
-- `routes/history/history_routes.py:968`
+- `routes/codex_routes.py:97`
+- `routes/codex_routes.py:111`
+- `routes/history/history_routes.py:1169`
 - `routes/memory/memory_routes.py:241`
-- `routes/note/note_routes.py:598`
-- `routes/note/note_routes.py:852`
-- `src/auth_helpers.py:93`
-- `src/auth_helpers.py:172`
+- `routes/note/note_routes.py:601`
+- `routes/note/note_routes.py:861`
+- `src/auth_helpers.py:114`
+- `src/auth_helpers.py:193`
 - `tests/test_api_token_user_route_gate.py:32`
 - `tests/test_api_token_user_route_gate.py:51`
-- `tests/test_security_regressions.py:544`
-- `tests/test_security_regressions.py:598`
-- `tests/test_security_regressions.py:631`
-- `tests/test_security_regressions.py:663`
-- `tests/test_security_regressions.py:695`
+- `tests/test_security_regressions.py:545`
+- `tests/test_security_regressions.py:599`
+- `tests/test_security_regressions.py:632`
+- `tests/test_security_regressions.py:664`
+- `tests/test_security_regressions.py:696`
 
-## `require_privilege` — function, line 163
+## `require_privilege` — function, line 184
 - **called from:**
-- `routes/document/document_routes.py:108`
-- `routes/document/document_routes.py:244`
-- `routes/gallery/gallery_routes.py:565`
-- `routes/gallery/gallery_routes.py:609`
-- `routes/gallery/gallery_routes.py:1263`
-- `routes/gallery/gallery_routes.py:1522`
-- `routes/gallery/gallery_routes.py:1718`
-- `routes/gallery/gallery_routes.py:1742`
-- `routes/gallery/gallery_routes.py:1793`
-- `routes/gallery/gallery_routes.py:1845`
-- `routes/gallery/gallery_routes.py:1977`
-- `routes/gallery/gallery_routes.py:2059`
+- `routes/document/document_routes.py:113`
+- `routes/document/document_routes.py:249`
+- `routes/document/document_routes.py:344`
+- `routes/document/document_routes.py:406`
+- `routes/document/document_routes.py:450`
+- `routes/editor_agent_routes.py:1831`
+- `routes/gallery/gallery_routes.py:1071`
+- `routes/gallery/gallery_routes.py:1115`
+- `routes/gallery/gallery_routes.py:1773`
+- `routes/gallery/gallery_routes.py:2175`
+- `routes/gallery/gallery_routes.py:2198`
+- `routes/gallery/gallery_routes.py:2234`
+- `routes/gallery/gallery_routes.py:2305`
+- `routes/gallery/gallery_routes.py:2501`
+- `routes/gallery/gallery_routes.py:2524`
+- `routes/gallery/gallery_routes.py:2577`
+- `routes/gallery/gallery_routes.py:2631`
+- `routes/gallery/gallery_routes.py:2704`
+- `routes/gallery/gallery_routes.py:2842`
+- `routes/gallery/gallery_routes.py:2932`
 - `routes/memory/memory_routes.py:107`
-- `routes/memory/memory_routes.py:347`
-- `routes/personal_routes.py:324`
-- `routes/research/research_routes.py:496`
+- `routes/memory/memory_routes.py:350`
+- `routes/personal_routes.py:310`
+- `routes/research/research_routes.py:549`
 - `tests/test_auth_require_privilege_nondict.py:29`
 - `tests/test_auth_require_privilege_nondict.py:36`
 
-## `owner_filter` — function, line 191
+## `owner_filter` — function, line 212
 - **called from:**
-- `routes/chat_helpers.py:533`
-- `routes/chat_helpers.py:608`
-- `routes/chat_routes.py:594`
-- `routes/chat_routes.py:659`
-- `routes/chat_routes.py:728`
-- `routes/chat_routes.py:843`
+- `routes/chat_helpers.py:1073`
+- `routes/chat_helpers.py:1140`
+- `routes/chat_routes.py:1937`
+- `routes/chat_routes.py:2014`
+- `routes/chat_routes.py:2090`
+- `routes/chat_routes.py:2218`
 - `routes/compare/compare_routes.py:39`
 - `routes/compare/compare_routes.py:57`
-- `routes/gallery/gallery_routes.py:296`
-- `routes/model_routes.py:1560`
-- `routes/model_routes.py:2470`
-- `routes/model_routes.py:2480`
-- `routes/research/research_routes.py:174`
-- `routes/session_routes.py:334`
-- `routes/session_routes.py:354`
-- `routes/session_routes.py:363`
-- `routes/session_routes.py:423`
-- `routes/session_routes.py:572`
+- `routes/editor_agent_routes.py:1996`
+- `routes/gallery/gallery_routes.py:637`
+- `routes/gallery/gallery_routes.py:674`
+- `routes/gallery/gallery_routes.py:711`
+- `routes/model_routes.py:1690`
+- `routes/model_routes.py:2835`
+- `routes/model_routes.py:2845`
+- `routes/research/research_routes.py:175`
+- `routes/session_routes.py:470`
+- `routes/session_routes.py:478`
+- `routes/session_routes.py:487`
+- `routes/session_routes.py:498`
+- `routes/session_routes.py:585`
+- `routes/session_routes.py:752`
+- `routes/task/task_routes.py:295`
 - `routes/webhook/webhook_routes.py:40`
-- `src/agent_loop.py:1075`
-- `src/agent_tools/model_interaction_tools.py:140`
+- `services/skills/model_selection.py:31`
+- `src/agent_loop.py:8689`
+- `src/agent_loop.py:8773`
+- `src/agent_loop.py:8781`
+- `src/agent_tools/model_interaction_tools.py:196`
 - `src/agent_tools/spawn_agent_tools.py:88`
-- `src/ai_interaction.py:128`
-- `src/ai_interaction.py:999`
-- `src/builtin_actions.py:1811`
-- `src/builtin_actions.py:1816`
-- `src/builtin_actions.py:2165`
-- `src/endpoint_resolver.py:403`
-- `src/endpoint_resolver.py:459`
-- `src/endpoint_resolver.py:548`
-- `src/llm_core.py:2181`
-- `src/task_scheduler.py:1877`
-- `src/task_scheduler.py:2053`
+- `src/ai_interaction.py:129`
+- `src/ai_interaction.py:1200`
+- `src/ai_interaction.py:1321`
+- `src/builtin_actions.py:2021`
+- `src/builtin_actions.py:2027`
+- `src/builtin_actions.py:2397`
+- `src/editor_agent_model.py:462`
+- `src/editor_agent_model.py:512`
+- `src/endpoint_resolver.py:316`
+- `src/endpoint_resolver.py:500`
+- `src/endpoint_resolver.py:556`
+- `src/endpoint_resolver.py:645`
+- `src/llm_core.py:2507`

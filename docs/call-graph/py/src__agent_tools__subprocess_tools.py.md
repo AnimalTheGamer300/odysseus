@@ -1,217 +1,442 @@
 # `src/agent_tools/subprocess_tools.py` — definitions & call sites
 
-18 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+30 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_create_bash_subprocess` — function (async), line 20
+## `_ffmpeg_unicode_drawtext_needs_fontfile` — function, line 35
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:336`
-- `tests/test_agent_bash_windows.py:29`
-- `tests/test_agent_bash_windows.py:52`
-- `tests/test_agent_bash_windows.py:125`
+- `src/agent_tools/subprocess_tools.py:641`
 
-## `_tmux_session_name` — function, line 41
+## `_resolve_fontfile_for_text` — function, line 53
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:142`
-- `src/agent_tools/subprocess_tools.py:323`
-- `src/agent_tools/subprocess_tools.py:332`
+- `src/agent_tools/subprocess_tools.py:642`
 
-## `_run_exec` — function (async), line 46
+## `_cancel_host_shell_bridge_request` — function (async), line 76
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:68`
-- `src/agent_tools/subprocess_tools.py:73`
-- `src/agent_tools/subprocess_tools.py:82`
-- `src/agent_tools/subprocess_tools.py:83`
-- `src/agent_tools/subprocess_tools.py:88`
-- `src/agent_tools/subprocess_tools.py:90`
-- `src/agent_tools/subprocess_tools.py:103`
-- `src/agent_tools/subprocess_tools.py:179`
+- `src/agent_tools/subprocess_tools.py:791`
+- `tests/test_tool_execution_bridge_security.py:126`
+- `tests/test_tool_execution_bridge_security.py:157`
+- `tests/test_tool_execution_bridge_security.py:222`
+- `tests/test_tool_execution_bridge_security.py:314`
 
-## `_tmux_has_session` — function (async), line 67
+## `find_bash` — function, line 94
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:87`
-- `src/agent_tools/subprocess_tools.py:101`
+- `core/platform_compat.py:281`
+- `core/platform_compat.py:311`
+- `routes/cookbook_routes.py:880`
+- `routes/shell_routes.py:649`
+- `routes/shell_routes.py:1109`
+- `src/agent_tools/subprocess_tools.py:112`
+- `src/builtin_actions.py:911`
+- `src/builtin_actions.py:927`
+- `src/builtin_actions.py:928`
+- `src/builtin_actions.py:937`
+- `src/builtin_actions.py:938`
+- `src/containment.py:928`
+- `tests/test_cookbook_dependency_completion_regression.py:644`
+- `tests/test_cookbook_helpers.py:808`
+- `tests/test_platform_compat.py:34`
+- `tests/test_platform_compat.py:48`
+- `tests/test_platform_compat.py:62`
+- `tests/test_platform_compat.py:78`
 
-## `_tmux_capture` — function (async), line 72
+## `_create_bash_subprocess` — function (async), line 104
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:160`
+- `tests/test_agent_bash_windows.py:35`
+- `tests/test_agent_bash_windows.py:61`
+- `tests/test_agent_bash_windows.py:84`
+- `tests/test_agent_bash_windows.py:127`
+- `tests/test_agent_bash_windows.py:201`
 
-## `_tmux_send_line` — function (async), line 80
+## `_host_shell_requires_detach` — function, line 131
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:155`
+- `src/agent_tools/subprocess_tools.py:158`
+- `src/agent_tools/subprocess_tools.py:721`
+- `src/tool_execution.py:405`
+- `tests/test_host_shell_polling.py:45`
+- `tests/test_host_shell_polling.py:49`
+- `tests/test_host_shell_polling.py:50`
+- `tests/test_host_shell_polling.py:54`
 
-## `_ensure_tmux_session` — function (async), line 86
+## `_host_shell_should_auto_poll` — function, line 155
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:143`
+- `src/agent_tools/subprocess_tools.py:748`
+- `src/tool_execution.py:398`
+- `tests/test_host_shell_polling.py:58`
+- `tests/test_host_shell_polling.py:59`
 
-## `_output_after_marker` — function, line 106
+## `_docker_default_gateway_ips` — function, line 166
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:161`
+- `src/agent_tools/subprocess_tools.py:210`
 
-## `_extract_marker_rc` — function, line 123
+## `_is_private_bridge_ip` — function, line 184
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:174`
+- `src/agent_tools/subprocess_tools.py:211`
 
-## `_run_tmux_bash` — function (async), line 133
+## `is_host_shell_bridge_url_allowed` — function, line 203
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:309`
+- `routes/chat_routes.py:806`
+- `src/agent_loop.py:9496`
+- `src/agent_loop.py:9542`
+- `src/agent_tools/subprocess_tools.py:79`
+- `src/agent_tools/subprocess_tools.py:689`
+- `src/tool_execution.py:162`
+- `src/tool_execution.py:235`
+- `src/tool_execution.py:305`
+- `src/tool_execution.py:333`
+- `tests/test_client_tool_routing.py:1215`
+- `tests/test_client_tool_routing.py:1216`
+- `tests/test_client_tool_routing.py:1217`
+- `tests/test_client_tool_routing.py:1218`
+- `tests/test_client_tool_routing.py:1219`
+- `tests/test_client_tool_routing.py:1222`
+- `tests/test_client_tool_routing.py:1224`
+- `tests/test_client_tool_routing.py:1225`
+- `tests/test_client_tool_routing.py:1226`
+- `tests/test_client_tool_routing.py:1227`
+- `tests/test_client_tool_routing.py:1228`
+- `tests/test_client_tool_routing.py:1229`
+- `tests/test_review_regressions.py:704`
+- `tests/test_review_regressions.py:707`
 
-## `_clean_tmux_command_output` — function, line 187
+## `host_shell_bridge_endpoint_url` — function, line 221
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:175`
-- `src/agent_tools/subprocess_tools.py:182`
+- `src/agent_tools/subprocess_tools.py:81`
+- `src/agent_tools/subprocess_tools.py:693`
+- `src/tool_execution.py:141`
 
-## `_run_subprocess_streaming` — function (async), line 208
+## `_replace_workspace_alias` — function, line 227
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:345`
-- `src/agent_tools/subprocess_tools.py:371`
+- `src/agent_tools/subprocess_tools.py:438`
+- `src/agent_tools/subprocess_tools.py:544`
+- `src/agent_tools/subprocess_tools.py:546`
+- `src/bg_jobs.py:115`
+- `tests/test_agent_bash_tmux_env.py:9`
 
-## `_reader` — function (async), line 219
+## `_namespace_visible_without_bind` — function, line 251
 - **called from:**
-- `routes/shell_routes.py:1061`
-- `routes/shell_routes.py:1062`
-- `services/shell/service.py:124`
-- `services/shell/service.py:125`
-- `src/agent_tools/subprocess_tools.py:246`
-- `src/agent_tools/subprocess_tools.py:247`
+- `src/agent_tools/subprocess_tools.py:267`
+- `src/agent_tools/subprocess_tools.py:470`
 
-## `_progress_emitter` — function (async), line 233
+## `_namespace_dir_chain` — function, line 259
 - **called from:**
-- `src/agent_tools/subprocess_tools.py:248`
+- `tests/test_execution_filesystem_boundary.py:119`
+- `tests/test_execution_filesystem_boundary.py:120`
+- `tests/test_execution_filesystem_boundary.py:121`
+- `tests/test_execution_filesystem_boundary.py:124`
 
-## `BashTool` — class, line 297
+## `_isolated_tmp_dir` — function, line 280
 - **called from:**
-- `src/agent_tools/__init__.py:39`
-- `tests/test_agent_bash_windows.py:60`
-- `tests/test_agent_bash_windows.py:97`
+- `src/agent_tools/subprocess_tools.py:661`
+- `src/agent_tools/subprocess_tools.py:938`
+- `tests/test_execution_filesystem_boundary.py:292`
+- `tests/test_execution_filesystem_boundary.py:307`
 
-## `BashTool.execute` — method (async), line 298
+## `_execution_boundary` — function, line 298
 - **called from:**
-- `core/database.py:146`
-- `core/database.py:151`
-- `core/database.py:158`
-- `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
-- `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
-- `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `src/agent_tools/subprocess_tools.py:405`
 
-## `PythonTool` — class, line 359
+## `_filesystem_boundary_block` — function, line 357
+- **called from:**
+- `src/agent_tools/subprocess_tools.py:415`
+- `src/agent_tools/subprocess_tools.py:439`
+
+## `_contained_command` — function, line 381
+- **called from:**
+- `tests/test_execution_filesystem_boundary.py:165`
+- `tests/test_execution_filesystem_boundary.py:185`
+- `tests/test_execution_filesystem_boundary.py:198`
+- `tests/test_execution_filesystem_boundary.py:219`
+- `tests/test_execution_filesystem_boundary.py:235`
+
+## `_wrap_workspace_namespace` — function, line 446
+- **called from:**
+- `src/agent_tools/subprocess_tools.py:406`
+- `tests/test_agent_bash_tmux_env.py:20`
+- `tests/test_execution_filesystem_boundary.py:62`
+- `tests/test_workspace_artifact_tool_floor.py:2261`
+- `tests/test_workspace_artifact_tool_floor.py:2288`
+- `tests/test_workspace_artifact_tool_floor.py:2291`
+- `tests/test_workspace_artifact_tool_floor.py:2312`
+
+## `_owned_spec` — function, line 503
+- **called from:**
+- `src/agent_runtime/process_resources.py:61`
+- `src/agent_tools/subprocess_tools.py:534`
+- `src/agent_tools/subprocess_tools.py:710`
+- `src/bg_jobs.py:110`
+- `tests/test_containment_enforcement.py:92`
+- `tests/test_containment_enforcement.py:294`
+- `tests/test_containment_enforcement.py:324`
+
+## `_run_owned_command` — function (async), line 519
+- **called from:**
+- `src/agent_tools/subprocess_tools.py:663`
+- `src/agent_tools/subprocess_tools.py:948`
+- `src/builtin_actions.py:898`
+
+## `BashTool` — class, line 607
 - **called from:**
 - `src/agent_tools/__init__.py:40`
+- `tests/test_agent_bash_tmux_env.py:39`
+- `tests/test_agent_bash_tmux_env.py:64`
+- `tests/test_agent_bash_tmux_env.py:84`
+- `tests/test_agent_bash_tmux_env.py:108`
+- `tests/test_agent_bash_windows.py:102`
+- `tests/test_agent_bash_windows.py:139`
+- `tests/test_agent_bash_windows.py:168`
+- `tests/test_agent_tmux_retirement.py:22`
+- `tests/test_containment_enforcement.py:242`
+- `tests/test_containment_enforcement.py:264`
+- `tests/test_native_execution_containment.py:35`
+- `tests/test_native_execution_containment.py:53`
+- `tests/test_native_execution_containment.py:62`
+- `tests/test_native_execution_containment.py:171`
+- `tests/test_native_execution_containment.py:183`
+- `tests/test_native_execution_containment.py:193`
+- `tests/test_native_execution_containment.py:196`
+- `tests/test_preview_execution_evidence.py:17`
+- `tests/test_production_external_bridge.py:188`
+- `tests/test_runtime_resource_integration.py:57`
+- `tests/test_runtime_resource_integration.py:64`
+- `tests/test_runtime_resource_integration.py:76`
+- `tests/test_wave3_launch_cost_lifecycle.py:84`
+- `tests/test_wave3_launch_cost_lifecycle.py:87`
+- `tests/test_workspace_artifact_tool_floor.py:2338`
+- `tests/test_workspace_artifact_tool_floor.py:2343`
 
-## `PythonTool.execute` — method (async), line 360
+## `BashTool.execute` — method (async), line 608
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
+
+## `HostShellTool` — class, line 665
+- **called from:**
+- `src/agent_tools/__init__.py:41`
+- `tests/test_host_shell_polling.py:94`
+- `tests/test_host_shell_polling.py:142`
+- `tests/test_host_shell_polling.py:186`
+- `tests/test_production_external_bridge.py:54`
+- `tests/test_production_external_bridge.py:92`
+- `tests/test_tool_execution_bridge_security.py:153`
+- `tests/test_tool_execution_bridge_security.py:250`
+- `tests/test_tool_execution_bridge_security.py:316`
+
+## `HostShellTool.execute` — method (async), line 666
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
+- `core/database.py:1268`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
+- `core/database.py:1406`
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
+
+## `_python_child_runtime_failure` — function, line 839
+- **called from:**
+- `src/agent_tools/subprocess_tools.py:596`
+
+## `_python_with_visible_final_expression` — function, line 855
+- **called from:**
+- `src/agent_tools/subprocess_tools.py:942`
+
+## `_python_with_configured_import_paths` — function, line 900
+- **called from:**
+- `src/agent_tools/subprocess_tools.py:941`
+- `tests/test_python_tool_import_paths.py:6`
+- `tests/test_python_tool_import_paths.py:10`
+
+## `PythonTool` — class, line 909
+- **called from:**
+- `src/agent_tools/__init__.py:42`
+- `tests/test_containment_enforcement.py:106`
+- `tests/test_containment_enforcement.py:201`
+- `tests/test_containment_enforcement.py:283`
+- `tests/test_containment_enforcement.py:355`
+- `tests/test_native_execution_containment.py:132`
+- `tests/test_native_execution_containment.py:144`
+- `tests/test_native_execution_containment.py:152`
+- `tests/test_workspace_artifact_tool_floor.py:2152`
+- `tests/test_workspace_artifact_tool_floor.py:2157`
+- `tests/test_workspace_artifact_tool_floor.py:2162`
+- `tests/test_workspace_artifact_tool_floor.py:2173`
+- `tests/test_workspace_artifact_tool_floor.py:2186`
+- `tests/test_workspace_artifact_tool_floor.py:2198`
+- `tests/test_workspace_artifact_tool_floor.py:2201`
+- `tests/test_workspace_artifact_tool_floor.py:2243`
+
+## `PythonTool.execute` — method (async), line 910
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
+- `core/database.py:1268`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
+- `core/database.py:1406`
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)

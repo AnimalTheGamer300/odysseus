@@ -5,28 +5,67 @@
 
 ## `createTerminalStreamError` — function, line 2
 - **called from:**
-- `static/js/chat.js:3265`
-- `static/js/chat.js:4468`
-- `static/js/chat.js:5770`
+- `static/js/chat.js:4738`
+- `static/js/chat.js:6088`
+- `static/js/chat.js:7487`
 - `static/js/chatStreamErrors.js:2`
 
 ## `stream` — class, line 16
 - **called from:**
-- `src/llm_core.py:3075`
-- `src/llm_core.py:3196`
-- `src/llm_core.py:3295`
-- `src/llm_core.py:3500`
-- `src/outbound_fetch.py:297`
-- `tests/test_compare_stop_disconnect_poll.py:200`
-- `tests/test_compare_stop_disconnect_poll.py:206`
+- `scripts/eval_odysseus_app_route_smoke.py:255`
+- `scripts/eval_odysseus_contextual_tool_use.py:687`
+- `scripts/eval_odysseus_crud.py:218`
+- `scripts/eval_odysseus_tool_use.py:1068`
+- `scripts/odysseus_conversation_qa.py:748`
+- `scripts/odysseus_domain_audit.py:301`
+- `scripts/run_sft_environment_expansion.py:279`
+- `scripts/run_sft_overnight_fixture_flows.py:236`
+- `scripts/sft_email_overseer.py:533`
+- `src/clean_agent_preview.py:5556`
+- `src/llm_core.py:3493`
+- `src/llm_core.py:3614`
+- `src/llm_core.py:3713`
+- `src/llm_core.py:3921`
+- `src/outbound_fetch.py:296`
+- `tests/smoke/test_chat_smoke.py:37`
+- `tests/smoke/test_compare_smoke.py:21`
+- `tests/test_agent_runs_terminal_order.py:17`
+- `tests/test_agent_runs_terminal_order.py:42`
+- `tests/test_compare_stop_disconnect_poll.py:201`
+- `tests/test_compare_stop_disconnect_poll.py:207`
+- `tests/test_completion_boundary.py:30`
+- `tests/test_completion_boundary.py:46`
+- `tests/test_completion_boundary.py:59`
+- `tests/test_completion_boundary.py:74`
+- `tests/test_completion_boundary.py:123`
+- `tests/test_completion_boundary.py:146`
+- `tests/test_completion_boundary.py:176`
+- `tests/test_completion_boundary.py:198`
+- `tests/test_completion_boundary.py:219`
+- `tests/test_completion_boundary.py:251`
+- `tests/test_completion_boundary.py:278`
+- `tests/test_completion_boundary.py:311`
+- `tests/test_completion_boundary.py:412`
+- `tests/test_completion_boundary.py:432`
+- `tests/test_completion_boundary.py:452`
+- `tests/test_effect_verification_adapters.py:457`
+- `tests/test_runtime_evidence_contract.py:113`
+- `tests/test_runtime_evidence_contract.py:189`
+- `tests/test_runtime_evidence_contract.py:204`
+- `tests/test_runtime_evidence_contract.py:219`
+- `tests/test_runtime_evidence_contract.py:237`
+- `tests/test_runtime_evidence_contract.py:261`
+- `tests/test_runtime_evidence_contract.py:320`
+- `tests/test_runtime_evidence_contract.py:337`
+- `tests/test_runtime_evidence_contract.py:356`
 - `tests/test_shell_service.py:52`
 - `tests/test_web_fetch_size_caps.py:56`
 - `tests/test_web_fetch_size_caps.py:63`
-- `static/js/chat.js:342`
-- `static/js/sessions.js:2217`
-- `static/js/sessions.js:2796`
+- `static/js/chat.js:1222`
+- `static/js/sessions.js:2564`
+- `static/js/sessions.js:3209`
 
 ## `isRecoverableStreamError` — function, line 17
 - **called from:**
-- `static/js/chat.js:5043`
+- `static/js/chat.js:6694`
 - `static/js/chatStreamErrors.js:17`

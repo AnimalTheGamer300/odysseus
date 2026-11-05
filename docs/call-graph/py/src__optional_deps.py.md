@@ -4,13 +4,13 @@
 
 ## `patch_realesrgan_torchvision_compat` — function, line 9
 - **called from:**
-- `routes/gallery/gallery_routes.py:1762`
-- `routes/gallery/gallery_routes.py:1812`
+- `routes/gallery/gallery_routes.py:2546`
+- `routes/gallery/gallery_routes.py:2598`
 - `src/optional_deps.py:32`
 - `tests/test_realesrgan_torchvision_compat.py:26`
 
 ## `prepare_optional_dependency_import` — function, line 29
 - **called from:**
-- `routes/shell_routes.py:146`
+- `routes/shell_routes.py:166`
 - `tests/test_realesrgan_torchvision_compat.py:43`
 - `tests/test_realesrgan_torchvision_compat.py:46`

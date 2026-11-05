@@ -4,5 +4,5 @@
 
 ## `do_search_chats` — function (async), line 13
 - **called from:**
-- `src/tool_execution.py:1179`
-- `tests/test_session_search.py:293`
+- `src/tool_execution.py:2361`
+- `tests/test_session_search.py:365`

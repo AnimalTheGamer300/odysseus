@@ -6,43 +6,47 @@
 ## `createShortcutsPopover` — function, line 15
 - **called from:**
 - `static/js/editor/shortcuts-popover.js:15`
-- `static/js/galleryEditor.js:3151`
+- `static/js/galleryEditor.js:10873`
 
 ## `ensurePopover` — function, line 19
 - **called from:**
 - `static/js/editor/shortcuts-popover.js:19`
-- `static/js/editor/shortcuts-popover.js:102`
+- `static/js/editor/shortcuts-popover.js:103`
 
-## `endDrag` — arrow, line 68
+## `endDrag` — arrow, line 69
 - **called from:**
-- `static/js/dragSort.js:123`
-- `static/js/dragSort.js:177`
-- `static/js/dragSort.js:239`
+- `static/js/dragSort.js:128`
+- `static/js/dragSort.js:209`
+- `static/js/dragSort.js:272`
+- `static/js/dragSort.js:327`
 
-## `positionPopover` — function, line 85
+## `positionPopover` — function, line 86
 - **called from:**
-- `static/js/editor/shortcuts-popover.js:85`
-- `static/js/editor/shortcuts-popover.js:124`
+- `static/js/editor/shortcuts-popover.js:86`
+- `static/js/editor/shortcuts-popover.js:125`
 
-## `toggleShortcuts` — function, line 101
+## `toggleShortcuts` — function, line 102
 - **called from:**
-- `static/js/editor/keyboard-shortcuts.js:74`
+- `static/js/editor/keyboard-shortcuts.js:158`
 - `static/js/editor/shortcuts-popover.js:8`
-- `static/js/editor/shortcuts-popover.js:41`
-- `static/js/editor/shortcuts-popover.js:101`
-- `static/js/editor/shortcuts-popover.js:131`
+- `static/js/editor/shortcuts-popover.js:42`
+- `static/js/editor/shortcuts-popover.js:102`
+- `static/js/editor/shortcuts-popover.js:135`
 
-## `isOpen` — function, line 144
+## `isOpen` — function, line 148
 - **called from:**
-- `static/app.js:689`
-- `static/app.js:862`
-- `static/js/admin.js:1350`
-- `static/js/admin.js:1359`
-- `static/js/admin.js:1367`
-- `static/js/editor/shortcuts-popover.js:144`
-- `static/js/emailLibrary.js:2506`
-- `static/js/galleryEditor.js:3486`
-- `static/js/keyboard-shortcuts.js:150`
-- `static/js/research/panel.js:219`
-- `static/js/search-chat.js:58`
-- `static/js/search-chat.js:154`
+- `static/app.js:722`
+- `static/app.js:895`
+- `static/js/admin.js:2219`
+- `static/js/admin.js:2228`
+- `static/js/admin.js:2236`
+- `static/js/editor/shortcuts-popover.js:148`
+- `static/js/emailLibrary/index.js:2324`
+- `static/js/features/notes/ui/layout.js:49`
+- `static/js/galleryEditor.js:9957`
+- `static/js/galleryEditor.js:11749`
+- `static/js/galleryEditor.js:14101`
+- `static/js/keyboard-shortcuts.js:158`
+- `static/js/research/panel.js:221`
+- `static/js/search-chat.js:64`
+- `static/js/search-chat.js:160`

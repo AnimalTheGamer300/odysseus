@@ -1,118 +1,139 @@
 # `static/js/compare/stream.js` — definitions & call sites
 
-20 definitions (regex-based, best-effort).
+24 definitions (regex-based, best-effort).
 **Exports:** `_formatMs`, `_renderSearchResults`, `_runSynthForPane`, `registerStreamActions`, `streamToPane`
 
-## `_safeHttpHref` — function, line 14
+## `_safeHttpHref` — function, line 15
 - **called from:**
-- `static/js/compare/stream.js:14`
-- `static/js/compare/stream.js:195`
+- `static/js/compare/stream.js:15`
+- `static/js/compare/stream.js:251`
 
-## `registerStreamActions` — function, line 30
+## `registerStreamActions` — function, line 31
 - **called from:**
-- `static/js/compare/index.js:1522`
-- `static/js/compare/stream.js:30`
+- `static/js/compare/index.js:1655`
+- `static/js/compare/stream.js:31`
 
-## `_paneSessionIsCurrent` — function, line 36
+## `_paneSessionIsCurrent` — function, line 37
 - **called from:**
-- `static/js/compare/stream.js:36`
-- `static/js/compare/stream.js:106`
-- `static/js/compare/stream.js:110`
-- `static/js/compare/stream.js:159`
-
-## `_setCompareBusy` — function, line 44
-- **called from:**
-- `static/js/compare/stream.js:44`
-- `static/js/compare/stream.js:55`
-- `static/js/compare/stream.js:145`
-
-## `_syncCompareBusyFromPanes` — function, line 54
-- **called from:**
-- `static/js/compare/stream.js:54`
-
-## `_appendPaneMessage` — function, line 58
-- **called from:**
-- `static/js/compare/stream.js:58`
-- `static/js/compare/stream.js:74`
-- `static/js/compare/stream.js:133`
-
-## `_createPaneContinuationMessage` — function, line 73
-- **called from:**
-- `static/js/compare/stream.js:73`
-- `static/js/compare/stream.js:134`
-
-## `_restorePaneAskUserCard` — function, line 85
-- **called from:**
-- `static/js/compare/stream.js:85`
-- `static/js/compare/stream.js:120`
-
-## `_resumePaneChoiceWhenIdle` — function, line 105
-- **called from:**
-- `static/js/compare/stream.js:105`
+- `static/js/compare/stream.js:37`
+- `static/js/compare/stream.js:162`
 - `static/js/compare/stream.js:166`
+- `static/js/compare/stream.js:215`
 
-## `resume` — arrow, line 109
+## `_setCompareBusy` — function, line 45
+- **called from:**
+- `static/js/compare/stream.js:45`
+- `static/js/compare/stream.js:56`
+- `static/js/compare/stream.js:201`
+
+## `_syncCompareBusyFromPanes` — function, line 55
+- **called from:**
+- `static/js/compare/stream.js:55`
+
+## `_compareTimezoneHeaders` — function, line 59
+- **called from:**
+- `static/js/compare/stream.js:59`
+- `static/js/compare/stream.js:471`
+
+## `_compactNumber` — function, line 69
+- **called from:**
+- `static/js/compare/stream.js:69`
+- `static/js/compare/stream.js:106`
+
+## `_formatCost` — function, line 77
+- **called from:**
+- `static/js/compare/stream.js:77`
+- `static/js/compare/stream.js:109`
+
+## `_setPaneSummary` — function, line 84
+- **called from:**
+- `static/js/compare/stream.js:84`
+- `static/js/compare/stream.js:363`
+- `static/js/compare/stream.js:821`
+
+## `_appendPaneMessage` — function, line 114
+- **called from:**
+- `static/js/compare/stream.js:114`
+- `static/js/compare/stream.js:130`
+- `static/js/compare/stream.js:189`
+
+## `_createPaneContinuationMessage` — function, line 129
+- **called from:**
+- `static/js/compare/stream.js:129`
+- `static/js/compare/stream.js:190`
+
+## `_restorePaneAskUserCard` — function, line 141
+- **called from:**
+- `static/js/compare/stream.js:141`
+- `static/js/compare/stream.js:176`
+
+## `_resumePaneChoiceWhenIdle` — function, line 161
+- **called from:**
+- `static/js/compare/stream.js:161`
+- `static/js/compare/stream.js:222`
+
+## `resume` — arrow, line 165
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_renderPaneAskUserCard` — function, line 158
+## `_renderPaneAskUserCard` — function, line 214
 - **called from:**
-- `static/js/compare/stream.js:87`
-- `static/js/compare/stream.js:158`
-- `static/js/compare/stream.js:479`
+- `static/js/compare/stream.js:143`
+- `static/js/compare/stream.js:214`
+- `static/js/compare/stream.js:527`
 
-## `_formatMs` — function, line 181
+## `_formatMs` — function, line 237
 - **called from:**
-- `static/js/compare/stream.js:181`
-- `static/js/compare/stream.js:334`
-- `static/js/compare/stream.js:822`
+- `static/js/compare/stream.js:237`
+- `static/js/compare/stream.js:393`
+- `static/js/compare/stream.js:903`
 
-## `_renderSearchResults` — function, line 188
+## `_renderSearchResults` — function, line 244
 - **called from:**
-- `static/js/compare/index.js:748`
-- `static/js/compare/index.js:800`
-- `static/js/compare/panes.js:134`
-- `static/js/compare/stream.js:188`
+- `static/js/compare/index.js:861`
+- `static/js/compare/index.js:913`
+- `static/js/compare/panes.js:477`
+- `static/js/compare/stream.js:244`
 
-## `_runSynthForPane` — function, line 222
+## `_runSynthForPane` — function, line 278
 - **called from:**
-- `static/js/compare/index.js:778`
-- `static/js/compare/index.js:863`
-- `static/js/compare/stream.js:222`
+- `static/js/compare/index.js:891`
+- `static/js/compare/index.js:976`
+- `static/js/compare/stream.js:278`
 
-## `streamToPane` — function, line 293
+## `streamToPane` — function, line 349
 - **called from:**
-- `static/js/compare/index.js:971`
-- `static/js/compare/index.js:986`
-- `static/js/compare/stream.js:146`
-- `static/js/compare/stream.js:293`
+- `static/js/compare/index.js:1084`
+- `static/js/compare/index.js:1099`
+- `static/js/compare/stream.js:202`
+- `static/js/compare/stream.js:349`
 
-## `_resetIdleTimeout` — arrow, line 320
+## `_resetIdleTimeout` — arrow, line 379
 - **called from:**
-- `static/js/compare/stream.js:421`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_tickTimer` — function, line 331
+## `_tickTimer` — function, line 390
 - **called from:**
-- `static/js/compare/stream.js:331`
+- `static/js/compare/stream.js:390`
 
-## `_scheduleLiveRender` — function, line 345
+## `_scheduleLiveRender` — function, line 404
 - **called from:**
-- `static/js/compare/stream.js:345`
-- `static/js/compare/stream.js:636`
+- `static/js/compare/stream.js:404`
+- `static/js/compare/stream.js:686`
 
-## `_stampGradeBadge` — function, line 883
+## `_stampGradeBadge` — function, line 970
 - **called from:**
-- `static/js/compare/stream.js:869`
-- `static/js/compare/stream.js:883`
+- `static/js/compare/stream.js:954`
+- `static/js/compare/stream.js:970`
 
-## `norm` — arrow, line 884
+## `norm` — arrow, line 971
 - **called from:**
 - `src/embeddings.py:86`
-- `src/embeddings.py:204`
-- `src/tool_parsing.py:1271`
-- `src/tool_parsing.py:1277`
-- `static/js/compare/stream.js:885`
-- `static/js/compare/stream.js:886`
+- `src/embeddings.py:219`
+- `src/tool_parsing.py:1703`
+- `src/tool_parsing.py:1709`
+- `static/js/compare/stream.js:972`
+- `static/js/compare/stream.js:973`
 - `static/js/composerArrowUpRecall.js:73`
 - `static/js/composerArrowUpRecall.js:73`
 - `static/js/composerArrowUpRecall.js:95`

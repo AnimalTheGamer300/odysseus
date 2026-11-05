@@ -1,11 +1,11 @@
 # HTTP endpoints (FastAPI) ↔ JS fetch() callers
 
-508 route decorators found. JS side: 1015 literal `fetch('/...')` call sites.
+551 route decorators found. JS side: 1085 literal `fetch('/...')` call sites.
 
 Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 
 ## `GET /`
-- handler: `serve_index` — `app.py:892`
+- handler: `serve_index` — `app.py:977`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /`
@@ -16,552 +16,591 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - handler: `root` — `tests/test_security_headers_middleware.py:26`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
+## `GET /accounts`
+- handler: `list_accounts` — `routes/chatgpt_subscription_routes.py:418`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /accounts/{auth_id}/usage`
+- handler: `account_usage` — `routes/chatgpt_subscription_routes.py:431`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
 ## `POST /api/activity/heartbeat`
-- handler: `activity_heartbeat` — `app.py:645`
+- handler: `activity_heartbeat` — `app.py:723`
 - **JS callers:**
-  - `static/app.js:142` → `/api/activity/heartbeat`
-  - `static/app.js:145` → `/api/activity/heartbeat`
+  - `static/app.js:149` → `/api/activity/heartbeat`
+  - `static/app.js:152` → `/api/activity/heartbeat`
 
 ## `DELETE /api/admin/wipe/{kind}`
 - handler: `wipe` — `routes/admin_wipe/admin_wipe_routes.py:72`
 - **JS callers:**
-  - `static/js/admin.js:2921` → `/api/admin/wipe/${k}`
-  - `static/js/admin.js:2941` → `/api/admin/wipe/${kind}`
+  - `static/js/admin.js:3795` → `/api/admin/wipe/${k}`
+  - `static/js/admin.js:3815` → `/api/admin/wipe/${kind}`
 
 ## `GET /api/assistant/available-timezones`
-- handler: `list_timezones` — `routes/assistant_routes.py:318`
+- handler: `list_timezones` — `routes/assistant_routes.py:325`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/assistant/run-status/{task_id}`
-- handler: `run_status` — `routes/assistant_routes.py:293`
+- handler: `run_status` — `routes/assistant_routes.py:300`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/assistant/run/{task_id}`
-- handler: `run_check_in_now` — `routes/assistant_routes.py:270`
+- handler: `run_check_in_now` — `routes/assistant_routes.py:277`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/assistant/session`
-- handler: `get_assistant_session` — `routes/assistant_routes.py:124`
+- handler: `get_assistant_session` — `routes/assistant_routes.py:125`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/assistant/settings`
-- handler: `get_assistant_settings` — `routes/assistant_routes.py:137`
+- handler: `get_assistant_settings` — `routes/assistant_routes.py:138`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PATCH /api/assistant/settings`
-- handler: `update_assistant_settings` — `routes/assistant_routes.py:158`
+- handler: `update_assistant_settings` — `routes/assistant_routes.py:159`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/auth/2fa/confirm`
-- handler: `totp_confirm` — `routes/auth_routes.py:269`
+- handler: `totp_confirm` — `routes/auth_routes.py:293`
 - **JS callers:**
-  - `static/js/settings.js:2135` → `/api/auth/2fa/confirm`
+  - `static/js/settings.js:1847` → `/api/auth/2fa/confirm`
 
 ## `POST /api/auth/2fa/disable`
-- handler: `totp_disable` — `routes/auth_routes.py:283`
+- handler: `totp_disable` — `routes/auth_routes.py:307`
 - **JS callers:**
-  - `static/js/settings.js:2089` → `/api/auth/2fa/disable`
+  - `static/js/settings.js:1801` → `/api/auth/2fa/disable`
 
 ## `POST /api/auth/2fa/setup`
-- handler: `totp_setup` — `routes/auth_routes.py:246`
+- handler: `totp_setup` — `routes/auth_routes.py:270`
 - **JS callers:**
-  - `static/js/settings.js:2109` → `/api/auth/2fa/setup`
+  - `static/js/settings.js:1821` → `/api/auth/2fa/setup`
 
 ## `GET /api/auth/2fa/status`
-- handler: `totp_status` — `routes/auth_routes.py:293`
+- handler: `totp_status` — `routes/auth_routes.py:317`
 - **JS callers:**
-  - `static/js/settings.js:2070` → `/api/auth/2fa/status`
+  - `static/js/settings.js:1782` → `/api/auth/2fa/status`
 
 ## `POST /api/auth/change-password`
-- handler: `change_password` — `routes/auth_routes.py:228`
+- handler: `change_password` — `routes/auth_routes.py:252`
 - **JS callers:**
-  - `static/js/settings.js:2045` → `/api/auth/change-password`
+  - `static/js/settings.js:1757` → `/api/auth/change-password`
 
 ## `GET /api/auth/features`
-- handler: `get_features` — `routes/auth_routes.py:695`
+- handler: `get_features` — `routes/auth_routes.py:756`
 - **JS callers:**
-  - `static/app.js:1510` → `/api/auth/features`
-  - `static/js/admin.js:2766` → `/api/auth/features`
-  - `static/js/admin.js:2776` → `/api/auth/features`
+  - `static/app.js:1551` → `/api/auth/features`
+  - `static/js/admin.js:3640` → `/api/auth/features`
+  - `static/js/admin.js:3650` → `/api/auth/features`
   - `static/js/censor.js:62` → `/api/auth/features`
   - `static/js/slashCommands.js:889` → `/api/auth/features`
   - `static/js/slashCommands.js:893` → `/api/auth/features`
-  - `static/js/slashCommands.js:5188` → `/api/auth/features`
+  - `static/js/slashCommands.js:5199` → `/api/auth/features`
 
 ## `POST /api/auth/features`
-- handler: `set_features` — `routes/auth_routes.py:700`
+- handler: `set_features` — `routes/auth_routes.py:761`
 - **JS callers:**
-  - `static/app.js:1510` → `/api/auth/features`
-  - `static/js/admin.js:2766` → `/api/auth/features`
-  - `static/js/admin.js:2776` → `/api/auth/features`
+  - `static/app.js:1551` → `/api/auth/features`
+  - `static/js/admin.js:3640` → `/api/auth/features`
+  - `static/js/admin.js:3650` → `/api/auth/features`
   - `static/js/censor.js:62` → `/api/auth/features`
   - `static/js/slashCommands.js:889` → `/api/auth/features`
   - `static/js/slashCommands.js:893` → `/api/auth/features`
-  - `static/js/slashCommands.js:5188` → `/api/auth/features`
+  - `static/js/slashCommands.js:5199` → `/api/auth/features`
 
 ## `GET /api/auth/integrations`
-- handler: `list_integrations_route` — `routes/auth_routes.py:763`
+- handler: `list_integrations_route` — `routes/auth_routes.py:915`
 - **JS callers:**
-  - `static/js/settings.js:2337` → `/api/auth/integrations`
-  - `static/js/settings.js:2364` → `/api/auth/integrations`
-  - `static/js/settings.js:2434` → `/api/auth/integrations`
-  - `static/js/settings.js:3269` → `/api/auth/integrations`
-  - `static/js/settings.js:3302` → `/api/auth/integrations`
-  - `static/js/settings.js:3356` → `/api/auth/integrations`
-  - `static/js/settings.js:3512` → `/api/auth/integrations`
-  - `static/js/settings.js:3799` → `/api/auth/integrations`
-  - `static/js/settings.js:3845` → `/api/auth/integrations`
+  - `static/js/settings.js:2050` → `/api/auth/integrations`
+  - `static/js/settings.js:2077` → `/api/auth/integrations`
+  - `static/js/settings.js:2147` → `/api/auth/integrations`
+  - `static/js/settings.js:2984` → `/api/auth/integrations`
+  - `static/js/settings.js:3017` → `/api/auth/integrations`
+  - `static/js/settings.js:3071` → `/api/auth/integrations`
+  - `static/js/settings.js:3227` → `/api/auth/integrations`
+  - `static/js/settings.js:3514` → `/api/auth/integrations`
+  - `static/js/settings.js:3560` → `/api/auth/integrations`
 
 ## `POST /api/auth/integrations`
-- handler: `create_integration` — `routes/auth_routes.py:779`
+- handler: `create_integration` — `routes/auth_routes.py:929`
 - **JS callers:**
-  - `static/js/settings.js:2337` → `/api/auth/integrations`
-  - `static/js/settings.js:2364` → `/api/auth/integrations`
-  - `static/js/settings.js:2434` → `/api/auth/integrations`
-  - `static/js/settings.js:3269` → `/api/auth/integrations`
-  - `static/js/settings.js:3302` → `/api/auth/integrations`
-  - `static/js/settings.js:3356` → `/api/auth/integrations`
-  - `static/js/settings.js:3512` → `/api/auth/integrations`
-  - `static/js/settings.js:3799` → `/api/auth/integrations`
-  - `static/js/settings.js:3845` → `/api/auth/integrations`
+  - `static/js/settings.js:2050` → `/api/auth/integrations`
+  - `static/js/settings.js:2077` → `/api/auth/integrations`
+  - `static/js/settings.js:2147` → `/api/auth/integrations`
+  - `static/js/settings.js:2984` → `/api/auth/integrations`
+  - `static/js/settings.js:3017` → `/api/auth/integrations`
+  - `static/js/settings.js:3071` → `/api/auth/integrations`
+  - `static/js/settings.js:3227` → `/api/auth/integrations`
+  - `static/js/settings.js:3514` → `/api/auth/integrations`
+  - `static/js/settings.js:3560` → `/api/auth/integrations`
 
 ## `GET /api/auth/integrations/presets`
-- handler: `list_presets` — `routes/auth_routes.py:774`
+- handler: `list_presets` — `routes/auth_routes.py:924`
 - **JS callers:**
-  - `static/js/settings.js:3242` → `/api/auth/integrations/presets`
-  - `static/js/settings.js:3679` → `/api/auth/integrations/presets`
+  - `static/js/settings.js:2957` → `/api/auth/integrations/presets`
+  - `static/js/settings.js:3394` → `/api/auth/integrations/presets`
 
 ## `DELETE /api/auth/integrations/{integration_id}`
-- handler: `delete_integration_route` — `routes/auth_routes.py:801`
+- handler: `delete_integration_route` — `routes/auth_routes.py:951`
 - **JS callers:**
-  - `static/js/settings.js:3242` → `/api/auth/integrations/presets`
-  - `static/js/settings.js:3396` → `/api/auth/integrations/${id}`
-  - `static/js/settings.js:3643` → `/api/auth/integrations/${id}`
-  - `static/js/settings.js:3679` → `/api/auth/integrations/presets`
+  - `static/js/settings.js:2957` → `/api/auth/integrations/presets`
+  - `static/js/settings.js:3111` → `/api/auth/integrations/${id}`
+  - `static/js/settings.js:3358` → `/api/auth/integrations/${id}`
+  - `static/js/settings.js:3394` → `/api/auth/integrations/presets`
 
 ## `PUT /api/auth/integrations/{integration_id}`
-- handler: `update_integration_route` — `routes/auth_routes.py:789`
+- handler: `update_integration_route` — `routes/auth_routes.py:939`
 - **JS callers:**
-  - `static/js/settings.js:3242` → `/api/auth/integrations/presets`
-  - `static/js/settings.js:3396` → `/api/auth/integrations/${id}`
-  - `static/js/settings.js:3643` → `/api/auth/integrations/${id}`
-  - `static/js/settings.js:3679` → `/api/auth/integrations/presets`
+  - `static/js/settings.js:2957` → `/api/auth/integrations/presets`
+  - `static/js/settings.js:3111` → `/api/auth/integrations/${id}`
+  - `static/js/settings.js:3358` → `/api/auth/integrations/${id}`
+  - `static/js/settings.js:3394` → `/api/auth/integrations/presets`
 
 ## `POST /api/auth/integrations/{integration_id}/test`
-- handler: `test_integration_route` — `routes/auth_routes.py:812`
+- handler: `test_integration_route` — `routes/auth_routes.py:960`
 - **JS callers:**
-  - `static/js/settings.js:3382` → `/api/auth/integrations/${editingId}/test`
-  - `static/js/settings.js:3864` → `/api/auth/integrations/${_editId}/test`
+  - `static/js/settings.js:3097` → `/api/auth/integrations/${editingId}/test`
+  - `static/js/settings.js:3579` → `/api/auth/integrations/${_editId}/test`
 
 ## `POST /api/auth/login`
-- handler: `login` — `routes/auth_routes.py:166`
+- handler: `login` — `routes/auth_routes.py:190`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/auth/logout`
-- handler: `logout` — `routes/auth_routes.py:198`
+- handler: `logout` — `routes/auth_routes.py:222`
 - **JS callers:**
-  - `static/js/settings.js:2168` → `/api/auth/logout`
+  - `static/js/settings.js:1880` → `/api/auth/logout`
 
 ## `PUT /api/auth/open-signup`
-- handler: `set_signup_enabled` — `routes/auth_routes.py:652`
+- handler: `set_signup_enabled` — `routes/auth_routes.py:713`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/auth/policy`
-- handler: `auth_policy` — `routes/auth_routes.py:223`
+- handler: `auth_policy` — `routes/auth_routes.py:247`
 - **JS callers:**
-  - `static/js/admin.js:372` → `/api/auth/policy`
-  - `static/js/settings.js:2022` → `/api/auth/policy`
+  - `static/js/admin.js:429` → `/api/auth/policy`
+  - `static/js/settings.js:1734` → `/api/auth/policy`
 
 ## `GET /api/auth/settings`
-- handler: `get_settings` — `routes/auth_routes.py:716`
+- handler: `get_settings` — `routes/auth_routes.py:775`
 - **JS callers:**
-  - `static/js/admin.js:354` → `/api/auth/settings`
+  - `static/js/admin.js:411` → `/api/auth/settings`
   - `static/js/appConfig.js:33` → `/api/auth/settings`
-  - `static/js/settings.js:49` → `/api/auth/settings`
-  - `static/js/settings.js:404` → `/api/auth/settings`
-  - `static/js/settings.js:452` → `/api/auth/settings`
-  - `static/js/settings.js:503` → `/api/auth/settings`
-  - `static/js/settings.js:509` → `/api/auth/settings`
-  - `static/js/settings.js:567` → `/api/auth/settings`
-  - `static/js/settings.js:656` → `/api/auth/settings`
-  - `static/js/settings.js:720` → `/api/auth/settings`
-  - `static/js/settings.js:827` → `/api/auth/settings`
-  - `static/js/settings.js:994` → `/api/auth/settings`
-  - `static/js/settings.js:1098` → `/api/auth/settings`
-  - `static/js/settings.js:1119` → `/api/auth/settings`
-  - `static/js/settings.js:1417` → `/api/auth/settings`
-  - `static/js/settings.js:1535` → `/api/auth/settings`
-  - `static/js/settings.js:1562` → `/api/auth/settings`
-  - `static/js/settings.js:1821` → `/api/auth/settings`
-  - `static/js/settings.js:2265` → `/api/auth/settings`
-  - `static/js/settings.js:2348` → `/api/auth/settings`
-  - … +3 more
+  - `static/js/chat.js:933` → `/api/auth/settings`
+  - `static/js/document.js:11362` → `/api/auth/settings`
+  - `static/js/research/panel.js:789` → `/api/auth/settings`
+  - `static/js/settings.js:394` → `/api/auth/settings`
+  - `static/js/settings.js:525` → `/api/auth/settings`
+  - `static/js/settings.js:631` → `/api/auth/settings`
+  - `static/js/settings.js:724` → `/api/auth/settings`
+  - `static/js/settings.js:864` → `/api/auth/settings`
+  - `static/js/settings.js:885` → `/api/auth/settings`
+  - `static/js/settings.js:1172` → `/api/auth/settings`
+  - `static/js/settings.js:1290` → `/api/auth/settings`
+  - `static/js/settings.js:1529` → `/api/auth/settings`
+  - `static/js/settings.js:1978` → `/api/auth/settings`
+  - `static/js/settings.js:2061` → `/api/auth/settings`
+  - `static/js/settings.js:2159` → `/api/auth/settings`
+  - `static/js/settings.js:2217` → `/api/auth/settings`
+  - `static/js/settings/agent.js:18` → `/api/auth/settings`
+  - `static/js/settings/api.js:8` → `/api/auth/settings`
+  - … +6 more
 
 ## `POST /api/auth/settings`
-- handler: `set_settings` — `routes/auth_routes.py:727`
+- handler: `set_settings` — `routes/auth_routes.py:791`
 - **JS callers:**
-  - `static/js/admin.js:354` → `/api/auth/settings`
+  - `static/js/admin.js:411` → `/api/auth/settings`
   - `static/js/appConfig.js:33` → `/api/auth/settings`
-  - `static/js/settings.js:49` → `/api/auth/settings`
-  - `static/js/settings.js:404` → `/api/auth/settings`
-  - `static/js/settings.js:452` → `/api/auth/settings`
-  - `static/js/settings.js:503` → `/api/auth/settings`
-  - `static/js/settings.js:509` → `/api/auth/settings`
-  - `static/js/settings.js:567` → `/api/auth/settings`
-  - `static/js/settings.js:656` → `/api/auth/settings`
-  - `static/js/settings.js:720` → `/api/auth/settings`
-  - `static/js/settings.js:827` → `/api/auth/settings`
-  - `static/js/settings.js:994` → `/api/auth/settings`
-  - `static/js/settings.js:1098` → `/api/auth/settings`
-  - `static/js/settings.js:1119` → `/api/auth/settings`
-  - `static/js/settings.js:1417` → `/api/auth/settings`
-  - `static/js/settings.js:1535` → `/api/auth/settings`
-  - `static/js/settings.js:1562` → `/api/auth/settings`
-  - `static/js/settings.js:1821` → `/api/auth/settings`
-  - `static/js/settings.js:2265` → `/api/auth/settings`
-  - `static/js/settings.js:2348` → `/api/auth/settings`
-  - … +3 more
+  - `static/js/chat.js:933` → `/api/auth/settings`
+  - `static/js/document.js:11362` → `/api/auth/settings`
+  - `static/js/research/panel.js:789` → `/api/auth/settings`
+  - `static/js/settings.js:394` → `/api/auth/settings`
+  - `static/js/settings.js:525` → `/api/auth/settings`
+  - `static/js/settings.js:631` → `/api/auth/settings`
+  - `static/js/settings.js:724` → `/api/auth/settings`
+  - `static/js/settings.js:864` → `/api/auth/settings`
+  - `static/js/settings.js:885` → `/api/auth/settings`
+  - `static/js/settings.js:1172` → `/api/auth/settings`
+  - `static/js/settings.js:1290` → `/api/auth/settings`
+  - `static/js/settings.js:1529` → `/api/auth/settings`
+  - `static/js/settings.js:1978` → `/api/auth/settings`
+  - `static/js/settings.js:2061` → `/api/auth/settings`
+  - `static/js/settings.js:2159` → `/api/auth/settings`
+  - `static/js/settings.js:2217` → `/api/auth/settings`
+  - `static/js/settings/agent.js:18` → `/api/auth/settings`
+  - `static/js/settings/api.js:8` → `/api/auth/settings`
+  - … +6 more
+
+## `POST /api/auth/settings/document-style/extract`
+- handler: `extract_document_writing_style` — `routes/auth_routes.py:833`
+- **JS callers:**
+  - `static/js/settings/writingStyle.js:56` → `/api/auth/settings/document-style/extract`
 
 ## `POST /api/auth/setup`
-- handler: `first_run_setup` — `routes/auth_routes.py:128`
+- handler: `first_run_setup` — `routes/auth_routes.py:150`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/auth/signup`
-- handler: `signup` — `routes/auth_routes.py:146`
+- handler: `signup` — `routes/auth_routes.py:169`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/auth/signup-toggle`
-- handler: `toggle_signup` — `routes/auth_routes.py:636`
+- handler: `toggle_signup` — `routes/auth_routes.py:697`
 - **JS callers:**
-  - `static/js/admin.js:340` → `/api/auth/signup-toggle`
+  - `static/js/admin.js:397` → `/api/auth/signup-toggle`
 
 ## `GET /api/auth/status`
-- handler: `auth_status` — `routes/auth_routes.py:206`
+- handler: `auth_status` — `routes/auth_routes.py:230`
 - **JS callers:**
-  - `static/app.js:1323` → `/api/auth/status`
-  - `static/js/admin.js:334` → `/api/auth/status`
-  - `static/js/init.js:45` → `/api/auth/status`
-  - `static/js/settings.js:2007` → `/api/auth/status`
+  - `static/app.js:1364` → `/api/auth/status`
+  - `static/js/admin.js:391` → `/api/auth/status`
+  - `static/js/init.js:58` → `/api/auth/status`
+  - `static/js/settings.js:1719` → `/api/auth/status`
 
 ## `DELETE /api/auth/users`
-- handler: `admin_delete_user` — `routes/auth_routes.py:661`
+- handler: `admin_delete_user` — `routes/auth_routes.py:722`
 - **JS callers:**
-  - `static/js/admin.js:38` → `/api/auth/users`
-  - `static/js/admin.js:199` → `/api/auth/users`
-  - `static/js/admin.js:392` → `/api/auth/users`
+  - `static/js/admin.js:71` → `/api/auth/users`
+  - `static/js/admin.js:256` → `/api/auth/users`
+  - `static/js/admin.js:449` → `/api/auth/users`
 
 ## `GET /api/auth/users`
-- handler: `list_users` — `routes/auth_routes.py:302`
+- handler: `list_users` — `routes/auth_routes.py:326`
 - **JS callers:**
-  - `static/js/admin.js:38` → `/api/auth/users`
-  - `static/js/admin.js:199` → `/api/auth/users`
-  - `static/js/admin.js:392` → `/api/auth/users`
+  - `static/js/admin.js:71` → `/api/auth/users`
+  - `static/js/admin.js:256` → `/api/auth/users`
+  - `static/js/admin.js:449` → `/api/auth/users`
 
 ## `POST /api/auth/users`
-- handler: `admin_create_user` — `routes/auth_routes.py:309`
+- handler: `admin_create_user` — `routes/auth_routes.py:333`
 - **JS callers:**
-  - `static/js/admin.js:38` → `/api/auth/users`
-  - `static/js/admin.js:199` → `/api/auth/users`
-  - `static/js/admin.js:392` → `/api/auth/users`
+  - `static/js/admin.js:71` → `/api/auth/users`
+  - `static/js/admin.js:256` → `/api/auth/users`
+  - `static/js/admin.js:449` → `/api/auth/users`
 
 ## `PUT /api/auth/users/{username}/admin`
-- handler: `set_user_admin` — `routes/auth_routes.py:611`
+- handler: `set_user_admin` — `routes/auth_routes.py:661`
 - **JS callers:**
-  - `static/js/admin.js:218` → `/api/auth/users/${encodeURIComponent(username)}/admin`
+  - `static/js/admin.js:275` → `/api/auth/users/${encodeURIComponent(username)}/admin`
+
+## `PUT /api/auth/users/{username}/password`
+- handler: `reset_user_password` — `routes/auth_routes.py:350`
+- **JS callers:**
+  - `static/js/admin.js:201` → `/api/auth/users/${encodeURIComponent(u.username)}/password`
 
 ## `PUT /api/auth/users/{username}/privileges`
-- handler: `update_user_privileges` — `routes/auth_routes.py:325`
+- handler: `update_user_privileges` — `routes/auth_routes.py:364`
 - **JS callers:**
-  - `static/js/admin.js:144` → `/api/auth/users/${encodeURIComponent(username)}/privileges`
-  - `static/js/admin.js:308` → `/api/auth/users/${encodeURIComponent(username)}/privileges`
+  - `static/js/admin.js:178` → `/api/auth/users/${encodeURIComponent(username)}/privileges`
+  - `static/js/admin.js:365` → `/api/auth/users/${encodeURIComponent(username)}/privileges`
 
 ## `PUT /api/auth/users/{username}/rename`
-- handler: `rename_user` — `routes/auth_routes.py:336`
+- handler: `rename_user` — `routes/auth_routes.py:383`
 - **JS callers:**
-  - `static/js/admin.js:170` → `/api/auth/users/${encodeURIComponent(oldUsername)}/rename`
+  - `static/js/admin.js:227` → `/api/auth/users/${encodeURIComponent(oldUsername)}/rename`
+
+## `GET /api/busy`
+- handler: `get_busy` — `app.py:1046`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/calendar/calendars`
-- handler: `list_calendars` — `routes/calendar_routes.py:1117`
+- handler: `list_calendars` — `routes/calendar_routes.py:1254`
 - **JS callers:**
-  - `static/js/calendar.js:185` → `/api/calendar/calendars`
-  - `static/js/calendar.js:2623` → `/api/calendar/calendars?name=`
-  - `static/js/cookbookSchedule.js:296` → `/api/calendar/calendars`
-  - `static/js/cookbookSchedule.js:300` → `/api/calendar/calendars?name=Cookbook&color=%233b82f6`
-  - `static/js/settings.js:3520` → `/api/calendar/calendars`
+  - `static/js/calendar.js:190` → `/api/calendar/calendars`
+  - `static/js/calendar.js:3233` → `/api/calendar/calendars?name=`
+  - `static/js/cookbookSchedule.js:311` → `/api/calendar/calendars`
+  - `static/js/cookbookSchedule.js:315` → `/api/calendar/calendars?name=Cookbook&color=%233b82f6`
+  - `static/js/settings.js:3235` → `/api/calendar/calendars`
 
 ## `POST /api/calendar/calendars`
-- handler: `create_calendar` — `routes/calendar_routes.py:1362`
+- handler: `create_calendar` — `routes/calendar_routes.py:1533`
 - **JS callers:**
-  - `static/js/calendar.js:185` → `/api/calendar/calendars`
-  - `static/js/calendar.js:2623` → `/api/calendar/calendars?name=`
-  - `static/js/cookbookSchedule.js:296` → `/api/calendar/calendars`
-  - `static/js/cookbookSchedule.js:300` → `/api/calendar/calendars?name=Cookbook&color=%233b82f6`
-  - `static/js/settings.js:3520` → `/api/calendar/calendars`
+  - `static/js/calendar.js:190` → `/api/calendar/calendars`
+  - `static/js/calendar.js:3233` → `/api/calendar/calendars?name=`
+  - `static/js/cookbookSchedule.js:311` → `/api/calendar/calendars`
+  - `static/js/cookbookSchedule.js:315` → `/api/calendar/calendars?name=Cookbook&color=%233b82f6`
+  - `static/js/settings.js:3235` → `/api/calendar/calendars`
 
 ## `DELETE /api/calendar/calendars/{cal_id}`
-- handler: `delete_calendar` — `routes/calendar_routes.py:1097`
+- handler: `delete_calendar` — `routes/calendar_routes.py:1234`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PUT /api/calendar/calendars/{cal_id}`
-- handler: `update_calendar` — `routes/calendar_routes.py:1385`
+- handler: `update_calendar` — `routes/calendar_routes.py:1556`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/calendar/config`
-- handler: `get_config` — `routes/calendar_routes.py:833`
+- handler: `get_config` — `routes/calendar_routes.py:982`
 - **JS callers:**
-  - `static/js/admin.js:2793` → `/api/calendar/config`
-  - `static/js/admin.js:2803` → `/api/calendar/config`
-  - `static/js/admin.js:2819` → `/api/calendar/config`
+  - `static/js/admin.js:3667` → `/api/calendar/config`
+  - `static/js/admin.js:3677` → `/api/calendar/config`
+  - `static/js/admin.js:3693` → `/api/calendar/config`
 
 ## `POST /api/calendar/config`
-- handler: `save_config` — `routes/calendar_routes.py:857`
+- handler: `save_config` — `routes/calendar_routes.py:1006`
 - **JS callers:**
-  - `static/js/admin.js:2793` → `/api/calendar/config`
-  - `static/js/admin.js:2803` → `/api/calendar/config`
-  - `static/js/admin.js:2819` → `/api/calendar/config`
+  - `static/js/admin.js:3667` → `/api/calendar/config`
+  - `static/js/admin.js:3677` → `/api/calendar/config`
+  - `static/js/admin.js:3693` → `/api/calendar/config`
 
 ## `GET /api/calendar/config/accounts`
-- handler: `list_caldav_accounts` — `routes/calendar_routes.py:890`
+- handler: `list_caldav_accounts` — `routes/calendar_routes.py:1036`
 - **JS callers:**
-  - `static/js/settings.js:3513` → `/api/calendar/config/accounts`
-  - `static/js/settings.js:3900` → `/api/calendar/config/accounts`
-  - `static/js/settings.js:3955` → `/api/calendar/config/accounts`
+  - `static/js/settings.js:3228` → `/api/calendar/config/accounts`
+  - `static/js/settings.js:3615` → `/api/calendar/config/accounts`
+  - `static/js/settings.js:3670` → `/api/calendar/config/accounts`
 
 ## `POST /api/calendar/config/accounts`
-- handler: `add_caldav_account` — `routes/calendar_routes.py:914`
+- handler: `add_caldav_account` — `routes/calendar_routes.py:1060`
 - **JS callers:**
-  - `static/js/settings.js:3513` → `/api/calendar/config/accounts`
-  - `static/js/settings.js:3900` → `/api/calendar/config/accounts`
-  - `static/js/settings.js:3955` → `/api/calendar/config/accounts`
+  - `static/js/settings.js:3228` → `/api/calendar/config/accounts`
+  - `static/js/settings.js:3615` → `/api/calendar/config/accounts`
+  - `static/js/settings.js:3670` → `/api/calendar/config/accounts`
 
 ## `DELETE /api/calendar/config/accounts/{account_id}`
-- handler: `delete_caldav_account` — `routes/calendar_routes.py:973`
+- handler: `delete_caldav_account` — `routes/calendar_routes.py:1113`
 - **JS callers:**
-  - `static/js/settings.js:3644` → `/api/calendar/config/accounts/${id}`
-  - `static/js/settings.js:3961` → `/api/calendar/config/accounts/${editId}`
+  - `static/js/settings.js:3359` → `/api/calendar/config/accounts/${id}`
+  - `static/js/settings.js:3676` → `/api/calendar/config/accounts/${editId}`
 
 ## `PUT /api/calendar/config/accounts/{account_id}`
-- handler: `update_caldav_account` — `routes/calendar_routes.py:943`
+- handler: `update_caldav_account` — `routes/calendar_routes.py:1086`
 - **JS callers:**
-  - `static/js/settings.js:3644` → `/api/calendar/config/accounts/${id}`
-  - `static/js/settings.js:3961` → `/api/calendar/config/accounts/${editId}`
+  - `static/js/settings.js:3359` → `/api/calendar/config/accounts/${id}`
+  - `static/js/settings.js:3676` → `/api/calendar/config/accounts/${editId}`
 
 ## `GET /api/calendar/events`
-- handler: `list_events` — `routes/calendar_routes.py:1140`
+- handler: `list_events` — `routes/calendar_routes.py:1277`
 - **JS callers:**
-  - `static/js/calendar.js:123` → `/api/calendar/events?start=`
-  - `static/js/calendar.js:164` → `/api/calendar/events?start=`
-  - `static/js/calendar.js:254` → `/api/calendar/events`
-  - `static/js/cookbookSchedule.js:331` → `/api/calendar/events`
-  - `static/js/slashCommands.js:1849` → `/api/calendar/events`
+  - `static/js/calendar.js:128` → `/api/calendar/events?start=`
+  - `static/js/calendar.js:169` → `/api/calendar/events?start=`
+  - `static/js/calendar.js:263` → `/api/calendar/events`
+  - `static/js/cookbookSchedule.js:346` → `/api/calendar/events`
+  - `static/js/emailLibrary/settingsPage.js:166` → `/api/calendar/events?start=`
+  - `static/js/emailLibrary/settingsPage.js:217` → `/api/calendar/events`
+  - `static/js/slashCommands.js:1853` → `/api/calendar/events`
 
 ## `POST /api/calendar/events`
-- handler: `create_event` — `routes/calendar_routes.py:1206`
+- handler: `create_event` — `routes/calendar_routes.py:1343`
 - **JS callers:**
-  - `static/js/calendar.js:123` → `/api/calendar/events?start=`
-  - `static/js/calendar.js:164` → `/api/calendar/events?start=`
-  - `static/js/calendar.js:254` → `/api/calendar/events`
-  - `static/js/cookbookSchedule.js:331` → `/api/calendar/events`
-  - `static/js/slashCommands.js:1849` → `/api/calendar/events`
+  - `static/js/calendar.js:128` → `/api/calendar/events?start=`
+  - `static/js/calendar.js:169` → `/api/calendar/events?start=`
+  - `static/js/calendar.js:263` → `/api/calendar/events`
+  - `static/js/cookbookSchedule.js:346` → `/api/calendar/events`
+  - `static/js/emailLibrary/settingsPage.js:166` → `/api/calendar/events?start=`
+  - `static/js/emailLibrary/settingsPage.js:217` → `/api/calendar/events`
+  - `static/js/slashCommands.js:1853` → `/api/calendar/events`
 
 ## `DELETE /api/calendar/events/{uid}`
-- handler: `delete_event` — `routes/calendar_routes.py:1320`
+- handler: `delete_event` — `routes/calendar_routes.py:1488`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/calendar/events/{uid}`
+- handler: `get_event` — `routes/calendar_routes.py:1414`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PUT /api/calendar/events/{uid}`
-- handler: `update_event` — `routes/calendar_routes.py:1268`
+- handler: `update_event` — `routes/calendar_routes.py:1425`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/calendar/export/{cal_id}`
-- handler: `export_ics` — `routes/calendar_routes.py:1562`
+- handler: `export_ics` — `routes/calendar_routes.py:1737`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/calendar/import`
-- handler: `import_ics` — `routes/calendar_routes.py:1412`
+- handler: `import_ics` — `routes/calendar_routes.py:1583`
 - **JS callers:**
-  - `static/js/calendar.js:2698` → `/api/calendar/import`
+  - `static/js/calendar.js:3314` → `/api/calendar/import`
+  - `static/js/emailLibrary/attachments.js:113` → `/api/calendar/import`
 
 ## `POST /api/calendar/quick-parse`
-- handler: `quick_parse` — `routes/calendar_routes.py:1620`
+- handler: `quick_parse` — `routes/calendar_routes.py:1795`
 - **JS callers:**
-  - `static/js/calendar.js:2033` → `/api/calendar/quick-parse`
+  - `static/js/calendar.js:2594` → `/api/calendar/quick-parse`
 
 ## `POST /api/calendar/sync`
-- handler: `sync_caldav_endpoint` — `routes/calendar_routes.py:1087`
+- handler: `sync_caldav_endpoint` — `routes/calendar_routes.py:1224`
 - **JS callers:**
-  - `static/js/calendar.js:208` → `/api/calendar/sync`
+  - `static/js/calendar.js:213` → `/api/calendar/sync`
 
 ## `POST /api/calendar/test`
-- handler: `test_connection` — `routes/calendar_routes.py:984`
+- handler: `test_connection` — `routes/calendar_routes.py:1124`
 - **JS callers:**
-  - `static/js/admin.js:2824` → `/api/calendar/test`
-  - `static/js/settings.js:3921` → `/api/calendar/test`
+  - `static/js/admin.js:3698` → `/api/calendar/test`
+  - `static/js/settings.js:3636` → `/api/calendar/test`
 
 ## `POST /api/chat`
-- handler: `chat_endpoint` — `routes/chat_routes.py:929`
+- handler: `chat_endpoint` — `routes/chat_routes.py:2415`
 - **JS callers:**
+  - `static/js/editor/nl-edit.js:12` → `/api/chat`
   - `static/js/slashCommands.js:655` → `/api/chat`
 
+## `POST /api/chat/finish/{session_id}`
+- handler: `chat_finish` — `routes/chat_routes.py:5565`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
 ## `GET /api/chat/reasoning-control`
-- handler: `reasoning_control` — `routes/chat_routes.py:3163`
+- handler: `reasoning_control` — `routes/chat_routes.py:5638`
 - **JS callers:**
-  - `static/js/chat.js:6116` → `/api/chat/reasoning-control?model=`
+  - `static/js/chat.js:7814` → `/api/chat/reasoning-control?model=`
 
 ## `GET /api/chat/resume/{session_id}`
-- handler: `chat_resume` — `routes/chat_routes.py:3080`
+- handler: `chat_resume` — `routes/chat_routes.py:5538`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/chat/stop/{session_id}`
-- handler: `chat_stop` — `routes/chat_routes.py:3096`
+- handler: `chat_stop` — `routes/chat_routes.py:5558`
 - **JS callers:**
-  - `static/js/chat.js:1032` → `/api/chat/stop/${encodeURIComponent(sessionId)}`
+  - `static/js/chat.js:1919` → `/api/chat/stop/${encodeURIComponent(sessionId)}`
 
 ## `GET /api/chat/stream_status/{session_id}`
-- handler: `chat_stream_status` — `routes/chat_routes.py:3106`
+- handler: `chat_stream_status` — `routes/chat_routes.py:5576`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/chat_stream`
-- handler: `chat_stream` — `routes/chat_routes.py:1123`
+- handler: `chat_stream` — `routes/chat_routes.py:2635`
 - **JS callers:**
-  - `static/js/chat.js:2510` → `/api/chat_stream`
-  - `static/js/compare/stream.js:243` → `/api/chat_stream`
-  - `static/js/compare/stream.js:409` → `/api/chat_stream`
-  - `static/js/group.js:855` → `/api/chat_stream`
-  - `static/js/notes.js:4524` → `/api/chat_stream`
-  - `static/js/notes.js:4595` → `/api/chat_stream`
+  - `static/js/chat.js:3568` → `/api/chat_stream`
+  - `static/js/compare/stream.js:299` → `/api/chat_stream`
+  - `static/js/compare/stream.js:468` → `/api/chat_stream`
+  - `static/js/features/notes/infrastructure/http.js:27` → `/api/chat_stream`
+  - `static/js/group.js:857` → `/api/chat_stream`
 
 ## `GET /api/cleanup/preview`
 - handler: `cleanup_preview` — `routes/cleanup/cleanup_routes.py:23`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/client-perf`
-- handler: `client_perf` — `app.py:960`
+- handler: `client_perf` — `app.py:1059`
 - **JS callers:**
-  - `static/js/chat.js:372` → `/api/client-perf`
-  - `static/js/chat.js:377` → `/api/client-perf`
+  - `static/js/chat.js:1252` → `/api/client-perf`
+  - `static/js/chat.js:1257` → `/api/client-perf`
 
 ## `GET /api/codex/calendar/events`
-- handler: `codex_calendar_list` — `routes/codex_routes.py:421`
+- handler: `codex_calendar_list` — `routes/codex_routes.py:467`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/calendar/events`
-- handler: `codex_calendar_create` — `routes/codex_routes.py:428`
+- handler: `codex_calendar_create` — `routes/codex_routes.py:474`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/codex/calendar/events/{uid}`
-- handler: `codex_calendar_delete` — `routes/codex_routes.py:489`
+- handler: `codex_calendar_delete` — `routes/codex_routes.py:535`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/capabilities`
-- handler: `capabilities` — `routes/codex_routes.py:168`
+- handler: `capabilities` — `routes/codex_routes.py:182`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/codex/chat/{session_id}`
+- handler: `read_chat` — `routes/codex_routes.py:238`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/cookbook/adopt`
-- handler: `codex_cookbook_adopt` — `routes/codex_routes.py:826`
+- handler: `codex_cookbook_adopt` — `routes/codex_routes.py:872`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/cookbook/cached`
-- handler: `codex_cookbook_cached` — `routes/codex_routes.py:693`
+- handler: `codex_cookbook_cached` — `routes/codex_routes.py:739`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/cookbook/output/{session_id}`
-- handler: `codex_cookbook_output` — `routes/codex_routes.py:595`
+- handler: `codex_cookbook_output` — `routes/codex_routes.py:641`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/cookbook/preset/{name}`
-- handler: `codex_cookbook_serve_preset` — `routes/codex_routes.py:776`
+- handler: `codex_cookbook_serve_preset` — `routes/codex_routes.py:822`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/cookbook/presets`
-- handler: `codex_cookbook_presets` — `routes/codex_routes.py:755`
+- handler: `codex_cookbook_presets` — `routes/codex_routes.py:801`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/cookbook/serve`
-- handler: `codex_cookbook_serve` — `routes/codex_routes.py:637`
+- handler: `codex_cookbook_serve` — `routes/codex_routes.py:683`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/cookbook/servers`
-- handler: `codex_cookbook_servers` — `routes/codex_routes.py:576`
+- handler: `codex_cookbook_servers` — `routes/codex_routes.py:622`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/cookbook/stop/{session_id}`
-- handler: `codex_cookbook_stop` — `routes/codex_routes.py:676`
+- handler: `codex_cookbook_stop` — `routes/codex_routes.py:722`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/cookbook/tasks`
-- handler: `codex_cookbook_tasks` — `routes/codex_routes.py:569`
+- handler: `codex_cookbook_tasks` — `routes/codex_routes.py:615`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/documents`
-- handler: `codex_documents_library` — `routes/codex_routes.py:443`
+- handler: `codex_documents_library` — `routes/codex_routes.py:489`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/documents`
-- handler: `codex_documents_create` — `routes/codex_routes.py:503`
+- handler: `codex_documents_create` — `routes/codex_routes.py:549`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/codex/documents/{doc_id}`
-- handler: `codex_documents_delete` — `routes/codex_routes.py:496`
+- handler: `codex_documents_delete` — `routes/codex_routes.py:542`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/documents/{doc_id}`
-- handler: `codex_documents_get` — `routes/codex_routes.py:469`
+- handler: `codex_documents_get` — `routes/codex_routes.py:515`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/emails`
-- handler: `list_emails` — `routes/codex_routes.py:252`
+- handler: `list_emails` — `routes/codex_routes.py:298`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/emails/draft`
-- handler: `codex_email_draft` — `routes/codex_routes.py:364`
+- handler: `codex_email_draft` — `routes/codex_routes.py:410`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/emails/draft-document`
-- handler: `codex_email_draft_document` — `routes/codex_routes.py:339`
+- handler: `codex_email_draft_document` — `routes/codex_routes.py:385`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/emails/send`
-- handler: `codex_email_send` — `routes/codex_routes.py:377`
+- handler: `codex_email_send` — `routes/codex_routes.py:423`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/emails/{uid}`
-- handler: `read_email` — `routes/codex_routes.py:284`
+- handler: `read_email` — `routes/codex_routes.py:330`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/memory`
-- handler: `codex_memory_list` — `routes/codex_routes.py:392`
+- handler: `codex_memory_list` — `routes/codex_routes.py:438`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/memory`
-- handler: `codex_memory_add` — `routes/codex_routes.py:399`
+- handler: `codex_memory_add` — `routes/codex_routes.py:445`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/codex/memory/{memory_id}`
-- handler: `codex_memory_delete` — `routes/codex_routes.py:482`
+- handler: `codex_memory_delete` — `routes/codex_routes.py:528`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/codex/plugin.zip`
-- handler: `plugin_zip` — `routes/codex_routes.py:219`
+- handler: `plugin_zip` — `routes/codex_routes.py:265`
 - **JS callers:**
-  - `static/js/settings.js:3430` → `/api/codex/plugin.zip`
-  - `static/js/settings.js:3430` → `/api/codex/plugin.zip`
-  - `static/js/settings.js:3435` → `/api/codex/plugin.zip`
-  - `static/js/settings.js:3435` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3145` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3145` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3150` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3150` → `/api/codex/plugin.zip`
 
 ## `GET /api/codex/plugin.zip`
-- handler: `plugin_zip` — `routes/codex_routes.py:892`
+- handler: `plugin_zip` — `routes/codex_routes.py:938`
 - **JS callers:**
-  - `static/js/settings.js:3430` → `/api/codex/plugin.zip`
-  - `static/js/settings.js:3430` → `/api/codex/plugin.zip`
-  - `static/js/settings.js:3435` → `/api/codex/plugin.zip`
-  - `static/js/settings.js:3435` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3145` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3145` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3150` → `/api/codex/plugin.zip`
+  - `static/js/settings.js:3150` → `/api/codex/plugin.zip`
 
 ## `GET /api/codex/todos`
-- handler: `list_todos` — `routes/codex_routes.py:235`
+- handler: `list_todos` — `routes/codex_routes.py:281`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/codex/todos`
-- handler: `manage_todos` — `routes/codex_routes.py:243`
+- handler: `manage_todos` — `routes/codex_routes.py:289`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/companion/info`
@@ -591,7 +630,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/compare/record`
 - handler: `record_comparison` — `routes/compare/compare_routes.py:284`
 - **JS callers:**
-  - `static/js/compare/vote.js:130` → `/api/compare/record`
+  - `static/js/compare/vote.js:131` → `/api/compare/record`
 
 ## `POST /api/compare/start`
 - handler: `start_comparison` — `routes/compare/compare_routes.py:71`
@@ -600,351 +639,357 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `DELETE /api/compare/{comp_id}`
 - handler: `delete_comparison` — `routes/compare/compare_routes.py:347`
 - **JS callers:**
-  - `static/js/compare/vote.js:130` → `/api/compare/record`
+  - `static/js/compare/vote.js:131` → `/api/compare/record`
 
 ## `POST /api/compare/{comp_id}/vote`
 - handler: `vote_comparison` — `routes/compare/compare_routes.py:238`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/contacts/add`
-- handler: `add_contact` — `routes/contacts/contacts_routes.py:766`
+- handler: `add_contact` — `routes/contacts/contacts_routes.py:894`
 - **JS callers:**
-  - `static/js/document.js:3960` → `/api/contacts/add`
-  - `static/js/emailLibrary.js:7815` → `/api/contacts/add`
-  - `static/js/settings.js:4074` → `/api/contacts/add`
+  - `static/js/document.js:6466` → `/api/contacts/add`
+  - `static/js/emailLibrary/menus.js:219` → `/api/contacts/add`
+  - `static/js/settings.js:3789` → `/api/contacts/add`
 
 ## `DELETE /api/contacts/clear`
-- handler: `clear_contacts` — `routes/contacts/contacts_routes.py:882`
+- handler: `clear_contacts` — `routes/contacts/contacts_routes.py:1021`
 - **JS callers:**
-  - `static/js/settings.js:3646` → `/api/contacts/clear`
+  - `static/js/settings.js:3361` → `/api/contacts/clear`
 
 ## `GET /api/contacts/config`
-- handler: `get_config` — `routes/contacts/contacts_routes.py:853`
+- handler: `get_config` — `routes/contacts/contacts_routes.py:991`
 - **JS callers:**
-  - `static/js/settings.js:3067` → `/api/contacts/config`
-  - `static/js/settings.js:3116` → `/api/contacts/config`
-  - `static/js/settings.js:3514` → `/api/contacts/config`
-  - `static/js/settings.js:3649` → `/api/contacts/config`
-  - `static/js/settings.js:4031` → `/api/contacts/config`
-  - `static/js/settings.js:4044` → `/api/contacts/config`
+  - `static/js/settings.js:2782` → `/api/contacts/config`
+  - `static/js/settings.js:2831` → `/api/contacts/config`
+  - `static/js/settings.js:3229` → `/api/contacts/config`
+  - `static/js/settings.js:3364` → `/api/contacts/config`
+  - `static/js/settings.js:3746` → `/api/contacts/config`
+  - `static/js/settings.js:3759` → `/api/contacts/config`
 
 ## `PUT /api/contacts/config`
-- handler: `update_config` — `routes/contacts/contacts_routes.py:861`
+- handler: `update_config` — `routes/contacts/contacts_routes.py:999`
 - **JS callers:**
-  - `static/js/settings.js:3067` → `/api/contacts/config`
-  - `static/js/settings.js:3116` → `/api/contacts/config`
-  - `static/js/settings.js:3514` → `/api/contacts/config`
-  - `static/js/settings.js:3649` → `/api/contacts/config`
-  - `static/js/settings.js:4031` → `/api/contacts/config`
-  - `static/js/settings.js:4044` → `/api/contacts/config`
+  - `static/js/settings.js:2782` → `/api/contacts/config`
+  - `static/js/settings.js:2831` → `/api/contacts/config`
+  - `static/js/settings.js:3229` → `/api/contacts/config`
+  - `static/js/settings.js:3364` → `/api/contacts/config`
+  - `static/js/settings.js:3746` → `/api/contacts/config`
+  - `static/js/settings.js:3759` → `/api/contacts/config`
 
 ## `GET /api/contacts/export`
-- handler: `export_contacts` — `routes/contacts/contacts_routes.py:832`
+- handler: `export_contacts` — `routes/contacts/contacts_routes.py:965`
 - **JS callers:**
-  - `static/js/settings.js:4088` → `/api/contacts/export?format=${encodeURIComponent(format)}`
-  - `static/js/settings.js:4088` → `/api/contacts/export?format=`
+  - `static/js/settings.js:3803` → `/api/contacts/export?format=${encodeURIComponent(format)}`
+  - `static/js/settings.js:3803` → `/api/contacts/export?format=`
 
 ## `POST /api/contacts/import`
-- handler: `import_vcf` — `routes/contacts/contacts_routes.py:813`
+- handler: `import_vcf` — `routes/contacts/contacts_routes.py:946`
 - **JS callers:**
-  - `static/js/settings.js:4129` → `/api/contacts/import`
+  - `static/js/settings.js:3844` → `/api/contacts/import`
 
 ## `GET /api/contacts/list`
-- handler: `list_contacts` — `routes/contacts/contacts_routes.py:742`
+- handler: `list_contacts` — `routes/contacts/contacts_routes.py:870`
 - **JS callers:**
-  - `static/js/emailLibrary.js:3642` → `/api/contacts/list`
-  - `static/js/settings.js:3515` → `/api/contacts/list`
-  - `static/js/settings.js:4163` → `/api/contacts/list`
+  - `static/js/emailLibrary/index.js:3733` → `/api/contacts/list`
+  - `static/js/settings.js:3230` → `/api/contacts/list`
+  - `static/js/settings.js:3878` → `/api/contacts/list`
 
 ## `GET /api/contacts/search`
-- handler: `search_contacts` — `routes/contacts/contacts_routes.py:748`
+- handler: `search_contacts` — `routes/contacts/contacts_routes.py:876`
 - **JS callers:**
-  - `static/js/document.js:3661` → `/api/contacts/search?q=`
+  - `static/js/document.js:6047` → `/api/contacts/search?q=`
 
 ## `DELETE /api/contacts/{uid}`
-- handler: `delete_contact` — `routes/contacts/contacts_routes.py:909`
+- handler: `delete_contact` — `routes/contacts/contacts_routes.py:1056`
 - **JS callers:**
-  - `static/js/document.js:3661` → `/api/contacts/search?q=`
-  - `static/js/document.js:3960` → `/api/contacts/add`
-  - `static/js/emailLibrary.js:3642` → `/api/contacts/list`
-  - `static/js/emailLibrary.js:7815` → `/api/contacts/add`
-  - `static/js/settings.js:3067` → `/api/contacts/config`
-  - `static/js/settings.js:3116` → `/api/contacts/config`
-  - `static/js/settings.js:3514` → `/api/contacts/config`
-  - `static/js/settings.js:3515` → `/api/contacts/list`
-  - `static/js/settings.js:3646` → `/api/contacts/clear`
-  - `static/js/settings.js:3649` → `/api/contacts/config`
-  - `static/js/settings.js:4031` → `/api/contacts/config`
-  - `static/js/settings.js:4044` → `/api/contacts/config`
-  - `static/js/settings.js:4074` → `/api/contacts/add`
-  - `static/js/settings.js:4088` → `/api/contacts/export?format=${encodeURIComponent(format)}`
-  - `static/js/settings.js:4088` → `/api/contacts/export?format=`
-  - `static/js/settings.js:4129` → `/api/contacts/import`
-  - `static/js/settings.js:4163` → `/api/contacts/list`
+  - `static/js/document.js:6047` → `/api/contacts/search?q=`
+  - `static/js/document.js:6466` → `/api/contacts/add`
+  - `static/js/emailLibrary/index.js:3733` → `/api/contacts/list`
+  - `static/js/emailLibrary/menus.js:219` → `/api/contacts/add`
+  - `static/js/settings.js:2782` → `/api/contacts/config`
+  - `static/js/settings.js:2831` → `/api/contacts/config`
+  - `static/js/settings.js:3229` → `/api/contacts/config`
+  - `static/js/settings.js:3230` → `/api/contacts/list`
+  - `static/js/settings.js:3361` → `/api/contacts/clear`
+  - `static/js/settings.js:3364` → `/api/contacts/config`
+  - `static/js/settings.js:3746` → `/api/contacts/config`
+  - `static/js/settings.js:3759` → `/api/contacts/config`
+  - `static/js/settings.js:3789` → `/api/contacts/add`
+  - `static/js/settings.js:3803` → `/api/contacts/export?format=${encodeURIComponent(format)}`
+  - `static/js/settings.js:3803` → `/api/contacts/export?format=`
+  - `static/js/settings.js:3844` → `/api/contacts/import`
+  - `static/js/settings.js:3878` → `/api/contacts/list`
 
 ## `PUT /api/contacts/{uid}`
-- handler: `edit_contact` — `routes/contacts/contacts_routes.py:891`
+- handler: `edit_contact` — `routes/contacts/contacts_routes.py:1038`
 - **JS callers:**
-  - `static/js/document.js:3661` → `/api/contacts/search?q=`
-  - `static/js/document.js:3960` → `/api/contacts/add`
-  - `static/js/emailLibrary.js:3642` → `/api/contacts/list`
-  - `static/js/emailLibrary.js:7815` → `/api/contacts/add`
-  - `static/js/settings.js:3067` → `/api/contacts/config`
-  - `static/js/settings.js:3116` → `/api/contacts/config`
-  - `static/js/settings.js:3514` → `/api/contacts/config`
-  - `static/js/settings.js:3515` → `/api/contacts/list`
-  - `static/js/settings.js:3646` → `/api/contacts/clear`
-  - `static/js/settings.js:3649` → `/api/contacts/config`
-  - `static/js/settings.js:4031` → `/api/contacts/config`
-  - `static/js/settings.js:4044` → `/api/contacts/config`
-  - `static/js/settings.js:4074` → `/api/contacts/add`
-  - `static/js/settings.js:4088` → `/api/contacts/export?format=${encodeURIComponent(format)}`
-  - `static/js/settings.js:4088` → `/api/contacts/export?format=`
-  - `static/js/settings.js:4129` → `/api/contacts/import`
-  - `static/js/settings.js:4163` → `/api/contacts/list`
+  - `static/js/document.js:6047` → `/api/contacts/search?q=`
+  - `static/js/document.js:6466` → `/api/contacts/add`
+  - `static/js/emailLibrary/index.js:3733` → `/api/contacts/list`
+  - `static/js/emailLibrary/menus.js:219` → `/api/contacts/add`
+  - `static/js/settings.js:2782` → `/api/contacts/config`
+  - `static/js/settings.js:2831` → `/api/contacts/config`
+  - `static/js/settings.js:3229` → `/api/contacts/config`
+  - `static/js/settings.js:3230` → `/api/contacts/list`
+  - `static/js/settings.js:3361` → `/api/contacts/clear`
+  - `static/js/settings.js:3364` → `/api/contacts/config`
+  - `static/js/settings.js:3746` → `/api/contacts/config`
+  - `static/js/settings.js:3759` → `/api/contacts/config`
+  - `static/js/settings.js:3789` → `/api/contacts/add`
+  - `static/js/settings.js:3803` → `/api/contacts/export?format=${encodeURIComponent(format)}`
+  - `static/js/settings.js:3803` → `/api/contacts/export?format=`
+  - `static/js/settings.js:3844` → `/api/contacts/import`
+  - `static/js/settings.js:3878` → `/api/contacts/list`
 
 ## `GET /api/conversations/topics`
-- handler: `get_conversation_topics` — `routes/history/history_routes.py:966`
+- handler: `get_conversation_topics` — `routes/history/history_routes.py:1167`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/cookbook/gpus`
-- handler: `list_gpus` — `routes/cookbook_routes.py:3142`
+- handler: `list_gpus` — `routes/cookbook_routes.py:3021`
 - **JS callers:**
-  - `static/js/cookbookRunning.js:1889` → `/api/cookbook/gpus`
-  - `static/js/cookbookServe.js:2105` → `/api/cookbook/gpus`
-  - `static/js/cookbookServe.js:2935` → `/api/cookbook/gpus`
-  - `static/js/cookbookServe.js:3458` → `/api/cookbook/gpus`
-  - `static/js/cookbookServe.js:3570` → `/api/cookbook/gpus`
+  - `static/js/cookbookRunning.js:1935` → `/api/cookbook/gpus`
+  - `static/js/cookbookServe.js:2167` → `/api/cookbook/gpus`
+  - `static/js/cookbookServe.js:3021` → `/api/cookbook/gpus`
+  - `static/js/cookbookServe.js:3562` → `/api/cookbook/gpus`
+  - `static/js/cookbookServe.js:3674` → `/api/cookbook/gpus`
 
 ## `GET /api/cookbook/hf-gguf-files`
-- handler: `hf_gguf_files` — `routes/cookbook_routes.py:3868`
+- handler: `hf_gguf_files` — `routes/cookbook_routes.py:3774`
 - **JS callers:**
-  - `static/js/cookbook.js:2403` → `/api/cookbook/hf-gguf-files?repo_id=${encodeURIComponent(repo)}`
-  - `static/js/cookbook.js:2403` → `/api/cookbook/hf-gguf-files?repo_id=`
+  - `static/js/cookbook.js:2491` → `/api/cookbook/hf-gguf-files?repo_id=`
 
 ## `GET /api/cookbook/hf-latest`
-- handler: `hf_latest` — `routes/cookbook_routes.py:3519`
+- handler: `hf_latest` — `routes/cookbook_routes.py:3398`
 - **JS callers:**
-  - `static/js/cookbook.js:2691` → `/api/cookbook/hf-latest?vram_gb=${v}&limit=10`
-  - `static/js/cookbook.js:2691` → `/api/cookbook/hf-latest?vram_gb=`
+  - `static/js/cookbook.js:2824` → `/api/cookbook/hf-latest?`
 
 ## `POST /api/cookbook/install-system-deps`
-- handler: `install_system_deps` — `routes/shell_routes.py:1810`
+- handler: `install_system_deps` — `routes/shell_routes.py:2083`
 - **JS callers:**
-  - `static/js/cookbook.js:1610` → `/api/cookbook/install-system-deps`
+  - `static/js/cookbook.js:1623` → `/api/cookbook/install-system-deps`
 
 ## `POST /api/cookbook/kill-pid`
-- handler: `kill_pid` — `routes/cookbook_routes.py:3317`
+- handler: `kill_pid` — `routes/cookbook_routes.py:3196`
 - **JS callers:**
-  - `static/js/cookbookServe.js:2829` → `/api/cookbook/kill-pid`
-  - `static/js/cookbookServe.js:3052` → `/api/cookbook/kill-pid`
-  - `static/js/cookbookServe.js:3076` → `/api/cookbook/kill-pid`
+  - `static/js/cookbookServe.js:2914` → `/api/cookbook/kill-pid`
+  - `static/js/cookbookServe.js:3138` → `/api/cookbook/kill-pid`
+  - `static/js/cookbookServe.js:3162` → `/api/cookbook/kill-pid`
 
 ## `GET /api/cookbook/ollama/library`
-- handler: `ollama_library` — `routes/cookbook_routes.py:3934`
+- handler: `ollama_library` — `routes/cookbook_routes.py:3840`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:588` → `/api/cookbook/ollama/library`
-  - `static/js/cookbook.js:2784` → `/api/cookbook/ollama/library`
+  - `static/js/cookbook-hwfit.js:618` → `/api/cookbook/ollama/library`
+  - `static/js/cookbook.js:2923` → `/api/cookbook/ollama/library`
 
 ## `GET /api/cookbook/packages`
-- handler: `list_packages` — `routes/shell_routes.py:1184`
+- handler: `list_packages` — `routes/shell_routes.py:1419`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:113` → `/api/cookbook/packages`
-  - `static/js/cookbook.js:1125` → `/api/cookbook/packages`
-  - `static/js/cookbookServe.js:836` → `/api/cookbook/packages`
-  - `static/js/galleryEditor.js:3779` → `/api/cookbook/packages`
-  - `static/js/galleryEditor.js:3791` → `/api/cookbook/packages`
+  - `static/js/cookbook-hwfit.js:138` → `/api/cookbook/packages`
+  - `static/js/cookbook.js:1131` → `/api/cookbook/packages`
+  - `static/js/cookbookServe.js:865` → `/api/cookbook/packages`
+  - `static/js/galleryEditor.js:13328` → `/api/cookbook/packages`
+  - `static/js/galleryEditor.js:13340` → `/api/cookbook/packages`
 
 ## `POST /api/cookbook/packages/install`
-- handler: `install_package` — `routes/shell_routes.py:1763`
+- handler: `install_package` — `routes/shell_routes.py:2035`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/cookbook/rebuild-engine`
-- handler: `rebuild_engine` — `routes/shell_routes.py:1931`
+- handler: `rebuild_engine` — `routes/shell_routes.py:2213`
 - **JS callers:**
-  - `static/js/cookbook.js:1796` → `/api/cookbook/rebuild-engine`
+  - `static/js/cookbook.js:1811` → `/api/cookbook/rebuild-engine`
 
 ## `POST /api/cookbook/setup`
-- handler: `server_setup` — `routes/cookbook_routes.py:2838`
+- handler: `server_setup` — `routes/cookbook_routes.py:2717`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:2651` → `/api/cookbook/setup`
+  - `static/js/cookbook-hwfit.js:2763` → `/api/cookbook/setup`
 
 ## `GET /api/cookbook/ssh-key`
-- handler: `get_cookbook_ssh_key` — `routes/cookbook_routes.py:926`
+- handler: `get_cookbook_ssh_key` — `routes/cookbook_routes.py:800`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:2396` → `/api/cookbook/ssh-key`
+  - `static/js/cookbook-hwfit.js:2506` → `/api/cookbook/ssh-key`
 
 ## `POST /api/cookbook/ssh-key`
-- handler: `generate_cookbook_ssh_key` — `routes/cookbook_routes.py:935`
+- handler: `generate_cookbook_ssh_key` — `routes/cookbook_routes.py:809`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:2396` → `/api/cookbook/ssh-key`
+  - `static/js/cookbook-hwfit.js:2506` → `/api/cookbook/ssh-key`
 
 ## `GET /api/cookbook/state`
-- handler: `get_cookbook_state` — `routes/cookbook_routes.py:3368`
+- handler: `get_cookbook_state` — `routes/cookbook_routes.py:3247`
 - **JS callers:**
-  - `static/js/cookbookRunning.js:1351` → `/api/cookbook/state`
-  - `static/js/cookbookRunning.js:1391` → `/api/cookbook/state`
-  - `static/js/cookbookRunning.js:4117` → `/api/cookbook/state`
+  - `static/js/cookbookRunning.js:1381` → `/api/cookbook/state`
+  - `static/js/cookbookRunning.js:1423` → `/api/cookbook/state`
+  - `static/js/cookbookRunning.js:4194` → `/api/cookbook/state`
 
 ## `POST /api/cookbook/state`
-- handler: `save_cookbook_state` — `routes/cookbook_routes.py:3396`
+- handler: `save_cookbook_state` — `routes/cookbook_routes.py:3275`
 - **JS callers:**
-  - `static/js/cookbookRunning.js:1351` → `/api/cookbook/state`
-  - `static/js/cookbookRunning.js:1391` → `/api/cookbook/state`
-  - `static/js/cookbookRunning.js:4117` → `/api/cookbook/state`
+  - `static/js/cookbookRunning.js:1381` → `/api/cookbook/state`
+  - `static/js/cookbookRunning.js:1423` → `/api/cookbook/state`
+  - `static/js/cookbookRunning.js:4194` → `/api/cookbook/state`
 
 ## `GET /api/cookbook/tasks/status`
-- handler: `cookbook_tasks_status` — `routes/cookbook_routes.py:4197`
+- handler: `cookbook_tasks_status` — `routes/cookbook_routes.py:4103`
 - **JS callers:**
-  - `static/js/cookbookRunning.js:4140` → `/api/cookbook/tasks/status`
+  - `static/js/cookbookRunning.js:4217` → `/api/cookbook/tasks/status`
 
 ## `POST /api/cookbook/test-ssh`
-- handler: `test_cookbook_ssh` — `routes/cookbook_routes.py:965`
+- handler: `test_cookbook_ssh` — `routes/cookbook_routes.py:839`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:2350` → `/api/cookbook/test-ssh`
+  - `static/js/cookbook-hwfit.js:2460` → `/api/cookbook/test-ssh`
 
 ## `GET /api/cookbook/vllm-recipe`
-- handler: `vllm_recipe` — `routes/cookbook_routes.py:4081`
+- handler: `vllm_recipe` — `routes/cookbook_routes.py:3987`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/cookbook/vllm-recipe-manifest`
-- handler: `vllm_recipe_manifest` — `routes/cookbook_routes.py:4021`
+- handler: `vllm_recipe_manifest` — `routes/cookbook_routes.py:3927`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/db/stats`
 - handler: `get_database_stats` — `routes/diagnostics_routes.py:57`
 - **JS callers:**
-  - `static/js/slashCommands.js:1995` → `/api/db/stats`
+  - `static/js/slashCommands.js:1999` → `/api/db/stats`
 
 ## `GET /api/default-chat`
-- handler: `get_default_chat` — `routes/model_routes.py:2415`
+- handler: `get_default_chat` — `routes/model_routes.py:2780`
 - **JS callers:**
-  - `static/app.js:224` → `/api/default-chat`
-  - `static/js/chat.js:1779` → `/api/default-chat`
-  - `static/js/emailInbox.js:1357` → `/api/default-chat`
-  - `static/js/gallery.js:1538` → `/api/default-chat`
+  - `static/app.js:232` → `/api/default-chat`
+  - `static/js/chat.js:2804` → `/api/default-chat`
+  - `static/js/editor/nl-edit.js:13` → `/api/default-chat`
+  - `static/js/emailInbox.js:1437` → `/api/default-chat`
+  - `static/js/features/notes/infrastructure/http.js:25` → `/api/default-chat`
+  - `static/js/gallery.js:1742` → `/api/default-chat`
   - `static/js/modelPicker.js:141` → `/api/default-chat`
-  - `static/js/notes.js:4493` → `/api/default-chat`
-  - `static/js/notes.js:4561` → `/api/default-chat`
-  - `static/js/sessions.js:2292` → `/api/default-chat`
+  - `static/js/sessions.js:2645` → `/api/default-chat`
   - `static/js/slashCommands.js:967` → `/api/default-chat`
-  - `static/js/tasks.js:2540` → `/api/default-chat`
+  - `static/js/tasks.js:2676` → `/api/default-chat`
 
 ## `GET /api/diagnostics/logs`
 - handler: `get_diagnostics_logs` — `routes/diagnostics_routes.py:33`
 - **JS callers:**
-  - `static/js/admin.js:3039` → `/api/diagnostics/logs?limit=${limit}`
-  - `static/js/admin.js:3039` → `/api/diagnostics/logs?limit=`
+  - `static/js/admin.js:3915` → `/api/diagnostics/logs?limit=${limit}`
+  - `static/js/admin.js:3915` → `/api/diagnostics/logs?limit=`
 
 ## `GET /api/diagnostics/services`
 - handler: `get_service_health` — `routes/diagnostics_routes.py:25`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/discover`
-- handler: `discover_local` — `routes/model_routes.py:1925`
+- handler: `discover_local` — `routes/model_routes.py:2075`
 - **JS callers:**
-  - `static/js/admin.js:1693` → `/api/discover`
+  - `static/js/admin.js:2562` → `/api/discover`
 
 ## `POST /api/document`
-- handler: `create_document` — `routes/document/document_routes.py:106`
+- handler: `create_document` — `routes/document/document_routes.py:111`
 - **JS callers:**
-  - `static/app.js:549` → `/api/document`
-  - `static/app.js:549` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
-  - `static/js/document.js:4665` → `/api/document`
-  - `static/js/document.js:4665` → `/api/document`
-  - `static/js/document.js:7033` → `/api/document`
-  - `static/js/document.js:7033` → `/api/document`
-  - `static/js/document.js:9361` → `/api/document`
-  - `static/js/document.js:9361` → `/api/document`
-  - `static/js/document.js:9580` → `/api/document`
-  - `static/js/document.js:9580` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
+  - `static/js/chat.js:3179` → `/api/document`
+  - `static/js/chat.js:3179` → `/api/document`
+  - `static/js/chat.js:9402` → `/api/document`
+  - `static/js/chat.js:9402` → `/api/document`
+  - `static/js/document.js:7296` → `/api/document`
+  - `static/js/document.js:7296` → `/api/document`
+  - `static/js/document.js:12003` → `/api/document`
+  - `static/js/document.js:12003` → `/api/document`
+  - `static/js/document.js:12031` → `/api/document`
+  - `static/js/document.js:12031` → `/api/document`
+  - `static/js/document.js:14949` → `/api/document`
+  - `static/js/document.js:14949` → `/api/document`
+  - `static/js/document.js:15193` → `/api/document`
+  - `static/js/document.js:15193` → `/api/document`
+  - `static/js/documentLibrary.js:1309` → `/api/document`
+  - `static/js/documentLibrary.js:1309` → `/api/document`
+  - `static/js/documentLibrary.js:1786` → `/api/document`
+  - `static/js/documentLibrary.js:1786` → `/api/document`
+  - `static/js/documentLibrary.js:1796` → `/api/document`
+  - `static/js/documentLibrary.js:1796` → `/api/document`
   - … +4 more
 
 ## `POST /api/document`
 - handler: `create_document` — `tests/test_codex_ssh_host_validation.py:232`
 - **JS callers:**
-  - `static/app.js:549` → `/api/document`
-  - `static/app.js:549` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:2121` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
-  - `static/js/chat.js:7788` → `/api/document`
-  - `static/js/document.js:4665` → `/api/document`
-  - `static/js/document.js:4665` → `/api/document`
-  - `static/js/document.js:7033` → `/api/document`
-  - `static/js/document.js:7033` → `/api/document`
-  - `static/js/document.js:9361` → `/api/document`
-  - `static/js/document.js:9361` → `/api/document`
-  - `static/js/document.js:9580` → `/api/document`
-  - `static/js/document.js:9580` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1093` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1543` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
-  - `static/js/documentLibrary.js:1553` → `/api/document`
+  - `static/js/chat.js:3179` → `/api/document`
+  - `static/js/chat.js:3179` → `/api/document`
+  - `static/js/chat.js:9402` → `/api/document`
+  - `static/js/chat.js:9402` → `/api/document`
+  - `static/js/document.js:7296` → `/api/document`
+  - `static/js/document.js:7296` → `/api/document`
+  - `static/js/document.js:12003` → `/api/document`
+  - `static/js/document.js:12003` → `/api/document`
+  - `static/js/document.js:12031` → `/api/document`
+  - `static/js/document.js:12031` → `/api/document`
+  - `static/js/document.js:14949` → `/api/document`
+  - `static/js/document.js:14949` → `/api/document`
+  - `static/js/document.js:15193` → `/api/document`
+  - `static/js/document.js:15193` → `/api/document`
+  - `static/js/documentLibrary.js:1309` → `/api/document`
+  - `static/js/documentLibrary.js:1309` → `/api/document`
+  - `static/js/documentLibrary.js:1786` → `/api/document`
+  - `static/js/documentLibrary.js:1786` → `/api/document`
+  - `static/js/documentLibrary.js:1796` → `/api/document`
+  - `static/js/documentLibrary.js:1796` → `/api/document`
   - … +4 more
 
 ## `DELETE /api/document/{doc_id}`
-- handler: `delete_document` — `routes/document/document_routes.py:738`
+- handler: `delete_document` — `routes/document/document_routes.py:962`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}`
-- handler: `get_document` — `routes/document/document_routes.py:470`
+- handler: `get_document` — `routes/document/document_routes.py:660`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PATCH /api/document/{doc_id}`
-- handler: `patch_document` — `routes/document/document_routes.py:699`
+- handler: `patch_document` — `routes/document/document_routes.py:923`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PUT /api/document/{doc_id}`
-- handler: `update_document` — `routes/document/document_routes.py:624`
+- handler: `update_document` — `routes/document/document_routes.py:848`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/document/{doc_id}/ai-fill-annotations`
-- handler: `ai_fill_annotations` — `routes/document/document_routes.py:1239`
+- handler: `ai_fill_annotations` — `routes/document/document_routes.py:1463`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/document/{doc_id}/archive`
-- handler: `archive_document` — `routes/document/document_routes.py:484`
+- handler: `archive_document` — `routes/document/document_routes.py:700`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/document/{doc_id}/convert-original/{target}`
+- handler: `convert_original_document` — `routes/document/document_routes.py:432`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/export-pdf`
-- handler: `export_pdf` — `routes/document/document_routes.py:1479`
+- handler: `export_pdf` — `routes/document/document_routes.py:1703`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/document/{doc_id}/export-pdf/preview`
-- handler: `export_pdf_preview` — `routes/document/document_routes.py:1065`
+- handler: `export_pdf_preview` — `routes/document/document_routes.py:1289`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/document/{doc_id}/extract-pdf-text`
-- handler: `extract_pdf_text` — `routes/document/document_routes.py:500`
+- handler: `extract_pdf_text` — `routes/document/document_routes.py:716`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/page/{page_no}.png`
-- handler: `render_page_png` — `routes/document/document_routes.py:1198`
+- handler: `render_page_png` — `routes/document/document_routes.py:1422`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/document/{doc_id}/prepare-signed-reply`
-- handler: `prepare_signed_reply` — `routes/document/document_routes.py:1615`
+- handler: `prepare_signed_reply` — `routes/document/document_routes.py:1839`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/document/{doc_id}/render-docx`
+- handler: `render_docx` — `routes/document/document_routes.py:402`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/render-pages`
-- handler: `render_pages` — `routes/document/document_routes.py:1127`
+- handler: `render_pages` — `routes/document/document_routes.py:1351`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/render-pdf`
-- handler: `render_pdf` — `routes/document/document_routes.py:1379`
+- handler: `render_pdf` — `routes/document/document_routes.py:1603`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/render-pdf`
@@ -952,435 +997,527 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/document/{doc_id}/restore/{num}`
-- handler: `restore_version` — `routes/document/document_routes.py:812`
+- handler: `restore_version` — `routes/document/document_routes.py:1036`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/version/{num}`
-- handler: `get_version` — `routes/document/document_routes.py:791`
+- handler: `get_version` — `routes/document/document_routes.py:1015`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/document/{doc_id}/versions`
-- handler: `list_versions` — `routes/document/document_routes.py:766`
+- handler: `list_versions` — `routes/document/document_routes.py:990`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/document/{doc_id}/visual-report`
+- handler: `document_visual_report` — `routes/document/document_routes.py:674`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/documents/ai-tidy`
-- handler: `ai_tidy_documents` — `routes/document/document_routes.py:968`
+- handler: `ai_tidy_documents` — `routes/document/document_routes.py:1192`
 - **JS callers:**
-  - `static/js/documentLibrary.js:3503` → `/api/documents/ai-tidy`
+  - `static/js/documentLibrary.js:3569` → `/api/documents/ai-tidy`
 
 ## `POST /api/documents/export-zip`
-- handler: `documents_export_zip` — `routes/document/document_routes.py:560`
+- handler: `documents_export_zip` — `routes/document/document_routes.py:776`
 - **JS callers:**
-  - `static/js/documentLibrary.js:1309` → `/api/documents/export-zip`
+  - `static/js/documentLibrary.js:1533` → `/api/documents/export-zip`
+
+## `POST /api/documents/import-docx`
+- handler: `import_docx` — `routes/document/document_routes.py:329`
+- **JS callers:**
+  - `static/js/document.js:15178` → `/api/documents/import-docx`
+  - `static/js/documentLibrary.js:1763` → `/api/documents/import-docx`
 
 ## `POST /api/documents/import-pdf`
-- handler: `import_pdf` — `routes/document/document_routes.py:222`
+- handler: `import_pdf` — `routes/document/document_routes.py:227`
 - **JS callers:**
-  - `static/js/chat.js:7783` → `/api/documents/import-pdf`
-  - `static/js/document.js:9565` → `/api/documents/import-pdf`
-  - `static/js/documentLibrary.js:1520` → `/api/documents/import-pdf`
+  - `static/js/chat.js:9397` → `/api/documents/import-pdf`
+  - `static/js/document.js:15169` → `/api/documents/import-pdf`
+  - `static/js/document.js:16047` → `/api/documents/import-pdf`
+  - `static/js/documentLibrary.js:1745` → `/api/documents/import-pdf`
 
 ## `GET /api/documents/library`
-- handler: `documents_library` — `routes/document/document_routes.py:324`
+- handler: `documents_library` — `routes/document/document_routes.py:513`
 - **JS callers:**
-  - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
-  - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
+  - `static/js/document.js:5401` → `/api/documents/library?`
+  - `static/js/document.js:5401` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:458` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:458` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:2591` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/documentLibrary.js:2591` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/sessions.js:3955` → `/api/documents/library?`
+  - `static/js/sessions.js:3955` → `/api/documents/library?`
+  - `static/js/slashCommands.js:4833` → `/api/documents/library?limit=1&sort=recent`
+  - `static/js/slashCommands.js:4833` → `/api/documents/library?limit=1&sort=recent`
 
 ## `GET /api/documents/library`
 - handler: `documents_library` — `tests/test_codex_ssh_host_validation.py:108`
 - **JS callers:**
-  - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
-  - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
+  - `static/js/document.js:5401` → `/api/documents/library?`
+  - `static/js/document.js:5401` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:458` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:458` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:2591` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/documentLibrary.js:2591` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/sessions.js:3955` → `/api/documents/library?`
+  - `static/js/sessions.js:3955` → `/api/documents/library?`
+  - `static/js/slashCommands.js:4833` → `/api/documents/library?limit=1&sort=recent`
+  - `static/js/slashCommands.js:4833` → `/api/documents/library?limit=1&sort=recent`
 
 ## `POST /api/documents/tidy`
-- handler: `tidy_documents` — `routes/document/document_routes.py:853`
+- handler: `tidy_documents` — `routes/document/document_routes.py:1077`
 - **JS callers:**
-  - `static/js/documentLibrary.js:3492` → `/api/documents/tidy`
+  - `static/js/documentLibrary.js:3558` → `/api/documents/tidy`
 
 ## `GET /api/documents/{session_id}`
-- handler: `list_documents` — `routes/document/document_routes.py:446`
+- handler: `list_documents` — `routes/document/document_routes.py:636`
 - **JS callers:**
-  - `static/js/chat.js:7783` → `/api/documents/import-pdf`
-  - `static/js/document.js:3374` → `/api/documents/library?`
-  - `static/js/document.js:9565` → `/api/documents/import-pdf`
-  - `static/js/documentLibrary.js:334` → `/api/documents/library?`
-  - `static/js/documentLibrary.js:1309` → `/api/documents/export-zip`
-  - `static/js/documentLibrary.js:1520` → `/api/documents/import-pdf`
-  - `static/js/documentLibrary.js:2390` → `/api/documents/library?archived=true&limit=50`
-  - `static/js/documentLibrary.js:3492` → `/api/documents/tidy`
-  - `static/js/documentLibrary.js:3503` → `/api/documents/ai-tidy`
-  - `static/js/sessions.js:3525` → `/api/documents/library?`
-  - `static/js/slashCommands.js:4829` → `/api/documents/library?limit=1&sort=recent`
+  - `static/js/chat.js:9397` → `/api/documents/import-pdf`
+  - `static/js/document.js:5401` → `/api/documents/library?`
+  - `static/js/document.js:15169` → `/api/documents/import-pdf`
+  - `static/js/document.js:15178` → `/api/documents/import-docx`
+  - `static/js/document.js:16047` → `/api/documents/import-pdf`
+  - `static/js/documentLibrary.js:458` → `/api/documents/library?`
+  - `static/js/documentLibrary.js:1533` → `/api/documents/export-zip`
+  - `static/js/documentLibrary.js:1745` → `/api/documents/import-pdf`
+  - `static/js/documentLibrary.js:1763` → `/api/documents/import-docx`
+  - `static/js/documentLibrary.js:2591` → `/api/documents/library?archived=true&limit=50`
+  - `static/js/documentLibrary.js:3558` → `/api/documents/tidy`
+  - `static/js/documentLibrary.js:3569` → `/api/documents/ai-tidy`
+  - `static/js/sessions.js:3955` → `/api/documents/library?`
+  - `static/js/slashCommands.js:4833` → `/api/documents/library?limit=1&sort=recent`
 
 ## `GET /api/editor-drafts`
-- handler: `list_drafts` — `routes/editor_draft_routes.py:82`
+- handler: `list_drafts` — `routes/editor_draft_routes.py:132`
 - **JS callers:**
-  - `static/js/gallery.js:931` → `/api/editor-drafts`
-  - `static/js/galleryEditor.js:1127` → `/api/editor-drafts`
-  - `static/js/galleryEditor.js:1168` → `/api/editor-drafts`
+  - `static/js/gallery.js:1033` → `/api/editor-drafts`
+  - `static/js/galleryEditor.js:4725` → `/api/editor-drafts`
+  - `static/js/galleryEditor.js:4737` → `/api/editor-drafts`
+  - `static/js/galleryEditor.js:4816` → `/api/editor-drafts`
 
 ## `POST /api/editor-drafts`
-- handler: `create_draft` — `routes/editor_draft_routes.py:112`
+- handler: `create_draft` — `routes/editor_draft_routes.py:162`
 - **JS callers:**
-  - `static/js/gallery.js:931` → `/api/editor-drafts`
-  - `static/js/galleryEditor.js:1127` → `/api/editor-drafts`
-  - `static/js/galleryEditor.js:1168` → `/api/editor-drafts`
+  - `static/js/gallery.js:1033` → `/api/editor-drafts`
+  - `static/js/galleryEditor.js:4725` → `/api/editor-drafts`
+  - `static/js/galleryEditor.js:4737` → `/api/editor-drafts`
+  - `static/js/galleryEditor.js:4816` → `/api/editor-drafts`
 
 ## `DELETE /api/editor-drafts/{draft_id}`
-- handler: `delete_draft` — `routes/editor_draft_routes.py:170`
+- handler: `delete_draft` — `routes/editor_draft_routes.py:229`
 - **JS callers:**
-  - `static/js/galleryEditor.js:1113` → `/api/editor-drafts/${encodeURIComponent(state.draftId)}`
-  - `static/js/galleryEditor.js:1153` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
-  - `static/js/galleryEditor.js:1182` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+  - `static/js/galleryEditor.js:4717` → `/api/editor-drafts/${encodeURIComponent(draftIdAtStart)}`
+  - `static/js/galleryEditor.js:4801` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+  - `static/js/galleryEditor.js:4830` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
 
 ## `GET /api/editor-drafts/{draft_id}`
-- handler: `get_draft` — `routes/editor_draft_routes.py:95`
+- handler: `get_draft` — `routes/editor_draft_routes.py:145`
 - **JS callers:**
-  - `static/js/galleryEditor.js:1113` → `/api/editor-drafts/${encodeURIComponent(state.draftId)}`
-  - `static/js/galleryEditor.js:1153` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
-  - `static/js/galleryEditor.js:1182` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+  - `static/js/galleryEditor.js:4717` → `/api/editor-drafts/${encodeURIComponent(draftIdAtStart)}`
+  - `static/js/galleryEditor.js:4801` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+  - `static/js/galleryEditor.js:4830` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
 
 ## `PUT /api/editor-drafts/{draft_id}`
-- handler: `update_draft` — `routes/editor_draft_routes.py:138`
+- handler: `update_draft` — `routes/editor_draft_routes.py:193`
 - **JS callers:**
-  - `static/js/galleryEditor.js:1113` → `/api/editor-drafts/${encodeURIComponent(state.draftId)}`
-  - `static/js/galleryEditor.js:1153` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
-  - `static/js/galleryEditor.js:1182` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+  - `static/js/galleryEditor.js:4717` → `/api/editor-drafts/${encodeURIComponent(draftIdAtStart)}`
+  - `static/js/galleryEditor.js:4801` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+  - `static/js/galleryEditor.js:4830` → `/api/editor-drafts/${encodeURIComponent(draftId)}`
+
+## `POST /api/editor/agent`
+- handler: `editor_agent` — `routes/editor_agent_routes.py:1688`
+- **JS callers:**
+  - `static/js/editor/editor-agent.js:21` → `/api/editor/agent`
+  - `static/js/galleryEditor.js:12867` → `/api/editor/agent`
+
+## `GET /api/editor/agent-models`
+- handler: `editor_agent_models` — `routes/editor_agent_routes.py:2041`
+- **JS callers:**
+  - `static/js/editor/ai-models.js:202` → `/api/editor/agent-models`
+
+## `POST /api/editor/bridge/await`
+- handler: `bridge_await` — `routes/editor_agent_routes.py:1626`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `POST /api/editor/bridge/command`
+- handler: `bridge_command` — `routes/editor_agent_routes.py:1534`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/editor/bridge/events`
+- handler: `bridge_events` — `routes/editor_agent_routes.py:1581`
+- **JS callers:**
+  - `static/js/editor/editor-bridge.js:27` → `/api/editor/bridge/events?session=`
+
+## `POST /api/editor/bridge/result`
+- handler: `bridge_result` — `routes/editor_agent_routes.py:1602`
+- **JS callers:**
+  - `static/js/editor/editor-bridge.js:28` → `/api/editor/bridge/result`
+
+## `GET /api/editor/image-models`
+- handler: `editor_image_models` — `routes/editor_agent_routes.py:1977`
+- **JS callers:**
+  - `static/js/editor/ai-models.js:251` → `/api/editor/image-models`
+  - `static/js/gallery.js:2652` → `/api/editor/image-models`
+
+## `POST /api/editor/plan`
+- handler: `plan` — `routes/editor_agent_routes.py:1429`
+- **JS callers:**
+  - `static/js/editor/nl-edit.js:11` → `/api/editor/plan`
+
+## `POST /api/editor/self-check`
+- handler: `editor_self_check` — `routes/editor_agent_routes.py:2079`
+- **JS callers:**
+  - `static/js/galleryEditor.js:2651` → `/api/editor/self-check`
+
+## `GET /api/editor/style-guide`
+- handler: `style_guide_route` — `routes/editor_agent_routes.py:1968`
+- **JS callers:**
+  - `static/js/editor/nl-edit.js:161` → `/api/editor/style-guide`
+  - `static/js/editor/nl-edit.js:452` → `/api/editor/style-guide`
 
 ## `GET /api/email/accounts`
-- handler: `list_email_accounts` — `routes/email_routes.py:5605`
+- handler: `list_email_accounts` — `routes/email/email_routes.py:7384`
 - **JS callers:**
-  - `static/js/document.js:88` → `/api/email/accounts`
-  - `static/js/emailLibrary.js:2314` → `/api/email/accounts`
-  - `static/js/emailLibrary.js:3172` → `/api/email/accounts`
-  - `static/js/settings.js:2310` → `/api/email/accounts`
-  - `static/js/settings.js:2320` → `/api/email/accounts`
-  - `static/js/settings.js:2424` → `/api/email/accounts`
-  - `static/js/settings.js:2757` → `/api/email/accounts`
-  - `static/js/settings.js:2938` → `/api/email/accounts`
-  - `static/js/settings.js:2990` → `/api/email/accounts`
-  - `static/js/settings.js:3516` → `/api/email/accounts`
-  - `static/js/settings.js:4285` → `/api/email/accounts`
-  - `static/js/settings.js:4576` → `/api/email/accounts`
-  - `static/js/settings.js:4759` → `/api/email/accounts`
-  - `static/js/tasks.js:257` → `/api/email/accounts`
+  - `static/js/document.js:99` → `/api/email/accounts`
+  - `static/js/emailLibrary/index.js:2136` → `/api/email/accounts`
+  - `static/js/emailLibrary/index.js:2327` → `/api/email/accounts`
+  - `static/js/emailLibrary/index.js:3130` → `/api/email/accounts`
+  - `static/js/settings.js:2023` → `/api/email/accounts`
+  - `static/js/settings.js:2033` → `/api/email/accounts`
+  - `static/js/settings.js:2137` → `/api/email/accounts`
+  - `static/js/settings.js:2472` → `/api/email/accounts`
+  - `static/js/settings.js:2653` → `/api/email/accounts`
+  - `static/js/settings.js:2705` → `/api/email/accounts`
+  - `static/js/settings.js:3231` → `/api/email/accounts`
+  - `static/js/settings.js:4000` → `/api/email/accounts`
+  - `static/js/settings.js:4291` → `/api/email/accounts`
+  - `static/js/settings.js:4474` → `/api/email/accounts`
+  - `static/js/tasks.js:264` → `/api/email/accounts`
 
 ## `POST /api/email/accounts`
-- handler: `create_email_account` — `routes/email_routes.py:5649`
+- handler: `create_email_account` — `routes/email/email_routes.py:7428`
 - **JS callers:**
-  - `static/js/document.js:88` → `/api/email/accounts`
-  - `static/js/emailLibrary.js:2314` → `/api/email/accounts`
-  - `static/js/emailLibrary.js:3172` → `/api/email/accounts`
-  - `static/js/settings.js:2310` → `/api/email/accounts`
-  - `static/js/settings.js:2320` → `/api/email/accounts`
-  - `static/js/settings.js:2424` → `/api/email/accounts`
-  - `static/js/settings.js:2757` → `/api/email/accounts`
-  - `static/js/settings.js:2938` → `/api/email/accounts`
-  - `static/js/settings.js:2990` → `/api/email/accounts`
-  - `static/js/settings.js:3516` → `/api/email/accounts`
-  - `static/js/settings.js:4285` → `/api/email/accounts`
-  - `static/js/settings.js:4576` → `/api/email/accounts`
-  - `static/js/settings.js:4759` → `/api/email/accounts`
-  - `static/js/tasks.js:257` → `/api/email/accounts`
+  - `static/js/document.js:99` → `/api/email/accounts`
+  - `static/js/emailLibrary/index.js:2136` → `/api/email/accounts`
+  - `static/js/emailLibrary/index.js:2327` → `/api/email/accounts`
+  - `static/js/emailLibrary/index.js:3130` → `/api/email/accounts`
+  - `static/js/settings.js:2023` → `/api/email/accounts`
+  - `static/js/settings.js:2033` → `/api/email/accounts`
+  - `static/js/settings.js:2137` → `/api/email/accounts`
+  - `static/js/settings.js:2472` → `/api/email/accounts`
+  - `static/js/settings.js:2653` → `/api/email/accounts`
+  - `static/js/settings.js:2705` → `/api/email/accounts`
+  - `static/js/settings.js:3231` → `/api/email/accounts`
+  - `static/js/settings.js:4000` → `/api/email/accounts`
+  - `static/js/settings.js:4291` → `/api/email/accounts`
+  - `static/js/settings.js:4474` → `/api/email/accounts`
+  - `static/js/tasks.js:264` → `/api/email/accounts`
 
 ## `POST /api/email/accounts/test`
-- handler: `test_account_config` — `routes/email_routes.py:5781`
+- handler: `test_account_config` — `routes/email/email_routes.py:7722`
 - **JS callers:**
-  - `static/js/settings.js:4700` → `/api/email/accounts/test`
+  - `static/js/settings.js:4415` → `/api/email/accounts/test`
 
 ## `DELETE /api/email/accounts/{account_id}`
-- handler: `delete_email_account` — `routes/email_routes.py:5742`
+- handler: `delete_email_account` — `routes/email/email_routes.py:7531`
 - **JS callers:**
-  - `static/js/settings.js:2799` → `/api/email/accounts/${id}`
-  - `static/js/settings.js:3651` → `/api/email/accounts/${id}`
-  - `static/js/settings.js:4700` → `/api/email/accounts/test`
+  - `static/js/settings.js:2514` → `/api/email/accounts/${id}`
+  - `static/js/settings.js:3366` → `/api/email/accounts/${id}`
+  - `static/js/settings.js:4415` → `/api/email/accounts/test`
 
 ## `PUT /api/email/accounts/{account_id}`
-- handler: `update_email_account` — `routes/email_routes.py:5704`
+- handler: `update_email_account` — `routes/email/email_routes.py:7488`
 - **JS callers:**
-  - `static/js/settings.js:2799` → `/api/email/accounts/${id}`
-  - `static/js/settings.js:3651` → `/api/email/accounts/${id}`
-  - `static/js/settings.js:4700` → `/api/email/accounts/test`
+  - `static/js/settings.js:2514` → `/api/email/accounts/${id}`
+  - `static/js/settings.js:3366` → `/api/email/accounts/${id}`
+  - `static/js/settings.js:4415` → `/api/email/accounts/test`
 
 ## `POST /api/email/accounts/{account_id}/set-default`
-- handler: `set_default_account` — `routes/email_routes.py:5987`
+- handler: `set_default_account` — `routes/email/email_routes.py:7787`
 - **JS callers:**
-  - `static/js/settings.js:2789` → `/api/email/accounts/${id}/set-default`
+  - `static/js/settings.js:2504` → `/api/email/accounts/${id}/set-default`
 
 ## `POST /api/email/ai-reply`
-- handler: `ai_reply` — `routes/email_routes.py:5148`
+- handler: `ai_reply` — `routes/email/email_routes.py:6853`
 - **JS callers:**
-  - `static/js/document.js:4264` → `/api/email/ai-reply`
-  - `static/js/emailInbox.js:842` → `/api/email/ai-reply`
+  - `static/js/document.js:6823` → `/api/email/ai-reply`
+  - `static/js/emailInbox.js:872` → `/api/email/ai-reply`
 
 ## `POST /api/email/archive/{uid}`
-- handler: `archive_email` — `routes/email_routes.py:3782`
+- handler: `archive_email` — `routes/email/email_routes.py:5258`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/attachment-as-doc/{uid}/{index}`
-- handler: `attachment_as_doc` — `routes/email_routes.py:3432`
+- handler: `attachment_as_doc` — `routes/email/email_routes.py:4810`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/attachment-path/{uid}/{index}`
-- handler: `get_attachment_path` — `routes/email_routes.py:3711`
+- handler: `get_attachment_path` — `routes/email/email_routes.py:5171`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/attachment/{uid}/{index}`
-- handler: `download_attachment` — `routes/email_routes.py:3301`
+- handler: `download_attachment` — `routes/email/email_routes.py:4122`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `POST /api/email/attachments-download-bulk`
+- handler: `download_bulk_attachments` — `routes/email/email_routes.py:4216`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/attachments-download/{uid}`
-- handler: `download_all_attachments` — `routes/email_routes.py:3328`
+- handler: `download_all_attachments` — `routes/email/email_routes.py:4163`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/attachments/{uid}`
-- handler: `list_attachments` — `routes/email_routes.py:3280`
+- handler: `list_attachments` — `routes/email/email_routes.py:4094`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/clear-answered/{uid}`
-- handler: `clear_answered` — `routes/email_routes.py:4005`
+- handler: `clear_answered` — `routes/email/email_routes.py:5639`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/compose-from-attachment/{uid}/{index}`
-- handler: `compose_from_attachment` — `routes/email_routes.py:4192`
+- handler: `compose_from_attachment` — `routes/email/email_routes.py:5826`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/compose-from-odysseus`
-- handler: `compose_from_odysseus` — `routes/email_routes.py:4116`
+- handler: `compose_from_odysseus` — `routes/email/email_routes.py:5750`
 - **JS callers:**
-  - `static/js/document.js:3248` → `/api/email/compose-from-odysseus`
+  - `static/js/document.js:5275` → `/api/email/compose-from-odysseus`
 
 ## `POST /api/email/compose-from-odysseus-zip`
-- handler: `compose_from_odysseus_zip` — `routes/email_routes.py:4140`
+- handler: `compose_from_odysseus_zip` — `routes/email/email_routes.py:5774`
 - **JS callers:**
-  - `static/js/document.js:3269` → `/api/email/compose-from-odysseus-zip`
+  - `static/js/document.js:5296` → `/api/email/compose-from-odysseus-zip`
 
 ## `POST /api/email/compose-upload`
-- handler: `compose_upload` — `routes/email_routes.py:4020`
+- handler: `compose_upload` — `routes/email/email_routes.py:5654`
 - **JS callers:**
-  - `static/js/document.js:3136` → `/api/email/compose-upload`
+  - `static/js/document.js:5163` → `/api/email/compose-upload`
 
 ## `DELETE /api/email/compose-upload/{token}`
-- handler: `delete_compose_upload` — `routes/email_routes.py:4232`
+- handler: `delete_compose_upload` — `routes/email/email_routes.py:5866`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/config`
-- handler: `get_email_config` — `routes/email_routes.py:5467`
+- handler: `get_email_config` — `routes/email/email_routes.py:7237`
 - **JS callers:**
-  - `static/js/emailLibrary.js:86` → `/api/email/config`
-  - `static/js/emailLibrary.js:332` → `/api/email/config`
-  - `static/js/emailLibrary.js:8392` → `/api/email/config`
-  - `static/js/settings.js:2309` → `/api/email/config`
-  - `static/js/settings.js:3052` → `/api/email/config`
-  - `static/js/settings.js:3092` → `/api/email/config`
+  - `static/js/emailLibrary/aiReply.js:31` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:63` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:262` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:661` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:721` → `/api/email/config`
+  - `static/js/settings.js:2022` → `/api/email/config`
+  - `static/js/settings.js:2767` → `/api/email/config`
+  - `static/js/settings.js:2807` → `/api/email/config`
 
 ## `PUT /api/email/config`
-- handler: `update_email_config` — `routes/email_routes.py:5510`
+- handler: `update_email_config` — `routes/email/email_routes.py:7281`
 - **JS callers:**
-  - `static/js/emailLibrary.js:86` → `/api/email/config`
-  - `static/js/emailLibrary.js:332` → `/api/email/config`
-  - `static/js/emailLibrary.js:8392` → `/api/email/config`
-  - `static/js/settings.js:2309` → `/api/email/config`
-  - `static/js/settings.js:3052` → `/api/email/config`
-  - `static/js/settings.js:3092` → `/api/email/config`
+  - `static/js/emailLibrary/aiReply.js:31` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:63` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:262` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:661` → `/api/email/config`
+  - `static/js/emailLibrary/settingsPage.js:721` → `/api/email/config`
+  - `static/js/settings.js:2022` → `/api/email/config`
+  - `static/js/settings.js:2767` → `/api/email/config`
+  - `static/js/settings.js:2807` → `/api/email/config`
 
 ## `GET /api/email/contacts`
-- handler: `list_contacts` — `routes/email_routes.py:2725`
+- handler: `list_contacts` — `routes/email/email_routes.py:3492`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
+## `POST /api/email/delete-bulk`
+- handler: `delete_email_bulk` — `routes/email/email_routes.py:5343`
+- **JS callers:**
+  - `static/js/emailLibrary/menus.js:710` → `/api/email/delete-bulk`
+  - `static/js/emailLibrary/menus.js:831` → `/api/email/delete-bulk`
+
 ## `DELETE /api/email/delete-permanent/{uid}`
-- handler: `delete_email_permanent` — `routes/email_routes.py:3812`
+- handler: `delete_email_permanent` — `routes/email/email_routes.py:5327`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/email/delete/{uid}`
-- handler: `delete_email` — `routes/email_routes.py:3797`
+- handler: `delete_email` — `routes/email/email_routes.py:5276`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/draft`
-- handler: `save_draft` — `routes/email_routes.py:4723`
+- handler: `save_draft` — `routes/email/email_routes.py:6390`
 - **JS callers:**
-  - `static/js/document.js:4025` → `/api/email/draft`
+  - `static/js/document.js:6276` → `/api/email/draft`
+  - `static/js/document.js:6536` → `/api/email/draft`
 
 ## `POST /api/email/extract-style`
-- handler: `extract_writing_style` — `routes/email_routes.py:4775`
+- handler: `extract_writing_style` — `routes/email/email_routes.py:6471`
 - **JS callers:**
-  - `static/js/emailLibrary.js:407` → `/api/email/extract-style`
-  - `static/js/settings.js:3157` → `/api/email/extract-style`
+  - `static/js/emailLibrary/settingsPage.js:845` → `/api/email/extract-style`
+  - `static/js/settings.js:2872` → `/api/email/extract-style`
 
 ## `POST /api/email/flag/{uid}`
-- handler: `flag_email` — `routes/email_routes.py:3748`
+- handler: `flag_email` — `routes/email/email_routes.py:5218`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/folders`
-- handler: `list_folders` — `routes/email_routes.py:3918`
+- handler: `list_folders` — `routes/email/email_routes.py:5552`
 - **JS callers:**
-  - `static/js/emailInbox.js:441` → `/api/email/folders`
-  - `static/js/emailLibrary.js:3472` → `/api/email/folders`
+  - `static/js/emailInbox.js:454` → `/api/email/folders`
+  - `static/js/emailLibrary/index.js:3521` → `/api/email/folders`
 
 ## `GET /api/email/inline-image/{uid}`
-- handler: `inline_image` — `routes/email_routes.py:3381`
+- handler: `inline_image` — `routes/email/email_routes.py:4759`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/list`
-- handler: `list_emails` — `routes/email_routes.py:2327`
+- handler: `list_emails` — `routes/email/email_routes.py:2888`
 - **JS callers:**
-  - `static/js/emailInbox.js:415` → `/api/email/list?folder=`
-  - `static/js/emailInbox.js:422` → `/api/email/list?folder=`
-  - `static/js/emailLibrary.js:2358` → `/api/email/list`
-  - `static/js/emailLibrary.js:2402` → `/api/email/list`
-  - `static/js/emailLibrary.js:4340` → `/api/email/list?`
-  - `static/js/emailLibrary.js:4662` → `/api/email/list?folder=`
-  - `static/js/emailLibrary.js:4773` → `/api/email/list?folder=`
-  - `static/js/emailLibrary.js:4800` → `/api/email/list?folder=`
+  - `static/js/emailInbox.js:428` → `/api/email/list?folder=`
+  - `static/js/emailInbox.js:435` → `/api/email/list?folder=`
+  - `static/js/emailLibrary/attachments.js:7` → `/api/email/list`
+  - `static/js/emailLibrary/index.js:2176` → `/api/email/list`
+  - `static/js/emailLibrary/index.js:2220` → `/api/email/list`
+  - `static/js/emailLibrary/index.js:4560` → `/api/email/list?`
+  - `static/js/emailLibrary/index.js:5006` → `/api/email/list?folder=`
+  - `static/js/emailLibrary/index.js:5133` → `/api/email/list?folder=`
+  - `static/js/emailLibrary/index.js:5161` → `/api/email/list?folder=`
 
 ## `POST /api/email/mark-answered/{uid}`
-- handler: `mark_answered` — `routes/email_routes.py:3989`
+- handler: `mark_answered` — `routes/email/email_routes.py:5623`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/mark-read/{uid}`
-- handler: `mark_read` — `routes/email_routes.py:3765`
+- handler: `mark_read` — `routes/email/email_routes.py:5238`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/mark-unread/{uid}`
-- handler: `mark_unread` — `routes/email_routes.py:3733`
+- handler: `mark_unread` — `routes/email/email_routes.py:5203`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `POST /api/email/messages-download-bulk`
+- handler: `download_bulk_messages` — `routes/email/email_routes.py:4351`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/move/{uid}`
-- handler: `move_email` — `routes/email_routes.py:3903`
+- handler: `move_email` — `routes/email/email_routes.py:5534`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/oauth/google/authorize`
-- handler: `google_oauth_authorize` — `routes/email_routes.py:6010`
+- handler: `google_oauth_authorize` — `routes/email/email_routes.py:7810`
 - **JS callers:**
-  - `static/js/settings.js:2944` → `/api/email/oauth/google/authorize?account_id=`
-  - `static/js/settings.js:4582` → `/api/email/oauth/google/authorize?account_id=`
+  - `static/js/settings.js:2659` → `/api/email/oauth/google/authorize?account_id=`
+  - `static/js/settings.js:4297` → `/api/email/oauth/google/authorize?account_id=`
 
 ## `GET /api/email/oauth/google/callback`
-- handler: `google_oauth_callback` — `routes/email_routes.py:6034`
+- handler: `google_oauth_callback` — `routes/email/email_routes.py:7834`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/email/odysseus/reminders`
-- handler: `delete_odysseus_reminder_emails` — `routes/email_routes.py:3828`
+- handler: `delete_odysseus_reminder_emails` — `routes/email/email_routes.py:5459`
 - **JS callers:**
-  - `static/js/emailLibrary.js:2839` → `/api/email/odysseus/reminders?permanent=1`
+  - `static/js/emailLibrary/index.js:2776` → `/api/email/odysseus/reminders?permanent=1`
 
 ## `GET /api/email/pending`
-- handler: `list_pending_agent_drafts` — `routes/email_routes.py:4407`
+- handler: `list_pending_agent_drafts` — `routes/email/email_routes.py:6041`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/email/pending/{sid}`
-- handler: `cancel_agent_draft` — `routes/email_routes.py:4450`
+- handler: `cancel_agent_draft` — `routes/email/email_routes.py:6084`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/pending/{sid}/approve`
-- handler: `approve_agent_draft` — `routes/email_routes.py:4426`
+- handler: `approve_agent_draft` — `routes/email/email_routes.py:6060`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/read/{uid}`
-- handler: `read_email_by_uid` — `routes/email_routes.py:3176`
+- handler: `read_email_by_uid` — `routes/email/email_routes.py:3985`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/resolve-contact`
-- handler: `resolve_contact` — `routes/email_routes.py:4471`
+- handler: `resolve_contact` — `routes/email/email_routes.py:6105`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/email/schedule`
-- handler: `schedule_email` — `routes/email_routes.py:4294`
+- handler: `schedule_email` — `routes/email/email_routes.py:5928`
 - **JS callers:**
-  - `static/js/document.js:4426` → `/api/email/schedule`
+  - `static/js/document.js:7011` → `/api/email/schedule`
 
 ## `GET /api/email/scheduled`
-- handler: `list_scheduled` — `routes/email_routes.py:4360`
+- handler: `list_scheduled` — `routes/email/email_routes.py:5994`
 - **JS callers:**
-  - `static/js/emailLibrary.js:4830` → `/api/email/scheduled`
+  - `static/js/emailLibrary/index.js:5191` → `/api/email/scheduled`
 
 ## `DELETE /api/email/scheduled/{sid}`
-- handler: `cancel_scheduled` — `routes/email_routes.py:4383`
+- handler: `cancel_scheduled` — `routes/email/email_routes.py:6017`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/email/search`
-- handler: `search_emails` — `routes/email_routes.py:2773`
+- handler: `search_emails` — `routes/email/email_routes.py:3540`
 - **JS callers:**
-  - `static/js/emailLibrary.js:4330` → `/api/email/search?`
+  - `static/js/emailLibrary/index.js:4550` → `/api/email/search?`
 
 ## `POST /api/email/send`
-- handler: `send_email` — `routes/email_routes.py:4519`
+- handler: `send_email` — `routes/email/email_routes.py:6153`
 - **JS callers:**
-  - `static/js/document.js:3909` → `/api/email/send`
+  - `static/js/document.js:6389` → `/api/email/send`
 
 ## `GET /api/email/style`
-- handler: `get_writing_style` — `routes/email_routes.py:5442`
+- handler: `get_writing_style` — `routes/email/email_routes.py:7212`
 - **JS callers:**
-  - `static/js/emailLibrary.js:94` → `/api/email/style`
-  - `static/js/emailLibrary.js:368` → `/api/email/style`
-  - `static/js/settings.js:3041` → `/api/email/style`
-  - `static/js/settings.js:3185` → `/api/email/style`
+  - `static/js/document.js:11367` → `/api/email/style`
+  - `static/js/emailLibrary/settingsPage.js:273` → `/api/email/style`
+  - `static/js/emailLibrary/settingsPage.js:799` → `/api/email/style`
+  - `static/js/settings.js:2756` → `/api/email/style`
+  - `static/js/settings.js:2900` → `/api/email/style`
 
 ## `PUT /api/email/style`
-- handler: `update_writing_style` — `routes/email_routes.py:5453`
+- handler: `update_writing_style` — `routes/email/email_routes.py:7223`
 - **JS callers:**
-  - `static/js/emailLibrary.js:94` → `/api/email/style`
-  - `static/js/emailLibrary.js:368` → `/api/email/style`
-  - `static/js/settings.js:3041` → `/api/email/style`
-  - `static/js/settings.js:3185` → `/api/email/style`
+  - `static/js/document.js:11367` → `/api/email/style`
+  - `static/js/emailLibrary/settingsPage.js:273` → `/api/email/style`
+  - `static/js/emailLibrary/settingsPage.js:799` → `/api/email/style`
+  - `static/js/settings.js:2756` → `/api/email/style`
+  - `static/js/settings.js:2900` → `/api/email/style`
 
 ## `POST /api/email/summarize`
-- handler: `summarize_email` — `routes/email_routes.py:4884`
+- handler: `summarize_email` — `routes/email/email_routes.py:6585`
 - **JS callers:**
-  - `static/js/emailLibrary.js:7503` → `/api/email/summarize`
+  - `static/js/emailLibrary/reader.js:635` → `/api/email/summarize`
 
 ## `POST /api/email/translate`
-- handler: `translate_email` — `routes/email_routes.py:5001`
+- handler: `translate_email` — `routes/email/email_routes.py:6703`
 - **JS callers:**
-  - `static/js/emailLibrary.js:7587` → `/api/email/translate`
+  - `static/js/emailLibrary/index.js:6312` → `/api/email/translate`
 
 ## `GET /api/email/unread-state`
-- handler: `unread_state` — `routes/email_routes.py:2410`
+- handler: `unread_state` — `routes/email/email_routes.py:3030`
 - **JS callers:**
-  - `static/js/emailInbox.js:324` → `/api/email/unread-state`
-  - `static/js/emailInbox.js:371` → `/api/email/unread-state`
-  - `static/js/emailLibrary.js:3316` → `/api/email/unread-state`
-  - `static/js/emailLibrary.js:4644` → `/api/email/unread-state`
+  - `static/js/emailInbox.js:337` → `/api/email/unread-state`
+  - `static/js/emailInbox.js:384` → `/api/email/unread-state`
+  - `static/js/emailLibrary/index.js:3282` → `/api/email/unread-state`
+  - `static/js/emailLibrary/index.js:4993` → `/api/email/unread-state`
 
 ## `POST /api/email/unsubscribe/cleanup`
-- handler: `cleanup_unsubscribe_candidates` — `routes/email_routes.py:2678`
+- handler: `cleanup_unsubscribe_candidates` — `routes/email/email_routes.py:3404`
 - **JS callers:**
-  - `static/js/emailLibrary.js:1479` → `/api/email/unsubscribe/cleanup`
+  - `static/js/emailLibrary/unsubscribe.js:555` → `/api/email/unsubscribe/cleanup`
+  - `static/js/emailLibrary/unsubscribe.js:611` → `/api/email/unsubscribe/cleanup`
 
 ## `POST /api/email/unsubscribe/execute`
-- handler: `execute_unsubscribe` — `routes/email_routes.py:2605`
+- handler: `execute_unsubscribe` — `routes/email/email_routes.py:3309`
 - **JS callers:**
-  - `static/js/emailLibrary.js:1686` → `/api/email/unsubscribe/execute`
-  - `static/js/emailLibrary.js:1744` → `/api/email/unsubscribe/execute`
+  - `static/js/emailLibrary/unsubscribe.js:1027` → `/api/email/unsubscribe/execute`
+  - `static/js/emailLibrary/unsubscribe.js:1179` → `/api/email/unsubscribe/execute`
 
 ## `GET /api/email/unsubscribe/scan`
-- handler: `scan_unsubscribe_candidates` — `routes/email_routes.py:2586`
+- handler: `scan_unsubscribe_candidates` — `routes/email/email_routes.py:3290`
 - **JS callers:**
-  - `static/js/emailLibrary.js:1620` → `/api/email/unsubscribe/scan`
+  - `static/js/emailLibrary/unsubscribe.js:852` → `/api/email/unsubscribe/scan`
 
 ## `GET /api/email/urgency-state`
-- handler: `get_email_urgency_state` — `routes/email_routes.py:5583`
+- handler: `get_email_urgency_state` — `routes/email/email_routes.py:7362`
 - **JS callers:**
-  - `static/js/emailInbox.js:325` → `/api/email/urgency-state`
+  - `static/js/emailInbox.js:338` → `/api/email/urgency-state`
 
 ## `POST /api/email/{uid}/unflag-spam`
-- handler: `unflag_spam` — `routes/email_routes.py:2484`
+- handler: `unflag_spam` — `routes/email/email_routes.py:3104`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/embeddings/endpoint`
@@ -1418,354 +1555,391 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `GET /api/export`
 - handler: `export_data` — `routes/backup_routes.py:20`
 - **JS callers:**
-  - `static/js/admin.js:2840` → `/api/export`
+  - `static/js/admin.js:3714` → `/api/export`
 
 ## `GET /api/fonts/custom`
-- handler: `list_custom_fonts` — `routes/font_routes.py:37`
+- handler: `list_custom_fonts` — `routes/font_routes.py:38`
 - **JS callers:**
-  - `static/js/theme.js:1275` → `/api/fonts/custom`
+  - `static/js/theme.js:1343` → `/api/fonts/custom`
 
 ## `POST /api/gallery/ai-tag-batch`
-- handler: `ai_tag_batch` — `routes/gallery/gallery_routes.py:898`
+- handler: `ai_tag_batch` — `routes/gallery/gallery_routes.py:1408`
 - **JS callers:**
-  - `static/js/gallery.js:2374` → `/api/gallery/ai-tag-batch?`
+  - `static/js/gallery.js:2732` → `/api/gallery/ai-tag-batch?`
 
 ## `POST /api/gallery/ai-upscale`
-- handler: `gallery_ai_upscale` — `routes/gallery/gallery_routes.py:561`
+- handler: `gallery_ai_upscale` — `routes/gallery/gallery_routes.py:1067`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/gallery/albums`
-- handler: `list_albums` — `routes/gallery/gallery_routes.py:813`
+- handler: `list_albums` — `routes/gallery/gallery_routes.py:1323`
 - **JS callers:**
-  - `static/js/gallery.js:182` → `/api/gallery/albums`
-  - `static/js/gallery.js:349` → `/api/gallery/albums`
-  - `static/js/gallery.js:798` → `/api/gallery/albums`
-  - `static/js/gallery.js:833` → `/api/gallery/albums`
+  - `static/js/gallery.js:246` → `/api/gallery/albums`
+  - `static/js/gallery.js:413` → `/api/gallery/albums`
+  - `static/js/gallery.js:895` → `/api/gallery/albums`
+  - `static/js/gallery.js:930` → `/api/gallery/albums`
 
 ## `POST /api/gallery/albums`
-- handler: `create_album` — `routes/gallery/gallery_routes.py:851`
+- handler: `create_album` — `routes/gallery/gallery_routes.py:1361`
 - **JS callers:**
-  - `static/js/gallery.js:182` → `/api/gallery/albums`
-  - `static/js/gallery.js:349` → `/api/gallery/albums`
-  - `static/js/gallery.js:798` → `/api/gallery/albums`
-  - `static/js/gallery.js:833` → `/api/gallery/albums`
+  - `static/js/gallery.js:246` → `/api/gallery/albums`
+  - `static/js/gallery.js:413` → `/api/gallery/albums`
+  - `static/js/gallery.js:895` → `/api/gallery/albums`
+  - `static/js/gallery.js:930` → `/api/gallery/albums`
 
 ## `DELETE /api/gallery/albums/{album_id}`
-- handler: `delete_album` — `routes/gallery/gallery_routes.py:2162`
+- handler: `delete_album` — `routes/gallery/gallery_routes.py:3044`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PUT /api/gallery/albums/{album_id}`
-- handler: `update_album` — `routes/gallery/gallery_routes.py:2141`
+- handler: `update_album` — `routes/gallery/gallery_routes.py:3015`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/albums/{album_id}/add`
-- handler: `add_to_album` — `routes/gallery/gallery_routes.py:2178`
+- handler: `add_to_album` — `routes/gallery/gallery_routes.py:3060`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/albums/{album_id}/remove`
-- handler: `remove_from_album` — `routes/gallery/gallery_routes.py:2196`
+- handler: `remove_from_album` — `routes/gallery/gallery_routes.py:3077`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/clear-ai-tags`
-- handler: `clear_gallery_ai_tags` — `routes/gallery/gallery_routes.py:1074`
+- handler: `clear_gallery_ai_tags` — `routes/gallery/gallery_routes.py:1584`
 - **JS callers:**
-  - `static/js/gallery.js:1661` → `/api/gallery/clear-ai-tags?image_id=`
-  - `static/js/gallery.js:2464` → `/api/gallery/clear-ai-tags`
+  - `static/js/gallery.js:1906` → `/api/gallery/clear-ai-tags?image_id=`
+  - `static/js/gallery.js:2822` → `/api/gallery/clear-ai-tags`
 
 ## `POST /api/gallery/clear-user-tags`
-- handler: `clear_gallery_user_tags` — `routes/gallery/gallery_routes.py:1049`
+- handler: `clear_gallery_user_tags` — `routes/gallery/gallery_routes.py:1559`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/dedupe-tags`
-- handler: `dedupe_gallery_tags` — `routes/gallery/gallery_routes.py:1101`
+- handler: `dedupe_gallery_tags` — `routes/gallery/gallery_routes.py:1611`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/download-zip`
-- handler: `gallery_download_zip` — `routes/gallery/gallery_routes.py:994`
+- handler: `gallery_download_zip` — `routes/gallery/gallery_routes.py:1504`
 - **JS callers:**
-  - `static/js/gallery.js:2714` → `/api/gallery/download-zip`
+  - `static/js/gallery.js:3097` → `/api/gallery/download-zip`
 
 ## `GET /api/gallery/library`
-- handler: `gallery_library` — `routes/gallery/gallery_routes.py:674`
+- handler: `gallery_library` — `routes/gallery/gallery_routes.py:1180`
 - **JS callers:**
-  - `static/js/document.js:3373` → `/api/gallery/library?`
-  - `static/js/editor/wire-import.js:108` → `/api/gallery/library?limit=50`
-  - `static/js/gallery.js:152` → `/api/gallery/library?`
+  - `static/js/document.js:5400` → `/api/gallery/library?`
+  - `static/js/document.js:5572` → `/api/gallery/library?sort=recent&limit=30`
+  - `static/js/editor/wire-import.js:198` → `/api/gallery/library?limit=50`
+  - `static/js/gallery.js:215` → `/api/gallery/library?`
 
 ## `GET /api/gallery/stats`
-- handler: `gallery_stats` — `routes/gallery/gallery_routes.py:872`
+- handler: `gallery_stats` — `routes/gallery/gallery_routes.py:1382`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/style-transfer`
-- handler: `gallery_style_transfer` — `routes/gallery/gallery_routes.py:605`
+- handler: `gallery_style_transfer` — `routes/gallery/gallery_routes.py:1111`
 - **JS callers:**
-  - `static/js/editor/ai-tools-misc.js:176` → `/api/gallery/style-transfer`
+  - `static/js/editor/ai-tools-misc.js:183` → `/api/gallery/style-transfer`
 
 ## `GET /api/gallery/tags`
-- handler: `gallery_tags` — `routes/gallery/gallery_routes.py:652`
+- handler: `gallery_tags` — `routes/gallery/gallery_routes.py:1158`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/upload`
-- handler: `gallery_upload` — `routes/gallery/gallery_routes.py:353`
+- handler: `gallery_upload` — `routes/gallery/gallery_routes.py:859`
 - **JS callers:**
-  - `static/js/gallery.js:263` → `/api/gallery/upload`
-  - `static/js/galleryEditor.js:3691` → `/api/gallery/upload`
+  - `static/js/gallery.js:327` → `/api/gallery/upload`
+  - `static/js/galleryEditor.js:13240` → `/api/gallery/upload`
 
 ## `DELETE /api/gallery/{image_id}`
-- handler: `delete_gallery_image` — `routes/gallery/gallery_routes.py:1137`
+- handler: `delete_gallery_image` — `routes/gallery/gallery_routes.py:1647`
 - **JS callers:**
-  - `static/js/chatRenderer.js:1617` → `/api/gallery/${encodeURIComponent(imageId)}`
-  - `static/js/document.js:3373` → `/api/gallery/library?`
-  - `static/js/editor/ai-tools-misc.js:176` → `/api/gallery/style-transfer`
-  - `static/js/editor/wire-import.js:108` → `/api/gallery/library?limit=50`
-  - `static/js/gallery.js:152` → `/api/gallery/library?`
-  - `static/js/gallery.js:182` → `/api/gallery/albums`
-  - `static/js/gallery.js:263` → `/api/gallery/upload`
-  - `static/js/gallery.js:349` → `/api/gallery/albums`
-  - `static/js/gallery.js:798` → `/api/gallery/albums`
-  - `static/js/gallery.js:833` → `/api/gallery/albums`
-  - `static/js/gallery.js:1661` → `/api/gallery/clear-ai-tags?image_id=`
-  - `static/js/gallery.js:2374` → `/api/gallery/ai-tag-batch?`
-  - `static/js/gallery.js:2464` → `/api/gallery/clear-ai-tags`
-  - `static/js/gallery.js:2714` → `/api/gallery/download-zip`
-  - `static/js/galleryEditor.js:3691` → `/api/gallery/upload`
+  - `static/js/chatRenderer.js:2195` → `/api/gallery/${encodeURIComponent(imageId)}`
+  - `static/js/document.js:5400` → `/api/gallery/library?`
+  - `static/js/document.js:5572` → `/api/gallery/library?sort=recent&limit=30`
+  - `static/js/editor/ai-tools-misc.js:183` → `/api/gallery/style-transfer`
+  - `static/js/editor/wire-import.js:198` → `/api/gallery/library?limit=50`
+  - `static/js/gallery.js:215` → `/api/gallery/library?`
+  - `static/js/gallery.js:246` → `/api/gallery/albums`
+  - `static/js/gallery.js:327` → `/api/gallery/upload`
+  - `static/js/gallery.js:413` → `/api/gallery/albums`
+  - `static/js/gallery.js:895` → `/api/gallery/albums`
+  - `static/js/gallery.js:930` → `/api/gallery/albums`
+  - `static/js/gallery.js:1906` → `/api/gallery/clear-ai-tags?image_id=`
+  - `static/js/gallery.js:2732` → `/api/gallery/ai-tag-batch?`
+  - `static/js/gallery.js:2822` → `/api/gallery/clear-ai-tags`
+  - `static/js/gallery.js:3097` → `/api/gallery/download-zip`
+  - `static/js/galleryEditor.js:13240` → `/api/gallery/upload`
 
 ## `GET /api/gallery/{image_id}`
-- handler: `get_gallery_image` — `routes/gallery/gallery_routes.py:921`
+- handler: `get_gallery_image` — `routes/gallery/gallery_routes.py:1431`
 - **JS callers:**
-  - `static/js/chatRenderer.js:1617` → `/api/gallery/${encodeURIComponent(imageId)}`
-  - `static/js/document.js:3373` → `/api/gallery/library?`
-  - `static/js/editor/ai-tools-misc.js:176` → `/api/gallery/style-transfer`
-  - `static/js/editor/wire-import.js:108` → `/api/gallery/library?limit=50`
-  - `static/js/gallery.js:152` → `/api/gallery/library?`
-  - `static/js/gallery.js:182` → `/api/gallery/albums`
-  - `static/js/gallery.js:263` → `/api/gallery/upload`
-  - `static/js/gallery.js:349` → `/api/gallery/albums`
-  - `static/js/gallery.js:798` → `/api/gallery/albums`
-  - `static/js/gallery.js:833` → `/api/gallery/albums`
-  - `static/js/gallery.js:1661` → `/api/gallery/clear-ai-tags?image_id=`
-  - `static/js/gallery.js:2374` → `/api/gallery/ai-tag-batch?`
-  - `static/js/gallery.js:2464` → `/api/gallery/clear-ai-tags`
-  - `static/js/gallery.js:2714` → `/api/gallery/download-zip`
-  - `static/js/galleryEditor.js:3691` → `/api/gallery/upload`
+  - `static/js/chatRenderer.js:2195` → `/api/gallery/${encodeURIComponent(imageId)}`
+  - `static/js/document.js:5400` → `/api/gallery/library?`
+  - `static/js/document.js:5572` → `/api/gallery/library?sort=recent&limit=30`
+  - `static/js/editor/ai-tools-misc.js:183` → `/api/gallery/style-transfer`
+  - `static/js/editor/wire-import.js:198` → `/api/gallery/library?limit=50`
+  - `static/js/gallery.js:215` → `/api/gallery/library?`
+  - `static/js/gallery.js:246` → `/api/gallery/albums`
+  - `static/js/gallery.js:327` → `/api/gallery/upload`
+  - `static/js/gallery.js:413` → `/api/gallery/albums`
+  - `static/js/gallery.js:895` → `/api/gallery/albums`
+  - `static/js/gallery.js:930` → `/api/gallery/albums`
+  - `static/js/gallery.js:1906` → `/api/gallery/clear-ai-tags?image_id=`
+  - `static/js/gallery.js:2732` → `/api/gallery/ai-tag-batch?`
+  - `static/js/gallery.js:2822` → `/api/gallery/clear-ai-tags`
+  - `static/js/gallery.js:3097` → `/api/gallery/download-zip`
+  - `static/js/galleryEditor.js:13240` → `/api/gallery/upload`
 
 ## `PATCH /api/gallery/{image_id}`
-- handler: `patch_gallery_image` — `routes/gallery/gallery_routes.py:942`
+- handler: `patch_gallery_image` — `routes/gallery/gallery_routes.py:1452`
 - **JS callers:**
-  - `static/js/chatRenderer.js:1617` → `/api/gallery/${encodeURIComponent(imageId)}`
-  - `static/js/document.js:3373` → `/api/gallery/library?`
-  - `static/js/editor/ai-tools-misc.js:176` → `/api/gallery/style-transfer`
-  - `static/js/editor/wire-import.js:108` → `/api/gallery/library?limit=50`
-  - `static/js/gallery.js:152` → `/api/gallery/library?`
-  - `static/js/gallery.js:182` → `/api/gallery/albums`
-  - `static/js/gallery.js:263` → `/api/gallery/upload`
-  - `static/js/gallery.js:349` → `/api/gallery/albums`
-  - `static/js/gallery.js:798` → `/api/gallery/albums`
-  - `static/js/gallery.js:833` → `/api/gallery/albums`
-  - `static/js/gallery.js:1661` → `/api/gallery/clear-ai-tags?image_id=`
-  - `static/js/gallery.js:2374` → `/api/gallery/ai-tag-batch?`
-  - `static/js/gallery.js:2464` → `/api/gallery/clear-ai-tags`
-  - `static/js/gallery.js:2714` → `/api/gallery/download-zip`
-  - `static/js/galleryEditor.js:3691` → `/api/gallery/upload`
+  - `static/js/chatRenderer.js:2195` → `/api/gallery/${encodeURIComponent(imageId)}`
+  - `static/js/document.js:5400` → `/api/gallery/library?`
+  - `static/js/document.js:5572` → `/api/gallery/library?sort=recent&limit=30`
+  - `static/js/editor/ai-tools-misc.js:183` → `/api/gallery/style-transfer`
+  - `static/js/editor/wire-import.js:198` → `/api/gallery/library?limit=50`
+  - `static/js/gallery.js:215` → `/api/gallery/library?`
+  - `static/js/gallery.js:246` → `/api/gallery/albums`
+  - `static/js/gallery.js:327` → `/api/gallery/upload`
+  - `static/js/gallery.js:413` → `/api/gallery/albums`
+  - `static/js/gallery.js:895` → `/api/gallery/albums`
+  - `static/js/gallery.js:930` → `/api/gallery/albums`
+  - `static/js/gallery.js:1906` → `/api/gallery/clear-ai-tags?image_id=`
+  - `static/js/gallery.js:2732` → `/api/gallery/ai-tag-batch?`
+  - `static/js/gallery.js:2822` → `/api/gallery/clear-ai-tags`
+  - `static/js/gallery.js:3097` → `/api/gallery/download-zip`
+  - `static/js/galleryEditor.js:13240` → `/api/gallery/upload`
 
 ## `POST /api/gallery/{image_id}/ai-tag`
-- handler: `ai_tag_image` — `routes/gallery/gallery_routes.py:2231`
+- handler: `ai_tag_image` — `routes/gallery/gallery_routes.py:3111`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/{image_id}/favorite`
-- handler: `toggle_favorite` — `routes/gallery/gallery_routes.py:2217`
+- handler: `toggle_favorite` — `routes/gallery/gallery_routes.py:3097`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/{image_id}/rename`
-- handler: `gallery_rename` — `routes/gallery/gallery_routes.py:478`
+- handler: `gallery_rename` — `routes/gallery/gallery_routes.py:984`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/{image_id}/replace`
-- handler: `gallery_replace` — `routes/gallery/gallery_routes.py:435`
+- handler: `gallery_replace` — `routes/gallery/gallery_routes.py:941`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/gallery/{image_id}/rotate`
-- handler: `gallery_rotate` — `routes/gallery/gallery_routes.py:504`
+- handler: `gallery_rotate` — `routes/gallery/gallery_routes.py:1010`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/generated-image/{filename}`
-- handler: `serve_generated_image` — `app.py:513`
+- handler: `serve_generated_image` — `app.py:554`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/health`
-- handler: `health_check` — `app.py:956`
+- handler: `health_check` — `app.py:1055`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/history/{session_id}`
-- handler: `get_session_history` — `routes/history/history_routes.py:271`
+- handler: `get_session_history` — `routes/history/history_routes.py:409`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/history/{session_id}`
+- handler: `history` — `tests/test_codex_chat_history.py:36`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/hwfit/image-models`
-- handler: `get_image_models` — `routes/hwfit_routes.py:413`
+- handler: `get_image_models` — `routes/hwfit_routes.py:439`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:838` → `/api/hwfit/image-models?`
+  - `static/js/cookbook-hwfit.js:887` → `/api/hwfit/image-models?`
 
 ## `GET /api/hwfit/models`
-- handler: `get_models` — `routes/hwfit_routes.py:194`
+- handler: `get_models` — `routes/hwfit_routes.py:217`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:838` → `/api/hwfit/models?`
-  - `static/js/cookbook-hwfit.js:860` → `/api/hwfit/models?${fallbackParams}`
-  - `static/js/cookbook-hwfit.js:860` → `/api/hwfit/models?`
+  - `static/js/cookbook-hwfit.js:887` → `/api/hwfit/models?`
+  - `static/js/cookbook-hwfit.js:909` → `/api/hwfit/models?`
 
 ## `GET /api/hwfit/profiles`
-- handler: `get_serve_profiles` — `routes/hwfit_routes.py:319`
+- handler: `get_serve_profiles` — `routes/hwfit_routes.py:345`
 - **JS callers:**
-  - `static/js/cookbookServe.js:1993` → `/api/hwfit/profiles?${params}`
-  - `static/js/cookbookServe.js:1993` → `/api/hwfit/profiles?`
+  - `static/js/cookbookServe.js:2052` → `/api/hwfit/profiles?`
 
 ## `GET /api/hwfit/system`
-- handler: `get_system` — `routes/hwfit_routes.py:186`
+- handler: `get_system` — `routes/hwfit_routes.py:209`
 - **JS callers:**
-  - `static/js/cookbook.js:2657` → `/api/hwfit/system?${qp}`
-  - `static/js/cookbook.js:2657` → `/api/hwfit/system?`
+  - `static/js/cookbook.js:2777` → `/api/hwfit/system?`
 
 ## `POST /api/image/denoise`
-- handler: `denoise_image` — `routes/gallery/gallery_routes.py:1741`
+- handler: `denoise_image` — `routes/gallery/gallery_routes.py:2523`
 - **JS callers:**
-  - `static/js/galleryEditor.js:538` → `/api/image/denoise`
+  - `static/js/galleryEditor.js:1988` → `/api/image/denoise`
+
+## `GET /api/image/edit-progress`
+- handler: `edit_progress` — `routes/gallery/gallery_routes.py:2223`
+- **JS callers:**
+  - `static/js/galleryEditor.js:876` → `/api/image/edit-progress?request_id=${encodeURIComponent(requestId)}`
+  - `static/js/galleryEditor.js:876` → `/api/image/edit-progress?request_id=`
 
 ## `POST /api/image/enhance-face`
-- handler: `enhance_face` — `routes/gallery/gallery_routes.py:2057`
+- handler: `enhance_face` — `routes/gallery/gallery_routes.py:2930`
 - **JS callers:**
-  - `static/js/galleryEditor.js:544` → `/api/image/enhance-face`
+  - `static/js/galleryEditor.js:2036` → `/api/image/enhance-face`
+
+## `POST /api/image/extend`
+- handler: `outpaint_extend` — `routes/gallery/gallery_routes.py:2218`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `POST /api/image/generate`
+- handler: `generate_image` — `routes/gallery/gallery_routes.py:2624`
+- **JS callers:**
+  - `static/js/editor/image-generation.js:32` → `/api/image/generate`
 
 ## `POST /api/image/harmonize`
-- handler: `harmonize_image` — `routes/gallery/gallery_routes.py:1516`
+- handler: `harmonize_image` — `routes/gallery/gallery_routes.py:2299`
 - **JS callers:**
-  - `static/js/editor/ai-tools-misc.js:72` → `/api/image/harmonize`
+  - `static/js/editor/ai-tools-misc.js:74` → `/api/image/harmonize`
+  - `static/js/galleryEditor.js:12623` → `/api/image/harmonize`
 
 ## `POST /api/image/inpaint`
-- handler: `inpaint_proxy` — `routes/gallery/gallery_routes.py:1258`
+- handler: `inpaint_proxy` — `routes/gallery/gallery_routes.py:1768`
 - **JS callers:**
-  - `static/js/editor/ai-inpaint.js:143` → `/api/image/inpaint`
+  - `static/js/editor/ai-inpaint.js:160` → `/api/image/inpaint`
+  - `static/js/galleryEditor.js:12201` → `/api/image/inpaint`
+  - `static/js/galleryEditor.js:12315` → `/api/image/inpaint`
+  - `static/js/galleryEditor.js:12626` → `/api/image/inpaint`
 
 ## `POST /api/image/mask`
-- handler: `smart_mask` — `routes/gallery/gallery_routes.py:1838`
+- handler: `smart_mask` — `routes/gallery/gallery_routes.py:2697`
 - **JS callers:**
-  - `static/js/galleryEditor.js:1997` → `/api/image/mask`
+  - `static/js/galleryEditor.js:7575` → `/api/image/mask`
+
+## `POST /api/image/outpaint`
+- handler: `outpaint` — `routes/gallery/gallery_routes.py:2196`
+- **JS callers:**
+  - `static/js/galleryEditor.js:12338` → `/api/image/outpaint`
 
 ## `POST /api/image/remove-bg`
-- handler: `remove_background` — `routes/gallery/gallery_routes.py:1964`
+- handler: `remove_background` — `routes/gallery/gallery_routes.py:2829`
 - **JS callers:**
-  - `static/js/editor/ai-rembg.js:71` → `/api/image/remove-bg`
-  - `static/js/editor/wire-selection-controls.js:163` → `/api/image/remove-bg`
+  - `static/js/editor/ai-rembg.js:67` → `/api/image/remove-bg`
+  - `static/js/editor/ai-tool-runner.js:79` → `/api/image/remove-bg`
+  - `static/js/editor/wire-selection-controls.js:337` → `/api/image/remove-bg`
+  - `static/js/galleryEditor.js:12617` → `/api/image/remove-bg`
+
+## `POST /api/image/replace-background`
+- handler: `replace_background` — `routes/gallery/gallery_routes.py:2173`
+- **JS callers:**
+  - `static/js/galleryEditor.js:12322` → `/api/image/replace-background`
 
 ## `POST /api/image/sharpen`
-- handler: `sharpen_image` — `routes/gallery/gallery_routes.py:1716`
+- handler: `sharpen_image` — `routes/gallery/gallery_routes.py:2499`
 - **JS callers:**
   - `static/js/editor/ai-rembg.js:53` → `/api/image/sharpen`
 
 ## `POST /api/image/upscale-local`
-- handler: `upscale_image_local` — `routes/gallery/gallery_routes.py:1792`
+- handler: `upscale_image_local` — `routes/gallery/gallery_routes.py:2576`
 - **JS callers:**
-  - `static/js/editor/ai-tools-misc.js:120` → `/api/image/upscale-local`
+  - `static/js/editor/ai-tools-misc.js:122` → `/api/image/upscale-local`
+  - `static/js/galleryEditor.js:12624` → `/api/image/upscale-local`
 
 ## `POST /api/import`
 - handler: `import_data` — `routes/backup_routes.py:64`
 - **JS callers:**
-  - `static/js/admin.js:2872` → `/api/import`
+  - `static/js/admin.js:3746` → `/api/import`
 
 ## `POST /api/inject_context/{session_id}`
-- handler: `inject_context` — `routes/chat_routes.py:3124`
+- handler: `inject_context` — `routes/chat_routes.py:5599`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/mcp/oauth/authorize/{server_id}`
-- handler: `oauth_authorize` — `routes/mcp/mcp_routes.py:429`
+- handler: `oauth_authorize` — `routes/mcp/mcp_routes.py:454`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/mcp/oauth/callback`
-- handler: `oauth_callback` — `routes/mcp/mcp_routes.py:483`
+- handler: `oauth_callback` — `routes/mcp/mcp_routes.py:508`
 - **JS callers:**
-  - `static/js/settings.js:4931` → `/api/mcp/oauth/callback?code=...`
+  - `static/js/settings.js:4646` → `/api/mcp/oauth/callback?code=...`
 
 ## `POST /api/mcp/oauth/exchange/{server_id}`
-- handler: `oauth_exchange` — `routes/mcp/mcp_routes.py:498`
+- handler: `oauth_exchange` — `routes/mcp/mcp_routes.py:535`
 - **JS callers:**
-  - `static/js/settings.js:4940` → `/api/mcp/oauth/exchange/${id}`
+  - `static/js/settings.js:4655` → `/api/mcp/oauth/exchange/${id}`
 
 ## `GET /api/mcp/servers`
-- handler: `list_servers` — `routes/mcp/mcp_routes.py:121`
+- handler: `list_servers` — `routes/mcp/mcp_routes.py:134`
 - **JS callers:**
-  - `static/js/admin.js:2070` → `/api/mcp/servers`
-  - `static/js/admin.js:2387` → `/api/mcp/servers`
-  - `static/js/settings.js:3517` → `/api/mcp/servers`
-  - `static/js/settings.js:4958` → `/api/mcp/servers`
-  - `static/js/settings.js:4984` → `/api/mcp/servers`
-  - `static/js/settings.js:5101` → `/api/mcp/servers`
-  - `static/js/slashCommands.js:1550` → `/api/mcp/servers`
+  - `static/js/admin.js:2939` → `/api/mcp/servers`
+  - `static/js/admin.js:3257` → `/api/mcp/servers`
+  - `static/js/settings.js:3232` → `/api/mcp/servers`
+  - `static/js/settings.js:4673` → `/api/mcp/servers`
+  - `static/js/settings.js:4699` → `/api/mcp/servers`
+  - `static/js/settings.js:4820` → `/api/mcp/servers`
+  - `static/js/slashCommands.js:1554` → `/api/mcp/servers`
 
 ## `POST /api/mcp/servers`
-- handler: `add_server` — `routes/mcp/mcp_routes.py:159`
+- handler: `add_server` — `routes/mcp/mcp_routes.py:172`
 - **JS callers:**
-  - `static/js/admin.js:2070` → `/api/mcp/servers`
-  - `static/js/admin.js:2387` → `/api/mcp/servers`
-  - `static/js/settings.js:3517` → `/api/mcp/servers`
-  - `static/js/settings.js:4958` → `/api/mcp/servers`
-  - `static/js/settings.js:4984` → `/api/mcp/servers`
-  - `static/js/settings.js:5101` → `/api/mcp/servers`
-  - `static/js/slashCommands.js:1550` → `/api/mcp/servers`
+  - `static/js/admin.js:2939` → `/api/mcp/servers`
+  - `static/js/admin.js:3257` → `/api/mcp/servers`
+  - `static/js/settings.js:3232` → `/api/mcp/servers`
+  - `static/js/settings.js:4673` → `/api/mcp/servers`
+  - `static/js/settings.js:4699` → `/api/mcp/servers`
+  - `static/js/settings.js:4820` → `/api/mcp/servers`
+  - `static/js/slashCommands.js:1554` → `/api/mcp/servers`
 
 ## `DELETE /api/mcp/servers/{server_id}`
-- handler: `delete_server` — `routes/mcp/mcp_routes.py:357`
+- handler: `delete_server` — `routes/mcp/mcp_routes.py:377`
 - **JS callers:**
-  - `static/js/admin.js:2111` → `/api/mcp/servers/${btn.dataset.admMcpToggle}`
-  - `static/js/admin.js:2118` → `/api/mcp/servers/${btn.dataset.admMcpDelete}`
-  - `static/js/settings.js:3652` → `/api/mcp/servers/${id}`
-  - `static/js/settings.js:5022` → `/api/mcp/servers/${srv.id}`
+  - `static/js/admin.js:2980` → `/api/mcp/servers/${btn.dataset.admMcpToggle}`
+  - `static/js/admin.js:2987` → `/api/mcp/servers/${btn.dataset.admMcpDelete}`
+  - `static/js/settings.js:3367` → `/api/mcp/servers/${id}`
+  - `static/js/settings.js:4737` → `/api/mcp/servers/${srv.id}`
 
 ## `PATCH /api/mcp/servers/{server_id}`
-- handler: `toggle_server` — `routes/mcp/mcp_routes.py:324`
+- handler: `toggle_server` — `routes/mcp/mcp_routes.py:344`
 - **JS callers:**
-  - `static/js/admin.js:2111` → `/api/mcp/servers/${btn.dataset.admMcpToggle}`
-  - `static/js/admin.js:2118` → `/api/mcp/servers/${btn.dataset.admMcpDelete}`
-  - `static/js/settings.js:3652` → `/api/mcp/servers/${id}`
-  - `static/js/settings.js:5022` → `/api/mcp/servers/${srv.id}`
+  - `static/js/admin.js:2980` → `/api/mcp/servers/${btn.dataset.admMcpToggle}`
+  - `static/js/admin.js:2987` → `/api/mcp/servers/${btn.dataset.admMcpDelete}`
+  - `static/js/settings.js:3367` → `/api/mcp/servers/${id}`
+  - `static/js/settings.js:4737` → `/api/mcp/servers/${srv.id}`
 
 ## `POST /api/mcp/servers/{server_id}/reconnect`
-- handler: `reconnect_server` — `routes/mcp/mcp_routes.py:288`
+- handler: `reconnect_server` — `routes/mcp/mcp_routes.py:308`
 - **JS callers:**
-  - `static/js/admin.js:2100` → `/api/mcp/servers/${btn.dataset.admMcpReconnect}/reconnect`
-  - `static/js/settings.js:5012` → `/api/mcp/servers/${srv.id}/reconnect`
+  - `static/js/admin.js:2969` → `/api/mcp/servers/${btn.dataset.admMcpReconnect}/reconnect`
+  - `static/js/settings.js:4727` → `/api/mcp/servers/${srv.id}/reconnect`
 
 ## `GET /api/mcp/servers/{server_id}/tools`
-- handler: `list_server_tools` — `routes/mcp/mcp_routes.py:382`
+- handler: `list_server_tools` — `routes/mcp/mcp_routes.py:402`
 - **JS callers:**
-  - `static/js/admin.js:2144` → `/api/mcp/servers/${sid}/tools`
-  - `static/js/admin.js:2188` → `/api/mcp/servers/${serverId}/tools`
-  - `static/js/settings.js:5031` → `/api/mcp/servers/${srv.id}/tools`
-  - `static/js/settings.js:5039` → `/api/mcp/servers/${srv.id}/tools`
+  - `static/js/admin.js:3013` → `/api/mcp/servers/${sid}/tools`
+  - `static/js/admin.js:3057` → `/api/mcp/servers/${serverId}/tools`
+  - `static/js/settings.js:4746` → `/api/mcp/servers/${srv.id}/tools`
+  - `static/js/settings.js:4754` → `/api/mcp/servers/${srv.id}/tools`
 
 ## `PATCH /api/mcp/servers/{server_id}/tools`
-- handler: `update_disabled_tools` — `routes/mcp/mcp_routes.py:402`
+- handler: `update_disabled_tools` — `routes/mcp/mcp_routes.py:422`
 - **JS callers:**
-  - `static/js/admin.js:2144` → `/api/mcp/servers/${sid}/tools`
-  - `static/js/admin.js:2188` → `/api/mcp/servers/${serverId}/tools`
-  - `static/js/settings.js:5031` → `/api/mcp/servers/${srv.id}/tools`
-  - `static/js/settings.js:5039` → `/api/mcp/servers/${srv.id}/tools`
+  - `static/js/admin.js:3013` → `/api/mcp/servers/${sid}/tools`
+  - `static/js/admin.js:3057` → `/api/mcp/servers/${serverId}/tools`
+  - `static/js/settings.js:4746` → `/api/mcp/servers/${srv.id}/tools`
+  - `static/js/settings.js:4754` → `/api/mcp/servers/${srv.id}/tools`
 
 ## `GET /api/mcp/tools`
-- handler: `list_tools` — `routes/mcp/mcp_routes.py:375`
+- handler: `list_tools` — `routes/mcp/mcp_routes.py:395`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/memory/add`
 - handler: `api_add_memory` — `routes/memory/memory_routes.py:101`
 - **JS callers:**
-  - `static/js/memory.js:1117` → `/api/memory/add`
-  - `static/js/memory.js:1246` → `/api/memory/add`
-  - `static/js/memory.js:1374` → `/api/memory/add`
-  - `static/js/memory.js:1416` → `/api/memory/add`
-  - `static/js/presets.js:979` → `/api/memory/add`
-  - `static/js/slashCommands.js:1586` → `/api/memory/add`
+  - `static/js/memory.js:1255` → `/api/memory/add`
+  - `static/js/memory.js:1384` → `/api/memory/add`
+  - `static/js/memory.js:1512` → `/api/memory/add`
+  - `static/js/memory.js:1554` → `/api/memory/add`
+  - `static/js/presets.js:1041` → `/api/memory/add`
+  - `static/js/slashCommands.js:1590` → `/api/memory/add`
 
 ## `POST /api/memory/audit`
-- handler: `api_audit_memories` — `routes/memory/memory_routes.py:289`
+- handler: `api_audit_memories` — `routes/memory/memory_routes.py:292`
 - **JS callers:**
-  - `static/js/memory.js:525` → `/api/memory/audit`
+  - `static/js/memory.js:631` → `/api/memory/audit`
 
 ## `GET /api/memory/by-session/{session_id}`
 - handler: `get_memory_by_session` — `routes/memory/memory_routes.py:209`
@@ -1778,348 +1952,351 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/memory/extract`
 - handler: `extract_memory` — `routes/memory/memory_routes.py:239`
 - **JS callers:**
-  - `static/js/memory.js:1195` → `/api/memory/extract`
+  - `static/js/memory.js:1333` → `/api/memory/extract`
 
 ## `POST /api/memory/import`
-- handler: `import_memories_from_file` — `routes/memory/memory_routes.py:340`
+- handler: `import_memories_from_file` — `routes/memory/memory_routes.py:343`
 - **JS callers:**
-  - `static/js/memory.js:1314` → `/api/memory/import`
+  - `static/js/memory.js:1452` → `/api/memory/import`
 
 ## `POST /api/memory/search`
 - handler: `search_memories` — `routes/memory/memory_routes.py:155`
 - **JS callers:**
-  - `static/js/slashCommands.js:1639` → `/api/memory/search`
+  - `static/js/slashCommands.js:1643` → `/api/memory/search`
 
 ## `GET /api/memory/timeline`
 - handler: `memory_timeline` — `routes/memory/memory_routes.py:171`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/memory/{memory_id}`
-- handler: `delete_memory` — `routes/memory/memory_routes.py:550`
+- handler: `delete_memory` — `routes/memory/memory_routes.py:557`
 - **JS callers:**
-  - `static/js/memory.js:525` → `/api/memory/audit`
-  - `static/js/memory.js:1117` → `/api/memory/add`
-  - `static/js/memory.js:1195` → `/api/memory/extract`
-  - `static/js/memory.js:1246` → `/api/memory/add`
-  - `static/js/memory.js:1314` → `/api/memory/import`
-  - `static/js/memory.js:1374` → `/api/memory/add`
-  - `static/js/memory.js:1416` → `/api/memory/add`
-  - `static/js/presets.js:979` → `/api/memory/add`
-  - `static/js/slashCommands.js:1586` → `/api/memory/add`
-  - `static/js/slashCommands.js:1639` → `/api/memory/search`
+  - `static/js/memory.js:631` → `/api/memory/audit`
+  - `static/js/memory.js:1255` → `/api/memory/add`
+  - `static/js/memory.js:1333` → `/api/memory/extract`
+  - `static/js/memory.js:1384` → `/api/memory/add`
+  - `static/js/memory.js:1452` → `/api/memory/import`
+  - `static/js/memory.js:1512` → `/api/memory/add`
+  - `static/js/memory.js:1554` → `/api/memory/add`
+  - `static/js/presets.js:1041` → `/api/memory/add`
+  - `static/js/slashCommands.js:1590` → `/api/memory/add`
+  - `static/js/slashCommands.js:1643` → `/api/memory/search`
 
 ## `GET /api/memory/{memory_id}`
-- handler: `get_memory_item` — `routes/memory/memory_routes.py:517`
+- handler: `get_memory_item` — `routes/memory/memory_routes.py:524`
 - **JS callers:**
-  - `static/js/memory.js:525` → `/api/memory/audit`
-  - `static/js/memory.js:1117` → `/api/memory/add`
-  - `static/js/memory.js:1195` → `/api/memory/extract`
-  - `static/js/memory.js:1246` → `/api/memory/add`
-  - `static/js/memory.js:1314` → `/api/memory/import`
-  - `static/js/memory.js:1374` → `/api/memory/add`
-  - `static/js/memory.js:1416` → `/api/memory/add`
-  - `static/js/presets.js:979` → `/api/memory/add`
-  - `static/js/slashCommands.js:1586` → `/api/memory/add`
-  - `static/js/slashCommands.js:1639` → `/api/memory/search`
+  - `static/js/memory.js:631` → `/api/memory/audit`
+  - `static/js/memory.js:1255` → `/api/memory/add`
+  - `static/js/memory.js:1333` → `/api/memory/extract`
+  - `static/js/memory.js:1384` → `/api/memory/add`
+  - `static/js/memory.js:1452` → `/api/memory/import`
+  - `static/js/memory.js:1512` → `/api/memory/add`
+  - `static/js/memory.js:1554` → `/api/memory/add`
+  - `static/js/presets.js:1041` → `/api/memory/add`
+  - `static/js/slashCommands.js:1590` → `/api/memory/add`
+  - `static/js/slashCommands.js:1643` → `/api/memory/search`
 
 ## `PUT /api/memory/{memory_id}`
-- handler: `update_memory` — `routes/memory/memory_routes.py:528`
+- handler: `update_memory` — `routes/memory/memory_routes.py:535`
 - **JS callers:**
-  - `static/js/memory.js:525` → `/api/memory/audit`
-  - `static/js/memory.js:1117` → `/api/memory/add`
-  - `static/js/memory.js:1195` → `/api/memory/extract`
-  - `static/js/memory.js:1246` → `/api/memory/add`
-  - `static/js/memory.js:1314` → `/api/memory/import`
-  - `static/js/memory.js:1374` → `/api/memory/add`
-  - `static/js/memory.js:1416` → `/api/memory/add`
-  - `static/js/presets.js:979` → `/api/memory/add`
-  - `static/js/slashCommands.js:1586` → `/api/memory/add`
-  - `static/js/slashCommands.js:1639` → `/api/memory/search`
+  - `static/js/memory.js:631` → `/api/memory/audit`
+  - `static/js/memory.js:1255` → `/api/memory/add`
+  - `static/js/memory.js:1333` → `/api/memory/extract`
+  - `static/js/memory.js:1384` → `/api/memory/add`
+  - `static/js/memory.js:1452` → `/api/memory/import`
+  - `static/js/memory.js:1512` → `/api/memory/add`
+  - `static/js/memory.js:1554` → `/api/memory/add`
+  - `static/js/presets.js:1041` → `/api/memory/add`
+  - `static/js/slashCommands.js:1590` → `/api/memory/add`
+  - `static/js/slashCommands.js:1643` → `/api/memory/search`
 
 ## `POST /api/memory/{memory_id}/pin`
-- handler: `pin_memory` — `routes/memory/memory_routes.py:503`
+- handler: `pin_memory` — `routes/memory/memory_routes.py:510`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/model-endpoints`
-- handler: `list_model_endpoints` — `routes/model_routes.py:1933`
+- handler: `list_model_endpoints` — `routes/model_routes.py:2083`
 - **JS callers:**
-  - `static/js/admin.js:255` → `/api/model-endpoints`
-  - `static/js/admin.js:489` → `/api/model-endpoints`
-  - `static/js/admin.js:1124` → `/api/model-endpoints`
-  - `static/js/admin.js:1442` → `/api/model-endpoints`
-  - `static/js/admin.js:1630` → `/api/model-endpoints`
-  - `static/js/admin.js:1723` → `/api/model-endpoints`
+  - `static/js/admin.js:312` → `/api/model-endpoints`
+  - `static/js/admin.js:1024` → `/api/model-endpoints`
+  - `static/js/admin.js:2017` → `/api/model-endpoints`
+  - `static/js/admin.js:2311` → `/api/model-endpoints`
+  - `static/js/admin.js:2499` → `/api/model-endpoints`
+  - `static/js/admin.js:2592` → `/api/model-endpoints`
   - `static/js/assistant.js:134` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:532` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:2657` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:2676` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:2964` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:3630` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:3663` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:3842` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:4094` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:4297` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:4323` → `/api/model-endpoints`
-  - `static/js/editor/ai-models.js:97` → `/api/model-endpoints`
-  - `static/js/markdown.js:1523` → `/api/model-endpoints`
-  - `static/js/markdown.js:1550` → `/api/model-endpoints`
-  - … +6 more
+  - `static/js/cookbookRunning.js:536` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:2713` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:2732` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3020` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3686` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3719` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3908` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:4171` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:4374` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:4400` → `/api/model-endpoints`
+  - `static/js/markdown.js:1860` → `/api/model-endpoints`
+  - `static/js/markdown.js:1887` → `/api/model-endpoints`
+  - `static/js/research/panel.js:809` → `/api/model-endpoints`
+  - … +7 more
 
 ## `POST /api/model-endpoints`
-- handler: `create_model_endpoint` — `routes/model_routes.py:1990`
+- handler: `create_model_endpoint` — `routes/model_routes.py:2145`
 - **JS callers:**
-  - `static/js/admin.js:255` → `/api/model-endpoints`
-  - `static/js/admin.js:489` → `/api/model-endpoints`
-  - `static/js/admin.js:1124` → `/api/model-endpoints`
-  - `static/js/admin.js:1442` → `/api/model-endpoints`
-  - `static/js/admin.js:1630` → `/api/model-endpoints`
-  - `static/js/admin.js:1723` → `/api/model-endpoints`
+  - `static/js/admin.js:312` → `/api/model-endpoints`
+  - `static/js/admin.js:1024` → `/api/model-endpoints`
+  - `static/js/admin.js:2017` → `/api/model-endpoints`
+  - `static/js/admin.js:2311` → `/api/model-endpoints`
+  - `static/js/admin.js:2499` → `/api/model-endpoints`
+  - `static/js/admin.js:2592` → `/api/model-endpoints`
   - `static/js/assistant.js:134` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:532` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:2657` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:2676` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:2964` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:3630` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:3663` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:3842` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:4094` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:4297` → `/api/model-endpoints`
-  - `static/js/cookbookRunning.js:4323` → `/api/model-endpoints`
-  - `static/js/editor/ai-models.js:97` → `/api/model-endpoints`
-  - `static/js/markdown.js:1523` → `/api/model-endpoints`
-  - `static/js/markdown.js:1550` → `/api/model-endpoints`
-  - … +6 more
+  - `static/js/cookbookRunning.js:536` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:2713` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:2732` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3020` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3686` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3719` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:3908` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:4171` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:4374` → `/api/model-endpoints`
+  - `static/js/cookbookRunning.js:4400` → `/api/model-endpoints`
+  - `static/js/markdown.js:1860` → `/api/model-endpoints`
+  - `static/js/markdown.js:1887` → `/api/model-endpoints`
+  - `static/js/research/panel.js:809` → `/api/model-endpoints`
+  - … +7 more
 
 ## `GET /api/model-endpoints/probe-local`
-- handler: `probe_local_endpoints` — `routes/model_routes.py:1677`
+- handler: `probe_local_endpoints` — `routes/model_routes.py:1825`
 - **JS callers:**
-  - `static/js/admin.js:1472` → `/api/model-endpoints/probe-local`
-  - `static/js/chat.js:1154` → `/api/model-endpoints/probe-local`
-  - `static/js/cookbookRunning.js:3843` → `/api/model-endpoints/probe-local`
+  - `static/js/admin.js:2341` → `/api/model-endpoints/probe-local`
+  - `static/js/chat.js:2049` → `/api/model-endpoints/probe-local`
+  - `static/js/cookbookRunning.js:3909` → `/api/model-endpoints/probe-local`
   - `static/js/modelPicker.js:270` → `/api/model-endpoints/probe-local`
 
 ## `POST /api/model-endpoints/test`
-- handler: `test_model_endpoint` — `routes/model_routes.py:2227`
+- handler: `test_model_endpoint` — `routes/model_routes.py:2412`
 - **JS callers:**
-  - `static/js/admin.js:1063` → `/api/model-endpoints/test`
-  - `static/js/admin.js:1598` → `/api/model-endpoints/test`
+  - `static/js/admin.js:1956` → `/api/model-endpoints/test`
+  - `static/js/admin.js:2467` → `/api/model-endpoints/test`
 
 ## `DELETE /api/model-endpoints/{ep_id}`
-- handler: `delete_model_endpoint` — `routes/model_routes.py:2665`
+- handler: `delete_model_endpoint` — `routes/model_routes.py:3049`
 - **JS callers:**
-  - `static/js/admin.js:583` → `/api/model-endpoints/${btn.dataset.admToggleEp}`
-  - `static/js/admin.js:1063` → `/api/model-endpoints/test`
-  - `static/js/admin.js:1472` → `/api/model-endpoints/probe-local`
-  - `static/js/admin.js:1598` → `/api/model-endpoints/test`
-  - `static/js/chat.js:1154` → `/api/model-endpoints/probe-local`
-  - `static/js/cookbookRunning.js:539` → `/api/model-endpoints/${ep.id}`
-  - `static/js/cookbookRunning.js:2968` → `/api/model-endpoints/${ep.id}`
-  - `static/js/cookbookRunning.js:3843` → `/api/model-endpoints/probe-local`
+  - `static/js/admin.js:600` → `/api/model-endpoints/${encodeURIComponent(id)}`
+  - `static/js/admin.js:1203` → `/api/model-endpoints/${btn.dataset.admToggleEp}`
+  - `static/js/admin.js:1247` → `/api/model-endpoints/${encodeURIComponent(epId)}`
+  - `static/js/admin.js:1956` → `/api/model-endpoints/test`
+  - `static/js/admin.js:2341` → `/api/model-endpoints/probe-local`
+  - `static/js/admin.js:2467` → `/api/model-endpoints/test`
+  - `static/js/chat.js:2049` → `/api/model-endpoints/probe-local`
+  - `static/js/cookbookRunning.js:3909` → `/api/model-endpoints/probe-local`
   - `static/js/modelPicker.js:270` → `/api/model-endpoints/probe-local`
 
 ## `PATCH /api/model-endpoints/{ep_id}`
-- handler: `toggle_model_endpoint` — `routes/model_routes.py:2498`
+- handler: `toggle_model_endpoint` — `routes/model_routes.py:2864`
 - **JS callers:**
-  - `static/js/admin.js:583` → `/api/model-endpoints/${btn.dataset.admToggleEp}`
-  - `static/js/admin.js:1063` → `/api/model-endpoints/test`
-  - `static/js/admin.js:1472` → `/api/model-endpoints/probe-local`
-  - `static/js/admin.js:1598` → `/api/model-endpoints/test`
-  - `static/js/chat.js:1154` → `/api/model-endpoints/probe-local`
-  - `static/js/cookbookRunning.js:539` → `/api/model-endpoints/${ep.id}`
-  - `static/js/cookbookRunning.js:2968` → `/api/model-endpoints/${ep.id}`
-  - `static/js/cookbookRunning.js:3843` → `/api/model-endpoints/probe-local`
+  - `static/js/admin.js:600` → `/api/model-endpoints/${encodeURIComponent(id)}`
+  - `static/js/admin.js:1203` → `/api/model-endpoints/${btn.dataset.admToggleEp}`
+  - `static/js/admin.js:1247` → `/api/model-endpoints/${encodeURIComponent(epId)}`
+  - `static/js/admin.js:1956` → `/api/model-endpoints/test`
+  - `static/js/admin.js:2341` → `/api/model-endpoints/probe-local`
+  - `static/js/admin.js:2467` → `/api/model-endpoints/test`
+  - `static/js/chat.js:2049` → `/api/model-endpoints/probe-local`
+  - `static/js/cookbookRunning.js:3909` → `/api/model-endpoints/probe-local`
   - `static/js/modelPicker.js:270` → `/api/model-endpoints/probe-local`
 
+## `GET /api/model-endpoints/{ep_id}/catalog-search`
+- handler: `search_endpoint_catalog` — `routes/model_routes.py:2637`
+- **JS callers:**
+  - `static/js/admin.js:903` → `/api/model-endpoints/${epId}/catalog-search?q=${encodeURIComponent(q)}&page=1&per_page=50`
+  - `static/js/admin.js:935` → `/api/model-endpoints/${epId}/catalog-search?q=${encodeURIComponent(currentQuery)}&page=${currentPage}&per_page=50`
+
 ## `GET /api/model-endpoints/{ep_id}/dependents`
-- handler: `get_endpoint_dependents` — `routes/model_routes.py:2659`
+- handler: `get_endpoint_dependents` — `routes/model_routes.py:3043`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/model-endpoints/{ep_id}/models`
-- handler: `list_endpoint_models` — `routes/model_routes.py:2308`
+- handler: `list_endpoint_models` — `routes/model_routes.py:2508`
 - **JS callers:**
-  - `static/js/admin.js:685` → `/api/model-endpoints/${epId}/models?refresh=true&refresh_timeout=60`
-  - `static/js/admin.js:752` → `/api/model-endpoints/${epId}/models`
-  - `static/js/admin.js:779` → `/api/model-endpoints/${epId}/models`
+  - `static/js/admin.js:733` → `/api/model-endpoints/${epId}/models`
+  - `static/js/admin.js:1391` → `/api/model-endpoints/${epId}/models?refresh=true&refresh_timeout=60`
+  - `static/js/admin.js:1480` → `/api/model-endpoints/${epId}/models`
+  - `static/js/admin.js:1518` → `/api/model-endpoints/${epId}/models`
 
 ## `PATCH /api/model-endpoints/{ep_id}/models`
-- handler: `update_hidden_models` — `routes/model_routes.py:2363`
+- handler: `update_hidden_models` — `routes/model_routes.py:2565`
 - **JS callers:**
-  - `static/js/admin.js:685` → `/api/model-endpoints/${epId}/models?refresh=true&refresh_timeout=60`
-  - `static/js/admin.js:752` → `/api/model-endpoints/${epId}/models`
-  - `static/js/admin.js:779` → `/api/model-endpoints/${epId}/models`
+  - `static/js/admin.js:733` → `/api/model-endpoints/${epId}/models`
+  - `static/js/admin.js:1391` → `/api/model-endpoints/${epId}/models?refresh=true&refresh_timeout=60`
+  - `static/js/admin.js:1480` → `/api/model-endpoints/${epId}/models`
+  - `static/js/admin.js:1518` → `/api/model-endpoints/${epId}/models`
 
 ## `GET /api/model-endpoints/{ep_id}/probe`
-- handler: `probe_endpoint_models` — `routes/model_routes.py:2258`
-- **JS callers:**
-  - `static/js/cookbookRunning.js:4091` → `/api/model-endpoints/${epId}/probe`
+- handler: `probe_endpoint_models` — `routes/model_routes.py:2458`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/model/cached`
-- handler: `model_cached` — `routes/cookbook_routes.py:1406`
+- handler: `model_cached` — `routes/cookbook_routes.py:1281`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:765` → `/api/model/cached?${_cacheParams}`
-  - `static/js/cookbook-hwfit.js:765` → `/api/model/cached?`
-  - `static/js/cookbookServe.js:4202` → `/api/model/cached`
+  - `static/js/cookbook-hwfit.js:807` → `/api/model/cached?`
+  - `static/js/cookbookServe.js:4355` → `/api/model/cached`
 
 ## `POST /api/model/download`
-- handler: `model_download` — `routes/cookbook_routes.py:1065`
+- handler: `model_download` — `routes/cookbook_routes.py:939`
 - **JS callers:**
-  - `static/js/cookbookDownload.js:622` → `/api/model/download`
-  - `static/js/cookbookRunning.js:699` → `/api/model/download`
-  - `static/js/cookbookRunning.js:1495` → `/api/model/download`
-  - `static/js/cookbookRunning.js:3407` → `/api/model/download`
+  - `static/js/cookbookDownload.js:638` → `/api/model/download`
+  - `static/js/cookbookRunning.js:703` → `/api/model/download`
+  - `static/js/cookbookRunning.js:1541` → `/api/model/download`
+  - `static/js/cookbookRunning.js:3463` → `/api/model/download`
 
 ## `POST /api/model/serve`
-- handler: `model_serve` — `routes/cookbook_routes.py:1962`
+- handler: `model_serve` — `routes/cookbook_routes.py:1871`
 - **JS callers:**
-  - `static/js/cookbook-hwfit.js:1945` → `/api/model/serve`
-  - `static/js/cookbook.js:1473` → `/api/model/serve`
-  - `static/js/cookbook.js:1549` → `/api/model/serve`
-  - `static/js/cookbook.js:1760` → `/api/model/serve`
-  - `static/js/cookbookRunning.js:2005` → `/api/model/serve`
+  - `static/js/cookbook-hwfit.js:2027` → `/api/model/serve`
+  - `static/js/cookbook.js:1486` → `/api/model/serve`
+  - `static/js/cookbook.js:1562` → `/api/model/serve`
+  - `static/js/cookbook.js:1775` → `/api/model/serve`
+  - `static/js/cookbookRunning.js:2051` → `/api/model/serve`
 
 ## `GET /api/models`
-- handler: `api_models` — `routes/model_routes.py:1619`
+- handler: `api_models` — `routes/model_routes.py:1758`
 - **JS callers:**
-  - `static/app.js:3508` → `/api/models`
-  - `static/js/chat.js:1146` → `/api/models`
+  - `static/app.js:3608` → `/api/models`
+  - `static/js/chat.js:2041` → `/api/models`
   - `static/js/compare/models.js:57` → `/api/models`
   - `static/js/group.js:45` → `/api/models`
   - `static/js/group.js:458` → `/api/models`
   - `static/js/models.js:202` → `/api/models`
-  - `static/js/settings.js:629` → `/api/models`
-  - `static/js/settings.js:699` → `/api/models`
+  - `static/js/settings.js:448` → `/api/models`
+  - `static/js/settings.js:703` → `/api/models`
+  - `static/js/skills.js:1739` → `/api/models`
   - `static/js/slashCommands.js:267` → `/api/models`
   - `static/js/slashCommands.js:987` → `/api/models`
-  - `static/js/slashCommands.js:1523` → `/api/models`
-  - `static/js/tasks.js:1588` → `/api/models`
+  - `static/js/slashCommands.js:1527` → `/api/models`
+  - `static/js/tasks.js:1685` → `/api/models`
 
 ## `POST /api/notes/fire-reminder`
-- handler: `fire_reminder` — `routes/note/note_routes.py:844`
+- handler: `fire_reminder` — `routes/note/note_routes.py:853`
 - **JS callers:**
   - `static/js/calendar/reminders.js:77` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:1011` → `/api/notes/fire-reminder`
-  - `static/js/settings.js:2657` → `/api/notes/fire-reminder`
+  - `static/js/features/notes/infrastructure/http.js:24` → `/api/notes/fire-reminder`
+  - `static/js/settings.js:2370` → `/api/notes/fire-reminder`
 
 ## `POST /api/notes/reorder`
-- handler: `reorder_notes` — `routes/note/note_routes.py:902`
+- handler: `reorder_notes` — `routes/note/note_routes.py:911`
 - **JS callers:**
-  - `static/js/notes.js:2698` → `/api/notes/reorder`
-  - `static/js/notes.js:2792` → `/api/notes/reorder`
-  - `static/js/notes.js:5282` → `/api/notes/reorder`
+  - `static/js/features/notes/infrastructure/http.js:21` → `/api/notes/reorder`
 
 ## `DELETE /api/notes/{note_id}`
-- handler: `delete_note` — `routes/note/note_routes.py:761`
+- handler: `delete_note` — `routes/note/note_routes.py:770`
 - **JS callers:**
   - `static/js/calendar/reminders.js:77` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:1011` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:2698` → `/api/notes/reorder`
-  - `static/js/notes.js:2792` → `/api/notes/reorder`
-  - `static/js/notes.js:5282` → `/api/notes/reorder`
-  - `static/js/settings.js:2657` → `/api/notes/fire-reminder`
+  - `static/js/features/notes/infrastructure/http.js:21` → `/api/notes/reorder`
+  - `static/js/features/notes/infrastructure/http.js:24` → `/api/notes/fire-reminder`
+  - `static/js/settings.js:2370` → `/api/notes/fire-reminder`
 
 ## `GET /api/notes/{note_id}`
-- handler: `get_note` — `routes/note/note_routes.py:689`
+- handler: `get_note` — `routes/note/note_routes.py:693`
 - **JS callers:**
   - `static/js/calendar/reminders.js:77` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:1011` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:2698` → `/api/notes/reorder`
-  - `static/js/notes.js:2792` → `/api/notes/reorder`
-  - `static/js/notes.js:5282` → `/api/notes/reorder`
-  - `static/js/settings.js:2657` → `/api/notes/fire-reminder`
+  - `static/js/features/notes/infrastructure/http.js:21` → `/api/notes/reorder`
+  - `static/js/features/notes/infrastructure/http.js:24` → `/api/notes/fire-reminder`
+  - `static/js/settings.js:2370` → `/api/notes/fire-reminder`
 
 ## `PUT /api/notes/{note_id}`
-- handler: `update_note` — `routes/note/note_routes.py:706`
+- handler: `update_note` — `routes/note/note_routes.py:710`
 - **JS callers:**
   - `static/js/calendar/reminders.js:77` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:1011` → `/api/notes/fire-reminder`
-  - `static/js/notes.js:2698` → `/api/notes/reorder`
-  - `static/js/notes.js:2792` → `/api/notes/reorder`
-  - `static/js/notes.js:5282` → `/api/notes/reorder`
-  - `static/js/settings.js:2657` → `/api/notes/fire-reminder`
+  - `static/js/features/notes/infrastructure/http.js:21` → `/api/notes/reorder`
+  - `static/js/features/notes/infrastructure/http.js:24` → `/api/notes/fire-reminder`
+  - `static/js/settings.js:2370` → `/api/notes/fire-reminder`
 
 ## `POST /api/notes/{note_id}/archive`
-- handler: `toggle_archive` — `routes/note/note_routes.py:799`
+- handler: `toggle_archive` — `routes/note/note_routes.py:808`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/notes/{note_id}/items/{index}/toggle`
-- handler: `toggle_item` — `routes/note/note_routes.py:818`
+- handler: `toggle_item` — `routes/note/note_routes.py:827`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/notes/{note_id}/pin`
-- handler: `toggle_pin` — `routes/note/note_routes.py:780`
+- handler: `toggle_pin` — `routes/note/note_routes.py:789`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/personal/add_directory`
-- handler: `add_directory_to_rag` — `routes/personal_routes.py:201`
+- handler: `add_directory_to_rag` — `routes/personal_routes.py:187`
 - **JS callers:**
-  - `static/js/admin.js:2491` → `/api/personal/add_directory`
-  - `static/js/slashCommands.js:1910` → `/api/personal/add_directory`
+  - `static/js/admin.js:3365` → `/api/personal/add_directory`
+  - `static/js/slashCommands.js:1914` → `/api/personal/add_directory`
 
 ## `DELETE /api/personal/file`
-- handler: `delete_file_from_rag` — `routes/personal_routes.py:411`
+- handler: `delete_file_from_rag` — `routes/personal_routes.py:397`
 - **JS callers:**
-  - `static/js/admin.js:2443` → `/api/personal/file?filepath=`
+  - `static/js/admin.js:3317` → `/api/personal/file?filepath=`
   - `static/js/rag.js:93` → `/api/personal/file?filepath=`
 
 ## `POST /api/personal/reload`
-- handler: `api_personal_reload` — `routes/personal_routes.py:192`
+- handler: `api_personal_reload` — `routes/personal_routes.py:178`
 - **JS callers:**
-  - `static/js/admin.js:2502` → `/api/personal/reload`
+  - `static/js/admin.js:3376` → `/api/personal/reload`
 
 ## `DELETE /api/personal/remove_directory`
-- handler: `remove_directory_from_rag` — `routes/personal_routes.py:270`
+- handler: `remove_directory_from_rag` — `routes/personal_routes.py:256`
 - **JS callers:**
-  - `static/js/admin.js:2423` → `/api/personal/remove_directory?directory=`
-  - `static/js/slashCommands.js:1940` → `/api/personal/remove_directory?directory=`
-  - `static/js/slashCommands.js:1949` → `/api/personal/remove_directory?directory=`
+  - `static/js/admin.js:3297` → `/api/personal/remove_directory?directory=`
+  - `static/js/slashCommands.js:1944` → `/api/personal/remove_directory?directory=`
+  - `static/js/slashCommands.js:1953` → `/api/personal/remove_directory?directory=`
 
 ## `POST /api/personal/upload`
-- handler: `upload_files_to_rag` — `routes/personal_routes.py:322`
+- handler: `upload_files_to_rag` — `routes/personal_routes.py:308`
 - **JS callers:**
-  - `static/js/admin.js:2470` → `/api/personal/upload`
+  - `static/js/admin.js:3344` → `/api/personal/upload`
   - `static/js/rag.js:120` → `/api/personal/upload`
 
 ## `GET /api/ping`
-- handler: `ping_endpoints` — `routes/model_routes.py:1757`
+- handler: `ping_endpoints` — `routes/model_routes.py:1905`
 - **JS callers:**
-  - `static/js/slashCommands.js:5549` → `/api/ping`
+  - `static/js/slashCommands.js:5581` → `/api/ping`
 
 ## `GET /api/prefs/{key}`
 - handler: `get_pref` — `routes/prefs_routes.py:112`
 - **JS callers:**
-  - `static/js/theme.js:122` → `/api/prefs/custom-themes`
-  - `static/js/theme.js:636` → `/api/prefs/theme`
-  - `static/js/theme.js:647` → `/api/prefs/theme`
-  - `static/js/theme.js:2246` → `/api/prefs/custom-themes`
+  - `static/js/settings/imagePreferences.js:46` → `/api/prefs/${encodeURIComponent(key)}`
+  - `static/js/settings/imagePreferences.js:64` → `/api/prefs/${encodeURIComponent(key)}`
+  - `static/js/theme.js:159` → `/api/prefs/custom-themes`
+  - `static/js/theme.js:692` → `/api/prefs/theme`
+  - `static/js/theme.js:703` → `/api/prefs/theme`
+  - `static/js/theme.js:2458` → `/api/prefs/custom-themes`
 
 ## `PUT /api/prefs/{key}`
 - handler: `set_pref` — `routes/prefs_routes.py:118`
 - **JS callers:**
-  - `static/js/theme.js:122` → `/api/prefs/custom-themes`
-  - `static/js/theme.js:636` → `/api/prefs/theme`
-  - `static/js/theme.js:647` → `/api/prefs/theme`
-  - `static/js/theme.js:2246` → `/api/prefs/custom-themes`
+  - `static/js/settings/imagePreferences.js:46` → `/api/prefs/${encodeURIComponent(key)}`
+  - `static/js/settings/imagePreferences.js:64` → `/api/prefs/${encodeURIComponent(key)}`
+  - `static/js/theme.js:159` → `/api/prefs/custom-themes`
+  - `static/js/theme.js:692` → `/api/prefs/theme`
+  - `static/js/theme.js:703` → `/api/prefs/theme`
+  - `static/js/theme.js:2458` → `/api/prefs/custom-themes`
 
 ## `GET /api/presets`
-- handler: `get_presets` — `routes/preset_routes.py:30`
+- handler: `get_presets` — `routes/preset_routes.py:32`
 - **JS callers:**
   - `static/js/assistant.js:281` → `/api/presets`
-  - `static/js/presets.js:503` → `/api/presets`
+  - `static/js/presets.js:522` → `/api/presets`
 
 ## `POST /api/presets/custom`
-- handler: `update_custom_preset` — `routes/preset_routes.py:34`
+- handler: `update_custom_preset` — `routes/preset_routes.py:36`
 - **JS callers:**
-  - `static/js/presets.js:676` → `/api/presets/custom`
-  - `static/js/presets.js:794` → `/api/presets/custom`
-  - `static/js/presets.js:1047` → `/api/presets/custom`
+  - `static/js/presets.js:710` → `/api/presets/custom`
+  - `static/js/presets.js:840` → `/api/presets/custom`
+  - `static/js/presets.js:1116` → `/api/presets/custom`
 
 ## `POST /api/presets/expand`
-- handler: `expand_character_prompt` — `routes/preset_routes.py:74`
+- handler: `expand_character_prompt` — `routes/preset_routes.py:80`
 - **JS callers:**
   - `static/js/presets.js:136` → `/api/presets/expand`
 
 ## `GET /api/presets/groups`
-- handler: `get_group_presets` — `routes/preset_routes.py:115`
+- handler: `get_group_presets` — `routes/preset_routes.py:121`
 - **JS callers:**
   - `static/js/group.js:183` → `/api/presets/groups`
   - `static/js/group.js:190` → `/api/presets/groups`
@@ -2128,7 +2305,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/group.js:321` → `/api/presets/groups`
 
 ## `POST /api/presets/groups`
-- handler: `save_group_presets` — `routes/preset_routes.py:120`
+- handler: `save_group_presets` — `routes/preset_routes.py:126`
 - **JS callers:**
   - `static/js/group.js:183` → `/api/presets/groups`
   - `static/js/group.js:190` → `/api/presets/groups`
@@ -2137,381 +2314,401 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/group.js:321` → `/api/presets/groups`
 
 ## `GET /api/presets/templates`
-- handler: `get_user_templates` — `routes/preset_routes.py:53`
+- handler: `get_user_templates` — `routes/preset_routes.py:59`
 - **JS callers:**
   - `static/js/assistant.js:282` → `/api/presets/templates`
   - `static/js/group.js:351` → `/api/presets/templates`
-  - `static/js/presets.js:373` → `/api/presets/templates`
-  - `static/js/presets.js:474` → `/api/presets/templates`
-  - `static/js/presets.js:846` → `/api/presets/templates`
+  - `static/js/presets.js:390` → `/api/presets/templates`
+  - `static/js/presets.js:493` → `/api/presets/templates`
+  - `static/js/presets.js:894` → `/api/presets/templates`
 
 ## `POST /api/presets/templates`
-- handler: `save_user_template` — `routes/preset_routes.py:57`
+- handler: `save_user_template` — `routes/preset_routes.py:63`
 - **JS callers:**
   - `static/js/assistant.js:282` → `/api/presets/templates`
   - `static/js/group.js:351` → `/api/presets/templates`
-  - `static/js/presets.js:373` → `/api/presets/templates`
-  - `static/js/presets.js:474` → `/api/presets/templates`
-  - `static/js/presets.js:846` → `/api/presets/templates`
+  - `static/js/presets.js:390` → `/api/presets/templates`
+  - `static/js/presets.js:493` → `/api/presets/templates`
+  - `static/js/presets.js:894` → `/api/presets/templates`
 
 ## `DELETE /api/presets/templates/{template_id}`
-- handler: `delete_user_template` — `routes/preset_routes.py:67`
+- handler: `delete_user_template` — `routes/preset_routes.py:73`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/probe`
-- handler: `probe_models` — `routes/model_routes.py:1842`
+- handler: `probe_models` — `routes/model_routes.py:1990`
 - **JS callers:**
-  - `static/js/slashCommands.js:5581` → `/api/probe`
+  - `static/js/slashCommands.js:5613` → `/api/probe`
 
 ## `POST /api/probe-selected`
-- handler: `probe_selected` — `routes/model_routes.py:1797`
+- handler: `probe_selected` — `routes/model_routes.py:1945`
 - **JS callers:**
   - `static/js/compare/probe.js:45` → `/api/probe-selected`
-  - `static/js/compare/selector.js:1009` → `/api/probe-selected`
+  - `static/js/compare/selector.js:1092` → `/api/probe-selected`
 
 ## `GET /api/providers`
-- handler: `providers` — `routes/model_routes.py:1913`
+- handler: `providers` — `routes/model_routes.py:2063`
 - **JS callers:**
-  - `static/js/models.js:607` → `/api/providers`
+  - `static/js/models.js:615` → `/api/providers`
 
 ## `GET /api/rag/stats`
 - handler: `get_rag_stats` — `routes/diagnostics_routes.py:67`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/ready`
-- handler: `readiness_check` — `app.py:988`
+- handler: `readiness_check` — `app.py:1087`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/research/active`
-- handler: `research_active` — `routes/research/research_routes.py:260`
+- handler: `research_active` — `routes/research/research_routes.py:262`
 - **JS callers:**
-  - `static/js/research/jobs.js:62` → `/api/research/active`
+  - `static/js/research/jobs.js:105` → `/api/research/active`
 
 ## `POST /api/research/cancel/{session_id}`
-- handler: `research_cancel` — `routes/research/research_routes.py:290`
+- handler: `research_cancel` — `routes/research/research_routes.py:322`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/research/chat-jobs/{chat_id}`
+- handler: `chat_research_jobs` — `routes/research/research_routes.py:654`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/research/detail/{session_id}`
-- handler: `research_detail` — `routes/research/research_routes.py:422`
+- handler: `research_detail` — `routes/research/research_routes.py:474`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/research/library`
-- handler: `research_library` — `routes/research/research_routes.py:367`
+- handler: `research_library` — `routes/research/research_routes.py:417`
 - **JS callers:**
-  - `static/js/documentLibrary.js:2391` → `/api/research/library?archived=true`
-  - `static/js/documentLibrary.js:2906` → `/api/research/library`
-  - `static/js/research/jobs.js:95` → `/api/research/library?sort=recent&limit=20`
-  - `static/js/research/panel.js:190` → `/api/research/library?limit=1`
-  - `static/js/sessions.js:3563` → `/api/research/library?`
+  - `static/js/documentLibrary.js:2592` → `/api/research/library?archived=true`
+  - `static/js/documentLibrary.js:2963` → `/api/research/library`
+  - `static/js/research/jobs.js:144` → `/api/research/library?sort=recent&limit=20`
+  - `static/js/research/panel.js:181` → `/api/research/library?limit=1`
+  - `static/js/sessions.js:3993` → `/api/research/library?`
 
 ## `GET /api/research/report/{session_id}`
-- handler: `research_report` — `routes/research/research_routes.py:324`
+- handler: `research_report` — `routes/research/research_routes.py:374`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/research/result-peek/{session_id}`
-- handler: `research_result_peek` — `routes/research/research_routes.py:614`
+- handler: `research_result_peek` — `routes/research/research_routes.py:715`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/research/result/{session_id}`
-- handler: `research_result` — `routes/research/research_routes.py:299`
+- handler: `research_result` — `routes/research/research_routes.py:331`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/research/spinoff/{session_id}`
-- handler: `research_spinoff` — `routes/research/research_routes.py:636`
+- handler: `research_spinoff` — `routes/research/research_routes.py:758`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/research/start`
-- handler: `research_start` — `routes/research/research_routes.py:493`
+- handler: `research_start` — `routes/research/research_routes.py:546`
 - **JS callers:**
-  - `static/js/research/jobs.js:276` → `/api/research/start`
+  - `static/js/research/jobs.js:331` → `/api/research/start`
 
 ## `GET /api/research/status/{session_id}`
-- handler: `research_status` — `routes/research/research_routes.py:279`
+- handler: `research_status` — `routes/research/research_routes.py:287`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/research/stream/{session_id}`
-- handler: `research_stream` — `routes/research/research_routes.py:580`
+- handler: `research_stream` — `routes/research/research_routes.py:660`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/research/{session_id}`
-- handler: `research_delete` — `routes/research/research_routes.py:456`
+- handler: `research_delete` — `routes/research/research_routes.py:508`
 - **JS callers:**
-  - `static/js/documentLibrary.js:2391` → `/api/research/library?archived=true`
-  - `static/js/documentLibrary.js:2906` → `/api/research/library`
-  - `static/js/research/jobs.js:62` → `/api/research/active`
-  - `static/js/research/jobs.js:95` → `/api/research/library?sort=recent&limit=20`
-  - `static/js/research/jobs.js:276` → `/api/research/start`
-  - `static/js/research/panel.js:190` → `/api/research/library?limit=1`
-  - `static/js/sessions.js:3563` → `/api/research/library?`
+  - `static/js/documentLibrary.js:2592` → `/api/research/library?archived=true`
+  - `static/js/documentLibrary.js:2963` → `/api/research/library`
+  - `static/js/research/jobs.js:105` → `/api/research/active`
+  - `static/js/research/jobs.js:144` → `/api/research/library?sort=recent&limit=20`
+  - `static/js/research/jobs.js:331` → `/api/research/start`
+  - `static/js/research/panel.js:181` → `/api/research/library?limit=1`
+  - `static/js/sessions.js:3993` → `/api/research/library?`
 
 ## `POST /api/research/{session_id}/archive`
-- handler: `research_archive` — `routes/research/research_routes.py:438`
+- handler: `research_archive` — `routes/research/research_routes.py:490`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/research/{session_id}/hide-image`
-- handler: `research_hide_image` — `routes/research/research_routes.py:344`
+- handler: `research_hide_image` — `routes/research/research_routes.py:394`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/research/{session_id}/unhide-images`
-- handler: `research_unhide_images` — `routes/research/research_routes.py:356`
+- handler: `research_unhide_images` — `routes/research/research_routes.py:406`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/rewrite`
-- handler: `rewrite_message` — `routes/chat_routes.py:3209`
+- handler: `rewrite_message` — `routes/chat_routes.py:5684`
 - **JS callers:**
-  - `static/js/chat.js:7587` → `/api/rewrite`
+  - `static/js/chat.js:9201` → `/api/rewrite`
 
 ## `GET /api/runtime`
-- handler: `runtime_info` — `app.py:999`
+- handler: `runtime_info` — `app.py:1098`
 - **JS callers:**
-  - `static/js/admin.js:1005` → `/api/runtime`
+  - `static/js/admin.js:1892` → `/api/runtime`
 
 ## `GET /api/search`
-- handler: `search_messages` — `routes/chat_routes.py:3139`
+- handler: `search_messages` — `routes/chat_routes.py:5614`
 - **JS callers:**
-  - `static/js/compare/index.js:948` → `/api/search`
-  - `static/js/search-chat.js:188` → `/api/search?q=`
-  - `static/js/slashCommands.js:1976` → `/api/search?q=`
+  - `static/js/compare/index.js:1061` → `/api/search`
+  - `static/js/search-chat.js:194` → `/api/search?q=`
+  - `static/js/slashCommands.js:1980` → `/api/search?q=`
 
 ## `POST /api/search`
-- handler: `do_web_search` — `routes/search/search_routes.py:47`
+- handler: `do_web_search` — `routes/search/search_routes.py:148`
 - **JS callers:**
-  - `static/js/compare/index.js:948` → `/api/search`
-  - `static/js/search-chat.js:188` → `/api/search?q=`
-  - `static/js/slashCommands.js:1976` → `/api/search?q=`
+  - `static/js/compare/index.js:1061` → `/api/search`
+  - `static/js/compare/index.js:1061` → `/api/search`
+  - `static/js/search-chat.js:194` → `/api/search?q=`
+  - `static/js/search-chat.js:194` → `/api/search?q=`
+  - `static/js/slashCommands.js:1980` → `/api/search?q=`
+  - `static/js/slashCommands.js:1980` → `/api/search?q=`
+
+## `POST /api/search`
+- handler: `_stub_search` — `tests/test_codeql_python_residual_closure.py:520`
+- **JS callers:**
+  - `static/js/compare/index.js:1061` → `/api/search`
+  - `static/js/compare/index.js:1061` → `/api/search`
+  - `static/js/search-chat.js:194` → `/api/search?q=`
+  - `static/js/search-chat.js:194` → `/api/search?q=`
+  - `static/js/slashCommands.js:1980` → `/api/search?q=`
+  - `static/js/slashCommands.js:1980` → `/api/search?q=`
 
 ## `GET /api/search/config`
-- handler: `get_search_settings` — `routes/search/search_routes.py:43`
+- handler: `get_search_settings` — `routes/search/search_routes.py:144`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/search/providers`
-- handler: `list_search_providers` — `routes/search/search_routes.py:69`
+- handler: `list_search_providers` — `routes/search/search_routes.py:170`
 - **JS callers:**
-  - `static/js/compare/selector.js:573` → `/api/search/providers`
-  - `static/js/compare/selector.js:680` → `/api/search/providers`
+  - `static/js/compare/selector.js:636` → `/api/search/providers`
+  - `static/js/compare/selector.js:747` → `/api/search/providers`
 
 ## `POST /api/search/query`
-- handler: `search_with_provider` — `routes/search/search_routes.py:88`
+- handler: `search_with_provider` — `routes/search/search_routes.py:189`
 - **JS callers:**
-  - `static/js/compare/index.js:714` → `/api/search/query`
-  - `static/js/compare/panes.js:125` → `/api/search/query`
-  - `static/js/compare/selector.js:1217` → `/api/search/query`
-  - `static/js/settings.js:1358` → `/api/search/query`
+  - `static/js/compare/index.js:827` → `/api/search/query`
+  - `static/js/compare/panes.js:468` → `/api/search/query`
+  - `static/js/compare/selector.js:1305` → `/api/search/query`
+  - `static/js/settings.js:1124` → `/api/search/query`
 
 ## `POST /api/session`
-- handler: `create_session` — `routes/session_routes.py:392`
+- handler: `create_session` — `routes/session_routes.py:553`
 - **JS callers:**
-  - `static/js/chat.js:7770` → `/api/session`
-  - `static/js/compare/index.js:257` → `/api/session`
-  - `static/js/compare/panes.js:393` → `/api/session`
-  - `static/js/compare/panes.js:597` → `/api/session`
-  - `static/js/compare/stream.js:234` → `/api/session`
-  - `static/js/document.js:7307` → `/api/session`
-  - `static/js/emailInbox.js:1371` → `/api/session`
+  - `static/js/chat.js:9384` → `/api/session`
+  - `static/js/compare/index.js:311` → `/api/session`
+  - `static/js/compare/panes.js:740` → `/api/session`
+  - `static/js/compare/panes.js:936` → `/api/session`
+  - `static/js/compare/stream.js:290` → `/api/session`
+  - `static/js/document.js:12340` → `/api/session`
+  - `static/js/emailInbox.js:1451` → `/api/session`
+  - `static/js/features/notes/infrastructure/http.js:26` → `/api/session`
   - `static/js/group.js:607` → `/api/session`
   - `static/js/group.js:630` → `/api/session`
-  - `static/js/keyboard-shortcuts.js:236` → `/api/session`
-  - `static/js/notes.js:4505` → `/api/session`
-  - `static/js/notes.js:4571` → `/api/session`
-  - `static/js/presets.js:415` → `/api/session`
-  - `static/js/sessions.js:2405` → `/api/session`
+  - `static/js/keyboard-shortcuts.js:237` → `/api/session`
+  - `static/js/presets.js:432` → `/api/session`
+  - `static/js/sessions.js:2763` → `/api/session`
   - `static/js/slashCommands.js:1010` → `/api/session`
-  - `static/js/tasks.js:2569` → `/api/session`
+  - `static/js/tasks.js:2705` → `/api/session`
 
 ## `POST /api/session/openai`
-- handler: `create_session_openai` — `routes/session_routes.py:1121`
+- handler: `create_session_openai` — `routes/session_routes.py:1267`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/compact`
-- handler: `compact_session` — `routes/history/history_routes.py:1086`
+- handler: `compact_session` — `routes/history/history_routes.py:1469`
 - **JS callers:**
-  - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
-  - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
+  - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
+  - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
 
 ## `POST /api/session/{session_id}/compact`
-- handler: `compact_session` — `routes/session_routes.py:1185`
+- handler: `compact_session` — `routes/session_routes.py:1331`
 - **JS callers:**
-  - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
-  - `static/js/chat.js:273` → `/api/session/${encodeURIComponent(sid)}/compact`
+  - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
+  - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
 
 ## `GET /api/session/{session_id}/context`
-- handler: `get_session_context_usage` — `routes/history/history_routes.py:975`
+- handler: `get_session_context_usage` — `routes/history/history_routes.py:1176`
 - **JS callers:**
-  - `static/js/chat.js:303` → `/api/session/${encodeURIComponent(sid)}/context`
+  - `static/js/chat.js:1184` → `/api/session/${encodeURIComponent(sid)}/context`
 
 ## `GET /api/session/{session_id}/context_info`
-- handler: `get_context_info` — `routes/session_routes.py:1567`
+- handler: `get_context_info` — `routes/session_routes.py:1699`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/delete-messages`
-- handler: `delete_messages` — `routes/history/history_routes.py:488`
+- handler: `delete_messages` — `routes/history/history_routes.py:665`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/edit-message`
-- handler: `edit_message` — `routes/history/history_routes.py:559`
+- handler: `edit_message` — `routes/history/history_routes.py:753`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/fork`
-- handler: `fork_session` — `routes/history/history_routes.py:853`
+- handler: `fork_session` — `routes/history/history_routes.py:1035`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
+## `POST /api/session/{session_id}/generation-settings`
+- handler: `set_session_generation_settings` — `routes/history/history_routes.py:1350`
+- **JS callers:**
+  - `static/js/chat.js:1133` → `/api/session/${encodeURIComponent(sid)}/generation-settings`
+
 ## `POST /api/session/{session_id}/important`
-- handler: `mark_session_important` — `routes/session_routes.py:1148`
+- handler: `mark_session_important` — `routes/session_routes.py:1294`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/mark-stopped`
-- handler: `mark_stopped` — `routes/history/history_routes.py:637`
+- handler: `mark_stopped` — `routes/history/history_routes.py:808`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
+## `POST /api/session/{session_id}/memory-extraction`
+- handler: `set_session_memory_extraction` — `routes/history/history_routes.py:1238`
+- **JS callers:**
+  - `static/js/chat.js:1028` → `/api/session/${encodeURIComponent(sid)}/memory-extraction`
+
+## `POST /api/session/{session_id}/memory-injection`
+- handler: `set_session_memory_injection` — `routes/history/history_routes.py:1313`
+- **JS callers:**
+  - `static/js/chat.js:1102` → `/api/session/${encodeURIComponent(sid)}/memory-injection`
+
 ## `POST /api/session/{session_id}/merge-last-assistant`
-- handler: `merge_last_assistant` — `routes/history/history_routes.py:743`
+- handler: `merge_last_assistant` — `routes/history/history_routes.py:914`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/message`
-- handler: `add_message` — `routes/history/history_routes.py:470`
+- handler: `add_message` — `routes/history/history_routes.py:641`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
+## `POST /api/session/{session_id}/skill-injection`
+- handler: `set_session_skill_injection` — `routes/history/history_routes.py:1274`
+- **JS callers:**
+  - `static/js/chat.js:1066` → `/api/session/${encodeURIComponent(sid)}/skill-injection`
+
 ## `POST /api/session/{session_id}/truncate`
-- handler: `truncate_session` — `routes/history/history_routes.py:419`
+- handler: `truncate_session` — `routes/history/history_routes.py:559`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/uncompact`
-- handler: `uncompact_session` — `routes/history/history_routes.py:1024`
+- handler: `uncompact_session` — `routes/history/history_routes.py:1406`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/update-last-meta`
-- handler: `update_last_meta` — `routes/history/history_routes.py:692`
+- handler: `update_last_meta` — `routes/history/history_routes.py:863`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/session/{sid}`
-- handler: `delete_session` — `routes/session_routes.py:756`
+- handler: `delete_session` — `routes/session_routes.py:963`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PATCH /api/session/{sid}`
-- handler: `rename_session` — `routes/session_routes.py:528`
+- handler: `rename_session` — `routes/session_routes.py:694`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/archive`
-- handler: `archive_session` — `routes/session_routes.py:911`
+- handler: `archive_session` — `routes/session_routes.py:1056`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/delete`
-- handler: `delete_session_beacon` — `routes/session_routes.py:722`
+- handler: `delete_session_beacon` — `routes/session_routes.py:916`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /api/session/{sid}/deletion-info`
+- handler: `session_deletion_info` — `routes/session_routes.py:952`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/session/{sid}/export`
-- handler: `export_session` — `routes/session_routes.py:1023`
+- handler: `export_session` — `routes/session_routes.py:1169`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/inject_messages`
-- handler: `inject_messages` — `routes/session_routes.py:686`
-- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
-
-## `DELETE /api/session/{sid}/purge`
-- handler: `purge_session_route` — `routes/session_routes.py:897`
+- handler: `inject_messages` — `routes/session_routes.py:880`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/retitle`
-- handler: `retitle_session` — `routes/session_routes.py:606`
+- handler: `retitle_session` — `routes/session_routes.py:800`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{sid}/unarchive`
-- handler: `unarchive_session` — `routes/session_routes.py:949`
-- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
-
-## `POST /api/session/{sid}/untrash`
-- handler: `untrash_session` — `routes/session_routes.py:883`
+- handler: `unarchive_session` — `routes/session_routes.py:1094`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/sessions`
-- handler: `list_sessions` — `routes/session_routes.py:283`
+- handler: `list_sessions` — `routes/session_routes.py:420`
 - **JS callers:**
-  - `static/js/documentLibrary.js:1936` → `/api/sessions`
-  - `static/js/sessions.js:1774` → `/api/sessions`
-  - `static/js/slashCommands.js:2019` → `/api/sessions`
+  - `static/js/documentLibrary.js:2154` → `/api/sessions`
+  - `static/js/sessions.js:2112` → `/api/sessions`
+  - `static/js/slashCommands.js:2023` → `/api/sessions`
 
 ## `DELETE /api/sessions/all`
-- handler: `delete_all_sessions` — `routes/session_routes.py:799`
+- handler: `delete_all_sessions` — `routes/session_routes.py:1000`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/sessions/archived`
-- handler: `list_archived_sessions` — `routes/session_routes.py:979`
+- handler: `list_archived_sessions` — `routes/session_routes.py:1124`
 - **JS callers:**
-  - `static/js/documentLibrary.js:2389` → `/api/sessions/archived?limit=100&sort=recent`
-  - `static/js/sessions.js:3150` → `/api/sessions/archived?`
-  - `static/js/sessions.js:3494` → `/api/sessions/archived?`
+  - `static/js/documentLibrary.js:2590` → `/api/sessions/archived?limit=100&sort=recent`
+  - `static/js/sessions.js:3571` → `/api/sessions/archived?`
+  - `static/js/sessions.js:3924` → `/api/sessions/archived?`
 
 ## `POST /api/sessions/auto-sort`
-- handler: `auto_sort_sessions` — `routes/session_routes.py:1279`
+- handler: `auto_sort_sessions` — `routes/session_routes.py:1441`
 - **JS callers:**
-  - `static/app.js:1436` → `/api/sessions/auto-sort`
-  - `static/js/documentLibrary.js:2351` → `/api/sessions/auto-sort`
+  - `static/app.js:1477` → `/api/sessions/auto-sort`
+  - `static/js/documentLibrary.js:2552` → `/api/sessions/auto-sort`
   - `static/js/slashCommands.js:1163` → `/api/sessions/auto-sort`
 
 ## `POST /api/sessions/bulk-delete`
-- handler: `bulk_delete_sessions` — `routes/session_routes.py:727`
+- handler: `bulk_delete_sessions` — `routes/session_routes.py:921`
 - **JS callers:**
-  - `static/js/compare/index.js:62` → `/api/sessions/bulk-delete`
+  - `static/js/compare/index.js:64` → `/api/sessions/bulk-delete`
 
 ## `POST /api/sessions/save`
-- handler: `sessions_save_now` — `routes/session_routes.py:1113`
+- handler: `sessions_save_now` — `routes/session_routes.py:1259`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
-## `DELETE /api/sessions/trash`
-- handler: `empty_trash` — `routes/session_routes.py:866`
-- **JS callers:**
-  - `static/js/documentLibrary.js:2746` → `/api/sessions/trash?limit=500`
-  - `static/js/documentLibrary.js:2879` → `/api/sessions/trash`
-
-## `GET /api/sessions/trash`
-- handler: `list_trash_sessions` — `routes/session_routes.py:856`
-- **JS callers:**
-  - `static/js/documentLibrary.js:2746` → `/api/sessions/trash?limit=500`
-  - `static/js/documentLibrary.js:2879` → `/api/sessions/trash`
-
 ## `POST /api/shell/exec`
-- handler: `shell_exec` — `routes/shell_routes.py:961`
+- handler: `shell_exec` — `routes/shell_routes.py:1195`
 - **JS callers:**
-  - `static/js/codeRunner.js:324` → `/api/shell/exec`
-  - `static/js/cookbook-diagnosis.js:1059` → `/api/shell/exec`
-  - `static/js/cookbook-hwfit.js:1740` → `/api/shell/exec`
-  - `static/js/cookbook-hwfit.js:1794` → `/api/shell/exec`
-  - `static/js/cookbookDownload.js:282` → `/api/shell/exec`
-  - `static/js/cookbookDownload.js:588` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1467` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1569` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1632` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1674` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1707` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1930` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:1952` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:2524` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:2888` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:2897` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:2919` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:2928` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:2939` → `/api/shell/exec`
-  - `static/js/cookbookRunning.js:3058` → `/api/shell/exec`
+  - `static/js/codeRunner.js:335` → `/api/shell/exec`
+  - `static/js/cookbook-diagnosis.js:1074` → `/api/shell/exec`
+  - `static/js/cookbook-hwfit.js:1821` → `/api/shell/exec`
+  - `static/js/cookbook-hwfit.js:1875` → `/api/shell/exec`
+  - `static/js/cookbookDownload.js:289` → `/api/shell/exec`
+  - `static/js/cookbookDownload.js:595` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1513` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1615` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1678` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1720` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1753` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1976` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:1998` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:2579` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:2944` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:2953` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:2975` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:2984` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:2995` → `/api/shell/exec`
+  - `static/js/cookbookRunning.js:3114` → `/api/shell/exec`
   - … +10 more
 
 ## `POST /api/shell/stream`
-- handler: `shell_stream` — `routes/shell_routes.py:979`
+- handler: `shell_stream` — `routes/shell_routes.py:1213`
 - **JS callers:**
-  - `static/js/cookbookDownload.js:386` → `/api/shell/stream`
+  - `static/js/cookbookDownload.js:393` → `/api/shell/stream`
 
 ## `GET /api/signatures`
 - handler: `list_signatures` — `routes/signature_routes.py:87`
 - **JS callers:**
-  - `static/js/document.js:1234` → `/api/signatures`
-  - `static/js/document.js:1509` → `/api/signatures`
+  - `static/js/document.js:2193` → `/api/signatures`
+  - `static/js/document.js:2482` → `/api/signatures`
   - `static/js/signature.js:329` → `/api/signatures`
   - `static/js/signature.js:336` → `/api/signatures`
 
 ## `POST /api/signatures`
 - handler: `create_signature` — `routes/signature_routes.py:102`
 - **JS callers:**
-  - `static/js/document.js:1234` → `/api/signatures`
-  - `static/js/document.js:1509` → `/api/signatures`
+  - `static/js/document.js:2193` → `/api/signatures`
+  - `static/js/document.js:2482` → `/api/signatures`
   - `static/js/signature.js:329` → `/api/signatures`
   - `static/js/signature.js:336` → `/api/signatures`
 
@@ -2520,113 +2717,113 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/skills/add`
-- handler: `add_skill` — `routes/skills_routes.py:1381`
+- handler: `add_skill` — `routes/skills_routes.py:490`
 - **JS callers:**
-  - `static/js/skills.js:1956` → `/api/skills/add`
+  - `static/js/skills.js:2274` → `/api/skills/add`
 
 ## `POST /api/skills/audit-all`
-- handler: `audit_all_skills` — `routes/skills_routes.py:1702`
+- handler: `audit_all_skills` — `routes/skills_routes.py:727`
 - **JS callers:**
-  - `static/js/skills.js:1503` → `/api/skills/audit-all`
+  - `static/js/skills.js:1811` → `/api/skills/audit-all`
 
 ## `POST /api/skills/audit-all/cancel`
-- handler: `audit_cancel` — `routes/skills_routes.py:1791`
+- handler: `audit_cancel` — `routes/skills_routes.py:771`
 - **JS callers:**
-  - `static/js/skills.js:1653` → `/api/skills/audit-all/cancel`
+  - `static/js/skills.js:1964` → `/api/skills/audit-all/cancel`
 
 ## `GET /api/skills/audit-all/status`
-- handler: `audit_status` — `routes/skills_routes.py:1777`
+- handler: `audit_status` — `routes/skills_routes.py:766`
 - **JS callers:**
-  - `static/js/skills.js:1607` → `/api/skills/audit-all/status`
+  - `static/js/skills.js:1918` → `/api/skills/audit-all/status`
 
 ## `GET /api/skills/builtin`
-- handler: `list_builtin_skills` — `routes/skills_routes.py:1251`
+- handler: `list_builtin_skills` — `routes/skills_routes.py:360`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/skills/builtin/{name}`
-- handler: `reset_builtin_override` — `routes/skills_routes.py:1338`
+- handler: `reset_builtin_override` — `routes/skills_routes.py:447`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/skills/builtin/{name}`
-- handler: `get_builtin_skill` — `routes/skills_routes.py:1288`
+- handler: `get_builtin_skill` — `routes/skills_routes.py:397`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `PUT /api/skills/builtin/{name}`
-- handler: `set_builtin_override` — `routes/skills_routes.py:1312`
+- handler: `set_builtin_override` — `routes/skills_routes.py:421`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/skills/import-from-url`
-- handler: `import_skill_from_url` — `routes/skills_routes.py:1351`
+- handler: `import_skill_from_url` — `routes/skills_routes.py:460`
 - **JS callers:**
-  - `static/js/skills.js:1915` → `/api/skills/import-from-url`
+  - `static/js/skills.js:2233` → `/api/skills/import-from-url`
 
 ## `GET /api/skills/index`
-- handler: `get_index` — `routes/skills_routes.py:1213`
+- handler: `get_index` — `routes/skills_routes.py:322`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/skills/search`
-- handler: `search_skills` — `routes/skills_routes.py:1889`
+- handler: `search_skills` — `routes/skills_routes.py:865`
 - **JS callers:**
-  - `static/js/slashCommands.js:1672` → `/api/skills/search`
+  - `static/js/slashCommands.js:1676` → `/api/skills/search`
 
 ## `GET /api/skills/slash-catalog`
-- handler: `get_slash_catalog` — `routes/skills_routes.py:1222`
+- handler: `get_slash_catalog` — `routes/skills_routes.py:331`
 - **JS callers:**
   - `static/js/slashAutocomplete.js:86` → `/api/skills/slash-catalog`
   - `static/js/slashCommands.js:347` → `/api/skills/slash-catalog`
 
 ## `DELETE /api/skills/{skill_id}`
-- handler: `delete_skill` — `routes/skills_routes.py:1876`
+- handler: `delete_skill` — `routes/skills_routes.py:852`
 - **JS callers:**
-  - `static/js/skills.js:1503` → `/api/skills/audit-all`
-  - `static/js/skills.js:1915` → `/api/skills/import-from-url`
-  - `static/js/skills.js:1956` → `/api/skills/add`
+  - `static/js/skills.js:1811` → `/api/skills/audit-all`
+  - `static/js/skills.js:2233` → `/api/skills/import-from-url`
+  - `static/js/skills.js:2274` → `/api/skills/add`
   - `static/js/slashAutocomplete.js:86` → `/api/skills/slash-catalog`
   - `static/js/slashCommands.js:347` → `/api/skills/slash-catalog`
-  - `static/js/slashCommands.js:1672` → `/api/skills/search`
+  - `static/js/slashCommands.js:1676` → `/api/skills/search`
 
 ## `GET /api/skills/{skill_id}`
-- handler: `get_skill` — `routes/skills_routes.py:1455`
+- handler: `get_skill` — `routes/skills_routes.py:564`
 - **JS callers:**
-  - `static/js/skills.js:1503` → `/api/skills/audit-all`
-  - `static/js/skills.js:1915` → `/api/skills/import-from-url`
-  - `static/js/skills.js:1956` → `/api/skills/add`
+  - `static/js/skills.js:1811` → `/api/skills/audit-all`
+  - `static/js/skills.js:2233` → `/api/skills/import-from-url`
+  - `static/js/skills.js:2274` → `/api/skills/add`
   - `static/js/slashAutocomplete.js:86` → `/api/skills/slash-catalog`
   - `static/js/slashCommands.js:347` → `/api/skills/slash-catalog`
-  - `static/js/slashCommands.js:1672` → `/api/skills/search`
+  - `static/js/slashCommands.js:1676` → `/api/skills/search`
 
 ## `PUT /api/skills/{skill_id}`
-- handler: `update_skill` — `routes/skills_routes.py:1857`
+- handler: `update_skill` — `routes/skills_routes.py:829`
 - **JS callers:**
-  - `static/js/skills.js:1503` → `/api/skills/audit-all`
-  - `static/js/skills.js:1915` → `/api/skills/import-from-url`
-  - `static/js/skills.js:1956` → `/api/skills/add`
+  - `static/js/skills.js:1811` → `/api/skills/audit-all`
+  - `static/js/skills.js:2233` → `/api/skills/import-from-url`
+  - `static/js/skills.js:2274` → `/api/skills/add`
   - `static/js/slashAutocomplete.js:86` → `/api/skills/slash-catalog`
   - `static/js/slashCommands.js:347` → `/api/skills/slash-catalog`
-  - `static/js/slashCommands.js:1672` → `/api/skills/search`
+  - `static/js/slashCommands.js:1676` → `/api/skills/search`
 
 ## `POST /api/skills/{skill_id}/invoke`
-- handler: `invoke_skill` — `routes/skills_routes.py:1414`
+- handler: `invoke_skill` — `routes/skills_routes.py:523`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/skills/{skill_id}/markdown`
-- handler: `get_skill_markdown` — `routes/skills_routes.py:1464`
+- handler: `get_skill_markdown` — `routes/skills_routes.py:573`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/skills/{skill_id}/markdown`
-- handler: `save_skill_markdown` — `routes/skills_routes.py:1804`
+- handler: `save_skill_markdown` — `routes/skills_routes.py:776`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/skills/{skill_id}/test`
-- handler: `test_skill` — `routes/skills_routes.py:1479`
+- handler: `test_skill` — `routes/skills_routes.py:592`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/skills/{skill_id}/test-approval`
-- handler: `approve_skill_test_action` — `routes/skills_routes.py:1562`
+- handler: `approve_skill_test_action` — `routes/skills_routes.py:660`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/skills/{skill_id}/test-status`
-- handler: `test_skill_status` — `routes/skills_routes.py:1683`
+- handler: `test_skill_status` — `routes/skills_routes.py:718`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/stt/stats`
@@ -2640,109 +2837,129 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/voiceRecorder.js:115` → `/api/stt/transcribe`
 
 ## `GET /api/tasks/meta/actions`
-- handler: `list_actions` — `routes/task/task_routes.py:1021`
+- handler: `list_actions` — `routes/task/task_routes.py:1093`
 - **JS callers:**
-  - `static/js/tasks.js:209` → `/api/tasks/meta/actions`
+  - `static/js/tasks.js:216` → `/api/tasks/meta/actions`
 
 ## `GET /api/tasks/meta/events`
-- handler: `list_events` — `routes/task/task_routes.py:1032`
+- handler: `list_events` — `routes/task/task_routes.py:1104`
 - **JS callers:**
-  - `static/js/tasks.js:337` → `/api/tasks/meta/events`
+  - `static/js/tasks.js:344` → `/api/tasks/meta/events`
 
 ## `GET /api/tasks/meta/output-targets`
-- handler: `list_output_targets` — `routes/task/task_routes.py:983`
+- handler: `list_output_targets` — `routes/task/task_routes.py:1055`
 - **JS callers:**
-  - `static/js/tasks.js:196` → `/api/tasks/meta/output-targets`
+  - `static/js/tasks.js:203` → `/api/tasks/meta/output-targets`
+
+## `GET /api/tasks/notification-logs`
+- handler: `get_notification_logs` — `routes/task/task_routes.py:587`
+- **JS callers:**
+  - `static/js/admin.js:4058` → `/api/tasks/notification-logs?limit=500`
+  - `static/js/ui.js:377` → `/api/tasks/notification-logs`
+  - `static/js/ui.js:516` → `/api/tasks/notification-logs`
+
+## `POST /api/tasks/notification-logs`
+- handler: `create_notification_log` — `routes/task/task_routes.py:615`
+- **JS callers:**
+  - `static/js/admin.js:4058` → `/api/tasks/notification-logs?limit=500`
+  - `static/js/ui.js:377` → `/api/tasks/notification-logs`
+  - `static/js/ui.js:516` → `/api/tasks/notification-logs`
 
 ## `GET /api/tasks/notifications`
-- handler: `get_notifications` — `routes/task/task_routes.py:562`
+- handler: `get_notifications` — `routes/task/task_routes.py:576`
 - **JS callers:**
-  - `static/js/tasks.js:3127` → `/api/tasks/notifications`
+  - `static/js/tasks.js:3366` → `/api/tasks/notifications`
 
 ## `GET /api/tasks/onboarding`
-- handler: `get_tasks_onboarding` — `routes/task/task_routes.py:374`
+- handler: `get_tasks_onboarding` — `routes/task/task_routes.py:383`
 - **JS callers:**
-  - `static/js/tasks.js:57` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:62` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:64` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:69` → `/api/tasks/onboarding`
 
 ## `POST /api/tasks/onboarding`
-- handler: `update_tasks_onboarding` — `routes/task/task_routes.py:383`
+- handler: `update_tasks_onboarding` — `routes/task/task_routes.py:392`
 - **JS callers:**
-  - `static/js/tasks.js:57` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:62` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:64` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:69` → `/api/tasks/onboarding`
 
 ## `POST /api/tasks/parse`
-- handler: `parse_task` — `routes/task/task_routes.py:1090`
+- handler: `parse_task` — `routes/task/task_routes.py:1162`
 - **JS callers:**
-  - `static/js/tasks.js:2842` → `/api/tasks/parse`
+  - `static/js/tasks.js:2988` → `/api/tasks/parse`
 
 ## `GET /api/tasks/runs/recent`
-- handler: `list_recent_runs` — `routes/task/task_routes.py:893`
+- handler: `list_recent_runs` — `routes/task/task_routes.py:965`
 - **JS callers:**
-  - `static/js/tasks.js:2073` → `/api/tasks/runs/recent?limit=`
-  - `static/js/tasks.js:2233` → `/api/tasks/runs/recent?limit=`
+  - `static/js/tasks.js:2172` → `/api/tasks/runs/recent?limit=`
+  - `static/js/tasks.js:2338` → `/api/tasks/runs/recent?limit=`
 
 ## `DELETE /api/tasks/{task_id}`
-- handler: `delete_task` — `routes/task/task_routes.py:757`
+- handler: `delete_task` — `routes/task/task_routes.py:829`
 - **JS callers:**
-  - `static/js/cookbookSchedule.js:353` → `/api/tasks/${encodeURIComponent(data.id)}`
-  - `static/js/tasks.js:57` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:62` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:2842` → `/api/tasks/parse`
-  - `static/js/tasks.js:3127` → `/api/tasks/notifications`
+  - `static/js/admin.js:4058` → `/api/tasks/notification-logs?limit=500`
+  - `static/js/tasks.js:64` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:69` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:2988` → `/api/tasks/parse`
+  - `static/js/tasks.js:3366` → `/api/tasks/notifications`
+  - `static/js/ui.js:377` → `/api/tasks/notification-logs`
+  - `static/js/ui.js:516` → `/api/tasks/notification-logs`
 
 ## `GET /api/tasks/{task_id}`
-- handler: `get_task` — `routes/task/task_routes.py:653`
+- handler: `get_task` — `routes/task/task_routes.py:718`
 - **JS callers:**
-  - `static/js/cookbookSchedule.js:353` → `/api/tasks/${encodeURIComponent(data.id)}`
-  - `static/js/tasks.js:57` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:62` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:2842` → `/api/tasks/parse`
-  - `static/js/tasks.js:3127` → `/api/tasks/notifications`
+  - `static/js/admin.js:4058` → `/api/tasks/notification-logs?limit=500`
+  - `static/js/tasks.js:64` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:69` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:2988` → `/api/tasks/parse`
+  - `static/js/tasks.js:3366` → `/api/tasks/notifications`
+  - `static/js/ui.js:377` → `/api/tasks/notification-logs`
+  - `static/js/ui.js:516` → `/api/tasks/notification-logs`
 
 ## `PUT /api/tasks/{task_id}`
-- handler: `update_task` — `routes/task/task_routes.py:667`
+- handler: `update_task` — `routes/task/task_routes.py:732`
 - **JS callers:**
-  - `static/js/cookbookSchedule.js:353` → `/api/tasks/${encodeURIComponent(data.id)}`
-  - `static/js/tasks.js:57` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:62` → `/api/tasks/onboarding`
-  - `static/js/tasks.js:2842` → `/api/tasks/parse`
-  - `static/js/tasks.js:3127` → `/api/tasks/notifications`
+  - `static/js/admin.js:4058` → `/api/tasks/notification-logs?limit=500`
+  - `static/js/tasks.js:64` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:69` → `/api/tasks/onboarding`
+  - `static/js/tasks.js:2988` → `/api/tasks/parse`
+  - `static/js/tasks.js:3366` → `/api/tasks/notifications`
+  - `static/js/ui.js:377` → `/api/tasks/notification-logs`
+  - `static/js/ui.js:516` → `/api/tasks/notification-logs`
 
 ## `POST /api/tasks/{task_id}/clear-cache`
-- handler: `clear_task_cache` — `routes/task/task_routes.py:573`
+- handler: `clear_task_cache` — `routes/task/task_routes.py:638`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/pause`
-- handler: `pause_task` — `routes/task/task_routes.py:779`
+- handler: `pause_task` — `routes/task/task_routes.py:851`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/resume`
-- handler: `resume_task` — `routes/task/task_routes.py:795`
+- handler: `resume_task` — `routes/task/task_routes.py:867`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/revert`
-- handler: `revert_task` — `routes/task/task_routes.py:818`
+- handler: `revert_task` — `routes/task/task_routes.py:890`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/run`
-- handler: `run_task_now` — `routes/task/task_routes.py:858`
+- handler: `run_task_now` — `routes/task/task_routes.py:930`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/tasks/{task_id}/runs`
-- handler: `list_runs` — `routes/task/task_routes.py:965`
+- handler: `list_runs` — `routes/task/task_routes.py:1037`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/stop`
-- handler: `stop_task_now` — `routes/task/task_routes.py:876`
+- handler: `stop_task_now` — `routes/task/task_routes.py:948`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/webhook-regenerate`
-- handler: `regenerate_webhook` — `routes/task/task_routes.py:1073`
+- handler: `regenerate_webhook` — `routes/task/task_routes.py:1145`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/tasks/{task_id}/webhook/{token}`
-- handler: `webhook_trigger` — `routes/task/task_routes.py:1046`
+- handler: `webhook_trigger` — `routes/task/task_routes.py:1118`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/test-research`
@@ -2756,20 +2973,20 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `GET /api/tokens`
 - handler: `list_tokens` — `routes/api_token_routes.py:80`
 - **JS callers:**
-  - `static/js/admin.js:2554` → `/api/tokens`
-  - `static/js/admin.js:2653` → `/api/tokens`
-  - `static/js/settings.js:3519` → `/api/tokens`
-  - `static/js/settings.js:5124` → `/api/tokens`
-  - `static/js/settings.js:5410` → `/api/tokens`
+  - `static/js/admin.js:3428` → `/api/tokens`
+  - `static/js/admin.js:3527` → `/api/tokens`
+  - `static/js/settings.js:3234` → `/api/tokens`
+  - `static/js/settings.js:4848` → `/api/tokens`
+  - `static/js/settings.js:5134` → `/api/tokens`
 
 ## `POST /api/tokens`
 - handler: `create_token` — `routes/api_token_routes.py:116`
 - **JS callers:**
-  - `static/js/admin.js:2554` → `/api/tokens`
-  - `static/js/admin.js:2653` → `/api/tokens`
-  - `static/js/settings.js:3519` → `/api/tokens`
-  - `static/js/settings.js:5124` → `/api/tokens`
-  - `static/js/settings.js:5410` → `/api/tokens`
+  - `static/js/admin.js:3428` → `/api/tokens`
+  - `static/js/admin.js:3527` → `/api/tokens`
+  - `static/js/settings.js:3234` → `/api/tokens`
+  - `static/js/settings.js:4848` → `/api/tokens`
+  - `static/js/settings.js:5134` → `/api/tokens`
 
 ## `GET /api/tokens/profiles`
 - handler: `token_profiles` — `routes/api_token_routes.py:108`
@@ -2778,45 +2995,45 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `DELETE /api/tokens/{token_id}`
 - handler: `delete_token` — `routes/api_token_routes.py:196`
 - **JS callers:**
-  - `static/js/admin.js:2579` → `/api/tokens/${btn.dataset.admDelToken}`
-  - `static/js/admin.js:2602` → `/api/tokens/${input.dataset.tokenId}`
-  - `static/js/admin.js:2622` → `/api/tokens/${tokenId}`
-  - `static/js/settings.js:3653` → `/api/tokens/${id}`
-  - `static/js/settings.js:5274` → `/api/tokens/${renameInput.dataset.tokenId}`
-  - `static/js/settings.js:5293` → `/api/tokens/${cb.dataset.tokenId}`
-  - `static/js/settings.js:5334` → `/api/tokens/${tokenId}`
-  - `static/js/settings.js:5360` → `/api/tokens/${tokenId}`
-  - `static/js/settings.js:5536` → `/api/tokens/${tokenId}`
+  - `static/js/admin.js:3453` → `/api/tokens/${btn.dataset.admDelToken}`
+  - `static/js/admin.js:3476` → `/api/tokens/${input.dataset.tokenId}`
+  - `static/js/admin.js:3496` → `/api/tokens/${tokenId}`
+  - `static/js/settings.js:3368` → `/api/tokens/${id}`
+  - `static/js/settings.js:4998` → `/api/tokens/${renameInput.dataset.tokenId}`
+  - `static/js/settings.js:5017` → `/api/tokens/${cb.dataset.tokenId}`
+  - `static/js/settings.js:5058` → `/api/tokens/${tokenId}`
+  - `static/js/settings.js:5084` → `/api/tokens/${tokenId}`
+  - `static/js/settings.js:5260` → `/api/tokens/${tokenId}`
 
 ## `PATCH /api/tokens/{token_id}`
 - handler: `update_token` — `routes/api_token_routes.py:156`
 - **JS callers:**
-  - `static/js/admin.js:2579` → `/api/tokens/${btn.dataset.admDelToken}`
-  - `static/js/admin.js:2602` → `/api/tokens/${input.dataset.tokenId}`
-  - `static/js/admin.js:2622` → `/api/tokens/${tokenId}`
-  - `static/js/settings.js:3653` → `/api/tokens/${id}`
-  - `static/js/settings.js:5274` → `/api/tokens/${renameInput.dataset.tokenId}`
-  - `static/js/settings.js:5293` → `/api/tokens/${cb.dataset.tokenId}`
-  - `static/js/settings.js:5334` → `/api/tokens/${tokenId}`
-  - `static/js/settings.js:5360` → `/api/tokens/${tokenId}`
-  - `static/js/settings.js:5536` → `/api/tokens/${tokenId}`
+  - `static/js/admin.js:3453` → `/api/tokens/${btn.dataset.admDelToken}`
+  - `static/js/admin.js:3476` → `/api/tokens/${input.dataset.tokenId}`
+  - `static/js/admin.js:3496` → `/api/tokens/${tokenId}`
+  - `static/js/settings.js:3368` → `/api/tokens/${id}`
+  - `static/js/settings.js:4998` → `/api/tokens/${renameInput.dataset.tokenId}`
+  - `static/js/settings.js:5017` → `/api/tokens/${cb.dataset.tokenId}`
+  - `static/js/settings.js:5058` → `/api/tokens/${tokenId}`
+  - `static/js/settings.js:5084` → `/api/tokens/${tokenId}`
+  - `static/js/settings.js:5260` → `/api/tokens/${tokenId}`
 
 ## `GET /api/tools`
-- handler: `list_tools` — `routes/model_routes.py:2697`
+- handler: `list_tools` — `routes/model_routes.py:3105`
 - **JS callers:**
-  - `static/js/admin.js:2004` → `/api/tools`
+  - `static/js/admin.js:2873` → `/api/tools`
   - `static/js/appConfig.js:33` → `/api/tools`
 
 ## `POST /api/tools`
-- handler: `update_tools` — `routes/model_routes.py:2711`
+- handler: `update_tools` — `routes/model_routes.py:3119`
 - **JS callers:**
-  - `static/js/admin.js:2004` → `/api/tools`
+  - `static/js/admin.js:2873` → `/api/tools`
   - `static/js/appConfig.js:33` → `/api/tools`
 
 ## `POST /api/tts/clear-cache`
 - handler: `clear_tts_cache` — `routes/tts_routes.py:78`
 - **JS callers:**
-  - `static/js/settings.js:855` → `/api/tts/clear-cache`
+  - `static/js/settings/speech.js:82` → `/api/tts/clear-cache`
 
 ## `GET /api/tts/stats`
 - handler: `get_tts_stats` — `routes/tts_routes.py:22`
@@ -2826,128 +3043,139 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/tts/synthesize`
 - handler: `synthesize_speech` — `routes/tts_routes.py:31`
 - **JS callers:**
-  - `static/js/settings.js:913` → `/api/tts/synthesize`
-  - `static/js/slashCommands.js:2095` → `/api/tts/synthesize`
+  - `static/js/settings/speech.js:140` → `/api/tts/synthesize`
+  - `static/js/slashCommands.js:2099` → `/api/tts/synthesize`
   - `static/js/tts-ai.js:135` → `/api/tts/synthesize`
 
 ## `POST /api/upload/cleanup`
-- handler: `manual_cleanup` — `routes/upload_routes.py:321`
+- handler: `manual_cleanup` — `routes/upload_routes.py:424`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/upload/stats`
-- handler: `upload_stats` — `routes/upload_routes.py:344`
+- handler: `upload_stats` — `routes/upload_routes.py:447`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
-## `GET /api/upload/{file_id}`
-- handler: `download_file` — `routes/upload_routes.py:354`
+## `API_ROUTE /api/upload/{file_id}`
+- handler: `download_file` — `routes/upload_routes.py:457`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/upload/{file_id}/vision`
-- handler: `get_vision_text` — `routes/upload_routes.py:452`
+- handler: `get_vision_text` — `routes/upload_routes.py:576`
 - **JS callers:**
-  - `static/js/chatRenderer.js:328` → `/api/upload/${att.id}/vision`
-  - `static/js/chatRenderer.js:392` → `/api/upload/${att.id}/vision`
+  - `static/js/chatRenderer.js:726` → `/api/upload/${att.id}/vision`
+  - `static/js/chatRenderer.js:790` → `/api/upload/${att.id}/vision`
 
 ## `PUT /api/upload/{file_id}/vision`
-- handler: `put_vision_text` — `routes/upload_routes.py:497`
+- handler: `put_vision_text` — `routes/upload_routes.py:615`
 - **JS callers:**
-  - `static/js/chatRenderer.js:328` → `/api/upload/${att.id}/vision`
-  - `static/js/chatRenderer.js:392` → `/api/upload/${att.id}/vision`
+  - `static/js/chatRenderer.js:726` → `/api/upload/${att.id}/vision`
+  - `static/js/chatRenderer.js:790` → `/api/upload/${att.id}/vision`
 
 ## `POST /api/v1/chat`
 - handler: `sync_chat` — `routes/webhook/webhook_routes.py:238`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/vault/config`
-- handler: `get_config` — `routes/vault/vault_routes.py:130`
+- handler: `get_config` — `routes/vault/vault_routes.py:144`
 - **JS callers:**
-  - `static/js/settings.js:3518` → `/api/vault/config`
-  - `static/js/settings.js:4823` → `/api/vault/config`
-  - `static/js/settings.js:4846` → `/api/vault/config`
+  - `static/js/settings.js:3233` → `/api/vault/config`
+  - `static/js/settings.js:4538` → `/api/vault/config`
+  - `static/js/settings.js:4561` → `/api/vault/config`
 
 ## `POST /api/vault/config`
-- handler: `save_config` — `routes/vault/vault_routes.py:143`
+- handler: `save_config` — `routes/vault/vault_routes.py:157`
 - **JS callers:**
-  - `static/js/settings.js:3518` → `/api/vault/config`
-  - `static/js/settings.js:4823` → `/api/vault/config`
-  - `static/js/settings.js:4846` → `/api/vault/config`
+  - `static/js/settings.js:3233` → `/api/vault/config`
+  - `static/js/settings.js:4538` → `/api/vault/config`
+  - `static/js/settings.js:4561` → `/api/vault/config`
 
 ## `POST /api/vault/lock`
-- handler: `lock` — `routes/vault/vault_routes.py:206`
+- handler: `lock` — `routes/vault/vault_routes.py:221`
 - **JS callers:**
-  - `static/js/settings.js:4899` → `/api/vault/lock`
+  - `static/js/settings.js:4614` → `/api/vault/lock`
 
 ## `POST /api/vault/login`
-- handler: `login` — `routes/vault/vault_routes.py:159`
+- handler: `login` — `routes/vault/vault_routes.py:174`
 - **JS callers:**
-  - `static/js/settings.js:4863` → `/api/vault/login`
+  - `static/js/settings.js:4578` → `/api/vault/login`
 
 ## `POST /api/vault/logout`
-- handler: `logout` — `routes/vault/vault_routes.py:218`
+- handler: `logout` — `routes/vault/vault_routes.py:233`
 - **JS callers:**
-  - `static/js/settings.js:3654` → `/api/vault/logout`
-  - `static/js/settings.js:4909` → `/api/vault/logout`
+  - `static/js/settings.js:3369` → `/api/vault/logout`
+  - `static/js/settings.js:4624` → `/api/vault/logout`
 
 ## `POST /api/vault/unlock`
-- handler: `unlock` — `routes/vault/vault_routes.py:184`
+- handler: `unlock` — `routes/vault/vault_routes.py:199`
 - **JS callers:**
-  - `static/js/settings.js:4882` → `/api/vault/unlock`
+  - `static/js/settings.js:4597` → `/api/vault/unlock`
 
 ## `GET /api/version`
-- handler: `get_version` — `app.py:951`
-- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+- handler: `get_version` — `app.py:1036`
+- **JS callers:**
+  - `static/js/sessions.js:107` → `/api/version`
+  - `static/js/settings/sidebar.js:191` → `/api/version`
 
 ## `GET /api/webhooks`
 - handler: `list_webhooks` — `routes/webhook/webhook_routes.py:72`
 - **JS callers:**
-  - `static/js/admin.js:2687` → `/api/webhooks`
-  - `static/js/admin.js:2749` → `/api/webhooks`
+  - `static/js/admin.js:3561` → `/api/webhooks`
+  - `static/js/admin.js:3623` → `/api/webhooks`
 
 ## `POST /api/webhooks`
 - handler: `create_webhook` — `routes/webhook/webhook_routes.py:96`
 - **JS callers:**
-  - `static/js/admin.js:2687` → `/api/webhooks`
-  - `static/js/admin.js:2749` → `/api/webhooks`
+  - `static/js/admin.js:3561` → `/api/webhooks`
+  - `static/js/admin.js:3623` → `/api/webhooks`
 
 ## `DELETE /api/webhooks/{webhook_id}`
 - handler: `delete_webhook` — `routes/webhook/webhook_routes.py:171`
 - **JS callers:**
-  - `static/js/admin.js:2724` → `/api/webhooks/${btn.dataset.admWhToggle}`
-  - `static/js/admin.js:2729` → `/api/webhooks/${btn.dataset.admWhDelete}`
-  - `static/js/settings.js:3818` → `/api/webhooks/...`
+  - `static/js/admin.js:3598` → `/api/webhooks/${btn.dataset.admWhToggle}`
+  - `static/js/admin.js:3603` → `/api/webhooks/${btn.dataset.admWhDelete}`
+  - `static/js/settings.js:3533` → `/api/webhooks/...`
 
 ## `PATCH /api/webhooks/{webhook_id}`
 - handler: `toggle_webhook` — `routes/webhook/webhook_routes.py:157`
 - **JS callers:**
-  - `static/js/admin.js:2724` → `/api/webhooks/${btn.dataset.admWhToggle}`
-  - `static/js/admin.js:2729` → `/api/webhooks/${btn.dataset.admWhDelete}`
-  - `static/js/settings.js:3818` → `/api/webhooks/...`
+  - `static/js/admin.js:3598` → `/api/webhooks/${btn.dataset.admWhToggle}`
+  - `static/js/admin.js:3603` → `/api/webhooks/${btn.dataset.admWhDelete}`
+  - `static/js/settings.js:3533` → `/api/webhooks/...`
 
 ## `POST /api/webhooks/{webhook_id}/test`
 - handler: `test_webhook` — `routes/webhook/webhook_routes.py:142`
 - **JS callers:**
-  - `static/js/admin.js:2717` → `/api/webhooks/${btn.dataset.admWhTest}/test`
+  - `static/js/admin.js:3591` → `/api/webhooks/${btn.dataset.admWhTest}/test`
 
 ## `GET /api/workspace/browse`
 - handler: `browse` — `routes/workspace_routes.py:18`
 - **JS callers:**
-  - `static/js/workspace.js:93` → `/api/workspace/browse`
+  - `static/js/workspace.js:110` → `/api/workspace/browse`
+
+## `GET /api/workspace/default`
+- handler: `default_workspace` — `routes/workspace_routes.py:86`
+- **JS callers:**
+  - `static/js/workspace.js:90` → `/api/workspace/default`
 
 ## `GET /api/workspace/vet`
 - handler: `vet` — `routes/workspace_routes.py:69`
 - **JS callers:**
-  - `static/js/workspace.js:74` → `/api/workspace/vet?path=`
+  - `static/js/workspace.js:75` → `/api/workspace/vet?path=`
 
 ## `GET /backgrounds`
-- handler: `serve_backgrounds` — `app.py:940`
+- handler: `serve_backgrounds` — `app.py:1025`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /calendar`
-- handler: `serve_calendar` — `app.py:908`
+- handler: `serve_calendar` — `app.py:993`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /cookbook`
-- handler: `serve_cookbook` — `app.py:916`
+- handler: `serve_cookbook` — `app.py:1001`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /csp-control`
+- handler: `_control` — `tests/test_codeql_python_residual_closure.py:524`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /device/cancel`
@@ -2963,11 +3191,11 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /email`
-- handler: `serve_email` — `app.py:920`
+- handler: `serve_email` — `app.py:1005`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /gallery`
-- handler: `serve_gallery` — `app.py:928`
+- handler: `serve_gallery` — `app.py:1013`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /health`
@@ -2975,11 +3203,11 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /library`
-- handler: `serve_library` — `app.py:936`
+- handler: `serve_library` — `app.py:1021`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /login`
-- handler: `serve_login` — `app.py:945`
+- handler: `serve_login` — `app.py:1030`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /loop-thread`
@@ -2987,19 +3215,35 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /memory`
-- handler: `serve_memory` — `app.py:924`
+- handler: `serve_memory` — `app.py:1009`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /notes`
-- handler: `serve_notes` — `app.py:904`
+- handler: `serve_notes` — `app.py:989`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /plain`
 - handler: `plain` — `tests/test_security_headers_pdf_preview.py:13`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
+## `DELETE /probe`
+- handler: `_delete_probe` — `tests/test_review_20260923_fixes.py:494`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /probe`
+- handler: `_get_probe` — `tests/test_review_20260923_fixes.py:490`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `POST /probe`
+- handler: `_post_probe` — `tests/test_review_20260923_fixes.py:498`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
+## `GET /search/web`
+- handler: `web_search_page` — `routes/search/search_routes.py:46`
+- _no literal JS fetch found (dynamic URL, server-side call, or unused)_
+
 ## `GET /tasks`
-- handler: `serve_tasks` — `app.py:932`
+- handler: `serve_tasks` — `app.py:1017`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /v1/images/edits`
@@ -3043,412 +3287,432 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 # Unmatched JS fetch URLs (dynamic or non-API)
-- `static/app.js:200` → `/api/auth/`
-- `static/app.js:615` → `/api/session/`
-- `static/app.js:1590` → `/api/ai/name`
-- `static/app.js:1650` → `/api/session/`
-- `static/app.js:3417` → `/api/session/`
-- `static/js/admin.js:144` → `/api/auth/users/`
-- `static/js/admin.js:170` → `/api/auth/users/`
-- `static/js/admin.js:218` → `/api/auth/users/`
-- `static/js/admin.js:308` → `/api/auth/users/`
-- `static/js/admin.js:583` → `/api/model-endpoints/`
-- `static/js/admin.js:614` → `/api/model-endpoints/`
-- `static/js/admin.js:627` → `/api/model-endpoints/`
-- `static/js/admin.js:685` → `/api/model-endpoints/`
-- `static/js/admin.js:752` → `/api/model-endpoints/`
-- `static/js/admin.js:779` → `/api/model-endpoints/`
-- `static/js/admin.js:1483` → `/api/model-endpoints/`
-- `static/js/admin.js:1546` → `/api/model-endpoints/`
-- `static/js/admin.js:2086` → `/api/mcp/oauth/authorize/`
-- `static/js/admin.js:2100` → `/api/mcp/servers/`
-- `static/js/admin.js:2111` → `/api/mcp/servers/`
-- `static/js/admin.js:2118` → `/api/mcp/servers/`
-- `static/js/admin.js:2144` → `/api/mcp/servers/`
-- `static/js/admin.js:2188` → `/api/mcp/servers/`
-- `static/js/admin.js:2390` → `/api/mcp/oauth/authorize/`
-- `static/js/admin.js:2411` → `/api/personal`
-- `static/js/admin.js:2579` → `/api/tokens/`
-- `static/js/admin.js:2602` → `/api/tokens/`
-- `static/js/admin.js:2622` → `/api/tokens/`
-- `static/js/admin.js:2717` → `/api/webhooks/`
-- `static/js/admin.js:2724` → `/api/webhooks/`
-- `static/js/admin.js:2729` → `/api/webhooks/`
-- `static/js/admin.js:2921` → `/api/admin/wipe/`
-- `static/js/admin.js:2941` → `/api/admin/wipe/`
+- `static/app.js:208` → `/api/auth/`
+- `static/app.js:648` → `/api/session/`
+- `static/app.js:1631` → `/api/ai/name`
+- `static/app.js:1691` → `/api/session/`
+- `static/app.js:3517` → `/api/session/`
+- `static/js/admin.js:178` → `/api/auth/users/`
+- `static/js/admin.js:201` → `/api/auth/users/`
+- `static/js/admin.js:227` → `/api/auth/users/`
+- `static/js/admin.js:275` → `/api/auth/users/`
+- `static/js/admin.js:365` → `/api/auth/users/`
+- `static/js/admin.js:600` → `/api/model-endpoints/`
+- `static/js/admin.js:733` → `/api/model-endpoints/`
+- `static/js/admin.js:903` → `/api/model-endpoints/`
+- `static/js/admin.js:935` → `/api/model-endpoints/`
+- `static/js/admin.js:1203` → `/api/model-endpoints/`
+- `static/js/admin.js:1247` → `/api/model-endpoints/`
+- `static/js/admin.js:1298` → `/api/model-endpoints/`
+- `static/js/admin.js:1311` → `/api/model-endpoints/`
+- `static/js/admin.js:1391` → `/api/model-endpoints/`
+- `static/js/admin.js:1480` → `/api/model-endpoints/`
+- `static/js/admin.js:1518` → `/api/model-endpoints/`
+- `static/js/admin.js:1595` → `/api/chatgpt-subscription/accounts/`
+- `static/js/admin.js:2352` → `/api/model-endpoints/`
+- `static/js/admin.js:2415` → `/api/model-endpoints/`
+- `static/js/admin.js:2955` → `/api/mcp/oauth/authorize/`
+- `static/js/admin.js:2969` → `/api/mcp/servers/`
+- `static/js/admin.js:2980` → `/api/mcp/servers/`
+- `static/js/admin.js:2987` → `/api/mcp/servers/`
+- `static/js/admin.js:3013` → `/api/mcp/servers/`
+- `static/js/admin.js:3057` → `/api/mcp/servers/`
+- `static/js/admin.js:3264` → `/api/mcp/oauth/authorize/`
+- `static/js/admin.js:3285` → `/api/personal`
+- `static/js/admin.js:3453` → `/api/tokens/`
+- `static/js/admin.js:3476` → `/api/tokens/`
+- `static/js/admin.js:3496` → `/api/tokens/`
+- `static/js/admin.js:3591` → `/api/webhooks/`
+- `static/js/admin.js:3598` → `/api/webhooks/`
+- `static/js/admin.js:3603` → `/api/webhooks/`
+- `static/js/admin.js:3795` → `/api/admin/wipe/`
+- `static/js/admin.js:3815` → `/api/admin/wipe/`
 - `static/js/appConfig.js:14` → `/api/...`
 - `static/js/assistant.js:12` → `/api/assistant`
 - `static/js/assistant.js:252` → `/api/model-endpoints/`
+- `static/js/backgroundToolJobs.js:109` → `/api/research/chat-jobs/`
 - `static/js/calendar.js:38` → `/api/upload`
 - `static/js/calendar.js:42` → `/api/upload/`
-- `static/js/calendar.js:284` → `/api/calendar/events/`
-- `static/js/calendar.js:335` → `/api/calendar/events/`
-- `static/js/calendar.js:599` → `/api/notes`
-- `static/js/calendar.js:2656` → `/api/calendar/calendars/`
-- `static/js/calendar.js:2681` → `/api/calendar/calendars/`
-- `static/js/calendar.js:2725` → `/api/calendar/export/`
+- `static/js/calendar.js:295` → `/api/calendar/events/`
+- `static/js/calendar.js:345` → `/api/calendar/events/`
+- `static/js/calendar.js:517` → `/api/calendar/events/`
+- `static/js/calendar.js:688` → `/api/notes`
+- `static/js/calendar.js:3266` → `/api/calendar/calendars/`
+- `static/js/calendar.js:3297` → `/api/calendar/calendars/`
+- `static/js/calendar.js:3341` → `/api/calendar/export/`
 - `static/js/calendar/reminders.js:5` → `/api/notes?label=calendar`
 - `static/js/calendar/reminders.js:59` → `/api/notes?label=calendar`
-- `static/js/chat.js:273` → `/api/session/`
-- `static/js/chat.js:303` → `/api/session/`
-- `static/js/chat.js:821` → `/api/chat/stream_status/`
-- `static/js/chat.js:864` → `/api/chat/stream_status/`
-- `static/js/chat.js:1032` → `/api/chat/stop/`
-- `static/js/chat.js:1508` → `/api/research/cancel/`
-- `static/js/chat.js:1608` → `/api/session/`
-- `static/js/chat.js:3816` → `/api/upload/`
-- `static/js/chat.js:3818` → `/api/upload/`
-- `static/js/chat.js:3840` → `/api/upload/`
-- `static/js/chat.js:4804` → `/api/session/`
-- `static/js/chat.js:5011` → `/api/session/`
-- `static/js/chat.js:5347` → `/api/chat/stream_status/`
-- `static/js/chat.js:5402` → `/api/chat/stream_status/`
-- `static/js/chat.js:5477` → `/api/session/`
-- `static/js/chat.js:5588` → `/api/chat/resume/`
-- `static/js/chat.js:6544` → `/api/session/`
-- `static/js/chat.js:6671` → `/api/session/`
-- `static/js/chat.js:6829` → `/api/session/`
-- `static/js/chat.js:6895` → `/api/session/`
-- `static/js/chat.js:6993` → `/api/session/`
-- `static/js/chat.js:7013` → `/api/session/`
-- `static/js/chat.js:7038` → `/api/research/status/`
-- `static/js/chat.js:7049` → `/api/research/result/`
-- `static/js/chat.js:7199` → `/api/research/status/`
-- `static/js/chat.js:7225` → `/api/research/result/`
-- `static/js/chat.js:7415` → `/api/session/`
-- `static/js/chat.js:7493` → `/api/session/`
-- `static/js/chat.js:7680` → `/api/session/`
-- `static/js/chat.js:7735` → `/api/upload/`
-- `static/js/chatRenderer.js:150` → `/api/upload/`
-- `static/js/chatRenderer.js:203` → `/api/upload/`
-- `static/js/chatRenderer.js:249` → `/api/upload/`
-- `static/js/chatRenderer.js:259` → `/api/upload/`
-- `static/js/chatRenderer.js:328` → `/api/upload/`
-- `static/js/chatRenderer.js:392` → `/api/upload/`
-- `static/js/chatRenderer.js:471` → `/api/tools fetch failed; live exec-fence stripping disabled until reload`
-- `static/js/chatRenderer.js:770` → `/api/session/`
-- `static/js/chatRenderer.js:1241` → `/api/research/report/`
-- `static/js/chatRenderer.js:1257` → `/api/research/spinoff/`
-- `static/js/chatRenderer.js:1617` → `/api/gallery/`
-- `static/js/chatRenderer.js:2238` → `/api/session/`
-- `static/js/compare/index.js:168` → `/api/session/`
-- `static/js/compare/index.js:220` → `/api/session/`
-- `static/js/compare/panes.js:476` → `/api/session/`
-- `static/js/compare/panes.js:585` → `/api/session/`
-- `static/js/compare/stream.js:285` → `/api/session/`
-- `static/js/cookbook.js:2784` → `/api/cookbook/ollama/library${refresh ? `
-- `static/js/cookbookRunning.js:539` → `/api/model-endpoints/`
-- `static/js/cookbookRunning.js:1154` → `/api/generate`
-- `static/js/cookbookRunning.js:1889` → `/api/cookbook/gpus${params.toString() ? `
-- `static/js/cookbookRunning.js:2016` → `/api/model/serve failed`
-- `static/js/cookbookRunning.js:2968` → `/api/model-endpoints/`
-- `static/js/cookbookRunning.js:4091` → `/api/model-endpoints/`
-- `static/js/cookbookSchedule.js:277` → `/api/tasks`
-- `static/js/cookbookSchedule.js:353` → `/api/tasks/`
-- `static/js/cookbookServe.js:4202` → `/api/model/cached${params}`
-- `static/js/document.js:621` → `/api/document/`
-- `static/js/document.js:661` → `/api/document/`
-- `static/js/document.js:705` → `/api/document/`
-- `static/js/document.js:901` → `/api/document/`
-- `static/js/document.js:1056` → `/api/document/`
-- `static/js/document.js:1160` → `/api/document/`
-- `static/js/document.js:1196` → `/api/document/`
-- `static/js/document.js:1796` → `/api/document/`
-- `static/js/document.js:1831` → `/api/document/`
-- `static/js/document.js:1950` → `/api/document/`
-- `static/js/document.js:2989` → `/api/email/attachment-as-doc/`
-- `static/js/document.js:2995` → `/api/email/attachment/`
-- `static/js/document.js:3016` → `/api/email/attachment/`
-- `static/js/document.js:3172` → `/api/email/compose-from-attachment/`
-- `static/js/document.js:3534` → `/api/upload/`
-- `static/js/document.js:3564` → `/api/upload`
-- `static/js/document.js:3613` → `/api/email/compose-upload/`
-- `static/js/document.js:3972` → `/api/email/mark-answered/`
-- `static/js/document.js:3978` → `/api/document/`
-- `static/js/document.js:4075` → `/api/document/`
-- `static/js/document.js:4459` → `/api/email/mark-unread/`
-- `static/js/document.js:4478` → `/api/document/`
-- `static/js/document.js:4531` → `/api/document/`
-- `static/js/document.js:4537` → `/api/document/`
-- `static/js/document.js:4618` → `/api/document/`
-- `static/js/document.js:5779` → `/api/document/`
+- `static/js/chat.js:215` → `/api/upload/`
+- `static/js/chat.js:229` → `/api/upload/`
+- `static/js/chat.js:291` → `/api/gallery/`
+- `static/js/chat.js:304` → `/api/upload/`
+- `static/js/chat.js:1028` → `/api/session/`
+- `static/js/chat.js:1066` → `/api/session/`
+- `static/js/chat.js:1102` → `/api/session/`
+- `static/js/chat.js:1133` → `/api/session/`
+- `static/js/chat.js:1154` → `/api/session/`
+- `static/js/chat.js:1184` → `/api/session/`
+- `static/js/chat.js:1701` → `/api/chat/stream_status/`
+- `static/js/chat.js:1744` → `/api/chat/stream_status/`
+- `static/js/chat.js:1919` → `/api/chat/stop/`
+- `static/js/chat.js:2529` → `/api/research/cancel/`
+- `static/js/chat.js:2633` → `/api/session/`
+- `static/js/chat.js:3657` → `/api/chat/finish/`
+- `static/js/chat.js:3728` → `/api/history/`
+- `static/js/chat.js:5360` → `/api/upload/`
+- `static/js/chat.js:5362` → `/api/upload/`
+- `static/js/chat.js:5384` → `/api/upload/`
+- `static/js/chat.js:6429` → `/api/session/`
+- `static/js/chat.js:6662` → `/api/session/`
+- `static/js/chat.js:7018` → `/api/chat/stream_status/`
+- `static/js/chat.js:7081` → `/api/chat/stream_status/`
+- `static/js/chat.js:7156` → `/api/session/`
+- `static/js/chat.js:7270` → `/api/chat/resume/`
+- `static/js/chat.js:7641` → `/api/history/`
+- `static/js/chat.js:8213` → `/api/session/`
+- `static/js/chat.js:8280` → `/api/session/`
+- `static/js/chat.js:8372` → `/api/session/`
+- `static/js/chat.js:8529` → `/api/session/`
+- `static/js/chat.js:8602` → `/api/session/`
+- `static/js/chat.js:8700` → `/api/session/`
+- `static/js/chat.js:8733` → `/api/research/status/`
+- `static/js/chat.js:8744` → `/api/research/result/`
+- `static/js/chat.js:8892` → `/api/research/status/`
+- `static/js/chat.js:8918` → `/api/research/result/`
+- `static/js/chat.js:9054` → `/api/session/`
+- `static/js/chat.js:9127` → `/api/session/`
+- `static/js/chat.js:9294` → `/api/session/`
+- `static/js/chat.js:9349` → `/api/upload/`
+- `static/js/chatRenderer.js:548` → `/api/upload/`
+- `static/js/chatRenderer.js:601` → `/api/upload/`
+- `static/js/chatRenderer.js:647` → `/api/upload/`
+- `static/js/chatRenderer.js:657` → `/api/upload/`
+- `static/js/chatRenderer.js:726` → `/api/upload/`
+- `static/js/chatRenderer.js:790` → `/api/upload/`
+- `static/js/chatRenderer.js:869` → `/api/tools fetch failed; live exec-fence stripping disabled until reload`
+- `static/js/chatRenderer.js:1168` → `/api/session/`
+- `static/js/chatRenderer.js:1709` → `/api/research/report/`
+- `static/js/chatRenderer.js:1725` → `/api/research/spinoff/`
+- `static/js/chatRenderer.js:2195` → `/api/gallery/`
+- `static/js/chatRenderer.js:2852` → `/api/session/`
+- `static/js/compare/index.js:222` → `/api/session/`
+- `static/js/compare/index.js:274` → `/api/session/`
+- `static/js/compare/panes.js:85` → `/api/session/`
+- `static/js/compare/panes.js:820` → `/api/session/`
+- `static/js/compare/panes.js:956` → `/api/session/`
+- `static/js/compare/stream.js:341` → `/api/session/`
+- `static/js/cookbookRunning.js:543` → `/api/model-endpoints/`
+- `static/js/cookbookRunning.js:1158` → `/api/generate`
+- `static/js/cookbookRunning.js:2062` → `/api/model/serve failed`
+- `static/js/cookbookRunning.js:3024` → `/api/model-endpoints/`
+- `static/js/cookbookRunning.js:4168` → `/api/model-endpoints/`
+- `static/js/cookbookSchedule.js:292` → `/api/tasks`
+- `static/js/cookbookSchedule.js:368` → `/api/tasks/`
+- `static/js/document.js:1534` → `/api/document/`
+- `static/js/document.js:1574` → `/api/document/`
+- `static/js/document.js:1618` → `/api/document/`
+- `static/js/document.js:1814` → `/api/document/`
+- `static/js/document.js:1972` → `/api/document/`
+- `static/js/document.js:2110` → `/api/document/`
+- `static/js/document.js:2155` → `/api/document/`
+- `static/js/document.js:2832` → `/api/document/`
+- `static/js/document.js:2867` → `/api/document/`
+- `static/js/document.js:2987` → `/api/document/`
+- `static/js/document.js:5012` → `/api/email/attachment-as-doc/`
+- `static/js/document.js:5018` → `/api/email/attachment/`
+- `static/js/document.js:5039` → `/api/email/attachment/`
+- `static/js/document.js:5199` → `/api/email/compose-from-attachment/`
+- `static/js/document.js:5716` → `/api/upload/`
+- `static/js/document.js:5743` → `/api/upload/`
+- `static/js/document.js:5937` → `/api/upload`
+- `static/js/document.js:5987` → `/api/email/compose-upload/`
+- `static/js/document.js:6478` → `/api/email/mark-answered/`
+- `static/js/document.js:6484` → `/api/document/`
+- `static/js/document.js:6594` → `/api/document/`
+- `static/js/document.js:7045` → `/api/email/mark-unread/`
+- `static/js/document.js:7087` → `/api/document/`
+- `static/js/document.js:7144` → `/api/document/`
+- `static/js/document.js:7150` → `/api/document/`
 - `static/js/document.js:7245` → `/api/document/`
-- `static/js/document.js:7337` → `/api/documents/`
-- `static/js/document.js:9310` → `/api/document/`
-- `static/js/document.js:9413` → `/api/document/`
-- `static/js/document.js:9594` → `/api/document/`
-- `static/js/document.js:9815` → `/api/document/`
-- `static/js/document.js:10946` → `/api/document/`
-- `static/js/document.js:10998` → `/api/document/`
-- `static/js/document.js:11012` → `/api/document/`
-- `static/js/document.js:11040` → `/api/document/`
-- `static/js/document.js:11107` → `/api/document/`
-- `static/js/documentLibrary.js:135` → `/api/history/`
-- `static/js/documentLibrary.js:716` → `/api/document/`
-- `static/js/documentLibrary.js:743` → `/api/document/`
-- `static/js/documentLibrary.js:836` → `/api/document/`
-- `static/js/documentLibrary.js:929` → `/api/document/`
-- `static/js/documentLibrary.js:943` → `/api/document/`
-- `static/js/documentLibrary.js:1030` → `/api/document/`
-- `static/js/documentLibrary.js:1073` → `/api/document/`
-- `static/js/documentLibrary.js:1194` → `/api/document/`
-- `static/js/documentLibrary.js:1230` → `/api/document/`
-- `static/js/documentLibrary.js:1264` → `/api/document/`
-- `static/js/documentLibrary.js:1340` → `/api/document/`
-- `static/js/documentLibrary.js:1977` → `/api/history/`
-- `static/js/documentLibrary.js:2071` → `/api/session/`
-- `static/js/documentLibrary.js:2082` → `/api/session/`
-- `static/js/documentLibrary.js:2087` → `/api/session/`
-- `static/js/documentLibrary.js:2101` → `/api/session/`
-- `static/js/documentLibrary.js:2109` → `/api/session/`
-- `static/js/documentLibrary.js:2182` → `/api/session/`
-- `static/js/documentLibrary.js:2185` → `/api/session/`
-- `static/js/documentLibrary.js:2266` → `/api/session/`
+- `static/js/document.js:8728` → `/api/document/`
+- `static/js/document.js:11367` → `/api/email/style${suffix}`
+- `static/js/document.js:12277` → `/api/document/`
+- `static/js/document.js:12375` → `/api/documents/`
+- `static/js/document.js:14684` → `/api/document/`
+- `static/js/document.js:14898` → `/api/document/`
+- `static/js/document.js:15014` → `/api/document/`
+- `static/js/document.js:15207` → `/api/document/`
+- `static/js/document.js:15416` → `/api/document/`
+- `static/js/document.js:15448` → `/api/document/`
+- `static/js/document.js:15995` → `/api/document/`
+- `static/js/document.js:16028` → `/api/document/`
+- `static/js/document.js:16056` → `/api/document/`
+- `static/js/document.js:16076` → `/api/document/`
+- `static/js/document.js:16244` → `/api/document/`
+- `static/js/document.js:16272` → `/api/document/`
+- `static/js/document.js:17355` → `/api/document/`
+- `static/js/document.js:17407` → `/api/document/`
+- `static/js/document.js:17421` → `/api/document/`
+- `static/js/document.js:17449` → `/api/document/`
+- `static/js/document.js:17516` → `/api/document/`
+- `static/js/documentLibrary.js:241` → `/api/history/`
+- `static/js/documentLibrary.js:858` → `/api/document/`
+- `static/js/documentLibrary.js:892` → `/api/document/`
+- `static/js/documentLibrary.js:1014` → `/api/document/`
+- `static/js/documentLibrary.js:1149` → `/api/document/`
+- `static/js/documentLibrary.js:1163` → `/api/document/`
+- `static/js/documentLibrary.js:1289` → `/api/document/`
+- `static/js/documentLibrary.js:1418` → `/api/document/`
+- `static/js/documentLibrary.js:1454` → `/api/document/`
+- `static/js/documentLibrary.js:1488` → `/api/document/`
+- `static/js/documentLibrary.js:1564` → `/api/document/`
+- `static/js/documentLibrary.js:2198` → `/api/history/`
+- `static/js/documentLibrary.js:2289` → `/api/session/`
+- `static/js/documentLibrary.js:2298` → `/api/session/`
 - `static/js/documentLibrary.js:2310` → `/api/session/`
-- `static/js/documentLibrary.js:2428` → `/api/document/`
-- `static/js/documentLibrary.js:2451` → `/api/document/`
-- `static/js/documentLibrary.js:2456` → `/api/document/`
-- `static/js/documentLibrary.js:2537` → `/api/session/`
-- `static/js/documentLibrary.js:2540` → `/api/session/`
-- `static/js/documentLibrary.js:2584` → `/api/document/`
-- `static/js/documentLibrary.js:2585` → `/api/document/`
-- `static/js/documentLibrary.js:2621` → `/api/research/report/`
-- `static/js/documentLibrary.js:2622` → `/api/research/`
-- `static/js/documentLibrary.js:2623` → `/api/research/`
-- `static/js/documentLibrary.js:2692` → `/api/document/`
-- `static/js/documentLibrary.js:2693` → `/api/research/`
-- `static/js/documentLibrary.js:2694` → `/api/session/`
-- `static/js/documentLibrary.js:2698` → `/api/document/`
-- `static/js/documentLibrary.js:2699` → `/api/research/`
-- `static/js/documentLibrary.js:2700` → `/api/session/`
-- `static/js/documentLibrary.js:2805` → `/api/session/`
-- `static/js/documentLibrary.js:2808` → `/api/session/`
-- `static/js/documentLibrary.js:2860` → `/api/session/`
-- `static/js/documentLibrary.js:2870` → `/api/session/`
-- `static/js/documentLibrary.js:2947` → `/api/research/detail/`
-- `static/js/documentLibrary.js:3001` → `/api/research/spinoff/`
-- `static/js/documentLibrary.js:3019` → `/api/research/report/`
-- `static/js/documentLibrary.js:3034` → `/api/research/`
-- `static/js/documentLibrary.js:3054` → `/api/research/`
-- `static/js/documentLibrary.js:3166` → `/api/research/report/`
-- `static/js/documentLibrary.js:3177` → `/api/research/`
-- `static/js/documentLibrary.js:3192` → `/api/research/`
-- `static/js/documentLibrary.js:3260` → `/api/research/detail/`
-- `static/js/documentLibrary.js:3274` → `/api/research/`
-- `static/js/documentLibrary.js:3325` → `/api/research/`
-- `static/js/documentLibrary.js:3349` → `/api/research/`
-- `static/js/emailInbox.js:674` → `/api/email/`
-- `static/js/emailInbox.js:798` → `/api/email/read/`
-- `static/js/emailInbox.js:1057` → `/api/document failed`
-- `static/js/emailInbox.js:1233` → `/api/notes`
-- `static/js/emailInbox.js:1254` → `/api/email/archive/`
-- `static/js/emailInbox.js:1271` → `/api/email/delete/`
-- `static/js/emailInbox.js:1323` → `/api/email/mark-answered/`
-- `static/js/emailInbox.js:1324` → `/api/email/mark-read/`
-- `static/js/emailInbox.js:1326` → `/api/email/clear-answered/`
-- `static/js/emailLibrary.js:1199` → `/api/email/delete/`
-- `static/js/emailLibrary.js:3246` → `/api/email/accounts/`
-- `static/js/emailLibrary.js:4885` → `/api/email/scheduled/`
-- `static/js/emailLibrary.js:5189` → `/api/email/mark-answered/`
-- `static/js/emailLibrary.js:5190` → `/api/email/mark-read/`
-- `static/js/emailLibrary.js:5192` → `/api/email/clear-answered/`
-- `static/js/emailLibrary.js:5369` → `/api/email/read/`
-- `static/js/emailLibrary.js:5506` → `/api/email/read/`
-- `static/js/emailLibrary.js:5915` → `/api/email/inline-image/`
-- `static/js/emailLibrary.js:6056` → `/api/email/inline-image/`
-- `static/js/emailLibrary.js:6599` → `/api/email/attachments-download/`
-- `static/js/emailLibrary.js:6658` → `/api/email/attachment-as-doc/`
-- `static/js/emailLibrary.js:6727` → `/api/email/attachment/`
-- `static/js/emailLibrary.js:6866` → `/api/email/attachments/`
-- `static/js/emailLibrary.js:7175` → `/api/email/read/`
-- `static/js/emailLibrary.js:7320` → `/api/email/read/`
-- `static/js/emailLibrary.js:7742` → `/api/email/mark-read/`
-- `static/js/emailLibrary.js:7744` → `/api/email/mark-unread/`
-- `static/js/emailLibrary.js:7762` → `/api/email/flag/`
-- `static/js/emailLibrary.js:7783` → `/api/email/mark-answered/`
-- `static/js/emailLibrary.js:7784` → `/api/email/mark-read/`
-- `static/js/emailLibrary.js:7786` → `/api/email/clear-answered/`
-- `static/js/emailLibrary.js:7797` → `/api/email/archive/`
-- `static/js/emailLibrary.js:7838` → `/api/email/move/`
-- `static/js/emailLibrary.js:7850` → `/api/email/delete/`
-- `static/js/emailLibrary.js:7875` → `/api/email/delete-permanent/`
-- `static/js/emailLibrary.js:7993` → `/api/email/mark-answered/`
-- `static/js/emailLibrary.js:7994` → `/api/email/mark-read/`
-- `static/js/emailLibrary.js:7996` → `/api/email/clear-answered/`
-- `static/js/emailLibrary.js:8016` → `/api/email/flag/`
-- `static/js/emailLibrary.js:8028` → `/api/email/archive/`
-- `static/js/emailLibrary.js:8044` → `/api/email/flag/`
-- `static/js/emailLibrary.js:8056` → `/api/email/archive/`
-- `static/js/emailLibrary.js:8091` → `/api/email/delete/`
-- `static/js/emailLibrary.js:8270` → `/api/email/archive/`
-- `static/js/emailLibrary.js:8272` → `/api/email/delete/`
-- `static/js/emailLibrary.js:8284` → `/api/email/mark-answered/`
-- `static/js/emailLibrary.js:8285` → `/api/email/mark-read/`
-- `static/js/emailLibrary.js:8289` → `/api/email/`
-- `static/js/emailLibrary.js:8736` → `/api/notes`
-- `static/js/fileHandler.js:307` → `/api/upload`
-- `static/js/gallery.js:196` → `/api/gallery/`
-- `static/js/gallery.js:215` → `/api/gallery/`
-- `static/js/gallery.js:757` → `/api/gallery/albums/`
-- `static/js/gallery.js:778` → `/api/gallery/albums/`
-- `static/js/gallery.js:865` → `/api/gallery/albums/`
-- `static/js/gallery.js:1022` → `/api/editor-drafts/`
-- `static/js/gallery.js:1096` → `/api/editor-drafts/`
-- `static/js/gallery.js:1352` → `/api/gallery/`
-- `static/js/gallery.js:1617` → `/api/gallery/`
-- `static/js/gallery.js:1662` → `/api/gallery/`
-- `static/js/gallery.js:1812` → `/api/gallery/`
-- `static/js/gallery.js:1845` → `/api/gallery/albums/`
-- `static/js/gallery.js:1887` → `/api/gallery/`
-- `static/js/gallery.js:2409` → `/api/gallery/`
-- `static/js/gallery.js:2906` → `/api/gallery/`
-- `static/js/galleryEditor.js:1113` → `/api/editor-drafts/`
-- `static/js/galleryEditor.js:1153` → `/api/editor-drafts/`
-- `static/js/galleryEditor.js:1182` → `/api/editor-drafts/`
-- `static/js/galleryEditor.js:3298` → `/api/gallery/`
+- `static/js/documentLibrary.js:2383` → `/api/session/`
+- `static/js/documentLibrary.js:2386` → `/api/session/`
+- `static/js/documentLibrary.js:2467` → `/api/session/`
+- `static/js/documentLibrary.js:2511` → `/api/session/`
+- `static/js/documentLibrary.js:2637` → `/api/document/`
+- `static/js/documentLibrary.js:2660` → `/api/document/`
+- `static/js/documentLibrary.js:2665` → `/api/document/`
+- `static/js/documentLibrary.js:2747` → `/api/session/`
+- `static/js/documentLibrary.js:2750` → `/api/session/`
+- `static/js/documentLibrary.js:2795` → `/api/document/`
+- `static/js/documentLibrary.js:2796` → `/api/document/`
+- `static/js/documentLibrary.js:2833` → `/api/research/report/`
+- `static/js/documentLibrary.js:2834` → `/api/research/`
+- `static/js/documentLibrary.js:2835` → `/api/research/`
+- `static/js/documentLibrary.js:2904` → `/api/document/`
+- `static/js/documentLibrary.js:2905` → `/api/research/`
+- `static/js/documentLibrary.js:2906` → `/api/session/`
+- `static/js/documentLibrary.js:2910` → `/api/document/`
+- `static/js/documentLibrary.js:2911` → `/api/research/`
+- `static/js/documentLibrary.js:2912` → `/api/session/`
+- `static/js/documentLibrary.js:3012` → `/api/research/detail/`
+- `static/js/documentLibrary.js:3066` → `/api/research/spinoff/`
+- `static/js/documentLibrary.js:3084` → `/api/research/report/`
+- `static/js/documentLibrary.js:3099` → `/api/research/`
+- `static/js/documentLibrary.js:3119` → `/api/research/`
+- `static/js/documentLibrary.js:3232` → `/api/research/report/`
+- `static/js/documentLibrary.js:3243` → `/api/research/`
+- `static/js/documentLibrary.js:3258` → `/api/research/`
+- `static/js/documentLibrary.js:3326` → `/api/research/detail/`
+- `static/js/documentLibrary.js:3340` → `/api/research/`
+- `static/js/documentLibrary.js:3391` → `/api/research/`
+- `static/js/documentLibrary.js:3415` → `/api/research/`
+- `static/js/emailInbox.js:691` → `/api/email/`
+- `static/js/emailInbox.js:815` → `/api/email/read/`
+- `static/js/emailInbox.js:1116` → `/api/document failed`
+- `static/js/emailInbox.js:1297` → `/api/notes`
+- `static/js/emailInbox.js:1318` → `/api/email/archive/`
+- `static/js/emailInbox.js:1328` → `/api/email/move/`
+- `static/js/emailInbox.js:1351` → `/api/email/delete/`
+- `static/js/emailInbox.js:1403` → `/api/email/mark-answered/`
+- `static/js/emailInbox.js:1404` → `/api/email/mark-read/`
+- `static/js/emailInbox.js:1406` → `/api/email/clear-answered/`
+- `static/js/emailLibrary/aiReply.js:430` → `/api/notes`
+- `static/js/emailLibrary/attachments.js:57` → `/api/email/attachments-download/`
+- `static/js/emailLibrary/attachments.js:107` → `/api/email/attachment/`
+- `static/js/emailLibrary/attachments.js:165` → `/api/email/attachment-as-doc/`
+- `static/js/emailLibrary/attachments.js:255` → `/api/email/attachment/`
+- `static/js/emailLibrary/attachments.js:407` → `/api/email/attachments/`
+- `static/js/emailLibrary/bodyRender.js:264` → `/api/email/inline-image/`
+- `static/js/emailLibrary/bodyRender.js:409` → `/api/email/inline-image/`
+- `static/js/emailLibrary/index.js:1009` → `/api/email/delete/`
+- `static/js/emailLibrary/index.js:1138` → `/api/email/read/`
+- `static/js/emailLibrary/index.js:1329` → `/api/email/`
+- `static/js/emailLibrary/index.js:3345` → `/api/email/accounts/`
+- `static/js/emailLibrary/index.js:5246` → `/api/email/scheduled/`
+- `static/js/emailLibrary/index.js:5621` → `/api/email/mark-answered/`
+- `static/js/emailLibrary/index.js:5622` → `/api/email/mark-read/`
+- `static/js/emailLibrary/index.js:5624` → `/api/email/clear-answered/`
+- `static/js/emailLibrary/index.js:5653` → `/api/email/flag/`
+- `static/js/emailLibrary/index.js:5830` → `/api/email/read/`
+- `static/js/emailLibrary/index.js:5871` → `/api/email/read/`
+- `static/js/emailLibrary/index.js:6014` → `/api/email/read/`
+- `static/js/emailLibrary/menus.js:146` → `/api/email/mark-read/`
+- `static/js/emailLibrary/menus.js:148` → `/api/email/mark-unread/`
+- `static/js/emailLibrary/menus.js:166` → `/api/email/flag/`
+- `static/js/emailLibrary/menus.js:187` → `/api/email/mark-answered/`
+- `static/js/emailLibrary/menus.js:188` → `/api/email/mark-read/`
+- `static/js/emailLibrary/menus.js:190` → `/api/email/clear-answered/`
+- `static/js/emailLibrary/menus.js:201` → `/api/email/archive/`
+- `static/js/emailLibrary/menus.js:242` → `/api/email/move/`
+- `static/js/emailLibrary/menus.js:254` → `/api/email/delete/`
+- `static/js/emailLibrary/menus.js:280` → `/api/email/delete-permanent/`
+- `static/js/emailLibrary/menus.js:422` → `/api/email/mark-answered/`
+- `static/js/emailLibrary/menus.js:423` → `/api/email/mark-read/`
+- `static/js/emailLibrary/menus.js:425` → `/api/email/clear-answered/`
+- `static/js/emailLibrary/menus.js:445` → `/api/email/flag/`
+- `static/js/emailLibrary/menus.js:457` → `/api/email/archive/`
+- `static/js/emailLibrary/menus.js:473` → `/api/email/flag/`
+- `static/js/emailLibrary/menus.js:485` → `/api/email/archive/`
+- `static/js/emailLibrary/menus.js:520` → `/api/email/delete/`
+- `static/js/emailLibrary/menus.js:779` → `/api/email/archive/`
+- `static/js/emailLibrary/menus.js:786` → `/api/email/delete-permanent/`
+- `static/js/emailLibrary/menus.js:800` → `/api/email/mark-answered/`
+- `static/js/emailLibrary/menus.js:801` → `/api/email/mark-read/`
+- `static/js/emailLibrary/menus.js:805` → `/api/email/`
+- `static/js/emailLibrary/reader.js:301` → `/api/email/read/`
+- `static/js/emailLibrary/reader.js:449` → `/api/email/read/`
+- `static/js/emailLibrary/settingsPage.js:196` → `/api/calendar/events/`
+- `static/js/emailLibrary/settingsPage.js:209` → `/api/calendar/events/`
+- `static/js/emailLibrary/settingsPage.js:601` → `/api/email/accounts/`
+- `static/js/features/notes/infrastructure/http.js:5` → `/api/notes/`
+- `static/js/features/notes/infrastructure/http.js:5` → `/api/notes`
+- `static/js/features/notes/infrastructure/http.js:10` → `/api/notes/`
+- `static/js/features/notes/infrastructure/http.js:15` → `/api/notes/`
+- `static/js/features/notes/infrastructure/http.js:20` → `/api/notes`
+- `static/js/features/notes/infrastructure/http.js:22` → `/api/upload`
+- `static/js/features/notes/infrastructure/http.js:23` → `/api/upload/`
+- `static/js/fileHandler.js:349` → `/api/upload`
+- `static/js/gallery.js:260` → `/api/gallery/`
+- `static/js/gallery.js:279` → `/api/gallery/`
+- `static/js/gallery.js:854` → `/api/gallery/albums/`
+- `static/js/gallery.js:875` → `/api/gallery/albums/`
+- `static/js/gallery.js:962` → `/api/gallery/albums/`
+- `static/js/gallery.js:1135` → `/api/editor-drafts/`
+- `static/js/gallery.js:1218` → `/api/editor-drafts/`
+- `static/js/gallery.js:1543` → `/api/gallery/`
+- `static/js/gallery.js:1862` → `/api/gallery/`
+- `static/js/gallery.js:1907` → `/api/gallery/`
+- `static/js/gallery.js:2057` → `/api/gallery/`
+- `static/js/gallery.js:2090` → `/api/gallery/albums/`
+- `static/js/gallery.js:2132` → `/api/gallery/`
+- `static/js/gallery.js:2767` → `/api/gallery/`
+- `static/js/gallery.js:3301` → `/api/gallery/`
+- `static/js/galleryEditor.js:4717` → `/api/editor-drafts/`
+- `static/js/galleryEditor.js:4801` → `/api/editor-drafts/`
+- `static/js/galleryEditor.js:4830` → `/api/editor-drafts/`
+- `static/js/galleryEditor.js:11280` → `/api/gallery/`
 - `static/js/group.js:666` → `/api/session/`
 - `static/js/group.js:716` → `/api/session/`
 - `static/js/group.js:798` → `/api/session/`
-- `static/js/group.js:825` → `/api/session/`
-- `static/js/group.js:965` → `/api/session/`
-- `static/js/keyboard-shortcuts.js:188` → `/api/session/`
-- `static/js/keyboard-shortcuts.js:207` → `/api/session/`
-- `static/js/markdown.js:680` → `/api/emoji/`
-- `static/js/memory.js:254` → `/api/prefs/`
-- `static/js/memory.js:274` → `/api/prefs/`
-- `static/js/memory.js:302` → `/api/prefs/`
-- `static/js/memory.js:316` → `/api/prefs/`
-- `static/js/memory.js:335` → `/api/prefs/`
-- `static/js/memory.js:349` → `/api/prefs/`
-- `static/js/memory.js:378` → `/api/memory`
-- `static/js/memory.js:485` → `/api/memory/`
-- `static/js/memory.js:543` → `/api/memory`
-- `static/js/memory.js:1059` → `/api/memory/`
-- `static/js/memory.js:1155` → `/api/memory/`
-- `static/js/memory.js:1178` → `/api/memory/`
-- `static/js/modelPicker.js:711` → `/api/session/`
-- `static/js/notes.js:365` → `/api/upload`
-- `static/js/notes.js:369` → `/api/upload/`
-- `static/js/notes.js:450` → `/api/notes`
-- `static/js/notes.js:465` → `/api/notes/`
-- `static/js/notes.js:465` → `/api/notes`
-- `static/js/notes.js:478` → `/api/notes/`
-- `static/js/notes.js:483` → `/api/notes/`
-- `static/js/notes.js:3511` → `/api/upload`
-- `static/js/notes.js:3515` → `/api/upload/`
-- `static/js/notes.js:4349` → `/api/upload`
-- `static/js/notes.js:4352` → `/api/upload/`
-- `static/js/notes.js:5302` → `/api/notes`
-- `static/js/presets.js:245` → `/api/presets/templates/`
-- `static/js/presets.js:423` → `/api/session/`
-- `static/js/presets.js:974` → `/api/memory`
+- `static/js/group.js:826` → `/api/session/`
+- `static/js/group.js:967` → `/api/session/`
+- `static/js/keyboard-shortcuts.js:189` → `/api/session/`
+- `static/js/keyboard-shortcuts.js:208` → `/api/session/`
+- `static/js/markdown.js:816` → `/api/emoji/`
+- `static/js/memory.js:360` → `/api/prefs/`
+- `static/js/memory.js:380` → `/api/prefs/`
+- `static/js/memory.js:408` → `/api/prefs/`
+- `static/js/memory.js:422` → `/api/prefs/`
+- `static/js/memory.js:441` → `/api/prefs/`
+- `static/js/memory.js:455` → `/api/prefs/`
+- `static/js/memory.js:484` → `/api/memory`
+- `static/js/memory.js:591` → `/api/memory/`
+- `static/js/memory.js:649` → `/api/memory`
+- `static/js/memory.js:1197` → `/api/memory/`
+- `static/js/memory.js:1293` → `/api/memory/`
+- `static/js/memory.js:1316` → `/api/memory/`
+- `static/js/modelPicker.js:732` → `/api/session/`
+- `static/js/modelPicker.js:1095` → `/api/session/`
+- `static/js/modelPicker.js:1154` → `/api/session/`
+- `static/js/presets.js:250` → `/api/presets/templates/`
+- `static/js/presets.js:440` → `/api/session/`
+- `static/js/presets.js:1036` → `/api/memory`
 - `static/js/providerDeviceFlow.js:6` → `/api/copilot/device/start`
 - `static/js/providerDeviceFlow.js:7` → `/api/copilot/device/poll`
 - `static/js/providerDeviceFlow.js:14` → `/api/chatgpt-subscription/device/start`
 - `static/js/providerDeviceFlow.js:15` → `/api/chatgpt-subscription/device/poll`
 - `static/js/rag.js:36` → `/api/personal`
-- `static/js/research/jobs.js:211` → `/api/research/cancel/`
-- `static/js/research/jobs.js:308` → `/api/research/stream/`
-- `static/js/research/jobs.js:336` → `/api/research/status/`
-- `static/js/research/jobs.js:369` → `/api/research/result-peek/`
-- `static/js/research/panel.js:1023` → `/api/research/report/`
-- `static/js/research/panel.js:1033` → `/api/research/report/`
-- `static/js/research/panel.js:1045` → `/api/research/`
-- `static/js/research/panel.js:1143` → `/api/research/result-peek/`
-- `static/js/research/panel.js:1220` → `/api/research/spinoff/`
-- `static/js/sessions.js:144` → `/api/history/`
-- `static/js/sessions.js:325` → `/api/session/`
-- `static/js/sessions.js:426` → `/api/session/`
-- `static/js/sessions.js:611` → `/api/session/`
-- `static/js/sessions.js:649` → `/api/session/`
-- `static/js/sessions.js:769` → `/api/session/`
-- `static/js/sessions.js:807` → `/api/session/`
-- `static/js/sessions.js:822` → `/api/history/`
-- `static/js/sessions.js:950` → `/api/session/`
-- `static/js/sessions.js:1000` → `/api/session/`
-- `static/js/sessions.js:1009` → `/api/session/`
-- `static/js/sessions.js:1334` → `/api/session/`
-- `static/js/sessions.js:1457` → `/api/session/`
-- `static/js/sessions.js:1717` → `/api/session/`
-- `static/js/sessions.js:1736` → `/api/session/`
-- `static/js/sessions.js:2428` → `/api/session/`
-- `static/js/sessions.js:2550` → `/api/session/`
-- `static/js/sessions.js:2594` → `/api/session/`
-- `static/js/sessions.js:2685` → `/api/research/status/`
-- `static/js/sessions.js:2808` → `/api/chat/stream_status/`
-- `static/js/sessions.js:2867` → `/api/chat/stream_status/`
-- `static/js/sessions.js:3018` → `/api/history/`
-- `static/js/sessions.js:3061` → `/api/session/`
-- `static/js/sessions.js:3073` → `/api/session/`
-- `static/js/sessions.js:3093` → `/api/session/`
-- `static/js/sessions.js:3111` → `/api/session/`
-- `static/js/sessions.js:3401` → `/api/session/`
-- `static/js/sessions.js:3404` → `/api/session/`
-- `static/js/sessions.js:3418` → `/api/session/`
-- `static/js/sessions.js:3420` → `/api/document/`
-- `static/js/sessions.js:3422` → `/api/research/`
-- `static/js/sessions.js:3480` → `/api/session/`
-- `static/js/sessions.js:3481` → `/api/session/`
-- `static/js/sessions.js:3510` → `/api/session/`
-- `static/js/sessions.js:3511` → `/api/session/`
-- `static/js/sessions.js:3549` → `/api/document/`
-- `static/js/sessions.js:3588` → `/api/research/report/`
-- `static/js/sessions.js:3595` → `/api/research/report/`
-- `static/js/sessions.js:3605` → `/api/research/`
-- `static/js/settings.js:1033` → `/api/`
-- `static/js/settings.js:2789` → `/api/email/accounts/`
-- `static/js/settings.js:2799` → `/api/email/accounts/`
-- `static/js/settings.js:2938` → `/api/email/accounts/`
-- `static/js/settings.js:2990` → `/api/email/accounts/`
-- `static/js/settings.js:3041` → `/api/email/style${emailAccountSuffix()}`
-- `static/js/settings.js:3157` → `/api/email/extract-style${emailAccountSuffix()}`
-- `static/js/settings.js:3185` → `/api/email/style${emailAccountSuffix()}`
-- `static/js/settings.js:3356` → `/api/auth/integrations/`
-- `static/js/settings.js:3382` → `/api/auth/integrations/`
-- `static/js/settings.js:3396` → `/api/auth/integrations/`
-- `static/js/settings.js:3468` → `/api/claude/plugin.zip`
-- `static/js/settings.js:3473` → `/api/claude/plugin.zip`
-- `static/js/settings.js:3643` → `/api/auth/integrations/`
-- `static/js/settings.js:3644` → `/api/calendar/config/accounts/`
-- `static/js/settings.js:3651` → `/api/email/accounts/`
-- `static/js/settings.js:3652` → `/api/mcp/servers/`
-- `static/js/settings.js:3653` → `/api/tokens/`
-- `static/js/settings.js:3845` → `/api/auth/integrations/`
-- `static/js/settings.js:3864` → `/api/auth/integrations/`
-- `static/js/settings.js:3961` → `/api/calendar/config/accounts/`
-- `static/js/settings.js:4259` → `/api/contacts/`
-- `static/js/settings.js:4269` → `/api/contacts/`
-- `static/js/settings.js:4576` → `/api/email/accounts/`
-- `static/js/settings.js:4759` → `/api/email/accounts/`
-- `static/js/settings.js:4940` → `/api/mcp/oauth/exchange/`
-- `static/js/settings.js:5001` → `/api/mcp/oauth/authorize/`
-- `static/js/settings.js:5012` → `/api/mcp/servers/`
-- `static/js/settings.js:5022` → `/api/mcp/servers/`
-- `static/js/settings.js:5031` → `/api/mcp/servers/`
-- `static/js/settings.js:5039` → `/api/mcp/servers/`
-- `static/js/settings.js:5274` → `/api/tokens/`
-- `static/js/settings.js:5293` → `/api/tokens/`
-- `static/js/settings.js:5334` → `/api/tokens/`
-- `static/js/settings.js:5360` → `/api/tokens/`
-- `static/js/settings.js:5536` → `/api/tokens/`
+- `static/js/research/jobs.js:263` → `/api/research/cancel/`
+- `static/js/research/jobs.js:367` → `/api/research/stream/`
+- `static/js/research/jobs.js:401` → `/api/research/status/`
+- `static/js/research/jobs.js:441` → `/api/research/result-peek/`
+- `static/js/research/panel.js:945` → `/api/research/`
+- `static/js/research/panel.js:1289` → `/api/research/report/`
+- `static/js/research/panel.js:1306` → `/api/research/report/`
+- `static/js/research/panel.js:1653` → `/api/research/result-peek/`
+- `static/js/research/panel.js:1786` → `/api/research/spinoff/`
+- `static/js/sessions.js:283` → `/api/history/`
+- `static/js/sessions.js:615` → `/api/session/`
+- `static/js/sessions.js:834` → `/api/session/`
+- `static/js/sessions.js:894` → `/api/session/`
+- `static/js/sessions.js:1090` → `/api/session/`
+- `static/js/sessions.js:1128` → `/api/session/`
+- `static/js/sessions.js:1143` → `/api/history/`
+- `static/js/sessions.js:1286` → `/api/session/`
+- `static/js/sessions.js:1345` → `/api/session/`
+- `static/js/sessions.js:2055` → `/api/session/`
+- `static/js/sessions.js:2786` → `/api/session/`
+- `static/js/sessions.js:2897` → `/api/session/`
+- `static/js/sessions.js:2924` → `/api/session/`
+- `static/js/sessions.js:3095` → `/api/research/status/`
+- `static/js/sessions.js:3224` → `/api/chat/stream_status/`
+- `static/js/sessions.js:3288` → `/api/chat/stream_status/`
+- `static/js/sessions.js:3439` → `/api/history/`
+- `static/js/sessions.js:3482` → `/api/session/`
+- `static/js/sessions.js:3514` → `/api/session/`
+- `static/js/sessions.js:3824` → `/api/session/`
+- `static/js/sessions.js:3827` → `/api/session/`
+- `static/js/sessions.js:3848` → `/api/document/`
+- `static/js/sessions.js:3850` → `/api/research/`
+- `static/js/sessions.js:3910` → `/api/session/`
+- `static/js/sessions.js:3940` → `/api/session/`
+- `static/js/sessions.js:3979` → `/api/document/`
+- `static/js/sessions.js:4018` → `/api/research/report/`
+- `static/js/sessions.js:4025` → `/api/research/report/`
+- `static/js/sessions.js:4035` → `/api/research/`
+- `static/js/settings.js:799` → `/api/`
+- `static/js/settings.js:2504` → `/api/email/accounts/`
+- `static/js/settings.js:2514` → `/api/email/accounts/`
+- `static/js/settings.js:2653` → `/api/email/accounts/`
+- `static/js/settings.js:2705` → `/api/email/accounts/`
+- `static/js/settings.js:2756` → `/api/email/style${emailAccountSuffix()}`
+- `static/js/settings.js:2872` → `/api/email/extract-style${emailAccountSuffix()}`
+- `static/js/settings.js:2900` → `/api/email/style${emailAccountSuffix()}`
+- `static/js/settings.js:3071` → `/api/auth/integrations/`
+- `static/js/settings.js:3097` → `/api/auth/integrations/`
+- `static/js/settings.js:3111` → `/api/auth/integrations/`
+- `static/js/settings.js:3183` → `/api/claude/plugin.zip`
+- `static/js/settings.js:3188` → `/api/claude/plugin.zip`
+- `static/js/settings.js:3358` → `/api/auth/integrations/`
+- `static/js/settings.js:3359` → `/api/calendar/config/accounts/`
+- `static/js/settings.js:3366` → `/api/email/accounts/`
+- `static/js/settings.js:3367` → `/api/mcp/servers/`
+- `static/js/settings.js:3368` → `/api/tokens/`
+- `static/js/settings.js:3560` → `/api/auth/integrations/`
+- `static/js/settings.js:3579` → `/api/auth/integrations/`
+- `static/js/settings.js:3676` → `/api/calendar/config/accounts/`
+- `static/js/settings.js:3974` → `/api/contacts/`
+- `static/js/settings.js:3984` → `/api/contacts/`
+- `static/js/settings.js:4291` → `/api/email/accounts/`
+- `static/js/settings.js:4474` → `/api/email/accounts/`
+- `static/js/settings.js:4655` → `/api/mcp/oauth/exchange/`
+- `static/js/settings.js:4716` → `/api/mcp/oauth/authorize/`
+- `static/js/settings.js:4727` → `/api/mcp/servers/`
+- `static/js/settings.js:4737` → `/api/mcp/servers/`
+- `static/js/settings.js:4746` → `/api/mcp/servers/`
+- `static/js/settings.js:4754` → `/api/mcp/servers/`
+- `static/js/settings.js:4998` → `/api/tokens/`
+- `static/js/settings.js:5017` → `/api/tokens/`
+- `static/js/settings.js:5058` → `/api/tokens/`
+- `static/js/settings.js:5084` → `/api/tokens/`
+- `static/js/settings.js:5260` → `/api/tokens/`
+- `static/js/settings/imagePreferences.js:7` → `/api/prefs`
+- `static/js/settings/imagePreferences.js:46` → `/api/prefs/`
+- `static/js/settings/imagePreferences.js:64` → `/api/prefs/`
 - `static/js/signature.js:349` → `/api/signatures/`
-- `static/js/skills.js:39` → `/api/skills/`
-- `static/js/skills.js:92` → `/api/skills`
-- `static/js/skills.js:551` → `/api/skills/builtin/`
-- `static/js/skills.js:585` → `/api/skills/builtin/`
-- `static/js/skills.js:600` → `/api/skills/builtin/`
-- `static/js/skills.js:1062` → `/api/skills/`
-- `static/js/skills.js:1087` → `/api/skills/`
-- `static/js/skills.js:1103` → `/api/skills/`
-- `static/js/skills.js:1117` → `/api/skills/`
-- `static/js/skills.js:1164` → `/api/skills/`
-- `static/js/skills.js:1222` → `/api/skills/`
-- `static/js/skills.js:1742` → `/api/skills/`
-- `static/js/skills.js:1761` → `/api/prefs`
-- `static/js/skills.js:1800` → `/api/skills/`
-- `static/js/skills.js:1825` → `/api/skills/`
-- `static/js/skills.js:1851` → `/api/skills/`
-- `static/js/skills.js:1890` → `/api/skills/`
+- `static/js/skills.js:54` → `/api/skills/`
+- `static/js/skills.js:107` → `/api/skills`
+- `static/js/skills.js:706` → `/api/skills/builtin/`
+- `static/js/skills.js:740` → `/api/skills/builtin/`
+- `static/js/skills.js:755` → `/api/skills/builtin/`
+- `static/js/skills.js:1336` → `/api/skills/`
+- `static/js/skills.js:1361` → `/api/skills/`
+- `static/js/skills.js:1377` → `/api/skills/`
+- `static/js/skills.js:1391` → `/api/skills/`
+- `static/js/skills.js:1438` → `/api/skills/`
+- `static/js/skills.js:1502` → `/api/skills/`
+- `static/js/skills.js:2053` → `/api/skills/`
+- `static/js/skills.js:2076` → `/api/prefs`
+- `static/js/skills.js:2115` → `/api/skills/`
+- `static/js/skills.js:2143` → `/api/skills/`
+- `static/js/skills.js:2169` → `/api/skills/`
+- `static/js/skills.js:2208` → `/api/skills/`
 - `static/js/slashCommands.js:43` → `/api/v1`
 - `static/js/slashCommands.js:53` → `/api/v1`
 - `static/js/slashCommands.js:302` → `/api/session/`
@@ -3462,31 +3726,32 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/js/slashCommands.js:1106` → `/api/session/`
 - `static/js/slashCommands.js:1124` → `/api/session/`
 - `static/js/slashCommands.js:1215` → `/api/session/`
-- `static/js/slashCommands.js:1573` → `/api/memory`
-- `static/js/slashCommands.js:1602` → `/api/memory`
-- `static/js/slashCommands.js:1612` → `/api/memory/`
-- `static/js/slashCommands.js:1624` → `/api/memory`
-- `static/js/slashCommands.js:1629` → `/api/memory/`
-- `static/js/slashCommands.js:1692` → `/api/skills/`
-- `static/js/slashCommands.js:1720` → `/api/notes`
-- `static/js/slashCommands.js:1814` → `/api/notes?note_type=note`
-- `static/js/slashCommands.js:1826` → `/api/notes`
-- `static/js/slashCommands.js:1891` → `/api/personal`
-- `static/js/slashCommands.js:1928` → `/api/personal`
-- `static/js/slashCommands.js:2067` → `/api/session/`
-- `static/js/slashCommands.js:5176` → `/api/memory`
-- `static/js/tasks.js:45` → `/api/tasks`
-- `static/js/tasks.js:74` → `/api/tasks`
-- `static/js/tasks.js:85` → `/api/tasks/`
-- `static/js/tasks.js:96` → `/api/tasks/`
-- `static/js/tasks.js:137` → `/api/tasks/`
+- `static/js/slashCommands.js:1577` → `/api/memory`
+- `static/js/slashCommands.js:1606` → `/api/memory`
+- `static/js/slashCommands.js:1616` → `/api/memory/`
+- `static/js/slashCommands.js:1628` → `/api/memory`
+- `static/js/slashCommands.js:1633` → `/api/memory/`
+- `static/js/slashCommands.js:1696` → `/api/skills/`
+- `static/js/slashCommands.js:1724` → `/api/notes`
+- `static/js/slashCommands.js:1818` → `/api/notes?note_type=note`
+- `static/js/slashCommands.js:1830` → `/api/notes`
+- `static/js/slashCommands.js:1895` → `/api/personal`
+- `static/js/slashCommands.js:1932` → `/api/personal`
+- `static/js/slashCommands.js:2071` → `/api/session/`
+- `static/js/slashCommands.js:5187` → `/api/memory`
+- `static/js/tasks.js:52` → `/api/tasks?include_last_run=true`
+- `static/js/tasks.js:81` → `/api/tasks`
+- `static/js/tasks.js:92` → `/api/tasks/`
+- `static/js/tasks.js:103` → `/api/tasks/`
 - `static/js/tasks.js:144` → `/api/tasks/`
 - `static/js/tasks.js:151` → `/api/tasks/`
-- `static/js/tasks.js:169` → `/api/tasks/`
-- `static/js/tasks.js:184` → `/api/tasks/`
-- `static/js/tasks.js:1490` → `/api/tasks/`
-- `static/js/tasks.js:1914` → `/api/tasks/`
-- `static/js/tasks.js:1928` → `/api/tasks/`
-- `static/js/tasks.js:2389` → `/api/research/report/`
-- `static/js/tasks.js:2576` → `/api/session/`
-- `static/sw.js:190` → `/api/`
+- `static/js/tasks.js:158` → `/api/tasks/`
+- `static/js/tasks.js:176` → `/api/tasks/`
+- `static/js/tasks.js:191` → `/api/tasks/`
+- `static/js/tasks.js:1587` → `/api/tasks/`
+- `static/js/tasks.js:2011` → `/api/tasks/`
+- `static/js/tasks.js:2025` → `/api/tasks/`
+- `static/js/tasks.js:2507` → `/api/research/report/`
+- `static/js/tasks.js:2622` → `/api/research/report/`
+- `static/js/tasks.js:2712` → `/api/session/`
+- `static/sw.js:395` → `/api/`

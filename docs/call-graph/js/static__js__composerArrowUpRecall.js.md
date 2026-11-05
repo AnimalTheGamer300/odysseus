@@ -5,8 +5,8 @@
 
 ## `getUserMessagesFromChatHistory` — function, line 12
 - **called from:**
-- `static/js/chat.js:1186`
-- `static/js/chat.js:1191`
+- `static/js/chat.js:2081`
+- `static/js/chat.js:2086`
 - `static/js/composerArrowUpRecall.js:12`
 - `static/js/composerArrowUpRecall.js:37`
 - `static/js/composerHistoryRecall.js:21`
@@ -19,7 +19,7 @@
 
 ## `wireArrowUpRecall` — function, line 46
 - **called from:**
-- `static/js/chat.js:1191`
+- `static/js/chat.js:2086`
 - `static/js/composerArrowUpRecall.js:46`
 
 ## `readHistory` — arrow, line 57
@@ -31,11 +31,11 @@
 ## `norm` — arrow, line 62
 - **called from:**
 - `src/embeddings.py:86`
-- `src/embeddings.py:204`
-- `src/tool_parsing.py:1271`
-- `src/tool_parsing.py:1277`
-- `static/js/compare/stream.js:885`
-- `static/js/compare/stream.js:886`
+- `src/embeddings.py:219`
+- `src/tool_parsing.py:1703`
+- `src/tool_parsing.py:1709`
+- `static/js/compare/stream.js:972`
+- `static/js/compare/stream.js:973`
 - `static/js/composerArrowUpRecall.js:73`
 - `static/js/composerArrowUpRecall.js:73`
 - `static/js/composerArrowUpRecall.js:95`
@@ -50,64 +50,64 @@
 
 ## `debug` — arrow, line 63
 - **called from:**
-- `app.py:219`
-- `app.py:455`
-- `app.py:659`
-- `app.py:984`
-- `app.py:1052`
-- `app.py:1120`
-- `app.py:1122`
-- `app.py:1154`
-- `app.py:1176`
-- `app.py:1183`
-- `app.py:1185`
-- `app.py:1211`
-- `app.py:1234`
-- `core/database.py:1807`
-- `core/session_manager.py:434`
-- `core/session_manager.py:480`
-- `core/session_manager.py:575`
-- `routes/chat_helpers.py:322`
-- `routes/chat_helpers.py:432`
-- `routes/chat_helpers.py:559`
-- `routes/chat_helpers.py:629`
-- `routes/chat_helpers.py:791`
-- `routes/chat_helpers.py:859`
-- `routes/chat_helpers.py:861`
-- `routes/chat_helpers.py:913`
-- `routes/chat_helpers.py:946`
-- `routes/chat_helpers.py:953`
-- `routes/chat_helpers.py:961`
-- `routes/chat_helpers.py:997`
-- `routes/chat_helpers.py:1441`
-- `routes/chat_helpers.py:1466`
-- `routes/chat_routes.py:356`
-- `routes/chat_routes.py:1309`
-- `routes/chat_routes.py:1321`
-- `routes/chat_routes.py:1664`
-- `routes/chatgpt_subscription_routes.py:139`
-- `routes/cookbook_routes.py:1703`
-- `routes/cookbook_routes.py:1757`
-- `routes/document/document_routes.py:209`
-- `routes/email_helpers.py:1097`
-- `routes/email_helpers.py:1143`
-- `routes/email_helpers.py:1504`
-- `routes/email_helpers.py:1747`
-- `routes/email_helpers.py:1759`
-- `routes/email_pollers.py:380`
-- `routes/email_pollers.py:765`
-- `routes/email_pollers.py:1101`
-- `routes/email_pollers.py:1164`
-- `routes/email_routes.py:363`
-- `routes/email_routes.py:435`
-- `routes/email_routes.py:437`
-- `routes/email_routes.py:795`
-- `routes/email_routes.py:869`
-- `routes/email_routes.py:960`
-- `routes/email_routes.py:1108`
-- `routes/email_routes.py:1134`
-- `routes/email_routes.py:1155`
-- `routes/email_routes.py:1180`
-- `routes/email_routes.py:1218`
-- `routes/email_routes.py:1251`
-- … +157 more (grep the name in repo)
+- `app.py:231`
+- `app.py:496`
+- `app.py:737`
+- `app.py:1083`
+- `app.py:1216`
+- `app.py:1304`
+- `app.py:1306`
+- `app.py:1338`
+- `app.py:1360`
+- `app.py:1367`
+- `app.py:1369`
+- `app.py:1384`
+- `app.py:1403`
+- `app.py:1426`
+- `core/database.py:2044`
+- `core/session_manager.py:436`
+- `core/session_manager.py:482`
+- `core/session_manager.py:577`
+- `routes/chat_helpers.py:718`
+- `routes/chat_helpers.py:738`
+- `routes/chat_helpers.py:900`
+- `routes/chat_helpers.py:1161`
+- `routes/chat_helpers.py:1352`
+- `routes/chat_helpers.py:1429`
+- `routes/chat_helpers.py:1431`
+- `routes/chat_helpers.py:1505`
+- `routes/chat_helpers.py:1538`
+- `routes/chat_helpers.py:1545`
+- `routes/chat_helpers.py:1553`
+- `routes/chat_helpers.py:1597`
+- `routes/chat_helpers.py:2136`
+- `routes/chat_helpers.py:2165`
+- `routes/chat_routes.py:1552`
+- `routes/chat_routes.py:2943`
+- `routes/chat_routes.py:2955`
+- `routes/chat_routes.py:3433`
+- `routes/chatgpt_subscription_routes.py:337`
+- `routes/cookbook_routes.py:1603`
+- `routes/cookbook_routes.py:1681`
+- `routes/document/document_routes.py:214`
+- `routes/email/email_helpers.py:1237`
+- `routes/email/email_helpers.py:1284`
+- `routes/email/email_helpers.py:1651`
+- `routes/email/email_helpers.py:1896`
+- `routes/email/email_helpers.py:1908`
+- `routes/email/email_pollers.py:491`
+- `routes/email/email_pollers.py:908`
+- `routes/email/email_pollers.py:1299`
+- `routes/email/email_pollers.py:1362`
+- `routes/email/email_routes.py:405`
+- `routes/email/email_routes.py:479`
+- `routes/email/email_routes.py:481`
+- `routes/email/email_routes.py:625`
+- `routes/email/email_routes.py:921`
+- `routes/email/email_routes.py:995`
+- `routes/email/email_routes.py:1087`
+- `routes/email/email_routes.py:1238`
+- `routes/email/email_routes.py:1264`
+- `routes/email/email_routes.py:1285`
+- `routes/email/email_routes.py:1310`
+- … +186 more (grep the name in repo)

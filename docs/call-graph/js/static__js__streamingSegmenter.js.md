@@ -15,11 +15,11 @@
 
 ## `splitFinalized` — function, line 133
 - **called from:**
-- `static/js/streamingRenderer.js:167`
+- `static/js/streamingRenderer.js:229`
 - `static/js/streamingSegmenter.js:17`
 - `static/js/streamingSegmenter.js:133`
 
 ## `describeOpenFence` — function, line 171
 - **called from:**
-- `static/js/streamingRenderer.js:64`
+- `static/js/streamingRenderer.js:67`
 - `static/js/streamingSegmenter.js:171`

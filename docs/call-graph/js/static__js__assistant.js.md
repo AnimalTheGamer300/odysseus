@@ -22,7 +22,7 @@
 - **called from:**
 - `static/js/assistant.js:39`
 - `static/js/assistant.js:408`
-- `static/js/assistant.js:424`
+- `static/js/assistant.js:428`
 
 ## `_saveSettings` — function, line 45
 - **called from:**
@@ -82,38 +82,38 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
-- `static/js/cookbookServe.js:4003`
-- `static/js/cookbookServe.js:4005`
-- `static/js/document.js:313`
-- `static/js/document.js:314`
-- `static/js/document.js:8382`
-- `static/js/document.js:8966`
-- `static/js/documentLibrary.js:70`
-- `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
-- `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/chat.js:6329`
+- `static/js/chat.js:6329`
+- `static/js/cookbookServe.js:4108`
+- `static/js/cookbookServe.js:4110`
+- `static/js/document.js:1225`
+- `static/js/document.js:1226`
+- `static/js/document.js:13760`
+- `static/js/document.js:14380`
+- `static/js/document.js:15402`
+- `static/js/documentLibrary.js:169`
+- `static/js/documentLibrary.js:185`
+- `static/js/documentLibrary.js:705`
+- `static/js/documentLibrary.js:709`
+- `static/js/documentLibrary.js:711`
+- `static/js/documentLibrary.js:2218`
+- `static/js/documentLibrary.js:2223`
+- `static/js/documentLibrary.js:2371`
+- `static/js/documentLibrary.js:2735`
+- `static/js/documentLibrary.js:2780`
+- `static/js/documentLibrary.js:2818`
+- `static/js/documentLibrary.js:2968`
+- `static/js/documentLibrary.js:3017`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3184`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- … +226 more (grep the name in repo)
 
 ## `_fetchEndpoints` — function, line 132
 - **called from:**
@@ -132,14 +132,13 @@
 ## `_ensureHeaderAffordances` — function, line 422
 - **called from:**
 - `static/js/assistant.js:422`
-- `static/js/assistant.js:452`
+- `static/js/assistant.js:457`
 
-## `_watchForAssistantActivation` — function, line 444
+## `_watchForAssistantActivation` — function, line 449
 - **called from:**
-- `static/js/assistant.js:444`
-- `static/js/assistant.js:461`
+- `static/js/assistant.js:449`
 
-## `_boot` — function, line 460
+## `_boot` — function, line 465
 - **called from:**
-- `static/js/assistant.js:460`
-- `static/js/assistant.js:467`
+- `static/js/assistant.js:465`
+- `static/js/assistant.js:472`

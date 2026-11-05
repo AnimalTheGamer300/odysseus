@@ -11,7 +11,7 @@
 ## `_lookup_bandwidth` — function, line 107
 - **called from:**
 - `services/hwfit/fit.py:198`
-- `tests/test_hwfit_amd.py:137`
+- `tests/test_hwfit_amd.py:143`
 - `tests/test_hwfit_apple_bandwidth.py:5`
 - `tests/test_hwfit_apple_bandwidth.py:6`
 - `tests/test_hwfit_apple_bandwidth.py:10`
@@ -42,15 +42,15 @@
 
 ## `_is_mlx_model` — function, line 171
 - **called from:**
-- `services/hwfit/fit.py:780`
+- `services/hwfit/fit.py:781`
 
 ## `_estimate_speed` — function, line 184
 - **called from:**
 - `services/hwfit/fit.py:590`
-- `tests/test_hwfit_amd.py:149`
-- `tests/test_hwfit_amd.py:160`
-- `tests/test_hwfit_amd.py:161`
-- `tests/test_hwfit_amd.py:162`
+- `tests/test_hwfit_amd.py:155`
+- `tests/test_hwfit_amd.py:166`
+- `tests/test_hwfit_amd.py:167`
+- `tests/test_hwfit_amd.py:168`
 - `tests/test_hwfit_cpu_only_fallback.py:72`
 - `tests/test_hwfit_cpu_only_fallback.py:73`
 - `tests/test_hwfit_cpu_only_fallback.py:81`
@@ -110,7 +110,7 @@
 - **called from:**
 - `services/hwfit/fit.py:175`
 - `services/hwfit/fit.py:458`
-- `services/hwfit/fit.py:779`
+- `services/hwfit/fit.py:780`
 - `tests/test_hwfit_native_quant_labels.py:15`
 - `tests/test_hwfit_native_quant_labels.py:21`
 - `tests/test_hwfit_native_quant_labels.py:27`
@@ -120,8 +120,8 @@
 ## `analyze_model` — function, line 431
 - **called from:**
 - `services/hwfit/fit.py:848`
-- `tests/test_hwfit_quant_formats.py:48`
-- `tests/test_hwfit_quant_formats.py:75`
+- `tests/test_hwfit_quant_formats.py:54`
+- `tests/test_hwfit_quant_formats.py:81`
 
 ## `_version_key` — function, line 627
 - **called from:**
@@ -133,26 +133,30 @@
 
 ## `_matches_search` — function, line 681
 - **called from:**
-- `services/hwfit/fit.py:829`
+- `services/hwfit/fit.py:830`
 
 ## `rank_models` — function, line 708
 - **called from:**
-- `routes/hwfit_routes.py:312`
-- `tests/test_hwfit_amd.py:42`
-- `tests/test_hwfit_amd.py:52`
-- `tests/test_hwfit_amd.py:59`
+- `routes/hwfit_routes.py:336`
+- `tests/test_hwfit_amd.py:48`
+- `tests/test_hwfit_amd.py:58`
 - `tests/test_hwfit_amd.py:65`
-- `tests/test_hwfit_amd.py:171`
-- `tests/test_hwfit_amd.py:190`
-- `tests/test_hwfit_gemma4_12b.py:31`
-- `tests/test_hwfit_macos.py:49`
-- `tests/test_hwfit_macos.py:63`
-- `tests/test_hwfit_macos.py:72`
-- `tests/test_hwfit_macos.py:99`
-- `tests/test_hwfit_manual_backend.py:79`
-- `tests/test_hwfit_quant_formats.py:52`
-- `tests/test_hwfit_windows.py:43`
-- `tests/test_hwfit_windows.py:52`
-- `tests/test_hwfit_windows.py:59`
-- `tests/test_hwfit_windows.py:66`
-- `tests/test_hwfit_windows.py:73`
+- `tests/test_hwfit_amd.py:71`
+- `tests/test_hwfit_amd.py:177`
+- `tests/test_hwfit_amd.py:198`
+- `tests/test_hwfit_gemma4_12b.py:53`
+- `tests/test_hwfit_gemma4_12b.py:60`
+- `tests/test_hwfit_gemma4_12b.py:68`
+- `tests/test_hwfit_gemma4_12b.py:80`
+- `tests/test_hwfit_macos.py:55`
+- `tests/test_hwfit_macos.py:69`
+- `tests/test_hwfit_macos.py:78`
+- `tests/test_hwfit_macos.py:96`
+- `tests/test_hwfit_macos.py:106`
+- `tests/test_hwfit_manual_backend.py:85`
+- `tests/test_hwfit_quant_formats.py:58`
+- `tests/test_hwfit_windows.py:49`
+- `tests/test_hwfit_windows.py:58`
+- `tests/test_hwfit_windows.py:65`
+- `tests/test_hwfit_windows.py:72`
+- `tests/test_hwfit_windows.py:79`

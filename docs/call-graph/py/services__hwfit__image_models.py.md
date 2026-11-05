@@ -2,76 +2,76 @@
 
 17 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_repo_display_name` — function, line 38
+## `_repo_display_name` — function, line 43
 - **called from:**
-- `services/hwfit/image_models.py:150`
+- `services/hwfit/image_models.py:155`
 
-## `_provider_from_repo` — function, line 43
+## `_provider_from_repo` — function, line 48
 - **called from:**
-- `services/hwfit/image_models.py:151`
+- `services/hwfit/image_models.py:156`
 
-## `_infer_capabilities` — function, line 54
+## `_infer_capabilities` — function, line 59
 - **called from:**
-- `services/hwfit/image_models.py:141`
+- `services/hwfit/image_models.py:146`
 
-## `_estimate_image_model` — function, line 73
+## `_estimate_image_model` — function, line 78
 - **called from:**
-- `services/hwfit/image_models.py:129`
+- `services/hwfit/image_models.py:134`
 
-## `_params_b_from_item` — function, line 94
+## `_params_b_from_item` — function, line 99
 - **called from:**
-- `services/hwfit/image_models.py:130`
+- `services/hwfit/image_models.py:135`
 
-## `_mlx_quantize_estimate` — function, line 101
+## `_mlx_quantize_estimate` — function, line 106
 - **called from:**
-- `services/hwfit/image_models.py:140`
+- `services/hwfit/image_models.py:145`
 
-## `_collection_item_to_model` — function, line 122
+## `_collection_item_to_model` — function, line 127
 - **called from:**
-- `services/hwfit/image_models.py:186`
+- `services/hwfit/image_models.py:212`
 - `tests/test_image_models_nonstring_search.py:124`
 
-## `_fetch_hf_image_collection_models` — function, line 170
+## `_fetch_hf_image_collection_models` — function, line 181
 - **called from:**
-- `services/hwfit/image_models.py:306`
+- `services/hwfit/image_models.py:347`
 
-## `_hf_model_search` — function, line 194
+## `_hf_model_search` — function, line 235
 - **called from:**
-- `services/hwfit/image_models.py:243`
+- `services/hwfit/image_models.py:284`
 
-## `_variant_score` — function, line 213
+## `_variant_score` — function, line 254
 - **called from:**
-- `services/hwfit/image_models.py:251`
+- `services/hwfit/image_models.py:292`
 
-## `_best_variant_repo` — function, line 241
+## `_best_variant_repo` — function, line 282
 - **called from:**
-- `services/hwfit/image_models.py:271`
-- `services/hwfit/image_models.py:275`
+- `services/hwfit/image_models.py:312`
+- `services/hwfit/image_models.py:316`
 
-## `_should_discover_variants` — function, line 258
+## `_should_discover_variants` — function, line 299
 - **called from:**
-- `services/hwfit/image_models.py:290`
+- `services/hwfit/image_models.py:331`
 
-## `_discover_quant_repos` — function, line 262
+## `_discover_quant_repos` — function, line 303
 - **called from:**
-- `services/hwfit/image_models.py:291`
+- `services/hwfit/image_models.py:332`
 
-## `_merge_quant_repos` — function, line 286
+## `_merge_quant_repos` — function, line 327
 - **called from:**
-- `services/hwfit/image_models.py:304`
-- `services/hwfit/image_models.py:309`
+- `services/hwfit/image_models.py:345`
+- `services/hwfit/image_models.py:350`
 
-## `get_image_models` — function, line 302
+## `get_image_models` — function, line 343
 - **called from:**
-- `services/hwfit/image_models.py:343`
+- `services/hwfit/image_models.py:384`
 
-## `_is_apple_image_system` — function, line 314
+## `_is_apple_image_system` — function, line 355
 - **called from:**
-- `services/hwfit/image_models.py:340`
+- `services/hwfit/image_models.py:381`
 
-## `rank_image_models` — function, line 328
+## `rank_image_models` — function, line 369
 - **called from:**
-- `routes/hwfit_routes.py:453`
+- `routes/hwfit_routes.py:479`
 - `services/hwfit/fit.py:726`
 - `tests/test_image_models_nondict_system.py:13`
 - `tests/test_image_models_nondict_system.py:14`

@@ -1,238 +1,364 @@
 # `routes/chat_helpers.py` — definitions & call sites
 
-36 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+51 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_is_casual_low_signal` — function, line 56
+## `youtube_prefetch_sources` — function, line 32
 - **called from:**
-- `routes/chat_helpers.py:774`
-- `src/agent_loop.py:1575`
-- `src/agent_loop.py:4110`
-- `tests/test_continuation_nudge_gating.py:26`
-- `tests/test_continuation_nudge_gating.py:40`
-- `tests/test_continuation_nudge_gating.py:51`
-- `tests/test_continuation_nudge_gating.py:53`
+- `routes/chat_helpers.py:1460`
+- `tests/test_youtube_prefetch_provenance.py:5`
+- `tests/test_youtube_prefetch_provenance.py:23`
 
-## `_spawn_bg` — function, line 83
+## `_skill_run_is_complex` — function, line 57
 - **called from:**
-- `routes/chat_helpers.py:1475`
-- `routes/chat_helpers.py:1490`
-- `src/builtin_mcp.py:197`
-- `src/builtin_mcp.py:254`
-- `tests/test_builtin_mcp_bg_tasks.py:57`
+- `routes/chat_helpers.py:2152`
+- `tests/test_skill_extraction_gate.py:5`
+- `tests/test_skill_extraction_gate.py:9`
+- `tests/test_skill_extraction_gate.py:10`
+- `tests/test_skill_extraction_gate.py:14`
 
-## `_prune_incognito_contexts` — function, line 91
+## `clean_repeated_assistant_content` — function, line 62
 - **called from:**
-- `routes/chat_helpers.py:102`
-- `routes/chat_helpers.py:113`
+- `routes/chat_helpers.py:1929`
+- `routes/chat_routes.py:234`
+- `tests/test_chat_helpers.py:15`
+- `tests/test_chat_helpers.py:51`
+- `tests/test_chat_helpers.py:57`
+- `tests/test_redos_residual_python.py:136`
 
-## `_incognito_messages` — function, line 101
+## `_is_casual_low_signal` — function, line 142
 - **called from:**
-- `routes/chat_helpers.py:887`
+- `routes/chat_helpers.py:1326`
+- `src/agent_loop.py:10971`
+- `src/agent_loop.py:11147`
+- `src/agent_loop.py:12757`
+- `src/agent_loop.py:17857`
+- `src/agent_loop.py:22453`
 
-## `_append_incognito_message` — function, line 109
+## `_truthy_request_flag` — function, line 158
 - **called from:**
-- `routes/chat_helpers.py:724`
-- `routes/chat_helpers.py:1287`
+- `routes/chat_helpers.py:1370`
 
-## `PresetInfo` — class, line 128
-- decorator: `dataclass`
+## `_sft_trace_capture_enabled` — function, line 180
 - **called from:**
-- `routes/chat_helpers.py:375`
-- `tests/test_chat_helpers.py:485`
-- `tests/test_kv_cache_invalidation_2927.py:68`
-- `tests/test_review_regressions.py:382`
-- `tests/test_review_regressions.py:464`
+- `routes/chat_helpers.py:210`
+- `routes/chat_helpers.py:253`
 
-## `PreprocessedMessage` — class, line 137
-- decorator: `dataclass`
+## `_json_safe` — function, line 185
 - **called from:**
-- `routes/chat_helpers.py:398`
-- `tests/test_chat_helpers.py:364`
-- `tests/test_chat_helpers.py:476`
-- `tests/test_kv_cache_invalidation_2927.py:59`
-- `tests/test_review_regressions.py:373`
-- `tests/test_review_regressions.py:452`
-
-## `ChatContext` — class, line 147
-- decorator: `dataclass`
-- **called from:**
-- `routes/chat_helpers.py:1004`
-
-## `_allowed_models_from_privileges` — function, line 187
-- **called from:**
-- `routes/chat_helpers.py:209`
+- `routes/chat_helpers.py:229`
+- `routes/chat_helpers.py:230`
 - `routes/chat_helpers.py:240`
 
-## `_allowed_models_for_request` — function, line 196
+## `_last_user_message_for_trace` — function, line 193
 - **called from:**
-- `routes/chat_routes.py:984`
-- `routes/chat_routes.py:1546`
+- `routes/chat_helpers.py:226`
 
-## `_enforce_chat_privileges` — function, line 211
+## `_append_sft_trace_record` — function, line 200
 - **called from:**
-- `routes/chat_routes.py:970`
-- `routes/chat_routes.py:1497`
-- `tests/test_chat_helpers.py:49`
-- `tests/test_chat_helpers.py:59`
-- `tests/test_chat_helpers.py:75`
-- `tests/test_chat_helpers.py:80`
-- `tests/test_chat_helpers.py:90`
-- `tests/test_chat_helpers.py:91`
-- `tests/test_chat_helpers.py:102`
-- `tests/test_chat_helpers.py:104`
-- `tests/test_chat_helpers.py:118`
-- `tests/test_chat_helpers.py:122`
-- `tests/test_chat_helpers.py:140`
-- `tests/test_chat_helpers.py:141`
+- `routes/chat_helpers.py:1980`
+- `routes/chat_helpers.py:1991`
+- `tests/test_session_sft_trace_delete.py:39`
 
-## `needs_auto_name` — function, line 266
+## `remove_session_sft_trace_rows` — function, line 251
 - **called from:**
-- `routes/chat_helpers.py:1489`
-- `tests/test_chat_helpers.py:301`
+- `routes/session_routes.py:945`
+- `routes/session_routes.py:983`
+- `src/agent_tools/session_tools.py:408`
+- `tests/test_session_sft_trace_delete.py:19`
 
-## `auto_name_session` — function (async), line 278
+## `_prune_sft_retry_rows_before_append` — function, line 296
 - **called from:**
-- `routes/chat_helpers.py:1490`
-- `tests/test_chat_helpers.py:428`
+- `routes/chat_helpers.py:244`
 
-## `extract_preset` — function, line 370
+## `strip_tui_local_context` — function, line 361
 - **called from:**
-- `routes/chat_helpers.py:705`
+- `routes/chat_helpers.py:951`
+- `routes/history/history_routes.py:299`
+- `routes/history/history_routes.py:498`
+- `routes/history/history_routes.py:507`
 
-## `preprocess` — function (async), line 383
+## `_spawn_bg` — function, line 368
 - **called from:**
-- `routes/chat_helpers.py:712`
+- `routes/chat_helpers.py:2174`
+- `routes/chat_helpers.py:2189`
+- `src/builtin_mcp.py:198`
+- `src/builtin_mcp.py:256`
+- `tests/test_builtin_mcp_bg_tasks.py:57`
 
-## `build_uploaded_file_manifest` — function, line 407
+## `_prune_incognito_contexts` — function, line 376
 - **called from:**
-- `routes/chat_helpers.py:764`
-- `tests/test_chat_helpers.py:229`
-- `tests/test_chat_helpers.py:270`
+- `routes/chat_helpers.py:387`
+- `routes/chat_helpers.py:398`
 
-## `_read_file_can_open` — function, line 419
+## `_incognito_messages` — function, line 386
 - **called from:**
-- `routes/chat_helpers.py:445`
+- `routes/chat_helpers.py:1479`
 
-## `add_user_message` — function, line 463
+## `_append_incognito_message` — function, line 394
 - **called from:**
-- `routes/chat_helpers.py:745`
-- `routes/chat_helpers.py:750`
-- `tests/test_chat_helpers.py:372`
+- `routes/chat_helpers.py:1269`
+- `routes/chat_helpers.py:1942`
 
-## `fire_message_event` — function, line 474
+## `PresetInfo` — class, line 413
+- decorator: `dataclass`
 - **called from:**
-- `routes/chat_helpers.py:758`
+- `routes/chat_helpers.py:841`
+- `tests/test_chat_document_owner_context.py:34`
+- `tests/test_chat_helpers.py:662`
+- `tests/test_chat_helpers.py:775`
+- `tests/test_kv_cache_invalidation_2927.py:68`
+- `tests/test_review_regressions.py:384`
+- `tests/test_review_regressions.py:471`
 
-## `_session_url_matches_endpoint` — function, line 485
+## `PreprocessedMessage` — class, line 424
+- decorator: `dataclass`
 - **called from:**
-- `routes/chat_helpers.py:535`
-- `routes/chat_routes.py:597`
-- `routes/chat_routes.py:664`
-- `routes/chat_routes.py:731`
-- `routes/chat_routes.py:849`
+- `routes/chat_helpers.py:866`
+- `tests/test_chat_document_owner_context.py:35`
+- `tests/test_chat_helpers.py:456`
+- `tests/test_chat_helpers.py:653`
+- `tests/test_chat_helpers.py:766`
+- `tests/test_kv_cache_invalidation_2927.py:59`
+- `tests/test_review_regressions.py:375`
+- `tests/test_review_regressions.py:459`
 
-## `_has_auth_keys` — function, line 502
+## `ChatContext` — class, line 434
+- decorator: `dataclass`
 - **called from:**
-- `routes/chat_helpers.py:516`
-- `routes/chat_helpers.py:555`
+- `routes/chat_helpers.py:1604`
+- `tests/test_chat_document_owner_context.py:30`
 
-## `resolve_session_auth` — function, line 509
+## `_allowed_models_from_privileges` — function, line 474
 - **called from:**
-- `routes/chat_routes.py:1500`
+- `routes/chat_helpers.py:496`
+- `routes/chat_helpers.py:527`
+
+## `_allowed_models_for_request` — function, line 483
+- **called from:**
+- `routes/chat_routes.py:2491`
+- `routes/chat_routes.py:3263`
+
+## `_enforce_chat_privileges` — function, line 498
+- **called from:**
+- `routes/chat_routes.py:2477`
+- `routes/chat_routes.py:3214`
+- `tests/test_chat_helpers.py:95`
+- `tests/test_chat_helpers.py:105`
+- `tests/test_chat_helpers.py:121`
+- `tests/test_chat_helpers.py:126`
+- `tests/test_chat_helpers.py:136`
+- `tests/test_chat_helpers.py:137`
+- `tests/test_chat_helpers.py:148`
+- `tests/test_chat_helpers.py:150`
+- `tests/test_chat_helpers.py:164`
+- `tests/test_chat_helpers.py:168`
+- `tests/test_chat_helpers.py:186`
+- `tests/test_chat_helpers.py:187`
+
+## `needs_auto_name` — function, line 553
+- **called from:**
+- `routes/chat_helpers.py:2188`
+- `tests/test_chat_helpers.py:347`
+
+## `fallback_session_title` — function, line 565
+- **called from:**
+- `routes/chat_helpers.py:637`
+- `routes/chat_helpers.py:691`
+- `routes/chat_helpers.py:700`
+- `routes/chat_helpers.py:708`
+- `routes/chat_helpers.py:752`
+- `routes/chat_helpers.py:799`
+- `tests/test_chat_helpers.py:377`
+
+## `auto_name_session` — function (async), line 573
+- **called from:**
+- `routes/chat_helpers.py:830`
+- `tests/test_chat_helpers.py:532`
+- `tests/test_chat_helpers.py:574`
+- `tests/test_chat_helpers.py:611`
+- `tests/test_utility_reasoning_effort.py:342`
+- `tests/test_utility_reasoning_effort.py:362`
+- `tests/test_utility_reasoning_effort.py:371`
+- `tests/test_utility_reasoning_effort.py:383`
+- `tests/test_utility_reasoning_effort.py:392`
+
+## `auto_name_session_after_stream` — function (async), line 816
+- **called from:**
+- `routes/chat_helpers.py:2189`
+- `tests/test_chat_helpers.py:370`
+
+## `extract_preset` — function, line 836
+- **called from:**
+- `routes/chat_helpers.py:1244`
+
+## `preprocess` — function (async), line 851
+- **called from:**
+- `routes/chat_helpers.py:1251`
+
+## `build_uploaded_file_manifest` — function, line 875
+- **called from:**
+- `routes/chat_helpers.py:1316`
+- `tests/test_chat_helpers.py:275`
+- `tests/test_chat_helpers.py:316`
+
+## `_read_file_can_open` — function, line 887
+- **called from:**
+- `routes/chat_helpers.py:913`
+
+## `add_user_message` — function, line 931
+- **called from:**
+- `routes/chat_helpers.py:1290`
+- `routes/chat_helpers.py:1295`
+- `tests/test_chat_helpers.py:464`
+
+## `fire_message_event` — function, line 956
+- **called from:**
+- `routes/chat_helpers.py:1310`
+
+## `_session_url_matches_endpoint` — function, line 967
+- **called from:**
+- `routes/chat_helpers.py:1004`
+- `routes/chat_routes.py:1943`
+- `routes/chat_routes.py:2019`
+- `routes/chat_routes.py:2097`
+- `routes/chat_routes.py:2102`
+- `routes/chat_routes.py:2220`
+- `routes/chat_routes.py:2232`
+
+## `_endpoint_created_sort_key` — function, line 984
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_select_session_endpoint` — function, line 993
+- **called from:**
+- `routes/chat_helpers.py:1074`
+
+## `_has_auth_keys` — function, line 1030
+- **called from:**
+- `routes/chat_helpers.py:1045`
+- `routes/chat_helpers.py:1061`
+
+## `resolve_session_auth` — function, line 1037
+- **called from:**
+- `routes/chat_routes.py:2473`
+- `routes/chat_routes.py:3217`
+- `tests/test_chatgpt_session_binding.py:74`
+- `tests/test_chatgpt_session_binding.py:90`
 - `tests/test_resolve_session_auth_chatgpt.py:58`
 - `tests/test_resolve_session_auth_chatgpt.py:108`
 - `tests/test_resolve_session_auth_chatgpt.py:154`
+- `tests/test_resolve_session_auth_chatgpt.py:212`
+- `tests/test_resolve_session_auth_chatgpt.py:241`
+- `tests/test_resolve_session_auth_chatgpt.py:257`
+- `tests/test_resolve_session_auth_chatgpt.py:280`
+- `tests/test_resolve_session_auth_chatgpt.py:300`
 
-## `_match_cached_model_id` — function, line 574
+## `_match_cached_model_id` — function, line 1106
 - **called from:**
-- `routes/chat_helpers.py:625`
+- `routes/chat_helpers.py:1157`
 
-## `_normalize_model_id_from_cache` — function, line 588
+## `_normalize_model_id_from_cache` — function, line 1120
 - **called from:**
-- `routes/chat_helpers.py:876`
+- `routes/chat_helpers.py:1468`
 
-## `_session_is_research_spinoff` — function, line 636
+## `_session_is_research_spinoff` — function, line 1168
 - **called from:**
-- `routes/chat_helpers.py:800`
-- `tests/test_chat_helpers.py:388`
-- `tests/test_chat_helpers.py:447`
-- `tests/test_chat_helpers.py:455`
-- `tests/test_chat_helpers.py:460`
-- `tests/test_chat_helpers.py:464`
-- `tests/test_chat_helpers.py:465`
+- `routes/chat_helpers.py:1361`
+- `tests/test_chat_helpers.py:480`
+- `tests/test_chat_helpers.py:624`
+- `tests/test_chat_helpers.py:632`
+- `tests/test_chat_helpers.py:637`
+- `tests/test_chat_helpers.py:641`
+- `tests/test_chat_helpers.py:642`
 
-## `build_chat_context` — function (async), line 659
+## `build_chat_context` — function (async), line 1191
 - **called from:**
-- `routes/chat_routes.py:988`
-- `routes/chat_routes.py:1550`
-- `tests/test_chat_helpers.py:535`
+- `routes/chat_routes.py:2495`
+- `routes/chat_routes.py:3299`
+- `tests/test_c5_rag_disable.py:63`
+- `tests/test_chat_helpers.py:712`
+- `tests/test_chat_helpers.py:816`
+- `tests/test_context_resolution_route.py:353`
+- `tests/test_context_resolution_route.py:366`
+- `tests/test_context_resolution_route.py:379`
 - `tests/test_kv_cache_invalidation_2927.py:139`
 - `tests/test_kv_cache_invalidation_2927.py:151`
 - `tests/test_kv_cache_invalidation_2927.py:191`
 - `tests/test_kv_cache_invalidation_2927.py:209`
-- `tests/test_review_regressions.py:417`
-- `tests/test_review_regressions.py:479`
+- `tests/test_review_regressions.py:423`
+- `tests/test_review_regressions.py:486`
 
-## `_tail_insert` — function, line 889
+## `_tail_insert` — function, line 1481
 - **called from:**
-- `routes/chat_helpers.py:911`
-- `routes/chat_helpers.py:951`
-- `routes/chat_helpers.py:959`
+- `routes/chat_helpers.py:1503`
+- `routes/chat_helpers.py:1543`
+- `routes/chat_helpers.py:1551`
 
-## `accumulate_token_usage` — function, line 1028
+## `accumulate_token_usage` — function, line 1628
 - **called from:**
-- `routes/chat_helpers.py:1479`
-- `routes/chat_routes.py:2453`
-- `routes/chat_routes.py:2852`
+- `routes/chat_helpers.py:2178`
+- `routes/chat_routes.py:4732`
+- `routes/chat_routes.py:5221`
+- `tests/test_cost_tracking.py:155`
+- `tests/test_cost_tracking.py:156`
+- `tests/test_cost_tracking.py:172`
+- `tests/test_cost_tracking.py:173`
+- `tests/test_cost_tracking.py:174`
 
-## `_normalize_thinking` — function, line 1047
+## `_normalize_thinking` — function, line 1656
 - **called from:**
-- `routes/chat_helpers.py:1195`
-- `tests/test_review_regressions.py:341`
+- `routes/chat_helpers.py:1823`
+- `tests/test_redos_residual_python.py:150`
+- `tests/test_review_regressions.py:343`
 
-## `_extract_thinking_meta` — function, line 1165
+## `_extract_thinking_meta` — function, line 1793
 - **called from:**
-- `routes/chat_helpers.py:1213`
-- `routes/chat_helpers.py:1277`
+- `routes/chat_helpers.py:1841`
+- `routes/chat_helpers.py:1932`
 
-## `clean_thinking_for_save` — function, line 1210
+## `clean_thinking_for_save` — function, line 1838
 - **called from:**
-- `routes/chat_routes.py:305`
-- `routes/chat_routes.py:1072`
-- `routes/chat_routes.py:1903`
-- `tests/test_chat_helpers.py:305`
-- `tests/test_chat_helpers.py:316`
-- `tests/test_chat_helpers.py:326`
-- `tests/test_chat_helpers.py:336`
+- `routes/chat_routes.py:1501`
+- `routes/chat_routes.py:2584`
+- `routes/chat_routes.py:4174`
+- `tests/test_chat_helpers.py:67`
+- `tests/test_chat_helpers.py:385`
+- `tests/test_chat_helpers.py:396`
+- `tests/test_chat_helpers.py:406`
+- `tests/test_chat_helpers.py:416`
+- `tests/test_chat_helpers.py:426`
 
-## `save_assistant_response` — function, line 1223
+## `save_assistant_response` — function, line 1868
 - **called from:**
-- `routes/chat_routes.py:2443`
-- `routes/chat_routes.py:2514`
-- `routes/chat_routes.py:2562`
-- `routes/chat_routes.py:2839`
-- `routes/chat_routes.py:2890`
-- `routes/chat_routes.py:2943`
-- `tests/test_chat_helpers.py:348`
+- `routes/chat_routes.py:4722`
+- `routes/chat_routes.py:4810`
+- `routes/chat_routes.py:4861`
+- `routes/chat_routes.py:5208`
+- `routes/chat_routes.py:5270`
+- `routes/chat_routes.py:5337`
+- `routes/chat_routes.py:5393`
+- `tests/test_chat_helpers.py:440`
 
-## `_model_value` — function, line 1248
+## `_model_value` — function, line 1893
 - **called from:**
-- `routes/chat_helpers.py:1255`
-- `routes/chat_helpers.py:1256`
+- `routes/chat_helpers.py:1900`
+- `routes/chat_helpers.py:1901`
 
-## `_is_session_stream_active` — function, line 1331
+## `_is_session_stream_active` — function, line 2001
 - **called from:**
-- `routes/chat_helpers.py:1362`
-- `routes/chat_helpers.py:1370`
+- `routes/chat_helpers.py:820`
+- `routes/chat_helpers.py:2032`
+- `routes/chat_helpers.py:2040`
 
-## `_run_extraction_jobs_sequentially` — function (async), line 1344
+## `_run_extraction_jobs_sequentially` — function (async), line 2014
 - **called from:**
-- `routes/chat_helpers.py:1475`
+- `routes/chat_helpers.py:2174`
 - `tests/test_kv_cache_invalidation_2927.py:261`
 
-## `run_post_response_tasks` — function, line 1379
+## `run_post_response_tasks` — function, line 2049
 - **called from:**
-- `routes/chat_routes.py:1101`
-- `routes/chat_routes.py:2528`
-- `routes/chat_routes.py:2902`
+- `routes/chat_routes.py:2613`
+- `routes/chat_routes.py:4824`
+- `routes/chat_routes.py:5285`
+- `routes/chat_routes.py:5349`
 - `tests/test_kv_cache_invalidation_2927.py:325`

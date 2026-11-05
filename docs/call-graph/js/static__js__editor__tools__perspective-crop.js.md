@@ -1,0 +1,344 @@
+# `static/js/editor/tools/perspective-crop.js` — definitions & call sites
+
+14 definitions (regex-based, best-effort).
+**Exports:** `createPerspectiveCropTool`, `default`
+
+## `clamp` — function, line 11
+- **called from:**
+- `static/js/colorPicker.js:19`
+- `static/js/colorPicker.js:31`
+- `static/js/colorPicker.js:100`
+- `static/js/colorPicker.js:366`
+- `static/js/colorPicker.js:367`
+- `static/js/colorPicker.js:374`
+- `static/js/editor/canvas-context-menu.js:228`
+- `static/js/editor/canvas-context-menu.js:229`
+- `static/js/editor/canvas-context-menu.js:250`
+- `static/js/editor/canvas-context-menu.js:259`
+- `static/js/editor/filters/dehaze.js:23`
+- `static/js/editor/filters/dehaze.js:120`
+- `static/js/editor/filters/dehaze.js:122`
+- `static/js/editor/filters/dehaze.js:127`
+- `static/js/editor/filters/dehaze.js:200`
+- `static/js/editor/filters/dehaze.js:206`
+- `static/js/editor/filters/dehaze.js:232`
+- `static/js/editor/filters/dehaze.js:233`
+- `static/js/editor/filters/dehaze.js:234`
+- `static/js/editor/tools/perspective-crop.js:11`
+- `static/js/editor/tools/perspective-crop.js:32`
+- `static/js/editor/tools/perspective-crop.js:33`
+- `static/js/editor/transform-frame-geometry.js:223`
+- `static/js/editor/transform-frame-geometry.js:225`
+- `static/js/editor/transform-frame-geometry.js:268`
+- `static/js/editor/transform-frame-geometry.js:268`
+- `static/js/galleryEditor.js:7986`
+- `static/js/galleryEditor.js:7987`
+- `static/js/galleryEditor.js:7988`
+- `static/js/galleryEditor.js:7989`
+- `static/js/galleryEditor.js:7996`
+- `static/js/memory.js:411`
+- `static/js/memory.js:419`
+
+## `createPerspectiveCropTool` — function, line 15
+- **called from:**
+- `static/js/editor/tools/perspective-crop.js:15`
+- `static/js/galleryEditor.js:6887`
+
+## `canvasRect` — function, line 20
+- **called from:**
+- `static/js/editor/tools/perspective-crop.js:20`
+- `static/js/editor/tools/perspective-crop.js:45`
+- `static/js/editor/tools/perspective-crop.js:73`
+
+## `toDisplay` — function, line 26
+- **called from:**
+- `static/js/editor/tools/perspective-crop.js:26`
+- `static/js/editor/tools/perspective-crop.js:51`
+
+## `toDoc` — function, line 30
+- **called from:**
+- `static/js/editor/tools/perspective-crop.js:30`
+- `static/js/editor/tools/perspective-crop.js:75`
+
+## `sizeHint` — function, line 37
+- **called from:**
+- `static/js/editor/tools/perspective-crop.js:37`
+- `static/js/editor/tools/perspective-crop.js:59`
+
+## `render` — function, line 43
+- **called from:**
+- `scripts/generate_env_reference.py:1219`
+- `src/agent_tools/media_tools.py:493`
+- `src/agent_tools/media_tools.py:1002`
+- `tests/test_audit_c5_benchmark_evidence.py:2875`
+- `tests/test_audit_c5_benchmark_evidence.py:2882`
+- `tests/test_audit_c5_benchmark_evidence.py:2892`
+- `tests/test_audit_c5_benchmark_evidence.py:2906`
+- `tests/test_audit_c5_benchmark_evidence.py:2925`
+- `tests/test_audit_c5_benchmark_evidence.py:2933`
+- `tests/test_audit_c5_benchmark_evidence.py:2935`
+- `tests/test_audit_c5_benchmark_evidence.py:2978`
+- `tests/test_audit_c5_benchmark_evidence.py:3001`
+- `tests/test_audit_c5_benchmark_evidence.py:3006`
+- `tests/test_env_reference.py:168`
+- `tests/test_env_reference.py:179`
+- `static/js/calendar.js:1664`
+- `static/js/calendar.js:2653`
+- `static/js/chat.js:3712`
+- `static/js/chat.js:4841`
+- `static/js/chat.js:5202`
+- `static/js/chat.js:6102`
+- `static/js/chat.js:6252`
+- `static/js/chat.js:7389`
+- `static/js/documentLibrary.js:108`
+- `static/js/documentLibrary.js:124`
+- `static/js/editor/adjustments-worker.js:5`
+- `static/js/editor/adjustments-worker.js:20`
+- `static/js/editor/build/command-palette.js:22`
+- `static/js/editor/build/command-palette.js:56`
+- `static/js/editor/build/command-palette.js:64`
+- `static/js/editor/build/command-palette.js:67`
+- `static/js/editor/build/command-palette.js:68`
+- `static/js/editor/layer-panel.js:186`
+- `static/js/editor/layer-panel.js:302`
+- `static/js/editor/layer-panel.js:440`
+- `static/js/editor/layer-panel.js:490`
+- `static/js/editor/layer-panel.js:581`
+- `static/js/editor/layer-panel.js:613`
+- `static/js/editor/layer-panel.js:672`
+- `static/js/editor/layer-panel.js:711`
+- `static/js/editor/layer-panel.js:725`
+- `static/js/editor/layer-panel.js:739`
+- `static/js/editor/layer-panel.js:751`
+- `static/js/editor/layer-panel.js:795`
+- `static/js/editor/layer-panel.js:807`
+- `static/js/editor/layer-panel.js:839`
+- `static/js/editor/layer-panel.js:918`
+- `static/js/editor/layer-panel.js:929`
+- `static/js/editor/layer-panel.js:942`
+- `static/js/editor/layer-panel.js:962`
+- `static/js/editor/layer-panel.js:992`
+- `static/js/editor/layer-panel.js:1042`
+- `static/js/editor/layer-panel.js:1056`
+- `static/js/editor/layer-panel.js:1079`
+- `static/js/editor/layer-panel.js:1101`
+- `static/js/editor/layer-panel.js:1118`
+- `static/js/editor/layer-panel.js:1132`
+- `static/js/editor/layer-panel.js:1139`
+- `static/js/editor/layer-panel.js:1315`
+- `static/js/editor/layer-panel.js:1342`
+- … +104 more (grep the name in repo)
+
+## `onPointerDown` — function, line 62
+- **called from:**
+- `static/js/dragSort.js:282`
+- `static/js/editor/tools/perspective-crop.js:62`
+- `static/js/editor/tools/perspective-crop.js:120`
+
+## `onPointerMove` — function, line 71
+- **called from:**
+- `static/js/dragSort.js:303`
+- `static/js/editor/tools/perspective-crop.js:71`
+- `static/js/settings/sidebar.js:252`
+
+## `onPointerUp` — function, line 79
+- **called from:**
+- `static/js/editor/tools/perspective-crop.js:79`
+
+## `onKey` — function, line 85
+- **called from:**
+- `static/js/cookbookServe.js:1082`
+- `static/js/document.js:9403`
+- `static/js/document.js:9453`
+- `static/js/document.js:9491`
+- `static/js/editor/tools/perspective-crop.js:85`
+- `static/js/galleryEditor.js:13664`
+- `static/js/settings.js:1644`
+- `static/js/skills.js:1773`
+- `static/js/ui.js:848`
+- `static/js/ui.js:951`
+
+## `apply` — function, line 90
+- **called from:**
+- `tests/test_review_calendar_invitation.py:52`
+- `tests/test_review_calendar_invitation.py:54`
+- `tests/test_review_calendar_invitation.py:60`
+- `tests/test_review_calendar_invitation.py:61`
+- `tests/test_review_calendar_invitation.py:70`
+- `tests/test_review_calendar_invitation.py:71`
+- `tests/test_review_calendar_invitation.py:78`
+- `tests/test_review_calendar_invitation.py:79`
+- `tests/test_review_calendar_invitation.py:81`
+- `tests/test_review_calendar_invitation.py:89`
+- `tests/test_review_calendar_invitation.py:109`
+- `tests/test_review_calendar_invitation.py:111`
+- `tests/test_review_calendar_invitation.py:173`
+- `tests/test_review_calendar_invitation.py:174`
+- `tests/test_review_calendar_invitation.py:176`
+- `tests/test_review_calendar_invitation.py:184`
+- `tests/test_review_calendar_invitation.py:185`
+- `tests/test_review_calendar_invitation.py:192`
+- `tests/test_review_calendar_invitation.py:201`
+- `tests/test_review_calendar_invitation.py:202`
+- `tests/test_review_calendar_invitation.py:209`
+- `tests/test_review_calendar_invitation.py:210`
+- `tests/test_review_calendar_invitation.py:211`
+- `static/app.js:207`
+- `static/js/admin.js:2634`
+- `static/js/admin.js:2638`
+- `static/js/calendar.js:1515`
+- `static/js/composerHistoryRecall.js:175`
+- `static/js/composerHistoryRecall.js:189`
+- `static/js/composerHistoryRecall.js:193`
+- `static/js/cookbookSchedule.js:22`
+- `static/js/document.js:1725`
+- `static/js/document.js:1734`
+- `static/js/document.js:10179`
+- `static/js/editor/fx/cube-lut.js:2`
+- `static/js/editor/panel-visibility.js:81`
+- `static/js/editor/panel-visibility.js:137`
+- `static/js/editor/panel-visibility.js:150`
+- `static/js/editor/panel-visibility.js:158`
+- `static/js/editor/tools/perspective-crop.js:87`
+- `static/js/editor/tools/perspective-crop.js:90`
+- `static/js/galleryEditor.js:6770`
+- `static/js/galleryEditor.js:10650`
+- `static/js/galleryEditor.js:10666`
+- `static/js/galleryEditor.js:11478`
+- `static/js/sessions.js:40`
+- `static/js/settings.js:130`
+- `static/js/settings.js:149`
+- `static/js/skills.js:69`
+- `static/js/theme.js:831`
+- `static/js/theme.js:836`
+- `static/js/ui.js:653`
+- `static/js/ui.js:656`
+- `static/js/ui.js:757`
+
+## `open` — function, line 96
+- **called from:**
+- `app.py:1102`
+- `app.py:1168`
+- `app.py:1334`
+- `app.py:1389`
+- `companion/pairing.py:167`
+- `core/atomic_io.py:38`
+- `core/atomic_io.py:74`
+- `core/atomic_io.py:95`
+- `core/auth.py:135`
+- `core/auth.py:158`
+- `core/database.py:1681`
+- `core/database.py:1739`
+- `core/database.py:1747`
+- `core/database.py:1757`
+- `core/database.py:1779`
+- `core/platform_compat.py:325`
+- `launcher.py:92`
+- `launcher.py:131`
+- `mcp_servers/email_server.py:2400`
+- `routes/admin_wipe/admin_wipe_routes.py:48`
+- `routes/auth_routes.py:559`
+- `routes/chat_helpers.py:245`
+- `routes/chat_helpers.py:264`
+- `routes/chat_helpers.py:282`
+- `routes/chat_helpers.py:286`
+- `routes/chat_helpers.py:311`
+- `routes/chat_helpers.py:346`
+- `routes/chat_helpers.py:349`
+- `routes/chat_helpers.py:1425`
+- `routes/cookbook_routes.py:749`
+- `routes/diagnostics_routes.py:42`
+- `routes/document/document_routes.py:1385`
+- `routes/document/document_routes.py:1445`
+- `routes/document/document_routes.py:1520`
+- `routes/email/email_helpers.py:661`
+- `routes/email/email_helpers.py:1766`
+- `routes/email/email_routes.py:4974`
+- `routes/email/email_routes.py:4998`
+- `routes/email/email_routes.py:5005`
+- `routes/email/email_routes.py:5662`
+- `routes/email/email_routes.py:5686`
+- `routes/gallery/gallery_helpers.py:35`
+- `routes/gallery/gallery_routes.py:62`
+- `routes/gallery/gallery_routes.py:303`
+- `routes/gallery/gallery_routes.py:359`
+- `routes/gallery/gallery_routes.py:362`
+- `routes/gallery/gallery_routes.py:391`
+- `routes/gallery/gallery_routes.py:967`
+- `routes/gallery/gallery_routes.py:1040`
+- `routes/gallery/gallery_routes.py:1855`
+- `routes/gallery/gallery_routes.py:1856`
+- `routes/gallery/gallery_routes.py:1980`
+- `routes/gallery/gallery_routes.py:2861`
+- `routes/history/history_routes.py:62`
+- `routes/history/history_routes.py:88`
+- `routes/history/history_routes.py:93`
+- `routes/mcp/mcp_routes.py:249`
+- `routes/mcp/mcp_routes.py:470`
+- `routes/mcp/mcp_routes.py:586`
+- `routes/mcp/mcp_routes.py:616`
+- … +499 more (grep the name in repo)
+
+## `close` — function, line 130
+- **called from:**
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
+- `companion/pairing.py:151`
+- `companion/routes.py:165`
+- `core/database.py:161`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
+- `core/session_manager.py:68`
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)

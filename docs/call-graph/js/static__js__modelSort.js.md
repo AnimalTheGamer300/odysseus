@@ -23,15 +23,15 @@
 ## `sortModelIds` — function, line 21
 - **called from:**
 - `static/js/assistant.js:255`
-- `static/js/editor/ai-models.js:110`
 - `static/js/modelSort.js:21`
-- `static/js/models.js:615`
-- `static/js/research/panel.js:653`
-- `static/js/settings.js:233`
-- `static/js/settings.js:289`
-- `static/js/settings.js:648`
-- `static/js/settings.js:710`
-- `static/js/tasks.js:1601`
+- `static/js/models.js:623`
+- `static/js/research/panel.js:841`
+- `static/js/settings.js:169`
+- `static/js/settings.js:227`
+- `static/js/settings.js:714`
+- `static/js/settings/imageModels.js:32`
+- `static/js/settings/imageModels.js:40`
+- `static/js/tasks.js:1698`
 
 ## `compareModelObjects` — function, line 25
 - **called from:**
@@ -39,10 +39,10 @@
 
 ## `sortModelObjects` — function, line 31
 - **called from:**
-- `static/js/admin.js:270`
-- `static/js/admin.js:676`
+- `static/js/admin.js:327`
+- `static/js/admin.js:1382`
 - `static/js/compare/models.js:88`
 - `static/js/group.js:60`
 - `static/js/group.js:474`
-- `static/js/modelPicker.js:327`
+- `static/js/modelPicker.js:326`
 - `static/js/modelSort.js:31`

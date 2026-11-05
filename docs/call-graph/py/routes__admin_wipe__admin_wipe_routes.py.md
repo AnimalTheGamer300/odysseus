@@ -14,7 +14,7 @@
 
 ## `setup_admin_wipe_routes` — function, line 65
 - **called from:**
-- `app.py:691`
+- `app.py:770`
 - `tests/test_admin_wipe_gallery.py:39`
 
 ## `wipe` — function, line 72

@@ -13,24 +13,24 @@
 
 ## `sanitize_client_message_metadata` — function, line 74
 - **called from:**
-- `routes/history/history_routes.py:479`
-- `routes/session_routes.py:716`
-- `tests/test_api_token_tool_authority.py:283`
-- `tests/test_api_token_tool_authority.py:297`
-- `tests/test_api_token_tool_authority.py:298`
+- `routes/history/history_routes.py:656`
+- `routes/session_routes.py:910`
+- `tests/test_api_token_tool_authority.py:646`
+- `tests/test_api_token_tool_authority.py:660`
+- `tests/test_api_token_tool_authority.py:661`
 
 ## `stamp_chat_session_grant` — function, line 94
 - **called from:**
-- `routes/chat_routes.py:142`
-- `tests/test_api_token_tool_authority.py:70`
-- `tests/test_api_token_tool_authority.py:93`
-- `tests/test_api_token_tool_authority.py:312`
-- `tests/test_tool_approval_task_scope.py:117`
+- `routes/chat_routes.py:1338`
+- `tests/test_api_token_tool_authority.py:433`
+- `tests/test_api_token_tool_authority.py:456`
+- `tests/test_api_token_tool_authority.py:675`
+- `tests/test_tool_approval_task_scope.py:126`
 
 ## `verify_chat_session_grant` — function, line 119
 - **called from:**
 - `core/models.py:67`
-- `tests/test_api_token_tool_authority.py:123`
+- `tests/test_api_token_tool_authority.py:486`
 
 ## `ToolApprovalScope` — class, line 145
 - **called from:**
@@ -38,4 +38,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `scope_for_decision` — function, line 154
 - **called from:**
-- `src/tool_approvals.py:461`
+- `src/tool_approvals.py:590`

@@ -6,8 +6,14 @@
 ## `hexToRgb` — function, line 8
 - **called from:**
 - `static/js/color/hex.js:8`
-- `static/js/colorPicker.js:19`
-- `static/js/colorPicker.js:69`
-- `static/js/theme.js:133`
-- `static/js/theme.js:1980`
-- `static/js/theme.js:2164`
+- `static/js/colorPicker.js:21`
+- `static/js/colorPicker.js:71`
+- `static/js/editor/filters/effects.js:480`
+- `static/js/editor/filters/effects.js:495`
+- `static/js/editor/filters/effects.js:496`
+- `static/js/editor/tools/bucket.js:12`
+- `static/js/editor/tools/bucket.js:119`
+- `static/js/editor/tools/color-range.js:3`
+- `static/js/theme.js:170`
+- `static/js/theme.js:2114`
+- `static/js/theme.js:2370`

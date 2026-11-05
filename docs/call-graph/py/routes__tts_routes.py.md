@@ -8,7 +8,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `setup_tts_routes` — function, line 17
 - **called from:**
-- `app.py:756`
+- `app.py:836`
 
 ## `get_tts_stats` — function (async), line 22
 - **route:** `GET /stats`

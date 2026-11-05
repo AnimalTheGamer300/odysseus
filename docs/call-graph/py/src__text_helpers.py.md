@@ -1,6 +1,6 @@
 # `src/text_helpers.py` — definitions & call sites
 
-6 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+7 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `_strip_reasoning_prose` — function, line 70
 - **called from:**
@@ -11,11 +11,12 @@
 - `src/text_helpers.py:135`
 - `src/text_helpers.py:138`
 - `src/text_helpers.py:180`
+- `src/text_helpers.py:209`
 
 ## `normalize_thinking_markup` — function, line 117
 - **called from:**
-- `routes/chat_helpers.py:1059`
-- `routes/chat_helpers.py:1172`
+- `routes/chat_helpers.py:1668`
+- `routes/chat_helpers.py:1800`
 - `src/text_helpers.py:173`
 - `tests/test_redos_llm_parsers.py:43`
 - `tests/test_redos_llm_parsers.py:56`
@@ -26,12 +27,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `strip_think` — function, line 146
 - **called from:**
-- `routes/calendar_routes.py:1704`
-- `routes/chat_helpers.py:347`
-- `routes/session_routes.py:669`
-- `src/builtin_actions.py:608`
+- `routes/calendar_routes.py:1879`
+- `routes/chat_helpers.py:689`
+- `routes/chat_helpers.py:784`
+- `routes/session_routes.py:863`
+- `services/memory/memory_extractor.py:956`
+- `src/builtin_actions.py:736`
 - `src/research_utils.py:23`
-- `src/task_scheduler.py:1663`
+- `src/task_scheduler.py:1825`
 - `src/text_helpers.py:195`
 - `tests/test_redos_llm_parsers.py:42`
 - `tests/test_redos_llm_parsers.py:48`
@@ -60,15 +63,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `strip_thinking` — function, line 194
 - **called from:**
-- `routes/chat_routes.py:3285`
-- `src/deep_research.py:394`
-- `src/deep_research.py:724`
-- `src/research_handler.py:165`
-- `src/research_handler.py:192`
-- `src/research_handler.py:852`
-- `src/research_handler.py:903`
-- `src/task_scheduler.py:2118`
-- `src/visual_report.py:1742`
+- `routes/chat_routes.py:5762`
+- `src/background_tool_jobs.py:162`
+- `src/deep_research.py:640`
+- `src/deep_research.py:1758`
+- `src/research_handler.py:181`
+- `src/research_handler.py:208`
+- `src/research_handler.py:1081`
+- `src/research_handler.py:1135`
+- `src/task_scheduler.py:2312`
+- `src/visual_report.py:2750`
 - `tests/test_research_utils.py:9`
 - `tests/test_research_utils.py:13`
 - `tests/test_research_utils.py:17`
@@ -79,3 +83,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_research_utils.py:40`
 - `tests/test_research_utils.py:44`
 - `tests/test_research_utils.py:50`
+
+## `strip_closed_think_blocks` — function, line 202
+- **called from:**
+- `services/memory/memory_extractor.py:1047`
+- `services/skills/evaluation.py:55`
+- `services/skills/evaluation.py:297`
+- `services/skills/evaluation.py:392`
+- `services/skills/evaluation.py:453`
+- `tests/test_redos_residual_python.py:45`

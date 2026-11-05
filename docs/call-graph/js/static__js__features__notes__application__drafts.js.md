@@ -1,0 +1,195 @@
+# `static/js/features/notes/application/drafts.js` — definitions & call sites
+
+7 definitions (regex-based, best-effort).
+**Exports:** `createNotesDrafts`
+
+## `createNotesDrafts` — function, line 2
+- **called from:**
+- `static/js/features/notes/application/drafts.js:2`
+- `static/js/features/notes/index.js:497`
+
+## `bindDraft` — function, line 11
+- **called from:**
+- `static/js/features/notes/application/drafts.js:11`
+- `static/js/features/notes/index.js:372`
+- `static/js/features/notes/ui/draftEditor.js:38`
+
+## `save` — arrow, line 16
+- **called from:**
+- `companion/pairing.py:224`
+- `mcp_servers/memory_server.py:187`
+- `mcp_servers/memory_server.py:215`
+- `mcp_servers/memory_server.py:243`
+- `routes/auth_routes.py:285`
+- `routes/backup_routes.py:107`
+- `routes/backup_routes.py:191`
+- `routes/gallery/gallery_routes.py:346`
+- `routes/gallery/gallery_routes.py:378`
+- `routes/gallery/gallery_routes.py:380`
+- `routes/gallery/gallery_routes.py:394`
+- `routes/gallery/gallery_routes.py:1054`
+- `routes/gallery/gallery_routes.py:1866`
+- `routes/gallery/gallery_routes.py:1869`
+- `routes/gallery/gallery_routes.py:1914`
+- `routes/gallery/gallery_routes.py:1986`
+- `routes/gallery/gallery_routes.py:2515`
+- `routes/gallery/gallery_routes.py:2566`
+- `routes/gallery/gallery_routes.py:2616`
+- `routes/gallery/gallery_routes.py:2925`
+- `routes/gallery/gallery_routes.py:2976`
+- `routes/gallery/gallery_routes.py:2990`
+- `routes/memory/memory_routes.py:137`
+- `routes/memory/memory_routes.py:518`
+- `routes/memory/memory_routes.py:547`
+- `routes/memory/memory_routes.py:569`
+- `routes/upload_routes.py:524`
+- `scripts/diffusion_server.py:253`
+- `scripts/diffusion_server.py:1075`
+- `scripts/diffusion_server.py:1170`
+- `scripts/diffusion_server.py:1181`
+- `scripts/diffusion_server.py:1407`
+- `scripts/diffusion_server.py:1454`
+- `scripts/mlx_image_server.py:181`
+- `scripts/mlx_image_server.py:200`
+- `scripts/mlx_image_server.py:318`
+- `scripts/odysseus_domain_audit.py:343`
+- `scripts/odysseus_domain_audit.py:371`
+- `services/memory/memory_extractor.py:856`
+- `services/memory/memory_extractor.py:1138`
+- `services/memory/service.py:123`
+- `src/agent_tools/editor_tools.py:307`
+- `src/agent_tools/editor_tools.py:569`
+- `src/agent_tools/media_tools.py:396`
+- `src/agent_tools/media_tools.py:495`
+- `src/agent_tools/media_tools.py:881`
+- `src/agent_tools/media_tools.py:1004`
+- `src/agent_tools/media_tools.py:1526`
+- `src/agent_tools/media_tools.py:1537`
+- `src/agent_tools/media_tools.py:1738`
+- `src/agent_tools/media_tools.py:1847`
+- `src/ai_interaction.py:450`
+- `src/ai_interaction.py:491`
+- `src/ai_interaction.py:525`
+- `src/builtin_actions.py:858`
+- `src/caldav_writeback.py:156`
+- `src/chat_handler.py:365`
+- `src/clean_agent_preview.py:5463`
+- `src/document_processor.py:152`
+- `src/document_processor.py:491`
+- … +184 more (grep the name in repo)
+
+## `persist` — arrow, line 26
+- **called from:**
+- `static/js/editor/actions-panel.js:129`
+- `static/js/editor/actions-panel.js:135`
+- `static/js/editor/actions-panel.js:229`
+- `static/js/editor/build/dock.js:81`
+- `static/js/editor/build/dock.js:205`
+- `static/js/editor/panel-visibility.js:55`
+- `static/js/editor/panel-visibility.js:136`
+- `static/js/editor/panel-visibility.js:149`
+- `static/js/editor/panel-visibility.js:157`
+- `static/js/features/notes/application/drafts.js:50`
+- `static/js/features/notes/ui/cardChecklist.js:98`
+
+## `flush` — arrow, line 44
+- **called from:**
+- `core/atomic_io.py:43`
+- `core/atomic_io.py:76`
+- `core/atomic_io.py:97`
+- `core/database.py:555`
+- `routes/calendar_routes.py:331`
+- `routes/calendar_routes.py:339`
+- `routes/email/email_routes.py:7545`
+- `scripts/cook_sft_alex_conversations.py:235`
+- `scripts/demo_email/demo_account.py:117`
+- `scripts/demo_email/demo_account.py:165`
+- `scripts/eval_exact_file_routing.py:158`
+- `scripts/eval_odysseus_tool_use.py:658`
+- `scripts/eval_odysseus_tool_use.py:661`
+- `scripts/migrate_searxng_settings.py:133`
+- `scripts/pr_blocker_audit.py:125`
+- `scripts/pr_blocker_audit.py:138`
+- `scripts/pr_blocker_audit.py:144`
+- `scripts/pr_blocker_audit.py:151`
+- `scripts/run_sft_environment_expansion.py:517`
+- `src/agent_tools/filesystem_tools.py:615`
+- `src/api_key_manager.py:94`
+- `src/browser_identity.py:254`
+- `src/containment_worker.py:80`
+- `src/email_thread_parser.py:328`
+- `src/email_thread_parser.py:334`
+- `src/email_thread_parser.py:371`
+- `src/email_thread_parser.py:385`
+- `src/llm_core.py:3659`
+- `src/llm_core.py:3677`
+- `src/llm_core.py:3961`
+- `src/llm_core.py:4298`
+- `src/task_scheduler.py:2849`
+- `src/upload_handler.py:799`
+- `tests/smoke/stub_provider.py:136`
+- `tests/test_atomic_io.py:101`
+- `tests/test_codeql_python_residual_closure.py:140`
+- `tests/test_codeql_python_residual_closure.py:149`
+- `tests/test_codeql_python_residual_closure.py:155`
+- `tests/test_codeql_python_residual_closure.py:157`
+- `tests/test_daily_brief_local_calendar.py:56`
+- `tests/test_launcher.py:24`
+- `static/js/chat.js:4225`
+- `static/js/emailLibrary/bodyRender.js:746`
+- `static/js/emailLibrary/bodyRender.js:752`
+- `static/js/emailLibrary/bodyRender.js:757`
+- `static/js/liveThinkingThrottle.js:18`
+- `static/js/liveThinkingThrottle.js:191`
+
+## `stop` — arrow, line 45
+- **called from:**
+- `app.py:1477`
+- `launcher.py:96`
+- `routes/chat_routes.py:5561`
+- `tests/smoke/stub_provider.py:172`
+- `tests/test_client_tool_routing.py:88`
+- `tests/test_compare_stop_disconnect_poll.py:147`
+- `tests/test_compare_stop_disconnect_poll.py:233`
+- `tests/test_compare_stop_disconnect_poll.py:234`
+- `tests/test_compare_stop_disconnect_poll.py:236`
+- `tests/test_nested_invocation_ownership.py:77`
+- `tests/test_notes_native_cleanup.py:30`
+- `static/js/admin.js:1379`
+- `static/js/chat.js:6534`
+- `static/js/chat.js:6625`
+- `static/js/chatRenderer.js:543`
+- `static/js/compare/stream.js:306`
+- `static/js/compare/stream.js:343`
+- `static/js/cookbookRunning.js:2951`
+- `static/js/documentLibrary.js:3346`
+- `static/js/documentLibrary.js:3499`
+- `static/js/editor/editor-bridge.js:96`
+- `static/js/emailLibrary/aiReply.js:56`
+- `static/js/fileHandler.js:389`
+- `static/js/galleryEditor.js:12858`
+- `static/js/galleryEditor.js:13203`
+- `static/js/galleryEditor.js:14092`
+- `static/js/keyboard-shortcuts.js:172`
+- `static/js/models.js:222`
+- `static/js/settings.js:2365`
+- `static/js/spinner.js:260`
+- `static/js/spinner.js:268`
+- `static/js/spinner.js:274`
+- `static/js/spinner.js:288`
+- `static/js/spinner.js:367`
+- `static/js/spinner.js:408`
+- `static/js/spinner.js:425`
+- `static/js/spinner.js:437`
+- `static/js/tasks.js:3011`
+- `static/js/tts-ai.js:179`
+- `static/js/tts-ai.js:224`
+- `static/js/tts-ai.js:503`
+- `static/js/tts-ai.js:517`
+- `static/js/voiceRecorder.js:102`
+- `static/js/voiceRecorder.js:178`
+- `static/js/voiceRecorder.js:251`
+
+## `sched` — arrow, line 46
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_

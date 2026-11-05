@@ -26,7 +26,7 @@
 
 ## `setup_signature_routes` — function, line 83
 - **called from:**
-- `app.py:772`
+- `app.py:852`
 - `tests/test_signature_route_hardening.py:40`
 
 ## `list_signatures` — function (async), line 87

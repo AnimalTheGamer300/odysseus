@@ -13,5 +13,5 @@
 
 ## `buildLassoMask` — function, line 74
 - **called from:**
-- `static/js/editor/keyboard-shortcuts.js:177`
 - `static/js/editor/tools/lasso-mask.js:74`
+- `static/js/editor/tools/lasso.js:143`

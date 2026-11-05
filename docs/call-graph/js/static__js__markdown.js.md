@@ -1,12 +1,12 @@
 # `static/js/markdown.js` — definitions & call sites
 
-56 definitions (regex-based, best-effort).
-**Exports:** `createCollapsible`, `default`, `ensureKatex`, `ensureMermaid`, `extractThinkingBlocks`, `hasUnclosedThinkTag`, `mdToHtml`, `neutralizeStrayThinkTags`, `normalizeThinkingMarkup`, `processWithThinking`, `renderContent`, `renderMath`, `renderMermaid`, `restoreThinkTags`, `sanitizeAllowedHtml`, `squashOutsideCode`, `startsWithReasoningPrefix`, `svgifyEmoji`, `tableReplyFloor`
+71 definitions (regex-based, best-effort).
+**Exports:** `createCollapsible`, `default`, `ensureKatex`, `ensureMermaid`, `extractThinkingBlocks`, `hasUnclosedThinkTag`, `mdToHtml`, `neutralizeStrayThinkTags`, `normalizeThinkingMarkup`, `processWithThinking`, `renderContent`, `renderMath`, `renderMermaid`, `restoreThinkTags`, `sanitizeAllowedHtml`, `squashOutsideCode`, `startsWithReasoningPrefix`, `svgifyEmoji`
 
 ## `decodeMathSource` — function, line 53
 - **called from:**
 - `static/js/markdown.js:53`
-- `static/js/markdown.js:1080`
+- `static/js/markdown.js:1385`
 
 ## `_loadScript` — function, line 61
 - **called from:**
@@ -22,587 +22,676 @@
 ## `ensureMermaid` — function, line 87
 - **called from:**
 - `static/js/markdown.js:87`
-- `static/js/markdown.js:1309`
+- `static/js/markdown.js:1606`
 
 ## `ensureKatex` — function, line 103
 - **called from:**
 - `static/js/markdown.js:103`
 - `static/js/markdown.js:128`
-- `static/js/markdown.js:1329`
+- `static/js/markdown.js:1626`
 
 ## `_scheduleMathFlush` — function, line 123
 - **called from:**
 - `static/js/markdown.js:123`
-- `static/js/markdown.js:1120`
+- `static/js/markdown.js:1425`
 
 ## `safeLinkUrl` — function, line 134
 - **called from:**
 - `static/js/markdown.js:134`
 - `static/js/markdown.js:151`
-- `static/js/markdown.js:161`
 
 ## `linkHtml` — function, line 150
 - **called from:**
 - `static/js/markdown.js:150`
-- `static/js/markdown.js:1023`
-- `static/js/markdown.js:1030`
-- `static/js/markdown.js:1046`
+- `static/js/markdown.js:1329`
+- `static/js/markdown.js:1336`
+- `static/js/markdown.js:1352`
 
-## `imageHtml` — function, line 160
+## `linkifyPlainEmailUidLines` — function, line 160
 - **called from:**
 - `static/js/markdown.js:160`
-- `static/js/markdown.js:1017`
+- `static/js/markdown.js:1309`
 
-## `_isModelEndpointUrl` — function, line 168
+## `linkifyRawEmailToolBlocks` — function, line 173
 - **called from:**
-- `static/js/markdown.js:168`
-- `static/js/markdown.js:1503`
-- `static/js/markdown.js:1518`
+- `static/js/markdown.js:173`
+- `static/js/markdown.js:1307`
 
-## `_compactUrlSchemeValue` — function, line 207
+## `linkifyRawEmailReadBlocks` — function, line 198
+- **called from:**
+- `static/js/markdown.js:198`
+- `static/js/markdown.js:1308`
+
+## `linkifyRawCookbookLists` — function, line 216
+- **called from:**
+- `static/js/markdown.js:216`
+- `static/js/markdown.js:1310`
+
+## `linkifyPlainSkillLists` — function, line 235
+- **called from:**
+- `static/js/markdown.js:235`
+- `static/js/markdown.js:1311`
+
+## `flattenLegacyNoteMoreDetails` — function, line 255
+- **called from:**
+- `static/js/markdown.js:255`
+- `static/js/markdown.js:1173`
+
+## `extractMoreListPayloads` — function, line 264
+- **called from:**
+- `static/js/markdown.js:264`
+- `static/js/markdown.js:1173`
+
+## `moreListPayloadFromHref` — function, line 291
+- **called from:**
+- `static/js/markdown.js:291`
+- `static/js/markdown.js:1714`
+
+## `imageHtml` — function, line 304
+- **called from:**
+- `static/js/markdown.js:304`
+- `static/js/markdown.js:1322`
+
+## `_bindChatImageFallback` — function, line 335
+- **called from:**
+- `static/js/markdown.js:302`
+- `static/js/markdown.js:335`
+- `static/js/markdown.js:350`
+
+## `wrapOf` — arrow, line 337
+- **called from:**
+- `static/js/markdown.js:342`
+- `static/js/markdown.js:346`
+
+## `_isModelEndpointUrl` — function, line 352
+- **called from:**
+- `static/js/markdown.js:352`
+- `static/js/markdown.js:1840`
+- `static/js/markdown.js:1855`
+
+## `_compactUrlSchemeValue` — function, line 391
 - **called from:**
 - `static/js/emailLibrary/utils.js:61`
 - `static/js/emailLibrary/utils.js:66`
-- `static/js/emailLibrary/utils.js:216`
-- `static/js/markdown.js:207`
-- `static/js/markdown.js:212`
-- `static/js/markdown.js:239`
+- `static/js/emailLibrary/utils.js:224`
+- `static/js/markdown.js:391`
+- `static/js/markdown.js:396`
+- `static/js/markdown.js:423`
 
-## `_isDangerousUrl` — function, line 211
+## `_isDangerousUrl` — function, line 395
 - **called from:**
 - `static/js/emailLibrary/utils.js:65`
 - `static/js/emailLibrary/utils.js:71`
-- `static/js/emailLibrary/utils.js:199`
-- `static/js/markdown.js:211`
-- `static/js/markdown.js:216`
-- `static/js/markdown.js:248`
+- `static/js/emailLibrary/utils.js:207`
+- `static/js/markdown.js:395`
+- `static/js/markdown.js:400`
+- `static/js/markdown.js:432`
 
-## `_isDangerousSrcset` — function, line 215
+## `_isDangerousSrcset` — function, line 399
 - **called from:**
 - `static/js/emailLibrary/utils.js:70`
-- `static/js/emailLibrary/utils.js:199`
-- `static/js/markdown.js:215`
-- `static/js/markdown.js:248`
+- `static/js/emailLibrary/utils.js:207`
+- `static/js/markdown.js:399`
+- `static/js/markdown.js:432`
 
-## `_cleanAllowedHtmlOnce` — function, line 219
+## `_cleanAllowedHtmlOnce` — function, line 403
 - **called from:**
-- `static/js/markdown.js:219`
-- `static/js/markdown.js:267`
+- `static/js/markdown.js:403`
+- `static/js/markdown.js:451`
 
-## `sanitizeAllowedHtml` — function, line 257
+## `sanitizeAllowedHtml` — function, line 441
 - **called from:**
-- `static/js/document.js:2481`
-- `static/js/document.js:2497`
-- `static/js/markdown.js:257`
-- `static/js/markdown.js:1054`
-- `static/js/markdown.js:1062`
+- `static/js/document.js:3570`
+- `static/js/document.js:3602`
+- `static/js/document.js:3623`
+- `static/js/document.js:3639`
+- `static/js/document.js:4157`
+- `static/js/document.js:16165`
+- `static/js/document.js:16250`
+- `static/js/markdown.js:441`
+- `static/js/markdown.js:1359`
+- `static/js/markdown.js:1367`
 
-## `neutralizeStrayThinkTags` — function, line 277
+## `neutralizeStrayThinkTags` — function, line 461
 - **called from:**
-- `static/js/chat.js:3317`
-- `static/js/chat.js:5785`
-- `static/js/chat.js:7510`
-- `static/js/chatRenderer.js:2633`
-- `static/js/chatRenderer.js:2920`
-- `static/js/markdown.js:277`
-- `static/js/markdown.js:401`
+- `static/js/chat.js:4865`
+- `static/js/chatRenderer.js:3319`
+- `static/js/chatRenderer.js:3645`
+- `static/js/markdown.js:461`
+- `static/js/markdown.js:585`
 
-## `esc` — arrow, line 307
+## `esc` — arrow, line 491
 - **called from:**
-- `static/js/admin.js:20`
-- `static/js/admin.js:20`
-- `static/js/admin.js:53`
-- `static/js/admin.js:55`
-- `static/js/admin.js:60`
-- `static/js/admin.js:61`
-- `static/js/admin.js:62`
-- `static/js/admin.js:80`
-- `static/js/admin.js:91`
-- `static/js/admin.js:104`
-- `static/js/admin.js:105`
-- `static/js/admin.js:109`
-- `static/js/admin.js:273`
-- `static/js/admin.js:274`
-- `static/js/admin.js:275`
-- `static/js/admin.js:525`
-- `static/js/admin.js:532`
-- `static/js/admin.js:534`
-- `static/js/admin.js:545`
-- `static/js/admin.js:545`
-- `static/js/admin.js:674`
-- `static/js/admin.js:679`
-- `static/js/admin.js:719`
-- `static/js/admin.js:719`
-- `static/js/admin.js:720`
-- `static/js/admin.js:722`
-- `static/js/admin.js:1022`
-- `static/js/admin.js:1200`
-- `static/js/admin.js:1203`
-- `static/js/admin.js:1206`
-- `static/js/admin.js:1933`
-- `static/js/admin.js:1948`
-- `static/js/admin.js:1949`
-- `static/js/admin.js:1951`
-- `static/js/admin.js:1953`
-- `static/js/admin.js:2081`
-- `static/js/admin.js:2156`
-- `static/js/admin.js:2157`
-- `static/js/admin.js:2158`
-- `static/js/admin.js:2158`
-- `static/js/admin.js:2390`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2542`
-- `static/js/admin.js:2543`
-- `static/js/admin.js:2544`
-- `static/js/admin.js:2545`
-- `static/js/admin.js:2545`
-- `static/js/admin.js:2558`
-- `static/js/admin.js:2561`
-- `static/js/admin.js:2561`
-- `static/js/admin.js:2562`
-- `static/js/admin.js:2563`
-- `static/js/admin.js:2566`
-- `static/js/admin.js:2567`
-- `static/js/admin.js:2569`
-- … +443 more (grep the name in repo)
+- `static/js/admin.js:28`
+- `static/js/admin.js:28`
+- `static/js/admin.js:86`
+- `static/js/admin.js:88`
+- `static/js/admin.js:93`
+- `static/js/admin.js:94`
+- `static/js/admin.js:96`
+- `static/js/admin.js:114`
+- `static/js/admin.js:125`
+- `static/js/admin.js:138`
+- `static/js/admin.js:139`
+- `static/js/admin.js:143`
+- `static/js/admin.js:330`
+- `static/js/admin.js:331`
+- `static/js/admin.js:332`
+- `static/js/admin.js:648`
+- `static/js/admin.js:651`
+- `static/js/admin.js:655`
+- `static/js/admin.js:680`
+- `static/js/admin.js:769`
+- `static/js/admin.js:769`
+- `static/js/admin.js:771`
+- `static/js/admin.js:773`
+- `static/js/admin.js:777`
+- `static/js/admin.js:777`
+- `static/js/admin.js:836`
+- `static/js/admin.js:836`
+- `static/js/admin.js:838`
+- `static/js/admin.js:840`
+- `static/js/admin.js:841`
+- `static/js/admin.js:915`
+- `static/js/admin.js:1072`
+- `static/js/admin.js:1073`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1080`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1380`
+- `static/js/admin.js:1385`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1430`
+- `static/js/admin.js:1432`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1551`
+- `static/js/admin.js:1554`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1915`
+- `static/js/admin.js:2802`
+- … +576 more (grep the name in repo)
 
-## `restoreThinkTags` — function, line 376
+## `restoreThinkTags` — function, line 560
 - **called from:**
-- `static/js/chat.js:3021`
-- `static/js/markdown.js:376`
-- `static/js/markdown.js:612`
-- `static/js/markdown.js:613`
+- `static/js/chat.js:4405`
+- `static/js/markdown.js:560`
+- `static/js/markdown.js:748`
+- `static/js/markdown.js:749`
 
-## `hasUnclosedThinkTag` — function, line 382
+## `hasUnclosedThinkTag` — function, line 566
 - **called from:**
-- `static/js/chat.js:3099`
-- `static/js/markdown.js:382`
-- `static/js/markdown.js:571`
+- `static/js/chat.js:4540`
+- `static/js/markdown.js:566`
+- `static/js/markdown.js:707`
 
-## `startsWithReasoningPrefix` — function, line 393
+## `startsWithReasoningPrefix` — function, line 577
 - **called from:**
-- `static/js/chat.js:3395`
-- `static/js/chat.js:4579`
+- `static/js/chat.js:4941`
+- `static/js/chat.js:6221`
 - `static/js/liveThinkingThrottle.js:105`
-- `static/js/markdown.js:393`
-- `static/js/markdown.js:456`
+- `static/js/markdown.js:577`
+- `static/js/markdown.js:609`
 
-## `normalizeThinkingMarkup` — function, line 397
+## `normalizeThinkingMarkup` — function, line 581
 - **called from:**
-- `static/js/chat.js:741`
-- `static/js/chat.js:2775`
-- `static/js/chat.js:2783`
-- `static/js/chat.js:2984`
-- `static/js/chat.js:3015`
-- `static/js/chat.js:3035`
-- `static/js/chat.js:3095`
-- `static/js/chat.js:3378`
-- `static/js/chat.js:5694`
-- `static/js/chat.js:7650`
-- `static/js/markdown.js:383`
-- `static/js/markdown.js:397`
-- `static/js/markdown.js:452`
+- `static/js/chat.js:1621`
+- `static/js/chat.js:3704`
+- `static/js/chat.js:4144`
+- `static/js/chat.js:4152`
+- `static/js/chat.js:4368`
+- `static/js/chat.js:4399`
+- `static/js/chat.js:4413`
+- `static/js/chat.js:4453`
+- `static/js/chat.js:4481`
+- `static/js/chat.js:4924`
+- `static/js/chat.js:7381`
+- `static/js/chat.js:9264`
+- `static/js/chatRenderer.js:3245`
+- `static/js/markdown.js:567`
+- `static/js/markdown.js:581`
+- `static/js/markdown.js:605`
 
-## `tableReplyFloor` — function, line 429
+## `normalizePlainThinking` — function, line 603
 - **called from:**
-- `static/js/chat.js:4584`
-- `static/js/markdown.js:429`
-- `static/js/markdown.js:475`
-- `static/js/markdown.js:483`
-- `static/js/markdown.js:502`
-- `static/js/markdown.js:513`
+- `static/js/markdown.js:603`
+- `static/js/markdown.js:667`
 
-## `normalizePlainThinking` — function, line 450
+## `extractThinkingBlocks` — function, line 663
 - **called from:**
-- `static/js/markdown.js:450`
-- `static/js/markdown.js:531`
+- `static/js/chat.js:4154`
+- `static/js/chat.js:4414`
+- `static/js/chat.js:4485`
+- `static/js/chat.js:6205`
+- `static/js/chat.js:6295`
+- `static/js/chatRenderer.js:1584`
+- `static/js/chatRenderer.js:3245`
+- `static/js/chatRenderer.js:3301`
+- `static/js/chatRenderer.js:3651`
+- `static/js/markdown.js:663`
+- `static/js/markdown.js:885`
 
-## `extractThinkingBlocks` — function, line 527
+## `createThinkingSection` — function, line 757
 - **called from:**
-- `static/js/chat.js:2785`
-- `static/js/chat.js:3039`
-- `static/js/chat.js:4563`
-- `static/js/chat.js:4663`
-- `static/js/chatRenderer.js:1116`
-- `static/js/chatRenderer.js:2615`
-- `static/js/chatRenderer.js:2926`
-- `static/js/markdown.js:527`
-- `static/js/markdown.js:747`
+- `static/js/markdown.js:757`
+- `static/js/markdown.js:894`
 
-## `createThinkingSection` — function, line 621
+## `createTaskCompletedMarker` — function, line 780
 - **called from:**
-- `static/js/markdown.js:621`
-- `static/js/markdown.js:756`
+- `static/js/markdown.js:780`
+- `static/js/markdown.js:899`
+- `static/js/markdown.js:903`
 
-## `createTaskCompletedMarker` — function, line 644
+## `_emojiCodepoints` — function, line 802
 - **called from:**
-- `static/js/markdown.js:644`
-- `static/js/markdown.js:761`
-- `static/js/markdown.js:765`
+- `static/js/markdown.js:802`
+- `static/js/markdown.js:810`
 
-## `_emojiCodepoints` — function, line 666
+## `_emojiImg` — function, line 809
 - **called from:**
-- `static/js/markdown.js:666`
-- `static/js/markdown.js:674`
+- `static/js/markdown.js:809`
+- `static/js/markdown.js:822`
 
-## `_emojiImg` — function, line 673
+## `_svgifyText` — function, line 818
 - **called from:**
-- `static/js/markdown.js:673`
-- `static/js/markdown.js:686`
-
-## `_svgifyText` — function, line 682
-- **called from:**
-- `static/js/markdown.js:682`
-- `static/js/markdown.js:722`
-
-## `_useSvgEmoji` — function, line 691
-- **called from:**
-- `static/js/markdown.js:691`
-- `static/js/markdown.js:701`
-- `static/js/markdown.js:768`
-- `static/js/markdown.js:1261`
-
-## `svgifyEmoji` — function, line 700
-- **called from:**
-- `static/js/chatRenderer.js:2395`
-- `static/js/markdown.js:700`
-- `static/js/markdown.js:768`
-- `static/js/markdown.js:1261`
-
-## `createCollapsible` — function, line 733
-- **called from:**
-- `static/js/markdown.js:733`
-
-## `processWithThinking` — function, line 746
-- **called from:**
-- `static/js/chat.js:720`
-- `static/js/chat.js:1567`
-- `static/js/chat.js:2994`
-- `static/js/chat.js:3129`
-- `static/js/chat.js:4631`
-- `static/js/chat.js:4667`
-- `static/js/chat.js:4785`
-- `static/js/chat.js:5690`
-- `static/js/chat.js:7077`
-- `static/js/chat.js:7234`
-- `static/js/chat.js:7511`
-- `static/js/chat.js:7515`
-- `static/js/chat.js:7632`
-- `static/js/chat.js:7668`
-- `static/js/chatRenderer.js:2694`
-- `static/js/chatRenderer.js:2928`
-- `static/js/chatRenderer.js:2933`
-- `static/js/chatRenderer.js:2965`
-- `static/js/chatRenderer.js:3022`
-- `static/js/compare/stream.js:268`
-- `static/js/compare/stream.js:355`
-- `static/js/compare/stream.js:511`
-- `static/js/compare/stream.js:649`
-- `static/js/compare/stream.js:789`
-- `static/js/group.js:884`
-- `static/js/group.js:900`
-- `static/js/group.js:949`
-- `static/js/markdown.js:746`
-- `static/js/slashCommands.js:453`
-- `static/js/tasks.js:2683`
-
-## `_listItem` — function, line 777
-- **called from:**
-- `static/js/markdown.js:777`
-- `static/js/markdown.js:813`
 - `static/js/markdown.js:818`
-- `static/js/markdown.js:850`
+- `static/js/markdown.js:858`
 
-## `_listItemHtml` — function, line 788
+## `_useSvgEmoji` — function, line 827
 - **called from:**
-- `static/js/markdown.js:788`
-- `static/js/markdown.js:839`
+- `static/js/markdown.js:827`
+- `static/js/markdown.js:837`
+- `static/js/markdown.js:906`
+- `static/js/markdown.js:1558`
 
-## `_collectList` — function, line 800
+## `svgifyEmoji` — function, line 836
 - **called from:**
-- `static/js/markdown.js:800`
-- `static/js/markdown.js:833`
-- `static/js/markdown.js:852`
+- `static/js/chatRenderer.js:2974`
+- `static/js/chatRenderer.js:3050`
+- `static/js/markdown.js:836`
+- `static/js/markdown.js:906`
+- `static/js/markdown.js:1558`
 
-## `_buildNestedLists` — function, line 845
+## `createCollapsible` — function, line 869
 - **called from:**
-- `static/js/markdown.js:845`
-- `static/js/markdown.js:1196`
+- `static/js/chatRenderer.js:3524`
+- `static/js/markdown.js:869`
 
-## `_buildNestedQuotes` — function, line 859
+## `processWithThinking` — function, line 884
 - **called from:**
-- `static/js/markdown.js:859`
-- `static/js/markdown.js:1205`
-
-## `mdToHtml` — function, line 896
-- **called from:**
-- `static/js/chat.js:746`
-- `static/js/chat.js:2843`
-- `static/js/chat.js:3078`
-- `static/js/chat.js:4611`
-- `static/js/document.js:2486`
-- `static/js/document.js:9702`
-- `static/js/document.js:9733`
-- `static/js/document.js:9881`
-- `static/js/documentLibrary.js:1996`
-- `static/js/documentLibrary.js:2965`
-- `static/js/markdown.js:115`
-- `static/js/markdown.js:637`
-- `static/js/markdown.js:742`
-- `static/js/markdown.js:764`
-- `static/js/markdown.js:896`
-- `static/js/markdown.js:1322`
-- `static/js/markdown.js:1323`
-- `static/js/tasks.js:2451`
-
-## `pushMath` — arrow, line 1079
-- **called from:**
-- `static/js/markdown.js:1096`
-- `static/js/markdown.js:1101`
-- `static/js/markdown.js:1108`
-- `static/js/markdown.js:1117`
-
-## `squashOutsideCode` — function, line 1267
-- **called from:**
-- `static/js/chat.js:720`
-- `static/js/chat.js:746`
-- `static/js/chat.js:1568`
-- `static/js/chat.js:2994`
-- `static/js/chat.js:3078`
-- `static/js/chat.js:3129`
-- `static/js/chat.js:4611`
-- `static/js/chat.js:4631`
-- `static/js/chat.js:4786`
-- `static/js/chat.js:5690`
-- `static/js/chat.js:7078`
-- `static/js/chat.js:7235`
-- `static/js/chat.js:7515`
-- `static/js/chat.js:7633`
-- `static/js/chat.js:7669`
-- `static/js/chatRenderer.js:2694`
-- `static/js/chatRenderer.js:2860`
-- `static/js/chatRenderer.js:3022`
-- `static/js/compare/stream.js:269`
-- `static/js/compare/stream.js:356`
-- `static/js/compare/stream.js:512`
-- `static/js/compare/stream.js:650`
-- `static/js/compare/stream.js:790`
-- `static/js/group.js:885`
-- `static/js/group.js:901`
-- `static/js/group.js:950`
-- `static/js/markdown.js:1267`
+- `static/js/chat.js:1600`
+- `static/js/chat.js:2588`
+- `static/js/chat.js:3704`
+- `static/js/chat.js:4378`
+- `static/js/chat.js:4572`
+- `static/js/chat.js:6262`
+- `static/js/chat.js:6299`
+- `static/js/chat.js:6414`
+- `static/js/chat.js:7387`
+- `static/js/chat.js:8772`
+- `static/js/chat.js:8927`
+- `static/js/chat.js:9135`
+- `static/js/chat.js:9246`
+- `static/js/chat.js:9282`
+- `static/js/chatRenderer.js:352`
+- `static/js/chatRenderer.js:3380`
+- `static/js/chatRenderer.js:3653`
+- `static/js/chatRenderer.js:3692`
+- `static/js/chatRenderer.js:3762`
+- `static/js/compare/stream.js:324`
+- `static/js/compare/stream.js:414`
+- `static/js/compare/stream.js:559`
+- `static/js/compare/stream.js:698`
+- `static/js/compare/stream.js:864`
+- `static/js/group.js:886`
+- `static/js/group.js:902`
+- `static/js/group.js:951`
+- `static/js/markdown.js:884`
 - `static/js/slashCommands.js:453`
-- `static/js/tasks.js:2683`
+- `static/js/tasks.js:2819`
 
-## `renderContent` — function, line 1288
+## `_listItem` — function, line 915
 - **called from:**
-- `static/js/chatRenderer.js:2575`
-- `static/js/markdown.js:1288`
-- `static/js/research/panel.js:1133`
+- `static/js/markdown.js:915`
+- `static/js/markdown.js:951`
+- `static/js/markdown.js:956`
+- `static/js/markdown.js:988`
 
-## `renderMermaid` — function, line 1304
+## `_listItemHtml` — function, line 926
 - **called from:**
-- `static/js/chat.js:4684`
-- `static/js/chatRenderer.js:2784`
-- `static/js/chatRenderer.js:3126`
-- `static/js/document.js:9889`
-- `static/js/group.js:953`
-- `static/js/markdown.js:1304`
-- `static/js/slashCommands.js:454`
+- `static/js/markdown.js:926`
+- `static/js/markdown.js:977`
 
-## `renderMath` — function, line 1325
+## `_collectList` — function, line 938
 - **called from:**
-- `static/js/document.js:9743`
-- `static/js/document.js:9745`
-- `static/js/markdown.js:22`
-- `static/js/markdown.js:129`
-- `static/js/markdown.js:1076`
-- `static/js/markdown.js:1325`
+- `static/js/markdown.js:938`
+- `static/js/markdown.js:971`
+- `static/js/markdown.js:990`
 
-## `_loadExpandedSet` — function, line 1379
+## `_buildNestedLists` — function, line 983
 - **called from:**
-- `static/js/markdown.js:1379`
-- `static/js/markdown.js:1435`
-- `static/js/markdown.js:1452`
+- `static/js/markdown.js:983`
+- `static/js/markdown.js:1488`
 
-## `_saveExpandedSet` — function, line 1383
+## `_buildNestedQuotes` — function, line 997
 - **called from:**
-- `static/js/markdown.js:1383`
-- `static/js/markdown.js:1438`
+- `static/js/markdown.js:997`
+- `static/js/markdown.js:1497`
 
-## `_hashThinkingContent` — function, line 1391
+## `svgThemeCss` — function, line 1034
 - **called from:**
-- `static/js/markdown.js:1391`
-- `static/js/markdown.js:1433`
-- `static/js/markdown.js:1458`
+- `static/js/markdown.js:1034`
+- `static/js/markdown.js:1107`
 
-## `_setThinkingExpanded` — function, line 1401
+## `safeColor` — arrow, line 1059
+- **called from:**
+- `static/js/markdown.js:1069`
+
+## `renderSvgSandbox` — function, line 1073
+- **called from:**
+- `static/js/markdown.js:1073`
+- `static/js/markdown.js:1194`
+- `static/js/markdown.js:1269`
+
+## `decodeSvgTitleEntities` — arrow, line 1082
+- **called from:**
+- `static/js/markdown.js:1103`
+
+## `replaceRawSvgBlocks` — function, line 1111
+- **called from:**
+- `static/js/markdown.js:1111`
+- `static/js/markdown.js:1267`
+
+## `isTagBoundary` — arrow, line 1117
+- **called from:**
+- `static/js/markdown.js:1120`
+- `static/js/markdown.js:1133`
+- `static/js/markdown.js:1144`
+
+## `mdToHtml` — function, line 1167
+- **called from:**
+- `static/js/chat.js:1626`
+- `static/js/chat.js:4228`
+- `static/js/chat.js:4466`
+- `static/js/chat.js:4524`
+- `static/js/chat.js:6199`
+- `static/js/chat.js:6242`
+- `static/js/chat.js:7388`
+- `static/js/document.js:3605`
+- `static/js/document.js:3628`
+- `static/js/document.js:15395`
+- `static/js/document.js:15484`
+- `static/js/document.js:16170`
+- `static/js/documentLibrary.js:2217`
+- `static/js/documentLibrary.js:3030`
+- `static/js/markdown.js:115`
+- `static/js/markdown.js:773`
+- `static/js/markdown.js:880`
+- `static/js/markdown.js:902`
+- `static/js/markdown.js:1167`
+- `static/js/markdown.js:1619`
+- `static/js/markdown.js:1620`
+- `static/js/markdown.js:1745`
+- `static/js/tasks.js:2569`
+
+## `pushMath` — arrow, line 1384
 - **called from:**
 - `static/js/markdown.js:1401`
-- `static/js/markdown.js:1430`
-- `static/js/markdown.js:1463`
+- `static/js/markdown.js:1406`
+- `static/js/markdown.js:1413`
+- `static/js/markdown.js:1422`
 
-## `_watchThinking` — function, line 1443
+## `squashOutsideCode` — function, line 1564
 - **called from:**
-- `static/js/markdown.js:1443`
-
-## `_apply` — arrow, line 1446
-- **called from:**
-- `static/js/markdown.js:1469`
-- `static/js/markdown.js:1473`
-- `static/js/theme.js:719`
-
-## `start` — arrow, line 1466
-- **called from:**
-- `app.py:1218`
-- `launcher.py:73`
-- `launcher.py:145`
-- `launcher.py:147`
-- `routes/chat_helpers.py:1149`
-- `routes/chat_helpers.py:1150`
-- `routes/chat_helpers.py:1151`
-- `routes/chat_routes.py:3068`
-- `routes/cookbook_routes.py:3678`
-- `routes/email_helpers.py:273`
-- `routes/email_routes.py:1003`
-- `routes/model_routes.py:1537`
-- `routes/skills_routes.py:849`
-- `scripts/add_hwfit_models.py:64`
-- `services/hwfit/hf_discovery.py:115`
-- `services/search/content.py:720`
-- `services/search/content.py:720`
-- `src/agent_tools/document_tools.py:205`
-- `src/agent_tools/filesystem_tools.py:864`
-- `src/agent_tools/filesystem_tools.py:865`
-- `src/agent_tools/filesystem_tools.py:954`
-- `src/llm_core.py:346`
-- `src/pdf_form_doc.py:86`
-- `src/text_helpers.py:110`
-- `src/text_helpers.py:111`
-- `src/tool_parsing.py:595`
-- `src/tool_parsing.py:762`
-- `src/tool_parsing.py:785`
-- `src/tool_parsing.py:1211`
-- `src/tool_parsing.py:1211`
-- `src/tool_parsing.py:1245`
-- `src/tool_parsing.py:1272`
-- `src/tool_parsing.py:1344`
-- `src/visual_report.py:1706`
-- `src/visual_report.py:1709`
-- `tests/markdown_browser_check.py:32`
-- `tests/markdown_screenshot.py:57`
-- `tests/test_agent_thread_dot_alignment_css.py:35`
-- `tests/test_app_config_shared_fetch_js.py:210`
-- `tests/test_app_config_shared_fetch_js.py:210`
-- `tests/test_app_config_shared_fetch_js.py:212`
-- `tests/test_atomic_io.py:114`
-- `tests/test_atomic_io.py:115`
-- `tests/test_auth_config_lock_concurrency.py:185`
-- `tests/test_auth_config_lock_concurrency.py:234`
-- `tests/test_auth_config_lock_concurrency.py:235`
-- `tests/test_caldav_redirect_hardening.py:65`
-- `tests/test_caldav_redirect_hardening.py:66`
-- `tests/test_calendar_default_transaction.py:287`
-- `tests/test_calendar_default_transaction.py:288`
-- `tests/test_compare_stop_disconnect_poll.py:105`
-- `tests/test_compare_stop_disconnect_poll.py:135`
-- `tests/test_compare_stop_disconnect_poll.py:167`
-- `tests/test_compare_stop_disconnect_poll.py:180`
-- `tests/test_compare_stop_disconnect_poll.py:186`
-- `tests/test_compare_stop_disconnect_poll.py:200`
-- `tests/test_compare_stop_disconnect_poll.py:206`
-- `tests/test_compare_stop_disconnect_poll.py:227`
-- `tests/test_compare_stop_disconnect_poll.py:229`
-- `tests/test_compare_stop_disconnect_poll.py:262`
-- … +98 more (grep the name in repo)
-
-## `_endpointNameFromUrl` — function, line 1485
-- **called from:**
-- `static/js/markdown.js:1485`
-- `static/js/markdown.js:1535`
-- `static/js/markdown.js:1543`
+- `static/js/chat.js:1600`
+- `static/js/chat.js:1626`
+- `static/js/chat.js:2589`
+- `static/js/chat.js:3704`
+- `static/js/chat.js:4378`
+- `static/js/chat.js:4466`
+- `static/js/chat.js:4524`
+- `static/js/chat.js:4572`
+- `static/js/chat.js:6199`
+- `static/js/chat.js:6242`
+- `static/js/chat.js:6262`
+- `static/js/chat.js:6415`
+- `static/js/chat.js:7385`
+- `static/js/chat.js:8773`
+- `static/js/chat.js:8928`
+- `static/js/chat.js:9135`
+- `static/js/chat.js:9247`
+- `static/js/chat.js:9283`
+- `static/js/chatRenderer.js:3380`
+- `static/js/chatRenderer.js:3583`
+- `static/js/chatRenderer.js:3762`
+- `static/js/compare/stream.js:325`
+- `static/js/compare/stream.js:415`
+- `static/js/compare/stream.js:560`
+- `static/js/compare/stream.js:699`
+- `static/js/compare/stream.js:865`
+- `static/js/group.js:887`
+- `static/js/group.js:903`
+- `static/js/group.js:952`
 - `static/js/markdown.js:1564`
+- `static/js/slashCommands.js:453`
+- `static/js/tasks.js:2819`
 
-## `_appendEndpointAddButtons` — function, line 1494
+## `renderContent` — function, line 1585
 - **called from:**
-- `static/js/markdown.js:1494`
-- `static/js/markdown.js:1587`
-- `static/js/markdown.js:1591`
+- `static/js/chatRenderer.js:3223`
+- `static/js/chatRenderer.js:3226`
+- `static/js/markdown.js:1585`
+- `static/js/research/panel.js:1643`
 
-## `_registerEndpointFromButton` — function, line 1516
+## `renderMermaid` — function, line 1601
 - **called from:**
-- `static/js/markdown.js:1516`
-- `static/js/markdown.js:1581`
+- `static/js/chat.js:6316`
+- `static/js/chatRenderer.js:3481`
+- `static/js/chatRenderer.js:3866`
+- `static/js/document.js:16178`
+- `static/js/group.js:955`
+- `static/js/markdown.js:1601`
+- `static/js/slashCommands.js:454`
 
-## `_watchModelEndpointLinks` — function, line 1572
+## `renderMath` — function, line 1622
 - **called from:**
-- `static/js/markdown.js:1572`
+- `static/js/document.js:15513`
+- `static/js/markdown.js:22`
+- `static/js/markdown.js:129`
+- `static/js/markdown.js:1381`
+- `static/js/markdown.js:1622`
 
-## `start` — arrow, line 1584
+## `_loadExpandedSet` — function, line 1675
 - **called from:**
-- `app.py:1218`
+- `static/js/markdown.js:1675`
+- `static/js/markdown.js:1772`
+- `static/js/markdown.js:1789`
+
+## `_saveExpandedSet` — function, line 1679
+- **called from:**
+- `static/js/markdown.js:1679`
+- `static/js/markdown.js:1775`
+
+## `_hashThinkingContent` — function, line 1687
+- **called from:**
+- `static/js/markdown.js:1687`
+- `static/js/markdown.js:1770`
+- `static/js/markdown.js:1795`
+
+## `_setThinkingExpanded` — function, line 1697
+- **called from:**
+- `static/js/markdown.js:1697`
+- `static/js/markdown.js:1767`
+- `static/js/markdown.js:1800`
+
+## `_watchThinking` — function, line 1780
+- **called from:**
+- `static/js/markdown.js:1780`
+
+## `_apply` — arrow, line 1783
+- **called from:**
+- `static/js/markdown.js:1806`
+- `static/js/markdown.js:1810`
+- `static/js/theme.js:775`
+
+## `start` — arrow, line 1803
+- **called from:**
+- `app.py:1410`
 - `launcher.py:73`
 - `launcher.py:145`
 - `launcher.py:147`
-- `routes/chat_helpers.py:1149`
-- `routes/chat_helpers.py:1150`
-- `routes/chat_helpers.py:1151`
-- `routes/chat_routes.py:3068`
-- `routes/cookbook_routes.py:3678`
-- `routes/email_helpers.py:273`
-- `routes/email_routes.py:1003`
-- `routes/model_routes.py:1537`
-- `routes/skills_routes.py:849`
-- `scripts/add_hwfit_models.py:64`
+- `mcp_servers/email_server.py:2023`
+- `routes/auth_routes.py:895`
+- `routes/chat_helpers.py:94`
+- `routes/chat_helpers.py:94`
+- `routes/chat_helpers.py:1714`
+- `routes/chat_helpers.py:1777`
+- `routes/chat_helpers.py:1778`
+- `routes/chat_helpers.py:1779`
+- `routes/chat_routes.py:5522`
+- `routes/cookbook_routes.py:3584`
+- `routes/email/email_helpers.py:399`
+- `routes/email/email_routes.py:1130`
+- `routes/email/email_routes.py:1596`
+- `routes/email/email_routes.py:1898`
+- `routes/model_routes.py:1666`
+- `scripts/add_hwfit_models.py:117`
+- `scripts/css_snapshot.py:211`
 - `services/hwfit/hf_discovery.py:115`
-- `services/search/content.py:720`
-- `services/search/content.py:720`
-- `src/agent_tools/document_tools.py:205`
-- `src/agent_tools/filesystem_tools.py:864`
-- `src/agent_tools/filesystem_tools.py:865`
-- `src/agent_tools/filesystem_tools.py:954`
-- `src/llm_core.py:346`
-- `src/pdf_form_doc.py:86`
-- `src/text_helpers.py:110`
-- `src/text_helpers.py:111`
-- `src/tool_parsing.py:595`
-- `src/tool_parsing.py:762`
-- `src/tool_parsing.py:785`
-- `src/tool_parsing.py:1211`
-- `src/tool_parsing.py:1211`
-- `src/tool_parsing.py:1245`
-- `src/tool_parsing.py:1272`
-- `src/tool_parsing.py:1344`
-- `src/visual_report.py:1706`
-- `src/visual_report.py:1709`
-- `tests/markdown_browser_check.py:32`
-- `tests/markdown_screenshot.py:57`
-- `tests/test_agent_thread_dot_alignment_css.py:35`
-- `tests/test_app_config_shared_fetch_js.py:210`
-- `tests/test_app_config_shared_fetch_js.py:210`
-- `tests/test_app_config_shared_fetch_js.py:212`
-- `tests/test_atomic_io.py:114`
-- `tests/test_atomic_io.py:115`
-- `tests/test_auth_config_lock_concurrency.py:185`
-- `tests/test_auth_config_lock_concurrency.py:234`
-- `tests/test_auth_config_lock_concurrency.py:235`
-- `tests/test_caldav_redirect_hardening.py:65`
-- `tests/test_caldav_redirect_hardening.py:66`
-- `tests/test_calendar_default_transaction.py:287`
-- `tests/test_calendar_default_transaction.py:288`
-- `tests/test_compare_stop_disconnect_poll.py:105`
-- `tests/test_compare_stop_disconnect_poll.py:135`
-- `tests/test_compare_stop_disconnect_poll.py:167`
-- `tests/test_compare_stop_disconnect_poll.py:180`
-- `tests/test_compare_stop_disconnect_poll.py:186`
-- `tests/test_compare_stop_disconnect_poll.py:200`
-- `tests/test_compare_stop_disconnect_poll.py:206`
-- `tests/test_compare_stop_disconnect_poll.py:227`
-- `tests/test_compare_stop_disconnect_poll.py:229`
-- `tests/test_compare_stop_disconnect_poll.py:262`
-- … +98 more (grep the name in repo)
+- `services/search/core.py:411`
+- `services/search/core.py:800`
+- `services/skills/evaluation.py:463`
+- `src/agent_evidence.py:225`
+- `src/agent_evidence.py:225`
+- `src/agent_evidence.py:245`
+- `src/agent_evidence.py:308`
+- `src/agent_loop.py:1143`
+- `src/agent_loop.py:2639`
+- `src/agent_loop.py:2644`
+- `src/agent_loop.py:2652`
+- `src/agent_loop.py:2653`
+- `src/agent_loop.py:3180`
+- `src/agent_loop.py:9123`
+- `src/agent_loop.py:9123`
+- `src/agent_loop.py:9169`
+- `src/agent_loop.py:12041`
+- `src/agent_loop.py:12044`
+- `src/agent_loop.py:14160`
+- `src/agent_loop.py:14164`
+- `src/agent_runtime/completion.py:90`
+- `src/agent_runtime/completion.py:93`
+- `src/agent_runtime/completion.py:93`
+- `src/agent_runtime/completion.py:93`
+- `src/agent_runtime/completion.py:94`
+- `src/agent_tools/document_tools.py:240`
+- `src/agent_tools/document_tools.py:384`
+- `src/agent_tools/document_tools.py:431`
+- `src/agent_tools/document_tools.py:729`
+- `src/agent_tools/document_tools.py:734`
+- `src/agent_tools/document_tools.py:898`
+- `src/agent_tools/filesystem_tools.py:1153`
+- `src/agent_tools/filesystem_tools.py:1154`
+- `src/agent_tools/filesystem_tools.py:1266`
+- `src/agent_tools/web_tools.py:954`
+- `src/agent_tools/web_tools.py:975`
+- `src/agent_tools/web_tools.py:978`
+- `src/agent_tools/web_tools_prewave3.py:958`
+- … +213 more (grep the name in repo)
+
+## `_endpointNameFromUrl` — function, line 1822
+- **called from:**
+- `static/js/markdown.js:1822`
+- `static/js/markdown.js:1872`
+- `static/js/markdown.js:1880`
+- `static/js/markdown.js:1901`
+
+## `_appendEndpointAddButtons` — function, line 1831
+- **called from:**
+- `static/js/markdown.js:1831`
+- `static/js/markdown.js:1924`
+- `static/js/markdown.js:1928`
+
+## `_registerEndpointFromButton` — function, line 1853
+- **called from:**
+- `static/js/markdown.js:1853`
+- `static/js/markdown.js:1918`
+
+## `_watchModelEndpointLinks` — function, line 1909
+- **called from:**
+- `static/js/markdown.js:1909`
+
+## `start` — arrow, line 1921
+- **called from:**
+- `app.py:1410`
+- `launcher.py:73`
+- `launcher.py:145`
+- `launcher.py:147`
+- `mcp_servers/email_server.py:2023`
+- `routes/auth_routes.py:895`
+- `routes/chat_helpers.py:94`
+- `routes/chat_helpers.py:94`
+- `routes/chat_helpers.py:1714`
+- `routes/chat_helpers.py:1777`
+- `routes/chat_helpers.py:1778`
+- `routes/chat_helpers.py:1779`
+- `routes/chat_routes.py:5522`
+- `routes/cookbook_routes.py:3584`
+- `routes/email/email_helpers.py:399`
+- `routes/email/email_routes.py:1130`
+- `routes/email/email_routes.py:1596`
+- `routes/email/email_routes.py:1898`
+- `routes/model_routes.py:1666`
+- `scripts/add_hwfit_models.py:117`
+- `scripts/css_snapshot.py:211`
+- `services/hwfit/hf_discovery.py:115`
+- `services/search/core.py:411`
+- `services/search/core.py:800`
+- `services/skills/evaluation.py:463`
+- `src/agent_evidence.py:225`
+- `src/agent_evidence.py:225`
+- `src/agent_evidence.py:245`
+- `src/agent_evidence.py:308`
+- `src/agent_loop.py:1143`
+- `src/agent_loop.py:2639`
+- `src/agent_loop.py:2644`
+- `src/agent_loop.py:2652`
+- `src/agent_loop.py:2653`
+- `src/agent_loop.py:3180`
+- `src/agent_loop.py:9123`
+- `src/agent_loop.py:9123`
+- `src/agent_loop.py:9169`
+- `src/agent_loop.py:12041`
+- `src/agent_loop.py:12044`
+- `src/agent_loop.py:14160`
+- `src/agent_loop.py:14164`
+- `src/agent_runtime/completion.py:90`
+- `src/agent_runtime/completion.py:93`
+- `src/agent_runtime/completion.py:93`
+- `src/agent_runtime/completion.py:93`
+- `src/agent_runtime/completion.py:94`
+- `src/agent_tools/document_tools.py:240`
+- `src/agent_tools/document_tools.py:384`
+- `src/agent_tools/document_tools.py:431`
+- `src/agent_tools/document_tools.py:729`
+- `src/agent_tools/document_tools.py:734`
+- `src/agent_tools/document_tools.py:898`
+- `src/agent_tools/filesystem_tools.py:1153`
+- `src/agent_tools/filesystem_tools.py:1154`
+- `src/agent_tools/filesystem_tools.py:1266`
+- `src/agent_tools/web_tools.py:954`
+- `src/agent_tools/web_tools.py:975`
+- `src/agent_tools/web_tools.py:978`
+- `src/agent_tools/web_tools_prewave3.py:958`
+- … +213 more (grep the name in repo)

@@ -1,271 +1,286 @@
 # `static/js/ui.js` — definitions & call sites
 
-50 definitions (regex-based, best-effort).
-**Exports:** `autoResize`, `copyToClipboard`, `debounce`, `default`, `el`, `emptyStateIcon`, `esc`, `getAutoScroll`, `isTouchInsideModal`, `scrollHistory`, `scrollHistoryInstant`, `setAutoScroll`, `showError`, `showToast`, `styledConfirm`, `styledPrompt`
+57 definitions (regex-based, best-effort).
+**Exports:** `autoResize`, `captureHistoryScroll`, `copyToClipboard`, `debounce`, `default`, `el`, `emptyStateIcon`, `esc`, `getAutoScroll`, `isAutoScrolling`, `isTouchInsideModal`, `restoreHistoryScroll`, `scrollHistory`, `scrollHistoryInstant`, `setAutoScroll`, `showError`, `showToast`, `styledConfirm`, `styledPrompt`
 
-## `_isTextEditingTarget` — function, line 25
+## `_isTextEditingTarget` — function, line 28
 - **called from:**
-- `static/js/ui.js:25`
+- `static/js/ui.js:28`
+- `static/js/ui.js:216`
+
+## `_targetEl` — function, line 33
+- **called from:**
+- `static/js/ui.js:33`
+- `static/js/ui.js:212`
+
+## `_editorPanelVisible` — function, line 37
+- **called from:**
+- `static/js/ui.js:37`
+- `static/js/ui.js:67`
+
+## `_positionToastForOpenPanel` — function, line 49
+- **called from:**
+- `static/js/ui.js:49`
+- `static/js/ui.js:494`
+- `static/js/ui.js:531`
+
+## `_visibleModalForSpace` — function, line 131
+- **called from:**
+- `static/js/ui.js:131`
 - `static/js/ui.js:145`
+- `static/js/ui.js:201`
 
-## `_targetEl` — function, line 30
+## `_isSpaceVisible` — function, line 137
 - **called from:**
-- `static/js/ui.js:30`
+- `static/js/ui.js:137`
+- `static/js/ui.js:267`
+
+## `_spaceWindowId` — function, line 143
+- **called from:**
 - `static/js/ui.js:143`
+- `static/js/ui.js:196`
+- `static/js/ui.js:282`
 
-## `_visibleModalForSpace` — function, line 62
+## `_windowAtPointer` — function, line 151
 - **called from:**
-- `static/js/ui.js:62`
-- `static/js/ui.js:76`
-- `static/js/ui.js:132`
+- `static/js/ui.js:151`
+- `static/js/ui.js:179`
 
-## `_isSpaceVisible` — function, line 68
+## `_containsPointer` — function, line 171
 - **called from:**
-- `static/js/ui.js:68`
-- `static/js/ui.js:192`
+- `static/js/ui.js:171`
 
-## `_spaceWindowId` — function, line 74
+## `_closeHoveredWindow` — function, line 178
 - **called from:**
-- `static/js/ui.js:74`
-- `static/js/ui.js:127`
-- `static/js/ui.js:207`
+- `static/js/ui.js:178`
+- `static/js/ui.js:1555`
 
-## `_windowAtPointer` — function, line 82
+## `_spaceIsBlocked` — function, line 211
 - **called from:**
-- `static/js/ui.js:82`
-- `static/js/ui.js:110`
+- `static/js/ui.js:211`
+- `static/js/ui.js:268`
+- `static/js/ui.js:274`
+- `static/js/ui.js:284`
 
-## `_containsPointer` — function, line 102
+## `_activateSpaceCard` — function, line 221
 - **called from:**
-- `static/js/ui.js:102`
+- `static/js/ui.js:221`
+- `static/js/ui.js:270`
 
-## `_closeHoveredWindow` — function, line 109
+## `_initHoverCardSpaceToggle` — function, line 238
 - **called from:**
-- `static/js/ui.js:109`
-- `static/js/ui.js:1287`
+- `static/js/ui.js:238`
+- `static/js/ui.js:290`
 
-## `_spaceIsBlocked` — function, line 142
+## `copyToClipboard` — function, line 295
 - **called from:**
-- `static/js/ui.js:142`
-- `static/js/ui.js:193`
-- `static/js/ui.js:199`
-- `static/js/ui.js:209`
-
-## `_activateSpaceCard` — function, line 150
-- **called from:**
-- `static/js/ui.js:150`
-- `static/js/ui.js:195`
-
-## `_initHoverCardSpaceToggle` — function, line 167
-- **called from:**
-- `static/js/ui.js:167`
-- `static/js/ui.js:215`
-
-## `copyToClipboard` — function, line 220
-- **called from:**
-- `static/app.js:495`
-- `static/js/admin.js:593`
-- `static/js/chat.js:6245`
-- `static/js/chatRenderer.js:1482`
-- `static/js/chatRenderer.js:1746`
-- `static/js/chatRenderer.js:1954`
-- `static/js/document.js:9143`
-- `static/js/documentLibrary.js:151`
-- `static/js/skills.js:1411`
+- `static/app.js:558`
+- `static/js/admin.js:1277`
+- `static/js/chat.js:7943`
+- `static/js/chatRenderer.js:2060`
+- `static/js/chatRenderer.js:2325`
+- `static/js/chatRenderer.js:2539`
+- `static/js/document.js:14577`
+- `static/js/documentLibrary.js:257`
+- `static/js/gallery.js:1776`
+- `static/js/skills.js:956`
+- `static/js/skills.js:1691`
 - `static/js/slashCommands.js:407`
 - `static/js/slashCommands.js:539`
-- `static/js/tasks.js:2423`
-- `static/js/tasks.js:2507`
-- `static/js/ui.js:220`
+- `static/js/tasks.js:2541`
+- `static/js/tasks.js:2643`
+- `static/js/ui.js:295`
 
-## `_wireToastSwipe` — function, line 243
+## `_wireToastSwipe` — function, line 318
 - **called from:**
-- `static/js/ui.js:243`
-- `static/js/ui.js:304`
-- `static/js/ui.js:417`
+- `static/js/ui.js:318`
+- `static/js/ui.js:385`
+- `static/js/ui.js:524`
 
-## `endSwipe` — arrow, line 270
+## `endSwipe` — arrow, line 345
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `showToast` — function, line 300
+## `showToast` — function, line 376
 - **called from:**
-- `static/app.js:494`
 - `static/app.js:557`
-- `static/app.js:619`
-- `static/app.js:1396`
-- `static/app.js:1400`
-- `static/app.js:1447`
-- `static/app.js:1462`
-- `static/app.js:1466`
-- `static/app.js:1497`
-- `static/app.js:1598`
-- `static/app.js:1658`
-- `static/app.js:1765`
-- `static/app.js:1800`
-- `static/app.js:2570`
-- `static/app.js:2791`
-- `static/app.js:2812`
-- `static/app.js:3423`
-- `static/app.js:4203`
-- `static/app.js:4227`
-- `static/app.js:4300`
-- `static/js/admin.js:691`
-- `static/js/admin.js:1476`
-- `static/js/admin.js:1509`
-- `static/js/admin.js:1526`
-- `static/js/admin.js:1551`
+- `static/app.js:652`
+- `static/app.js:1437`
+- `static/app.js:1441`
+- `static/app.js:1488`
+- `static/app.js:1503`
+- `static/app.js:1507`
+- `static/app.js:1538`
+- `static/app.js:1639`
+- `static/app.js:1699`
+- `static/app.js:1821`
+- `static/app.js:1856`
+- `static/app.js:2626`
+- `static/app.js:2867`
+- `static/app.js:2888`
+- `static/app.js:3523`
+- `static/app.js:4319`
+- `static/app.js:4343`
+- `static/app.js:4416`
+- `static/js/admin.js:208`
+- `static/js/admin.js:615`
+- `static/js/admin.js:946`
+- `static/js/admin.js:1397`
+- `static/js/admin.js:2345`
+- `static/js/admin.js:2378`
+- `static/js/admin.js:2395`
+- `static/js/admin.js:2420`
+- `static/js/admin.js:4040`
 - `static/js/assistant.js:27`
 - `static/js/assistant.js:35`
 - `static/js/assistant.js:72`
 - `static/js/assistant.js:75`
 - `static/js/assistant.js:362`
 - `static/js/assistant.js:366`
-- `static/js/calendar.js:88`
-- `static/js/calendar.js:497`
-- `static/js/calendar.js:606`
-- `static/js/calendar.js:2234`
-- `static/js/calendar.js:2657`
-- `static/js/calendar.js:3135`
-- `static/js/calendar.js:3171`
-- `static/js/calendar.js:3206`
+- `static/js/calendar.js:93`
+- `static/js/calendar.js:586`
+- `static/js/calendar.js:695`
+- `static/js/calendar.js:2809`
+- `static/js/calendar.js:3267`
+- `static/js/calendar.js:3807`
+- `static/js/calendar.js:3843`
+- `static/js/calendar.js:3881`
 - `static/js/calendar/reminders.js:94`
-- `static/js/chat.js:269`
-- `static/js/chat.js:275`
-- `static/js/chat.js:1418`
-- `static/js/chat.js:1435`
-- `static/js/chat.js:3674`
-- `static/js/chat.js:3711`
-- `static/js/chat.js:3857`
-- `static/js/chat.js:3865`
-- `static/js/chat.js:5838`
-- `static/js/chat.js:6563`
-- `static/js/chat.js:7023`
-- `static/js/chat.js:7407`
-- `static/js/chat.js:7423`
-- `static/js/chat.js:7534`
-- `static/js/chatRenderer.js:346`
-- `static/js/chatRenderer.js:371`
-- `static/js/chatRenderer.js:1536`
-- `static/js/chatRenderer.js:1541`
-- `static/js/chatStream.js:231`
-- `static/js/codeRunner.js:69`
-- … +420 more (grep the name in repo)
+- `static/js/chat.js:882`
+- `static/js/chat.js:944`
+- `static/js/chat.js:1022`
+- `static/js/chat.js:1044`
+- `static/js/chat.js:1060`
+- `static/js/chat.js:1083`
+- `static/js/chat.js:1096`
+- `static/js/chat.js:1118`
+- `static/js/chat.js:1150`
+- `static/js/chat.js:1156`
+- `static/js/chat.js:2284`
+- `static/js/chat.js:2437`
+- `static/js/chat.js:2455`
+- `static/js/chat.js:5218`
+- `static/js/chat.js:5255`
+- `static/js/chat.js:5401`
+- `static/js/chat.js:5409`
+- … +508 more (grep the name in repo)
 
-## `showError` — function, line 413
+## `showError` — function, line 515
 - **called from:**
-- `static/app.js:508`
-- `static/app.js:560`
-- `static/app.js:1267`
-- `static/app.js:1469`
-- `static/app.js:1585`
-- `static/app.js:1603`
-- `static/app.js:1645`
-- `static/app.js:1674`
-- `static/app.js:3425`
-- `static/app.js:3428`
-- `static/js/admin.js:149`
-- `static/js/admin.js:178`
-- `static/js/admin.js:187`
-- `static/js/admin.js:201`
-- `static/js/admin.js:226`
+- `static/app.js:574`
+- `static/app.js:1309`
+- `static/app.js:1510`
+- `static/app.js:1626`
+- `static/app.js:1644`
+- `static/app.js:1686`
+- `static/app.js:1715`
+- `static/app.js:3525`
+- `static/app.js:3528`
+- `static/js/admin.js:183`
+- `static/js/admin.js:198`
+- `static/js/admin.js:207`
+- `static/js/admin.js:209`
 - `static/js/admin.js:235`
-- `static/js/calendar.js:270`
-- `static/js/calendar.js:299`
-- `static/js/calendar.js:355`
-- `static/js/calendar.js:612`
-- `static/js/calendar.js:2042`
-- `static/js/calendar.js:2075`
-- `static/js/calendar.js:2640`
-- `static/js/chat.js:281`
-- `static/js/chat.js:1391`
-- `static/js/chat.js:1445`
-- `static/js/chat.js:2060`
-- `static/js/chat.js:2175`
-- `static/js/chat.js:2193`
-- `static/js/chat.js:6528`
-- `static/js/chat.js:6532`
-- `static/js/chat.js:6539`
-- `static/js/chat.js:6566`
-- `static/js/chat.js:6626`
-- `static/js/chat.js:6655`
+- `static/js/admin.js:244`
+- `static/js/admin.js:258`
+- `static/js/admin.js:283`
+- `static/js/admin.js:292`
+- `static/js/admin.js:1240`
+- `static/js/admin.js:1258`
+- `static/js/calendar.js:279`
+- `static/js/calendar.js:313`
+- `static/js/calendar.js:365`
+- `static/js/calendar.js:701`
+- `static/js/calendar.js:2603`
+- `static/js/calendar.js:2636`
+- `static/js/calendar.js:3250`
+- `static/js/chat.js:252`
+- `static/js/chat.js:947`
+- `static/js/chat.js:1050`
+- `static/js/chat.js:1086`
+- `static/js/chat.js:1121`
+- `static/js/chat.js:1143`
+- `static/js/chat.js:1162`
+- `static/js/chat.js:2409`
+- `static/js/chat.js:2465`
+- `static/js/chat.js:3118`
+- `static/js/chat.js:8184`
+- `static/js/chat.js:8202`
+- `static/js/chat.js:8234`
+- `static/js/chat.js:8338`
+- `static/js/chat.js:8351`
+- `static/js/chat.js:8397`
+- `static/js/chat.js:8427`
+- `static/js/chat.js:8440`
+- `static/js/chat.js:8483`
+- `static/js/chat.js:8495`
+- `static/js/chat.js:8508`
+- `static/js/chat.js:8562`
+- `static/js/chat.js:8721`
+- `static/js/chat.js:9065`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9151`
+- `static/js/chat.js:9170`
+- `static/js/chat.js:9312`
+- `static/js/chat.js:9417`
+- `static/js/chatRenderer.js:749`
+- `static/js/chatRenderer.js:774`
+- `static/js/chatRenderer.js:1740`
+- `static/js/chatRenderer.js:3871`
+- … +245 more (grep the name in repo)
+
+## `_bindScrollIntent` — function, line 585
+- **called from:**
+- `static/js/ui.js:585`
+- `static/js/ui.js:604`
+
+## `scrollHistory` — function, line 599
+- **called from:**
+- `static/app.js:343`
+- `static/app.js:2004`
+- `static/js/chat.js:1603`
+- `static/js/chat.js:1628`
+- `static/js/chat.js:2007`
+- `static/js/chat.js:2365`
+- `static/js/chat.js:2641`
+- `static/js/chat.js:3545`
+- `static/js/chat.js:4065`
+- `static/js/chat.js:4170`
+- `static/js/chat.js:4461`
+- `static/js/chat.js:4471`
+- `static/js/chat.js:4531`
+- `static/js/chat.js:4555`
+- `static/js/chat.js:4567`
+- `static/js/chat.js:4577`
+- `static/js/chat.js:4823`
+- `static/js/chat.js:5314`
+- `static/js/chat.js:5624`
+- `static/js/chat.js:5676`
+- `static/js/chat.js:5748`
+- `static/js/chat.js:5832`
+- `static/js/chat.js:5985`
+- `static/js/chat.js:6035`
+- `static/js/chat.js:6045`
+- `static/js/chat.js:6056`
+- `static/js/chat.js:6067`
 - `static/js/chat.js:6668`
-- `static/js/chat.js:6702`
-- `static/js/chat.js:6732`
-- `static/js/chat.js:6745`
-- `static/js/chat.js:6786`
-- `static/js/chat.js:6799`
-- `static/js/chat.js:6825`
-- `static/js/chat.js:6857`
-- `static/js/chat.js:7026`
-- `static/js/chat.js:7401`
-- `static/js/chat.js:7426`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7537`
-- `static/js/chat.js:7556`
-- `static/js/chat.js:7698`
-- `static/js/chat.js:7803`
-- `static/js/chatRenderer.js:351`
-- `static/js/chatRenderer.js:376`
-- `static/js/chatRenderer.js:1272`
-- `static/js/chatRenderer.js:3131`
-- `static/js/compare/index.js:234`
-- `static/js/compare/index.js:877`
-- `static/js/compare/index.js:1007`
-- `static/js/compare/index.js:1434`
-- … +218 more (grep the name in repo)
-
-## `_bindScrollIntent` — function, line 465
-- **called from:**
-- `static/js/ui.js:465`
-- `static/js/ui.js:484`
-
-## `scrollHistory` — function, line 479
-- **called from:**
-- `static/app.js:1946`
-- `static/js/chat.js:723`
-- `static/js/chat.js:748`
-- `static/js/chat.js:1112`
-- `static/js/chat.js:1370`
-- `static/js/chat.js:1616`
-- `static/js/chat.js:2487`
-- `static/js/chat.js:2702`
-- `static/js/chat.js:2801`
-- `static/js/chat.js:3084`
-- `static/js/chat.js:3113`
-- `static/js/chat.js:3124`
-- `static/js/chat.js:3133`
-- `static/js/chat.js:3770`
-- `static/js/chat.js:4053`
-- `static/js/chat.js:4100`
-- `static/js/chat.js:4158`
-- `static/js/chat.js:4231`
-- `static/js/chat.js:4367`
-- `static/js/chat.js:4415`
-- `static/js/chat.js:4425`
-- `static/js/chat.js:4436`
-- `static/js/chat.js:4447`
-- `static/js/chat.js:4686`
-- `static/js/chat.js:5017`
-- `static/js/chat.js:5089`
-- `static/js/chat.js:5203`
-- `static/js/chat.js:5336`
-- `static/js/chat.js:5629`
-- `static/js/chat.js:5700`
-- `static/js/chat.js:5904`
-- `static/js/chat.js:5917`
-- `static/js/chat.js:5989`
-- `static/js/chat.js:7089`
-- `static/js/chat.js:7691`
-- `static/js/chatRenderer.js:2323`
-- `static/js/chatStream.js:294`
+- `static/js/chat.js:6744`
+- `static/js/chat.js:6874`
+- `static/js/chat.js:7007`
+- `static/js/chat.js:7313`
+- `static/js/chat.js:7392`
+- `static/js/chat.js:7435`
+- `static/js/chat.js:7628`
+- `static/js/chat.js:8782`
+- `static/js/chat.js:9305`
+- `static/js/chatRenderer.js:2939`
+- `static/js/chatStream.js:329`
 - `static/js/group.js:754`
 - `static/js/group.js:785`
-- `static/js/group.js:887`
-- `static/js/group.js:903`
-- `static/js/sessions.js:2843`
-- `static/js/sessions.js:3045`
+- `static/js/group.js:889`
+- `static/js/group.js:905`
+- `static/js/sessions.js:3264`
+- `static/js/sessions.js:3466`
 - `static/js/slashCommands.js:336`
 - `static/js/slashCommands.js:442`
 - `static/js/slashCommands.js:447`
@@ -274,541 +289,627 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/slashCommands.js:580`
 - `static/js/slashCommands.js:600`
 - `static/js/slashCommands.js:675`
-- `static/js/slashCommands.js:5266`
-- `static/js/slashCommands.js:5331`
-- `static/js/slashCommands.js:5352`
-- `static/js/slashCommands.js:5482`
-- `static/js/slashCommands.js:5660`
-- `static/js/slashCommands.js:5676`
-- `static/js/ui.js:479`
+- `static/js/slashCommands.js:5275`
+- `static/js/slashCommands.js:5340`
+- `static/js/slashCommands.js:5384`
+- `static/js/slashCommands.js:5514`
+- `static/js/slashCommands.js:5692`
+- `static/js/slashCommands.js:5708`
+- `static/js/ui.js:599`
+- … +1 more (grep the name in repo)
 
-## `_smoothScrollStep` — function, line 496
+## `captureHistoryScroll` — function, line 624
 - **called from:**
-- `static/js/ui.js:496`
+- `static/js/ui.js:624`
 
-## `scrollHistoryInstant` — function, line 525
+## `restoreHistoryScroll` — function, line 635
 - **called from:**
-- `static/js/chat.js:1956`
-- `static/js/sessions.js:2168`
-- `static/js/ui.js:525`
+- `static/js/ui.js:635`
 
-## `setAutoScroll` — function, line 537
+## `apply` — arrow, line 647
 - **called from:**
-- `static/app.js:333`
-- `static/app.js:343`
-- `static/app.js:349`
-- `static/js/chat.js:1955`
-- `static/js/ui.js:537`
+- `tests/test_review_calendar_invitation.py:52`
+- `tests/test_review_calendar_invitation.py:54`
+- `tests/test_review_calendar_invitation.py:60`
+- `tests/test_review_calendar_invitation.py:61`
+- `tests/test_review_calendar_invitation.py:70`
+- `tests/test_review_calendar_invitation.py:71`
+- `tests/test_review_calendar_invitation.py:78`
+- `tests/test_review_calendar_invitation.py:79`
+- `tests/test_review_calendar_invitation.py:81`
+- `tests/test_review_calendar_invitation.py:89`
+- `tests/test_review_calendar_invitation.py:109`
+- `tests/test_review_calendar_invitation.py:111`
+- `tests/test_review_calendar_invitation.py:173`
+- `tests/test_review_calendar_invitation.py:174`
+- `tests/test_review_calendar_invitation.py:176`
+- `tests/test_review_calendar_invitation.py:184`
+- `tests/test_review_calendar_invitation.py:185`
+- `tests/test_review_calendar_invitation.py:192`
+- `tests/test_review_calendar_invitation.py:201`
+- `tests/test_review_calendar_invitation.py:202`
+- `tests/test_review_calendar_invitation.py:209`
+- `tests/test_review_calendar_invitation.py:210`
+- `tests/test_review_calendar_invitation.py:211`
+- `static/app.js:207`
+- `static/js/admin.js:2634`
+- `static/js/admin.js:2638`
+- `static/js/calendar.js:1515`
+- `static/js/composerHistoryRecall.js:175`
+- `static/js/composerHistoryRecall.js:189`
+- `static/js/composerHistoryRecall.js:193`
+- `static/js/cookbookSchedule.js:22`
+- `static/js/document.js:1725`
+- `static/js/document.js:1734`
+- `static/js/document.js:10179`
+- `static/js/editor/fx/cube-lut.js:2`
+- `static/js/editor/panel-visibility.js:81`
+- `static/js/editor/panel-visibility.js:137`
+- `static/js/editor/panel-visibility.js:150`
+- `static/js/editor/panel-visibility.js:158`
+- `static/js/editor/tools/perspective-crop.js:87`
+- `static/js/editor/tools/perspective-crop.js:90`
+- `static/js/galleryEditor.js:6770`
+- `static/js/galleryEditor.js:10650`
+- `static/js/galleryEditor.js:10666`
+- `static/js/galleryEditor.js:11478`
+- `static/js/sessions.js:40`
+- `static/js/settings.js:130`
+- `static/js/settings.js:149`
+- `static/js/skills.js:69`
+- `static/js/theme.js:831`
+- `static/js/theme.js:836`
+- `static/js/ui.js:653`
+- `static/js/ui.js:656`
+- `static/js/ui.js:757`
 
-## `getAutoScroll` — function, line 544
+## `_smoothScrollStep` — function, line 661
 - **called from:**
-- `static/js/ui.js:544`
+- `static/js/ui.js:661`
 
-## `autoResize` — function, line 551
+## `scrollHistoryInstant` — function, line 690
 - **called from:**
-- `static/app.js:3438`
-- `static/app.js:3458`
-- `static/app.js:3462`
-- `static/js/chat.js:1387`
-- `static/js/chat.js:1451`
-- `static/js/chat.js:1674`
-- `static/js/chat.js:1702`
-- `static/js/chat.js:1801`
-- `static/js/chat.js:1812`
+- `static/js/chat.js:3009`
+- `static/js/sessions.js:2515`
+- `static/js/ui.js:690`
+
+## `setAutoScroll` — function, line 702
+- **called from:**
+- `static/app.js:350`
+- `static/app.js:360`
+- `static/app.js:366`
+- `static/js/chat.js:3008`
+- `static/js/ui.js:702`
+
+## `getAutoScroll` — function, line 709
+- **called from:**
+- `static/js/ui.js:709`
+
+## `isAutoScrolling` — function, line 714
+- **called from:**
+- `static/js/ui.js:714`
+
+## `autoResize` — function, line 721
+- **called from:**
+- `static/app.js:3538`
+- `static/app.js:3558`
+- `static/app.js:3562`
+- `static/js/chat.js:2405`
+- `static/js/chat.js:2471`
+- `static/js/chat.js:2699`
+- `static/js/chat.js:2725`
+- `static/js/chat.js:2826`
+- `static/js/chat.js:2837`
 - `static/js/composerArrowUpRecall.js:127`
 - `static/js/composerArrowUpRecall.js:140`
 - `static/js/composerArrowUpRecall.js:165`
 - `static/js/composerHistoryRecall.js:113`
-- `static/js/sessions.js:67`
-- `static/js/sessions.js:2021`
-- `static/js/ui.js:551`
+- `static/js/sessions.js:155`
+- `static/js/sessions.js:2368`
+- `static/js/ui.js:721`
 
-## `debounce` — function, line 582
+## `debounce` — function, line 752
 - **called from:**
-- `static/app.js:330`
-- `static/app.js:4120`
-- `static/js/ui.js:582`
+- `static/app.js:341`
+- `static/app.js:4234`
+- `static/js/ui.js:752`
 
-## `later` — arrow, line 585
+## `later` — arrow, line 755
 - **called from:**
+- `static/js/editor/control-kit.js:162`
 - `static/js/tourAutoplay.js:97`
 
-## `el` — function, line 597
+## `el` — function, line 767
 - **called from:**
-- `static/app.js:281`
-- `static/app.js:283`
-- `static/app.js:287`
-- `static/app.js:311`
-- `static/app.js:312`
-- `static/app.js:330`
-- `static/app.js:331`
-- `static/app.js:336`
+- `static/app.js:289`
+- `static/app.js:291`
+- `static/app.js:295`
+- `static/app.js:322`
+- `static/app.js:323`
 - `static/app.js:341`
-- `static/app.js:346`
-- `static/app.js:354`
-- `static/app.js:365`
-- `static/app.js:393`
-- `static/app.js:418`
-- `static/app.js:428`
+- `static/app.js:342`
+- `static/app.js:353`
+- `static/app.js:358`
+- `static/app.js:363`
+- `static/app.js:371`
+- `static/app.js:383`
+- `static/app.js:411`
+- `static/app.js:415`
+- `static/app.js:472`
+- `static/app.js:482`
 - `static/app.js:486`
-- `static/app.js:500`
-- `static/app.js:514`
-- `static/app.js:539`
-- `static/app.js:566`
-- `static/app.js:578`
-- `static/app.js:590`
-- `static/app.js:634`
-- `static/app.js:635`
-- `static/app.js:636`
-- `static/app.js:640`
-- `static/app.js:646`
-- `static/app.js:755`
-- `static/app.js:855`
-- `static/app.js:864`
-- `static/app.js:868`
-- `static/app.js:876`
-- `static/app.js:877`
-- `static/app.js:878`
-- `static/app.js:879`
-- `static/app.js:892`
-- `static/app.js:893`
-- `static/app.js:908`
+- `static/app.js:491`
+- `static/app.js:549`
+- `static/app.js:563`
+- `static/app.js:599`
+- `static/app.js:611`
+- `static/app.js:623`
+- `static/app.js:667`
+- `static/app.js:668`
+- `static/app.js:669`
+- `static/app.js:673`
+- `static/app.js:679`
+- `static/app.js:788`
+- `static/app.js:888`
+- `static/app.js:897`
+- `static/app.js:901`
 - `static/app.js:909`
 - `static/app.js:910`
-- `static/app.js:921`
+- `static/app.js:911`
+- `static/app.js:912`
+- `static/app.js:925`
 - `static/app.js:926`
-- `static/app.js:937`
-- `static/app.js:939`
-- `static/app.js:940`
-- `static/app.js:957`
-- `static/app.js:979`
-- `static/app.js:999`
-- `static/app.js:1009`
-- `static/app.js:1019`
-- `static/app.js:1027`
-- `static/app.js:1041`
-- `static/app.js:1056`
-- `static/app.js:1069`
-- `static/app.js:1072`
-- `static/app.js:1072`
-- `static/app.js:1085`
-- `static/app.js:1100`
-- `static/app.js:1248`
-- `static/app.js:1258`
-- … +888 more (grep the name in repo)
+- `static/app.js:941`
+- `static/app.js:942`
+- `static/app.js:943`
+- `static/app.js:954`
+- `static/app.js:959`
+- `static/app.js:970`
+- `static/app.js:972`
+- `static/app.js:973`
+- `static/app.js:990`
+- `static/app.js:1012`
+- `static/app.js:1032`
+- `static/app.js:1042`
+- `static/app.js:1052`
+- `static/app.js:1060`
+- `static/app.js:1074`
+- `static/app.js:1089`
+- `static/app.js:1102`
+- `static/app.js:1105`
+- `static/app.js:1105`
+- `static/app.js:1118`
+- `static/app.js:1133`
+- `static/app.js:1141`
+- … +1014 more (grep the name in repo)
 
-## `styledConfirm` — function, line 607
+## `styledConfirm` — function, line 777
 - **called from:**
-- `static/app.js:3411`
-- `static/js/admin.js:198`
-- `static/js/admin.js:215`
-- `static/js/admin.js:622`
-- `static/js/admin.js:1534`
-- `static/js/admin.js:2117`
-- `static/js/admin.js:2420`
-- `static/js/admin.js:2440`
-- `static/js/admin.js:2578`
-- `static/js/admin.js:2728`
-- `static/js/admin.js:2907`
-- `static/js/admin.js:2908`
-- `static/js/calendar.js:493`
-- `static/js/calendar.js:2680`
-- `static/js/chat.js:1825`
-- `static/js/chat.js:7323`
-- `static/js/chatRenderer.js:1607`
-- `static/js/cookbook-hwfit.js:2622`
-- `static/js/cookbook.js:2308`
-- `static/js/cookbookRunning.js:2254`
-- `static/js/cookbookRunning.js:2292`
-- `static/js/cookbookServe.js:2486`
-- `static/js/cookbookServe.js:2601`
-- `static/js/cookbookServe.js:2901`
-- `static/js/cookbookServe.js:3048`
-- `static/js/cookbookServe.js:3074`
-- `static/js/cookbookServe.js:3369`
-- `static/js/cookbookServe.js:3415`
-- `static/js/cookbookServe.js:3574`
-- `static/js/cookbookServe.js:3620`
-- `static/js/cookbookServe.js:3689`
-- `static/js/cookbookServe.js:3809`
-- `static/js/cookbookServe.js:3918`
-- `static/js/document.js:9811`
-- `static/js/documentLibrary.js:1188`
-- `static/js/documentLibrary.js:1216`
-- `static/js/documentLibrary.js:2100`
-- `static/js/documentLibrary.js:2108`
-- `static/js/documentLibrary.js:2184`
-- `static/js/documentLibrary.js:2290`
-- `static/js/documentLibrary.js:2450`
-- `static/js/documentLibrary.js:2539`
-- `static/js/documentLibrary.js:2585`
-- `static/js/documentLibrary.js:2623`
-- `static/js/documentLibrary.js:2712`
-- `static/js/documentLibrary.js:2807`
-- `static/js/documentLibrary.js:2869`
-- `static/js/documentLibrary.js:2878`
-- `static/js/documentLibrary.js:3030`
-- `static/js/documentLibrary.js:3184`
-- `static/js/documentLibrary.js:3313`
-- `static/js/editor/layer-panel.js:359`
-- `static/js/emailInbox.js:1265`
-- `static/js/emailLibrary.js:1188`
-- `static/js/emailLibrary.js:1545`
-- `static/js/emailLibrary.js:1671`
-- `static/js/emailLibrary.js:1736`
-- `static/js/emailLibrary.js:2832`
-- `static/js/emailLibrary.js:4882`
-- `static/js/emailLibrary.js:7867`
-- … +57 more (grep the name in repo)
+- `static/app.js:3415`
+- `static/app.js:3511`
+- `static/js/admin.js:255`
+- `static/js/admin.js:272`
+- `static/js/admin.js:588`
+- `static/js/admin.js:1306`
+- `static/js/admin.js:2403`
+- `static/js/admin.js:2986`
+- `static/js/admin.js:3294`
+- `static/js/admin.js:3314`
+- `static/js/admin.js:3452`
+- `static/js/admin.js:3602`
+- `static/js/admin.js:3781`
+- `static/js/admin.js:3782`
+- `static/js/calendar.js:582`
+- `static/js/calendar.js:3296`
+- `static/js/chat.js:2850`
+- `static/js/chat.js:8262`
+- `static/js/chat.js:8977`
+- `static/js/chatRenderer.js:2185`
+- `static/js/cookbook-hwfit.js:2734`
+- `static/js/cookbook.js:2396`
+- `static/js/cookbookRunning.js:2305`
+- `static/js/cookbookRunning.js:2348`
+- `static/js/cookbookServe.js:2558`
+- `static/js/cookbookServe.js:2673`
+- `static/js/cookbookServe.js:2986`
+- `static/js/cookbookServe.js:3134`
+- `static/js/cookbookServe.js:3160`
+- `static/js/cookbookServe.js:3473`
+- `static/js/cookbookServe.js:3519`
+- `static/js/cookbookServe.js:3678`
+- `static/js/cookbookServe.js:3724`
+- `static/js/cookbookServe.js:3793`
+- `static/js/cookbookServe.js:3913`
+- `static/js/cookbookServe.js:4023`
+- `static/js/document.js:16072`
+- `static/js/documentLibrary.js:1412`
+- `static/js/documentLibrary.js:1440`
+- `static/js/documentLibrary.js:2309`
+- `static/js/documentLibrary.js:2385`
+- `static/js/documentLibrary.js:2491`
+- `static/js/documentLibrary.js:2659`
+- `static/js/documentLibrary.js:2749`
+- `static/js/documentLibrary.js:2796`
+- `static/js/documentLibrary.js:2835`
+- `static/js/documentLibrary.js:2924`
+- `static/js/documentLibrary.js:3095`
+- `static/js/documentLibrary.js:3250`
+- `static/js/documentLibrary.js:3379`
+- `static/js/editor/layer-panel.js:593`
+- `static/js/emailInbox.js:1345`
+- `static/js/emailLibrary/index.js:998`
+- `static/js/emailLibrary/index.js:2769`
+- `static/js/emailLibrary/index.js:5243`
+- `static/js/emailLibrary/menus.js:272`
+- `static/js/emailLibrary/menus.js:514`
+- `static/js/emailLibrary/menus.js:694`
+- `static/js/emailLibrary/unsubscribe.js:685`
+- `static/js/emailLibrary/unsubscribe.js:693`
+- … +55 more (grep the name in repo)
 
-## `cleanup` — function, line 654
+## `btnLabel` — arrow, line 812
 - **called from:**
-- `static/js/calendar.js:2592`
-- `static/js/calendar.js:2629`
-- `static/js/calendar.js:2750`
-- `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
-- `static/js/codeRunner.js:262`
-- `static/js/codeRunner.js:283`
+- `static/js/ui.js:814`
+- `static/js/ui.js:820`
+
+## `cleanup` — function, line 832
+- **called from:**
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
-- `static/js/compare/selector.js:877`
-- `static/js/compare/selector.js:910`
-- `static/js/compare/selector.js:914`
-- `static/js/compare/selector.js:963`
-- `static/js/compare/selector.js:1257`
-- `static/js/compare/selector.js:1282`
-- `static/js/compare/selector.js:1295`
-- `static/js/cookbookServe.js:1029`
-- `static/js/cookbookServe.js:1040`
-- `static/js/cookbookServe.js:1041`
-- `static/js/cookbookServe.js:1050`
-- `static/js/cookbookServe.js:1052`
-- `static/js/cookbookServe.js:1057`
-- `static/js/document.js:3847`
-- `static/js/document.js:3848`
-- `static/js/document.js:3849`
-- `static/js/document.js:4393`
-- `static/js/document.js:4400`
-- `static/js/document.js:4442`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
 - `static/js/dragSort.js:26`
-- `static/js/editor/slider-ux.js:179`
-- `static/js/editor/slider-ux.js:188`
-- `static/js/gallery.js:1665`
-- `static/js/gallery.js:1674`
-- `static/js/gallery.js:1818`
-- `static/js/gallery.js:1830`
-- `static/js/gallery.js:1834`
-- `static/js/galleryEditor.js:1863`
-- `static/js/galleryEditor.js:1952`
-- `static/js/galleryEditor.js:1987`
-- `static/js/galleryEditor.js:2663`
-- `static/js/galleryEditor.js:2664`
-- `static/js/galleryEditor.js:2667`
-- `static/js/galleryEditor.js:2668`
-- `static/js/galleryEditor.js:2670`
-- `static/js/galleryEditor.js:3958`
-- `static/js/galleryEditor.js:3969`
-- `static/js/galleryEditor.js:3971`
-- `static/js/galleryEditor.js:3972`
-- `static/js/galleryEditor.js:3975`
-- `static/js/settings.js:1928`
-- `static/js/settings.js:1938`
-- `static/js/settings.js:1969`
-- `static/js/skills.js:1454`
-- `static/js/skills.js:1463`
-- `static/js/skills.js:1464`
-- … +21 more (grep the name in repo)
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
 
-## `onOk` — function, line 665
+## `onOk` — function, line 844
 - **called from:**
-- `static/js/galleryEditor.js:3966`
-- `static/js/galleryEditor.js:3974`
-- `static/js/skills.js:1463`
-- `static/js/ui.js:665`
-- `static/js/ui.js:764`
-- `static/js/ui.js:785`
+- `static/js/galleryEditor.js:13606`
+- `static/js/galleryEditor.js:13665`
+- `static/js/skills.js:1770`
+- `static/js/ui.js:844`
+- `static/js/ui.js:948`
+- `static/js/ui.js:969`
 
-## `onAlt` — function, line 666
+## `onAlt` — function, line 845
 - **called from:**
-- `static/js/ui.js:666`
+- `static/js/ui.js:845`
 
-## `onCancel` — function, line 667
+## `onCancel` — function, line 846
 - **called from:**
-- `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
-- `static/js/galleryEditor.js:3971`
-- `static/js/skills.js:1464`
-- `static/js/skills.js:1465`
-- `static/js/ui.js:667`
-- `static/js/ui.js:765`
+- `static/js/cookbookServe.js:1069`
+- `static/js/editor/direct-manipulation-session.js:70`
+- `static/js/galleryEditor.js:13624`
+- `static/js/skills.js:1771`
+- `static/js/skills.js:1772`
+- `static/js/ui.js:846`
+- `static/js/ui.js:949`
 
-## `onBackdrop` — function, line 668
+## `onBackdrop` — function, line 847
 - **called from:**
-- `static/js/cookbookServe.js:1052`
-- `static/js/galleryEditor.js:3972`
-- `static/js/skills.js:1465`
-- `static/js/ui.js:668`
-- `static/js/ui.js:766`
+- `static/js/cookbookServe.js:1081`
+- `static/js/galleryEditor.js:13663`
+- `static/js/skills.js:1772`
+- `static/js/ui.js:847`
+- `static/js/ui.js:950`
 
-## `onKey` — function, line 669
+## `onKey` — function, line 848
 - **called from:**
-- `static/js/cookbookServe.js:1053`
-- `static/js/document.js:6145`
-- `static/js/galleryEditor.js:3973`
-- `static/js/settings.js:1933`
-- `static/js/skills.js:1466`
-- `static/js/ui.js:669`
-- `static/js/ui.js:767`
+- `static/js/cookbookServe.js:1082`
+- `static/js/document.js:9403`
+- `static/js/document.js:9453`
+- `static/js/document.js:9491`
+- `static/js/editor/tools/perspective-crop.js:85`
+- `static/js/galleryEditor.js:13664`
+- `static/js/settings.js:1644`
+- `static/js/skills.js:1773`
+- `static/js/ui.js:848`
+- `static/js/ui.js:951`
 
-## `styledPrompt` — function, line 704
+## `styledPrompt` — function, line 884
 - **called from:**
-- `static/js/admin.js:162`
-- `static/js/cookbookServe.js:2490`
-- `static/js/gallery.js:795`
-- `static/js/gallery.js:2774`
-- `static/js/sessions.js:484`
-- `static/js/sessions.js:1362`
-- `static/js/ui.js:704`
+- `static/js/admin.js:194`
+- `static/js/admin.js:196`
+- `static/js/admin.js:219`
+- `static/js/cookbookServe.js:2562`
+- `static/js/gallery.js:892`
+- `static/js/gallery.js:3157`
+- `static/js/sessions.js:699`
+- `static/js/sessions.js:1711`
+- `static/js/ui.js:884`
 
-## `cleanup` — function, line 753
+## `cleanup` — function, line 936
 - **called from:**
-- `static/js/calendar.js:2592`
-- `static/js/calendar.js:2629`
-- `static/js/calendar.js:2750`
-- `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
-- `static/js/codeRunner.js:262`
-- `static/js/codeRunner.js:283`
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
-- `static/js/compare/selector.js:877`
-- `static/js/compare/selector.js:910`
-- `static/js/compare/selector.js:914`
-- `static/js/compare/selector.js:963`
-- `static/js/compare/selector.js:1257`
-- `static/js/compare/selector.js:1282`
-- `static/js/compare/selector.js:1295`
-- `static/js/cookbookServe.js:1029`
-- `static/js/cookbookServe.js:1040`
-- `static/js/cookbookServe.js:1041`
-- `static/js/cookbookServe.js:1050`
-- `static/js/cookbookServe.js:1052`
-- `static/js/cookbookServe.js:1057`
-- `static/js/document.js:3847`
-- `static/js/document.js:3848`
-- `static/js/document.js:3849`
-- `static/js/document.js:4393`
-- `static/js/document.js:4400`
-- `static/js/document.js:4442`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
 - `static/js/dragSort.js:26`
-- `static/js/editor/slider-ux.js:179`
-- `static/js/editor/slider-ux.js:188`
-- `static/js/gallery.js:1665`
-- `static/js/gallery.js:1674`
-- `static/js/gallery.js:1818`
-- `static/js/gallery.js:1830`
-- `static/js/gallery.js:1834`
-- `static/js/galleryEditor.js:1863`
-- `static/js/galleryEditor.js:1952`
-- `static/js/galleryEditor.js:1987`
-- `static/js/galleryEditor.js:2663`
-- `static/js/galleryEditor.js:2664`
-- `static/js/galleryEditor.js:2667`
-- `static/js/galleryEditor.js:2668`
-- `static/js/galleryEditor.js:2670`
-- `static/js/galleryEditor.js:3958`
-- `static/js/galleryEditor.js:3969`
-- `static/js/galleryEditor.js:3971`
-- `static/js/galleryEditor.js:3972`
-- `static/js/galleryEditor.js:3975`
-- `static/js/settings.js:1928`
-- `static/js/settings.js:1938`
-- `static/js/settings.js:1969`
-- `static/js/skills.js:1454`
-- `static/js/skills.js:1463`
-- `static/js/skills.js:1464`
-- … +21 more (grep the name in repo)
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
 
-## `onOk` — function, line 764
+## `onOk` — function, line 948
 - **called from:**
-- `static/js/galleryEditor.js:3966`
-- `static/js/galleryEditor.js:3974`
-- `static/js/skills.js:1463`
-- `static/js/ui.js:665`
-- `static/js/ui.js:764`
-- `static/js/ui.js:785`
+- `static/js/galleryEditor.js:13606`
+- `static/js/galleryEditor.js:13665`
+- `static/js/skills.js:1770`
+- `static/js/ui.js:844`
+- `static/js/ui.js:948`
+- `static/js/ui.js:969`
 
-## `onCancel` — function, line 765
+## `onCancel` — function, line 949
 - **called from:**
-- `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
-- `static/js/galleryEditor.js:3971`
-- `static/js/skills.js:1464`
-- `static/js/skills.js:1465`
-- `static/js/ui.js:667`
-- `static/js/ui.js:765`
+- `static/js/cookbookServe.js:1069`
+- `static/js/editor/direct-manipulation-session.js:70`
+- `static/js/galleryEditor.js:13624`
+- `static/js/skills.js:1771`
+- `static/js/skills.js:1772`
+- `static/js/ui.js:846`
+- `static/js/ui.js:949`
 
-## `onBackdrop` — function, line 766
+## `onBackdrop` — function, line 950
 - **called from:**
-- `static/js/cookbookServe.js:1052`
-- `static/js/galleryEditor.js:3972`
-- `static/js/skills.js:1465`
-- `static/js/ui.js:668`
-- `static/js/ui.js:766`
+- `static/js/cookbookServe.js:1081`
+- `static/js/galleryEditor.js:13663`
+- `static/js/skills.js:1772`
+- `static/js/ui.js:847`
+- `static/js/ui.js:950`
 
-## `onKey` — function, line 767
+## `onKey` — function, line 951
 - **called from:**
-- `static/js/cookbookServe.js:1053`
-- `static/js/document.js:6145`
-- `static/js/galleryEditor.js:3973`
-- `static/js/settings.js:1933`
-- `static/js/skills.js:1466`
-- `static/js/ui.js:669`
-- `static/js/ui.js:767`
+- `static/js/cookbookServe.js:1082`
+- `static/js/document.js:9403`
+- `static/js/document.js:9453`
+- `static/js/document.js:9491`
+- `static/js/editor/tools/perspective-crop.js:85`
+- `static/js/galleryEditor.js:13664`
+- `static/js/settings.js:1644`
+- `static/js/skills.js:1773`
+- `static/js/ui.js:848`
+- `static/js/ui.js:951`
 
-## `onInputKey` — function, line 782
+## `onInputKey` — function, line 966
 - **called from:**
-- `static/js/ui.js:782`
+- `static/js/ui.js:966`
 
-## `esc` — function, line 809
+## `esc` — function, line 993
 - **called from:**
-- `static/js/admin.js:20`
-- `static/js/admin.js:20`
-- `static/js/admin.js:53`
-- `static/js/admin.js:55`
-- `static/js/admin.js:60`
-- `static/js/admin.js:61`
-- `static/js/admin.js:62`
-- `static/js/admin.js:80`
-- `static/js/admin.js:91`
-- `static/js/admin.js:104`
-- `static/js/admin.js:105`
-- `static/js/admin.js:109`
-- `static/js/admin.js:273`
-- `static/js/admin.js:274`
-- `static/js/admin.js:275`
-- `static/js/admin.js:525`
-- `static/js/admin.js:532`
-- `static/js/admin.js:534`
-- `static/js/admin.js:545`
-- `static/js/admin.js:545`
-- `static/js/admin.js:674`
-- `static/js/admin.js:679`
-- `static/js/admin.js:719`
-- `static/js/admin.js:719`
-- `static/js/admin.js:720`
-- `static/js/admin.js:722`
-- `static/js/admin.js:1022`
-- `static/js/admin.js:1200`
-- `static/js/admin.js:1203`
-- `static/js/admin.js:1206`
-- `static/js/admin.js:1933`
-- `static/js/admin.js:1948`
-- `static/js/admin.js:1949`
-- `static/js/admin.js:1951`
-- `static/js/admin.js:1953`
-- `static/js/admin.js:2081`
-- `static/js/admin.js:2156`
-- `static/js/admin.js:2157`
-- `static/js/admin.js:2158`
-- `static/js/admin.js:2158`
-- `static/js/admin.js:2390`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2542`
-- `static/js/admin.js:2543`
-- `static/js/admin.js:2544`
-- `static/js/admin.js:2545`
-- `static/js/admin.js:2545`
-- `static/js/admin.js:2558`
-- `static/js/admin.js:2561`
-- `static/js/admin.js:2561`
-- `static/js/admin.js:2562`
-- `static/js/admin.js:2563`
-- `static/js/admin.js:2566`
-- `static/js/admin.js:2567`
-- `static/js/admin.js:2569`
-- … +443 more (grep the name in repo)
+- `static/js/admin.js:28`
+- `static/js/admin.js:28`
+- `static/js/admin.js:86`
+- `static/js/admin.js:88`
+- `static/js/admin.js:93`
+- `static/js/admin.js:94`
+- `static/js/admin.js:96`
+- `static/js/admin.js:114`
+- `static/js/admin.js:125`
+- `static/js/admin.js:138`
+- `static/js/admin.js:139`
+- `static/js/admin.js:143`
+- `static/js/admin.js:330`
+- `static/js/admin.js:331`
+- `static/js/admin.js:332`
+- `static/js/admin.js:648`
+- `static/js/admin.js:651`
+- `static/js/admin.js:655`
+- `static/js/admin.js:680`
+- `static/js/admin.js:769`
+- `static/js/admin.js:769`
+- `static/js/admin.js:771`
+- `static/js/admin.js:773`
+- `static/js/admin.js:777`
+- `static/js/admin.js:777`
+- `static/js/admin.js:836`
+- `static/js/admin.js:836`
+- `static/js/admin.js:838`
+- `static/js/admin.js:840`
+- `static/js/admin.js:841`
+- `static/js/admin.js:915`
+- `static/js/admin.js:1072`
+- `static/js/admin.js:1073`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1080`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1380`
+- `static/js/admin.js:1385`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1430`
+- `static/js/admin.js:1432`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1551`
+- `static/js/admin.js:1554`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1915`
+- `static/js/admin.js:2802`
+- … +576 more (grep the name in repo)
 
-## `isTouchInsideModal` — function, line 833
+## `isTouchInsideModal` — function, line 1017
 - **called from:**
-- `static/app.js:825`
-- `static/js/cookbook.js:3598`
-- `static/js/documentLibrary.js:3580`
-- `static/js/gallery.js:2792`
-- `static/js/sessions.js:3723`
-- `static/js/settings.js:2218`
-- `static/js/settings/lifecycle.js:106`
-- `static/js/tasks.js:3026`
-- `static/js/ui.js:833`
+- `static/app.js:858`
+- `static/js/cookbook.js:3809`
+- `static/js/documentLibrary.js:3647`
+- `static/js/gallery.js:3175`
+- `static/js/sessions.js:4153`
+- `static/js/settings.js:1930`
+- `static/js/settings/lifecycle.js:108`
+- `static/js/tasks.js:3246`
+- `static/js/ui.js:1017`
 
-## `_initScrollDismiss` — function, line 838
+## `_initScrollDismiss` — function, line 1022
 - **called from:**
-- `static/js/ui.js:838`
-- `static/js/ui.js:853`
+- `static/js/ui.js:1022`
+- `static/js/ui.js:1037`
 
-## `emptyStateIcon` — function, line 862
+## `emptyStateIcon` — function, line 1046
 - **called from:**
-- `static/js/documentLibrary.js:2141`
-- `static/js/documentLibrary.js:2504`
-- `static/js/documentLibrary.js:2776`
-- `static/js/emailLibrary.js:4978`
-- `static/js/memory.js:706`
-- `static/js/notes.js:1966`
-- `static/js/notes.js:1975`
-- `static/js/ui.js:862`
+- `static/js/documentLibrary.js:2342`
+- `static/js/documentLibrary.js:2713`
+- `static/js/emailLibrary/index.js:5367`
+- `static/js/features/notes/ui/cardRendering.js:223`
+- `static/js/features/notes/ui/cardRendering.js:232`
+- `static/js/memory.js:812`
+- `static/js/ui.js:1046`
 
-## `_closeFloatingDropdownsForSwipe` — function, line 953
+## `_closeFloatingDropdownsForSwipe` — function, line 1140
 - **called from:**
-- `static/js/ui.js:953`
-- `static/js/ui.js:1061`
+- `static/js/ui.js:1140`
+- `static/js/ui.js:1248`
 
-## `raiseModalToFront` — arrow, line 1141
+## `raiseModalToFront` — arrow, line 1328
 - **called from:**
-- `static/js/ui.js:1156`
+- `static/js/ui.js:1343`
 
-## `_isVisible` — arrow, line 1245
+## `_isVisible` — arrow, line 1432
 - **called from:**
-- `static/js/modalManager.js:1167`
-- `static/js/modalManager.js:1169`
+- `static/js/modalManager.js:1179`
+- `static/js/modalManager.js:1181`
 - `static/js/tourAutoplay.js:35`
 - `static/js/tourAutoplay.js:83`
 - `static/js/tourAutoplay.js:109`
-- `static/js/tourHints.js:45`
-- `static/js/tourHints.js:136`
-- `static/js/tourHints.js:146`
-- `static/js/ui.js:1247`
-- `static/js/ui.js:1334`
+- `static/js/tourHints.js:47`
+- `static/js/tourHints.js:131`
+- `static/js/tourHints.js:141`
+- `static/js/ui.js:1434`
+- `static/js/ui.js:1488`
+- `static/js/ui.js:1501`
+- `static/js/ui.js:1516`
+- `static/js/ui.js:1574`
 
-## `_promote` — arrow, line 1246
+## `_promote` — arrow, line 1433
 - **called from:**
-- `static/js/ui.js:1263`
-- `static/js/ui.js:1264`
+- `static/js/ui.js:1450`
+- `static/js/ui.js:1451`
 
-## `pickTopModal` — arrow, line 1269
+## `pickTopModal` — arrow, line 1456
 - **called from:**
-- `static/js/ui.js:1344`
+- `static/js/ui.js:1584`
 
-## `directly` — class, line 1285
+## `directly` — class, line 1472
 - **called from:**
-- `static/js/document.js:6346`
+- `static/js/document.js:10313`
 - `static/js/editor/layer-panel.js:12`
-- `static/js/galleryEditor.js:1346`
+- `static/js/galleryEditor.js:5328`
 - `static/js/group.js:348`
-- `static/js/sessions.js:679`
+- `static/js/sessions.js:990`
 - `static/js/startupShell.js:8`

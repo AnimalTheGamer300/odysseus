@@ -1,69 +1,80 @@
 # `routes/shell_routes.py` — definitions & call sites
 
-40 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+49 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_require_admin` — function, line 53
+## `_require_admin` — function, line 60
 - **called from:**
-- `routes/shell_routes.py:963`
-- `routes/shell_routes.py:981`
-- `routes/shell_routes.py:1200`
-- `routes/shell_routes.py:1765`
-- `routes/shell_routes.py:1820`
-- `routes/shell_routes.py:1941`
+- `routes/codex_routes.py:132`
+- `routes/cookbook_routes.py:418`
+- `routes/cookbook_routes.py:429`
+- `routes/cookbook_routes.py:437`
+- `routes/shell_routes.py:1197`
+- `routes/shell_routes.py:1215`
+- `routes/shell_routes.py:1435`
+- `routes/shell_routes.py:2037`
+- `routes/shell_routes.py:2093`
+- `routes/shell_routes.py:2223`
 - `routes/webhook/webhook_routes.py:73`
 - `routes/webhook/webhook_routes.py:103`
 - `routes/webhook/webhook_routes.py:143`
 - `routes/webhook/webhook_routes.py:158`
 - `routes/webhook/webhook_routes.py:172`
+- `tests/test_runtime_resource_integration.py:298`
+- `tests/test_runtime_resource_integration.py:310`
+- `tests/test_runtime_resource_integration.py:319`
+- `tests/test_wave3_local_control.py:49`
+- `tests/test_wave3_local_control.py:52`
+- `tests/test_wave3_local_control.py:60`
+- `tests/test_wave3_local_control.py:63`
 
-## `_reject_cross_site` — function, line 72
+## `_reject_cross_site` — function, line 85
 - **called from:**
-- `routes/shell_routes.py:1201`
-- `tests/test_shell_routes.py:530`
-- `tests/test_shell_routes.py:535`
-- `tests/test_shell_routes.py:538`
+- `routes/shell_routes.py:1436`
+- `tests/test_shell_routes.py:894`
+- `tests/test_shell_routes.py:899`
+- `tests/test_shell_routes.py:902`
 
-## `_ssh_base_argv` — function, line 82
+## `_ssh_base_argv` — function, line 102
 - **called from:**
-- `routes/shell_routes.py:1451`
-- `routes/shell_routes.py:1482`
-- `routes/shell_routes.py:1523`
-- `routes/shell_routes.py:1682`
-- `routes/shell_routes.py:1898`
-- `routes/shell_routes.py:1954`
-- `tests/test_shell_routes.py:460`
-- `tests/test_shell_routes.py:470`
-- `tests/test_shell_routes.py:471`
-- `tests/test_shell_routes.py:472`
-- `tests/test_shell_routes.py:475`
-- `tests/test_shell_routes.py:480`
-- `tests/test_shell_routes.py:484`
-- `tests/test_shell_routes.py:489`
+- `routes/shell_routes.py:1710`
+- `routes/shell_routes.py:1741`
+- `routes/shell_routes.py:1782`
+- `routes/shell_routes.py:1949`
+- `routes/shell_routes.py:2179`
+- `routes/shell_routes.py:2236`
+- `tests/test_shell_routes.py:824`
+- `tests/test_shell_routes.py:834`
+- `tests/test_shell_routes.py:835`
+- `tests/test_shell_routes.py:836`
+- `tests/test_shell_routes.py:839`
+- `tests/test_shell_routes.py:844`
+- `tests/test_shell_routes.py:848`
+- `tests/test_shell_routes.py:853`
 
-## `_venv_activate_prefix` — function, line 96
+## `_venv_activate_prefix` — function, line 116
 - **called from:**
-- `routes/shell_routes.py:1449`
-- `routes/shell_routes.py:1673`
-- `tests/test_shell_routes.py:494`
-- `tests/test_shell_routes.py:495`
-- `tests/test_shell_routes.py:498`
-- `tests/test_shell_routes.py:502`
-- `tests/test_shell_routes.py:518`
+- `routes/shell_routes.py:1708`
+- `routes/shell_routes.py:1940`
+- `tests/test_shell_routes.py:858`
+- `tests/test_shell_routes.py:859`
+- `tests/test_shell_routes.py:862`
+- `tests/test_shell_routes.py:866`
+- `tests/test_shell_routes.py:882`
 
-## `_docker_row_status` — function, line 118
+## `_docker_row_status` — function, line 138
 - **called from:**
-- `routes/shell_routes.py:1749`
-- `tests/test_shell_routes.py:212`
-- `tests/test_shell_routes.py:222`
-- `tests/test_shell_routes.py:232`
-- `tests/test_shell_routes.py:243`
-- `tests/test_shell_routes.py:253`
-- `tests/test_shell_routes.py:263`
+- `routes/shell_routes.py:2016`
+- `tests/test_shell_routes.py:581`
+- `tests/test_shell_routes.py:591`
+- `tests/test_shell_routes.py:601`
+- `tests/test_shell_routes.py:612`
+- `tests/test_shell_routes.py:622`
+- `tests/test_shell_routes.py:632`
 
-## `_pip_dist_name` — function, line 127
+## `_pip_dist_name` — function, line 147
 - **called from:**
-- `routes/shell_routes.py:1615`
-- `routes/shell_routes.py:1626`
+- `routes/shell_routes.py:1882`
+- `routes/shell_routes.py:1893`
 - `tests/test_cookbook_package_detection.py:19`
 - `tests/test_cookbook_package_detection.py:21`
 - `tests/test_cookbook_package_detection.py:25`
@@ -78,210 +89,285 @@
 - `tests/test_cookbook_package_detection.py:41`
 - `tests/test_cookbook_package_detection.py:42`
 
-## `_import_optional_dependency_for_status` — function, line 145
+## `_import_optional_dependency_for_status` — function, line 165
 - **called from:**
-- `routes/shell_routes.py:1625`
-- `tests/test_shell_routes.py:452`
+- `routes/shell_routes.py:1892`
+- `tests/test_shell_routes.py:816`
 
-## `_package_installed_from_probe` — function, line 150
+## `_package_installed_from_probe` — function, line 170
 - **called from:**
-- `routes/shell_routes.py:246`
-- `routes/shell_routes.py:250`
-- `routes/shell_routes.py:254`
-- `routes/shell_routes.py:258`
-- `routes/shell_routes.py:262`
-- `routes/shell_routes.py:273`
-- `routes/shell_routes.py:277`
+- `routes/shell_routes.py:279`
+- `routes/shell_routes.py:283`
 - `routes/shell_routes.py:287`
-- `routes/shell_routes.py:1465`
-- `tests/test_shell_routes.py:341`
-- `tests/test_shell_routes.py:352`
-- `tests/test_shell_routes.py:368`
-- `tests/test_shell_routes.py:379`
-- `tests/test_shell_routes.py:414`
-- `tests/test_shell_routes.py:415`
+- `routes/shell_routes.py:291`
+- `routes/shell_routes.py:299`
+- `routes/shell_routes.py:303`
+- `routes/shell_routes.py:313`
+- `routes/shell_routes.py:317`
+- `routes/shell_routes.py:328`
+- `routes/shell_routes.py:332`
+- `routes/shell_routes.py:342`
+- `routes/shell_routes.py:1724`
+- `tests/test_shell_routes.py:705`
+- `tests/test_shell_routes.py:716`
+- `tests/test_shell_routes.py:732`
+- `tests/test_shell_routes.py:743`
+- `tests/test_shell_routes.py:778`
+- `tests/test_shell_routes.py:779`
 
-## `_package_status_note` — function, line 215
+## `_package_status_note` — function, line 248
 - **called from:**
-- `routes/shell_routes.py:1587`
-- `routes/shell_routes.py:1622`
-- `tests/test_shell_routes.py:342`
-- `tests/test_shell_routes.py:343`
-- `tests/test_shell_routes.py:353`
-- `tests/test_shell_routes.py:380`
+- `routes/shell_routes.py:1846`
+- `routes/shell_routes.py:1889`
+- `tests/test_shell_routes.py:706`
+- `tests/test_shell_routes.py:707`
+- `tests/test_shell_routes.py:717`
+- `tests/test_shell_routes.py:744`
 
-## `_package_pip_update_status` — function, line 301
+## `_package_pip_update_status` — function, line 356
 - **called from:**
-- `routes/shell_routes.py:1743`
-- `tests/test_shell_routes.py:355`
-- `tests/test_shell_routes.py:366`
-- `tests/test_shell_routes.py:381`
-- `tests/test_shell_routes.py:388`
+- `routes/shell_routes.py:2010`
+- `tests/test_shell_routes.py:719`
+- `tests/test_shell_routes.py:730`
+- `tests/test_shell_routes.py:745`
+- `tests/test_shell_routes.py:752`
 
-## `_prepend_user_install_bins_to_path` — function, line 350
+## `_prepend_user_install_bins_to_path` — function, line 405
 - **called from:**
-- `routes/shell_routes.py:1216`
-- `tests/test_shell_routes.py:423`
+- `routes/shell_routes.py:1454`
+- `tests/test_shell_routes.py:787`
 
-## `_package_probe_script` — function, line 378
+## `_package_probe_script` — function, line 433
 - **called from:**
-- `routes/shell_routes.py:1446`
-- `tests/test_shell_routes.py:430`
+- `routes/shell_routes.py:1705`
+- `tests/test_shell_routes.py:794`
 
-## `_find_line_break` — function, line 480
+## `_find_line_break` — function, line 547
 - **called from:**
-- `routes/shell_routes.py:677`
-- `routes/shell_routes.py:699`
-- `routes/shell_routes.py:1050`
-- `tests/test_shell_routes.py:60`
-- `tests/test_shell_routes.py:92`
-- `tests/test_shell_routes.py:95`
-- `tests/test_shell_routes.py:98`
-- `tests/test_shell_routes.py:101`
-- `tests/test_shell_routes.py:104`
-- `tests/test_shell_routes.py:107`
-- `tests/test_shell_routes.py:110`
-- `tests/test_shell_routes.py:113`
-- `tests/test_shell_routes.py:117`
-- `tests/test_shell_routes.py:121`
-- `tests/test_shell_routes.py:125`
+- `routes/shell_routes.py:915`
+- `routes/shell_routes.py:937`
+- `routes/shell_routes.py:1284`
+- `tests/test_shell_routes.py:65`
+- `tests/test_shell_routes.py:461`
+- `tests/test_shell_routes.py:464`
+- `tests/test_shell_routes.py:467`
+- `tests/test_shell_routes.py:470`
+- `tests/test_shell_routes.py:473`
+- `tests/test_shell_routes.py:476`
+- `tests/test_shell_routes.py:479`
+- `tests/test_shell_routes.py:482`
+- `tests/test_shell_routes.py:486`
+- `tests/test_shell_routes.py:490`
+- `tests/test_shell_routes.py:494`
 
-## `ShellExecRequest` — class, line 502
+## `ShellExecRequest` — class, line 583
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_normalize_legacy_remote_tmux_exec` — function, line 514
+## `_normalize_legacy_remote_tmux_exec` — function, line 595
 - **called from:**
-- `routes/shell_routes.py:968`
+- `routes/shell_routes.py:1202`
 
-## `_create_shell` — function (async), line 552
+## `_create_shell` — function (async), line 633
 - **called from:**
-- `routes/shell_routes.py:578`
-- `routes/shell_routes.py:1024`
+- `routes/shell_routes.py:659`
+- `routes/shell_routes.py:1258`
 
-## `_exec_shell` — function (async), line 574
+## `_exec_shell` — function (async), line 655
 - **called from:**
-- `routes/shell_routes.py:973`
+- `routes/shell_routes.py:1207`
 
-## `_generate_pty` — function (async), line 604
+## `_session_pgid` — function, line 685
 - **called from:**
-- `routes/shell_routes.py:1014`
-- `tests/test_shell_routes.py:75`
+- `routes/shell_routes.py:740`
+- `tests/test_shell_routes.py:371`
 
-## `_wait_proc` — function (async), line 635
+## `_signal_session` — function, line 700
 - **called from:**
-- `routes/shell_routes.py:639`
+- `routes/shell_routes.py:797`
+- `routes/shell_routes.py:799`
+- `routes/shell_routes.py:802`
 
-## `_pty_read` — function, line 730
+## `_session_alive` — function, line 711
 - **called from:**
-- `routes/shell_routes.py:688`
+- `routes/shell_routes.py:790`
+- `tests/test_shell_routes.py:429`
+- `tests/test_shell_routes.py:435`
 
-## `_generate_tmux` — function (async), line 745
+## `_bind_pty_spawn_identity` — function, line 726
 - **called from:**
-- `routes/shell_routes.py:1008`
+- `routes/shell_routes.py:865`
+- `tests/test_shell_routes.py:132`
+- `tests/test_shell_routes.py:372`
+- `tests/test_shell_routes.py:400`
 
-## `_generate_win_detached` — function (async), line 861
+## `_terminate_pty_session` — function (async), line 747
 - **called from:**
-- `routes/shell_routes.py:1006`
+- `routes/shell_routes.py:829`
+- `routes/shell_routes.py:881`
+- `tests/test_shell_routes.py:215`
+- `tests/test_shell_routes.py:220`
+- `tests/test_shell_routes.py:235`
+- `tests/test_shell_routes.py:239`
+- `tests/test_shell_routes.py:304`
+- `tests/test_shell_routes.py:321`
+- `tests/test_shell_routes.py:377`
+- `tests/test_shell_routes.py:411`
+- `tests/test_shell_routes.py:454`
 
-## `setup_shell_routes` — function, line 957
+## `_gone` — function, line 783
 - **called from:**
-- `app.py:800`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `shell_exec` — function (async), line 961
+## `_send` — function, line 793
+- **called from:**
+- `src/browser_identity.py:349`
+- `src/browser_identity.py:367`
+
+## `_reap_leader` — function (async), line 805
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_terminate_pty_session_quietly` — function (async), line 820
+- **called from:**
+- `routes/shell_routes.py:891`
+- `routes/shell_routes.py:953`
+
+## `_generate_pty` — function (async), line 840
+- **called from:**
+- `routes/shell_routes.py:1248`
+- `tests/test_shell_routes.py:103`
+- `tests/test_shell_routes.py:254`
+- `tests/test_shell_routes.py:283`
+- `tests/test_shell_routes.py:346`
+
+## `_wait_proc` — function (async), line 872
+- **called from:**
+- `routes/shell_routes.py:876`
+
+## `_pty_read` — function, line 964
+- **called from:**
+- `routes/shell_routes.py:926`
+
+## `_generate_tmux` — function (async), line 979
+- **called from:**
+- `routes/shell_routes.py:1242`
+
+## `_generate_win_detached` — function (async), line 1095
+- **called from:**
+- `routes/shell_routes.py:1240`
+
+## `setup_shell_routes` — function, line 1191
+- **called from:**
+- `app.py:884`
+- `tests/test_wave3_local_control.py:104`
+
+## `shell_exec` — function (async), line 1195
 - **route:** `POST /api/shell/exec`
 - decorator: `router.post("/api/shell/exec")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `shell_stream` — function (async), line 979
+## `shell_stream` — function (async), line 1213
 - **route:** `POST /api/shell/stream`
 - decorator: `router.post("/api/shell/stream")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `empty` — function (async), line 985
+## `empty` — function (async), line 1219
 - **called from:**
-- `routes/shell_routes.py:989`
-- `static/js/chatRenderer.js:1672`
-- `static/js/cookbook-hwfit.js:2315`
-- `static/js/cookbookRunning.js:2273`
-- `static/js/document.js:2243`
-- `static/js/documentLibrary.js:3236`
+- `routes/chat_routes.py:3805`
+- `routes/shell_routes.py:1223`
+- `routes/skills_routes.py:610`
+- `services/skills/agent_runner.py:65`
+- `services/skills/agent_runner.py:213`
+- `src/agent_runtime/authority.py:265`
+- `src/agent_runtime/authority.py:539`
+- `src/agent_runtime/authority.py:587`
+- `src/agent_runtime/authority.py:592`
+- `src/agent_runtime/authority.py:641`
+- `src/agent_runtime/authority.py:663`
+- `src/agent_runtime/authority.py:694`
+- `src/bg_monitor.py:80`
+- `tests/test_resource_identity.py:642`
+- `tests/test_skills_audit_services.py:198`
+- `static/js/chatRenderer.js:2250`
+- `static/js/cookbook-hwfit.js:2425`
+- `static/js/cookbookRunning.js:2329`
+- `static/js/document.js:3340`
+- `static/js/documentLibrary.js:3302`
 - `static/js/editor/ai-inpaint.js:24`
-- `static/js/editor/ai-inpaint.js:299`
-- `static/js/editor/build/controls.js:201`
-- `static/js/emailInbox.js:960`
-- `static/js/galleryEditor.js:4207`
+- `static/js/editor/ai-inpaint.js:336`
+- `static/js/editor/build/controls.js:702`
+- `static/js/emailInbox.js:1005`
+- `static/js/galleryEditor.js:13996`
 - `static/js/modalManager.js:247`
 - `static/js/modalManager.js:306`
 
-## `generate` — function (async), line 1020
+## `generate` — function (async), line 1254
 - **called from:**
-- `routes/shell_routes.py:1110`
+- `routes/shell_routes.py:1344`
 - `scripts/mlx_image_server.py:311`
 
-## `_reader` — function (async), line 1033
+## `_reader` — function (async), line 1267
 - **called from:**
-- `routes/shell_routes.py:1061`
-- `routes/shell_routes.py:1062`
+- `routes/shell_routes.py:1295`
+- `routes/shell_routes.py:1296`
 - `services/shell/service.py:124`
 - `services/shell/service.py:125`
-- `src/agent_tools/subprocess_tools.py:246`
-- `src/agent_tools/subprocess_tools.py:247`
 
-## `_os_id_from_release` — function, line 1112
+## `_os_id_from_release` — function, line 1346
 - **called from:**
-- `routes/shell_routes.py:1541`
-- `routes/shell_routes.py:1554`
+- `routes/shell_routes.py:1800`
+- `routes/shell_routes.py:1813`
 
-## `_install_cmd_for_target` — function, line 1163
+## `_install_cmd_for_target` — function, line 1398
 - **called from:**
-- `routes/shell_routes.py:1730`
+- `routes/shell_routes.py:1997`
 
-## `list_packages` — function (async), line 1184
+## `list_packages` — function (async), line 1419
 - **route:** `GET /api/cookbook/packages`
 - decorator: `router.get("/api/cookbook/packages")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `install_package` — function (async), line 1763
+## `install_package` — function (async), line 2035
 - **route:** `POST /api/cookbook/packages/install`
 - decorator: `router.post("/api/cookbook/packages/install")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `install_system_deps` — function (async), line 1810
+## `install_system_deps` — function (async), line 2083
 - **route:** `POST /api/cookbook/install-system-deps`
 - decorator: `router.post("/api/cookbook/install-system-deps")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_apt` — function, line 1833
+## `_apt` — function, line 2106
 - **called from:**
-- `routes/shell_routes.py:1861`
+- `routes/shell_routes.py:2142`
 
-## `_pacman` — function, line 1834
+## `_pacman` — function, line 2107
 - **called from:**
-- `routes/shell_routes.py:1862`
+- `routes/shell_routes.py:2143`
 
-## `_dnf` — function, line 1836
+## `_dnf` — function, line 2109
 - **called from:**
-- `routes/shell_routes.py:1863`
+- `routes/shell_routes.py:2144`
 
-## `_apk` — function, line 1843
+## `_apk` — function, line 2116
 - **called from:**
-- `routes/shell_routes.py:1864`
+- `routes/shell_routes.py:2145`
 
-## `_zypper` — function, line 1849
+## `_zypper` — function, line 2122
 - **called from:**
-- `routes/shell_routes.py:1865`
+- `routes/shell_routes.py:2146`
 
-## `_brew` — function, line 1856
+## `_brew` — function, line 2129
 - **called from:**
-- `routes/shell_routes.py:1866`
+- `routes/shell_routes.py:2147`
 
-## `rebuild_engine` — function (async), line 1931
+## `rebuild_engine` — function (async), line 2213
 - **route:** `POST /api/cookbook/rebuild-engine`
 - decorator: `router.post("/api/cookbook/rebuild-engine")`
 - **called from:**

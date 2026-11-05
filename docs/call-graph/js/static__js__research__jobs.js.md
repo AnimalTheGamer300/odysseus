@@ -1,236 +1,266 @@
 # `static/js/research/jobs.js` — definitions & call sites
 
-31 definitions (regex-based, best-effort).
+35 definitions (regex-based, best-effort).
 **Exports:** `addToQueue`, `adoptSession`, `cancelJob`, `clearAll`, `formatElapsed`, `formatPhase`, `getJobs`, `init`, `onComplete`, `refreshLibrary`, `removeJob`, `retryJob`, `setRenderCallback`, `startAllQueued`, `startAllQueuedSequential`, `startJob`, `startQueued`
 
-## `_loadDismissed` — function, line 13
+## `_loadDismissed` — function, line 14
 - **called from:**
-- `static/js/research/jobs.js:13`
-- `static/js/research/jobs.js:22`
-- `static/js/research/jobs.js:24`
-- `static/js/research/jobs.js:98`
+- `static/js/research/jobs.js:14`
+- `static/js/research/jobs.js:23`
+- `static/js/research/jobs.js:25`
+- `static/js/research/jobs.js:147`
 
-## `_saveDismissed` — function, line 19
+## `_saveDismissed` — function, line 20
 - **called from:**
-- `static/js/research/jobs.js:19`
-- `static/js/research/jobs.js:26`
+- `static/js/research/jobs.js:20`
+- `static/js/research/jobs.js:27`
 
-## `_isDismissed` — function, line 22
-- **called from:**
-- `static/js/research/jobs.js:22`
-
-## `_markDismissed` — function, line 23
+## `_isDismissed` — function, line 23
 - **called from:**
 - `static/js/research/jobs.js:23`
-- `static/js/research/jobs.js:220`
-- `static/js/research/jobs.js:229`
 
-## `init` — function, line 35
+## `_markDismissed` — function, line 24
 - **called from:**
-- `static/app.js:3724`
-- `static/app.js:3725`
-- `static/app.js:3726`
-- `static/app.js:3727`
-- `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
-- `static/app.js:4370`
-- `static/app.js:4371`
-- `static/js/a11y.js:121`
-- `static/js/a11y.js:163`
+- `static/js/research/jobs.js:24`
+- `static/js/research/jobs.js:272`
+- `static/js/research/jobs.js:282`
+
+## `_loadSavedErrors` — function, line 30
+- **called from:**
+- `static/js/research/jobs.js:30`
+- `static/js/research/jobs.js:41`
+- `static/js/research/jobs.js:57`
+- `static/js/research/jobs.js:70`
+
+## `_saveErrors` — function, line 37
+- **called from:**
+- `static/js/research/jobs.js:37`
+- `static/js/research/jobs.js:54`
+- `static/js/research/jobs.js:57`
+- `static/js/research/jobs.js:283`
+
+## `_rememberError` — function, line 40
+- **called from:**
+- `static/js/research/jobs.js:40`
+- `static/js/research/jobs.js:340`
+- `static/js/research/jobs.js:348`
+- `static/js/research/jobs.js:423`
+
+## `_forgetError` — function, line 56
+- **called from:**
+- `static/js/research/jobs.js:56`
+- `static/js/research/jobs.js:246`
+- `static/js/research/jobs.js:273`
+
+## `init` — function, line 66
+- **called from:**
+- `static/app.js:3824`
+- `static/app.js:3825`
+- `static/app.js:3826`
+- `static/app.js:3827`
+- `static/app.js:3828`
+- `static/app.js:3829`
+- `static/app.js:3833`
+- `static/app.js:3836`
+- `static/app.js:3838`
+- `static/app.js:3841`
+- `static/app.js:3850`
+- `static/app.js:4486`
+- `static/app.js:4487`
+- `static/js/a11y.js:174`
+- `static/js/a11y.js:223`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
-- `static/js/compare/index.js:55`
+- `static/js/chat.js:2061`
+- `static/js/chat.js:2066`
+- `static/js/compare/index.js:57`
 - `static/js/cookbookDownload.js:10`
-- `static/js/cookbookRunning.js:333`
-- `static/js/cookbookServe.js:16`
-- `static/js/document.js:154`
-- `static/js/emailInbox.js:157`
-- `static/js/fileHandler.js:173`
+- `static/js/cookbookRunning.js:337`
+- `static/js/cookbookServe.js:21`
+- `static/js/document.js:1065`
+- `static/js/emailInbox.js:159`
+- `static/js/fileHandler.js:201`
 - `static/js/group.js:24`
 - `static/js/models.js:27`
 - `static/js/presets.js:79`
 - `static/js/rag.js:12`
-- `static/js/research/jobs.js:35`
+- `static/js/research/jobs.js:66`
+- `static/js/research/panel.js:206`
 - `static/js/research/panel.js:210`
-- `static/js/research/panel.js:214`
-- `static/js/search-chat.js:198`
+- `static/js/search-chat.js:204`
 - `static/js/search.js:14`
 - `static/js/tourAutoplay.js:117`
 - `static/js/tourAutoplay.js:129`
-- `static/js/tourHints.js:163`
-- `static/js/tourHints.js:175`
+- `static/js/tourHints.js:158`
+- `static/js/tourHints.js:170`
 - `static/js/voiceRecorder.js:268`
 
-## `adoptSession` — function, line 48
+## `adoptSession` — function, line 91
 - **called from:**
-- `static/js/research/jobs.js:48`
+- `static/js/research/jobs.js:91`
 
-## `refreshLibrary` — function, line 53
+## `refreshLibrary` — function, line 96
 - **called from:**
-- `static/js/research/jobs.js:53`
+- `static/js/research/jobs.js:96`
 
-## `_reconnectActive` — function, line 57
-- **called from:**
-- `static/js/research/jobs.js:37`
-- `static/js/research/jobs.js:43`
-- `static/js/research/jobs.js:50`
-- `static/js/research/jobs.js:57`
-
-## `_syncLibrary` — function, line 89
-- **called from:**
-- `static/js/research/jobs.js:54`
-- `static/js/research/jobs.js:81`
-- `static/js/research/jobs.js:89`
-
-## `_parseDuration` — function, line 145
-- **called from:**
-- `static/js/research/jobs.js:102`
-- `static/js/research/jobs.js:145`
-
-## `setRenderCallback` — function, line 150
-- **called from:**
-- `static/js/research/jobs.js:150`
-- `static/js/research/panel.js:215`
-
-## `getJobs` — function, line 151
-- **called from:**
-- `static/js/research/jobs.js:151`
-- `static/js/research/panel.js:109`
-- `static/js/research/panel.js:548`
-- `static/js/research/panel.js:553`
-- `static/js/research/panel.js:670`
-
-## `addToQueue` — function, line 153
-- **called from:**
-- `static/js/research/jobs.js:153`
-- `static/js/research/jobs.js:161`
-- `static/js/research/panel.js:507`
-- `static/js/research/panel.js:550`
-
-## `startJob` — function, line 160
-- **called from:**
-- `static/js/research/jobs.js:160`
-- `static/js/research/panel.js:600`
-
-## `startQueued` — function, line 166
-- **called from:**
-- `static/js/research/jobs.js:166`
-- `static/js/research/panel.js:917`
-
-## `startAllQueued` — function, line 172
-- **called from:**
-- `static/js/research/jobs.js:172`
-- `static/js/research/panel.js:589`
-- `static/js/research/panel.js:882`
-
-## `startAllQueuedSequential` — function, line 179
-- **called from:**
-- `static/js/research/jobs.js:179`
-- `static/js/research/panel.js:883`
-
-## `retryJob` — function, line 192
-- **called from:**
-- `static/js/research/jobs.js:192`
-- `static/js/research/panel.js:1068`
-
-## `cancelJob` — function, line 207
-- **called from:**
-- `static/js/research/jobs.js:207`
-- `static/js/research/panel.js:948`
-
-## `removeJob` — function, line 215
-- **called from:**
-- `static/js/research/jobs.js:215`
-- `static/js/research/panel.js:535`
-- `static/js/research/panel.js:923`
-- `static/js/research/panel.js:1046`
-- `static/js/research/panel.js:1050`
-- `static/js/research/panel.js:1074`
-
-## `clearAll` — function, line 226
-- **called from:**
-- `static/js/document.js:11122`
-- `static/js/research/jobs.js:226`
-- `static/js/research/panel.js:811`
-
-## `formatElapsed` — function, line 238
-- **called from:**
-- `static/js/research/jobs.js:238`
-- `static/js/research/panel.js:894`
-
-## `formatPhase` — function, line 244
-- **called from:**
-- `static/js/research/jobs.js:244`
-- `static/js/research/panel.js:931`
-
-## `_makeJob` — function, line 259
-- **called from:**
-- `static/js/research/jobs.js:154`
-- `static/js/research/jobs.js:259`
-
-## `_launchJob` — function, line 272
-- **called from:**
-- `static/js/research/jobs.js:162`
-- `static/js/research/jobs.js:169`
-- `static/js/research/jobs.js:174`
-- `static/js/research/jobs.js:182`
-- `static/js/research/jobs.js:204`
-- `static/js/research/jobs.js:272`
-
-## `_connectStream` — function, line 302
+## `_reconnectActive` — function, line 100
 - **called from:**
 - `static/js/research/jobs.js:77`
-- `static/js/research/jobs.js:298`
-- `static/js/research/jobs.js:302`
+- `static/js/research/jobs.js:85`
+- `static/js/research/jobs.js:93`
+- `static/js/research/jobs.js:100`
 
-## `_pollFallback` — function, line 333
+## `_syncLibrary` — function, line 138
 - **called from:**
-- `static/js/research/jobs.js:329`
-- `static/js/research/jobs.js:333`
-- `static/js/research/jobs.js:346`
-
-## `_finishJob` — function, line 350
-- **called from:**
-- `static/js/research/jobs.js:212`
-- `static/js/research/jobs.js:314`
-- `static/js/research/jobs.js:319`
-- `static/js/research/jobs.js:337`
-- `static/js/research/jobs.js:342`
-- `static/js/research/jobs.js:347`
-- `static/js/research/jobs.js:350`
-
-## `onComplete` — function, line 365
-- **called from:**
-- `static/js/research/jobs.js:365`
-- `static/js/research/panel.js:216`
-
-## `_fetchResult` — function, line 367
-- **called from:**
-- `static/js/research/jobs.js:320`
-- `static/js/research/jobs.js:343`
-- `static/js/research/jobs.js:367`
-
-## `_notify` — function, line 382
-- **called from:**
-- `static/js/research/jobs.js:82`
-- `static/js/research/jobs.js:121`
+- `static/js/research/jobs.js:97`
+- `static/js/research/jobs.js:130`
 - `static/js/research/jobs.js:138`
-- `static/js/research/jobs.js:156`
-- `static/js/research/jobs.js:203`
-- `static/js/research/jobs.js:210`
+
+## `_parseDuration` — function, line 196
+- **called from:**
+- `static/js/research/jobs.js:151`
+- `static/js/research/jobs.js:196`
+
+## `setRenderCallback` — function, line 201
+- **called from:**
+- `static/js/research/jobs.js:201`
+- `static/js/research/panel.js:211`
+
+## `getJobs` — function, line 202
+- **called from:**
+- `static/js/research/jobs.js:202`
+- `static/js/research/panel.js:98`
+- `static/js/research/panel.js:693`
+- `static/js/research/panel.js:697`
+- `static/js/research/panel.js:957`
+- `static/js/research/panel.js:984`
+- `static/js/research/panel.js:997`
+
+## `addToQueue` — function, line 204
+- **called from:**
+- `static/js/research/jobs.js:204`
+- `static/js/research/jobs.js:212`
+- `static/js/research/panel.js:648`
+
+## `startJob` — function, line 211
+- **called from:**
+- `static/js/research/jobs.js:211`
+- `static/js/research/panel.js:746`
+
+## `startQueued` — function, line 217
+- **called from:**
+- `static/js/research/jobs.js:217`
+- `static/js/research/panel.js:1158`
+
+## `startAllQueued` — function, line 223
+- **called from:**
 - `static/js/research/jobs.js:223`
-- `static/js/research/jobs.js:235`
-- `static/js/research/jobs.js:285`
+- `static/js/research/panel.js:734`
+- `static/js/research/panel.js:1121`
+
+## `startAllQueuedSequential` — function, line 230
+- **called from:**
+- `static/js/research/jobs.js:230`
+- `static/js/research/panel.js:1122`
+
+## `retryJob` — function, line 243
+- **called from:**
+- `static/js/research/jobs.js:243`
+- `static/js/research/panel.js:1347`
+
+## `cancelJob` — function, line 259
+- **called from:**
+- `static/js/galleryEditor.js:3090`
+- `static/js/research/jobs.js:259`
+- `static/js/research/panel.js:1201`
+
+## `removeJob` — function, line 267
+- **called from:**
+- `static/js/research/jobs.js:267`
+- `static/js/research/panel.js:681`
+- `static/js/research/panel.js:757`
+- `static/js/research/panel.js:963`
+- `static/js/research/panel.js:1164`
+- `static/js/research/panel.js:1325`
+- `static/js/research/panel.js:1330`
+- `static/js/research/panel.js:1354`
+
+## `clearAll` — function, line 279
+- **called from:**
+- `static/js/document.js:17531`
+- `static/js/research/jobs.js:279`
+
+## `formatElapsed` — function, line 292
+- **called from:**
 - `static/js/research/jobs.js:292`
-- `static/js/research/jobs.js:299`
-- `static/js/research/jobs.js:305`
-- `static/js/research/jobs.js:323`
+- `static/js/research/panel.js:1135`
+
+## `formatPhase` — function, line 298
+- **called from:**
+- `static/js/research/jobs.js:298`
+- `static/js/research/panel.js:1172`
+
+## `_makeJob` — function, line 313
+- **called from:**
+- `static/js/research/jobs.js:205`
+- `static/js/research/jobs.js:313`
+
+## `_launchJob` — function, line 327
+- **called from:**
+- `static/js/research/jobs.js:213`
+- `static/js/research/jobs.js:220`
+- `static/js/research/jobs.js:225`
+- `static/js/research/jobs.js:233`
+- `static/js/research/jobs.js:256`
+- `static/js/research/jobs.js:327`
+
+## `_connectStream` — function, line 361
+- **called from:**
+- `static/js/research/jobs.js:126`
+- `static/js/research/jobs.js:357`
 - `static/js/research/jobs.js:361`
-- `static/js/research/jobs.js:378`
-- `static/js/research/jobs.js:382`
+
+## `_pollFallback` — function, line 398
+- **called from:**
+- `static/js/research/jobs.js:394`
+- `static/js/research/jobs.js:398`
+- `static/js/research/jobs.js:417`
+
+## `_finishJob` — function, line 421
+- **called from:**
+- `static/js/research/jobs.js:264`
+- `static/js/research/jobs.js:373`
+- `static/js/research/jobs.js:384`
+- `static/js/research/jobs.js:402`
+- `static/js/research/jobs.js:413`
+- `static/js/research/jobs.js:418`
+- `static/js/research/jobs.js:421`
+
+## `onComplete` — function, line 437
+- **called from:**
+- `static/js/research/jobs.js:437`
+- `static/js/research/panel.js:212`
+
+## `_fetchResult` — function, line 439
+- **called from:**
+- `static/js/research/jobs.js:385`
+- `static/js/research/jobs.js:414`
+- `static/js/research/jobs.js:439`
+
+## `_notify` — function, line 460
+- **called from:**
+- `static/js/research/jobs.js:131`
+- `static/js/research/jobs.js:171`
+- `static/js/research/jobs.js:189`
+- `static/js/research/jobs.js:207`
+- `static/js/research/jobs.js:255`
+- `static/js/research/jobs.js:262`
+- `static/js/research/jobs.js:276`
+- `static/js/research/jobs.js:289`
+- `static/js/research/jobs.js:341`
+- `static/js/research/jobs.js:349`
+- `static/js/research/jobs.js:358`
+- `static/js/research/jobs.js:364`
+- `static/js/research/jobs.js:388`
+- `static/js/research/jobs.js:433`
+- `static/js/research/jobs.js:456`
+- `static/js/research/jobs.js:460`

@@ -4,7 +4,7 @@
 
 ## `is_markitdown_format` — function, line 27
 - **called from:**
-- `src/document_processor.py:229`
+- `src/document_processor.py:240`
 - `tests/test_markitdown_format_nonstring.py:9`
 - `tests/test_markitdown_format_nonstring.py:10`
 - `tests/test_markitdown_format_nonstring.py:11`
@@ -17,7 +17,7 @@
 
 ## `load_markitdown` — function, line 34
 - **called from:**
-- `src/document_processor.py:281`
+- `src/document_processor.py:303`
 - `src/markitdown_runtime.py:86`
 - `tests/test_markitdown_runtime.py:29`
 
@@ -27,8 +27,9 @@
 
 ## `convert_to_markdown` — function, line 75
 - **called from:**
-- `src/document_processor.py:232`
-- `src/personal_docs.py:38`
+- `routes/email/email_routes.py:5137`
+- `src/document_processor.py:243`
+- `src/personal_docs.py:42`
 - `tests/test_markitdown_runtime.py:38`
 - `tests/test_markitdown_runtime.py:47`
 - `tests/test_markitdown_runtime.py:73`

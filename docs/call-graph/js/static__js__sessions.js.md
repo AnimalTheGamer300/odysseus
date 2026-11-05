@@ -1,677 +1,800 @@
 # `static/js/sessions.js` — definitions & call sites
 
-130 definitions (regex-based, best-effort).
-**Exports:** `clearResearching`, `clearStreamComplete`, `clearStreaming`, `closeArchive`, `closeLibrary`, `createDirectChat`, `default`, `deleteCurrentSessionFromTopMenu`, `getCurrentEndpointUrl`, `getCurrentModel`, `getCurrentSessionId`, `getPendingChat`, `getSessions`, `getSortMode`, `hasPendingChat`, `initDependencies`, `initDragSort`, `isCurrentSessionIncognito`, `loadSessions`, `markResearching`, `markStreamComplete`, `markStreaming`, `materializePendingSession`, `openArchive`, `openLibrary`, `preMaterializePendingSession`, `renderSessionList`, `selectSession`, `setCurrentSessionId`, `setSessionHasDocs`, `setSortMode`, `updateModelPicker`
+147 definitions (regex-based, best-effort).
+**Exports:** `clearResearching`, `clearStreamComplete`, `clearStreaming`, `closeArchive`, `closeLibrary`, `createDirectChat`, `default`, `deleteCurrentSessionFromTopMenu`, `getCurrentEndpointUrl`, `getCurrentModel`, `getCurrentSessionId`, `getPendingChat`, `getSessions`, `getSortMode`, `hasPendingChat`, `initDependencies`, `initDragSort`, `isCurrentSessionIncognito`, `loadSessions`, `markResearching`, `markStreamComplete`, `markStreaming`, `materializePendingSession`, `openArchive`, `openLibrary`, `preMaterializePendingSession`, `prepareHistoryForPrint`, `renderSessionList`, `selectSession`, `setCurrentSessionId`, `setSessionHasDocs`, `setSortMode`, `updateModelPicker`
 
-## `_mirrorTabTitle` — function, line 28
+## `_mirrorTabTitle` — function, line 30
 - **called from:**
-- `static/js/sessions.js:28`
+- `static/js/sessions.js:30`
 
-## `apply` — arrow, line 31
+## `apply` — arrow, line 33
 - **called from:**
-- `static/app.js:199`
-- `static/js/admin.js:1765`
-- `static/js/admin.js:1769`
+- `tests/test_review_calendar_invitation.py:52`
+- `tests/test_review_calendar_invitation.py:54`
+- `tests/test_review_calendar_invitation.py:60`
+- `tests/test_review_calendar_invitation.py:61`
+- `tests/test_review_calendar_invitation.py:70`
+- `tests/test_review_calendar_invitation.py:71`
+- `tests/test_review_calendar_invitation.py:78`
+- `tests/test_review_calendar_invitation.py:79`
+- `tests/test_review_calendar_invitation.py:81`
+- `tests/test_review_calendar_invitation.py:89`
+- `tests/test_review_calendar_invitation.py:109`
+- `tests/test_review_calendar_invitation.py:111`
+- `tests/test_review_calendar_invitation.py:173`
+- `tests/test_review_calendar_invitation.py:174`
+- `tests/test_review_calendar_invitation.py:176`
+- `tests/test_review_calendar_invitation.py:184`
+- `tests/test_review_calendar_invitation.py:185`
+- `tests/test_review_calendar_invitation.py:192`
+- `tests/test_review_calendar_invitation.py:201`
+- `tests/test_review_calendar_invitation.py:202`
+- `tests/test_review_calendar_invitation.py:209`
+- `tests/test_review_calendar_invitation.py:210`
+- `tests/test_review_calendar_invitation.py:211`
+- `static/app.js:207`
+- `static/js/admin.js:2634`
+- `static/js/admin.js:2638`
+- `static/js/calendar.js:1515`
 - `static/js/composerHistoryRecall.js:175`
 - `static/js/composerHistoryRecall.js:189`
 - `static/js/composerHistoryRecall.js:193`
 - `static/js/cookbookSchedule.js:22`
-- `static/js/document.js:812`
-- `static/js/document.js:821`
-- `static/js/document.js:6225`
-- `static/js/sessions.js:38`
-- `static/js/settings.js:194`
-- `static/js/settings.js:213`
-- `static/js/skills.js:54`
-- `static/js/theme.js:775`
-- `static/js/theme.js:780`
-- `static/js/ui.js:587`
+- `static/js/document.js:1725`
+- `static/js/document.js:1734`
+- `static/js/document.js:10179`
+- `static/js/editor/fx/cube-lut.js:2`
+- `static/js/editor/panel-visibility.js:81`
+- `static/js/editor/panel-visibility.js:137`
+- `static/js/editor/panel-visibility.js:150`
+- `static/js/editor/panel-visibility.js:158`
+- `static/js/editor/tools/perspective-crop.js:87`
+- `static/js/editor/tools/perspective-crop.js:90`
+- `static/js/galleryEditor.js:6770`
+- `static/js/galleryEditor.js:10650`
+- `static/js/galleryEditor.js:10666`
+- `static/js/galleryEditor.js:11478`
+- `static/js/sessions.js:40`
+- `static/js/settings.js:130`
+- `static/js/settings.js:149`
+- `static/js/skills.js:69`
+- `static/js/theme.js:831`
+- `static/js/theme.js:836`
+- `static/js/ui.js:653`
+- `static/js/ui.js:656`
+- `static/js/ui.js:757`
 
-## `_shouldPreserveStartupComposer` — function, line 57
+## `_toolSurfaceLabel` — function, line 67
 - **called from:**
-- `static/js/sessions.js:57`
-- `static/js/sessions.js:65`
+- `static/js/sessions.js:67`
+- `static/js/sessions.js:128`
 
-## `_clearComposerUnlessStartupTyped` — function, line 63
+## `_formatJst` — function, line 77
 - **called from:**
-- `static/js/sessions.js:63`
-- `static/js/sessions.js:2018`
-- `static/js/sessions.js:2374`
+- `static/js/sessions.js:77`
+- `static/js/sessions.js:90`
 
-## `_paintSessionLoading` — function, line 73
+## `p` — arrow, line 79
 - **called from:**
-- `static/js/sessions.js:73`
-- `static/js/sessions.js:2071`
+- `tests/test_compare_endpoint_owner_scope.py:48`
+- `tests/test_null_owner_gates.py:264`
+- `tests/test_research_endpoint_owner_scope.py:61`
+- `static/js/sessions.js:80`
+- `static/js/sessions.js:80`
+- `static/js/sessions.js:80`
+- `static/js/sessions.js:80`
 
-## `_updateSessionLoading` — function, line 104
+## `_buildCopyChatHeader` — function, line 83
 - **called from:**
-- `static/js/sessions.js:104`
-- `static/js/sessions.js:2123`
+- `static/js/sessions.js:83`
+- `static/js/sessions.js:133`
 
-## `_nextPaint` — function, line 109
+## `_copyChatHeaderFor` — function, line 102
 - **called from:**
-- `static/js/sessions.js:109`
-- `static/js/sessions.js:2073`
-- `static/js/sessions.js:2124`
+- `static/js/sessions.js:102`
+- `static/js/sessions.js:1154`
 
-## `_displayHistoryContent` — function, line 113
+## `_shouldPreserveStartupComposer` — function, line 145
 - **called from:**
-- `static/js/sessions.js:113`
-- `static/js/sessions.js:177`
-- `static/js/sessions.js:179`
+- `static/js/sessions.js:145`
+- `static/js/sessions.js:153`
 
-## `_stripUserVisionBlocks` — function, line 132
+## `_clearComposerUnlessStartupTyped` — function, line 151
 - **called from:**
-- `static/js/sessions.js:132`
-- `static/js/sessions.js:184`
+- `static/js/sessions.js:151`
+- `static/js/sessions.js:2361`
+- `static/js/sessions.js:2732`
 
-## `_historyPageLimit` — function, line 139
+## `_forceExitIncognitoUi` — function, line 161
 - **called from:**
-- `static/js/sessions.js:139`
-- `static/js/sessions.js:220`
-- `static/js/sessions.js:2076`
+- `static/js/sessions.js:161`
+- `static/js/sessions.js:2323`
 
-## `_historyUrl` — function, line 143
-- **called from:**
-- `static/js/sessions.js:143`
-- `static/js/sessions.js:243`
-- `static/js/sessions.js:2076`
-
-## `_addHistoryMessageWithFullRenderer` — function, line 150
-- **called from:**
-- `static/js/sessions.js:150`
-- `static/js/sessions.js:201`
-
-## `_renderHistoryMessage` — function, line 173
-- **called from:**
-- `static/js/sessions.js:173`
-- `static/js/sessions.js:251`
-- `static/js/sessions.js:2153`
-
-## `_clearHistoryPager` — function, line 204
-- **called from:**
-- `static/js/sessions.js:204`
-- `static/js/sessions.js:214`
-- `static/js/sessions.js:1948`
-
-## `_installHistoryPager` — function, line 212
+## `_paintSessionLoading` — function, line 212
 - **called from:**
 - `static/js/sessions.js:212`
-- `static/js/sessions.js:2170`
+- `static/js/sessions.js:2418`
 
-## `loadOlder` — arrow, line 227
+## `_updateSessionLoading` — function, line 243
 - **called from:**
-- `static/js/sessions.js:287`
-- `static/js/sessions.js:301`
+- `static/js/sessions.js:243`
+- `static/js/sessions.js:2470`
 
-## `_getIncognitoIds` — function, line 307
+## `_nextPaint` — function, line 248
 - **called from:**
-- `static/js/sessions.js:307`
-- `static/js/sessions.js:311`
-- `static/js/sessions.js:314`
+- `static/js/sessions.js:248`
+- `static/js/sessions.js:2420`
+- `static/js/sessions.js:2471`
+
+## `_displayHistoryContent` — function, line 252
+- **called from:**
+- `static/js/sessions.js:252`
 - `static/js/sessions.js:316`
+- `static/js/sessions.js:318`
 
-## `_markIncognito` — function, line 310
+## `_stripUserVisionBlocks` — function, line 271
 - **called from:**
-- `static/js/sessions.js:310`
-- `static/js/sessions.js:2434`
+- `static/js/sessions.js:271`
+- `static/js/sessions.js:334`
 
-## `_isIncognitoSession` — function, line 314
+## `_historyPageLimit` — function, line 278
 - **called from:**
-- `static/js/sessions.js:314`
-- `static/js/sessions.js:1176`
-- `static/js/sessions.js:1775`
-- `static/js/sessions.js:2488`
+- `static/js/sessions.js:278`
+- `static/js/sessions.js:369`
+- `static/js/sessions.js:2423`
 
-## `_cleanupIncognitoSessions` — function, line 315
+## `_historyUrl` — function, line 282
 - **called from:**
-- `static/js/sessions.js:315`
-- `static/js/sessions.js:1765`
+- `static/js/sessions.js:282`
+- `static/js/sessions.js:393`
+- `static/js/sessions.js:2423`
 
-## `_deselectCurrentSession` — function, line 339
+## `_addHistoryMessageWithFullRenderer` — function, line 289
 - **called from:**
-- `static/js/sessions.js:339`
-- `static/js/sessions.js:378`
-- `static/js/sessions.js:981`
-- `static/js/sessions.js:1335`
-- `static/js/sessions.js:1458`
-- `static/js/sessions.js:2542`
-- `static/js/sessions.js:2595`
+- `static/js/sessions.js:289`
+- `static/js/sessions.js:350`
 
-## `_removeSessionFromLocalState` — function, line 359
+## `_renderHistoryMessage` — function, line 312
 - **called from:**
-- `static/js/sessions.js:359`
-- `static/js/sessions.js:982`
-- `static/js/sessions.js:2543`
-
-## `_normalizeSessionsList` — function, line 381
-- **called from:**
-- `static/js/sessions.js:381`
-- `static/js/sessions.js:1794`
-
-## `initDependencies` — function, line 396
-- **called from:**
-- `static/app.js:4311`
-- `static/js/sessions.js:396`
-
-## `loadFolderState` — function, line 402
-- **called from:**
+- `static/js/sessions.js:312`
 - `static/js/sessions.js:402`
-- `static/js/sessions.js:1257`
-- `static/js/sessions.js:1351`
-- `static/js/sessions.js:1427`
-- `static/js/sessions.js:1469`
+- `static/js/sessions.js:2500`
 
-## `saveFolderState` — function, line 405
+## `_clearHistoryPager` — function, line 353
 - **called from:**
-- `static/js/sessions.js:405`
-- `static/js/sessions.js:1354`
-- `static/js/sessions.js:1471`
+- `static/js/sessions.js:353`
+- `static/js/sessions.js:363`
+- `static/js/sessions.js:2289`
 
-## `loadFolderOrder` — function, line 408
+## `_installHistoryPager` — function, line 361
 - **called from:**
-- `static/js/sessions.js:408`
-- `static/js/sessions.js:1281`
+- `static/js/sessions.js:361`
+- `static/js/sessions.js:2517`
 
-## `saveFolderOrder` — function, line 411
+## `loadOlder` — arrow, line 376
 - **called from:**
-- `static/js/sessions.js:411`
-- `static/js/sessions.js:2629`
+- `static/js/sessions.js:440`
+- `static/js/sessions.js:455`
+- `static/js/sessions.js:474`
 
-## `getFolderNames` — function, line 416
+## `prepareHistoryForPrint` — function, line 461
 - **called from:**
-- `static/js/sessions.js:416`
-- `static/js/sessions.js:435`
+- `static/app.js:572`
+- `static/js/sessions.js:461`
 
-## `moveToFolder` — function, line 423
+## `ensureCurrentChat` — arrow, line 464
 - **called from:**
-- `static/js/sessions.js:423`
-- `static/js/sessions.js:453`
-- `static/js/sessions.js:467`
-- `static/js/sessions.js:490`
-- `static/js/sessions.js:1368`
+- `static/js/sessions.js:471`
+- `static/js/sessions.js:476`
+- `static/js/sessions.js:481`
 
-## `buildFolderSubmenu` — function, line 434
+## `_getIncognitoIds` — function, line 484
 - **called from:**
-- `static/js/sessions.js:434`
-- `static/js/sessions.js:877`
+- `static/js/sessions.js:484`
+- `static/js/sessions.js:488`
+- `static/js/sessions.js:491`
+- `static/js/sessions.js:493`
 
-## `createSessionItem` — function, line 547
+## `_markIncognito` — function, line 487
 - **called from:**
-- `static/js/sessions.js:547`
-- `static/js/sessions.js:1149`
-- `static/js/sessions.js:1158`
+- `static/js/sessions.js:487`
+- `static/js/sessions.js:2792`
 
-## `commit` — arrow, line 644
+## `_isIncognitoSession` — function, line 491
 - **called from:**
-- `app.py:449`
-- `app.py:1047`
-- `core/database.py:924`
-- `core/database.py:955`
-- `core/database.py:978`
-- `core/database.py:1003`
-- `core/database.py:1026`
-- `core/database.py:1049`
-- `core/database.py:1080`
-- `core/database.py:1105`
-- `core/database.py:1129`
-- `core/database.py:1158`
-- `core/database.py:1180`
-- `core/database.py:1203`
-- `core/database.py:1227`
-- `core/database.py:1249`
-- `core/database.py:1282`
-- `core/database.py:1304`
-- `core/database.py:1327`
-- `core/database.py:1351`
-- `core/database.py:1375`
-- `core/database.py:1409`
-- `core/database.py:1438`
-- `core/database.py:1512`
-- `core/database.py:1591`
-- `core/database.py:1606`
-- `core/database.py:1632`
-- `core/database.py:1704`
-- `core/database.py:1723`
-- `core/database.py:1735`
-- `core/database.py:1747`
-- `core/database.py:1764`
-- `core/database.py:1784`
-- `core/database.py:1805`
-- `core/database.py:1817`
-- `core/database.py:1830`
-- `core/database.py:1835`
-- `core/database.py:1847`
-- `core/database.py:1851`
-- `core/database.py:2098`
-- `core/database.py:2251`
-- `core/database.py:2335`
-- `core/database.py:2396`
-- `core/database.py:2425`
-- `core/database.py:2457`
-- `core/database.py:2491`
-- `core/database.py:2512`
-- `core/database.py:2539`
-- `core/database.py:2565`
-- `core/database.py:2595`
-- `core/database.py:2618`
-- `core/database.py:2640`
-- `core/database.py:2669`
-- `core/database.py:2745`
-- `core/database.py:2813`
-- `core/session_manager.py:429`
-- `core/session_manager.py:479`
-- `core/session_manager.py:504`
-- `core/session_manager.py:569`
-- `core/session_manager.py:647`
-- … +406 more (grep the name in repo)
+- `static/js/sessions.js:491`
+- `static/js/sessions.js:1526`
+- `static/js/sessions.js:2113`
+- `static/js/sessions.js:2849`
 
-## `close` — arrow, line 698
+## `_cleanupIncognitoSessions` — function, line 492
 - **called from:**
-- `app.py:333`
-- `app.py:451`
-- `app.py:532`
-- `app.py:1050`
-- `app.py:1174`
-- `app.py:1295`
-- `companion/pairing.py:151`
-- `companion/routes.py:165`
-- `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
-- `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `static/js/sessions.js:492`
+- `static/js/sessions.js:2103`
 
-## `_icon` — arrow, line 733
+## `_persistCompletedSessions` — function, line 517
 - **called from:**
-- `tests/test_lang_icon_null_opts_js.py:33`
-- `tests/test_lang_icon_null_opts_js.py:40`
-- `static/js/emailInbox.js:1120`
-- `static/js/emailLibrary.js:7898`
-- `static/js/emailLibrary.js:7919`
-- `static/js/emailLibrary.js:8109`
-- `static/js/emailLibrary.js:8126`
-- `static/js/sessions.js:741`
-- `static/js/sessions.js:745`
-- `static/js/sessions.js:749`
-- `static/js/sessions.js:760`
-- `static/js/sessions.js:767`
-- `static/js/sessions.js:801`
-- `static/js/sessions.js:817`
-- `static/js/sessions.js:859`
-- `static/js/sessions.js:894`
+- `static/js/sessions.js:517`
+- `static/js/sessions.js:3161`
+- `static/js/sessions.js:3312`
 
-## `commit` — arrow, line 945
+## `_deselectCurrentSession` — function, line 525
 - **called from:**
-- `app.py:449`
-- `app.py:1047`
-- `core/database.py:924`
-- `core/database.py:955`
-- `core/database.py:978`
-- `core/database.py:1003`
-- `core/database.py:1026`
-- `core/database.py:1049`
-- `core/database.py:1080`
-- `core/database.py:1105`
-- `core/database.py:1129`
-- `core/database.py:1158`
-- `core/database.py:1180`
-- `core/database.py:1203`
-- `core/database.py:1227`
-- `core/database.py:1249`
-- `core/database.py:1282`
-- `core/database.py:1304`
-- `core/database.py:1327`
-- `core/database.py:1351`
-- `core/database.py:1375`
-- `core/database.py:1409`
-- `core/database.py:1438`
-- `core/database.py:1512`
-- `core/database.py:1591`
-- `core/database.py:1606`
-- `core/database.py:1632`
-- `core/database.py:1704`
-- `core/database.py:1723`
-- `core/database.py:1735`
-- `core/database.py:1747`
-- `core/database.py:1764`
-- `core/database.py:1784`
-- `core/database.py:1805`
-- `core/database.py:1817`
-- `core/database.py:1830`
-- `core/database.py:1835`
-- `core/database.py:1847`
-- `core/database.py:1851`
-- `core/database.py:2098`
-- `core/database.py:2251`
-- `core/database.py:2335`
-- `core/database.py:2396`
-- `core/database.py:2425`
-- `core/database.py:2457`
-- `core/database.py:2491`
-- `core/database.py:2512`
-- `core/database.py:2539`
-- `core/database.py:2565`
-- `core/database.py:2595`
-- `core/database.py:2618`
-- `core/database.py:2640`
-- `core/database.py:2669`
-- `core/database.py:2745`
-- `core/database.py:2813`
-- `core/session_manager.py:429`
-- `core/session_manager.py:479`
-- `core/session_manager.py:504`
-- `core/session_manager.py:569`
-- `core/session_manager.py:647`
-- … +406 more (grep the name in repo)
-
-## `_dateBucketLabel` — function, line 1062
-- **called from:**
-- `static/js/sessions.js:1062`
-- `static/js/sessions.js:1142`
-
-## `dayStart` — arrow, line 1066
-- **called from:**
-- `static/js/emailLibrary.js:4904`
-- `static/js/emailLibrary.js:4905`
-- `static/js/sessions.js:1067`
-- `static/js/sessions.js:1068`
-
-## `_sessionBucketDate` — function, line 1083
-- **called from:**
-- `static/js/sessions.js:1083`
-- `static/js/sessions.js:1142`
-
-## `_loadDateSectionCollapseState` — function, line 1087
-- **called from:**
-- `static/js/sessions.js:1087`
-- `static/js/sessions.js:1102`
-- `static/js/sessions.js:1106`
-
-## `_saveDateSectionCollapseState` — function, line 1093
-- **called from:**
-- `static/js/sessions.js:1093`
-- `static/js/sessions.js:1109`
-
-## `_dateSectionKey` — function, line 1097
-- **called from:**
-- `static/js/sessions.js:1097`
-- `static/js/sessions.js:1102`
-- `static/js/sessions.js:1107`
-
-## `_isDateSectionCollapsed` — function, line 1101
-- **called from:**
-- `static/js/sessions.js:1101`
-- `static/js/sessions.js:1117`
-- `static/js/sessions.js:1145`
-- `static/js/sessions.js:1156`
-
-## `_toggleDateSection` — function, line 1105
-- **called from:**
-- `static/js/sessions.js:1105`
-- `static/js/sessions.js:1127`
-- `static/js/sessions.js:1133`
-
-## `_createDateSectionHeader` — function, line 1113
-- **called from:**
-- `static/js/sessions.js:1113`
-- `static/js/sessions.js:1144`
-- `static/js/sessions.js:1155`
-
-## `_appendSessionItemsWithDateHeaders` — function, line 1138
-- **called from:**
-- `static/js/sessions.js:1138`
-- `static/js/sessions.js:1235`
-- `static/js/sessions.js:1388`
-- `static/js/sessions.js:1488`
-
-## `_appendFavoriteSessionItems` — function, line 1153
-- **called from:**
-- `static/js/sessions.js:1153`
-- `static/js/sessions.js:1234`
-
-## `renderSessionList` — function, line 1163
-- **called from:**
-- `static/js/keyboard-shortcuts.js:190`
-- `static/js/sessions.js:430`
-- `static/js/sessions.js:614`
-- `static/js/sessions.js:654`
-- `static/js/sessions.js:660`
-- `static/js/sessions.js:776`
-- `static/js/sessions.js:810`
-- `static/js/sessions.js:955`
-- `static/js/sessions.js:961`
-- `static/js/sessions.js:1110`
-- `static/js/sessions.js:1163`
-- `static/js/sessions.js:1245`
-- `static/js/sessions.js:1355`
-- `static/js/sessions.js:1398`
-- `static/js/sessions.js:1472`
-- `static/js/sessions.js:1500`
+- `static/js/sessions.js:525`
+- `static/js/sessions.js:567`
+- `static/js/sessions.js:1317`
+- `static/js/sessions.js:1683`
 - `static/js/sessions.js:1795`
-- `static/js/sessions.js:3748`
-- `static/js/sessions.js:3755`
+- `static/js/sessions.js:2944`
+- `static/js/sessions.js:2997`
 
-## `_renderSessionListImpl` — function, line 1169
+## `_removeSessionFromLocalState` — function, line 548
 - **called from:**
-- `static/js/sessions.js:1169`
+- `static/js/sessions.js:548`
+- `static/js/sessions.js:1318`
+- `static/js/sessions.js:2945`
 
-## `starPartition` — arrow, line 1271
+## `_normalizeSessionsList` — function, line 570
 - **called from:**
-- `static/js/sessions.js:1277`
-- `static/js/sessions.js:1278`
+- `static/js/sessions.js:570`
+- `static/js/sessions.js:2132`
 
-## `_postRenderSessionList` — function, line 1513
+## `initDependencies` — function, line 585
 - **called from:**
-- `static/js/sessions.js:1252`
-- `static/js/sessions.js:1509`
-- `static/js/sessions.js:1513`
+- `static/app.js:4427`
+- `static/js/sessions.js:585`
 
-## `_initKeyboardNav` — function, line 1528
+## `loadFolderState` — function, line 591
 - **called from:**
-- `static/js/sessions.js:1522`
-- `static/js/sessions.js:1528`
+- `static/js/sessions.js:591`
+- `static/js/sessions.js:1605`
+- `static/js/sessions.js:1700`
+- `static/js/sessions.js:1764`
+- `static/js/sessions.js:1807`
 
-## `_initSwipeToDelete` — function, line 1539
+## `saveFolderState` — function, line 594
 - **called from:**
-- `static/js/sessions.js:1523`
-- `static/js/sessions.js:1539`
-
-## `_showSwipeHint` — function, line 1543
-- **called from:**
-- `static/js/sessions.js:1525`
-- `static/js/sessions.js:1543`
-
-## `_forceSidebarOpen` — function, line 1560
-- **called from:**
-- `static/js/sessions.js:653`
-- `static/js/sessions.js:660`
-- `static/js/sessions.js:931`
-- `static/js/sessions.js:954`
-- `static/js/sessions.js:961`
-- `static/js/sessions.js:973`
-- `static/js/sessions.js:996`
-- `static/js/sessions.js:1007`
-- `static/js/sessions.js:1014`
-- `static/js/sessions.js:1560`
-
-## `_guardSidebarDuringRename` — function, line 1581
-- **called from:**
-- `static/js/sessions.js:643`
-- `static/js/sessions.js:944`
-- `static/js/sessions.js:1581`
-
-## `_enterSelectMode` — function, line 1602
-- **called from:**
-- `static/js/notes.js:1329`
-- `static/js/notes.js:1456`
-- `static/js/sessions.js:863`
-- `static/js/sessions.js:1602`
-- `static/js/sessions.js:1660`
-- `static/js/sessions.js:1672`
-- `static/js/skills.js:414`
-- `static/js/skills.js:1673`
-- `static/js/skills.js:2004`
-
-## `_exitSelectMode` — function, line 1633
-- **called from:**
-- `static/js/gallery.js:2520`
-- `static/js/gallery.js:2523`
-- `static/js/gallery.js:2652`
-- `static/js/gallery.js:2691`
-- `static/js/gallery.js:2729`
-- `static/js/gallery.js:2757`
-- `static/js/gallery.js:2769`
-- `static/js/gallery.js:2787`
-- `static/js/notes.js:1329`
-- `static/js/notes.js:1342`
-- `static/js/notes.js:1356`
-- `static/js/notes.js:1369`
-- `static/js/notes.js:1416`
-- `static/js/notes.js:1467`
-- `static/js/sessions.js:1633`
-- `static/js/sessions.js:1659`
-- `static/js/sessions.js:1664`
-- `static/js/sessions.js:1679`
-- `static/js/sessions.js:1720`
-- `static/js/sessions.js:1741`
-- `static/js/skills.js:641`
-- `static/js/skills.js:1684`
-- `static/js/skills.js:1754`
-- `static/js/skills.js:1813`
-- `static/js/skills.js:1833`
-- `static/js/skills.js:1844`
-- `static/js/skills.js:2004`
-
-## `_updateBulkCount` — function, line 1646
-- **called from:**
-- `static/js/cookbook.js:2272`
-- `static/js/cookbook.js:2283`
-- `static/js/cookbook.js:2287`
-- `static/js/gallery.js:2488`
-- `static/js/gallery.js:2517`
-- `static/js/gallery.js:2529`
-- `static/js/gallery.js:2538`
-- `static/js/gallery.js:2568`
-- `static/js/sessions.js:865`
-- `static/js/sessions.js:1626`
-- `static/js/sessions.js:1630`
-- `static/js/sessions.js:1646`
+- `static/js/sessions.js:594`
 - `static/js/sessions.js:1703`
+- `static/js/sessions.js:1809`
 
-## `_initBulkSelect` — function, line 1654
+## `loadFolderOrder` — function, line 597
 - **called from:**
-- `static/js/sessions.js:1654`
-- `static/js/sessions.js:2908`
+- `static/js/sessions.js:597`
+- `static/js/sessions.js:1629`
 
-## `_toggleAll` — arrow, line 1687
+## `saveFolderOrder` — function, line 600
+- **called from:**
+- `static/js/sessions.js:600`
+- `static/js/sessions.js:3031`
+
+## `getFolderNames` — function, line 605
+- **called from:**
+- `static/js/sessions.js:605`
+- `static/js/sessions.js:650`
+
+## `moveToFolder` — function, line 612
+- **called from:**
+- `static/js/sessions.js:612`
+- `static/js/sessions.js:643`
+- `static/js/sessions.js:668`
+- `static/js/sessions.js:682`
+- `static/js/sessions.js:705`
+- `static/js/sessions.js:942`
+- `static/js/sessions.js:1717`
+
+## `wireFolderDropTarget` — function, line 624
+- **called from:**
+- `static/js/sessions.js:624`
+- `static/js/sessions.js:1691`
+- `static/js/sessions.js:1803`
+
+## `buildFolderSubmenu` — function, line 649
+- **called from:**
+- `static/js/sessions.js:649`
+- `static/js/sessions.js:1199`
+
+## `createSessionItem` — function, line 767
+- **called from:**
+- `static/js/sessions.js:767`
+- `static/js/sessions.js:1493`
+- `static/js/sessions.js:1502`
+
+## `commit` — arrow, line 889
+- **called from:**
+- `app.py:490`
+- `app.py:1211`
+- `core/database.py:976`
+- `core/database.py:998`
+- `core/database.py:1020`
+- `core/database.py:1042`
+- `core/database.py:1069`
+- `core/database.py:1089`
+- `core/database.py:1114`
+- `core/database.py:1137`
+- `core/database.py:1160`
+- `core/database.py:1191`
+- `core/database.py:1216`
+- `core/database.py:1240`
+- `core/database.py:1269`
+- `core/database.py:1291`
+- `core/database.py:1314`
+- `core/database.py:1338`
+- `core/database.py:1362`
+- `core/database.py:1384`
+- `core/database.py:1437`
+- `core/database.py:1459`
+- `core/database.py:1482`
+- `core/database.py:1505`
+- `core/database.py:1542`
+- `core/database.py:1565`
+- `core/database.py:1589`
+- `core/database.py:1623`
+- `core/database.py:1652`
+- `core/database.py:1726`
+- `core/database.py:1805`
+- `core/database.py:1820`
+- `core/database.py:1846`
+- `core/database.py:1869`
+- `core/database.py:1941`
+- `core/database.py:1960`
+- `core/database.py:1972`
+- `core/database.py:1984`
+- `core/database.py:2001`
+- `core/database.py:2021`
+- `core/database.py:2042`
+- `core/database.py:2054`
+- `core/database.py:2067`
+- `core/database.py:2072`
+- `core/database.py:2084`
+- `core/database.py:2088`
+- `core/database.py:2357`
+- `core/database.py:2530`
+- `core/database.py:2630`
+- `core/database.py:2691`
+- `core/database.py:2720`
+- `core/database.py:2752`
+- `core/database.py:2786`
+- `core/database.py:2807`
+- `core/database.py:2834`
+- `core/database.py:2860`
+- `core/database.py:2890`
+- `core/database.py:2913`
+- `core/database.py:2935`
+- `core/database.py:2957`
+- … +618 more (grep the name in repo)
+
+## `_clearFolderDragTarget` — arrow, line 925
+- **called from:**
+- `static/js/sessions.js:935`
+- `static/js/sessions.js:956`
+- `static/js/sessions.js:961`
+
+## `_finishFolderPointerDrag` — arrow, line 929
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_animateSessionRowsRemoving` — function, line 1749
+## `_moveFolderPointer` — arrow, line 945
 - **called from:**
-- `static/js/sessions.js:1740`
-- `static/js/sessions.js:1749`
-- `static/js/sessions.js:3075`
-- `static/js/sessions.js:3118`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `loadSessions` — function, line 1762
+## `close` — arrow, line 1014
 - **called from:**
-- `static/app.js:620`
-- `static/app.js:1464`
-- `static/app.js:1669`
-- `static/app.js:3419`
-- `static/app.js:4328`
-- `static/app.js:4424`
-- `static/js/chat.js:2524`
-- `static/js/chat.js:3645`
-- `static/js/chat.js:4188`
-- `static/js/chat.js:5053`
-- `static/js/chat.js:5222`
-- `static/js/chat.js:5930`
-- `static/js/chat.js:6014`
-- `static/js/chat.js:7021`
-- `static/js/chat.js:7771`
-- `static/js/chatRenderer.js:1265`
-- `static/js/document.js:7316`
-- `static/js/documentLibrary.js:2083`
-- `static/js/documentLibrary.js:2356`
-- `static/js/documentLibrary.js:2805`
-- `static/js/documentLibrary.js:2863`
-- `static/js/documentLibrary.js:3005`
-- `static/js/emailInbox.js:1379`
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
+- `companion/pairing.py:151`
+- `companion/routes.py:165`
+- `core/database.py:161`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
+- `core/session_manager.py:68`
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
+
+## `_icon` — arrow, line 1054
+- **called from:**
+- `tests/test_lang_icon_null_opts_js.py:33`
+- `tests/test_lang_icon_null_opts_js.py:40`
+- `static/js/emailInbox.js:1184`
+- `static/js/emailLibrary/menus.js:304`
+- `static/js/emailLibrary/menus.js:342`
+- `static/js/emailLibrary/menus.js:547`
+- `static/js/emailLibrary/menus.js:564`
+- `static/js/sessions.js:1062`
+- `static/js/sessions.js:1066`
+- `static/js/sessions.js:1070`
+- `static/js/sessions.js:1081`
+- `static/js/sessions.js:1088`
+- `static/js/sessions.js:1122`
+- `static/js/sessions.js:1138`
+- `static/js/sessions.js:1181`
+- `static/js/sessions.js:1216`
+
+## `commit` — arrow, line 1281
+- **called from:**
+- `app.py:490`
+- `app.py:1211`
+- `core/database.py:976`
+- `core/database.py:998`
+- `core/database.py:1020`
+- `core/database.py:1042`
+- `core/database.py:1069`
+- `core/database.py:1089`
+- `core/database.py:1114`
+- `core/database.py:1137`
+- `core/database.py:1160`
+- `core/database.py:1191`
+- `core/database.py:1216`
+- `core/database.py:1240`
+- `core/database.py:1269`
+- `core/database.py:1291`
+- `core/database.py:1314`
+- `core/database.py:1338`
+- `core/database.py:1362`
+- `core/database.py:1384`
+- `core/database.py:1437`
+- `core/database.py:1459`
+- `core/database.py:1482`
+- `core/database.py:1505`
+- `core/database.py:1542`
+- `core/database.py:1565`
+- `core/database.py:1589`
+- `core/database.py:1623`
+- `core/database.py:1652`
+- `core/database.py:1726`
+- `core/database.py:1805`
+- `core/database.py:1820`
+- `core/database.py:1846`
+- `core/database.py:1869`
+- `core/database.py:1941`
+- `core/database.py:1960`
+- `core/database.py:1972`
+- `core/database.py:1984`
+- `core/database.py:2001`
+- `core/database.py:2021`
+- `core/database.py:2042`
+- `core/database.py:2054`
+- `core/database.py:2067`
+- `core/database.py:2072`
+- `core/database.py:2084`
+- `core/database.py:2088`
+- `core/database.py:2357`
+- `core/database.py:2530`
+- `core/database.py:2630`
+- `core/database.py:2691`
+- `core/database.py:2720`
+- `core/database.py:2752`
+- `core/database.py:2786`
+- `core/database.py:2807`
+- `core/database.py:2834`
+- `core/database.py:2860`
+- `core/database.py:2890`
+- `core/database.py:2913`
+- `core/database.py:2935`
+- `core/database.py:2957`
+- … +618 more (grep the name in repo)
+
+## `registerDropdownEscape` — arrow, line 1370
+- **called from:**
+- `static/js/sessions.js:1247`
+
+## `_dateBucketLabel` — function, line 1406
+- **called from:**
+- `static/js/sessions.js:1406`
+- `static/js/sessions.js:1486`
+
+## `dayStart` — arrow, line 1410
+- **called from:**
+- `static/js/emailLibrary/index.js:5265`
+- `static/js/emailLibrary/index.js:5266`
+- `static/js/sessions.js:1411`
+- `static/js/sessions.js:1412`
+
+## `_sessionBucketDate` — function, line 1427
+- **called from:**
+- `static/js/sessions.js:1427`
+- `static/js/sessions.js:1486`
+
+## `_loadDateSectionCollapseState` — function, line 1431
+- **called from:**
+- `static/js/sessions.js:1431`
+- `static/js/sessions.js:1446`
+- `static/js/sessions.js:1450`
+
+## `_saveDateSectionCollapseState` — function, line 1437
+- **called from:**
+- `static/js/sessions.js:1437`
+- `static/js/sessions.js:1453`
+
+## `_dateSectionKey` — function, line 1441
+- **called from:**
+- `static/js/sessions.js:1441`
+- `static/js/sessions.js:1446`
+- `static/js/sessions.js:1451`
+
+## `_isDateSectionCollapsed` — function, line 1445
+- **called from:**
+- `static/js/sessions.js:1445`
+- `static/js/sessions.js:1461`
+- `static/js/sessions.js:1489`
+- `static/js/sessions.js:1500`
+
+## `_toggleDateSection` — function, line 1449
+- **called from:**
+- `static/js/sessions.js:1449`
+- `static/js/sessions.js:1471`
+- `static/js/sessions.js:1477`
+
+## `_createDateSectionHeader` — function, line 1457
+- **called from:**
+- `static/js/sessions.js:1457`
+- `static/js/sessions.js:1488`
+- `static/js/sessions.js:1499`
+
+## `_appendSessionItemsWithDateHeaders` — function, line 1482
+- **called from:**
+- `static/js/sessions.js:1482`
+- `static/js/sessions.js:1583`
+- `static/js/sessions.js:1731`
+- `static/js/sessions.js:1826`
+
+## `_appendFavoriteSessionItems` — function, line 1497
+- **called from:**
+- `static/js/sessions.js:1497`
+- `static/js/sessions.js:1582`
+
+## `_isUnsavedCompareSession` — function, line 1506
+- **called from:**
+- `static/js/sessions.js:1506`
+- `static/js/sessions.js:1526`
+- `static/js/sessions.js:2136`
+- `static/js/sessions.js:2143`
+- `static/js/sessions.js:2148`
+
+## `renderSessionList` — function, line 1513
+- **called from:**
+- `static/js/keyboard-shortcuts.js:191`
+- `static/js/sessions.js:619`
+- `static/js/sessions.js:837`
+- `static/js/sessions.js:899`
+- `static/js/sessions.js:905`
+- `static/js/sessions.js:1097`
+- `static/js/sessions.js:1131`
+- `static/js/sessions.js:1291`
+- `static/js/sessions.js:1297`
+- `static/js/sessions.js:1454`
+- `static/js/sessions.js:1513`
+- `static/js/sessions.js:1593`
+- `static/js/sessions.js:1704`
+- `static/js/sessions.js:1741`
+- `static/js/sessions.js:1810`
+- `static/js/sessions.js:1838`
+- `static/js/sessions.js:2133`
+- `static/js/sessions.js:4178`
+- `static/js/sessions.js:4185`
+
+## `_renderSessionListImpl` — function, line 1519
+- **called from:**
+- `static/js/sessions.js:1519`
+
+## `starPartition` — arrow, line 1619
+- **called from:**
+- `static/js/sessions.js:1625`
+- `static/js/sessions.js:1626`
+
+## `_postRenderSessionList` — function, line 1851
+- **called from:**
+- `static/js/sessions.js:1600`
+- `static/js/sessions.js:1847`
+- `static/js/sessions.js:1851`
+
+## `_initKeyboardNav` — function, line 1866
+- **called from:**
+- `static/js/sessions.js:1860`
+- `static/js/sessions.js:1866`
+
+## `_initSwipeToDelete` — function, line 1877
+- **called from:**
+- `static/js/sessions.js:1861`
+- `static/js/sessions.js:1877`
+
+## `_showSwipeHint` — function, line 1881
+- **called from:**
+- `static/js/sessions.js:1863`
+- `static/js/sessions.js:1881`
+
+## `_forceSidebarOpen` — function, line 1898
+- **called from:**
+- `static/js/sessions.js:898`
+- `static/js/sessions.js:905`
+- `static/js/sessions.js:1267`
+- `static/js/sessions.js:1290`
+- `static/js/sessions.js:1297`
+- `static/js/sessions.js:1309`
+- `static/js/sessions.js:1332`
+- `static/js/sessions.js:1343`
+- `static/js/sessions.js:1350`
+- `static/js/sessions.js:1898`
+
+## `_guardSidebarDuringRename` — function, line 1919
+- **called from:**
+- `static/js/sessions.js:888`
+- `static/js/sessions.js:1280`
+- `static/js/sessions.js:1919`
+
+## `_enterSelectMode` — function, line 1940
+- **called from:**
+- `static/js/features/notes/index.js:142`
+- `static/js/features/notes/index.js:142`
+- `static/js/features/notes/ui/mobileReorder.js:28`
+- `static/js/features/notes/ui/panel.js:237`
+- `static/js/features/notes/ui/selection.js:8`
+- `static/js/sessions.js:1185`
+- `static/js/sessions.js:1940`
+- `static/js/sessions.js:1998`
+- `static/js/sessions.js:2010`
+- `static/js/skills.js:561`
+- `static/js/skills.js:1984`
+- `static/js/skills.js:2340`
+
+## `_exitSelectMode` — function, line 1971
+- **called from:**
+- `static/js/features/notes/index.js:143`
+- `static/js/features/notes/index.js:143`
+- `static/js/features/notes/ui/panel.js:237`
+- `static/js/features/notes/ui/panel.js:250`
+- `static/js/features/notes/ui/panel.js:297`
+- `static/js/features/notes/ui/selection.js:20`
+- `static/js/gallery.js:2880`
+- `static/js/gallery.js:2886`
+- `static/js/gallery.js:2903`
+- `static/js/gallery.js:3032`
+- `static/js/gallery.js:3074`
+- `static/js/gallery.js:3112`
+- `static/js/gallery.js:3140`
+- `static/js/gallery.js:3152`
+- `static/js/gallery.js:3170`
+- `static/js/sessions.js:1971`
+- `static/js/sessions.js:1997`
+- `static/js/sessions.js:2002`
+- `static/js/sessions.js:2017`
+- `static/js/sessions.js:2058`
+- `static/js/sessions.js:2079`
+- `static/js/skills.js:857`
+- `static/js/skills.js:1995`
+- `static/js/skills.js:2069`
+- `static/js/skills.js:2131`
+- `static/js/skills.js:2151`
+- `static/js/skills.js:2162`
+- `static/js/skills.js:2340`
+
+## `_updateBulkCount` — function, line 1984
+- **called from:**
+- `static/js/cookbook.js:2360`
+- `static/js/cookbook.js:2371`
+- `static/js/cookbook.js:2375`
+- `static/js/gallery.js:2846`
+- `static/js/gallery.js:2877`
+- `static/js/gallery.js:2909`
+- `static/js/gallery.js:2918`
+- `static/js/gallery.js:2948`
+- `static/js/sessions.js:1187`
+- `static/js/sessions.js:1964`
+- `static/js/sessions.js:1968`
+- `static/js/sessions.js:1984`
+- `static/js/sessions.js:2041`
+
+## `_initBulkSelect` — function, line 1992
+- **called from:**
+- `static/js/sessions.js:1992`
+- `static/js/sessions.js:3332`
+
+## `_toggleAll` — arrow, line 2025
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_animateSessionRowsRemoving` — function, line 2087
+- **called from:**
+- `static/js/sessions.js:2078`
+- `static/js/sessions.js:2087`
+- `static/js/sessions.js:3496`
+- `static/js/sessions.js:3539`
+
+## `loadSessions` — function, line 2100
+- **called from:**
+- `static/app.js:653`
+- `static/app.js:1505`
+- `static/app.js:1710`
+- `static/app.js:3519`
+- `static/app.js:4444`
+- `static/app.js:4540`
+- `static/js/chat.js:3582`
+- `static/js/chat.js:5189`
+- `static/js/chat.js:5779`
+- `static/js/chat.js:6704`
+- `static/js/chat.js:6893`
+- `static/js/chat.js:8288`
+- `static/js/chat.js:9385`
+- `static/js/chatRenderer.js:1733`
+- `static/js/document.js:12354`
+- `static/js/documentLibrary.js:2557`
+- `static/js/documentLibrary.js:3070`
+- `static/js/emailInbox.js:1459`
 - `static/js/group.js:692`
-- `static/js/keyboard-shortcuts.js:208`
-- `static/js/keyboard-shortcuts.js:240`
-- `static/js/presets.js:433`
-- `static/js/research/panel.js:1230`
-- `static/js/sessions.js:1002`
-- `static/js/sessions.js:1015`
-- `static/js/sessions.js:1340`
-- `static/js/sessions.js:1369`
-- `static/js/sessions.js:1463`
-- `static/js/sessions.js:1722`
-- `static/js/sessions.js:1743`
-- `static/js/sessions.js:1762`
-- `static/js/sessions.js:1836`
-- `static/js/sessions.js:2453`
-- `static/js/sessions.js:2556`
-- `static/js/sessions.js:2596`
-- `static/js/sessions.js:3066`
-- `static/js/sessions.js:3100`
-- `static/js/sessions.js:3410`
-- `static/js/sessions.js:3427`
-- `static/js/sessions.js:3480`
-- `static/js/sessions.js:3481`
-- `static/js/sessions.js:3510`
+- `static/js/keyboard-shortcuts.js:209`
+- `static/js/keyboard-shortcuts.js:241`
+- `static/js/presets.js:450`
+- `static/js/research/panel.js:1796`
+- `static/js/sessions.js:1338`
+- `static/js/sessions.js:1351`
+- `static/js/sessions.js:1688`
+- `static/js/sessions.js:1718`
+- `static/js/sessions.js:1800`
+- `static/js/sessions.js:2060`
+- `static/js/sessions.js:2081`
+- `static/js/sessions.js:2100`
+- `static/js/sessions.js:2175`
+- `static/js/sessions.js:2814`
+- `static/js/sessions.js:2958`
+- `static/js/sessions.js:2998`
+- `static/js/sessions.js:3487`
+- `static/js/sessions.js:3521`
+- `static/js/sessions.js:3835`
+- `static/js/sessions.js:3857`
+- `static/js/sessions.js:3910`
+- `static/js/sessions.js:3911`
+- `static/js/sessions.js:3940`
 - `static/js/slashCommands.js:1013`
 - `static/js/slashCommands.js:1038`
 - `static/js/slashCommands.js:1055`
@@ -680,239 +803,242 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/slashCommands.js:1113`
 - `static/js/slashCommands.js:1166`
 - `static/js/startupShell.js:142`
-- `static/js/tasks.js:2587`
+- `static/js/tasks.js:2723`
 
-## `_isTransient` — arrow, line 1809
+## `_isTransient` — arrow, line 2148
 - **called from:**
-- `static/js/sessions.js:1810`
-- `static/js/sessions.js:1826`
+- `static/js/sessions.js:2149`
+- `static/js/sessions.js:2165`
 
-## `selectSession` — function, line 1928
+## `selectSession` — function, line 2267
 - **called from:**
-- `static/app.js:360`
-- `static/app.js:3421`
-- `static/app.js:3789`
-- `static/app.js:4422`
+- `static/app.js:378`
+- `static/app.js:3521`
+- `static/app.js:3892`
+- `static/app.js:4538`
 - `static/js/assistant.js:5`
 - `static/js/assistant.js:30`
-- `static/js/chat.js:277`
-- `static/js/chat.js:427`
-- `static/js/chat.js:787`
-- `static/js/chat.js:3643`
-- `static/js/chat.js:5051`
-- `static/js/chat.js:5421`
-- `static/js/chat.js:5929`
-- `static/js/chat.js:6012`
-- `static/js/chat.js:6436`
-- `static/js/chat.js:7022`
-- `static/js/chatRenderer.js:1266`
-- `static/js/chatRenderer.js:2246`
-- `static/js/chatStream.js:265`
-- `static/js/chatStream.js:291`
-- `static/js/chatStream.js:313`
-- `static/js/documentLibrary.js:1009`
-- `static/js/documentLibrary.js:1022`
-- `static/js/documentLibrary.js:2054`
-- `static/js/documentLibrary.js:2180`
-- `static/js/documentLibrary.js:2535`
-- `static/js/documentLibrary.js:3006`
-- `static/js/emailInbox.js:1380`
-- `static/js/gallery.js:1529`
+- `static/js/chat.js:694`
+- `static/js/chat.js:698`
+- `static/js/chat.js:1158`
+- `static/js/chat.js:1307`
+- `static/js/chat.js:1667`
+- `static/js/chat.js:5187`
+- `static/js/chat.js:6702`
+- `static/js/chat.js:7100`
+- `static/js/chat.js:8098`
+- `static/js/chat.js:8289`
+- `static/js/chatRenderer.js:1734`
+- `static/js/chatRenderer.js:1869`
+- `static/js/chatRenderer.js:2860`
+- `static/js/chatStream.js:292`
+- `static/js/chatStream.js:326`
+- `static/js/chatStream.js:348`
+- `static/js/document.js:1055`
+- `static/js/document.js:14700`
+- `static/js/documentLibrary.js:1230`
+- `static/js/documentLibrary.js:1244`
+- `static/js/documentLibrary.js:2272`
+- `static/js/documentLibrary.js:2381`
+- `static/js/documentLibrary.js:2745`
+- `static/js/documentLibrary.js:3071`
+- `static/js/emailInbox.js:1460`
+- `static/js/gallery.js:1726`
 - `static/js/group.js:693`
-- `static/js/keyboard-shortcuts.js:210`
-- `static/js/keyboard-shortcuts.js:241`
-- `static/js/notes.js:4461`
-- `static/js/presets.js:434`
-- `static/js/research/panel.js:1231`
-- `static/js/search-chat.js:136`
-- `static/js/sessions.js:719`
-- `static/js/sessions.js:1885`
-- `static/js/sessions.js:1928`
-- `static/js/sessions.js:2575`
-- `static/js/sessions.js:2604`
-- `static/js/sessions.js:2652`
-- `static/js/sessions.js:2873`
-- `static/js/sessions.js:2879`
-- `static/js/sessions.js:3474`
-- `static/js/sessions.js:3479`
-- `static/js/sessions.js:3541`
-- `static/js/sessions.js:3548`
+- `static/js/keyboard-shortcuts.js:211`
+- `static/js/keyboard-shortcuts.js:242`
+- `static/js/presets.js:451`
+- `static/js/research/panel.js:1797`
+- `static/js/search-chat.js:142`
+- `static/js/sessions.js:1040`
+- `static/js/sessions.js:2224`
+- `static/js/sessions.js:2267`
+- `static/js/sessions.js:2977`
+- `static/js/sessions.js:3006`
+- `static/js/sessions.js:3054`
+- `static/js/sessions.js:3294`
+- `static/js/sessions.js:3300`
+- `static/js/sessions.js:3904`
+- `static/js/sessions.js:3909`
+- `static/js/sessions.js:3971`
+- `static/js/sessions.js:3978`
 - `static/js/slashCommands.js:1014`
 - `static/js/slashCommands.js:1114`
 - `static/js/slashCommands.js:1155`
-- `static/js/slashCommands.js:2076`
-- `static/js/tasks.js:2588`
+- `static/js/slashCommands.js:2080`
+- `static/js/tasks.js:2724`
 
-## `_getPreferredDefaultChat` — function, line 2280
+## `_getPreferredDefaultChat` — function, line 2633
 - **called from:**
-- `static/js/sessions.js:1908`
-- `static/js/sessions.js:2280`
+- `static/js/sessions.js:2247`
+- `static/js/sessions.js:2633`
 
-## `createDirectChat` — function, line 2305
+## `createDirectChat` — function, line 2658
 - **called from:**
-- `static/app.js:245`
 - `static/app.js:253`
-- `static/app.js:259`
-- `static/app.js:266`
-- `static/app.js:4061`
-- `static/js/chat.js:1794`
-- `static/js/cookbookRunning.js:568`
-- `static/js/cookbookRunning.js:3688`
-- `static/js/documentLibrary.js:1061`
-- `static/js/gallery.js:1544`
-- `static/js/modelPicker.js:694`
+- `static/app.js:261`
+- `static/app.js:267`
+- `static/app.js:274`
+- `static/app.js:4170`
+- `static/js/chat.js:2819`
+- `static/js/cookbookRunning.js:572`
+- `static/js/cookbookRunning.js:3744`
+- `static/js/documentLibrary.js:1277`
+- `static/js/gallery.js:1748`
+- `static/js/modelPicker.js:715`
 - `static/js/models.js:84`
-- `static/js/sessions.js:1910`
-- `static/js/sessions.js:2305`
+- `static/js/sessions.js:2249`
+- `static/js/sessions.js:2658`
 - `static/js/slashCommands.js:709`
 
-## `materializePendingSession` — function, line 2380
+## `materializePendingSession` — function, line 2738
 - **called from:**
-- `static/app.js:610`
-- `static/app.js:2014`
-- `static/js/chat.js:1749`
-- `static/js/chat.js:1760`
-- `static/js/chat.js:1796`
-- `static/js/document.js:7291`
-- `static/js/documentLibrary.js:1050`
-- `static/js/documentLibrary.js:1062`
-- `static/js/sessions.js:2380`
-- `static/js/sessions.js:2475`
+- `static/app.js:643`
+- `static/app.js:2072`
+- `static/app.js:3439`
+- `static/js/chat.js:684`
+- `static/js/chat.js:2774`
+- `static/js/chat.js:2785`
+- `static/js/chat.js:2821`
+- `static/js/chat.js:9460`
+- `static/js/document.js:12323`
+- `static/js/documentLibrary.js:1261`
+- `static/js/documentLibrary.js:1278`
+- `static/js/sessions.js:2738`
+- `static/js/sessions.js:2836`
 
-## `materializePromise` — arrow, line 2385
+## `materializePromise` — arrow, line 2743
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `preMaterializePendingSession` — function, line 2467
+## `preMaterializePendingSession` — function, line 2828
 - **called from:**
-- `static/js/sessions.js:2467`
+- `static/js/sessions.js:2828`
 
-## `hasPendingChat` — function, line 2480
+## `hasPendingChat` — function, line 2841
 - **called from:**
-- `static/app.js:586`
-- `static/app.js:2013`
-- `static/js/chat.js:416`
-- `static/js/chat.js:1747`
-- `static/js/document.js:7290`
-- `static/js/documentLibrary.js:1049`
-- `static/js/sessions.js:2480`
+- `static/app.js:619`
+- `static/app.js:2071`
+- `static/js/chat.js:1296`
+- `static/js/chat.js:2772`
+- `static/js/document.js:12322`
+- `static/js/documentLibrary.js:1260`
+- `static/js/sessions.js:2841`
 
-## `getPendingChat` — function, line 2481
+## `getPendingChat` — function, line 2842
 - **called from:**
-- `static/app.js:243`
-- `static/js/admin.js:427`
-- `static/js/chat.js:488`
-- `static/js/chat.js:1726`
-- `static/js/chat.js:1758`
+- `static/app.js:251`
+- `static/js/admin.js:484`
+- `static/js/chat.js:1368`
+- `static/js/chat.js:2751`
+- `static/js/chat.js:2783`
 - `static/js/modelPicker.js:130`
 - `static/js/modelPicker.js:147`
 - `static/js/modelPicker.js:173`
-- `static/js/modelPicker.js:665`
-- `static/js/modelPicker.js:736`
-- `static/js/modelPicker.js:874`
-- `static/js/modelPicker.js:938`
-- `static/js/sessions.js:2481`
+- `static/js/modelPicker.js:686`
+- `static/js/modelPicker.js:757`
+- `static/js/modelPicker.js:893`
+- `static/js/modelPicker.js:957`
+- `static/js/sessions.js:2842`
 
-## `getCurrentSessionId` — function, line 2483
+## `getCurrentSessionId` — function, line 2844
 - **called from:**
-- `static/app.js:250`
-- `static/app.js:519`
-- `static/app.js:545`
-- `static/app.js:583`
-- `static/app.js:610`
-- `static/app.js:837`
-- `static/app.js:1650`
-- `static/app.js:1662`
-- `static/app.js:2011`
-- `static/app.js:2015`
-- `static/app.js:2565`
-- `static/app.js:3406`
-- `static/app.js:3741`
-- `static/app.js:4058`
-- `static/app.js:4420`
-- `static/js/chat.js:267`
-- `static/js/chat.js:292`
-- `static/js/chat.js:308`
-- `static/js/chat.js:368`
-- `static/js/chat.js:401`
-- `static/js/chat.js:431`
-- `static/js/chat.js:692`
-- `static/js/chat.js:1000`
-- `static/js/chat.js:1482`
-- `static/js/chat.js:1506`
-- `static/js/chat.js:1607`
-- `static/js/chat.js:1751`
-- `static/js/chat.js:1754`
-- `static/js/chat.js:1761`
-- `static/js/chat.js:1766`
-- `static/js/chat.js:1798`
-- `static/js/chat.js:1850`
-- `static/js/chat.js:1958`
-- `static/js/chat.js:2050`
-- `static/js/chat.js:3170`
-- `static/js/chat.js:3535`
-- `static/js/chat.js:3612`
-- `static/js/chat.js:3642`
-- `static/js/chat.js:4487`
-- `static/js/chat.js:4489`
-- `static/js/chat.js:4802`
-- `static/js/chat.js:4837`
-- `static/js/chat.js:5010`
-- `static/js/chat.js:5050`
-- `static/js/chat.js:5140`
-- `static/js/chat.js:5198`
-- `static/js/chat.js:5238`
-- `static/js/chat.js:5240`
-- `static/js/chat.js:5290`
-- `static/js/chat.js:5342`
-- `static/js/chat.js:5344`
-- `static/js/chat.js:5395`
-- `static/js/chat.js:5466`
-- `static/js/chat.js:5645`
-- `static/js/chat.js:5679`
-- `static/js/chat.js:5747`
-- `static/js/chat.js:5894`
-- `static/js/chat.js:5993`
-- `static/js/chat.js:6011`
-- `static/js/chat.js:6139`
-- … +65 more (grep the name in repo)
-
-## `isCurrentSessionIncognito` — function, line 2487
-- **called from:**
-- `static/js/sessions.js:2487`
-
-## `getSessions` — function, line 2491
-- **called from:**
-- `static/app.js:249`
-- `static/app.js:519`
-- `static/app.js:547`
-- `static/app.js:588`
+- `static/app.js:258`
+- `static/app.js:579`
 - `static/app.js:616`
-- `static/app.js:1662`
-- `static/app.js:3408`
-- `static/app.js:4057`
+- `static/app.js:643`
+- `static/app.js:870`
+- `static/app.js:1691`
+- `static/app.js:1703`
+- `static/app.js:2069`
+- `static/app.js:2073`
+- `static/app.js:2621`
+- `static/app.js:3506`
+- `static/app.js:3831`
+- `static/app.js:3843`
+- `static/app.js:4167`
+- `static/app.js:4536`
+- `static/js/chat.js:672`
+- `static/js/chat.js:686`
 - `static/js/chat.js:701`
-- `static/js/chat.js:1483`
-- `static/js/chat.js:2631`
-- `static/js/chat.js:4338`
-- `static/js/chat.js:4489`
-- `static/js/chat.js:5614`
-- `static/js/chat.js:5977`
-- `static/js/chat.js:7071`
-- `static/js/chat.js:7109`
-- `static/js/chatStream.js:278`
-- `static/js/document.js:7297`
-- `static/js/documentLibrary.js:1056`
+- `static/js/chat.js:1189`
+- `static/js/chat.js:1248`
+- `static/js/chat.js:1281`
+- `static/js/chat.js:1311`
+- `static/js/chat.js:1572`
+- `static/js/chat.js:1880`
+- `static/js/chat.js:1983`
+- `static/js/chat.js:2503`
+- `static/js/chat.js:2527`
+- `static/js/chat.js:2632`
+- `static/js/chat.js:2776`
+- `static/js/chat.js:2779`
+- `static/js/chat.js:2786`
+- `static/js/chat.js:2791`
+- `static/js/chat.js:2823`
+- `static/js/chat.js:2875`
+- `static/js/chat.js:3011`
+- `static/js/chat.js:3108`
+- `static/js/chat.js:3722`
+- `static/js/chat.js:3769`
+- `static/js/chat.js:4050`
+- `static/js/chat.js:4080`
+- `static/js/chat.js:4447`
+- `static/js/chat.js:4615`
+- `static/js/chat.js:5079`
+- `static/js/chat.js:5156`
+- `static/js/chat.js:5186`
+- `static/js/chat.js:5879`
+- `static/js/chat.js:6103`
+- `static/js/chat.js:6117`
+- `static/js/chat.js:6427`
+- `static/js/chat.js:6477`
+- `static/js/chat.js:6661`
+- `static/js/chat.js:6701`
+- `static/js/chat.js:6765`
+- `static/js/chat.js:6807`
+- `static/js/chat.js:6869`
+- `static/js/chat.js:6909`
+- `static/js/chat.js:6911`
+- `static/js/chat.js:6961`
+- `static/js/chat.js:7013`
+- `static/js/chat.js:7015`
+- … +79 more (grep the name in repo)
+
+## `isCurrentSessionIncognito` — function, line 2848
+- **called from:**
+- `static/js/sessions.js:2848`
+
+## `getSessions` — function, line 2852
+- **called from:**
+- `static/app.js:257`
+- `static/app.js:579`
+- `static/app.js:621`
+- `static/app.js:649`
+- `static/app.js:1703`
+- `static/app.js:3508`
+- `static/app.js:4166`
+- `static/js/chat.js:1581`
+- `static/js/chat.js:2504`
+- `static/js/chat.js:3779`
+- `static/js/chat.js:5956`
+- `static/js/chat.js:6117`
+- `static/js/chat.js:7293`
+- `static/js/chat.js:8766`
+- `static/js/chat.js:8802`
+- `static/js/chatStream.js:313`
+- `static/js/documentLibrary.js:1267`
 - `static/js/group.js:141`
-- `static/js/keyboard-shortcuts.js:183`
-- `static/js/keyboard-shortcuts.js:198`
-- `static/js/keyboard-shortcuts.js:203`
-- `static/js/keyboard-shortcuts.js:227`
-- `static/js/modelPicker.js:702`
-- `static/js/modelPicker.js:734`
-- `static/js/modelPicker.js:873`
-- `static/js/presets.js:404`
-- `static/js/sessions.js:2491`
+- `static/js/keyboard-shortcuts.js:184`
+- `static/js/keyboard-shortcuts.js:199`
+- `static/js/keyboard-shortcuts.js:204`
+- `static/js/keyboard-shortcuts.js:228`
+- `static/js/modelPicker.js:723`
+- `static/js/modelPicker.js:755`
+- `static/js/modelPicker.js:892`
+- `static/js/modelPicker.js:1009`
+- `static/js/presets.js:421`
+- `static/js/sessions.js:2852`
 - `static/js/slashCommands.js:950`
 - `static/js/slashCommands.js:958`
 - `static/js/slashCommands.js:1029`
@@ -922,550 +1048,584 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/slashCommands.js:1150`
 - `static/js/slashCommands.js:1180`
 - `static/js/slashCommands.js:1227`
-- `static/js/slashCommands.js:2016`
+- `static/js/slashCommands.js:2020`
 
-## `getCurrentModel` — function, line 2495
+## `getCurrentModel` — function, line 2856
 - **called from:**
-- `static/js/chat.js:484`
-- `static/js/chat.js:1736`
-- `static/js/chat.js:6112`
-- `static/js/cookbookRunning.js:556`
-- `static/js/document.js:4252`
-- `static/js/document.js:7296`
-- `static/js/documentLibrary.js:1055`
-- `static/js/emailInbox.js:839`
-- `static/js/sessions.js:2495`
-- `static/js/skills.js:1218`
-- `static/js/slashCommands.js:1538`
+- `static/js/chat.js:1364`
+- `static/js/chat.js:2761`
+- `static/js/chat.js:7810`
+- `static/js/cookbookRunning.js:560`
+- `static/js/document.js:6806`
+- `static/js/document.js:12328`
+- `static/js/documentLibrary.js:1266`
+- `static/js/emailInbox.js:869`
+- `static/js/sessions.js:2856`
+- `static/js/skills.js:1498`
+- `static/js/slashCommands.js:1542`
 
-## `getCurrentEndpointUrl` — function, line 2504
+## `getCurrentEndpointUrl` — function, line 2865
 - **called from:**
-- `static/js/chat.js:1737`
-- `static/js/chat.js:6113`
-- `static/js/chatRenderer.js:754`
-- `static/js/chatRenderer.js:865`
-- `static/js/sessions.js:2504`
-- `static/js/skills.js:1219`
-- `static/js/slashCommands.js:1539`
-- `static/js/slashCommands.js:2030`
+- `static/js/chat.js:2762`
+- `static/js/chat.js:7811`
+- `static/js/chatRenderer.js:1152`
+- `static/js/chatRenderer.js:1263`
+- `static/js/sessions.js:2865`
+- `static/js/skills.js:1499`
+- `static/js/slashCommands.js:1543`
+- `static/js/slashCommands.js:2034`
 
-## `setCurrentSessionId` — function, line 2511
+## `setCurrentSessionId` — function, line 2872
 - **called from:**
-- `static/app.js:843`
-- `static/app.js:2619`
-- `static/js/chat.js:429`
-- `static/js/document.js:7314`
+- `static/app.js:876`
+- `static/app.js:2683`
+- `static/js/chat.js:696`
+- `static/js/chat.js:1309`
+- `static/js/document.js:12352`
 - `static/js/group.js:163`
 - `static/js/group.js:691`
-- `static/js/keyboard-shortcuts.js:212`
-- `static/js/sessions.js:2511`
+- `static/js/keyboard-shortcuts.js:213`
+- `static/js/sessions.js:2872`
 
-## `deleteCurrentSessionFromTopMenu` — function, line 2525
+## `_confirmSessionDeletion` — function, line 2891
 - **called from:**
-- `static/app.js:572`
-- `static/js/sessions.js:2525`
+- `static/js/sessions.js:1308`
+- `static/js/sessions.js:1679`
+- `static/js/sessions.js:1791`
+- `static/js/sessions.js:2070`
+- `static/js/sessions.js:2891`
+- `static/js/sessions.js:2938`
+- `static/js/sessions.js:2992`
+- `static/js/sessions.js:3492`
+- `static/js/sessions.js:3527`
+- `static/js/sessions.js:3842`
+- `static/js/sessions.js:3911`
+- `static/js/sessions.js:3941`
 
-## `_onSessionListKeydown` — function, line 2561
+## `_sessionDeletionUrl` — function, line 2921
 - **called from:**
-- `static/js/sessions.js:2561`
+- `static/js/sessions.js:501`
+- `static/js/sessions.js:1336`
+- `static/js/sessions.js:1682`
+- `static/js/sessions.js:1794`
+- `static/js/sessions.js:2074`
+- `static/js/sessions.js:2921`
+- `static/js/sessions.js:2952`
+- `static/js/sessions.js:2996`
+- `static/js/sessions.js:3494`
+- `static/js/sessions.js:3532`
+- `static/js/sessions.js:3846`
+- `static/js/sessions.js:3911`
+- `static/js/sessions.js:3941`
 
-## `initDragSort` — function, line 2610
+## `deleteCurrentSessionFromTopMenu` — function, line 2927
 - **called from:**
-- `static/js/sessions.js:1524`
-- `static/js/sessions.js:2610`
+- `static/app.js:605`
+- `static/js/sessions.js:2927`
 
-## `_updateResearchDots` — function, line 2657
+## `_onSessionListKeydown` — function, line 2963
 - **called from:**
-- `static/js/sessions.js:2657`
-- `static/js/sessions.js:2695`
-- `static/js/sessions.js:2705`
-- `static/js/sessions.js:2712`
-- `static/js/sessions.js:2718`
-- `static/js/sessions.js:2724`
-- `static/js/sessions.js:2734`
-- `static/js/sessions.js:2744`
-- `static/js/sessions.js:2749`
-- `static/js/sessions.js:2760`
-- `static/js/sessions.js:2894`
+- `static/js/sessions.js:2963`
 
-## `_startResearchPolling` — function, line 2675
+## `initDragSort` — function, line 3012
 - **called from:**
-- `static/js/sessions.js:2675`
-- `static/js/sessions.js:2707`
+- `static/js/sessions.js:1862`
+- `static/js/sessions.js:3012`
 
-## `markResearching` — function, line 2703
+## `_updateResearchDots` — function, line 3059
 - **called from:**
-- `static/js/chat.js:3536`
-- `static/js/chat.js:7143`
-- `static/js/sessions.js:2703`
+- `static/js/sessions.js:3059`
+- `static/js/sessions.js:3105`
+- `static/js/sessions.js:3115`
+- `static/js/sessions.js:3122`
+- `static/js/sessions.js:3129`
+- `static/js/sessions.js:3135`
+- `static/js/sessions.js:3145`
+- `static/js/sessions.js:3156`
+- `static/js/sessions.js:3162`
+- `static/js/sessions.js:3173`
+- `static/js/sessions.js:3318`
 
-## `clearResearching` — function, line 2710
+## `_startResearchPolling` — function, line 3085
 - **called from:**
-- `static/js/chat.js:3606`
-- `static/js/chat.js:3613`
-- `static/js/chat.js:3634`
-- `static/js/chat.js:7040`
-- `static/js/chat.js:7048`
-- `static/js/chat.js:7205`
-- `static/js/chat.js:7221`
-- `static/js/sessions.js:2710`
+- `static/js/sessions.js:3085`
+- `static/js/sessions.js:3117`
 
-## `markStreaming` — function, line 2716
+## `markResearching` — function, line 3113
 - **called from:**
-- `static/js/chat.js:3188`
-- `static/js/chat.js:5522`
-- `static/js/sessions.js:2716`
+- `static/js/chat.js:5080`
+- `static/js/chat.js:8836`
+- `static/js/sessions.js:3113`
 
-## `clearStreaming` — function, line 2722
+## `clearResearching` — function, line 3120
 - **called from:**
-- `static/js/chat.js:4851`
-- `static/js/chat.js:4879`
-- `static/js/chat.js:4884`
-- `static/js/chat.js:5524`
-- `static/js/sessions.js:2722`
+- `static/js/chat.js:5150`
+- `static/js/chat.js:5157`
+- `static/js/chat.js:5178`
+- `static/js/chat.js:8735`
+- `static/js/chat.js:8743`
+- `static/js/chat.js:8898`
+- `static/js/chat.js:8914`
+- `static/js/sessions.js:3120`
 
-## `_clearRunningState` — function, line 2728
+## `markStreaming` — function, line 3126
 - **called from:**
-- `static/js/sessions.js:2728`
-- `static/js/sessions.js:2810`
-- `static/js/sessions.js:2815`
+- `static/js/chat.js:3490`
+- `static/js/chat.js:4633`
+- `static/js/chat.js:7200`
+- `static/js/chat.js:7289`
+- `static/js/sessions.js:3126`
 
-## `markStreamComplete` — function, line 2739
+## `clearStreaming` — function, line 3133
 - **called from:**
-- `static/js/chat.js:3213`
-- `static/js/notes.js:4531`
-- `static/js/notes.js:4601`
-- `static/js/sessions.js:2739`
+- `static/js/chat.js:6491`
+- `static/js/chat.js:6516`
+- `static/js/chat.js:6522`
+- `static/js/chat.js:7202`
+- `static/js/chat.js:7364`
+- `static/js/sessions.js:3133`
 
-## `setTimeout` — method?, line 2758
+## `_clearRunningState` — function, line 3139
 - **called from:**
-- `static/app.js:288`
-- `static/app.js:810`
-- `static/app.js:1194`
-- `static/app.js:1195`
-- `static/app.js:1230`
-- `static/app.js:1231`
-- `static/app.js:1851`
-- `static/app.js:2110`
-- `static/app.js:2114`
-- `static/app.js:2196`
-- `static/app.js:2970`
-- `static/app.js:3318`
-- `static/app.js:3462`
-- `static/app.js:3663`
-- `static/app.js:3710`
-- `static/app.js:3875`
-- `static/app.js:4005`
-- `static/app.js:4163`
-- `static/app.js:4344`
-- `static/app.js:4349`
-- `static/app.js:4415`
-- `static/app.js:4497`
-- `static/js/admin.js:475`
-- `static/js/admin.js:599`
-- `static/js/admin.js:1232`
-- `static/js/admin.js:1429`
-- `static/js/admin.js:2262`
-- `static/js/admin.js:2461`
-- `static/js/admin.js:2629`
-- `static/js/admin.js:2674`
-- `static/js/admin.js:2719`
-- `static/js/admin.js:2812`
-- `static/js/admin.js:2829`
+- `static/js/sessions.js:3139`
+- `static/js/sessions.js:3229`
+- `static/js/sessions.js:3235`
+
+## `markStreamComplete` — function, line 3150
+- **called from:**
+- `static/js/chat.js:4667`
+- `static/js/chat.js:4678`
+- `static/js/sessions.js:3150`
+
+## `setTimeout` — method?, line 3171
+- **called from:**
+- `static/app.js:296`
+- `static/app.js:843`
+- `static/app.js:1235`
+- `static/app.js:1236`
+- `static/app.js:1271`
+- `static/app.js:1272`
+- `static/app.js:2167`
+- `static/app.js:2171`
+- `static/app.js:2252`
+- `static/app.js:3046`
+- `static/app.js:3395`
+- `static/app.js:3562`
+- `static/app.js:3763`
+- `static/app.js:3810`
+- `static/app.js:3978`
+- `static/app.js:4108`
+- `static/app.js:4277`
+- `static/app.js:4460`
+- `static/app.js:4465`
+- `static/app.js:4531`
+- `static/app.js:4613`
+- `static/js/a11y.js:182`
+- `static/js/admin.js:884`
+- `static/js/admin.js:1010`
+- `static/js/admin.js:1283`
+- `static/js/admin.js:1583`
+- `static/js/admin.js:1665`
+- `static/js/admin.js:2298`
+- `static/js/admin.js:3131`
+- `static/js/admin.js:3335`
+- `static/js/admin.js:3503`
+- `static/js/admin.js:3548`
+- `static/js/admin.js:3593`
+- `static/js/admin.js:3686`
+- `static/js/admin.js:3703`
+- `static/js/admin.js:4038`
 - `static/js/assistant.js:396`
 - `static/js/calendar.js:45`
-- `static/js/calendar.js:496`
-- `static/js/calendar.js:824`
-- `static/js/calendar.js:865`
-- `static/js/calendar.js:869`
-- `static/js/calendar.js:2021`
-- `static/js/calendar.js:2027`
-- `static/js/calendar.js:2216`
-- `static/js/calendar.js:2230`
-- `static/js/calendar.js:2245`
-- `static/js/calendar.js:2247`
-- `static/js/calendar.js:2632`
-- `static/js/calendar.js:2655`
-- `static/js/calendar.js:3127`
+- `static/js/calendar.js:585`
+- `static/js/calendar.js:956`
+- `static/js/calendar.js:998`
+- `static/js/calendar.js:1002`
+- `static/js/calendar.js:2079`
+- `static/js/calendar.js:2582`
+- `static/js/calendar.js:2588`
+- `static/js/calendar.js:2791`
+- `static/js/calendar.js:2805`
+- `static/js/calendar.js:2820`
+- `static/js/calendar.js:2822`
+- `static/js/calendar.js:3242`
+- `static/js/calendar.js:3265`
+- `static/js/calendar.js:3799`
+- `static/js/calendar.js:4405`
 - `static/js/censor.js:120`
 - `static/js/censor.js:122`
-- `static/js/chat.js:73`
-- `static/js/chat.js:243`
-- `static/js/chat.js:518`
-- `static/js/chat.js:795`
-- `static/js/chat.js:808`
-- `static/js/chat.js:1199`
-- `static/js/chat.js:1230`
-- `static/js/chat.js:1259`
-- `static/js/chat.js:1388`
-- `static/js/chat.js:1401`
-- … +541 more (grep the name in repo)
+- `static/js/chat.js:442`
+- `static/js/chat.js:531`
+- `static/js/chat.js:986`
+- `static/js/chat.js:1398`
+- `static/js/chat.js:1675`
+- … +627 more (grep the name in repo)
 
-## `_updateRailNotifs` — function, line 2767
+## `_updateRailNotifs` — function, line 3180
 - **called from:**
-- `static/js/research/panel.js:119`
-- `static/js/sessions.js:2706`
-- `static/js/sessions.js:2713`
-- `static/js/sessions.js:2719`
-- `static/js/sessions.js:2725`
-- `static/js/sessions.js:2735`
-- `static/js/sessions.js:2745`
-- `static/js/sessions.js:2750`
-- `static/js/sessions.js:2767`
-- `static/js/sessions.js:2895`
+- `static/js/research/panel.js:110`
+- `static/js/sessions.js:3116`
+- `static/js/sessions.js:3123`
+- `static/js/sessions.js:3130`
+- `static/js/sessions.js:3136`
+- `static/js/sessions.js:3146`
+- `static/js/sessions.js:3157`
+- `static/js/sessions.js:3163`
+- `static/js/sessions.js:3180`
+- `static/js/sessions.js:3319`
 
-## `_checkServerStream` — function, line 2800
+## `_checkServerStream` — function, line 3213
 - **called from:**
-- `static/js/sessions.js:2218`
-- `static/js/sessions.js:2800`
+- `static/js/sessions.js:2565`
+- `static/js/sessions.js:3213`
 
-## `clearStreamComplete` — function, line 2887
+## `clearStreamComplete` — function, line 3310
 - **called from:**
-- `static/js/chat.js:1958`
-- `static/js/sessions.js:2207`
-- `static/js/sessions.js:2887`
+- `static/js/chat.js:3011`
+- `static/js/sessions.js:2554`
+- `static/js/sessions.js:3310`
 
-## `_initAllDropdowns` — function, line 2899
+## `_initAllDropdowns` — function, line 3323
 - **called from:**
-- `static/js/sessions.js:2899`
-- `static/js/sessions.js:2913`
+- `static/js/sessions.js:3323`
+- `static/js/sessions.js:3337`
 
-## `_initDropdownDismiss` — function, line 2917
+## `_initDropdownDismiss` — function, line 3341
 - **called from:**
-- `static/js/sessions.js:2907`
-- `static/js/sessions.js:2917`
+- `static/js/sessions.js:3331`
+- `static/js/sessions.js:3341`
 
-## `_showDropdown` — function, line 2952
+## `_showDropdown` — function, line 3369
 - **called from:**
-- `static/js/sessions.js:2952`
-- `static/js/sessions.js:3245`
-- `static/js/sessions.js:3478`
-- `static/js/sessions.js:3509`
-- `static/js/sessions.js:3547`
-- `static/js/sessions.js:3594`
+- `static/js/sessions.js:3369`
+- `static/js/sessions.js:3666`
+- `static/js/sessions.js:3908`
+- `static/js/sessions.js:3939`
+- `static/js/sessions.js:3977`
+- `static/js/sessions.js:4024`
 
-## `close` — function, line 2983
+## `close` — arrow, line 3400
 - **called from:**
-- `app.py:333`
-- `app.py:451`
-- `app.py:532`
-- `app.py:1050`
-- `app.py:1174`
-- `app.py:1295`
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
 
-## `_arcRelativeTime` — function, line 2996
+## `_arcRelativeTime` — function, line 3417
 - **called from:**
-- `static/js/sessions.js:2996`
-- `static/js/sessions.js:3225`
-- `static/js/sessions.js:3625`
-
-## `_arcPeekOpen` — function, line 3013
-- **called from:**
-- `static/js/sessions.js:3013`
-- `static/js/sessions.js:3246`
-- `static/js/sessions.js:3260`
-
-## `_checkPeekCleanup` — function, line 3053
-- **called from:**
-- `static/js/sessions.js:1950`
-- `static/js/sessions.js:3053`
-
-## `_arcRestore` — function, line 3059
-- **called from:**
-- `static/js/sessions.js:3059`
-- `static/js/sessions.js:3247`
-
-## `_arcDelete` — function, line 3070
-- **called from:**
-- `static/js/sessions.js:3070`
-- `static/js/sessions.js:3248`
-
-## `_arcRemove` — function, line 3082
-- **called from:**
-- `static/js/sessions.js:3063`
-- `static/js/sessions.js:3076`
-- `static/js/sessions.js:3082`
-- `static/js/sessions.js:3094`
-- `static/js/sessions.js:3114`
-
-## `_arcBulkRestore` — function, line 3088
-- **called from:**
-- `static/js/sessions.js:3088`
-
-## `_arcBulkDelete` — function, line 3103
-- **called from:**
-- `static/js/sessions.js:3103`
-
-## `_arcToggleSelectMode` — function, line 3124
-- **called from:**
-- `static/js/sessions.js:3124`
-
-## `_arcUpdateBulkBar` — function, line 3130
-- **called from:**
-- `static/js/sessions.js:3130`
-- `static/js/sessions.js:3177`
-- `static/js/sessions.js:3240`
-- `static/js/sessions.js:3258`
-
-## `_arcFetch` — function, line 3144
-- **called from:**
-- `static/js/sessions.js:3144`
-- `static/js/sessions.js:3199`
-- `static/js/sessions.js:3709`
-- `static/js/sessions.js:3712`
-- `static/js/sessions.js:3714`
-- `static/js/sessions.js:3725`
-
-## `_arcRefreshUI` — function, line 3172
-- **called from:**
-- `static/js/sessions.js:3064`
-- `static/js/sessions.js:3077`
-- `static/js/sessions.js:3098`
-- `static/js/sessions.js:3120`
-- `static/js/sessions.js:3127`
-- `static/js/sessions.js:3164`
-- `static/js/sessions.js:3172`
-- `static/js/sessions.js:3721`
-
-## `_arcRenderStats` — function, line 3180
-- **called from:**
-- `static/js/sessions.js:3173`
-- `static/js/sessions.js:3180`
-
-## `_arcRenderChips` — function, line 3185
-- **called from:**
-- `static/js/sessions.js:3174`
-- `static/js/sessions.js:3185`
-
-## `mkChip` — arrow, line 3195
-- **called from:**
-- `static/js/sessions.js:3202`
-- `static/js/sessions.js:3203`
-- `static/js/tasks.js:784`
-- `static/js/tasks.js:785`
-
-## `_arcRenderCard` — function, line 3206
-- **called from:**
-- `static/js/sessions.js:3206`
-- `static/js/sessions.js:3274`
-
-## `_arcRenderGrid` — function, line 3266
-- **called from:**
-- `static/js/sessions.js:3175`
-- `static/js/sessions.js:3266`
-
-## `_arcRenderLoadMore` — function, line 3277
-- **called from:**
-- `static/js/sessions.js:3176`
-- `static/js/sessions.js:3277`
-
-## `openLibrary` — function, line 3288
-- **called from:**
-- `static/app.js:1049`
-- `static/app.js:1236`
-- `static/app.js:1251`
-- `static/app.js:1277`
-- `static/app.js:1284`
-- `static/js/document.js:5198`
-- `static/js/document.js:9554`
-- `static/js/document.js:9658`
-- `static/js/documentLibrary.js:1575`
-- `static/js/research/panel.js:686`
-- `static/js/research/panel.js:734`
-- `static/js/research/panel.js:794`
-- `static/js/sessions.js:3288`
-- `static/js/sessions.js:3291`
-- `static/js/sessions.js:3350`
-- `static/js/slashCommands.js:4602`
-
-## `_updateLibCount` — function, line 3434
-- **called from:**
-- `static/js/sessions.js:3395`
-- `static/js/sessions.js:3434`
-- `static/js/sessions.js:3639`
+- `static/js/sessions.js:3417`
 - `static/js/sessions.js:3646`
+- `static/js/sessions.js:4055`
 
-## `_renderLibGrid` — function, line 3439
+## `_arcPeekOpen` — function, line 3434
 - **called from:**
-- `static/js/sessions.js:3367`
-- `static/js/sessions.js:3375`
-- `static/js/sessions.js:3378`
-- `static/js/sessions.js:3386`
-- `static/js/sessions.js:3411`
-- `static/js/sessions.js:3428`
-- `static/js/sessions.js:3431`
-- `static/js/sessions.js:3439`
+- `static/js/sessions.js:3434`
+- `static/js/sessions.js:3667`
+- `static/js/sessions.js:3681`
+
+## `_checkPeekCleanup` — function, line 3474
+- **called from:**
+- `static/js/sessions.js:2291`
+- `static/js/sessions.js:3474`
+
+## `_arcRestore` — function, line 3480
+- **called from:**
 - `static/js/sessions.js:3480`
-- `static/js/sessions.js:3481`
-- `static/js/sessions.js:3510`
-- `static/js/sessions.js:3511`
-- `static/js/sessions.js:3549`
+- `static/js/sessions.js:3668`
+
+## `_arcDelete` — function, line 3491
+- **called from:**
+- `static/js/sessions.js:3491`
+- `static/js/sessions.js:3669`
+
+## `_arcRemove` — function, line 3503
+- **called from:**
+- `static/js/sessions.js:3484`
+- `static/js/sessions.js:3497`
+- `static/js/sessions.js:3503`
+- `static/js/sessions.js:3515`
+- `static/js/sessions.js:3535`
+
+## `_arcBulkRestore` — function, line 3509
+- **called from:**
+- `static/js/sessions.js:3509`
+
+## `_arcBulkDelete` — function, line 3524
+- **called from:**
+- `static/js/sessions.js:3524`
+
+## `_arcToggleSelectMode` — function, line 3545
+- **called from:**
+- `static/js/sessions.js:3545`
+
+## `_arcUpdateBulkBar` — function, line 3551
+- **called from:**
+- `static/js/sessions.js:3551`
+- `static/js/sessions.js:3598`
+- `static/js/sessions.js:3661`
+- `static/js/sessions.js:3679`
+
+## `_arcFetch` — function, line 3565
+- **called from:**
+- `static/js/sessions.js:3565`
+- `static/js/sessions.js:3620`
+- `static/js/sessions.js:4139`
+- `static/js/sessions.js:4142`
+- `static/js/sessions.js:4144`
+- `static/js/sessions.js:4155`
+
+## `_arcRefreshUI` — function, line 3593
+- **called from:**
+- `static/js/sessions.js:3485`
+- `static/js/sessions.js:3498`
+- `static/js/sessions.js:3519`
+- `static/js/sessions.js:3541`
+- `static/js/sessions.js:3548`
+- `static/js/sessions.js:3585`
+- `static/js/sessions.js:3593`
+- `static/js/sessions.js:4151`
+
+## `_arcRenderStats` — function, line 3601
+- **called from:**
+- `static/js/sessions.js:3594`
+- `static/js/sessions.js:3601`
+
+## `_arcRenderChips` — function, line 3606
+- **called from:**
+- `static/js/sessions.js:3595`
 - `static/js/sessions.js:3606`
 
-## `_renderLibChats` — function, line 3449
+## `mkChip` — arrow, line 3616
 - **called from:**
-- `static/js/documentLibrary.js:1913`
-- `static/js/documentLibrary.js:1931`
-- `static/js/documentLibrary.js:2075`
-- `static/js/documentLibrary.js:2113`
-- `static/js/documentLibrary.js:2182`
-- `static/js/documentLibrary.js:2189`
-- `static/js/documentLibrary.js:2285`
-- `static/js/documentLibrary.js:2330`
-- `static/js/documentLibrary.js:2357`
-- `static/js/sessions.js:3443`
-- `static/js/sessions.js:3449`
+- `static/js/sessions.js:3623`
+- `static/js/sessions.js:3624`
+- `static/js/tasks.js:814`
+- `static/js/tasks.js:815`
+- `static/js/tasks.js:816`
+- `static/js/tasks.js:817`
 
-## `_renderLibArchive` — function, line 3488
+## `_arcRenderCard` — function, line 3627
 - **called from:**
-- `static/js/documentLibrary.js:1914`
-- `static/js/documentLibrary.js:2088`
-- `static/js/documentLibrary.js:2113`
-- `static/js/documentLibrary.js:2381`
-- `static/js/documentLibrary.js:2452`
-- `static/js/documentLibrary.js:2457`
-- `static/js/documentLibrary.js:2537`
-- `static/js/documentLibrary.js:2541`
-- `static/js/documentLibrary.js:2584`
-- `static/js/documentLibrary.js:2585`
-- `static/js/documentLibrary.js:2622`
-- `static/js/documentLibrary.js:2623`
-- `static/js/documentLibrary.js:2707`
-- `static/js/documentLibrary.js:2728`
-- `static/js/documentLibrary.js:3037`
-- `static/js/documentLibrary.js:3056`
-- `static/js/sessions.js:3444`
-- `static/js/sessions.js:3488`
+- `static/js/sessions.js:3627`
+- `static/js/sessions.js:3695`
 
-## `_renderLibDocuments` — function, line 3519
+## `_arcRenderGrid` — function, line 3687
 - **called from:**
-- `static/js/sessions.js:3445`
-- `static/js/sessions.js:3519`
+- `static/js/sessions.js:3596`
+- `static/js/sessions.js:3687`
 
-## `_renderLibResearch` — function, line 3557
+## `_arcRenderLoadMore` — function, line 3698
 - **called from:**
-- `static/js/documentLibrary.js:1915`
-- `static/js/documentLibrary.js:2893`
-- `static/js/documentLibrary.js:3291`
-- `static/js/sessions.js:3446`
-- `static/js/sessions.js:3557`
+- `static/js/sessions.js:3597`
+- `static/js/sessions.js:3698`
 
-## `_buildLibCard` — function, line 3616
+## `openLibrary` — function, line 3709
 - **called from:**
-- `static/js/sessions.js:3470`
-- `static/js/sessions.js:3502`
-- `static/js/sessions.js:3533`
-- `static/js/sessions.js:3579`
-- `static/js/sessions.js:3616`
+- `static/app.js:1082`
+- `static/app.js:1278`
+- `static/app.js:1293`
+- `static/app.js:1319`
+- `static/app.js:1326`
+- `static/js/document.js:7993`
+- `static/js/document.js:15158`
+- `static/js/document.js:15280`
+- `static/js/documentLibrary.js:1818`
+- `static/js/sessions.js:3709`
+- `static/js/sessions.js:3712`
+- `static/js/sessions.js:3771`
+- `static/js/slashCommands.js:4606`
 
-## `_toggleLibSelect` — function, line 3644
+## `_updateLibCount` — function, line 3864
 - **called from:**
-- `static/js/sessions.js:3473`
-- `static/js/sessions.js:3505`
-- `static/js/sessions.js:3537`
-- `static/js/sessions.js:3644`
+- `static/js/sessions.js:3818`
+- `static/js/sessions.js:3864`
+- `static/js/sessions.js:4069`
+- `static/js/sessions.js:4076`
 
-## `closeLibrary` — function, line 3649
+## `_renderLibGrid` — function, line 3869
 - **called from:**
-- `static/app.js:1047`
-- `static/js/documentLibrary.js:1001`
-- `static/js/documentLibrary.js:1017`
-- `static/js/documentLibrary.js:1107`
-- `static/js/documentLibrary.js:2055`
-- `static/js/documentLibrary.js:3008`
-- `static/js/documentLibrary.js:3452`
-- `static/js/documentLibrary.js:3581`
-- `static/js/documentLibrary.js:3592`
-- `static/js/documentLibrary.js:3606`
-- `static/js/sessions.js:3349`
-- `static/js/sessions.js:3474`
-- `static/js/sessions.js:3479`
-- `static/js/sessions.js:3540`
-- `static/js/sessions.js:3548`
-- `static/js/sessions.js:3649`
+- `static/js/sessions.js:3788`
+- `static/js/sessions.js:3796`
+- `static/js/sessions.js:3799`
+- `static/js/sessions.js:3809`
+- `static/js/sessions.js:3836`
+- `static/js/sessions.js:3858`
+- `static/js/sessions.js:3861`
+- `static/js/sessions.js:3869`
+- `static/js/sessions.js:3910`
+- `static/js/sessions.js:3911`
+- `static/js/sessions.js:3940`
+- `static/js/sessions.js:3941`
+- `static/js/sessions.js:3979`
+- `static/js/sessions.js:4036`
 
-## `openArchive` — function, line 3663
+## `_renderLibChats` — function, line 3879
 - **called from:**
-- `static/js/sessions.js:2993`
-- `static/js/sessions.js:3663`
+- `static/js/documentLibrary.js:2132`
+- `static/js/documentLibrary.js:2149`
+- `static/js/documentLibrary.js:2293`
+- `static/js/documentLibrary.js:2314`
+- `static/js/documentLibrary.js:2383`
+- `static/js/documentLibrary.js:2390`
+- `static/js/documentLibrary.js:2486`
+- `static/js/documentLibrary.js:2531`
+- `static/js/documentLibrary.js:2558`
+- `static/js/sessions.js:3873`
+- `static/js/sessions.js:3879`
 
-## `closeArchive` — function, line 3728
+## `_renderLibArchive` — function, line 3918
 - **called from:**
-- `static/js/sessions.js:3016`
-- `static/js/sessions.js:3723`
-- `static/js/sessions.js:3728`
+- `static/js/documentLibrary.js:2133`
+- `static/js/documentLibrary.js:2299`
+- `static/js/documentLibrary.js:2314`
+- `static/js/documentLibrary.js:2582`
+- `static/js/documentLibrary.js:2661`
+- `static/js/documentLibrary.js:2666`
+- `static/js/documentLibrary.js:2747`
+- `static/js/documentLibrary.js:2751`
+- `static/js/documentLibrary.js:2795`
+- `static/js/documentLibrary.js:2796`
+- `static/js/documentLibrary.js:2834`
+- `static/js/documentLibrary.js:2835`
+- `static/js/documentLibrary.js:2919`
+- `static/js/documentLibrary.js:2940`
+- `static/js/documentLibrary.js:3102`
+- `static/js/documentLibrary.js:3121`
+- `static/js/sessions.js:3874`
+- `static/js/sessions.js:3918`
 
-## `getSortMode` — function, line 3743
+## `_renderLibDocuments` — function, line 3949
 - **called from:**
-- `static/app.js:1391`
-- `static/app.js:1408`
-- `static/js/sessions.js:3743`
+- `static/js/sessions.js:3875`
+- `static/js/sessions.js:3949`
 
-## `setSortMode` — function, line 3744
+## `_renderLibResearch` — function, line 3987
 - **called from:**
-- `static/app.js:1394`
-- `static/app.js:1398`
-- `static/app.js:1441`
-- `static/js/sessions.js:470`
-- `static/js/sessions.js:494`
-- `static/js/sessions.js:3744`
+- `static/js/documentLibrary.js:2134`
+- `static/js/documentLibrary.js:2950`
+- `static/js/documentLibrary.js:3357`
+- `static/js/sessions.js:3876`
+- `static/js/sessions.js:3987`
 
-## `setSessionHasDocs` — function, line 3751
+## `_buildLibCard` — function, line 4046
 - **called from:**
-- `static/js/document.js:201`
-- `static/js/sessions.js:3751`
+- `static/js/sessions.js:3900`
+- `static/js/sessions.js:3932`
+- `static/js/sessions.js:3963`
+- `static/js/sessions.js:4009`
+- `static/js/sessions.js:4046`
+
+## `_toggleLibSelect` — function, line 4074
+- **called from:**
+- `static/js/sessions.js:3903`
+- `static/js/sessions.js:3935`
+- `static/js/sessions.js:3967`
+- `static/js/sessions.js:4074`
+
+## `closeLibrary` — function, line 4079
+- **called from:**
+- `static/app.js:1080`
+- `static/js/document.js:6408`
+- `static/js/documentLibrary.js:1222`
+- `static/js/documentLibrary.js:1239`
+- `static/js/documentLibrary.js:1323`
+- `static/js/documentLibrary.js:2273`
+- `static/js/documentLibrary.js:3073`
+- `static/js/documentLibrary.js:3518`
+- `static/js/documentLibrary.js:3648`
+- `static/js/documentLibrary.js:3659`
+- `static/js/documentLibrary.js:3673`
+- `static/js/sessions.js:3770`
+- `static/js/sessions.js:3904`
+- `static/js/sessions.js:3909`
+- `static/js/sessions.js:3970`
+- `static/js/sessions.js:3978`
+- `static/js/sessions.js:4079`
+
+## `openArchive` — function, line 4093
+- **called from:**
+- `static/js/sessions.js:3414`
+- `static/js/sessions.js:4093`
+
+## `closeArchive` — function, line 4158
+- **called from:**
+- `static/js/sessions.js:3437`
+- `static/js/sessions.js:4153`
+- `static/js/sessions.js:4158`
+
+## `getSortMode` — function, line 4173
+- **called from:**
+- `static/app.js:1432`
+- `static/app.js:1449`
+- `static/js/sessions.js:4173`
+
+## `setSortMode` — function, line 4174
+- **called from:**
+- `static/app.js:1435`
+- `static/app.js:1439`
+- `static/app.js:1482`
+- `static/js/sessions.js:685`
+- `static/js/sessions.js:709`
+- `static/js/sessions.js:4174`
+
+## `setSessionHasDocs` — function, line 4181
+- **called from:**
+- `static/js/document.js:1113`
+- `static/js/sessions.js:4181`

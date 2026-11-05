@@ -1,195 +1,212 @@
 # `static/js/compare/index.js` — definitions & call sites
 
-34 definitions (regex-based, best-effort).
+36 definitions (regex-based, best-effort).
 **Exports:** `EVAL_PROMPTS`, `default`, `handleCompareSubmit`, `showScoreboard`
 
-## `_slotChar` — function, line 47
+## `_slotChar` — function, line 49
 - **called from:**
-- `static/js/compare/index.js:47`
-- `static/js/compare/index.js:250`
-- `static/js/compare/index.js:446`
-- `static/js/compare/index.js:658`
-- `static/js/compare/index.js:659`
-- `static/js/compare/index.js:918`
+- `static/js/compare/index.js:49`
+- `static/js/compare/index.js:304`
+- `static/js/compare/index.js:533`
+- `static/js/compare/index.js:771`
+- `static/js/compare/index.js:772`
+- `static/js/compare/index.js:1031`
 - `static/js/compare/panes.js:34`
-- `static/js/compare/panes.js:386`
-- `static/js/compare/panes.js:406`
-- `static/js/compare/panes.js:499`
-- `static/js/compare/panes.js:589`
-- `static/js/compare/panes.js:608`
-- `static/js/compare/panes.js:736`
-- `static/js/compare/panes.js:777`
+- `static/js/compare/panes.js:179`
+- `static/js/compare/panes.js:216`
+- `static/js/compare/panes.js:733`
+- `static/js/compare/panes.js:754`
+- `static/js/compare/panes.js:845`
+- `static/js/compare/panes.js:927`
+- `static/js/compare/panes.js:963`
+- `static/js/compare/panes.js:1097`
+- `static/js/compare/panes.js:1150`
 - `static/js/compare/selector.js:20`
-- `static/js/compare/selector.js:605`
-- `static/js/compare/selector.js:716`
-- `static/js/compare/selector.js:938`
-- `static/js/compare/selector.js:1074`
-- `static/js/compare/vote.js:23`
-- `static/js/compare/vote.js:61`
+- `static/js/compare/selector.js:669`
+- `static/js/compare/selector.js:784`
+- `static/js/compare/selector.js:1018`
+- `static/js/compare/selector.js:1161`
+- `static/js/compare/vote.js:24`
+- `static/js/compare/vote.js:62`
 
-## `init` — function, line 55
+## `init` — function, line 57
 - **called from:**
-- `static/app.js:3724`
-- `static/app.js:3725`
-- `static/app.js:3726`
-- `static/app.js:3727`
-- `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
-- `static/app.js:4370`
-- `static/app.js:4371`
-- `static/js/a11y.js:121`
-- `static/js/a11y.js:163`
+- `static/app.js:3824`
+- `static/app.js:3825`
+- `static/app.js:3826`
+- `static/app.js:3827`
+- `static/app.js:3828`
+- `static/app.js:3829`
+- `static/app.js:3833`
+- `static/app.js:3836`
+- `static/app.js:3838`
+- `static/app.js:3841`
+- `static/app.js:3850`
+- `static/app.js:4486`
+- `static/app.js:4487`
+- `static/js/a11y.js:174`
+- `static/js/a11y.js:223`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
-- `static/js/compare/index.js:55`
+- `static/js/chat.js:2061`
+- `static/js/chat.js:2066`
+- `static/js/compare/index.js:57`
 - `static/js/cookbookDownload.js:10`
-- `static/js/cookbookRunning.js:333`
-- `static/js/cookbookServe.js:16`
-- `static/js/document.js:154`
-- `static/js/emailInbox.js:157`
-- `static/js/fileHandler.js:173`
+- `static/js/cookbookRunning.js:337`
+- `static/js/cookbookServe.js:21`
+- `static/js/document.js:1065`
+- `static/js/emailInbox.js:159`
+- `static/js/fileHandler.js:201`
 - `static/js/group.js:24`
 - `static/js/models.js:27`
 - `static/js/presets.js:79`
 - `static/js/rag.js:12`
-- `static/js/research/jobs.js:35`
+- `static/js/research/jobs.js:66`
+- `static/js/research/panel.js:206`
 - `static/js/research/panel.js:210`
-- `static/js/research/panel.js:214`
-- `static/js/search-chat.js:198`
+- `static/js/search-chat.js:204`
 - `static/js/search.js:14`
 - `static/js/tourAutoplay.js:117`
 - `static/js/tourAutoplay.js:129`
-- `static/js/tourHints.js:163`
-- `static/js/tourHints.js:175`
+- `static/js/tourHints.js:158`
+- `static/js/tourHints.js:170`
 - `static/js/voiceRecorder.js:268`
 
-## `isCompareActive` — function, line 73
+## `isCompareActive` — function, line 75
 - **called from:**
-- `static/js/compare/index.js:73`
+- `static/js/compare/index.js:75`
 
-## `_compareModeLabel` — function, line 77
+## `_compareModeLabel` — function, line 79
 - **called from:**
-- `static/js/compare/index.js:77`
-- `static/js/compare/index.js:110`
-- `static/js/compare/index.js:354`
+- `static/js/compare/index.js:79`
+- `static/js/compare/index.js:124`
+- `static/js/compare/index.js:412`
 
-## `_setToolbarMode` — function, line 81
+## `_paneModeBadgeHtml` — function, line 83
 - **called from:**
-- `static/js/compare/index.js:81`
-- `static/js/compare/index.js:107`
-- `static/js/compare/index.js:213`
-- `static/js/compare/index.js:300`
+- `static/js/compare/index.js:83`
+- `static/js/compare/index.js:129`
+- `static/js/compare/index.js:548`
+- `static/js/compare/panes.js:51`
+- `static/js/compare/panes.js:764`
+- `static/js/compare/panes.js:855`
 
-## `_syncCompareModeFromToolbar` — function, line 104
+## `_setToolbarMode` — function, line 95
 - **called from:**
-- `static/js/compare/index.js:104`
-- `static/js/compare/index.js:306`
-
-## `closeCompare` — function, line 121
-- **called from:**
-- `static/app.js:2491`
+- `static/js/compare/index.js:95`
 - `static/js/compare/index.js:121`
+- `static/js/compare/index.js:267`
+- `static/js/compare/index.js:358`
 
-## `toggleMode` — function, line 130
+## `_syncCompareModeFromToolbar` — function, line 118
 - **called from:**
-- `static/app.js:1005`
-- `static/app.js:1014`
-- `static/js/compare/index.js:130`
+- `static/js/compare/index.js:118`
+- `static/js/compare/index.js:364`
 
-## `deactivate` — function, line 158
+## `_showPaneStatsPopup` — function, line 138
 - **called from:**
-- `static/app.js:992`
-- `static/js/compare/index.js:122`
-- `static/js/compare/index.js:132`
-- `static/js/compare/index.js:158`
-- `static/js/compare/index.js:428`
-- `static/js/sessions.js:1931`
-- `static/js/sessions.js:2012`
+- `static/js/compare/index.js:138`
+- `static/js/compare/index.js:574`
+- `static/js/compare/index.js:610`
 
-## `_buildCompareUI` — function, line 232
+## `closeCompare` — function, line 175
 - **called from:**
-- `static/js/compare/index.js:144`
-- `static/js/compare/index.js:232`
+- `static/app.js:2547`
+- `static/js/compare/index.js:175`
 
-## `_onCompareModeClick` — arrow, line 303
+## `toggleMode` — function, line 184
+- **called from:**
+- `static/app.js:1038`
+- `static/app.js:1047`
+- `static/js/compare/index.js:184`
+
+## `deactivate` — function, line 212
+- **called from:**
+- `static/app.js:1025`
+- `static/js/compare/index.js:176`
+- `static/js/compare/index.js:186`
+- `static/js/compare/index.js:212`
+- `static/js/compare/index.js:518`
+- `static/js/sessions.js:2270`
+- `static/js/sessions.js:2356`
+
+## `_buildCompareUI` — function, line 286
+- **called from:**
+- `static/js/compare/index.js:198`
+- `static/js/compare/index.js:286`
+
+## `_onCompareModeClick` — arrow, line 361
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_setSendBtn` — function, line 552
+## `_setSendBtn` — function, line 665
 - **called from:**
-- `static/js/compare/index.js:545`
-- `static/js/compare/index.js:552`
-- `static/js/compare/index.js:666`
-- `static/js/compare/index.js:880`
-- `static/js/compare/index.js:1014`
-- `static/js/compare/panes.js:42`
-- `static/js/compare/stream.js:46`
+- `static/js/compare/index.js:658`
+- `static/js/compare/index.js:665`
+- `static/js/compare/index.js:779`
+- `static/js/compare/index.js:993`
+- `static/js/compare/index.js:1127`
+- `static/js/compare/panes.js:378`
+- `static/js/compare/stream.js:47`
 
-## `handleCompareSubmit` — function, line 577
+## `handleCompareSubmit` — function, line 690
 - **called from:**
-- `static/app.js:3879`
-- `static/js/chat.js:1489`
-- `static/js/compare/index.js:577`
+- `static/app.js:3982`
+- `static/js/chat.js:2510`
+- `static/js/compare/index.js:690`
 
-## `_dropReadonly` — arrow, line 616
+## `_dropReadonly` — arrow, line 729
 - **called from:**
-- `static/js/chat.js:2040`
-- `static/js/compare/index.js:622`
+- `static/js/chat.js:3098`
+- `static/js/compare/index.js:735`
 
-## `_executeCompare` — function, line 638
+## `_executeCompare` — function, line 751
 - **called from:**
-- `static/js/compare/index.js:627`
-- `static/js/compare/index.js:638`
+- `static/js/compare/index.js:740`
+- `static/js/compare/index.js:751`
 
-## `_searchOne` — function, line 708
+## `_searchOne` — function, line 821
 - **called from:**
-- `static/js/compare/index.js:708`
-- `static/js/compare/index.js:725`
-- `static/js/compare/index.js:734`
+- `static/js/compare/index.js:821`
+- `static/js/compare/index.js:838`
+- `static/js/compare/index.js:847`
 
-## `runSynthesis` — arrow, line 863
+## `runSynthesis` — arrow, line 976
 - **called from:**
-- `static/js/compare/index.js:869`
+- `static/js/compare/index.js:982`
 
-## `_buildComparisonMarkdown` — function, line 1035
+## `_buildComparisonMarkdown` — function, line 1148
 - **called from:**
-- `static/js/compare/index.js:1035`
-- `static/js/compare/index.js:1101`
-- `static/js/compare/index.js:1123`
-- `static/js/compare/index.js:1138`
+- `static/js/compare/index.js:1148`
+- `static/js/compare/index.js:1219`
+- `static/js/compare/index.js:1241`
+- `static/js/compare/index.js:1256`
 
-## `_closeExportMenu` — arrow, line 1071
+## `_closeExportMenu` — arrow, line 1184
 - **called from:**
-- `static/js/compare/index.js:1073`
-- `static/js/compare/index.js:1090`
+- `static/js/compare/index.js:1186`
+- `static/js/compare/index.js:1205`
 
-## `_toggleExportMenu` — function, line 1072
+## `_toggleExportMenu` — function, line 1185
 - **called from:**
-- `static/js/compare/index.js:400`
-- `static/js/compare/index.js:1072`
+- `static/js/compare/index.js:458`
+- `static/js/compare/index.js:1185`
 
-## `_exportCopyMarkdown` — function, line 1100
+## `_exportCopyMarkdown` — function, line 1218
 - **called from:**
-- `static/js/compare/index.js:1079`
-- `static/js/compare/index.js:1100`
+- `static/js/compare/index.js:1195`
+- `static/js/compare/index.js:1218`
 
-## `_exportDownloadMarkdown` — function, line 1122
+## `_exportDownloadMarkdown` — function, line 1240
 - **called from:**
-- `static/js/compare/index.js:1080`
-- `static/js/compare/index.js:1122`
+- `static/js/compare/index.js:1196`
+- `static/js/compare/index.js:1240`
 
-## `_exportPrint` — function, line 1137
+## `_exportPrint` — function, line 1255
 - **called from:**
-- `static/js/compare/index.js:1081`
-- `static/js/compare/index.js:1137`
+- `static/js/compare/index.js:1197`
+- `static/js/compare/index.js:1255`
 
-## `escape` — arrow, line 1145
+## `escape` — arrow, line 1263
 - **called from:**
 - `companion/routes.py:239`
 - `companion/routes.py:255`
@@ -197,106 +214,109 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `companion/routes.py:257`
 - `companion/routes.py:258`
 - `companion/routes.py:260`
-- `routes/auth_routes.py:557`
-- `routes/chat_helpers.py:1147`
-- `routes/cookbook_routes.py:990`
-- `routes/email_pollers.py:1194`
-- `routes/email_pollers.py:1196`
-- `routes/email_pollers.py:1204`
-- `routes/email_pollers.py:1208`
-- `routes/email_pollers.py:1209`
-- `routes/email_pollers.py:1210`
-- `routes/email_pollers.py:1456`
-- `routes/email_routes.py:1404`
-- `routes/email_routes.py:1474`
-- `routes/email_routes.py:1495`
-- `routes/email_routes.py:1815`
-- `routes/mcp/mcp_routes.py:620`
-- `routes/mcp/mcp_routes.py:621`
-- `routes/mcp/mcp_routes.py:622`
-- `routes/mcp/mcp_routes.py:683`
-- `routes/mcp/mcp_routes.py:684`
-- `routes/session_routes.py:1067`
+- `routes/auth_routes.py:607`
+- `routes/auth_routes.py:895`
+- `routes/chat_helpers.py:92`
+- `routes/chat_helpers.py:1775`
+- `routes/cookbook_routes.py:864`
+- `routes/email/email_pollers.py:1392`
+- `routes/email/email_pollers.py:1394`
+- `routes/email/email_pollers.py:1402`
+- `routes/email/email_pollers.py:1406`
+- `routes/email/email_pollers.py:1407`
+- `routes/email/email_pollers.py:1408`
+- `routes/email/email_pollers.py:1656`
+- `routes/email/email_routes.py:1613`
+- `routes/email/email_routes.py:1683`
+- `routes/email/email_routes.py:1704`
+- `routes/email/email_routes.py:2298`
+- `routes/mcp/mcp_routes.py:667`
+- `routes/mcp/mcp_routes.py:668`
+- `routes/mcp/mcp_routes.py:669`
+- `routes/mcp/mcp_routes.py:730`
+- `routes/mcp/mcp_routes.py:731`
+- `routes/search/search_routes.py:50`
+- `routes/search/search_routes.py:52`
+- `routes/search/search_routes.py:87`
+- `routes/session_routes.py:1213`
+- `scripts/audit_typo_tool_routing.py:71`
+- `scripts/audit_typo_tool_routing.py:78`
+- `scripts/build_odysseus_sft_repair_manifest.py:93`
+- `scripts/odysseus_conversation_qa.py:576`
+- `scripts/odysseus_conversation_qa.py:1044`
+- `services/search/core.py:263`
 - `services/search/ranking.py:56`
-- `services/search/ranking.py:89`
-- `src/agent_tools/filesystem_tools.py:43`
-- `src/email_thread_parser.py:397`
-- `src/tool_index.py:543`
-- `src/tools/cookbook.py:400`
-- `src/tools/cookbook.py:407`
-- `src/tools/cookbook.py:408`
-- `src/topic_analyzer.py:71`
-- `src/topic_analyzer.py:75`
-- `src/visual_report.py:221`
-- `src/visual_report.py:1784`
-- `src/visual_report.py:1798`
-- `src/visual_report.py:1815`
-- `src/visual_report.py:1825`
-- `src/visual_report.py:1825`
-- `src/visual_report.py:1835`
-- `src/visual_report.py:1844`
-- `src/visual_report.py:1847`
-- `src/visual_report.py:1865`
-- `src/visual_report.py:1872`
-- `src/visual_report.py:1902`
-- `src/visual_report.py:1903`
-- `src/visual_report.py:1905`
-- `src/visual_report.py:1915`
-- `tests/test_app_config_shared_fetch_js.py:209`
-- `tests/test_ci_authoritative_validation.py:14`
-- `tests/test_live_strip_email_tool_fences.py:51`
-- `tests/test_skill_importer_security.py:89`
-- `tests/test_toast_dismiss_pointer_events.py:34`
-- `static/js/compare/index.js:1151`
-- `static/js/cookbook-diagnosis.js:111`
-- `static/js/cookbook.js:1646`
-- `static/js/cookbook.js:1659`
-- … +31 more (grep the name in repo)
+- `services/search/ranking.py:105`
+- `src/agent_evidence.py:271`
+- `src/agent_loop.py:1174`
+- `src/agent_loop.py:1771`
+- `src/agent_loop.py:4227`
+- `src/agent_loop.py:4228`
+- `src/agent_loop.py:4773`
+- `src/agent_loop.py:6506`
+- `src/agent_loop.py:6579`
+- `src/agent_loop.py:11496`
+- `src/agent_loop.py:13055`
+- `src/agent_loop.py:13325`
+- `src/agent_loop.py:16895`
+- `src/agent_loop.py:19161`
+- `src/agent_loop.py:19729`
+- `src/agent_loop.py:26140`
+- `src/agent_loop.py:26159`
+- `src/agent_loop.py:35240`
+- `src/agent_loop.py:35722`
+- `src/agent_loop.py:36467`
+- `src/agent_runtime/authority.py:454`
+- `src/agent_tools/document_tools.py:726`
+- … +127 more (grep the name in repo)
 
-## `_exportComparison` — function, line 1157
+## `_exportComparison` — function, line 1275
 - **called from:**
-- `static/js/compare/index.js:1157`
+- `static/js/compare/index.js:1275`
 
-## `_setupEvalPicker` — function, line 1221
+## `_setupEvalPicker` — function, line 1339
 - **called from:**
-- `static/js/compare/index.js:532`
-- `static/js/compare/index.js:1221`
+- `static/js/compare/index.js:645`
+- `static/js/compare/index.js:1339`
 
-## `_renderItems` — function, line 1250
+## `_renderItems` — function, line 1368
 - **called from:**
-- `static/js/compare/index.js:113`
-- `static/js/compare/index.js:1250`
-- `static/js/compare/index.js:1309`
-- `static/js/compare/index.js:1321`
+- `static/js/compare/index.js:135`
+- `static/js/compare/index.js:1368`
+- `static/js/compare/index.js:1428`
+- `static/js/compare/index.js:1440`
 
-## `compare` — class, line 1261
+## `compare` — class, line 1379
+- **called from:**
+- `scripts/css_snapshot.py:285`
+- `tests/test_css_computed_style_snapshot.py:111`
+- `tests/test_css_computed_style_snapshot.py:191`
+
+## `_onDocClick` — arrow, line 1435
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_onDocClick` — arrow, line 1316
+## `_showExpectedAnswer` — function, line 1469
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `static/js/compare/index.js:1419`
+- `static/js/compare/index.js:1469`
+- `static/js/compare/index.js:1495`
 
-## `_showExpectedAnswer` — function, line 1351
+## `_syncEvalVisibility` — arrow, line 1499
 - **called from:**
-- `static/js/compare/index.js:1300`
-- `static/js/compare/index.js:1351`
+- `static/js/compare/index.js:1506`
 
-## `_syncEvalVisibility` — arrow, line 1368
+## `cleanupResults` — function, line 1521
 - **called from:**
-- `static/js/compare/index.js:1374`
+- `static/js/compare/index.js:1508`
+- `static/js/compare/index.js:1521`
+- `static/js/sessions.js:2357`
 
-## `cleanupResults` — function, line 1388
+## `removeOverlays` — function, line 1550
 - **called from:**
-- `static/js/compare/index.js:1376`
-- `static/js/compare/index.js:1388`
-- `static/js/sessions.js:2013`
+- `static/js/compare/index.js:232`
+- `static/js/compare/index.js:1550`
 
-## `removeOverlays` — function, line 1417
+## `showShufflePoolEditor` — function, line 1564
 - **called from:**
-- `static/js/compare/index.js:178`
-- `static/js/compare/index.js:1417`
-
-## `showShufflePoolEditor` — function, line 1431
-- **called from:**
-- `static/js/compare/index.js:1431`
+- `static/js/compare/index.js:1564`

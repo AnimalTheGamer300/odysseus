@@ -28,22 +28,24 @@
 - **called from:**
 - `companion/pairing.py:147`
 - `companion/pairing.py:155`
-- `mcp_servers/email_server.py:1832`
-- `mcp_servers/email_server.py:1836`
-- `mcp_servers/email_server.py:1844`
-- `routes/email_routes.py:5059`
-- `routes/email_routes.py:5063`
-- `routes/email_routes.py:5067`
-- `routes/email_routes.py:5342`
-- `routes/email_routes.py:5347`
-- `routes/email_routes.py:5353`
-- `routes/email_routes.py:5358`
+- `mcp_servers/email_server.py:3079`
+- `mcp_servers/email_server.py:3083`
+- `mcp_servers/email_server.py:3091`
+- `routes/email/email_routes.py:6761`
+- `routes/email/email_routes.py:6765`
+- `routes/email/email_routes.py:6769`
+- `routes/email/email_routes.py:7089`
+- `routes/email/email_routes.py:7094`
+- `routes/email/email_routes.py:7100`
+- `routes/email/email_routes.py:7105`
 - `tests/test_manage_mcp_command_allowlist.py:125`
 - `tests/test_manage_mcp_command_allowlist.py:143`
 - `tests/test_manage_mcp_command_allowlist.py:160`
-- `static/js/emailLibrary.js:3632`
-- `static/js/emailLibrary.js:3635`
-- `static/js/emailLibrary.js:3647`
+- `tests/test_notes_reminder_temporal_redos.py:47`
+- `tests/test_notes_reminder_temporal_redos.py:53`
+- `static/js/emailLibrary/index.js:3723`
+- `static/js/emailLibrary/index.js:3726`
+- `static/js/emailLibrary/index.js:3738`
 
 ## `find_admin_user` — function, line 162
 - **called from:**

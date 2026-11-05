@@ -1,0 +1,260 @@
+# `scripts/test_clean_tool_loop.py` — definitions & call sites
+
+7 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `inventory` — function, line 64
+- **called from:**
+- `scripts/test_clean_tool_loop.py:133`
+- `tests/test_clean_tool_loop.py:14`
+- `tests/test_clean_tool_loop.py:14`
+- `tests/test_clean_tool_loop.py:18`
+
+## `Sandbox` — class, line 72
+- **called from:**
+- `scripts/test_clean_tool_loop.py:129`
+- `tests/test_clean_tool_loop.py:39`
+- `tests/test_clean_tool_loop.py:43`
+- `tests/test_clean_tool_loop.py:54`
+
+## `Sandbox.__init__` — method, line 73
+- **called from:**
+- `core/exceptions.py:8`
+- `core/exceptions.py:15`
+- `core/exceptions.py:22`
+- `core/exceptions.py:29`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
+- `src/outbound_fetch.py:220`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
+- `tests/test_calendar_default_transaction.py:456`
+- `tests/test_chat_attachment_picker.py:10`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
+- `tests/test_embedding_lanes.py:257`
+- `tests/test_embedding_lanes.py:284`
+- `tests/test_integrations_store_shape.py:46`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
+- `tests/test_upload_handler_atomicity.py:42`
+- `tests/test_upload_multifile.py:154`
+- `static/js/cookbookDownload.js:155`
+
+## `Sandbox.execute` — method, line 77
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
+- `core/database.py:1268`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
+- `core/database.py:1406`
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
+
+## `validated_execute` — function, line 111
+- **called from:**
+- `scripts/test_clean_tool_loop.py:166`
+- `tests/test_clean_tool_loop.py:28`
+- `tests/test_clean_tool_loop.py:35`
+- `tests/test_clean_tool_loop.py:39`
+- `tests/test_clean_tool_loop.py:54`
+
+## `run` — function, line 124
+- **called from:**
+- `app.py:1228`
+- `app.py:1530`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:469`
+- `launcher.py:114`
+- `launcher.py:149`
+- `mcp_servers/email_server.py:4704`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/image_gen_server.py:188`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/memory_server.py:281`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/rag_server.py:156`
+- `mcp_servers/rag_server.py:160`
+- `mcp_servers/rag_server.py:160`
+- `routes/cookbook_routes.py:1527`
+- `routes/cookbook_routes.py:3626`
+- `routes/cookbook_routes.py:3639`
+- `routes/cookbook_routes.py:3650`
+- `routes/cookbook_routes.py:3711`
+- `routes/cookbook_routes.py:4177`
+- `routes/cookbook_routes.py:4179`
+- `routes/cookbook_routes.py:4201`
+- `routes/cookbook_routes.py:4203`
+- `routes/cookbook_routes.py:4368`
+- `routes/cookbook_routes.py:4378`
+- `routes/document/document_routes.py:489`
+- `routes/email/email_routes.py:5062`
+- `routes/email/email_routes.py:6861`
+- `routes/hwfit_routes.py:147`
+- `scripts/build_frontend.py:69`
+- `scripts/build_frontend.py:70`
+- `scripts/check_brotli.py:39`
+- `scripts/css_snapshot.py:92`
+- `scripts/css_snapshot.py:131`
+- `scripts/diffusion_server.py:1506`
+- `scripts/dump_agent_prompt.py:415`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_qwen_tool_groups_stream.py:276`
+- `scripts/mlx_image_server.py:207`
+- `scripts/mlx_image_server.py:281`
+- `scripts/mlx_image_server.py:379`
+- `scripts/mlx_image_server.py:466`
+- `scripts/pr_blocker_audit.py:253`
+- `scripts/probe_browser_budget.py:112`
+- `scripts/probe_empty_search_recovery.py:90`
+- `scripts/probe_fixed_search_evidence.py:81`
+- `scripts/ref_parity_audit.py:142`
+- `scripts/ref_parity_audit.py:232`
+- `scripts/review_sft_environment_expansion.py:115`
+- `scripts/run_odysseus_cases_chunked.py:107`
+- `scripts/run_odysseus_search_teacher_pipeline.py:305`
+- `scripts/run_odysseus_search_teacher_pipeline.py:412`
+- `scripts/test_clean_tool_loop.py:209`
+- … +1417 more (grep the name in repo)
+
+## `main` — function, line 183
+- **called from:**
+- `integrations/claude/skills/odysseus/scripts/odysseus_api.py:218`
+- `integrations/codex/scripts/odysseus_api.py:218`
+- `scripts/add_hwfit_models.py:512`
+- `scripts/agent_migration_manifest.py:635`
+- `scripts/analyze_odysseus_eval_targets.py:180`
+- `scripts/assemble_sft_clean_corpus.py:74`
+- `scripts/audit_c5_benchmark_evidence.py:1637`
+- `scripts/audit_email_sft_with_deepseek.py:323`
+- `scripts/audit_historical_tool_routing.py:121`
+- `scripts/audit_sft_corpus_with_deepseek.py:344`
+- `scripts/audit_typo_tool_routing.py:99`
+- `scripts/backfill_model_release_dates.py:136`
+- `scripts/build_frontend.py:148`
+- `scripts/build_historical_harness_queue.py:333`
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:274`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:353`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:361`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:267`
+- `scripts/build_odysseus_sft_repair_manifest.py:230`
+- `scripts/build_odysseus_tool_efficiency_sft_slice.py:447`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:557`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:519`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:551`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:394`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:288`
+- `scripts/build_odysseus_web_teacher_sft.py:500`
+- `scripts/build_odysseus_web_v53_repair_sft.py:483`
+- `scripts/build_sft_environment_inventories.py:97`
+- `scripts/build_sft_expansion_manifest.py:161`
+- `scripts/build_sft_expansion_splits.py:110`
+- `scripts/build_v66_calendar_heldout_cases.py:113`
+- `scripts/check_brotli.py:122`
+- `scripts/check_ca_trust.py:180`
+- `scripts/claim_ownerless.py:106`
+- `scripts/cook_sft_alex_conversations.py:298`
+- `scripts/css_snapshot.py:295`
+- `scripts/curate_public_search_seed_cases.py:324`
+- `scripts/curate_sft_trace_run.py:178`
+- `scripts/demo_email/seed_demo_emails.py:394`
+- `scripts/dump_agent_prompt.py:545`
+- `scripts/eval_ajax_basic_tools.py:71`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_app_route_smoke.py:400`
+- `scripts/eval_odysseus_contextual_tool_use.py:944`
+- `scripts/eval_odysseus_crud.py:925`
+- `scripts/eval_odysseus_everyday_live_hard.py:590`
+- `scripts/eval_odysseus_live_hard_direct.py:261`
+- `scripts/eval_odysseus_live_hard_examples.py:468`
+- `scripts/eval_odysseus_tool_use.py:1490`
+- `scripts/eval_qwen35_document_shape_direct.py:303`
+- `scripts/eval_qwen35_implicit_memory.py:279`
+- `scripts/eval_qwen35_tool_router_extended.py:571`
+- `scripts/filter_sft_seed_hygiene.py:90`
+- `scripts/generate_env_reference.py:1270`
+- `scripts/generate_sft_environment_expansion.py:399`
+- `scripts/generate_sft_flow_variants_with_kimi.py:211`
+- `scripts/hf_download.py:182`
+- `scripts/import_from_vllm_recipes.py:348`
+- `scripts/index_documents.py:117`
+- … +139 more (grep the name in repo)

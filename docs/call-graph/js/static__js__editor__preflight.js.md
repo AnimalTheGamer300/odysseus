@@ -1,0 +1,419 @@
+# `static/js/editor/preflight.js` — definitions & call sites
+
+13 definitions (regex-based, best-effort).
+**Exports:** `PREFLIGHT_STEPS`, `createPreflight`
+
+## `esc` — function, line 55
+- **called from:**
+- `static/js/admin.js:28`
+- `static/js/admin.js:28`
+- `static/js/admin.js:86`
+- `static/js/admin.js:88`
+- `static/js/admin.js:93`
+- `static/js/admin.js:94`
+- `static/js/admin.js:96`
+- `static/js/admin.js:114`
+- `static/js/admin.js:125`
+- `static/js/admin.js:138`
+- `static/js/admin.js:139`
+- `static/js/admin.js:143`
+- `static/js/admin.js:330`
+- `static/js/admin.js:331`
+- `static/js/admin.js:332`
+- `static/js/admin.js:648`
+- `static/js/admin.js:651`
+- `static/js/admin.js:655`
+- `static/js/admin.js:680`
+- `static/js/admin.js:769`
+- `static/js/admin.js:769`
+- `static/js/admin.js:771`
+- `static/js/admin.js:773`
+- `static/js/admin.js:777`
+- `static/js/admin.js:777`
+- `static/js/admin.js:836`
+- `static/js/admin.js:836`
+- `static/js/admin.js:838`
+- `static/js/admin.js:840`
+- `static/js/admin.js:841`
+- `static/js/admin.js:915`
+- `static/js/admin.js:1072`
+- `static/js/admin.js:1073`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1080`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1380`
+- `static/js/admin.js:1385`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1430`
+- `static/js/admin.js:1432`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1551`
+- `static/js/admin.js:1554`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1915`
+- `static/js/admin.js:2802`
+- … +576 more (grep the name in repo)
+
+## `readOverride` — function, line 61
+- **called from:**
+- `static/js/editor/preflight.js:61`
+- `static/js/editor/preflight.js:121`
+- `static/js/editor/preflight.js:219`
+
+## `writeOverride` — function, line 68
+- **called from:**
+- `static/js/editor/preflight.js:68`
+- `static/js/editor/preflight.js:222`
+
+## `createPreflight` — function, line 72
+- **called from:**
+- `static/js/editor/preflight.js:72`
+
+## `detect` — function, line 81
+- **called from:**
+- `routes/memory/memory_routes.py:406`
+- `src/document_processor.py:64`
+- `static/js/editor/preflight.js:81`
+- `static/js/editor/preflight.js:120`
+- `static/js/galleryEditor.js:1617`
+
+## `render` — function, line 119
+- **called from:**
+- `scripts/generate_env_reference.py:1219`
+- `src/agent_tools/media_tools.py:493`
+- `src/agent_tools/media_tools.py:1002`
+- `tests/test_audit_c5_benchmark_evidence.py:2875`
+- `tests/test_audit_c5_benchmark_evidence.py:2882`
+- `tests/test_audit_c5_benchmark_evidence.py:2892`
+- `tests/test_audit_c5_benchmark_evidence.py:2906`
+- `tests/test_audit_c5_benchmark_evidence.py:2925`
+- `tests/test_audit_c5_benchmark_evidence.py:2933`
+- `tests/test_audit_c5_benchmark_evidence.py:2935`
+- `tests/test_audit_c5_benchmark_evidence.py:2978`
+- `tests/test_audit_c5_benchmark_evidence.py:3001`
+- `tests/test_audit_c5_benchmark_evidence.py:3006`
+- `tests/test_env_reference.py:168`
+- `tests/test_env_reference.py:179`
+- `static/js/calendar.js:1664`
+- `static/js/calendar.js:2653`
+- `static/js/chat.js:3712`
+- `static/js/chat.js:4841`
+- `static/js/chat.js:5202`
+- `static/js/chat.js:6102`
+- `static/js/chat.js:6252`
+- `static/js/chat.js:7389`
+- `static/js/documentLibrary.js:108`
+- `static/js/documentLibrary.js:124`
+- `static/js/editor/adjustments-worker.js:5`
+- `static/js/editor/adjustments-worker.js:20`
+- `static/js/editor/build/command-palette.js:22`
+- `static/js/editor/build/command-palette.js:56`
+- `static/js/editor/build/command-palette.js:64`
+- `static/js/editor/build/command-palette.js:67`
+- `static/js/editor/build/command-palette.js:68`
+- `static/js/editor/layer-panel.js:186`
+- `static/js/editor/layer-panel.js:302`
+- `static/js/editor/layer-panel.js:440`
+- `static/js/editor/layer-panel.js:490`
+- `static/js/editor/layer-panel.js:581`
+- `static/js/editor/layer-panel.js:613`
+- `static/js/editor/layer-panel.js:672`
+- `static/js/editor/layer-panel.js:711`
+- `static/js/editor/layer-panel.js:725`
+- `static/js/editor/layer-panel.js:739`
+- `static/js/editor/layer-panel.js:751`
+- `static/js/editor/layer-panel.js:795`
+- `static/js/editor/layer-panel.js:807`
+- `static/js/editor/layer-panel.js:839`
+- `static/js/editor/layer-panel.js:918`
+- `static/js/editor/layer-panel.js:929`
+- `static/js/editor/layer-panel.js:942`
+- `static/js/editor/layer-panel.js:962`
+- `static/js/editor/layer-panel.js:992`
+- `static/js/editor/layer-panel.js:1042`
+- `static/js/editor/layer-panel.js:1056`
+- `static/js/editor/layer-panel.js:1079`
+- `static/js/editor/layer-panel.js:1101`
+- `static/js/editor/layer-panel.js:1118`
+- `static/js/editor/layer-panel.js:1132`
+- `static/js/editor/layer-panel.js:1139`
+- `static/js/editor/layer-panel.js:1315`
+- `static/js/editor/layer-panel.js:1342`
+- … +104 more (grep the name in repo)
+
+## `open` — function, line 181
+- **called from:**
+- `app.py:1102`
+- `app.py:1168`
+- `app.py:1334`
+- `app.py:1389`
+- `companion/pairing.py:167`
+- `core/atomic_io.py:38`
+- `core/atomic_io.py:74`
+- `core/atomic_io.py:95`
+- `core/auth.py:135`
+- `core/auth.py:158`
+- `core/database.py:1681`
+- `core/database.py:1739`
+- `core/database.py:1747`
+- `core/database.py:1757`
+- `core/database.py:1779`
+- `core/platform_compat.py:325`
+- `launcher.py:92`
+- `launcher.py:131`
+- `mcp_servers/email_server.py:2400`
+- `routes/admin_wipe/admin_wipe_routes.py:48`
+- `routes/auth_routes.py:559`
+- `routes/chat_helpers.py:245`
+- `routes/chat_helpers.py:264`
+- `routes/chat_helpers.py:282`
+- `routes/chat_helpers.py:286`
+- `routes/chat_helpers.py:311`
+- `routes/chat_helpers.py:346`
+- `routes/chat_helpers.py:349`
+- `routes/chat_helpers.py:1425`
+- `routes/cookbook_routes.py:749`
+- `routes/diagnostics_routes.py:42`
+- `routes/document/document_routes.py:1385`
+- `routes/document/document_routes.py:1445`
+- `routes/document/document_routes.py:1520`
+- `routes/email/email_helpers.py:661`
+- `routes/email/email_helpers.py:1766`
+- `routes/email/email_routes.py:4974`
+- `routes/email/email_routes.py:4998`
+- `routes/email/email_routes.py:5005`
+- `routes/email/email_routes.py:5662`
+- `routes/email/email_routes.py:5686`
+- `routes/gallery/gallery_helpers.py:35`
+- `routes/gallery/gallery_routes.py:62`
+- `routes/gallery/gallery_routes.py:303`
+- `routes/gallery/gallery_routes.py:359`
+- `routes/gallery/gallery_routes.py:362`
+- `routes/gallery/gallery_routes.py:391`
+- `routes/gallery/gallery_routes.py:967`
+- `routes/gallery/gallery_routes.py:1040`
+- `routes/gallery/gallery_routes.py:1855`
+- `routes/gallery/gallery_routes.py:1856`
+- `routes/gallery/gallery_routes.py:1980`
+- `routes/gallery/gallery_routes.py:2861`
+- `routes/history/history_routes.py:62`
+- `routes/history/history_routes.py:88`
+- `routes/history/history_routes.py:93`
+- `routes/mcp/mcp_routes.py:249`
+- `routes/mcp/mcp_routes.py:470`
+- `routes/mcp/mcp_routes.py:586`
+- `routes/mcp/mcp_routes.py:616`
+- … +499 more (grep the name in repo)
+
+## `close` — function, line 185
+- **called from:**
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
+- `companion/pairing.py:151`
+- `companion/routes.py:165`
+- `core/database.py:161`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
+- `core/session_manager.py:68`
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
+
+## `maybeOpen` — function, line 187
+- **called from:**
+- `static/js/editor/preflight.js:187`
+
+## `runAction` — arrow, line 193
+- **called from:**
+- `static/js/editor/preflight.js:206`
+
+## `refresh` — arrow, line 236
+- **called from:**
+- `routes/calendar_routes.py:1395`
+- `routes/calendar_routes.py:1470`
+- `routes/calendar_routes.py:1614`
+- `routes/document/document_routes.py:179`
+- `routes/document/document_routes.py:209`
+- `routes/document/document_routes.py:322`
+- `routes/document/document_routes.py:396`
+- `routes/document/document_routes.py:911`
+- `routes/document/document_routes.py:950`
+- `routes/document/document_routes.py:1065`
+- `routes/editor_draft_routes.py:181`
+- `routes/editor_draft_routes.py:217`
+- `routes/gallery/gallery_routes.py:1488`
+- `routes/note/note_routes.py:686`
+- `routes/note/note_routes.py:763`
+- `routes/signature_routes.py:121`
+- `routes/task/task_routes.py:570`
+- `routes/task/task_routes.py:823`
+- `routes/task/task_routes.py:924`
+- `scripts/eval_odysseus_app_route_smoke.py:59`
+- `scripts/eval_odysseus_everyday_live_hard.py:191`
+- `scripts/eval_odysseus_everyday_live_hard.py:241`
+- `scripts/eval_odysseus_live_hard_examples.py:249`
+- `scripts/eval_odysseus_live_hard_examples.py:322`
+- `scripts/run_sft_overnight_fixture_flows.py:86`
+- `scripts/run_sft_overnight_fixture_flows.py:141`
+- `src/agent_runtime/effect_log.py:378`
+- `src/bg_jobs.py:350`
+- `src/bg_jobs.py:395`
+- `src/chatgpt_subscription.py:425`
+- `src/chatgpt_subscription.py:435`
+- `src/tools/image.py:85`
+- `tests/test_background_resource_identity.py:106`
+- `tests/test_background_resource_identity.py:245`
+- `tests/test_runtime_resource_integration.py:251`
+- `static/js/chatRenderer.js:3852`
+- `static/js/chatStream.js:172`
+- `static/js/cookbookDownload.js:181`
+- `static/js/document.js:6424`
+- `static/js/document.js:6448`
+- `static/js/editor/panels/panels.js:526`
+- `static/js/editor/panels/studio-panels.js:294`
+- `static/js/editor/panels/studio-panels.js:300`
+- `static/js/editor/preflight.js:239`
+- `static/js/editor/tools/transform-session.js:384`
+- `static/js/editor/tools/transform-session.js:397`
+- `static/js/galleryEditor.js:10578`
+- `static/js/research/panel.js:1465`
+- `static/js/research/panel.js:1469`
+- `static/js/research/panel.js:1528`
+- `static/js/research/panel.js:1576`
+- `static/js/search.js:42`
+- `static/js/settings.js:583`
+- `static/js/settings.js:779`
+- `static/js/settings.js:933`
+- `static/js/slashAutocomplete.js:253`
+- `static/js/slashAutocomplete.js:266`
+
+## `onChange` — arrow, line 237
+- **called from:**
+- `static/js/galleryEditor.js:916`
+
+## `destroy` — function, line 246
+- **called from:**
+- `static/app.js:1512`
+- `static/js/admin.js:2381`
+- `static/js/admin.js:2618`
+- `static/js/backgroundToolJobs.js:6`
+- `static/js/calendar.js:2640`
+- `static/js/chat.js:1398`
+- `static/js/chat.js:1617`
+- `static/js/chat.js:1650`
+- `static/js/chat.js:2559`
+- `static/js/chat.js:2564`
+- `static/js/chat.js:3818`
+- `static/js/chat.js:4212`
+- `static/js/chat.js:4214`
+- `static/js/chat.js:4440`
+- `static/js/chat.js:4740`
+- `static/js/chat.js:4771`
+- `static/js/chat.js:4804`
+- `static/js/chat.js:4998`
+- `static/js/chat.js:5539`
+- `static/js/chat.js:5977`
+- `static/js/chat.js:6019`
+- `static/js/chat.js:6062`
+- `static/js/chat.js:6097`
+- `static/js/chat.js:6106`
+- `static/js/chat.js:6528`
+- `static/js/chat.js:7360`
+- `static/js/chat.js:7417`
+- `static/js/chat.js:7494`
+- `static/js/chat.js:7511`
+- `static/js/chat.js:8881`
+- `static/js/chat.js:8895`
+- `static/js/chat.js:8911`
+- `static/js/chat.js:9198`
+- `static/js/codeRunner.js:236`
+- `static/js/compare/panes.js:407`
+- `static/js/compare/stream.js:217`
+- `static/js/compare/stream.js:541`
+- `static/js/compare/stream.js:566`
+- `static/js/compare/stream.js:607`
+- `static/js/compare/stream.js:665`
+- `static/js/compare/stream.js:693`
+- `static/js/compare/stream.js:893`
+- `static/js/cookbook-diagnosis.js:1020`
+- `static/js/cookbook-hwfit.js:743`
+- `static/js/cookbook-hwfit.js:792`
+- `static/js/cookbook-hwfit.js:891`
+- `static/js/cookbook-hwfit.js:905`
+- `static/js/cookbook-hwfit.js:910`
+- `static/js/cookbook-hwfit.js:937`
+- `static/js/cookbook-hwfit.js:1022`
+- `static/js/cookbook-hwfit.js:2344`
+- `static/js/cookbookServe.js:2109`
+- `static/js/cookbookServe.js:2884`
+- `static/js/cookbookServe.js:4005`
+- `static/js/cookbookServe.js:4329`
+- `static/js/cookbookServe.js:4333`
+- `static/js/cookbookServe.js:4340`
+- `static/js/cookbookServe.js:4344`
+- `static/js/cookbookServe.js:4370`
+- `static/js/cookbookServe.js:4376`
+- … +85 more (grep the name in repo)

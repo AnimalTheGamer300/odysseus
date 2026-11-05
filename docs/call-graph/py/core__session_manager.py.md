@@ -1,28 +1,29 @@
 # `core/session_manager.py` — definitions & call sites
 
-39 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+32 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `_commit_draft_with_retry` — function, line 44
 - **called from:**
-- `core/session_manager.py:483`
-- `core/session_manager.py:507`
+- `core/session_manager.py:485`
+- `core/session_manager.py:509`
 
 ## `_message_timestamp_iso` — function, line 72
 - **called from:**
-- `core/session_manager.py:257`
-- `core/session_manager.py:277`
-- `core/session_manager.py:403`
-- `core/session_manager.py:467`
-- `core/session_manager.py:556`
+- `core/session_manager.py:251`
+- `core/session_manager.py:271`
+- `core/session_manager.py:405`
+- `core/session_manager.py:469`
+- `core/session_manager.py:558`
 
 ## `_parse_msg_content` — function, line 81
 - **called from:**
-- `core/session_manager.py:260`
-- `core/session_manager.py:280`
+- `core/session_manager.py:254`
+- `core/session_manager.py:274`
 
 ## `SessionManager` — class, line 107
 - **called from:**
 - `src/app_initializer.py:92`
+- `tests/helpers/database.py:51`
 - `tests/test_session_concurrent.py:21`
 - `tests/test_session_concurrent.py:51`
 - `tests/test_session_concurrent.py:83`
@@ -30,7 +31,6 @@
 - `tests/test_session_discovery_message_count.py:55`
 - `tests/test_session_manager.py:34`
 - `tests/test_topic_analyzer.py:85`
-- `tests/test_truncate_message_count_regression.py:29`
 - `tests/test_upload_handler_cleanup.py:681`
 
 ## `SessionManager.__init__` — method, line 118
@@ -39,74 +39,98 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `SessionManager.load_sessions` — method, line 128
 - **called from:**
 - `core/session_manager.py:122`
-- `tests/test_history_display_model_hydration.py:360`
-- `tests/test_history_display_model_hydration.py:444`
+- `scripts/build_historical_harness_queue.py:324`
+- `tests/test_history_display_model_hydration.py:364`
+- `tests/test_history_display_model_hydration.py:448`
 
-## `SessionManager._db_to_session_meta` — method, line 180
+## `SessionManager._db_to_session_meta` — method, line 179
 - **called from:**
-- `core/session_manager.py:163`
-- `core/session_manager.py:1003`
+- `core/session_manager.py:162`
+- `core/session_manager.py:892`
+- `tests/test_chatgpt_session_binding.py:53`
+- `tests/test_session_cwd_persistence.py:39`
+- `tests/test_session_header_persistence.py:35`
 
-## `SessionManager._session_has_live_stream` — method, line 206
-- decorator: `staticmethod`
+## `SessionManager._db_to_session` — method, line 211
 - **called from:**
-- `core/session_manager.py:235`
-- `core/session_manager.py:972`
+- `core/session_manager.py:886`
+- `src/task_scheduler.py:2298`
+- `tests/test_chatgpt_session_binding.py:54`
 
-## `SessionManager._db_to_session` — method, line 222
+## `SessionManager._draft_ok` — method, line 215
 - **called from:**
-- `core/session_manager.py:997`
-- `src/task_scheduler.py:2104`
+- `core/session_manager.py:248`
+- `core/session_manager.py:268`
 
-## `SessionManager._draft_ok` — method, line 226
+## `SessionManager.add_message` — method, line 322
 - **called from:**
-- `core/session_manager.py:254`
-- `core/session_manager.py:274`
-
-## `SessionManager.add_message` — method, line 320
-- **called from:**
-- `routes/chat_helpers.py:470`
-- `routes/chat_helpers.py:1312`
-- `routes/chat_routes.py:319`
-- `routes/chat_routes.py:1094`
-- `routes/chat_routes.py:1904`
-- `routes/chat_routes.py:2200`
-- `routes/chat_routes.py:3129`
-- `routes/history/history_routes.py:482`
-- `routes/history/history_routes.py:910`
-- `routes/research/research_routes.py:770`
-- `routes/session_routes.py:713`
+- `routes/chat_helpers.py:952`
+- `routes/chat_helpers.py:1967`
+- `routes/chat_routes.py:1515`
+- `routes/chat_routes.py:2606`
+- `routes/chat_routes.py:4175`
+- `routes/chat_routes.py:4476`
+- `routes/chat_routes.py:5604`
+- `routes/history/history_routes.py:659`
+- `routes/history/history_routes.py:1111`
+- `routes/research/research_routes.py:882`
+- `routes/session_routes.py:907`
 - `routes/webhook/webhook_routes.py:377`
 - `routes/webhook/webhook_routes.py:385`
 - `src/agent_jobs.py:326`
-- `src/agent_tools/session_tools.py:229`
-- `src/agent_tools/session_tools.py:230`
-- `src/agent_tools/session_tools.py:452`
-- `src/bg_monitor.py:131`
-- `src/chat_handler.py:351`
-- `src/chat_handler.py:352`
-- `src/task_scheduler.py:1752`
-- `src/task_scheduler.py:1760`
-- `tests/test_draft_promotion_keeps_live_media.py:74`
-- `tests/test_draft_promotion_keeps_live_media.py:120`
+- `src/agent_tools/session_tools.py:250`
+- `src/agent_tools/session_tools.py:251`
+- `src/agent_tools/session_tools.py:475`
+- `src/bg_monitor.py:199`
+- `src/chat_handler.py:367`
+- `src/chat_handler.py:368`
+- `src/task_scheduler.py:1914`
+- `src/task_scheduler.py:1922`
+- `tests/test_database_test_isolation.py:45`
+- `tests/test_database_test_isolation.py:46`
+- `tests/test_history_add_message_validation.py:44`
+- `tests/test_history_add_message_validation.py:59`
+- `tests/test_history_truncate_validation.py:23`
 - `tests/test_session_concurrent.py:32`
 - `tests/test_session_concurrent.py:62`
 - `tests/test_session_concurrent.py:92`
@@ -133,71 +157,59 @@
 - `tests/test_session_manager.py:165`
 - `tests/test_session_manager.py:175`
 - `tests/test_session_manager.py:190`
-- `tests/test_truncate_message_count_regression.py:40`
-- `tests/test_truncate_message_count_regression.py:70`
+- `tests/test_truncate_message_count_regression.py:31`
+- `tests/test_truncate_message_count_regression.py:61`
 
-## `SessionManager._persist_message` — method, line 359
+## `SessionManager._persist_message` — method, line 361
 - **called from:**
-- `core/models.py:153`
-- `core/session_manager.py:345`
-- `core/session_manager.py:539`
+- `core/models.py:162`
+- `core/session_manager.py:347`
+- `core/session_manager.py:541`
 - `tests/test_session_manager_persist_guard.py:28`
 - `tests/test_session_manager_persist_guard.py:44`
 - `tests/test_upload_handler_cleanup.py:683`
 
-## `SessionManager.create_draft` — method, line 453
+## `SessionManager.create_draft` — method, line 455
 - **called from:**
-- `routes/chat_routes.py:401`
-- `tests/test_draft_promotion_keeps_live_media.py:76`
-- `tests/test_draft_promotion_keeps_live_media.py:121`
+- `routes/chat_routes.py:1597`
 
-## `SessionManager._create` — method, line 461
+## `SessionManager._create` — method, line 463
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SessionManager.update_draft` — method, line 488
+## `SessionManager.update_draft` — method, line 490
 - **called from:**
-- `routes/chat_routes.py:399`
+- `routes/chat_routes.py:1595`
 
-## `SessionManager._update` — method, line 495
+## `SessionManager._update` — method, line 497
 - **called from:**
 - `src/mcp_oauth.py:144`
 - `src/mcp_oauth.py:152`
 - `tests/test_mcp_oauth.py:131`
 
-## `SessionManager.promote_draft` — method, line 512
+## `SessionManager.promote_draft` — method, line 514
 - **called from:**
-- `routes/chat_helpers.py:1308`
-- `routes/chat_routes.py:315`
-- `tests/test_draft_promotion_keeps_live_media.py:85`
+- `routes/chat_helpers.py:1963`
+- `routes/chat_routes.py:1511`
 
-## `SessionManager.append_to_last_assistant` — method, line 584
+## `SessionManager.finalize_orphan_draft` — method, line 586
 - **called from:**
-- `routes/chat_helpers.py:1293`
-- `routes/chat_routes.py:309`
-- `routes/chat_routes.py:350`
+- `core/session_manager.py:234`
+- `routes/history/history_routes.py:356`
+- `routes/history/history_routes.py:373`
 
-## `SessionManager.finalize_orphan_draft` — method, line 656
+## `SessionManager.truncate_messages` — method, line 621
 - **called from:**
-- `core/session_manager.py:240`
-- `routes/history/history_routes.py:218`
-- `routes/history/history_routes.py:235`
+- `routes/history/history_routes.py:625`
+- `src/agent_tools/session_tools.py:438`
+- `tests/test_database_test_isolation.py:47`
+- `tests/test_truncate_message_count_regression.py:34`
+- `tests/test_truncate_message_count_regression.py:63`
 
-## `SessionManager.truncate_messages` — method, line 691
+## `SessionManager.replace_messages` — method, line 669
 - **called from:**
-- `routes/history/history_routes.py:459`
-- `src/agent_tools/session_tools.py:415`
-- `tests/test_truncate_message_count_regression.py:43`
-- `tests/test_truncate_message_count_regression.py:72`
-
-## `SessionManager._archived` — method, line 715
-- **called from:**
-- `core/session_manager.py:721`
-
-## `SessionManager.replace_messages` — method, line 762
-- **called from:**
-- `routes/session_routes.py:1268`
-- `src/context_compactor.py:728`
+- `routes/session_routes.py:1422`
+- `src/context_compactor.py:1002`
 - `tests/test_parse_msg_content_jsonlike_string.py:55`
 - `tests/test_parse_msg_content_jsonlike_string.py:84`
 - `tests/test_replace_messages_multimodal.py:62`
@@ -206,197 +218,209 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_replace_messages_upload_reservations.py:128`
 - `tests/test_replace_messages_upload_reservations.py:170`
 
-## `SessionManager.get_session` — method, line 886
+## `SessionManager.get_session` — method, line 793
 - **called from:**
-- `core/session_manager.py:339`
-- `core/session_manager.py:522`
-- `core/session_manager.py:594`
-- `core/session_manager.py:695`
-- `core/session_manager.py:764`
-- `routes/chat_routes.py:949`
-- `routes/chat_routes.py:1341`
-- `routes/chat_routes.py:1894`
-- `routes/chat_routes.py:3127`
-- `routes/chat_routes.py:3230`
-- `routes/history/history_routes.py:254`
-- `routes/history/history_routes.py:265`
-- `routes/history/history_routes.py:348`
-- `routes/history/history_routes.py:496`
-- `routes/history/history_routes.py:575`
-- `routes/history/history_routes.py:641`
-- `routes/history/history_routes.py:698`
-- `routes/history/history_routes.py:749`
-- `routes/history/history_routes.py:876`
-- `routes/history/history_routes.py:984`
-- `routes/history/history_routes.py:1092`
+- `core/session_manager.py:341`
+- `core/session_manager.py:524`
+- `core/session_manager.py:623`
+- `core/session_manager.py:671`
+- `routes/chat_helpers.py:827`
+- `routes/chat_routes.py:2436`
+- `routes/chat_routes.py:2975`
+- `routes/chat_routes.py:4165`
+- `routes/chat_routes.py:5602`
+- `routes/chat_routes.py:5705`
+- `routes/history/history_routes.py:392`
+- `routes/history/history_routes.py:403`
+- `routes/history/history_routes.py:487`
+- `routes/history/history_routes.py:673`
+- `routes/history/history_routes.py:765`
+- `routes/history/history_routes.py:812`
+- `routes/history/history_routes.py:869`
+- `routes/history/history_routes.py:920`
+- `routes/history/history_routes.py:1076`
+- `routes/history/history_routes.py:1185`
+- `routes/history/history_routes.py:1242`
+- `routes/history/history_routes.py:1278`
+- `routes/history/history_routes.py:1317`
+- `routes/history/history_routes.py:1353`
+- `routes/history/history_routes.py:1475`
 - `routes/memory/memory_routes.py:127`
 - `routes/memory/memory_routes.py:191`
 - `routes/memory/memory_routes.py:213`
 - `routes/memory/memory_routes.py:223`
 - `routes/memory/memory_routes.py:243`
-- `routes/memory/memory_routes.py:301`
-- `routes/memory/memory_routes.py:357`
-- `routes/research/research_routes.py:681`
-- `routes/session_routes.py:536`
-- `routes/session_routes.py:617`
-- `routes/session_routes.py:690`
-- `routes/session_routes.py:916`
-- `routes/session_routes.py:1030`
-- `routes/session_routes.py:1153`
-- `routes/session_routes.py:1189`
-- `routes/session_routes.py:1570`
+- `routes/memory/memory_routes.py:304`
+- `routes/memory/memory_routes.py:361`
+- `routes/research/research_routes.py:803`
+- `routes/session_routes.py:703`
+- `routes/session_routes.py:811`
+- `routes/session_routes.py:884`
+- `routes/session_routes.py:1061`
+- `routes/session_routes.py:1176`
+- `routes/session_routes.py:1299`
+- `routes/session_routes.py:1335`
+- `routes/session_routes.py:1707`
 - `routes/webhook/webhook_routes.py:260`
 - `src/agent_jobs.py:285`
-- `src/agent_tools/session_tools.py:59`
-- `src/agent_tools/session_tools.py:183`
-- `src/agent_tools/session_tools.py:432`
-- `src/agent_tools/session_tools.py:450`
-- `src/ai_interaction.py:708`
-- `src/bg_monitor.py:102`
-- `src/chat_helpers.py:446`
-- `src/context_compactor.py:783`
+- `src/agent_tools/session_tools.py:43`
+- `src/agent_tools/session_tools.py:73`
+- `src/agent_tools/session_tools.py:199`
+- `src/agent_tools/session_tools.py:455`
+- `src/agent_tools/session_tools.py:473`
+- `src/ai_interaction.py:804`
+- `src/background_tool_jobs.py:100`
+- `src/bg_monitor.py:138`
+- `src/chat_helpers.py:758`
+- `src/context_compactor.py:1057`
 - `src/topic_analyzer.py:54`
-- `tests/test_draft_promotion_keeps_live_media.py:95`
-- `tests/test_draft_promotion_keeps_live_media.py:125`
-- `tests/test_history_display_model_hydration.py:260`
-- `tests/test_history_display_model_hydration.py:262`
-- `tests/test_history_display_model_hydration.py:300`
-- `tests/test_history_display_model_hydration.py:303`
-- `tests/test_history_display_model_hydration.py:338`
-- `tests/test_history_display_model_hydration.py:339`
-- `tests/test_history_display_model_hydration.py:380`
-- `tests/test_parse_msg_content_jsonlike_string.py:58`
-- `tests/test_parse_msg_content_jsonlike_string.py:106`
-- `tests/test_replace_messages_multimodal.py:83`
-- … +3 more (grep the name in repo)
+- `tests/test_database_test_isolation.py:69`
+- `tests/test_history_add_message_validation.py:47`
+- `tests/test_history_add_message_validation.py:61`
+- `tests/test_history_display_model_hydration.py:264`
+- `tests/test_history_display_model_hydration.py:266`
+- `tests/test_history_display_model_hydration.py:304`
+- … +11 more (grep the name in repo)
 
-## `SessionManager.sync_session_metadata` — method, line 919
+## `SessionManager.sync_session_metadata` — method, line 826
 - **called from:**
-- `core/session_manager.py:906`
+- `core/session_manager.py:813`
+- `tests/test_chatgpt_session_binding.py:57`
 
-## `SessionManager._load_session_from_db` — method, line 986
+## `SessionManager._load_session_from_db` — method, line 878
 - **called from:**
-- `core/session_manager.py:900`
-- `core/session_manager.py:912`
-- `core/session_manager.py:1163`
-- `routes/history/history_routes.py:1079`
-- `routes/session_routes.py:965`
+- `core/session_manager.py:807`
+- `core/session_manager.py:819`
+- `routes/history/history_routes.py:1462`
+- `routes/session_routes.py:1110`
 
-## `SessionManager._touch_session` — method, line 1016
+## `SessionManager._touch_session` — method, line 905
 - **called from:**
-- `core/session_manager.py:915`
+- `core/session_manager.py:822`
 
-## `SessionManager.create_session` — method, line 1030
+## `SessionManager.create_session` — method, line 919
 - **called from:**
-- `core/session_manager.py:1308`
+- `core/session_manager.py:1113`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:885`
-- `routes/research/research_routes.py:737`
-- `routes/session_routes.py:494`
-- `routes/session_routes.py:1133`
+- `routes/history/history_routes.py:1085`
+- `routes/research/research_routes.py:849`
+- `routes/session_routes.py:656`
+- `routes/session_routes.py:1279`
 - `routes/webhook/webhook_routes.py:306`
 - `routes/webhook/webhook_routes.py:367`
-- `src/agent_tools/session_tools.py:50`
-- `src/agent_tools/session_tools.py:437`
-- `src/agent_tools/session_tools.py:478`
-- `tests/test_auth_session_revocation.py:51`
+- `scripts/eval_odysseus_contextual_tool_use.py:880`
+- `scripts/odysseus_conversation_qa.py:796`
+- `scripts/run_sft_environment_expansion.py:697`
+- `scripts/run_sft_overnight_fixture_flows.py:570`
+- `scripts/sft_email_overseer.py:653`
+- `src/agent_tools/session_tools.py:61`
+- `src/agent_tools/session_tools.py:460`
+- `src/agent_tools/session_tools.py:501`
+- `tests/test_admin_listing_authorization.py:45`
 - `tests/test_auth_session_revocation.py:52`
 - `tests/test_auth_session_revocation.py:53`
-- `tests/test_auth_session_revocation.py:65`
-- `tests/test_auth_session_revocation.py:66`
-- `tests/test_auth_session_revocation.py:79`
-- `tests/test_auth_session_revocation.py:80`
+- `tests/test_auth_session_revocation.py:96`
+- `tests/test_auth_session_revocation.py:97`
+- `tests/test_auth_session_revocation.py:98`
+- `tests/test_auth_session_revocation.py:110`
+- `tests/test_auth_session_revocation.py:111`
+- `tests/test_auth_session_revocation.py:124`
+- `tests/test_auth_session_revocation.py:125`
+- `tests/test_chat_document_owner_context.py:80`
+- `tests/test_chatgpt_session_binding.py:42`
+- `tests/test_database_test_isolation.py:43`
 - `tests/test_delete_user_revokes_api_tokens.py:120`
+- `tests/test_history_add_message_validation.py:41`
+- `tests/test_history_add_message_validation.py:57`
+- `tests/test_history_truncate_validation.py:21`
+- `tests/test_odysseus_conversation_qa.py:103`
+- `tests/test_session_cwd_persistence.py:24`
 - `tests/test_session_discovery_message_count.py:33`
-- `tests/test_truncate_message_count_regression.py:37`
-- `tests/test_truncate_message_count_regression.py:67`
+- `tests/test_session_header_persistence.py:23`
+- `tests/test_truncate_message_count_regression.py:28`
+- `tests/test_truncate_message_count_regression.py:58`
 
-## `SessionManager.delete_session` — method, line 1076
+## `SessionManager.delete_session` — method, line 975
 - **called from:**
-- `core/session_manager.py:1181`
-- `routes/session_routes.py:312`
-- `routes/session_routes.py:724`
-- `routes/session_routes.py:1335`
-- `src/agent_tools/session_tools.py:383`
+- `routes/session_routes.py:449`
+- `routes/session_routes.py:918`
+- `routes/session_routes.py:943`
+- `routes/session_routes.py:980`
+- `routes/session_routes.py:981`
+- `routes/session_routes.py:1483`
+- `routes/session_routes.py:1496`
+- `scripts/run_sft_environment_expansion.py:740`
+- `scripts/run_sft_overnight_fixture_flows.py:580`
+- `src/agent_tools/session_tools.py:404`
+- `tests/test_chat_image_preservation.py:28`
+- `tests/test_chat_image_preservation.py:31`
 - `tests/test_session_ghost_delete.py:123`
 - `tests/test_session_ghost_delete.py:133`
 - `tests/test_session_manager.py:106`
 
-## `SessionManager.trash_session` — method, line 1124
+## `SessionManager.update_session_name` — method, line 1026
 - **called from:**
-- `routes/session_routes.py:749`
-- `routes/session_routes.py:782`
+- `routes/chat_helpers.py:637`
+- `routes/chat_helpers.py:692`
+- `routes/chat_helpers.py:701`
+- `routes/chat_helpers.py:709`
+- `routes/chat_helpers.py:753`
+- `routes/chat_helpers.py:800`
+- `routes/chat_helpers.py:808`
+- `routes/session_routes.py:708`
+- `routes/session_routes.py:876`
+- `src/agent_tools/session_tools.py:373`
 
-## `SessionManager.restore_session` — method, line 1151
-- **called from:**
-- `routes/session_routes.py:887`
-
-## `SessionManager.purge_session` — method, line 1175
-- **called from:**
-- `routes/session_routes.py:777`
-- `routes/session_routes.py:875`
-- `routes/session_routes.py:901`
-
-## `SessionManager.list_trashed_sessions` — method, line 1183
-- **called from:**
-- `routes/session_routes.py:861`
-- `routes/session_routes.py:871`
-
-## `SessionManager.update_session_name` — method, line 1215
-- **called from:**
-- `routes/chat_helpers.py:362`
-- `routes/session_routes.py:541`
-- `routes/session_routes.py:682`
-- `src/agent_tools/session_tools.py:352`
-
-## `SessionManager.archive_session` — method, line 1235
+## `SessionManager.archive_session` — method, line 1046
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SessionManager.mark_important` — method, line 1255
+## `SessionManager.mark_important` — method, line 1066
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SessionManager.get_sessions_for_user` — method, line 1280
+## `SessionManager.get_sessions_for_user` — method, line 1091
 - **called from:**
-- `routes/session_routes.py:321`
-- `routes/session_routes.py:1290`
-- `routes/session_routes.py:1379`
-- `src/agent_tools/session_tools.py:104`
+- `routes/session_routes.py:458`
+- `routes/session_routes.py:1453`
+- `routes/session_routes.py:1507`
+- `src/agent_tools/session_tools.py:118`
 
-## `SessionManager.save_sessions` — method, line 1295
+## `SessionManager.save_sessions` — method, line 1100
 - **called from:**
-- `routes/chat_helpers.py:1299`
-- `routes/chat_helpers.py:1316`
-- `routes/chat_routes.py:311`
-- `routes/chat_routes.py:320`
-- `routes/chat_routes.py:352`
-- `routes/chat_routes.py:1098`
-- `routes/chat_routes.py:1905`
-- `routes/chat_routes.py:2201`
-- `routes/chat_routes.py:3130`
-- `routes/chat_routes.py:3312`
-- `routes/history/history_routes.py:683`
-- `routes/history/history_routes.py:734`
-- `routes/history/history_routes.py:844`
-- `routes/history/history_routes.py:1230`
-- `routes/research/research_routes.py:747`
-- `routes/research/research_routes.py:775`
-- `routes/session_routes.py:718`
-- `routes/session_routes.py:1117`
-- `routes/session_routes.py:1142`
+- `routes/chat_helpers.py:1954`
+- `routes/chat_helpers.py:1971`
+- `routes/chat_routes.py:1507`
+- `routes/chat_routes.py:1516`
+- `routes/chat_routes.py:1548`
+- `routes/chat_routes.py:2610`
+- `routes/chat_routes.py:4176`
+- `routes/chat_routes.py:4477`
+- `routes/chat_routes.py:5605`
+- `routes/chat_routes.py:5789`
+- `routes/history/history_routes.py:854`
+- `routes/history/history_routes.py:905`
+- `routes/history/history_routes.py:1026`
+- `routes/history/history_routes.py:1297`
+- `routes/history/history_routes.py:1334`
+- `routes/history/history_routes.py:1621`
+- `routes/research/research_routes.py:859`
+- `routes/research/research_routes.py:887`
+- `routes/session_routes.py:912`
+- `routes/session_routes.py:1263`
+- `routes/session_routes.py:1288`
 - `routes/webhook/webhook_routes.py:311`
 - `routes/webhook/webhook_routes.py:373`
 - `routes/webhook/webhook_routes.py:386`
 - `src/agent_jobs.py:335`
-- `src/bg_monitor.py:140`
-- `src/chat_handler.py:359`
+- `src/bg_monitor.py:208`
+- `src/chat_handler.py:375`
 
-## `SessionManager.ensure_task_session` — method, line 1298
+## `SessionManager.ensure_task_session` — method, line 1103
 - **called from:**
-- `src/task_scheduler.py:1558`
-- `src/task_scheduler.py:1736`
+- `src/task_scheduler.py:1718`
+- `src/task_scheduler.py:1898`
 
-## `SessionManager.cleanup_empty_sessions` — method, line 1317
+## `SessionManager.cleanup_empty_sessions` — method, line 1122
 - **called from:**
 - `tests/test_session_manager_cleanup.py:29`

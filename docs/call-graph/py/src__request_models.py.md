@@ -4,29 +4,44 @@
 
 ## `ChatRequest` — class, line 7
 - **called from:**
-- `tests/test_api_token_tool_authority.py:217`
-- `tests/test_foreground_model_routing.py:1188`
-- `tests/test_foreground_model_routing.py:1228`
-- `tests/test_foreground_model_routing.py:1264`
-- `tests/test_foreground_model_routing.py:1342`
-- `tests/test_foreground_model_routing.py:1377`
-- `tests/test_foreground_model_routing.py:1412`
-- `tests/test_foreground_model_routing.py:1447`
-- `tests/test_foreground_model_routing.py:1511`
-- `tests/test_foreground_model_routing.py:1583`
-- `tests/test_foreground_model_routing.py:1622`
-- `tests/test_foreground_model_routing.py:1654`
-- `tests/test_foreground_model_routing.py:1787`
-- `tests/test_history_display_model_hydration.py:523`
+- `tests/test_api_token_tool_authority.py:580`
+- `tests/test_foreground_model_routing.py:1242`
+- `tests/test_foreground_model_routing.py:1282`
+- `tests/test_foreground_model_routing.py:1318`
+- `tests/test_foreground_model_routing.py:1396`
+- `tests/test_foreground_model_routing.py:1431`
+- `tests/test_foreground_model_routing.py:1466`
+- `tests/test_foreground_model_routing.py:1501`
+- `tests/test_foreground_model_routing.py:1565`
+- `tests/test_foreground_model_routing.py:1637`
+- `tests/test_foreground_model_routing.py:1676`
+- `tests/test_foreground_model_routing.py:1708`
+- `tests/test_foreground_model_routing.py:1871`
+- `tests/test_history_display_model_hydration.py:527`
 
-## `ChatRequest.clean_message` — method, line 20
-- decorator: `field_validator('message')`
+## `ChatRequest.validate_reasoning_effort` — method, line 20
+- decorator: `field_validator('reasoning_effort')`
 - decorator: `classmethod`
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `routes/chat_routes.py:2452`
+- `routes/chat_routes.py:2991`
+- `routes/history/history_routes.py:268`
+- `src/utility_effort.py:80`
+- `src/utility_effort.py:87`
+- `src/utility_effort.py:127`
+- `tests/test_chatgpt_reasoning_and_grouping.py:137`
+- `tests/test_chatgpt_reasoning_and_grouping.py:138`
+- `tests/test_chatgpt_reasoning_and_grouping.py:139`
+- `tests/test_chatgpt_reasoning_and_grouping.py:140`
+- `tests/test_chatgpt_reasoning_and_grouping.py:141`
+- `tests/test_chatgpt_reasoning_and_grouping.py:142`
+- `tests/test_chatgpt_reasoning_and_grouping.py:143`
+- `tests/test_utility_reasoning_effort.py:133`
+- `tests/test_utility_reasoning_effort.py:134`
+- `tests/test_utility_reasoning_effort.py:135`
 
-## `ChatRequest.validate_reasoning_effort` — method, line 25
-- decorator: `field_validator('reasoning_effort')`
+## `ChatRequest.clean_message` — method, line 32
+- decorator: `field_validator('message')`
 - decorator: `classmethod`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
@@ -43,7 +58,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `MemoryAddRequest` — class, line 50
 - **called from:**
-- `routes/codex_routes.py:406`
+- `routes/codex_routes.py:452`
 - `routes/memory/memory_routes.py:110`
 - `tests/test_memory_routes_session_owner.py:177`
 
@@ -61,22 +76,22 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `DirectoryRequest` — class, line 109
+## `DirectoryRequest` — class, line 129
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ErrorResponse` — class, line 120
+## `ErrorResponse` — class, line 140
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `UploadResponse` — class, line 126
+## `UploadResponse` — class, line 146
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SessionResponse` — class, line 136
+## `SessionResponse` — class, line 156
 - **called from:**
-- `routes/session_routes.py:520`
+- `routes/session_routes.py:685`
 
-## `MemoryResponse` — class, line 144
+## `MemoryResponse` — class, line 165
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_

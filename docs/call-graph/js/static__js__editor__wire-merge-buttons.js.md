@@ -1,30 +1,35 @@
 # `static/js/editor/wire-merge-buttons.js` — definitions & call sites
 
-4 definitions (regex-based, best-effort).
-**Exports:** `mergeLayerDownAtIndex`, `wireMergeButtons`
+5 definitions (regex-based, best-effort).
+**Exports:** `mergeLayerDownAtIndex`, `mergeLayersByIds`, `wireMergeButtons`
 
-## `_renderSource` — function, line 24
+## `_renderSource` — function, line 29
 - **called from:**
-- `static/js/editor/wire-merge-buttons.js:24`
-- `static/js/editor/wire-merge-buttons.js:48`
-- `static/js/editor/wire-merge-buttons.js:49`
-- `static/js/editor/wire-merge-buttons.js:82`
-- `static/js/editor/wire-merge-buttons.js:110`
+- `static/js/editor/wire-merge-buttons.js:29`
+- `static/js/editor/wire-merge-buttons.js:61`
+- `static/js/editor/wire-merge-buttons.js:86`
+- `static/js/editor/wire-merge-buttons.js:115`
+- `static/js/editor/wire-merge-buttons.js:137`
 
-## `_clearBakedAdjustments` — function, line 33
+## `_markBakedRaster` — function, line 38
 - **called from:**
-- `static/js/editor/wire-merge-buttons.js:33`
-- `static/js/editor/wire-merge-buttons.js:64`
-- `static/js/editor/wire-merge-buttons.js:85`
-- `static/js/editor/wire-merge-buttons.js:118`
+- `static/js/editor/wire-merge-buttons.js:38`
+- `static/js/editor/wire-merge-buttons.js:68`
+- `static/js/editor/wire-merge-buttons.js:94`
+- `static/js/editor/wire-merge-buttons.js:116`
+- `static/js/editor/wire-merge-buttons.js:145`
 
-## `mergeLayerDownAtIndex` — function, line 42
+## `mergeLayerDownAtIndex` — function, line 52
 - **called from:**
-- `static/js/editor/layer-panel.js:340`
-- `static/js/editor/wire-merge-buttons.js:42`
-- `static/js/editor/wire-merge-buttons.js:136`
+- `static/js/editor/layer-panel.js:1783`
+- `static/js/editor/wire-merge-buttons.js:52`
+- `static/js/editor/wire-merge-buttons.js:170`
 
-## `wireMergeButtons` — function, line 71
+## `mergeLayersByIds` — function, line 79
 - **called from:**
-- `static/js/editor/wire-merge-buttons.js:71`
-- `static/js/galleryEditor.js:3468`
+- `static/js/editor/wire-merge-buttons.js:79`
+
+## `wireMergeButtons` — function, line 108
+- **called from:**
+- `static/js/editor/wire-merge-buttons.js:108`
+- `static/js/galleryEditor.js:11713`

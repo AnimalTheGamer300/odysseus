@@ -8,7 +8,7 @@
 
 ## `log_to_assistant` — function, line 34
 - **called from:**
-- `routes/cookbook_routes.py:1395`
-- `routes/cookbook_routes.py:2820`
-- `src/task_scheduler.py:1236`
-- `src/tools/vault.py:126`
+- `routes/cookbook_routes.py:1270`
+- `routes/cookbook_routes.py:2699`
+- `src/task_scheduler.py:1369`
+- `src/tools/vault.py:130`

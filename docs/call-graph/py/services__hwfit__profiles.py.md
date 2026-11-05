@@ -22,7 +22,7 @@
 
 ## `compute_serve_profiles` — function, line 91
 - **called from:**
-- `routes/hwfit_routes.py:402`
+- `routes/hwfit_routes.py:428`
 - `tests/test_serve_profiles.py:32`
 - `tests/test_serve_profiles.py:33`
 - `tests/test_serve_profiles.py:34`

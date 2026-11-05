@@ -4,24 +4,53 @@
 
 ## `set_mcp_manager` — function, line 20
 - **called from:**
-- `app.py:835`
+- `app.py:919`
+- `scripts/ody_eval_email_fixture.py:61`
+- `scripts/ody_eval_email_fixture.py:65`
+- `tests/test_local_mcp_capabilities.py:72`
+- `tests/test_local_mcp_capabilities.py:76`
+- `tests/test_local_mcp_capabilities.py:600`
+- `tests/test_local_mcp_capabilities.py:667`
+- `tests/test_local_mcp_capabilities.py:695`
+- `tests/test_local_mcp_capabilities.py:723`
+- `tests/test_local_mcp_capabilities.py:873`
+- `tests/test_local_mcp_capabilities.py:925`
+- `tests/test_local_mcp_capabilities.py:996`
+- `tests/test_product_turn_contract_route.py:31`
+- `tests/test_product_turn_contract_route.py:36`
+- `tests/test_product_turn_contract_route.py:63`
 
 ## `get_mcp_manager` — function, line 25
 - **called from:**
-- `routes/task/task_routes.py:1003`
+- `routes/chat_routes.py:3823`
+- `routes/task/task_routes.py:1075`
 - `scripts/dump_agent_prompt.py:391`
-- `src/agent_loop.py:4042`
-- `src/agent_tools/admin_tools.py:228`
-- `src/agent_tools/admin_tools.py:275`
-- `src/agent_tools/admin_tools.py:299`
+- `scripts/ody_eval_email_fixture.py:36`
+- `src/agent_loop.py:21466`
+- `src/agent_loop.py:21880`
+- `src/agent_runtime/authority.py:390`
+- `src/agent_runtime/remote_resources.py:134`
+- `src/agent_tools/admin_tools.py:242`
+- `src/agent_tools/admin_tools.py:289`
 - `src/agent_tools/admin_tools.py:313`
-- `src/agent_tools/admin_tools.py:357`
-- `src/task_scheduler.py:1448`
-- `src/task_scheduler.py:2193`
-- `src/tool_execution.py:529`
-- `src/tool_execution.py:706`
-- `src/tool_execution.py:1313`
-- `src/tool_execution.py:1356`
+- `src/agent_tools/admin_tools.py:327`
+- `src/agent_tools/admin_tools.py:371`
+- `src/task_scheduler.py:1602`
+- `src/task_scheduler.py:2388`
+- `src/tool_capabilities.py:382`
+- `src/tool_capabilities.py:389`
+- `src/tool_execution.py:1276`
+- `src/tool_execution.py:1488`
+- `src/tool_execution.py:2497`
+- `src/tool_execution.py:2544`
+- `tests/test_local_mcp_capabilities.py:228`
+- `tests/test_local_mcp_capabilities.py:410`
+- `tests/test_local_mcp_capabilities.py:436`
+- `tests/test_local_mcp_capabilities.py:512`
+- `tests/test_local_mcp_capabilities.py:748`
+- `tests/test_local_mcp_capabilities.py:774`
+- `tests/test_product_turn_contract_route.py:21`
+- `tests/test_product_turn_contract_route.py:33`
 
 ## `set_upload_handler` — function, line 34
 - **called from:**
@@ -29,32 +58,58 @@
 
 ## `get_upload_handler` — function, line 40
 - **called from:**
-- `src/agent_tools/document_tools.py:14`
-- `src/tools/calendar.py:419`
-- `src/tools/calendar.py:488`
-- `src/tools/notes.py:204`
-- `src/tools/notes.py:253`
+- `src/agent_runtime/owned_resources.py:86`
+- `src/agent_runtime/resources.py:114`
+- `src/agent_tools/document_tools.py:49`
+- `src/agent_tools/media_tools.py:453`
+- `src/clean_agent_preview.py:4050`
+- `src/tools/calendar.py:602`
+- `src/tools/calendar.py:701`
+- `src/tools/image.py:120`
+- `src/tools/notes.py:378`
+- `src/tools/notes.py:450`
 
 ## `_truncate` — function, line 47
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:570`
-- `src/agent_tools/filesystem_tools.py:677`
-- `src/agent_tools/filesystem_tools.py:1026`
-- `src/agent_tools/subprocess_tools.py:321`
-- `src/agent_tools/subprocess_tools.py:322`
-- `src/agent_tools/subprocess_tools.py:330`
-- `src/agent_tools/subprocess_tools.py:351`
-- `src/agent_tools/subprocess_tools.py:351`
-- `src/agent_tools/subprocess_tools.py:356`
-- `src/agent_tools/subprocess_tools.py:377`
-- `src/agent_tools/subprocess_tools.py:377`
-- `src/agent_tools/subprocess_tools.py:382`
+- `src/agent_loop.py:22618`
+- `src/agent_loop.py:26252`
+- `src/agent_loop.py:26374`
+- `src/agent_loop.py:27254`
+- `src/agent_loop.py:27275`
+- `src/agent_loop.py:27454`
+- `src/agent_loop.py:27473`
+- `src/agent_loop.py:27577`
+- `src/agent_loop.py:27595`
+- `src/agent_loop.py:27886`
+- `src/agent_loop.py:27957`
+- `src/agent_loop.py:34603`
+- `src/agent_loop.py:34806`
+- `src/agent_loop.py:34810`
+- `src/agent_loop.py:34814`
+- `src/agent_loop.py:35928`
+- `src/agent_loop.py:35944`
+- `src/agent_loop.py:38332`
+- `src/agent_loop.py:38359`
+- `src/agent_tools/filesystem_tools.py:838`
+- `src/agent_tools/filesystem_tools.py:945`
+- `src/agent_tools/filesystem_tools.py:1351`
+- `src/agent_tools/subprocess_tools.py:589`
+- `src/agent_tools/subprocess_tools.py:590`
+- `src/agent_tools/subprocess_tools.py:593`
+- `src/agent_tools/subprocess_tools.py:594`
+- `src/agent_tools/subprocess_tools.py:598`
+- `src/agent_tools/subprocess_tools.py:599`
+- `src/agent_tools/subprocess_tools.py:603`
+- `src/agent_tools/subprocess_tools.py:804`
+- `src/agent_tools/subprocess_tools.py:829`
+- `src/tool_execution.py:2656`
+- `src/tool_execution.py:2735`
 - `src/tool_utils.py:97`
-- `tests/test_agent_loop_tool_output_truncation.py:15`
-- `tests/test_agent_loop_tool_output_truncation.py:21`
-- `tests/test_agent_loop_tool_output_truncation.py:31`
-- `tests/test_agent_loop_tool_output_truncation.py:38`
-- `tests/test_agent_loop_tool_output_truncation.py:43`
+- `tests/test_agent_loop_tool_output_truncation.py:16`
+- `tests/test_agent_loop_tool_output_truncation.py:22`
+- `tests/test_agent_loop_tool_output_truncation.py:32`
+- `tests/test_agent_loop_tool_output_truncation.py:39`
+- `tests/test_agent_loop_tool_output_truncation.py:44`
 - `tests/test_agent_tools_truncate_nonstring.py:11`
 - `tests/test_agent_tools_truncate_nonstring.py:12`
 - `tests/test_agent_tools_truncate_nonstring.py:13`
@@ -68,46 +123,45 @@
 
 ## `truncate_tool_output` — function, line 75
 - **called from:**
-- `src/agent_loop.py:5183`
-- `src/agent_loop.py:5263`
-- `src/agent_loop.py:6555`
-- `src/agent_loop.py:6559`
-- `src/agent_loop.py:6563`
-- `src/agent_loop.py:6565`
-- `src/agent_loop.py:6567`
-- `src/agent_loop.py:6577`
+- `src/agent_loop.py:34816`
+- `src/agent_loop.py:34818`
+- `src/agent_loop.py:34832`
 
 ## `_parse_tool_args` — function, line 106
 - **called from:**
+- `scripts/eval_odysseus_app_route_smoke.py:138`
+- `scripts/eval_odysseus_everyday_live_hard.py:287`
+- `scripts/eval_odysseus_live_hard_examples.py:303`
+- `src/agent_runtime/owned_resources.py:22`
 - `src/agent_tools/admin_tools.py:26`
-- `src/agent_tools/admin_tools.py:221`
-- `src/agent_tools/admin_tools.py:377`
-- `src/agent_tools/admin_tools.py:449`
-- `src/agent_tools/admin_tools.py:501`
-- `src/agent_tools/document_tools.py:782`
-- `src/tools/calendar.py:35`
+- `src/agent_tools/admin_tools.py:235`
+- `src/agent_tools/admin_tools.py:391`
+- `src/agent_tools/admin_tools.py:463`
+- `src/agent_tools/admin_tools.py:515`
+- `src/agent_tools/document_tools.py:1089`
+- `src/tools/calendar.py:113`
 - `src/tools/contacts.py:19`
 - `src/tools/contacts.py:87`
-- `src/tools/cookbook.py:610`
-- `src/tools/cookbook.py:678`
-- `src/tools/cookbook.py:993`
-- `src/tools/cookbook.py:1020`
-- `src/tools/cookbook.py:1173`
-- `src/tools/cookbook.py:1192`
-- `src/tools/cookbook.py:1249`
-- `src/tools/cookbook.py:1459`
-- `src/tools/cookbook.py:1547`
-- `src/tools/image.py:24`
-- `src/tools/image.py:169`
-- `src/tools/notes.py:26`
-- `src/tools/research.py:24`
-- `src/tools/research.py:103`
+- `src/tools/cookbook.py:739`
+- `src/tools/cookbook.py:809`
+- `src/tools/cookbook.py:1317`
+- `src/tools/cookbook.py:1344`
+- `src/tools/cookbook.py:1497`
+- `src/tools/cookbook.py:1519`
+- `src/tools/cookbook.py:1620`
+- `src/tools/cookbook.py:1847`
+- `src/tools/cookbook.py:1952`
+- `src/tools/image.py:29`
+- `src/tools/image.py:103`
+- `src/tools/notes.py:40`
+- `src/tools/research.py:25`
+- `src/tools/research.py:117`
 - `src/tools/system.py:45`
-- `src/tools/system.py:281`
-- `src/tools/system.py:614`
+- `src/tools/system.py:355`
+- `src/tools/system.py:836`
 - `src/tools/vault.py:50`
-- `src/tools/vault.py:95`
-- `src/tools/vault.py:153`
+- `src/tools/vault.py:99`
+- `src/tools/vault.py:157`
 - `tests/test_admin_tools_registry.py:72`
 - `tests/test_admin_tools_registry.py:74`
 - `tests/test_admin_tools_registry.py:77`

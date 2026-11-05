@@ -1,28 +1,28 @@
 # `static/js/modalSnap.js` — definitions & call sites
 
-73 definitions (regex-based, best-effort).
-**Exports:** `applyEdgeDock`, `applyRightDock`, `clearDockSide`, `clearRightDock`, `collapseSidebarToRail`, `makeEdgeDockController`, `makeRightDockController`, `resumeDock`, `suspendDock`
+80 definitions (regex-based, best-effort).
+**Exports:** `applyEdgeDock`, `applyRightDock`, `clampWindowLeft`, `clearDockSide`, `clearRightDock`, `collapseSidebarToRail`, `leftNavRight`, `makeEdgeDockController`, `makeRightDockController`, `resumeDock`, `rightNavInset`, `safeInsetPx`, `suspendDock`
 
 ## `_positionEdgeDockResizeHandles` — function, line 29
 - **called from:**
 - `static/js/modalSnap.js:29`
 - `static/js/modalSnap.js:59`
-- `static/js/modalSnap.js:512`
-- `static/js/modalSnap.js:594`
-- `static/js/modalSnap.js:668`
-- `static/js/modalSnap.js:713`
-- `static/js/modalSnap.js:899`
-- `static/js/modalSnap.js:983`
-- `static/js/modalSnap.js:989`
+- `static/js/modalSnap.js:550`
+- `static/js/modalSnap.js:632`
+- `static/js/modalSnap.js:706`
+- `static/js/modalSnap.js:751`
+- `static/js/modalSnap.js:937`
+- `static/js/modalSnap.js:1021`
+- `static/js/modalSnap.js:1027`
 
 ## `_dockClassForSide` — function, line 33
 - **called from:**
 - `static/js/modalSnap.js:33`
 - `static/js/modalSnap.js:38`
-- `static/js/modalSnap.js:359`
-- `static/js/modalSnap.js:837`
-- `static/js/tileManager.js:32`
-- `static/js/tileManager.js:37`
+- `static/js/modalSnap.js:397`
+- `static/js/modalSnap.js:875`
+- `static/js/tileManager.js:28`
+- `static/js/tileManager.js:33`
 
 ## `_hasOtherDockedWindow` — function, line 37
 - **called from:**
@@ -30,31 +30,31 @@
 - `static/js/modalSnap.js:48`
 - `static/js/modalSnap.js:48`
 - `static/js/modalSnap.js:53`
-- `static/js/modalSnap.js:566`
-- `static/js/modalSnap.js:618`
-- `static/js/modalSnap.js:706`
-- `static/js/tileManager.js:36`
-- `static/js/tileManager.js:48`
+- `static/js/modalSnap.js:604`
+- `static/js/modalSnap.js:656`
+- `static/js/modalSnap.js:744`
+- `static/js/tileManager.js:32`
+- `static/js/tileManager.js:44`
 
 ## `_hasAnyOtherDockedWindow` — function, line 47
 - **called from:**
 - `static/js/modalSnap.js:47`
-- `static/js/modalSnap.js:569`
-- `static/js/modalSnap.js:628`
-- `static/js/modalSnap.js:709`
+- `static/js/modalSnap.js:607`
+- `static/js/modalSnap.js:666`
+- `static/js/modalSnap.js:747`
 
 ## `clearDockSide` — function, line 51
 - **called from:**
+- `static/js/features/notes/ui/windowLayout.js:77`
+- `static/js/features/notes/ui/windowLayout.js:78`
 - `static/js/modalSnap.js:51`
-- `static/js/modalSnap.js:362`
-- `static/js/modalSnap.js:562`
-- `static/js/modalSnap.js:563`
-- `static/js/modalSnap.js:617`
-- `static/js/modalSnap.js:694`
-- `static/js/notes.js:186`
-- `static/js/notes.js:187`
-- `static/js/settings/lifecycle.js:37`
-- `static/js/settings/lifecycle.js:38`
+- `static/js/modalSnap.js:400`
+- `static/js/modalSnap.js:600`
+- `static/js/modalSnap.js:601`
+- `static/js/modalSnap.js:655`
+- `static/js/modalSnap.js:732`
+- `static/js/settings/lifecycle.js:39`
+- `static/js/settings/lifecycle.js:40`
 
 ## `_defaultDockWidth` — function, line 63
 - **called from:**
@@ -77,7 +77,7 @@
 ## `_saveDockWidth` — function, line 83
 - **called from:**
 - `static/js/modalSnap.js:83`
-- `static/js/modalSnap.js:967`
+- `static/js/modalSnap.js:1005`
 
 ## `_minEdgeDockWidth` — function, line 89
 - **called from:**
@@ -102,471 +102,551 @@
 - **called from:**
 - `static/js/modalSnap.js:109`
 - `static/js/modalSnap.js:127`
-- `static/js/modalSnap.js:872`
+- `static/js/modalSnap.js:910`
 
 ## `_clampLeftDockWidth` — function, line 118
 - **called from:**
 - `static/js/modalSnap.js:118`
 - `static/js/modalSnap.js:131`
-- `static/js/modalSnap.js:886`
+- `static/js/modalSnap.js:924`
 
 ## `_resolveRightDockWidth` — function, line 126
 - **called from:**
 - `static/js/modalSnap.js:126`
-- `static/js/modalSnap.js:498`
+- `static/js/modalSnap.js:536`
 
 ## `_resolveLeftDockWidth` — function, line 130
 - **called from:**
 - `static/js/modalSnap.js:130`
-- `static/js/modalSnap.js:282`
+- `static/js/modalSnap.js:320`
 
 ## `_isEmailDockOwner` — function, line 134
 - **called from:**
 - `static/js/modalSnap.js:134`
-- `static/js/modalSnap.js:291`
+- `static/js/modalSnap.js:329`
 
 ## `_showSnapHint` — function, line 139
 - **called from:**
 - `static/js/modalSnap.js:139`
-- `static/js/modalSnap.js:770`
-- `static/js/modalSnap.js:777`
-- `static/js/modalSnap.js:782`
-- `static/js/windowDrag.js:239`
-- `static/js/windowDrag.js:253`
+- `static/js/modalSnap.js:808`
+- `static/js/modalSnap.js:815`
+- `static/js/modalSnap.js:820`
+- `static/js/windowDrag.js:257`
+- `static/js/windowDrag.js:271`
 
 ## `_shouldAutoCollapseSidebar` — function, line 159
 - **called from:**
 - `static/js/modalSnap.js:159`
-- `static/js/modalSnap.js:505`
-- `static/js/modalSnap.js:880`
+- `static/js/modalSnap.js:543`
+- `static/js/modalSnap.js:918`
 
-## `_leftNavRight` — function, line 176
+## `_navOnRight` — function, line 173
+- **called from:**
+- `static/js/modalSnap.js:173`
+- `static/js/modalSnap.js:189`
+- `static/js/modalSnap.js:207`
+
+## `_bodyPaddingPx` — function, line 178
+- **called from:**
+- `static/js/modalSnap.js:178`
+- `static/js/modalSnap.js:188`
+- `static/js/modalSnap.js:206`
+- `static/js/modalSnap.js:221`
+
+## `_leftNavRight` — function, line 185
 - **called from:**
 - `static/js/modalSnap.js:111`
 - `static/js/modalSnap.js:118`
 - `static/js/modalSnap.js:130`
-- `static/js/modalSnap.js:176`
-- `static/js/modalSnap.js:191`
-- `static/js/modalSnap.js:279`
-- `static/js/modalSnap.js:745`
-- `static/js/modalSnap.js:885`
-- `static/js/modalSnap.js:1032`
-- `static/js/modalSnap.js:1065`
+- `static/js/modalSnap.js:185`
+- `static/js/modalSnap.js:219`
+- `static/js/modalSnap.js:226`
+- `static/js/modalSnap.js:229`
+- `static/js/modalSnap.js:317`
+- `static/js/modalSnap.js:783`
+- `static/js/modalSnap.js:923`
+- `static/js/modalSnap.js:1070`
+- `static/js/modalSnap.js:1103`
 
-## `_clampEmailDocSplitWidth` — function, line 191
+## `_rightNavInset` — function, line 203
 - **called from:**
-- `static/js/modalSnap.js:191`
-- `static/js/modalSnap.js:265`
-- `static/js/modalSnap.js:1033`
-
-## `_storedEmailDocSplitWidth` — function, line 201
-- **called from:**
-- `static/js/modalSnap.js:201`
-- `static/js/modalSnap.js:264`
-
-## `_saveEmailDocSplitWidth` — function, line 211
-- **called from:**
-- `static/js/modalSnap.js:211`
-- `static/js/modalSnap.js:1066`
-
-## `_disconnectLeftDockObservers` — function, line 215
-- **called from:**
-- `static/js/modalSnap.js:215`
-- `static/js/modalSnap.js:557`
-- `static/js/modalSnap.js:623`
-- `static/js/modalSnap.js:696`
-
-## `_applyEmailDocSplitGeometry` — function, line 225
-- **called from:**
+- `static/js/modalSnap.js:113`
+- `static/js/modalSnap.js:121`
+- `static/js/modalSnap.js:203`
+- `static/js/modalSnap.js:220`
 - `static/js/modalSnap.js:225`
-- `static/js/modalSnap.js:297`
-- `static/js/modalSnap.js:1038`
+- `static/js/modalSnap.js:230`
+- `static/js/modalSnap.js:276`
+- `static/js/modalSnap.js:538`
+- `static/js/modalSnap.js:913`
 
-## `_clearEmailDocSplitGeometry` — function, line 248
+## `leftNavRight` — function, line 219
 - **called from:**
-- `static/js/modalSnap.js:248`
-- `static/js/modalSnap.js:299`
-- `static/js/modalSnap.js:567`
-- `static/js/modalSnap.js:619`
-- `static/js/modalSnap.js:700`
-- `static/js/modalSnap.js:707`
+- `static/js/emailLibrary/index.js:826`
+- `static/js/modalSnap.js:219`
 
-## `_resolveEmailDocSplitWidth` — function, line 261
+## `rightNavInset` — function, line 220
+- **called from:**
+- `static/js/modalSnap.js:220`
+
+## `safeInsetPx` — function, line 221
+- **called from:**
+- `static/js/emailLibrary/index.js:903`
+- `static/js/modalSnap.js:221`
+
+## `clampWindowLeft` — function, line 224
+- **called from:**
+- `static/js/emailLibrary/index.js:2645`
+- `static/js/emailLibrary/reader.js:432`
+- `static/js/modalSnap.js:224`
+
+## `_clampEmailDocSplitWidth` — function, line 229
+- **called from:**
+- `static/js/modalSnap.js:229`
+- `static/js/modalSnap.js:303`
+- `static/js/modalSnap.js:1071`
+
+## `_storedEmailDocSplitWidth` — function, line 239
+- **called from:**
+- `static/js/modalSnap.js:239`
+- `static/js/modalSnap.js:302`
+
+## `_saveEmailDocSplitWidth` — function, line 249
+- **called from:**
+- `static/js/modalSnap.js:249`
+- `static/js/modalSnap.js:1104`
+
+## `_disconnectLeftDockObservers` — function, line 253
+- **called from:**
+- `static/js/modalSnap.js:253`
+- `static/js/modalSnap.js:595`
+- `static/js/modalSnap.js:661`
+- `static/js/modalSnap.js:734`
+
+## `_applyEmailDocSplitGeometry` — function, line 263
+- **called from:**
+- `static/js/modalSnap.js:263`
+- `static/js/modalSnap.js:335`
+- `static/js/modalSnap.js:1076`
+
+## `_clearEmailDocSplitGeometry` — function, line 286
+- **called from:**
+- `static/js/modalSnap.js:286`
+- `static/js/modalSnap.js:337`
+- `static/js/modalSnap.js:605`
+- `static/js/modalSnap.js:657`
+- `static/js/modalSnap.js:738`
+- `static/js/modalSnap.js:745`
+
+## `_resolveEmailDocSplitWidth` — function, line 299
 - **called from:**
 - `static/js/modalSnap.js:131`
-- `static/js/modalSnap.js:261`
-- `static/js/modalSnap.js:281`
+- `static/js/modalSnap.js:299`
+- `static/js/modalSnap.js:319`
 
-## `changes` — class, line 274
+## `changes` — class, line 312
 - **called from:**
-- `static/js/admin.js:134`
-- `static/js/calendar.js:3645`
-- `static/js/cookbook-hwfit.js:237`
-- `static/js/document.js:7897`
-- `static/js/settings.js:1323`
-- `static/js/tileManager.js:295`
+- `static/js/admin.js:168`
+- `static/js/calendar.js:4517`
+- `static/js/cookbook-hwfit.js:264`
+- `static/js/document.js:13013`
+- `static/js/galleryEditor.js:2556`
+- `static/js/galleryEditor.js:4166`
+- `static/js/settings.js:1089`
+- `static/js/tileManager.js:296`
 
-## `_anchorLeftDock` — function, line 277
+## `_anchorLeftDock` — function, line 315
 - **called from:**
-- `static/js/modalSnap.js:277`
-- `static/js/modalSnap.js:414`
-- `static/js/modalSnap.js:430`
+- `static/js/modalSnap.js:315`
+- `static/js/modalSnap.js:452`
+- `static/js/modalSnap.js:468`
 
-## `collapseSidebarToRail` — function, line 305
+## `collapseSidebarToRail` — function, line 343
 - **called from:**
-- `static/js/emailLibrary.js:1120`
-- `static/js/emailLibrary.js:1129`
-- `static/js/modalSnap.js:305`
+- `static/js/emailLibrary/index.js:930`
+- `static/js/emailLibrary/index.js:939`
+- `static/js/modalSnap.js:343`
 
-## `_collapseSidebarToRail` — function, line 306
+## `_collapseSidebarToRail` — function, line 344
 - **called from:**
-- `static/app.js:1179`
-- `static/app.js:1203`
-- `static/js/modalSnap.js:305`
-- `static/js/modalSnap.js:306`
-- `static/js/modalSnap.js:409`
-- `static/js/modalSnap.js:506`
-- `static/js/modalSnap.js:881`
-
-## `_resolveDockNodes` — function, line 326
-- **called from:**
-- `static/js/modalSnap.js:326`
-- `static/js/modalSnap.js:346`
-- `static/js/modalSnap.js:608`
-- `static/js/modalSnap.js:677`
-- `static/js/modalSnap.js:722`
-- `static/js/modalSnap.js:827`
-- `static/js/modalSnap.js:860`
-- `static/js/modalSnap.js:867`
-- `static/js/modalSnap.js:914`
-- `static/js/modalSnap.js:944`
-
-## `applyEdgeDock` — function, line 335
-- **called from:**
-- `static/js/emailInbox.js:179`
-- `static/js/emailInbox.js:245`
-- `static/js/emailInbox.js:253`
-- `static/js/modalManager.js:57`
-- `static/js/modalSnap.js:335`
-- `static/js/modalSnap.js:728`
-- `static/js/notes.js:202`
-
-## `applyRightDock` — function, line 341
-- **called from:**
-- `static/js/modalSnap.js:341`
-
-## `_applyDockInternal` — function, line 345
-- **called from:**
-- `static/js/modalSnap.js:337`
-- `static/js/modalSnap.js:342`
-- `static/js/modalSnap.js:345`
-- `static/js/modalSnap.js:779`
-
-## `so` — class, line 356
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `_doAnchor` — arrow, line 429
-- **called from:**
-- `static/js/modalSnap.js:434`
-
-## `reanchor` — arrow, line 432
-- **called from:**
-- `static/js/modalSnap.js:453`
-
-## `_bindDocResizeObs` — arrow, line 469
-- **called from:**
-- `static/js/modalSnap.js:456`
-- `static/js/modalSnap.js:484`
-
-## `onGone` — arrow, line 519
-- **called from:**
-- `static/js/modalSnap.js:528`
-- `static/js/modalSnap.js:534`
-
-## `flip` — class, line 520
-- **called from:**
-- `static/js/emailLibrary.js:7577`
-- `static/js/emailLibrary.js:7579`
-
-## `_isGone` — arrow, line 525
-- **called from:**
-- `static/js/modalSnap.js:528`
-
-## `_onDockedModalGone` — function, line 548
-- **called from:**
-- `static/js/modalSnap.js:519`
-- `static/js/modalSnap.js:548`
-
-## `_expandSidebarFromRail` — function, line 597
-- **called from:**
-- `static/js/modalSnap.js:570`
-- `static/js/modalSnap.js:597`
-- `static/js/modalSnap.js:628`
-- `static/js/modalSnap.js:710`
-
-## `clearRightDock` — function, line 607
-- **called from:**
-- `static/js/modalManager.js:1332`
-- `static/js/modalSnap.js:607`
-- `static/js/modalSnap.js:762`
-
-## `suspendDock` — function, line 676
-- **called from:**
-- `static/js/modalManager.js:1243`
-- `static/js/modalManager.js:1530`
-- `static/js/modalSnap.js:676`
-- `static/js/modalSnap.js:718`
-
-## `resumeDock` — function, line 721
-- **called from:**
-- `static/js/modalManager.js:1276`
-- `static/js/modalSnap.js:674`
-- `static/js/modalSnap.js:721`
-
-## `makeRightDockController` — function, line 737
-- **called from:**
-- `static/js/modalSnap.js:737`
-
-## `_leftNavWidth` — function, line 744
-- **called from:**
-- `static/js/modalSnap.js:744`
-- `static/js/modalSnap.js:755`
-- `static/js/windowDrag.js:50`
-- `static/js/windowDrag.js:186`
-
-## `makeEdgeDockController` — function, line 751
-- **called from:**
-- `static/js/modalSnap.js:738`
-- `static/js/modalSnap.js:751`
-- `static/js/windowDrag.js:95`
-- `static/js/windowDrag.js:100`
-
-## `_distFromEdge` — arrow, line 754
-- **called from:**
-- `static/js/modalSnap.js:761`
-- `static/js/modalSnap.js:767`
-
-## `onMove` — method?, line 759
-- **called from:**
-- `static/js/calendar.js:1587`
-- `static/js/modalSnap.js:735`
-- `static/js/modalSnap.js:759`
-- `static/js/windowDrag.js:195`
-- `static/js/windowDrag.js:200`
-- `static/js/windowDrag.js:205`
-- `static/js/windowDrag.js:206`
-- `static/js/windowDrag.js:215`
-- `static/js/windowDrag.js:223`
-- `static/js/windowDrag.js:244`
-- `static/js/windowDrag.js:245`
-
-## `hovering` — method?, line 774
-- **called from:**
-- `static/js/modalSnap.js:734`
-- `static/js/modalSnap.js:736`
-- `static/js/modalSnap.js:750`
-- `static/js/modalSnap.js:774`
-- `static/js/windowDrag.js:261`
-- `static/js/windowDrag.js:267`
-
-## `side` — method?, line 775
-- **called from:**
-- `static/app.js:1539`
-- `static/js/chat.js:4813`
-- `static/js/document.js:6981`
-- `static/js/modalSnap.js:350`
-- `static/js/modalSnap.js:775`
-- `static/js/notes.js:4496`
-- `static/js/sidebar-layout.js:588`
-
-## `commit` — method?, line 776
-- **called from:**
-- `app.py:449`
-- `app.py:1047`
-- `core/database.py:924`
-- `core/database.py:955`
-- `core/database.py:978`
-- `core/database.py:1003`
-- `core/database.py:1026`
-- `core/database.py:1049`
-- `core/database.py:1080`
-- `core/database.py:1105`
-- `core/database.py:1129`
-- `core/database.py:1158`
-- `core/database.py:1180`
-- `core/database.py:1203`
-- `core/database.py:1227`
-- `core/database.py:1249`
-- `core/database.py:1282`
-- `core/database.py:1304`
-- `core/database.py:1327`
-- `core/database.py:1351`
-- `core/database.py:1375`
-- `core/database.py:1409`
-- `core/database.py:1438`
-- `core/database.py:1512`
-- `core/database.py:1591`
-- `core/database.py:1606`
-- `core/database.py:1632`
-- `core/database.py:1704`
-- `core/database.py:1723`
-- `core/database.py:1735`
-- `core/database.py:1747`
-- `core/database.py:1764`
-- `core/database.py:1784`
-- `core/database.py:1805`
-- `core/database.py:1817`
-- `core/database.py:1830`
-- `core/database.py:1835`
-- `core/database.py:1847`
-- `core/database.py:1851`
-- `core/database.py:2098`
-- `core/database.py:2251`
-- `core/database.py:2335`
-- `core/database.py:2396`
-- `core/database.py:2425`
-- `core/database.py:2457`
-- `core/database.py:2491`
-- `core/database.py:2512`
-- `core/database.py:2539`
-- `core/database.py:2565`
-- `core/database.py:2595`
-- `core/database.py:2618`
-- `core/database.py:2640`
-- `core/database.py:2669`
-- `core/database.py:2745`
-- `core/database.py:2813`
-- `core/session_manager.py:429`
-- `core/session_manager.py:479`
-- `core/session_manager.py:504`
-- `core/session_manager.py:569`
-- `core/session_manager.py:647`
-- … +406 more (grep the name in repo)
-
-## `release` — method?, line 781
-- **called from:**
-- `src/llm_core.py:142`
-- `tests/test_task_scheduler_cancel.py:90`
-- `static/js/init.js:410`
-- `static/js/init.js:418`
-- `static/js/modalSnap.js:734`
-- `static/js/modalSnap.js:750`
-- `static/js/modalSnap.js:781`
-- `static/js/windowDrag.js:194`
-- `static/js/windowDrag.js:199`
-- `static/js/windowDrag.js:208`
-- `static/js/windowDrag.js:209`
-- `static/js/windowDrag.js:241`
-- `static/js/windowDrag.js:242`
-- `static/js/windowDrag.js:256`
-- `static/js/windowDrag.js:257`
-- `static/js/windowDrag.js:262`
-- `static/js/windowDrag.js:268`
-- `static/js/windowDrag.js:273`
-- `static/js/windowDrag.js:274`
-
-## `_initEdgeDockResizeHandles` — function, line 788
-- **called from:**
-- `static/js/modalSnap.js:788`
-
-## `_setStyle` — arrow, line 799
-- **called from:**
-- `static/js/modalSnap.js:802`
-- `static/js/modalSnap.js:929`
-- `static/js/modalSnap.js:930`
-- `static/js/modalSnap.js:931`
-
-## `_hideHandle` — arrow, line 802
-- **called from:**
-- `static/js/modalSnap.js:910`
-- `static/js/modalSnap.js:916`
-- `static/js/modalSnap.js:920`
-- `static/js/modalSnap.js:926`
-
-## `_isUsableDockOwner` — arrow, line 823
-- **called from:**
-- `static/js/modalSnap.js:840`
-
-## `_activeDockOwner` — arrow, line 836
-- **called from:**
-- `static/js/modalSnap.js:913`
-- `static/js/modalSnap.js:939`
-
-## `_zIndexFor` — arrow, line 845
-- **called from:**
-- `static/js/modalSnap.js:931`
-
-## `_hasVisibleFloatingModal` — arrow, line 851
-- **called from:**
+- `static/app.js:1220`
+- `static/app.js:1244`
+- `static/js/modalSnap.js:343`
+- `static/js/modalSnap.js:344`
+- `static/js/modalSnap.js:447`
+- `static/js/modalSnap.js:544`
 - `static/js/modalSnap.js:919`
 
-## `_setWidth` — arrow, line 866
+## `_resolveDockNodes` — function, line 364
+- **called from:**
+- `static/js/modalSnap.js:364`
+- `static/js/modalSnap.js:384`
+- `static/js/modalSnap.js:646`
+- `static/js/modalSnap.js:715`
+- `static/js/modalSnap.js:760`
+- `static/js/modalSnap.js:865`
+- `static/js/modalSnap.js:898`
+- `static/js/modalSnap.js:905`
+- `static/js/modalSnap.js:952`
+- `static/js/modalSnap.js:982`
+
+## `applyEdgeDock` — function, line 373
+- **called from:**
+- `static/js/emailInbox.js:181`
+- `static/js/emailInbox.js:258`
+- `static/js/emailInbox.js:266`
+- `static/js/features/notes/ui/windowLayout.js:93`
+- `static/js/modalManager.js:57`
+- `static/js/modalSnap.js:373`
+- `static/js/modalSnap.js:766`
+
+## `applyRightDock` — function, line 379
+- **called from:**
+- `static/js/modalSnap.js:379`
+
+## `_applyDockInternal` — function, line 383
+- **called from:**
+- `static/js/modalSnap.js:375`
+- `static/js/modalSnap.js:380`
+- `static/js/modalSnap.js:383`
+- `static/js/modalSnap.js:817`
+
+## `so` — class, line 394
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_doAnchor` — arrow, line 467
+- **called from:**
+- `static/js/modalSnap.js:472`
+
+## `reanchor` — arrow, line 470
+- **called from:**
+- `static/js/modalSnap.js:491`
+
+## `_bindDocResizeObs` — arrow, line 507
+- **called from:**
+- `static/js/modalSnap.js:494`
+- `static/js/modalSnap.js:522`
+
+## `onGone` — arrow, line 557
+- **called from:**
+- `static/js/modalSnap.js:566`
+- `static/js/modalSnap.js:572`
+
+## `flip` — class, line 558
+- **called from:**
+- `static/js/emailLibrary/index.js:6302`
+- `static/js/emailLibrary/index.js:6304`
+
+## `_isGone` — arrow, line 563
+- **called from:**
+- `static/js/modalSnap.js:566`
+
+## `_onDockedModalGone` — function, line 586
+- **called from:**
+- `static/js/modalSnap.js:557`
+- `static/js/modalSnap.js:586`
+
+## `_expandSidebarFromRail` — function, line 635
+- **called from:**
+- `static/js/modalSnap.js:608`
+- `static/js/modalSnap.js:635`
+- `static/js/modalSnap.js:666`
+- `static/js/modalSnap.js:748`
+
+## `clearRightDock` — function, line 645
+- **called from:**
+- `static/js/modalManager.js:1344`
+- `static/js/modalSnap.js:645`
+- `static/js/modalSnap.js:800`
+
+## `suspendDock` — function, line 714
+- **called from:**
+- `static/js/modalManager.js:1255`
+- `static/js/modalManager.js:1543`
+- `static/js/modalSnap.js:714`
+- `static/js/modalSnap.js:756`
+
+## `resumeDock` — function, line 759
+- **called from:**
+- `static/js/modalManager.js:1288`
+- `static/js/modalSnap.js:712`
+- `static/js/modalSnap.js:759`
+
+## `makeRightDockController` — function, line 775
+- **called from:**
+- `static/js/modalSnap.js:775`
+
+## `_leftNavWidth` — function, line 782
+- **called from:**
+- `static/js/modalSnap.js:782`
+- `static/js/modalSnap.js:793`
+- `static/js/windowDrag.js:51`
+- `static/js/windowDrag.js:204`
+
+## `makeEdgeDockController` — function, line 789
+- **called from:**
+- `static/js/modalSnap.js:776`
+- `static/js/modalSnap.js:789`
+- `static/js/windowDrag.js:113`
+- `static/js/windowDrag.js:118`
+
+## `_distFromEdge` — arrow, line 792
+- **called from:**
+- `static/js/modalSnap.js:799`
+- `static/js/modalSnap.js:805`
+
+## `onMove` — method?, line 797
+- **called from:**
+- `static/js/calendar.js:2042`
+- `static/js/modalSnap.js:773`
+- `static/js/modalSnap.js:797`
+- `static/js/windowDrag.js:213`
+- `static/js/windowDrag.js:218`
+- `static/js/windowDrag.js:223`
+- `static/js/windowDrag.js:224`
+- `static/js/windowDrag.js:233`
+- `static/js/windowDrag.js:241`
+- `static/js/windowDrag.js:262`
+- `static/js/windowDrag.js:263`
+
+## `hovering` — method?, line 812
+- **called from:**
+- `static/js/modalSnap.js:772`
+- `static/js/modalSnap.js:774`
+- `static/js/modalSnap.js:788`
+- `static/js/modalSnap.js:812`
+- `static/js/windowDrag.js:279`
+- `static/js/windowDrag.js:285`
+
+## `side` — method?, line 813
+- **called from:**
+- `static/app.js:1580`
+- `static/js/document.js:11940`
+- `static/js/features/notes/application/agentActions.js:22`
+- `static/js/modalSnap.js:388`
+- `static/js/modalSnap.js:813`
+- `static/js/sidebar-layout.js:646`
+
+## `commit` — method?, line 814
+- **called from:**
+- `app.py:490`
+- `app.py:1211`
+- `core/database.py:976`
+- `core/database.py:998`
+- `core/database.py:1020`
+- `core/database.py:1042`
+- `core/database.py:1069`
+- `core/database.py:1089`
+- `core/database.py:1114`
+- `core/database.py:1137`
+- `core/database.py:1160`
+- `core/database.py:1191`
+- `core/database.py:1216`
+- `core/database.py:1240`
+- `core/database.py:1269`
+- `core/database.py:1291`
+- `core/database.py:1314`
+- `core/database.py:1338`
+- `core/database.py:1362`
+- `core/database.py:1384`
+- `core/database.py:1437`
+- `core/database.py:1459`
+- `core/database.py:1482`
+- `core/database.py:1505`
+- `core/database.py:1542`
+- `core/database.py:1565`
+- `core/database.py:1589`
+- `core/database.py:1623`
+- `core/database.py:1652`
+- `core/database.py:1726`
+- `core/database.py:1805`
+- `core/database.py:1820`
+- `core/database.py:1846`
+- `core/database.py:1869`
+- `core/database.py:1941`
+- `core/database.py:1960`
+- `core/database.py:1972`
+- `core/database.py:1984`
+- `core/database.py:2001`
+- `core/database.py:2021`
+- `core/database.py:2042`
+- `core/database.py:2054`
+- `core/database.py:2067`
+- `core/database.py:2072`
+- `core/database.py:2084`
+- `core/database.py:2088`
+- `core/database.py:2357`
+- `core/database.py:2530`
+- `core/database.py:2630`
+- `core/database.py:2691`
+- `core/database.py:2720`
+- `core/database.py:2752`
+- `core/database.py:2786`
+- `core/database.py:2807`
+- `core/database.py:2834`
+- `core/database.py:2860`
+- `core/database.py:2890`
+- `core/database.py:2913`
+- `core/database.py:2935`
+- `core/database.py:2957`
+- … +618 more (grep the name in repo)
+
+## `release` — method?, line 819
+- **called from:**
+- `routes/contacts/contacts_routes.py:481`
+- `src/agent_tools/subprocess_tools.py:556`
+- `src/agent_tools/web_tools_prewave3.py:2676`
+- `src/bg_jobs.py:138`
+- `src/bg_jobs.py:193`
+- `src/containment.py:1066`
+- `src/containment.py:1077`
+- `src/containment.py:1587`
+- `src/containment.py:1633`
+- `src/containment_worker.py:96`
+- `src/llm_core.py:180`
+- `src/process_reaper.py:261`
+- `tests/test_agent_tmux_retirement.py:109`
+- `tests/test_browser_identity_transport.py:77`
+- `tests/test_containment_contract.py:448`
+- `tests/test_containment_enforcement.py:149`
+- `tests/test_containment_enforcement.py:180`
+- `tests/test_containment_enforcement.py:184`
+- `tests/test_containment_process_tree.py:171`
+- `tests/test_containment_process_tree.py:192`
+- `tests/test_containment_process_tree.py:219`
+- `tests/test_orphan_reaping.py:229`
+- `tests/test_runtime_resource_integration.py:148`
+- `tests/test_task_scheduler_cancel.py:104`
+- `tests/test_task_scheduler_cancel.py:168`
+- `static/js/features/notes/ui/cardReorder.js:9`
+- `static/js/features/notes/ui/checklistReorder.js:25`
+- `static/js/features/notes/ui/lifecycle.js:5`
+- `static/js/features/notes/ui/lifecycle.js:24`
+- `static/js/features/notes/ui/lifecycle.js:34`
+- `static/js/init.js:423`
+- `static/js/init.js:431`
+- `static/js/modalSnap.js:772`
+- `static/js/modalSnap.js:788`
+- `static/js/modalSnap.js:819`
+- `static/js/windowDrag.js:212`
+- `static/js/windowDrag.js:217`
+- `static/js/windowDrag.js:226`
+- `static/js/windowDrag.js:227`
+- `static/js/windowDrag.js:259`
+- `static/js/windowDrag.js:260`
+- `static/js/windowDrag.js:274`
+- `static/js/windowDrag.js:275`
+- `static/js/windowDrag.js:280`
+- `static/js/windowDrag.js:286`
+- `static/js/windowDrag.js:291`
+- `static/js/windowDrag.js:292`
+
+## `_initEdgeDockResizeHandles` — function, line 826
+- **called from:**
+- `static/js/modalSnap.js:826`
+
+## `_setStyle` — arrow, line 837
+- **called from:**
+- `static/js/modalSnap.js:840`
+- `static/js/modalSnap.js:967`
+- `static/js/modalSnap.js:968`
+- `static/js/modalSnap.js:969`
+
+## `_hideHandle` — arrow, line 840
+- **called from:**
+- `static/js/modalSnap.js:948`
+- `static/js/modalSnap.js:954`
+- `static/js/modalSnap.js:958`
+- `static/js/modalSnap.js:964`
+
+## `_isUsableDockOwner` — arrow, line 861
+- **called from:**
+- `static/js/modalSnap.js:878`
+
+## `_activeDockOwner` — arrow, line 874
 - **called from:**
 - `static/js/modalSnap.js:951`
-- `static/js/modalSnap.js:954`
+- `static/js/modalSnap.js:977`
 
-## `onMove` — arrow, line 952
+## `_zIndexFor` — arrow, line 883
 - **called from:**
-- `static/js/calendar.js:1587`
-- `static/js/modalSnap.js:735`
-- `static/js/modalSnap.js:759`
-- `static/js/windowDrag.js:195`
-- `static/js/windowDrag.js:200`
-- `static/js/windowDrag.js:205`
-- `static/js/windowDrag.js:206`
-- `static/js/windowDrag.js:215`
-- `static/js/windowDrag.js:223`
-- `static/js/windowDrag.js:244`
-- `static/js/windowDrag.js:245`
+- `static/js/modalSnap.js:969`
 
-## `onUp` — arrow, line 956
+## `_hasVisibleFloatingModal` — arrow, line 889
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `static/js/modalSnap.js:957`
 
-## `schedulePosition` — arrow, line 979
+## `_setWidth` — arrow, line 904
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `_initSplitSeamIndicator` — function, line 992
-- **called from:**
+- `static/js/modalSnap.js:989`
 - `static/js/modalSnap.js:992`
 
-## `_activeLeftDockContent` — arrow, line 1008
+## `onMove` — arrow, line 990
+- **called from:**
+- `static/js/calendar.js:2042`
+- `static/js/modalSnap.js:773`
+- `static/js/modalSnap.js:797`
+- `static/js/windowDrag.js:213`
+- `static/js/windowDrag.js:218`
+- `static/js/windowDrag.js:223`
+- `static/js/windowDrag.js:224`
+- `static/js/windowDrag.js:233`
+- `static/js/windowDrag.js:241`
+- `static/js/windowDrag.js:262`
+- `static/js/windowDrag.js:263`
+
+## `onUp` — arrow, line 994
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `schedulePosition` — arrow, line 1017
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_initSplitSeamIndicator` — function, line 1030
 - **called from:**
 - `static/js/modalSnap.js:1030`
 
-## `_position` — arrow, line 1018
+## `_activeLeftDockContent` — arrow, line 1046
 - **called from:**
-- `static/js/chat.js:6167`
-- `static/js/chat.js:6176`
-- `static/js/chat.js:6199`
-- `static/js/chat.js:6200`
-- `static/js/modalSnap.js:1039`
-- `static/js/modalSnap.js:1078`
+- `static/js/modalSnap.js:1068`
+
+## `_position` — arrow, line 1056
+- **called from:**
+- `src/agent_runtime/effects.py:306`
+- `src/agent_runtime/effects.py:471`
+- `src/agent_runtime/effects.py:555`
+- `src/agent_runtime/effects.py:819`
+- `static/js/chat.js:7865`
+- `static/js/chat.js:7874`
+- `static/js/chat.js:7897`
+- `static/js/chat.js:7898`
+- `static/js/modalSnap.js:1077`
+- `static/js/modalSnap.js:1116`
 - `static/js/slashAutocomplete.js:141`
 - `static/js/slashAutocomplete.js:211`
 - `static/js/slashAutocomplete.js:299`
 
-## `_dragTo` — arrow, line 1029
+## `_dragTo` — arrow, line 1067
 - **called from:**
-- `static/js/modalSnap.js:1051`
-- `static/js/modalSnap.js:1054`
+- `static/js/modalSnap.js:1089`
+- `static/js/modalSnap.js:1092`
 
-## `onMove` — arrow, line 1052
+## `onMove` — arrow, line 1090
 - **called from:**
-- `static/js/calendar.js:1587`
-- `static/js/modalSnap.js:735`
-- `static/js/modalSnap.js:759`
-- `static/js/windowDrag.js:195`
-- `static/js/windowDrag.js:200`
-- `static/js/windowDrag.js:205`
-- `static/js/windowDrag.js:206`
-- `static/js/windowDrag.js:215`
+- `static/js/calendar.js:2042`
+- `static/js/modalSnap.js:773`
+- `static/js/modalSnap.js:797`
+- `static/js/windowDrag.js:213`
+- `static/js/windowDrag.js:218`
 - `static/js/windowDrag.js:223`
-- `static/js/windowDrag.js:244`
-- `static/js/windowDrag.js:245`
+- `static/js/windowDrag.js:224`
+- `static/js/windowDrag.js:233`
+- `static/js/windowDrag.js:241`
+- `static/js/windowDrag.js:262`
+- `static/js/windowDrag.js:263`
 
-## `onUp` — arrow, line 1056
+## `onUp` — arrow, line 1094
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_

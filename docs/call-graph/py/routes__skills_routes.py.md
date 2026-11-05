@@ -1,241 +1,138 @@
 # `routes/skills_routes.py` — definitions & call sites
 
-59 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+45 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `SkillAddRequest` — class, line 37
+## `SkillAddRequest` — class, line 42
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SkillImportUrlRequest` — class, line 67
+## `SkillImportUrlRequest` — class, line 72
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SkillUpdateRequest` — class, line 71
+## `SkillUpdateRequest` — class, line 76
 - **called from:**
+- `tests/test_skill_rename_collision.py:80`
 - `tests/test_skills_routes_owner_update.py:90`
 
-## `_skill_test_task` — function, line 94
+## `_skill_baseline_task` — function, line 102
 - **called from:**
-- `routes/skills_routes.py:936`
-- `routes/skills_routes.py:1503`
-- `src/builtin_actions.py:1984`
-- `tests/test_skills_routes_nondict.py:22`
-- `tests/test_skills_routes_nondict.py:23`
+- `tests/test_skill_audit_utility.py:16`
+- `tests/test_skills_audit_services.py:153`
 
-## `_skill_test_messages` — function, line 111
+## `_eval_skill_run` — function (async), line 113
 - **called from:**
-- `routes/skills_routes.py:464`
-- `routes/skills_routes.py:744`
-- `routes/skills_routes.py:1636`
-- `tests/test_skills_routes_nondict.py:31`
+- `tests/test_skills_audit_characterization.py:340`
+- `tests/test_skills_audit_characterization.py:363`
+- `tests/test_skills_audit_characterization.py:375`
 
-## `_eval_skill_run` — function (async), line 128
-- **called from:**
-- `routes/skills_routes.py:522`
-- `routes/skills_routes.py:802`
-
-## `_clip` — function, line 170
-- **called from:**
-- `routes/skills_routes.py:179`
-
-## `_parse` — function, line 183
-- **called from:**
-- `routes/skills_routes.py:272`
-- `src/copilot.py:207`
-- `static/js/cookbook-hwfit.js:1572`
-- `static/js/cookbook-hwfit.js:1572`
-- `static/js/emailLibrary.js:3637`
-- `static/js/emailLibrary.js:3638`
-
-## `_coerce` — function, line 192
-- **called from:**
-- `routes/skills_routes.py:203`
-- `routes/skills_routes.py:216`
-- `src/agent_tools/admin_tools.py:671`
-
-## `_eval_skill_necessity` — function (async), line 282
-- **called from:**
-- `routes/skills_routes.py:888`
-
-## `_should_check_retrieval_precision` — function, line 338
-- **called from:**
-- `routes/skills_routes.py:917`
-- `tests/test_skills_routes_nondict.py:24`
-- `tests/test_skills_routes_nondict.py:25`
-
-## `_eval_skill_retrieval_precision` — function (async), line 362
-- **called from:**
-- `routes/skills_routes.py:918`
-
-## `_run_skill_test_job` — function (async), line 432
-- **called from:**
-- `routes/skills_routes.py:1558`
-- `routes/skills_routes.py:1666`
-- `tests/test_skills_routes_nondict.py:96`
-
-## `_flush_say` — function, line 459
-- **called from:**
-- `routes/skills_routes.py:480`
-- `routes/skills_routes.py:485`
-- `routes/skills_routes.py:507`
-- `routes/skills_routes.py:512`
-- `routes/skills_routes.py:514`
-
-## `_audit_auto_publish_policy` — function, line 548
-- **called from:**
-- `routes/skills_routes.py:690`
-
-## `_skill_duplicate_blocker` — function, line 568
-- **called from:**
-- `routes/skills_routes.py:702`
-- `routes/skills_routes.py:899`
-
-## `_tokens` — function, line 577
-- **called from:**
-- `routes/skills_routes.py:592`
-- `routes/skills_routes.py:592`
-
-## `_sim` — function, line 591
-- **called from:**
-- `routes/skills_routes.py:619`
-
-## `_base` — function, line 597
-- **called from:**
-- `routes/skills_routes.py:619`
-- `routes/skills_routes.py:619`
-- `tests/test_internal_api_base.py:19`
-- `tests/test_internal_api_base.py:23`
-- `tests/test_internal_api_base.py:28`
-- `tests/test_internal_api_base.py:34`
-
-## `_score` — function, line 600
+## `_eval_skill_necessity` — function (async), line 125
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_audit_flag_text` — function, line 640
+## `_eval_skill_retrieval_precision` — function (async), line 137
 - **called from:**
-- `routes/skills_routes.py:666`
-- `routes/skills_routes.py:671`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_audit_generic_blocker` — function, line 652
+## `_run_skill_test_job` — function (async), line 153
 - **called from:**
-- `routes/skills_routes.py:693`
-- `routes/skills_routes.py:898`
+- `tests/test_skill_test_stream_closed.py:42`
+- `tests/test_skills_routes_nondict.py:96`
+- `tests/test_skills_routes_nondict.py:162`
 
-## `_audit_finalize_status` — function, line 680
+## `_finalize_audit_batch` — function, line 186
 - **called from:**
-- `routes/skills_routes.py:974`
-- `routes/skills_routes.py:979`
-- `routes/skills_routes.py:995`
-- `routes/skills_routes.py:1021`
+- `tests/test_skill_audit_utility.py:98`
+- `tests/test_skills_audit_characterization.py:483`
 
-## `_apply_skill_md` — function, line 714
+## `_audit_finalize_status` — function, line 198
 - **called from:**
-- `routes/skills_routes.py:928`
-- `routes/skills_routes.py:970`
-- `routes/skills_routes.py:986`
-- `routes/skills_routes.py:1009`
+- `tests/test_skill_audit_utility.py:62`
 
-## `_run_skill_test_once` — function (async), line 738
+## `_run_skill_audit_arm` — function (async), line 213
 - **called from:**
-- `routes/skills_routes.py:938`
-- `routes/skills_routes.py:988`
-- `routes/skills_routes.py:1012`
-- `src/builtin_actions.py:1986`
+- `tests/test_skill_audit_unavailable.py:18`
+- `tests/test_skill_test_stream_closed.py:57`
+- `tests/test_skills_audit_characterization.py:425`
+
+## `_run_skill_test_once` — function (async), line 218
+- **called from:**
+- `src/builtin_actions.py:2201`
 - `tests/test_skills_routes_nondict.py:59`
 
-## `_improve_skill_md` — function (async), line 806
+## `_improve_skill_md` — function (async), line 225
 - **called from:**
-- `routes/skills_routes.py:922`
-- `routes/skills_routes.py:968`
-- `routes/skills_routes.py:985`
-- `routes/skills_routes.py:1008`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_audit_one_skill` — function (async), line 853
+## `_audit_one_skill` — function (async), line 233
 - **called from:**
-- `routes/skills_routes.py:1067`
+- `tests/test_skill_audit_utility.py:262`
+- `tests/test_skill_audit_utility.py:350`
+- `tests/test_skill_audit_utility.py:461`
+- `tests/test_skills_audit_services.py:89`
+- `tests/test_skills_audit_services.py:116`
 
-## `_set_conf` — function, line 863
+## `_run_audit_all_job` — function (async), line 241
 - **called from:**
-- `routes/skills_routes.py:971`
-- `routes/skills_routes.py:992`
-- `routes/skills_routes.py:1016`
+- `src/builtin_actions.py:2313`
+- `tests/test_skill_audit_unavailable.py:38`
+- `tests/test_skills_audit_characterization.py:447`
 
-## `_run_audit_all_job` — function (async), line 1040
+## `_resolve_audit_models` — function, line 249
 - **called from:**
-- `routes/skills_routes.py:1178`
-- `routes/skills_routes.py:1772`
-- `src/builtin_actions.py:2088`
-
-## `log` — function, line 1049
-- **called from:**
-- `routes/skills_routes.py:871`
-- `routes/skills_routes.py:894`
-- `routes/skills_routes.py:896`
-- `routes/skills_routes.py:911`
-- `routes/skills_routes.py:921`
-- `routes/skills_routes.py:934`
-- `routes/skills_routes.py:937`
-- `routes/skills_routes.py:940`
-- `routes/skills_routes.py:954`
-- `routes/skills_routes.py:967`
-- `routes/skills_routes.py:975`
-- `routes/skills_routes.py:980`
-- `routes/skills_routes.py:984`
-- `routes/skills_routes.py:990`
-- `routes/skills_routes.py:996`
-- `routes/skills_routes.py:1007`
-- `routes/skills_routes.py:1014`
-- `routes/skills_routes.py:1022`
-- `routes/skills_routes.py:1036`
-- `routes/skills_routes.py:1059`
-- `routes/skills_routes.py:1071`
-- `routes/skills_routes.py:1074`
-- `scripts/diffusion_server.py:1221`
-- `src/chat_processor.py:215`
-- `static/app.js:3884`
-- `static/app.js:3887`
-- `static/app.js:3888`
-- `static/app.js:4593`
-- `static/js/cookbookRunning.js:4036`
-- `static/js/cookbookSchedule.js:50`
-- `static/js/editor/build/controls.js:13`
-- `static/js/editor/build/controls.js:13`
-- `static/js/editor/fx/adj-popup.js:605`
-- `static/js/editor/fx/adj-popup.js:605`
-- `static/js/emailLibrary.js:4960`
-- `static/js/galleryEditor.js:3002`
-- `static/js/galleryEditor.js:3002`
-- `static/js/galleryEditor.js:3187`
-- `static/js/galleryEditor.js:3187`
-
-## `_resolve_audit_models` — function, line 1103
-- **called from:**
-- `routes/skills_routes.py:1156`
-- `routes/skills_routes.py:1729`
-- `src/builtin_actions.py:2065`
+- `routes/skills_routes.py:753`
+- `src/builtin_actions.py:2281`
+- `tests/test_review_endpoint_credentials.py:83`
 - `tests/test_teacher_audit_owner_scope.py:67`
 
-## `run_scheduled_skill_audit` — function (async), line 1140
+## `run_scheduled_skill_audit` — function (async), line 253
 - **called from:**
-- `app.py:1263`
+- `routes/skills_routes.py:256`
+- `tests/test_skill_audit_utility.py:392`
+- `tests/test_skills_audit_services.py:93`
 
-## `setup_skills_routes` — function, line 1183
+## `_audit_dependencies` — function, line 261
 - **called from:**
-- `app.py:698`
+- `routes/skills_routes.py:172`
+- `routes/skills_routes.py:188`
+- `routes/skills_routes.py:203`
+- `routes/skills_routes.py:221`
+- `routes/skills_routes.py:237`
+- `routes/skills_routes.py:245`
+- `routes/skills_routes.py:257`
+- `routes/skills_routes.py:656`
+- `routes/skills_routes.py:714`
+- `routes/skills_routes.py:724`
+- `routes/skills_routes.py:762`
+- `routes/skills_routes.py:768`
+- `routes/skills_routes.py:773`
+- `tests/test_skills_audit_services.py:235`
+- `tests/test_skills_audit_services.py:262`
+- `tests/test_skills_audit_services.py:287`
+- `tests/test_skills_audit_services.py:306`
+
+## `setup_skills_routes` — function, line 290
+- **called from:**
+- `app.py:777`
+- `tests/test_endpoint_registered_authority.py:330`
+- `tests/test_request_authority.py:489`
+- `tests/test_request_authority.py:518`
+- `tests/test_skill_rename_collision.py:77`
 - `tests/test_skill_save_no_rename.py:103`
+- `tests/test_skills_audit_characterization.py:134`
+- `tests/test_skills_audit_characterization.py:149`
 - `tests/test_skills_delete_owner.py:81`
 - `tests/test_skills_routes_owner_update.py:84`
 - `tests/test_skills_routes_owner_update.py:108`
 - `tests/test_skills_routes_owner_update.py:151`
 
-## `_owner` — function, line 1186
+## `_owner` — function, line 293
 - **called from:**
-- `routes/assistant_routes.py:126`
-- `routes/assistant_routes.py:139`
-- `routes/assistant_routes.py:160`
-- `routes/assistant_routes.py:272`
-- `routes/assistant_routes.py:296`
+- `routes/assistant_routes.py:127`
+- `routes/assistant_routes.py:140`
+- `routes/assistant_routes.py:161`
+- `routes/assistant_routes.py:279`
+- `routes/assistant_routes.py:303`
 - `routes/memory/memory_routes.py:88`
 - `routes/memory/memory_routes.py:117`
 - `routes/memory/memory_routes.py:151`
@@ -244,223 +141,245 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/memory/memory_routes.py:211`
 - `routes/memory/memory_routes.py:246`
 - `routes/memory/memory_routes.py:261`
-- `routes/memory/memory_routes.py:296`
-- `routes/memory/memory_routes.py:353`
-- `routes/memory/memory_routes.py:394`
-- `routes/memory/memory_routes.py:505`
-- `routes/memory/memory_routes.py:519`
-- `routes/memory/memory_routes.py:530`
-- `routes/memory/memory_routes.py:552`
-- `routes/note/note_routes.py:629`
-- `routes/note/note_routes.py:653`
-- `routes/note/note_routes.py:690`
-- `routes/note/note_routes.py:707`
-- `routes/note/note_routes.py:762`
-- `routes/note/note_routes.py:781`
-- `routes/note/note_routes.py:800`
-- `routes/note/note_routes.py:819`
-- `routes/note/note_routes.py:858`
-- `routes/note/note_routes.py:904`
-- `routes/skills_routes.py:1208`
-- `routes/skills_routes.py:1217`
-- `routes/skills_routes.py:1228`
-- `routes/skills_routes.py:1354`
-- `routes/skills_routes.py:1382`
-- `routes/skills_routes.py:1420`
-- `routes/skills_routes.py:1456`
-- `routes/skills_routes.py:1467`
-- `routes/skills_routes.py:1490`
-- `routes/skills_routes.py:1567`
-- `routes/skills_routes.py:1685`
-- `routes/skills_routes.py:1713`
-- `routes/skills_routes.py:1778`
-- `routes/skills_routes.py:1792`
-- `routes/skills_routes.py:1807`
-- `routes/skills_routes.py:1858`
-- `routes/skills_routes.py:1877`
-- `routes/skills_routes.py:1894`
-- `routes/task/task_routes.py:344`
-- `routes/task/task_routes.py:375`
+- `routes/memory/memory_routes.py:274`
+- `routes/memory/memory_routes.py:299`
+- `routes/memory/memory_routes.py:357`
+- `routes/memory/memory_routes.py:398`
+- `routes/memory/memory_routes.py:512`
+- `routes/memory/memory_routes.py:526`
+- `routes/memory/memory_routes.py:537`
+- `routes/memory/memory_routes.py:559`
+- `routes/note/note_routes.py:632`
+- `routes/note/note_routes.py:656`
+- `routes/note/note_routes.py:694`
+- `routes/note/note_routes.py:711`
+- `routes/note/note_routes.py:771`
+- `routes/note/note_routes.py:790`
+- `routes/note/note_routes.py:809`
+- `routes/note/note_routes.py:828`
+- `routes/note/note_routes.py:867`
+- `routes/note/note_routes.py:913`
+- `routes/skills_routes.py:317`
+- `routes/skills_routes.py:326`
+- `routes/skills_routes.py:337`
+- `routes/skills_routes.py:463`
+- `routes/skills_routes.py:491`
+- `routes/skills_routes.py:529`
+- `routes/skills_routes.py:565`
+- `routes/skills_routes.py:576`
+- `routes/skills_routes.py:605`
+- `routes/skills_routes.py:666`
+- `routes/skills_routes.py:720`
+- `routes/skills_routes.py:736`
+- `routes/skills_routes.py:767`
+- `routes/skills_routes.py:772`
+- `routes/skills_routes.py:779`
+- `routes/skills_routes.py:830`
+- `routes/skills_routes.py:853`
+- `routes/skills_routes.py:870`
+- `routes/task/task_routes.py:353`
 - `routes/task/task_routes.py:384`
-- `routes/task/task_routes.py:453`
-- `routes/task/task_routes.py:566`
-- `routes/task/task_routes.py:575`
-- `routes/task/task_routes.py:654`
-- `routes/task/task_routes.py:668`
-- `routes/task/task_routes.py:758`
-- `routes/task/task_routes.py:780`
-- `routes/task/task_routes.py:796`
-- `routes/task/task_routes.py:820`
-- … +9 more (grep the name in repo)
+- `routes/task/task_routes.py:393`
+- `routes/task/task_routes.py:462`
+- `routes/task/task_routes.py:580`
+- `routes/task/task_routes.py:589`
+- `routes/task/task_routes.py:617`
+- `routes/task/task_routes.py:640`
+- `routes/task/task_routes.py:719`
+- `routes/task/task_routes.py:733`
+- `routes/task/task_routes.py:830`
+- … +16 more (grep the name in repo)
 
-## `_verify_owner` — function, line 1189
+## `_verify_owner` — function, line 296
 - **called from:**
-- `routes/skills_routes.py:1472`
-- `routes/skills_routes.py:1498`
-- `routes/skills_routes.py:1575`
-- `routes/skills_routes.py:1816`
-- `routes/skills_routes.py:1863`
-- `routes/skills_routes.py:1882`
+- `routes/skills_routes.py:581`
+- `routes/skills_routes.py:616`
+- `routes/skills_routes.py:674`
+- `routes/skills_routes.py:788`
+- `routes/skills_routes.py:835`
+- `routes/skills_routes.py:858`
 
-## `_fire_skill_added` — function, line 1199
+## `_fire_skill_added` — function, line 308
 - **called from:**
-- `routes/skills_routes.py:1377`
-- `routes/skills_routes.py:1410`
-- `routes/skills_routes.py:1853`
-- `routes/skills_routes.py:1872`
+- `routes/skills_routes.py:486`
+- `routes/skills_routes.py:519`
+- `routes/skills_routes.py:825`
+- `routes/skills_routes.py:848`
 
-## `list_skills` — function (async), line 1207
+## `list_skills` — function (async), line 316
 - decorator: `router.get("")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_index` — function (async), line 1213
+## `get_index` — function (async), line 322
 - **route:** `GET /index`
 - decorator: `router.get("/index")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_slash_catalog` — function (async), line 1222
+## `get_slash_catalog` — function (async), line 331
 - **route:** `GET /slash-catalog`
 - decorator: `router.get("/slash-catalog")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `list_builtin_skills` — function (async), line 1251
+## `list_builtin_skills` — function (async), line 360
 - **route:** `GET /builtin`
 - decorator: `router.get("/builtin")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_clean` — function, line 1259
+## `_clean` — function, line 368
 - **called from:**
-- `routes/skills_routes.py:1281`
+- `routes/skills_routes.py:390`
 
-## `get_builtin_skill` — function (async), line 1288
+## `get_builtin_skill` — function (async), line 397
 - **route:** `GET /builtin/{name}`
 - decorator: `router.get("/builtin/{name}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `set_builtin_override` — function (async), line 1312
+## `set_builtin_override` — function (async), line 421
 - **route:** `PUT /builtin/{name}`
 - decorator: `router.put("/builtin/{name}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `reset_builtin_override` — function (async), line 1338
+## `reset_builtin_override` — function (async), line 447
 - **route:** `DELETE /builtin/{name}`
 - decorator: `router.delete("/builtin/{name}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `import_skill_from_url` — function (async), line 1351
+## `import_skill_from_url` — function (async), line 460
 - **route:** `POST /import-from-url`
 - decorator: `router.post("/import-from-url")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `add_skill` — function (async), line 1381
+## `add_skill` — function (async), line 490
 - **route:** `POST /add`
 - decorator: `router.post("/add")`
 - **called from:**
 - `routes/backup_routes.py:150`
-- `routes/skills_routes.py:1383`
-- `services/memory/skill_extractor.py:276`
-- `src/tools/system.py:118`
+- `routes/skills_routes.py:492`
+- `scripts/odysseus_domain_audit.py:348`
+- `services/memory/skill_extractor.py:272`
+- `src/tools/system.py:114`
 - `tests/test_skill_frontmatter_escape_roundtrip.py:202`
-- `tests/test_skills_manager_owner_isolation.py:253`
-- `tests/test_skills_manager_owner_isolation.py:262`
+- `tests/test_skill_rename_collision.py:20`
+- `tests/test_skill_rename_collision.py:22`
+- `tests/test_skill_tool_followup_contract.py:18`
+- `tests/test_skill_tool_followup_contract.py:30`
+- `tests/test_skill_tool_followup_contract.py:41`
+- `tests/test_skill_tool_followup_contract.py:52`
+- `tests/test_skill_tool_followup_contract.py:67`
+- `tests/test_skill_tool_followup_contract.py:86`
+- `tests/test_skill_version_preservation.py:52`
+- `tests/test_skills_manager_owner_isolation.py:227`
+- `tests/test_skills_manager_owner_isolation.py:236`
 
-## `invoke_skill` — function (async), line 1414
+## `invoke_skill` — function (async), line 523
 - **route:** `POST /{skill_id}/invoke`
 - decorator: `router.post("/{skill_id}/invoke")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_skill` — function (async), line 1455
+## `get_skill` — function (async), line 564
 - **route:** `GET /{skill_id}`
 - decorator: `router.get("/{skill_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_skill_markdown` — function (async), line 1464
+## `get_skill_markdown` — function (async), line 573
 - **route:** `GET /{skill_id}/markdown`
 - decorator: `router.get("/{skill_id}/markdown")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `test_skill` — function (async), line 1479
+## `test_skill` — function (async), line 592
 - **route:** `POST /{skill_id}/test`
 - decorator: `router.post("/{skill_id}/test")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `approve_skill_test_action` — function (async), line 1562
+## `approve_skill_test_action` — function (async), line 660
 - **route:** `POST /{skill_id}/test-approval`
 - decorator: `router.post("/{skill_id}/test-approval")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `test_skill_status` — function (async), line 1683
+## `test_skill_status` — function (async), line 718
 - **route:** `GET /{skill_id}/test-status`
 - decorator: `router.get("/{skill_id}/test-status")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `audit_all_skills` — function (async), line 1702
+## `audit_all_skills` — function (async), line 727
 - **route:** `POST /audit-all`
 - decorator: `router.post("/audit-all")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `audit_status` — function (async), line 1777
+## `audit_status` — function (async), line 766
 - **route:** `GET /audit-all/status`
 - decorator: `router.get("/audit-all/status")`
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `routes/skills_routes.py:768`
 
-## `audit_cancel` — function (async), line 1791
+## `audit_cancel` — function (async), line 771
 - **route:** `POST /audit-all/cancel`
 - decorator: `router.post("/audit-all/cancel")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `save_skill_markdown` — function (async), line 1804
+## `save_skill_markdown` — function (async), line 776
 - **route:** `POST /{skill_id}/markdown`
 - decorator: `router.post("/{skill_id}/markdown")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `update_skill` — function (async), line 1857
+## `update_skill` — function (async), line 829
 - **route:** `PUT /{skill_id}`
 - decorator: `router.put("/{skill_id}")`
 - **called from:**
-- `routes/skills_routes.py:538`
-- `routes/skills_routes.py:708`
-- `routes/skills_routes.py:724`
-- `routes/skills_routes.py:865`
-- `routes/skills_routes.py:903`
-- `routes/skills_routes.py:1027`
-- `routes/skills_routes.py:1827`
-- `routes/skills_routes.py:1868`
-- `src/tools/system.py:177`
-- `src/tools/system.py:201`
-- `src/tools/system.py:214`
+- `routes/skills_routes.py:799`
+- `routes/skills_routes.py:844`
+- `services/skills/agent_runner.py:188`
+- `services/skills/audit_workflow.py:28`
+- `services/skills/audit_workflow.py:44`
+- `services/skills/audit_workflow.py:303`
+- `services/skills/publication.py:172`
+- `services/skills/publication.py:219`
+- `services/skills/publication.py:228`
+- `services/skills/publication.py:322`
+- `services/skills/publication.py:338`
+- `src/tools/system.py:170`
+- `src/tools/system.py:183`
+- `src/tools/system.py:209`
+- `src/tools/system.py:222`
 - `tests/test_skill_frontmatter_escape_roundtrip.py:205`
-- `tests/test_skills_manager_owner_isolation.py:110`
-- `tests/test_skills_manager_owner_isolation.py:237`
+- `tests/test_skill_rename_collision.py:34`
+- `tests/test_skill_rename_collision.py:40`
+- `tests/test_skill_rename_collision.py:49`
+- `tests/test_skill_rename_collision.py:59`
+- `tests/test_skill_rename_collision.py:67`
+- `tests/test_skill_version_preservation.py:54`
+- `tests/test_skills_manager_owner_isolation.py:90`
+- `tests/test_skills_manager_owner_isolation.py:211`
 
-## `delete_skill` — function (async), line 1876
+## `delete_skill` — function (async), line 852
 - **route:** `DELETE /{skill_id}`
 - decorator: `router.delete("/{skill_id}")`
 - **called from:**
-- `routes/skills_routes.py:1883`
-- `src/tools/system.py:220`
+- `routes/skills_routes.py:859`
+- `scripts/odysseus_domain_audit.py:374`
+- `src/tools/system.py:229`
+- `tests/test_skill_rename_collision.py:42`
 - `tests/test_skills_delete_owner.py:58`
 - `tests/test_skills_delete_owner.py:62`
 
-## `search_skills` — function (async), line 1889
+## `search_skills` — function (async), line 865
 - **route:** `POST /search`
 - decorator: `router.post("/search")`
 - **called from:**

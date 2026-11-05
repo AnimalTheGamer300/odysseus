@@ -136,16 +136,20 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:488`
 - `scripts/diffusion_server.py:504`
 - `scripts/diffusion_server.py:635`
-- `static/js/compare/index.js:1391`
-- `static/js/cookbookRunning.js:2784`
-- `static/js/cookbookRunning.js:2818`
-- `static/js/cookbookRunning.js:2824`
-- `static/js/document.js:8306`
-- `static/js/document.js:8953`
-- `static/js/document.js:9024`
-- `static/js/emailInbox.js:1197`
-- `static/js/emailInbox.js:1205`
-- `static/js/emailInbox.js:1210`
+- `src/agent_runtime/effect_adapters.py:353`
+- `tests/test_process_lifecycle.py:248`
+- `tests/test_process_lifecycle.py:269`
+- `tests/test_process_lifecycle.py:295`
+- `static/js/compare/index.js:1524`
+- `static/js/cookbookRunning.js:2840`
+- `static/js/cookbookRunning.js:2874`
+- `static/js/cookbookRunning.js:2880`
+- `static/js/document.js:13672`
+- `static/js/document.js:14367`
+- `static/js/document.js:14439`
+- `static/js/emailInbox.js:1261`
+- `static/js/emailInbox.js:1269`
+- `static/js/emailInbox.js:1274`
 
 ## `_load_pipe` — function, line 415
 - **called from:**
@@ -160,8 +164,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **route:** `GET /v1/models`
 - decorator: `app.get("/v1/models")`
 - **called from:**
-- `scripts/add_hwfit_models.py:375`
-- `src/agent_tools/model_interaction_tools.py:215`
+- `scripts/add_hwfit_models.py:457`
+- `src/agent_tools/model_interaction_tools.py:271`
+- `tests/test_chatgpt_subscription_routes.py:509`
+- `tests/test_list_models_hardware_fit.py:32`
 
 ## `generate_image` — function, line 691
 - **route:** `POST /v1/images/generations`

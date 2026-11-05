@@ -1,6 +1,6 @@
 # `src/preset_manager.py` — definitions & call sites
 
-12 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+13 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `PresetManager` — class, line 8
 - **called from:**
@@ -8,127 +8,152 @@
 - `tests/test_preset_atomic_save.py:26`
 - `tests/test_preset_atomic_save.py:39`
 - `tests/test_preset_atomic_save.py:42`
+- `tests/test_preset_atomic_save.py:47`
 - `tests/test_preset_fill_missing_defaults.py:33`
 - `tests/test_preset_fill_missing_defaults.py:63`
 - `tests/test_preset_fill_missing_defaults.py:76`
 - `tests/test_preset_store_shape.py:9`
-- `tests/test_review_regressions.py:262`
-- `tests/test_review_regressions.py:278`
-- `tests/test_review_regressions.py:284`
-- `tests/test_review_regressions.py:308`
+- `tests/test_review_regressions.py:264`
+- `tests/test_review_regressions.py:280`
+- `tests/test_review_regressions.py:286`
+- `tests/test_review_regressions.py:310`
 
-## `PresetManager.__init__` — method, line 67
+## `PresetManager.__init__` — method, line 68
 - **called from:**
 - `core/exceptions.py:8`
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
-## `PresetManager.load` — method, line 71
+## `PresetManager.load` — method, line 72
 - **called from:**
-- `app.py:1151`
-- `app.py:1198`
+- `app.py:1335`
+- `app.py:1390`
 - `companion/pairing.py:168`
-- `core/auth.py:118`
-- `core/auth.py:141`
-- `core/database.py:1468`
-- `core/database.py:1526`
-- `core/database.py:1544`
+- `core/auth.py:136`
+- `core/auth.py:159`
+- `core/database.py:1682`
+- `core/database.py:1740`
+- `core/database.py:1758`
 - `routes/backup_routes.py:26`
 - `routes/backup_routes.py:32`
-- `routes/mcp/mcp_routes.py:446`
-- `routes/mcp/mcp_routes.py:540`
+- `routes/email/email_routes.py:4999`
+- `routes/mcp/mcp_routes.py:471`
+- `routes/mcp/mcp_routes.py:587`
 - `routes/memory/memory_routes.py:89`
 - `routes/memory/memory_routes.py:121`
 - `routes/memory/memory_routes.py:152`
 - `routes/memory/memory_routes.py:158`
 - `routes/memory/memory_routes.py:174`
 - `routes/memory/memory_routes.py:217`
-- `routes/memory/memory_routes.py:520`
+- `routes/memory/memory_routes.py:527`
 - `routes/prefs_routes.py:20`
-- `routes/skills_routes.py:609`
-- `routes/skills_routes.py:692`
-- `routes/skills_routes.py:884`
-- `routes/skills_routes.py:930`
-- `routes/skills_routes.py:973`
-- `routes/skills_routes.py:994`
-- `routes/skills_routes.py:1020`
-- `routes/skills_routes.py:1062`
-- `routes/skills_routes.py:1077`
-- `routes/skills_routes.py:1161`
-- `routes/skills_routes.py:1209`
-- `routes/skills_routes.py:1229`
-- `routes/skills_routes.py:1457`
-- `routes/skills_routes.py:1468`
-- `routes/skills_routes.py:1494`
-- `routes/skills_routes.py:1568`
-- `routes/skills_routes.py:1686`
-- `routes/skills_routes.py:1733`
-- `routes/skills_routes.py:1812`
-- `routes/skills_routes.py:1859`
-- `routes/skills_routes.py:1878`
-- `routes/skills_routes.py:1895`
-- `scripts/add_hwfit_models.py:190`
-- `scripts/add_hwfit_models.py:365`
+- `routes/session_routes.py:89`
+- `routes/skills_routes.py:318`
+- `routes/skills_routes.py:338`
+- `routes/skills_routes.py:566`
+- `routes/skills_routes.py:577`
+- `routes/skills_routes.py:612`
+- `routes/skills_routes.py:667`
+- `routes/skills_routes.py:721`
+- `routes/skills_routes.py:784`
+- `routes/skills_routes.py:831`
+- `routes/skills_routes.py:854`
+- `routes/skills_routes.py:871`
+- `scripts/add_hwfit_models.py:243`
+- `scripts/add_hwfit_models.py:445`
 - `scripts/agent_migration_manifest.py:73`
-- `scripts/backfill_model_release_dates.py:67`
+- `scripts/analyze_odysseus_eval_targets.py:14`
+- `scripts/audit_c5_benchmark_evidence.py:1377`
+- `scripts/backfill_model_release_dates.py:70`
 - `scripts/claim_ownerless.py:53`
 - `scripts/dump_agent_prompt.py:388`
 - `scripts/dump_agent_prompt.py:421`
-- `scripts/import_from_vllm_recipes.py:257`
+- `scripts/import_from_vllm_recipes.py:262`
 - `scripts/migrate_faiss_to_chroma.py:32`
 - `scripts/pr_blocker_audit.py:157`
-- `services/hwfit/hf_discovery.py:286`
-- `services/hwfit/hf_discovery.py:308`
+- `scripts/summarize_odysseus_eval_delta.py:57`
+- `services/hwfit/hf_discovery.py:304`
+- `services/hwfit/hf_discovery.py:326`
 - `services/hwfit/models.py:273`
-- `services/memory/memory_extractor.py:57`
-- `services/memory/memory_extractor.py:95`
-- `services/memory/memory_extractor.py:699`
-- `services/memory/skill_extractor.py:257`
-- `services/memory/skills.py:93`
-- … +80 more (grep the name in repo)
+- `services/memory/memory_extractor.py:58`
+- `services/memory/memory_extractor.py:96`
+- `services/memory/memory_extractor.py:992`
+- `services/memory/skill_extractor.py:263`
+- `services/memory/skills.py:114`
+- `services/memory/skills.py:309`
+- `services/memory/skills.py:705`
+- `services/search/analytics.py:75`
+- `services/search/content.py:307`
+- `services/search/core.py:869`
+- `services/skills/audit_workflow.py:62`
+- … +135 more (grep the name in repo)
 
-## `PresetManager.save` — method, line 115
+## `PresetManager.save` — method, line 116
 - **called from:**
 - `companion/pairing.py:224`
 - `mcp_servers/memory_server.py:187`
 - `mcp_servers/memory_server.py:215`
 - `mcp_servers/memory_server.py:243`
-- `routes/auth_routes.py:261`
+- `routes/auth_routes.py:285`
 - `routes/backup_routes.py:107`
 - `routes/backup_routes.py:191`
-- `routes/gallery/gallery_routes.py:54`
-- `routes/gallery/gallery_routes.py:548`
-- `routes/gallery/gallery_routes.py:1337`
-- `routes/gallery/gallery_routes.py:1340`
-- `routes/gallery/gallery_routes.py:1410`
-- `routes/gallery/gallery_routes.py:1443`
-- `routes/gallery/gallery_routes.py:1445`
-- `routes/gallery/gallery_routes.py:1733`
-- `routes/gallery/gallery_routes.py:1782`
-- `routes/gallery/gallery_routes.py:1830`
-- `routes/gallery/gallery_routes.py:2052`
-- `routes/gallery/gallery_routes.py:2102`
-- `routes/gallery/gallery_routes.py:2116`
+- `routes/gallery/gallery_routes.py:346`
+- `routes/gallery/gallery_routes.py:378`
+- `routes/gallery/gallery_routes.py:380`
+- `routes/gallery/gallery_routes.py:394`
+- `routes/gallery/gallery_routes.py:1054`
+- `routes/gallery/gallery_routes.py:1866`
+- `routes/gallery/gallery_routes.py:1869`
+- `routes/gallery/gallery_routes.py:1914`
+- `routes/gallery/gallery_routes.py:1986`
+- `routes/gallery/gallery_routes.py:2515`
+- `routes/gallery/gallery_routes.py:2566`
+- `routes/gallery/gallery_routes.py:2616`
+- `routes/gallery/gallery_routes.py:2925`
+- `routes/gallery/gallery_routes.py:2976`
+- `routes/gallery/gallery_routes.py:2990`
 - `routes/memory/memory_routes.py:137`
-- `routes/memory/memory_routes.py:511`
-- `routes/memory/memory_routes.py:540`
-- `routes/memory/memory_routes.py:562`
-- `routes/upload_routes.py:401`
+- `routes/memory/memory_routes.py:518`
+- `routes/memory/memory_routes.py:547`
+- `routes/memory/memory_routes.py:569`
+- `routes/upload_routes.py:524`
 - `scripts/diffusion_server.py:253`
 - `scripts/diffusion_server.py:1075`
 - `scripts/diffusion_server.py:1170`
@@ -138,74 +163,80 @@
 - `scripts/mlx_image_server.py:181`
 - `scripts/mlx_image_server.py:200`
 - `scripts/mlx_image_server.py:318`
-- `services/memory/memory_extractor.py:652`
-- `services/memory/memory_extractor.py:841`
+- `scripts/odysseus_domain_audit.py:343`
+- `scripts/odysseus_domain_audit.py:371`
+- `services/memory/memory_extractor.py:856`
+- `services/memory/memory_extractor.py:1138`
 - `services/memory/service.py:123`
-- `src/ai_interaction.py:401`
-- `src/ai_interaction.py:440`
-- `src/ai_interaction.py:472`
-- `src/builtin_actions.py:730`
+- `src/agent_tools/editor_tools.py:307`
+- `src/agent_tools/editor_tools.py:569`
+- `src/agent_tools/media_tools.py:396`
+- `src/agent_tools/media_tools.py:495`
+- `src/agent_tools/media_tools.py:881`
+- `src/agent_tools/media_tools.py:1004`
+- `src/agent_tools/media_tools.py:1526`
+- `src/agent_tools/media_tools.py:1537`
+- `src/agent_tools/media_tools.py:1738`
+- `src/agent_tools/media_tools.py:1847`
+- `src/ai_interaction.py:450`
+- `src/ai_interaction.py:491`
+- `src/ai_interaction.py:525`
+- `src/builtin_actions.py:858`
 - `src/caldav_writeback.py:156`
-- `src/chat_handler.py:349`
-- `src/document_processor.py:141`
-- `src/document_processor.py:385`
-- `src/document_processor.py:509`
-- `src/memory.py:212`
-- `src/memory.py:255`
-- `src/memory.py:315`
-- `src/memory_provider.py:166`
-- `src/memory_provider.py:249`
-- `src/pdf_forms.py:253`
-- `src/pdf_forms.py:362`
-- `src/pdf_forms.py:398`
-- `src/preset_manager.py:74`
-- `src/preset_manager.py:97`
-- `src/preset_manager.py:109`
-- `src/preset_manager.py:155`
-- `src/preset_manager.py:175`
-- `src/preset_manager.py:181`
-- … +87 more (grep the name in repo)
+- `src/chat_handler.py:365`
+- `src/clean_agent_preview.py:5463`
+- `src/document_processor.py:152`
+- `src/document_processor.py:491`
+- … +184 more (grep the name in repo)
 
-## `PresetManager.get` — method, line 130
+## `PresetManager.get` — method, line 131
 - **called from:**
-- `app.py:359`
-- `app.py:383`
-- `app.py:389`
-- `app.py:416`
-- `app.py:428`
-- `app.py:470`
-- `app.py:538`
-- `app.py:512`
-- `app.py:595`
-- `app.py:891`
-- `app.py:903`
-- `app.py:907`
-- `app.py:915`
-- `app.py:919`
-- `app.py:923`
-- `app.py:927`
-- `app.py:931`
-- `app.py:935`
-- `app.py:939`
-- `app.py:944`
-- `app.py:950`
-- `app.py:955`
-- `app.py:967`
-- `app.py:968`
-- `app.py:969`
-- `app.py:969`
-- `app.py:971`
-- `app.py:971`
-- `app.py:975`
-- `app.py:996`
-- `app.py:987`
-- `app.py:998`
-- `app.py:1117`
-- `app.py:1151`
-- `app.py:1165`
-- `app.py:1198`
-- `app.py:1201`
-- `app.py:1216`
+- `app.py:400`
+- `app.py:424`
+- `app.py:430`
+- `app.py:457`
+- `app.py:469`
+- `app.py:511`
+- `app.py:620`
+- `app.py:553`
+- `app.py:673`
+- `app.py:976`
+- `app.py:988`
+- `app.py:992`
+- `app.py:1000`
+- `app.py:1004`
+- `app.py:1008`
+- `app.py:1012`
+- `app.py:1016`
+- `app.py:1020`
+- `app.py:1024`
+- `app.py:1029`
+- `app.py:1035`
+- `app.py:1045`
+- `app.py:1054`
+- `app.py:1066`
+- `app.py:1067`
+- `app.py:1068`
+- `app.py:1068`
+- `app.py:1070`
+- `app.py:1070`
+- `app.py:1074`
+- `app.py:1095`
+- `app.py:1086`
+- `app.py:1097`
+- `app.py:1270`
+- `app.py:1273`
+- `app.py:1273`
+- `app.py:1274`
+- `app.py:1275`
+- `app.py:1280`
+- `app.py:1280`
+- `app.py:1301`
+- `app.py:1335`
+- `app.py:1349`
+- `app.py:1390`
+- `app.py:1393`
+- `app.py:1408`
 - `companion/pairing.py:116`
 - `companion/pairing.py:126`
 - `companion/pairing.py:173`
@@ -215,49 +246,51 @@
 - `companion/routes.py:109`
 - `companion/routes.py:168`
 - `companion/routes.py:222`
-- `core/auth.py:143`
-- `core/auth.py:164`
-- `core/auth.py:187`
-- `core/auth.py:214`
-- `core/auth.py:226`
-- `core/auth.py:230`
-- `core/auth.py:299`
-- `core/auth.py:299`
-- `core/auth.py:325`
-- `core/auth.py:349`
-- `core/auth.py:349`
-- `core/auth.py:357`
-- `core/auth.py:370`
-- … +7551 more (grep the name in repo)
+- `core/auth.py:161`
+- `core/auth.py:182`
+- `core/auth.py:205`
+- `core/auth.py:232`
+- `core/auth.py:244`
+- … +16888 more (grep the name in repo)
 
-## `PresetManager.update_custom` — method, line 134
+## `PresetManager.update_custom` — method, line 135
 - **called from:**
-- `routes/preset_routes.py:36`
-- `tests/test_review_regressions.py:264`
+- `routes/preset_routes.py:38`
+- `tests/test_preset_atomic_save.py:66`
+- `tests/test_preset_atomic_save.py:69`
+- `tests/test_preset_atomic_save.py:77`
+- `tests/test_review_regressions.py:266`
 
-## `PresetManager.get_all` — method, line 157
+## `PresetManager.get_all` — method, line 181
 - **called from:**
 - `routes/backup_routes.py:29`
 - `routes/backup_routes.py:185`
 - `tests/test_memory_imports.py:35`
 - `tests/test_memory_imports.py:43`
 
-## `PresetManager.get_user_templates` — method, line 161
+## `PresetManager.get_user_templates` — method, line 185
 - **called from:**
-- `routes/preset_routes.py:54`
+- `routes/preset_routes.py:60`
+- `src/preset_manager.py:160`
 
-## `PresetManager.save_user_template` — method, line 165
+## `PresetManager.save_user_template` — method, line 189
 - **called from:**
-- `routes/preset_routes.py:61`
+- `routes/preset_routes.py:67`
 
-## `PresetManager.delete_user_template` — method, line 177
+## `PresetManager.delete_user_template` — method, line 201
 - **called from:**
-- `routes/preset_routes.py:68`
+- `routes/preset_routes.py:74`
 
-## `PresetManager.get_group_presets` — method, line 183
+## `PresetManager.update_persona_memory` — method, line 207
 - **called from:**
-- `routes/preset_routes.py:117`
+- `routes/chat_helpers.py:2122`
+- `services/memory/memory_extractor.py:964`
+- `tests/test_preset_atomic_save.py:73`
 
-## `PresetManager.save_group_presets` — method, line 187
+## `PresetManager.get_group_presets` — method, line 231
 - **called from:**
 - `routes/preset_routes.py:123`
+
+## `PresetManager.save_group_presets` — method, line 235
+- **called from:**
+- `routes/preset_routes.py:129`

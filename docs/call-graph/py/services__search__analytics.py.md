@@ -16,11 +16,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `RateLimitError` — class, line 49
 - **called from:**
-- `services/search/content.py:393`
-- `services/search/providers.py:324`
-- `services/search/providers.py:494`
-- `services/search/providers.py:552`
-- `services/search/providers.py:613`
+- `services/search/content.py:332`
+- `services/search/providers.py:393`
+- `services/search/providers.py:567`
+- `services/search/providers.py:625`
+- `services/search/providers.py:686`
 
 ## `_default_analytics` — function, line 56
 - **called from:**
@@ -44,8 +44,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_record_query` — function, line 97
 - **called from:**
-- `services/search/core.py:158`
-- `services/search/core.py:193`
+- `services/search/core.py:859`
+- `services/search/core.py:883`
+- `services/search/core.py:950`
 - `tests/test_search_analytics_defaults.py:33`
 - `tests/test_services_search_analytics_defaults.py:36`
 

@@ -34,38 +34,38 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
-- `static/js/cookbookServe.js:4003`
-- `static/js/cookbookServe.js:4005`
-- `static/js/document.js:313`
-- `static/js/document.js:314`
-- `static/js/document.js:8382`
-- `static/js/document.js:8966`
-- `static/js/documentLibrary.js:70`
-- `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
-- `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/chat.js:6329`
+- `static/js/chat.js:6329`
+- `static/js/cookbookServe.js:4108`
+- `static/js/cookbookServe.js:4110`
+- `static/js/document.js:1225`
+- `static/js/document.js:1226`
+- `static/js/document.js:13760`
+- `static/js/document.js:14380`
+- `static/js/document.js:15402`
+- `static/js/documentLibrary.js:169`
+- `static/js/documentLibrary.js:185`
+- `static/js/documentLibrary.js:705`
+- `static/js/documentLibrary.js:709`
+- `static/js/documentLibrary.js:711`
+- `static/js/documentLibrary.js:2218`
+- `static/js/documentLibrary.js:2223`
+- `static/js/documentLibrary.js:2371`
+- `static/js/documentLibrary.js:2735`
+- `static/js/documentLibrary.js:2780`
+- `static/js/documentLibrary.js:2818`
+- `static/js/documentLibrary.js:2968`
+- `static/js/documentLibrary.js:3017`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3184`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- … +226 more (grep the name in repo)
 
 ## `_emailSummaryErrorMessage` — function, line 40
 - **called from:**
@@ -74,105 +74,100 @@
 
 ## `_renderEmailSummaryError` — function, line 45
 - **called from:**
-- `static/js/emailLibrary.js:7529`
-- `static/js/emailLibrary.js:7533`
+- `static/js/emailLibrary/reader.js:661`
+- `static/js/emailLibrary/reader.js:665`
 - `static/js/emailLibrary/utils.js:45`
 
 ## `_attrEsc` — function, line 52
 - **called from:**
 - `static/js/emailLibrary/utils.js:52`
-- `static/js/emailLibrary/utils.js:83`
-- `static/js/emailLibrary/utils.js:85`
-- `static/js/notes.js:495`
-- `static/js/notes.js:527`
-- `static/js/notes.js:1857`
-- `static/js/notes.js:1863`
-- `static/js/notes.js:1863`
-- `static/js/notes.js:1863`
+- `static/js/emailLibrary/utils.js:89`
+- `static/js/features/notes/ui/text.js:7`
+- `static/js/features/notes/ui/text.js:34`
 
 ## `_compactUrlSchemeValue` — function, line 61
 - **called from:**
 - `static/js/emailLibrary/utils.js:61`
 - `static/js/emailLibrary/utils.js:66`
-- `static/js/emailLibrary/utils.js:216`
-- `static/js/markdown.js:207`
-- `static/js/markdown.js:212`
-- `static/js/markdown.js:239`
+- `static/js/emailLibrary/utils.js:224`
+- `static/js/markdown.js:391`
+- `static/js/markdown.js:396`
+- `static/js/markdown.js:423`
 
 ## `_isDangerousUrl` — function, line 65
 - **called from:**
 - `static/js/emailLibrary/utils.js:65`
 - `static/js/emailLibrary/utils.js:71`
-- `static/js/emailLibrary/utils.js:199`
-- `static/js/markdown.js:211`
-- `static/js/markdown.js:216`
-- `static/js/markdown.js:248`
+- `static/js/emailLibrary/utils.js:207`
+- `static/js/markdown.js:395`
+- `static/js/markdown.js:400`
+- `static/js/markdown.js:432`
 
 ## `_isDangerousSrcset` — function, line 70
 - **called from:**
 - `static/js/emailLibrary/utils.js:70`
-- `static/js/emailLibrary/utils.js:199`
-- `static/js/markdown.js:215`
-- `static/js/markdown.js:248`
+- `static/js/emailLibrary/utils.js:207`
+- `static/js/markdown.js:399`
+- `static/js/markdown.js:432`
 
 ## `_escLinkify` — function, line 75
 - **called from:**
-- `static/js/emailLibrary.js:5763`
-- `static/js/emailLibrary.js:5805`
-- `static/js/emailLibrary.js:5833`
-- `static/js/emailLibrary.js:5846`
-- `static/js/emailLibrary.js:6402`
+- `static/js/emailLibrary/bodyRender.js:92`
+- `static/js/emailLibrary/bodyRender.js:150`
+- `static/js/emailLibrary/bodyRender.js:178`
+- `static/js/emailLibrary/bodyRender.js:191`
+- `static/js/emailLibrary/bodyRender.js:761`
 - `static/js/emailLibrary/utils.js:75`
 
-## `_extractName` — function, line 90
+## `_extractName` — function, line 98
 - **called from:**
-- `static/js/emailLibrary.js:5553`
-- `static/js/emailLibrary.js:7187`
-- `static/js/emailLibrary.js:7335`
-- `static/js/emailLibrary.js:8713`
-- `static/js/emailLibrary/utils.js:90`
+- `static/js/emailLibrary/aiReply.js:407`
+- `static/js/emailLibrary/index.js:6064`
+- `static/js/emailLibrary/reader.js:316`
+- `static/js/emailLibrary/reader.js:467`
+- `static/js/emailLibrary/utils.js:98`
 
-## `_parseTurnMeta` — function, line 99
+## `_parseTurnMeta` — function, line 107
 - **called from:**
-- `static/js/emailLibrary.js:6110`
-- `static/js/emailLibrary.js:6150`
-- `static/js/emailLibrary/utils.js:99`
+- `static/js/emailLibrary/bodyRender.js:469`
+- `static/js/emailLibrary/bodyRender.js:509`
+- `static/js/emailLibrary/utils.js:107`
 
-## `_formatBubbleDate` — function, line 118
+## `_formatBubbleDate` — function, line 126
 - **called from:**
-- `static/js/emailLibrary.js:6098`
-- `static/js/emailLibrary/utils.js:118`
+- `static/js/emailLibrary/bodyRender.js:457`
+- `static/js/emailLibrary/utils.js:126`
 
-## `_formatRecipients` — function, line 132
+## `_formatRecipients` — function, line 140
 - **called from:**
-- `static/js/emailLibrary.js:5084`
-- `static/js/emailLibrary/utils.js:132`
+- `static/js/emailLibrary/index.js:5487`
+- `static/js/emailLibrary/utils.js:140`
 
-## `_senderColor` — function, line 150
+## `_senderColor` — function, line 158
 - **called from:**
-- `static/js/emailInbox.js:583`
-- `static/js/emailInbox.js:1447`
-- `static/js/emailLibrary.js:899`
-- `static/js/emailLibrary.js:5093`
-- `static/js/emailLibrary.js:6163`
-- `static/js/emailLibrary/utils.js:150`
+- `static/js/emailInbox.js:600`
+- `static/js/emailInbox.js:1527`
+- `static/js/emailLibrary/bodyRender.js:522`
+- `static/js/emailLibrary/index.js:647`
+- `static/js/emailLibrary/index.js:5496`
+- `static/js/emailLibrary/utils.js:158`
 
-## `_initials` — function, line 162
+## `_initials` — function, line 170
 - **called from:**
-- `static/js/emailLibrary.js:6162`
-- `static/js/emailLibrary/utils.js:162`
+- `static/js/emailLibrary/bodyRender.js:521`
+- `static/js/emailLibrary/utils.js:170`
 
-## `_sanitizeHtmlOnce` — function, line 177
+## `_sanitizeHtmlOnce` — function, line 185
 - **called from:**
-- `static/js/emailLibrary/utils.js:177`
-- `static/js/emailLibrary/utils.js:243`
+- `static/js/emailLibrary/utils.js:185`
+- `static/js/emailLibrary/utils.js:251`
 
-## `_sanitizeHtml` — function, line 240
+## `_sanitizeHtml` — function, line 248
 - **called from:**
-- `static/js/emailLibrary.js:5829`
-- `static/js/emailLibrary.js:5847`
-- `static/js/emailLibrary.js:6175`
-- `static/js/emailLibrary.js:6205`
-- `static/js/emailLibrary.js:6213`
-- `static/js/emailLibrary.js:6215`
-- `static/js/emailLibrary/utils.js:240`
+- `static/js/emailLibrary/bodyRender.js:174`
+- `static/js/emailLibrary/bodyRender.js:192`
+- `static/js/emailLibrary/bodyRender.js:534`
+- `static/js/emailLibrary/bodyRender.js:564`
+- `static/js/emailLibrary/bodyRender.js:572`
+- `static/js/emailLibrary/bodyRender.js:574`
+- `static/js/emailLibrary/utils.js:248`

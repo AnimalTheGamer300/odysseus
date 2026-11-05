@@ -1,165 +1,302 @@
 # `static/js/skills.js` — definitions & call sites
 
-88 definitions (regex-based, best-effort).
+99 definitions (regex-based, best-effort).
 **Exports:** `default`, `loadSkills`, `openSkill`
 
-## `esc` — function, line 19
+## `esc` — function, line 34
 - **called from:**
-- `static/js/admin.js:20`
-- `static/js/admin.js:20`
-- `static/js/admin.js:53`
-- `static/js/admin.js:55`
-- `static/js/admin.js:60`
-- `static/js/admin.js:61`
-- `static/js/admin.js:62`
-- `static/js/admin.js:80`
-- `static/js/admin.js:91`
-- `static/js/admin.js:104`
-- `static/js/admin.js:105`
-- `static/js/admin.js:109`
-- `static/js/admin.js:273`
-- `static/js/admin.js:274`
-- `static/js/admin.js:275`
-- `static/js/admin.js:525`
-- `static/js/admin.js:532`
-- `static/js/admin.js:534`
-- `static/js/admin.js:545`
-- `static/js/admin.js:545`
-- `static/js/admin.js:674`
-- `static/js/admin.js:679`
-- `static/js/admin.js:719`
-- `static/js/admin.js:719`
-- `static/js/admin.js:720`
-- `static/js/admin.js:722`
-- `static/js/admin.js:1022`
-- `static/js/admin.js:1200`
-- `static/js/admin.js:1203`
-- `static/js/admin.js:1206`
-- `static/js/admin.js:1933`
-- `static/js/admin.js:1948`
-- `static/js/admin.js:1949`
-- `static/js/admin.js:1951`
-- `static/js/admin.js:1953`
-- `static/js/admin.js:2081`
-- `static/js/admin.js:2156`
-- `static/js/admin.js:2157`
-- `static/js/admin.js:2158`
-- `static/js/admin.js:2158`
-- `static/js/admin.js:2390`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2417`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2436`
-- `static/js/admin.js:2542`
-- `static/js/admin.js:2543`
-- `static/js/admin.js:2544`
-- `static/js/admin.js:2545`
-- `static/js/admin.js:2545`
-- `static/js/admin.js:2558`
-- `static/js/admin.js:2561`
-- `static/js/admin.js:2561`
-- `static/js/admin.js:2562`
-- `static/js/admin.js:2563`
-- `static/js/admin.js:2566`
-- `static/js/admin.js:2567`
-- `static/js/admin.js:2569`
-- … +443 more (grep the name in repo)
+- `static/js/admin.js:28`
+- `static/js/admin.js:28`
+- `static/js/admin.js:86`
+- `static/js/admin.js:88`
+- `static/js/admin.js:93`
+- `static/js/admin.js:94`
+- `static/js/admin.js:96`
+- `static/js/admin.js:114`
+- `static/js/admin.js:125`
+- `static/js/admin.js:138`
+- `static/js/admin.js:139`
+- `static/js/admin.js:143`
+- `static/js/admin.js:330`
+- `static/js/admin.js:331`
+- `static/js/admin.js:332`
+- `static/js/admin.js:648`
+- `static/js/admin.js:651`
+- `static/js/admin.js:655`
+- `static/js/admin.js:680`
+- `static/js/admin.js:769`
+- `static/js/admin.js:769`
+- `static/js/admin.js:771`
+- `static/js/admin.js:773`
+- `static/js/admin.js:777`
+- `static/js/admin.js:777`
+- `static/js/admin.js:836`
+- `static/js/admin.js:836`
+- `static/js/admin.js:838`
+- `static/js/admin.js:840`
+- `static/js/admin.js:841`
+- `static/js/admin.js:915`
+- `static/js/admin.js:1072`
+- `static/js/admin.js:1073`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1077`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1078`
+- `static/js/admin.js:1080`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1094`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1097`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1099`
+- `static/js/admin.js:1380`
+- `static/js/admin.js:1385`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1428`
+- `static/js/admin.js:1430`
+- `static/js/admin.js:1432`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1436`
+- `static/js/admin.js:1551`
+- `static/js/admin.js:1554`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1557`
+- `static/js/admin.js:1915`
+- `static/js/admin.js:2802`
+- … +576 more (grep the name in repo)
 
-## `_playSkillsCascade` — function, line 24
+## `_playSkillsCascade` — function, line 39
 - **called from:**
-- `static/js/skills.js:24`
-- `static/js/skills.js:892`
+- `static/js/skills.js:39`
+- `static/js/skills.js:1130`
 
-## `_fetchSkillMarkdown` — function, line 37
+## `_fetchSkillMarkdown` — function, line 52
 - **called from:**
-- `static/js/skills.js:37`
-- `static/js/skills.js:55`
-- `static/js/skills.js:1021`
+- `static/js/skills.js:52`
+- `static/js/skills.js:70`
+- `static/js/skills.js:1264`
 
-## `_preloadVisibleMarkdown` — function, line 48
+## `_preloadVisibleMarkdown` — function, line 63
 - **called from:**
-- `static/js/skills.js:48`
+- `static/js/skills.js:63`
 
-## `apply` — arrow, line 53
+## `apply` — arrow, line 68
 - **called from:**
-- `static/app.js:199`
-- `static/js/admin.js:1765`
-- `static/js/admin.js:1769`
+- `tests/test_review_calendar_invitation.py:52`
+- `tests/test_review_calendar_invitation.py:54`
+- `tests/test_review_calendar_invitation.py:60`
+- `tests/test_review_calendar_invitation.py:61`
+- `tests/test_review_calendar_invitation.py:70`
+- `tests/test_review_calendar_invitation.py:71`
+- `tests/test_review_calendar_invitation.py:78`
+- `tests/test_review_calendar_invitation.py:79`
+- `tests/test_review_calendar_invitation.py:81`
+- `tests/test_review_calendar_invitation.py:89`
+- `tests/test_review_calendar_invitation.py:109`
+- `tests/test_review_calendar_invitation.py:111`
+- `tests/test_review_calendar_invitation.py:173`
+- `tests/test_review_calendar_invitation.py:174`
+- `tests/test_review_calendar_invitation.py:176`
+- `tests/test_review_calendar_invitation.py:184`
+- `tests/test_review_calendar_invitation.py:185`
+- `tests/test_review_calendar_invitation.py:192`
+- `tests/test_review_calendar_invitation.py:201`
+- `tests/test_review_calendar_invitation.py:202`
+- `tests/test_review_calendar_invitation.py:209`
+- `tests/test_review_calendar_invitation.py:210`
+- `tests/test_review_calendar_invitation.py:211`
+- `static/app.js:207`
+- `static/js/admin.js:2634`
+- `static/js/admin.js:2638`
+- `static/js/calendar.js:1515`
 - `static/js/composerHistoryRecall.js:175`
 - `static/js/composerHistoryRecall.js:189`
 - `static/js/composerHistoryRecall.js:193`
 - `static/js/cookbookSchedule.js:22`
-- `static/js/document.js:812`
-- `static/js/document.js:821`
-- `static/js/document.js:6225`
-- `static/js/sessions.js:38`
-- `static/js/settings.js:194`
-- `static/js/settings.js:213`
-- `static/js/skills.js:54`
-- `static/js/theme.js:775`
-- `static/js/theme.js:780`
-- `static/js/ui.js:587`
+- `static/js/document.js:1725`
+- `static/js/document.js:1734`
+- `static/js/document.js:10179`
+- `static/js/editor/fx/cube-lut.js:2`
+- `static/js/editor/panel-visibility.js:81`
+- `static/js/editor/panel-visibility.js:137`
+- `static/js/editor/panel-visibility.js:150`
+- `static/js/editor/panel-visibility.js:158`
+- `static/js/editor/tools/perspective-crop.js:87`
+- `static/js/editor/tools/perspective-crop.js:90`
+- `static/js/galleryEditor.js:6770`
+- `static/js/galleryEditor.js:10650`
+- `static/js/galleryEditor.js:10666`
+- `static/js/galleryEditor.js:11478`
+- `static/js/sessions.js:40`
+- `static/js/settings.js:130`
+- `static/js/settings.js:149`
+- `static/js/skills.js:69`
+- `static/js/theme.js:831`
+- `static/js/theme.js:836`
+- `static/js/ui.js:653`
+- `static/js/ui.js:656`
+- `static/js/ui.js:757`
 
-## `_collapsedSections` — arrow, line 62
+## `_collapsedSections` — arrow, line 77
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_saveCollapsedSections` — function, line 69
+## `_saveCollapsedSections` — function, line 84
 - **called from:**
-- `static/js/skills.js:69`
-- `static/js/skills.js:864`
+- `static/js/skills.js:84`
+- `static/js/skills.js:1102`
 
-## `_applySectionCollapse` — function, line 72
+## `_applySectionCollapse` — function, line 87
 - **called from:**
-- `static/js/skills.js:72`
-- `static/js/skills.js:865`
-- `static/js/skills.js:884`
+- `static/js/skills.js:87`
+- `static/js/skills.js:1103`
+- `static/js/skills.js:1122`
 
-## `loadSkills` — function, line 82
+## `loadSkills` — function, line 97
 - **called from:**
-- `static/js/memory.js:1480`
-- `static/js/memory.js:1480`
-- `static/js/skills.js:82`
-- `static/js/skills.js:149`
-- `static/js/skills.js:153`
-- `static/js/skills.js:593`
-- `static/js/skills.js:604`
-- `static/js/skills.js:1071`
-- `static/js/skills.js:1096`
-- `static/js/skills.js:1108`
-- `static/js/skills.js:1527`
-- `static/js/skills.js:1755`
-- `static/js/skills.js:1814`
-- `static/js/skills.js:1834`
-- `static/js/skills.js:1898`
-- `static/js/skills.js:1923`
-- `static/js/skills.js:1974`
-- `static/js/skills.js:2025`
+- `static/js/memory.js:278`
+- `static/js/memory.js:279`
+- `static/js/memory.js:1618`
+- `static/js/memory.js:1618`
+- `static/js/skills.js:97`
+- `static/js/skills.js:199`
+- `static/js/skills.js:200`
+- `static/js/skills.js:748`
+- `static/js/skills.js:759`
+- `static/js/skills.js:1345`
+- `static/js/skills.js:1370`
+- `static/js/skills.js:1382`
+- `static/js/skills.js:1835`
+- `static/js/skills.js:2070`
+- `static/js/skills.js:2132`
+- `static/js/skills.js:2152`
+- `static/js/skills.js:2216`
+- `static/js/skills.js:2241`
+- `static/js/skills.js:2292`
+- `static/js/skills.js:2361`
 
-## `_focusSkillRow` — function, line 130
+## `_resetSkillDeepLinkFilters` — function, line 147
 - **called from:**
-- `static/js/skills.js:112`
-- `static/js/skills.js:130`
+- `static/js/skills.js:147`
+- `static/js/skills.js:193`
 
-## `openSkill` — function, line 144
+## `_decodeSkillAnchorName` — function, line 164
 - **called from:**
-- `static/js/skills.js:144`
-- `static/js/skills.js:1926`
+- `static/js/skills.js:164`
+- `static/js/skills.js:170`
+- `static/js/skills.js:191`
 
-## `updateCount` — function, line 165
+## `_focusSkillRow` — function, line 169
 - **called from:**
-- `static/js/skills.js:110`
-- `static/js/skills.js:165`
+- `static/js/skills.js:129`
+- `static/js/skills.js:169`
+- `static/js/skills.js:175`
+- `static/js/skills.js:202`
 
-## `_sortSkills` — function, line 172
+## `focus` — arrow, line 172
 - **called from:**
-- `static/js/skills.js:172`
-- `static/js/skills.js:621`
+- `static/app.js:296`
+- `static/app.js:635`
+- `static/app.js:2134`
+- `static/app.js:2167`
+- `static/app.js:3455`
+- `static/app.js:4161`
+- `static/app.js:4214`
+- `static/app.js:4277`
+- `static/app.js:4589`
+- `static/js/admin.js:46`
+- `static/js/admin.js:1226`
+- `static/js/admin.js:1242`
+- `static/js/admin.js:1576`
+- `static/js/admin.js:2146`
+- `static/js/admin.js:2529`
+- `static/js/admin.js:3221`
+- `static/js/admin.js:3222`
+- `static/js/calendar.js:570`
+- `static/js/calendar.js:2311`
+- `static/js/calendar.js:2657`
+- `static/js/calendar.js:2672`
+- `static/js/calendar.js:2868`
+- `static/js/calendar.js:3246`
+- `static/js/calendar.js:3788`
+- `static/js/calendar.js:3966`
+- `static/js/calendar.js:4010`
+- `static/js/calendar.js:4012`
+- `static/js/chat.js:6823`
+- `static/js/chat.js:6824`
+- `static/js/chat.js:8009`
+- `static/js/chat.js:8009`
+- `static/js/chat.js:8162`
+- `static/js/chat.js:9089`
+- `static/js/chatRenderer.js:786`
+- `static/js/chatRenderer.js:798`
+- `static/js/chatRenderer.js:2112`
+- `static/js/chatRenderer.js:2277`
+- `static/js/chatRenderer.js:3205`
+- `static/js/chatStream.js:290`
+- `static/js/chatStream.js:346`
+- `static/js/codeRunner.js:68`
+- `static/js/codeRunner.js:124`
+- `static/js/colorPicker.js:303`
+- `static/js/compare/index.js:639`
+- `static/js/compare/index.js:727`
+- `static/js/compare/index.js:1115`
+- `static/js/compare/index.js:1416`
+- `static/js/compare/index.js:1496`
+- `static/js/compare/panes.js:269`
+- `static/js/compare/panes.js:660`
+- `static/js/compare/panes.js:1173`
+- `static/js/compare/selector.js:473`
+- `static/js/compare/selector.js:479`
+- `static/js/compare/selector.js:1051`
+- `static/js/composerHistoryRecall.js:213`
+- `static/js/cookbook-diagnosis.js:448`
+- `static/js/cookbook-diagnosis.js:466`
+- `static/js/cookbook-diagnosis.js:490`
+- `static/js/cookbook-diagnosis.js:540`
+- `static/js/cookbook-hwfit.js:1541`
+- … +208 more (grep the name in repo)
 
-## `_matches` — function, line 186
+## `openSkill` — function, line 190
 - **called from:**
+- `static/js/skills.js:190`
+- `static/js/skills.js:2244`
+
+## `updateCount` — function, line 217
+- **called from:**
+- `static/js/skills.js:127`
+- `static/js/skills.js:217`
+
+## `_summaryChip` — function, line 226
+- **called from:**
+- `static/js/skills.js:226`
+- `static/js/skills.js:244`
+- `static/js/skills.js:245`
+- `static/js/skills.js:246`
+- `static/js/skills.js:247`
+
+## `_renderSkillsSummary` — function, line 232
+- **called from:**
+- `static/js/skills.js:223`
+- `static/js/skills.js:232`
+- `static/js/skills.js:844`
+
+## `_sortSkills` — function, line 252
+- **called from:**
+- `static/js/skills.js:252`
+- `static/js/skills.js:788`
+- `static/js/skills.js:801`
+
+## `_groupDuplicateSkills` — function, line 276
+- **called from:**
+- `static/js/skills.js:276`
+- `static/js/skills.js:788`
+
+## `_matches` — function, line 304
+- **called from:**
+- `src/fixture_email.py:134`
 - `tests/test_keybind_altgr_js.py:164`
 - `tests/test_keybind_altgr_js.py:170`
 - `tests/test_keybind_altgr_js.py:177`
@@ -168,358 +305,394 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_redos_cal_extract.py:30`
 - `tests/test_redos_cal_extract.py:34`
 - `tests/test_redos_cal_extract.py:41`
-- `static/js/calendar.js:323`
-- `static/js/calendar.js:329`
-- `static/js/skills.js:186`
-- `static/js/skills.js:610`
+- `static/js/calendar.js:333`
+- `static/js/calendar.js:339`
+- `static/js/skills.js:304`
+- `static/js/skills.js:766`
+- `static/js/skills.js:794`
 
-## `_statusPill` — function, line 197
-- **called from:**
-- `static/js/skills.js:197`
-- `static/js/skills.js:703`
-- `static/js/skills.js:1559`
-
-## `_sourcePill` — function, line 208
-- **called from:**
-- `static/js/skills.js:208`
-- `static/js/skills.js:704`
-
-## `_modelShortName` — function, line 214
-- **called from:**
-- `static/js/skills.js:214`
-
-## `_skillTokens` — function, line 218
-- **called from:**
-- `static/js/skills.js:218`
-- `static/js/skills.js:231`
-- `static/js/skills.js:231`
-
-## `_skillSimilarity` — function, line 230
-- **called from:**
-- `static/js/skills.js:230`
-- `static/js/skills.js:270`
-
-## `_baseSkillName` — function, line 238
-- **called from:**
-- `static/js/skills.js:238`
-- `static/js/skills.js:270`
-- `static/js/skills.js:270`
-
-## `_scoreDuplicateKeeper` — function, line 242
-- **called from:**
-- `static/js/skills.js:242`
-- `static/js/skills.js:287`
-- `static/js/skills.js:287`
-
-## `_duplicateMeta` — function, line 252
-- **called from:**
-- `static/js/skills.js:252`
-- `static/js/skills.js:661`
-
-## `find` — arrow, line 256
-- **called from:**
-- `mcp_servers/email_server.py:1592`
-- `routes/calendar_routes.py:142`
-- `routes/contacts/contacts_routes.py:317`
-- `routes/contacts/contacts_routes.py:318`
-- `routes/contacts/contacts_routes.py:496`
-- `routes/session_routes.py:1490`
-- `routes/shell_routes.py:482`
-- `routes/shell_routes.py:483`
-- `routes/skills_routes.py:211`
-- `routes/skills_routes.py:320`
-- `routes/skills_routes.py:408`
-- `scripts/agent_migration_manifest.py:353`
-- `scripts/migrate_searxng_settings.py:47`
-- `services/memory/memory_extractor.py:411`
-- `services/memory/memory_extractor.py:772`
-- `services/memory/skill_extractor.py:85`
-- `services/memory/skill_extractor.py:94`
-- `services/memory/skill_format.py:157`
-- `services/search/content.py:81`
-- `services/search/content.py:84`
-- `services/search/content.py:97`
-- `services/search/content.py:100`
-- `services/search/content.py:103`
-- `services/search/content.py:160`
-- `services/search/content.py:160`
-- `services/search/content.py:502`
-- `services/search/content.py:546`
-- `src/agent_loop.py:1438`
-- `src/agent_loop.py:1442`
-- `src/agent_loop.py:2016`
-- `src/agent_loop.py:6461`
-- `src/agent_loop.py:6463`
-- `src/agent_tools/document_tools.py:194`
-- `src/builtin_actions.py:610`
-- `src/builtin_actions.py:2739`
-- `src/builtin_actions.py:2743`
-- `src/deep_research.py:857`
-- `src/llm_core.py:3655`
-- `src/llm_core.py:3663`
-- `src/llm_core.py:3678`
-- `src/session_actions.py:207`
-- `src/session_search.py:70`
-- `src/tool_parsing.py:986`
-- `src/tool_parsing.py:990`
-- `src/tool_parsing.py:993`
-- `src/tool_parsing.py:1008`
-- `src/tool_parsing.py:1012`
-- `src/tool_parsing.py:1027`
-- `src/tool_parsing.py:1031`
-- `src/tool_parsing.py:1035`
-- `src/tool_schemas.py:876`
-- `src/tool_schemas.py:879`
-- `src/tool_schemas.py:882`
-- `tests/test_agent_loop.py:473`
-- `tests/test_agent_loop.py:474`
-- `tests/test_agent_loop.py:484`
-- `tests/test_app_config_shared_fetch_js.py:341`
-- `tests/test_app_config_shared_fetch_js.py:342`
-- `tests/test_app_config_shared_fetch_js.py:343`
-- `tests/test_app_config_shared_fetch_js.py:363`
-- … +361 more (grep the name in repo)
-
-## `unite` — arrow, line 261
-- **called from:**
-- `static/js/skills.js:271`
-
-## `_auditModelPills` — function, line 299
-- **called from:**
-- `static/js/skills.js:299`
-- `static/js/skills.js:705`
-- `static/js/skills.js:1569`
-
-## `_necessityKind` — function, line 315
+## `_skillTagPills` — function, line 315
 - **called from:**
 - `static/js/skills.js:315`
-- `static/js/skills.js:327`
-- `static/js/skills.js:1776`
+- `static/js/skills.js:818`
+- `static/js/skills.js:918`
 
-## `_necessityPill` — function, line 326
+## `_renderSkillTagChips` — function, line 321
 - **called from:**
-- `static/js/skills.js:326`
-- `static/js/skills.js:706`
-- `static/js/skills.js:1569`
+- `static/js/skills.js:321`
+- `static/js/skills.js:845`
 
-## `_duplicatePriorityPill` — function, line 341
+## `_statusPill` — function, line 325
 - **called from:**
-- `static/js/skills.js:341`
-- `static/js/skills.js:707`
+- `static/js/skills.js:325`
+- `static/js/skills.js:510`
+- `static/js/skills.js:926`
+- `static/js/skills.js:1870`
 
-## `_auditMarks` — function, line 352
+## `_sourcePill` — function, line 335
 - **called from:**
-- `static/js/skills.js:352`
-- `static/js/skills.js:708`
+- `static/js/skills.js:335`
+- `static/js/skills.js:816`
+- `static/js/skills.js:915`
+- `static/js/skills.js:921`
 
-## `_auditDot` — function, line 367
+## `_modelShortName` — function, line 344
 - **called from:**
-- `static/js/skills.js:367`
-- `static/js/skills.js:697`
+- `static/js/skills.js:344`
 
-## `_isDraftsFilter` — function, line 369
+## `_skillTokens` — function, line 348
 - **called from:**
-- `static/js/skills.js:369`
+- `static/js/skills.js:348`
+- `static/js/skills.js:361`
+- `static/js/skills.js:361`
 
-## `_confColor` — function, line 373
+## `_skillSimilarity` — function, line 360
 - **called from:**
-- `static/js/skills.js:373`
-- `static/js/skills.js:680`
-- `static/js/skills.js:1303`
-- `static/js/skills.js:1552`
+- `static/js/skills.js:360`
+- `static/js/skills.js:400`
 
-## `_svg` — function, line 386
+## `_baseSkillName` — function, line 368
 - **called from:**
-- `static/js/cookbook-diagnosis.js:41`
-- `static/js/cookbook-diagnosis.js:44`
-- `static/js/cookbook-diagnosis.js:47`
-- `static/js/cookbook-diagnosis.js:50`
-- `static/js/cookbook-diagnosis.js:53`
+- `static/js/skills.js:368`
+- `static/js/skills.js:400`
+- `static/js/skills.js:400`
+
+## `_scoreDuplicateKeeper` — function, line 372
+- **called from:**
+- `static/js/skills.js:372`
+- `static/js/skills.js:417`
+- `static/js/skills.js:417`
+
+## `_duplicateMeta` — function, line 382
+- **called from:**
+- `static/js/skills.js:277`
+- `static/js/skills.js:382`
+- `static/js/skills.js:877`
+
+## `find` — arrow, line 386
+- **called from:**
+- `mcp_servers/email_server.py:2783`
+- `routes/calendar_routes.py:154`
+- `routes/contacts/contacts_routes.py:388`
+- `routes/contacts/contacts_routes.py:389`
+- `routes/contacts/contacts_routes.py:610`
+- `routes/editor_agent_routes.py:1206`
+- `routes/email/email_routes.py:1581`
+- `routes/email/email_routes.py:1584`
+- `routes/session_routes.py:1622`
+- `routes/shell_routes.py:549`
+- `routes/shell_routes.py:550`
+- `scripts/agent_migration_manifest.py:353`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:141`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:65`
+- `scripts/migrate_searxng_settings.py:47`
+- `services/memory/memory_extractor.py:568`
+- `services/memory/memory_extractor.py:1069`
+- `services/memory/skill_extractor.py:89`
+- `services/memory/skill_extractor.py:98`
+- `services/memory/skill_format.py:166`
+- `services/search/content.py:120`
+- `services/search/content.py:123`
+- `services/search/content.py:136`
+- `services/search/content.py:139`
+- `services/search/content.py:142`
+- `services/search/content.py:189`
+- `services/search/content.py:190`
+- `services/search/content.py:192`
+- `services/search/content.py:262`
+- `services/search/content.py:262`
+- `services/search/content.py:466`
+- `services/search/content.py:470`
+- `services/search/content.py:485`
+- `services/search/content.py:485`
+- `services/search/content.py:515`
+- `services/skills/evaluation.py:77`
+- `services/skills/evaluation.py:300`
+- `services/skills/evaluation.py:395`
+- `services/skills/publication.py:187`
+- `services/skills/publication.py:187`
+- `services/skills/publication.py:197`
+- `src/agent_loop.py:2286`
+- `src/agent_loop.py:2626`
+- `src/agent_loop.py:2637`
+- `src/agent_loop.py:2642`
+- `src/agent_loop.py:4872`
+- `src/agent_loop.py:5265`
+- `src/agent_loop.py:5266`
+- `src/agent_loop.py:5273`
+- `src/agent_loop.py:5281`
+- `src/agent_loop.py:5284`
+- `src/agent_loop.py:5356`
+- `src/agent_loop.py:5359`
+- `src/agent_loop.py:5362`
+- `src/agent_loop.py:5410`
+- `src/agent_loop.py:5423`
+- `src/agent_loop.py:5435`
+- `src/agent_loop.py:5442`
+- `src/agent_loop.py:5534`
+- `src/agent_loop.py:5543`
+- … +618 more (grep the name in repo)
+
+## `unite` — arrow, line 391
+- **called from:**
+- `services/skills/publication.py:194`
+- `static/js/skills.js:401`
+
+## `_auditModelPills` — function, line 429
+- **called from:**
+- `static/js/skills.js:429`
+- `static/js/skills.js:924`
+- `static/js/skills.js:1880`
+
+## `_necessityPill` — function, line 445
+- **called from:**
+- `static/js/skills.js:445`
+- `static/js/skills.js:922`
+- `static/js/skills.js:1880`
+
+## `_duplicatePriorityPill` — function, line 460
+- **called from:**
+- `static/js/skills.js:460`
+- `static/js/skills.js:923`
+
+## `_auditMarks` — function, line 472
+- **called from:**
+- `static/js/skills.js:472`
+- `static/js/skills.js:511`
+
+## `_auditDot` — function, line 484
+- **called from:**
+- `static/js/skills.js:484`
+- `static/js/skills.js:911`
+
+## `_isDraftsFilter` — function, line 486
+- **called from:**
+- `static/js/skills.js:486`
+
+## `_turnSavingsHtml` — function, line 488
+- **called from:**
+- `static/js/skills.js:488`
+- `static/js/skills.js:967`
+
+## `_skillStatsHtml` — function, line 509
+- **called from:**
+- `static/js/skills.js:509`
+- `static/js/skills.js:925`
+- `static/js/skills.js:1863`
+
+## `_skillUsageHtml` — function, line 514
+- **called from:**
+- `static/js/skills.js:514`
+- `static/js/skills.js:918`
+
+## `_svg` — function, line 527
+- **called from:**
 - `static/js/cookbook-diagnosis.js:56`
 - `static/js/cookbook-diagnosis.js:59`
 - `static/js/cookbook-diagnosis.js:62`
-- `static/js/skills.js:386`
-- `static/js/skills.js:400`
-- `static/js/skills.js:761`
-- `static/js/skills.js:773`
+- `static/js/cookbook-diagnosis.js:65`
+- `static/js/cookbook-diagnosis.js:68`
+- `static/js/cookbook-diagnosis.js:71`
+- `static/js/cookbook-diagnosis.js:74`
+- `static/js/cookbook-diagnosis.js:77`
+- `static/js/skills.js:527`
+- `static/js/skills.js:549`
+- `static/js/skills.js:1003`
+- `static/js/skills.js:1015`
 
-## `_openSkillMenu` — function, line 393
+## `_openSkillMenu` — function, line 534
 - **called from:**
-- `static/js/skills.js:393`
+- `static/js/skills.js:534`
+- `static/js/skills.js:937`
+
+## `mk` — arrow, line 546
+- **called from:**
+- `static/js/chat.js:7832`
+- `static/js/chat.js:7833`
+- `static/js/chat.js:7834`
+- `static/js/cookbookServe.js:2781`
+- `static/js/cookbookServe.js:2789`
+- `static/js/cookbookServe.js:2794`
+- `static/js/cookbookServe.js:2795`
+- `static/js/cookbookServe.js:2841`
+- `static/js/cookbookServe.js:2842`
+- `static/js/documentLibrary.js:2422`
+- `static/js/documentLibrary.js:2423`
+- `static/js/documentLibrary.js:2865`
+- `static/js/documentLibrary.js:2866`
+- `static/js/documentLibrary.js:2867`
+- `static/js/documentLibrary.js:2868`
+- `static/js/skills.js:565`
+- `static/js/skills.js:574`
+
+## `_buildBuiltinCards` — function, line 615
+- **called from:**
+- `static/js/skills.js:615`
+
+## `_expandBuiltinCard` — function, line 685
+- **called from:**
+- `static/js/skills.js:679`
+- `static/js/skills.js:685`
+
+## `_toggleBuiltinEdit` — function, line 719
+- **called from:**
+- `static/js/skills.js:661`
 - `static/js/skills.js:719`
 
-## `mk` — arrow, line 397
+## `_saveBuiltinEdit` — function, line 736
 - **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
-- `static/js/cookbookServe.js:2709`
-- `static/js/cookbookServe.js:2717`
-- `static/js/cookbookServe.js:2722`
-- `static/js/cookbookServe.js:2723`
-- `static/js/cookbookServe.js:2769`
-- `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
-- `static/js/skills.js:404`
-- `static/js/skills.js:405`
-- `static/js/skills.js:420`
-- `static/js/skills.js:424`
-- `static/js/skills.js:426`
-- `static/js/skills.js:427`
+- `static/js/skills.js:722`
+- `static/js/skills.js:736`
 
-## `_buildBuiltinCards` — function, line 467
+## `_revertBuiltin` — function, line 752
 - **called from:**
-- `static/js/skills.js:467`
-- `static/js/skills.js:879`
+- `static/js/skills.js:656`
+- `static/js/skills.js:752`
 
-## `_expandBuiltinCard` — function, line 538
+## `_getFilteredSkills` — function, line 763
 - **called from:**
-- `static/js/skills.js:532`
-- `static/js/skills.js:538`
+- `static/js/skills.js:763`
+- `static/js/skills.js:850`
+- `static/js/skills.js:1142`
+- `static/js/skills.js:2034`
+- `static/js/skills.js:2159`
 
-## `_toggleBuiltinEdit` — function, line 564
+## `_getFilteredBuiltinSkills` — function, line 791
 - **called from:**
-- `static/js/skills.js:514`
-- `static/js/skills.js:564`
+- `static/js/skills.js:791`
+- `static/js/skills.js:851`
 
-## `_saveBuiltinEdit` — function, line 581
+## `_buildTrackedBuiltinSkillCards` — function, line 804
 - **called from:**
-- `static/js/skills.js:567`
-- `static/js/skills.js:581`
+- `static/js/skills.js:804`
+- `static/js/skills.js:851`
 
-## `_revertBuiltin` — function, line 597
+## `renderSkillsList` — function, line 841
 - **called from:**
-- `static/js/skills.js:509`
-- `static/js/skills.js:597`
+- `static/js/skills.js:102`
+- `static/js/skills.js:126`
+- `static/js/skills.js:563`
+- `static/js/skills.js:841`
+- `static/js/skills.js:1992`
+- `static/js/skills.js:2004`
+- `static/js/skills.js:2038`
+- `static/js/skills.js:2320`
+- `static/js/skills.js:2337`
 
-## `_getFilteredSkills` — function, line 608
+## `_lpCancel` — arrow, line 1061
 - **called from:**
-- `static/js/skills.js:608`
-- `static/js/skills.js:631`
-- `static/js/skills.js:904`
-- `static/js/skills.js:1489`
-- `static/js/skills.js:1723`
-- `static/js/skills.js:1841`
+- `static/js/cookbookRunning.js:2644`
+- `static/js/memory.js:1098`
+- `static/js/skills.js:1075`
 
-## `renderSkillsList` — function, line 624
+## `_mkSectionHeader` — arrow, line 1090
 - **called from:**
-- `static/js/skills.js:87`
-- `static/js/skills.js:109`
-- `static/js/skills.js:416`
-- `static/js/skills.js:624`
-- `static/js/skills.js:1681`
-- `static/js/skills.js:1693`
-- `static/js/skills.js:1727`
-- `static/js/skills.js:2001`
+- `static/js/skills.js:1111`
+- `static/js/skills.js:1118`
 
-## `_lpCancel` — arrow, line 823
-- **called from:**
-- `static/js/cookbookRunning.js:2588`
-- `static/js/memory.js:969`
-- `static/js/skills.js:837`
-
-## `_mkSectionHeader` — arrow, line 852
-- **called from:**
-- `static/js/skills.js:873`
-- `static/js/skills.js:880`
-
-## `AND` — class, line 920
+## `AND` — class, line 1158
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_collapseSkillCardEl` — function, line 923
+## `_collapseSkillCardEl` — function, line 1161
 - **called from:**
-- `static/js/skills.js:923`
-- `static/js/skills.js:938`
+- `static/js/skills.js:1161`
+- `static/js/skills.js:1177`
+- `static/js/skills.js:1188`
 
-## `_expandSkillCard` — function, line 933
+## `_expandSkillCard` — function, line 1172
 - **called from:**
-- `static/js/skills.js:138`
-- `static/js/skills.js:421`
-- `static/js/skills.js:813`
-- `static/js/skills.js:933`
-- `static/js/skills.js:1200`
+- `static/js/skills.js:182`
+- `static/js/skills.js:566`
+- `static/js/skills.js:835`
+- `static/js/skills.js:1051`
+- `static/js/skills.js:1172`
+- `static/js/skills.js:1474`
 
-## `on` — class, line 950
+## `on` — class, line 1190
 - **called from:**
-- `static/js/chat.js:2034`
-- `static/js/compare/index.js:937`
-- `static/js/cookbook-hwfit.js:2477`
-- `static/js/gallery.js:2509`
+- `tests/test_editor_layer_scoped_actions_browser.py:851`
+- `static/js/chat.js:3092`
+- `static/js/compare/index.js:1050`
+- `static/js/cookbook-hwfit.js:2587`
+- `static/js/editor/tools/eyedropper.js:12`
+- `static/js/gallery.js:2869`
 - `static/js/streamingSegmenter.js:15`
-- `static/js/windowResize.js:208`
+- `static/js/windowResize.js:245`
 
-## `px` — arrow, line 980
+## `px` — arrow, line 1220
 - **called from:**
-- `static/js/editor/build/right-panel.js:37`
-- `static/js/skills.js:982`
-- `static/js/skills.js:982`
-- `static/js/skills.js:992`
-- `static/js/skills.js:992`
+- `static/js/editor/build/right-panel.js:43`
+- `static/js/skills.js:1222`
+- `static/js/skills.js:1222`
+- `static/js/skills.js:1232`
+- `static/js/skills.js:1232`
 
-## `_toggleSkillEdit` — function, line 1034
+## `_toggleSkillEdit` — function, line 1279
 - **called from:**
-- `static/js/skills.js:422`
-- `static/js/skills.js:742`
-- `static/js/skills.js:1034`
-- `static/js/skills.js:1401`
+- `static/js/skills.js:567`
+- `static/js/skills.js:983`
+- `static/js/skills.js:1279`
+- `static/js/skills.js:1681`
 
-## `_saveSkillEdit` — function, line 1057
+## `_saveSkillEdit` — function, line 1331
 - **called from:**
-- `static/js/skills.js:1040`
-- `static/js/skills.js:1057`
+- `static/js/skills.js:1292`
+- `static/js/skills.js:1331`
 
-## `_deleteSkill` — function, line 1077
+## `_deleteSkill` — function, line 1351
 - **called from:**
-- `static/js/skills.js:427`
-- `static/js/skills.js:737`
-- `static/js/skills.js:1077`
-- `static/js/skills.js:1400`
+- `static/js/skills.js:574`
+- `static/js/skills.js:978`
+- `static/js/skills.js:1351`
+- `static/js/skills.js:1680`
 
-## `_setSkillStatus` — function, line 1101
+## `_setSkillStatus` — function, line 1375
 - **called from:**
-- `static/js/skills.js:404`
-- `static/js/skills.js:405`
-- `static/js/skills.js:749`
-- `static/js/skills.js:754`
-- `static/js/skills.js:1101`
-- `static/js/skills.js:1388`
+- `static/js/skills.js:990`
+- `static/js/skills.js:995`
+- `static/js/skills.js:1375`
+- `static/js/skills.js:1668`
 
-## `_fetchTestStatus` — function, line 1115
+## `_fetchTestStatus` — function, line 1389
 - **called from:**
-- `static/js/skills.js:1115`
-- `static/js/skills.js:1211`
-- `static/js/skills.js:1228`
-- `static/js/skills.js:1239`
+- `static/js/skills.js:1389`
+- `static/js/skills.js:1491`
+- `static/js/skills.js:1508`
+- `static/js/skills.js:1519`
 
-## `_renderTestLog` — function, line 1122
+## `_renderTestLog` — function, line 1396
 - **called from:**
-- `static/js/skills.js:1122`
-- `static/js/skills.js:1231`
-- `static/js/skills.js:1241`
+- `static/js/skills.js:1396`
+- `static/js/skills.js:1511`
+- `static/js/skills.js:1521`
 
-## `add` — arrow, line 1125
+## `add` — arrow, line 1399
 - **called from:**
 - `companion/pairing.py:196`
-- `core/database.py:524`
-- `core/database.py:2010`
-- `core/platform_compat.py:205`
-- `core/session_manager.py:416`
-- `core/session_manager.py:478`
-- `core/session_manager.py:807`
-- `core/session_manager.py:856`
-- `core/session_manager.py:1053`
-- `mcp_servers/email_server.py:552`
-- `mcp_servers/email_server.py:1665`
-- `mcp_servers/email_server.py:1706`
-- `mcp_servers/email_server.py:1707`
-- `mcp_servers/email_server.py:1828`
-- `mcp_servers/image_gen_server.py:143`
+- `core/database.py:554`
+- `core/database.py:2269`
+- `core/platform_compat.py:227`
+- `core/session_manager.py:418`
+- `core/session_manager.py:480`
+- `core/session_manager.py:714`
+- `core/session_manager.py:763`
+- `core/session_manager.py:950`
+- `mcp_servers/email_server.py:65`
+- `mcp_servers/email_server.py:582`
+- `mcp_servers/email_server.py:1027`
+- `mcp_servers/email_server.py:1261`
+- `mcp_servers/email_server.py:1345`
+- `mcp_servers/email_server.py:2037`
+- `mcp_servers/email_server.py:2224`
+- `mcp_servers/email_server.py:2859`
+- `mcp_servers/email_server.py:2905`
+- `mcp_servers/email_server.py:2906`
+- `mcp_servers/email_server.py:3075`
+- `mcp_servers/email_server.py:3435`
+- `mcp_servers/email_server.py:3441`
+- `mcp_servers/email_server.py:3502`
+- `mcp_servers/image_gen_server.py:144`
 - `mcp_servers/memory_server.py:190`
 - `mcp_servers/memory_server.py:219`
 - `routes/api_token_routes.py:135`
@@ -528,347 +701,349 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/backup_routes.py:176`
 - `routes/backup_routes.py:178`
 - `routes/backup_routes.py:179`
-- `routes/calendar_routes.py:190`
-- `routes/calendar_routes.py:316`
-- `routes/calendar_routes.py:324`
-- `routes/calendar_routes.py:1253`
-- `routes/calendar_routes.py:1374`
-- `routes/calendar_routes.py:1441`
-- `routes/calendar_routes.py:1540`
-- `routes/chat_helpers.py:86`
-- `routes/chat_routes.py:1688`
-- `routes/chat_routes.py:1742`
-- `routes/chatgpt_subscription_routes.py:54`
-- `routes/chatgpt_subscription_routes.py:79`
+- `routes/calendar_routes.py:202`
+- `routes/calendar_routes.py:330`
+- `routes/calendar_routes.py:338`
+- `routes/calendar_routes.py:760`
+- `routes/calendar_routes.py:1390`
+- `routes/calendar_routes.py:1545`
+- `routes/calendar_routes.py:1612`
+- `routes/calendar_routes.py:1713`
+- `routes/chat_helpers.py:371`
+- `routes/chat_routes.py:1744`
+- `routes/chat_routes.py:3587`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3924`
+- `routes/chatgpt_subscription_routes.py:91`
+- `routes/chatgpt_subscription_routes.py:155`
+- `routes/chatgpt_subscription_routes.py:185`
 - `routes/compare/compare_routes.py:218`
 - `routes/compare/compare_routes.py:313`
-- `routes/contacts/contacts_routes.py:476`
-- `routes/contacts/contacts_routes.py:604`
-- `routes/cookbook_routes.py:1579`
-- `routes/cookbook_routes.py:1916`
-- `routes/cookbook_routes.py:3006`
-- `routes/cookbook_routes.py:3788`
-- `routes/cookbook_routes.py:3855`
-- `routes/cookbook_routes.py:3971`
-- `routes/cookbook_routes.py:4058`
+- `routes/contacts/contacts_routes.py:590`
+- `routes/contacts/contacts_routes.py:718`
+- `routes/cookbook_routes.py:1479`
+- `routes/cookbook_routes.py:1837`
+- `routes/cookbook_routes.py:2885`
+- `routes/cookbook_routes.py:3694`
+- `routes/cookbook_routes.py:3761`
+- `routes/cookbook_routes.py:3877`
+- `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- `routes/device_flow.py:154`
-- `routes/document/document_routes.py:165`
-- `routes/document/document_routes.py:201`
-- `routes/document/document_routes.py:202`
-- `routes/document/document_routes.py:545`
-- `routes/document/document_routes.py:604`
-- `routes/document/document_routes.py:683`
-- `routes/document/document_routes.py:839`
-- `routes/editor_draft_routes.py:126`
-- `routes/email_helpers.py:1700`
-- `routes/email_helpers.py:1732`
-- `routes/email_helpers.py:1868`
-- `routes/email_pollers.py:810`
-- … +1237 more (grep the name in repo)
+- … +2017 more (grep the name in repo)
 
-## `decide` — arrow, line 1160
+## `decide` — arrow, line 1434
 - **called from:**
-- `static/js/skills.js:1186`
+- `static/js/skills.js:1460`
 
-## `_testSkill` — function, line 1199
+## `_testSkill` — function, line 1473
 - **called from:**
-- `static/js/skills.js:424`
-- `static/js/skills.js:774`
-- `static/js/skills.js:1172`
-- `static/js/skills.js:1199`
-- `static/js/skills.js:1402`
+- `static/js/skills.js:1016`
+- `static/js/skills.js:1446`
+- `static/js/skills.js:1473`
+- `static/js/skills.js:1682`
 
-## `_setCardRunning` — function, line 1258
+## `_setCardRunning` — function, line 1538
 - **called from:**
-- `static/js/skills.js:1091`
-- `static/js/skills.js:1232`
-- `static/js/skills.js:1238`
-- `static/js/skills.js:1244`
-- `static/js/skills.js:1258`
-- `static/js/skills.js:1595`
-- `static/js/skills.js:1600`
+- `static/js/skills.js:1365`
+- `static/js/skills.js:1512`
+- `static/js/skills.js:1518`
+- `static/js/skills.js:1524`
+- `static/js/skills.js:1538`
+- `static/js/skills.js:1906`
+- `static/js/skills.js:1911`
 
-## `_applyVerdictToHeader` — function, line 1285
+## `_applyVerdictToHeader` — function, line 1565
 - **called from:**
-- `static/js/skills.js:1248`
-- `static/js/skills.js:1285`
-- `static/js/skills.js:1384`
-- `static/js/skills.js:1548`
+- `static/js/skills.js:1528`
+- `static/js/skills.js:1565`
+- `static/js/skills.js:1664`
+- `static/js/skills.js:1856`
 
-## `_renderTestVerdict` — function, line 1358
+## `_renderTestVerdict` — function, line 1638
 - **called from:**
-- `static/js/skills.js:1194`
-- `static/js/skills.js:1358`
+- `static/js/skills.js:1468`
+- `static/js/skills.js:1638`
 
-## `_confirmAuditSkills` — function, line 1420
+## `_confirmAuditSkills` — function, line 1700
 - **called from:**
-- `static/js/skills.js:1420`
-- `static/js/skills.js:1500`
+- `static/js/skills.js:1700`
+- `static/js/skills.js:1808`
 
-## `cleanup` — function, line 1454
+## `cleanup` — function, line 1761
 - **called from:**
-- `static/js/calendar.js:2592`
-- `static/js/calendar.js:2629`
-- `static/js/calendar.js:2750`
-- `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
-- `static/js/codeRunner.js:262`
-- `static/js/codeRunner.js:283`
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
-- `static/js/compare/selector.js:877`
-- `static/js/compare/selector.js:910`
-- `static/js/compare/selector.js:914`
-- `static/js/compare/selector.js:963`
-- `static/js/compare/selector.js:1257`
-- `static/js/compare/selector.js:1282`
-- `static/js/compare/selector.js:1295`
-- `static/js/cookbookServe.js:1029`
-- `static/js/cookbookServe.js:1040`
-- `static/js/cookbookServe.js:1041`
-- `static/js/cookbookServe.js:1050`
-- `static/js/cookbookServe.js:1052`
-- `static/js/cookbookServe.js:1057`
-- `static/js/document.js:3847`
-- `static/js/document.js:3848`
-- `static/js/document.js:3849`
-- `static/js/document.js:4393`
-- `static/js/document.js:4400`
-- `static/js/document.js:4442`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
 - `static/js/dragSort.js:26`
-- `static/js/editor/slider-ux.js:179`
-- `static/js/editor/slider-ux.js:188`
-- `static/js/gallery.js:1665`
-- `static/js/gallery.js:1674`
-- `static/js/gallery.js:1818`
-- `static/js/gallery.js:1830`
-- `static/js/gallery.js:1834`
-- `static/js/galleryEditor.js:1863`
-- `static/js/galleryEditor.js:1952`
-- `static/js/galleryEditor.js:1987`
-- `static/js/galleryEditor.js:2663`
-- `static/js/galleryEditor.js:2664`
-- `static/js/galleryEditor.js:2667`
-- `static/js/galleryEditor.js:2668`
-- `static/js/galleryEditor.js:2670`
-- `static/js/galleryEditor.js:3958`
-- `static/js/galleryEditor.js:3969`
-- `static/js/galleryEditor.js:3971`
-- `static/js/galleryEditor.js:3972`
-- `static/js/galleryEditor.js:3975`
-- `static/js/settings.js:1928`
-- `static/js/settings.js:1938`
-- `static/js/settings.js:1969`
-- `static/js/skills.js:1454`
-- `static/js/skills.js:1463`
-- `static/js/skills.js:1464`
-- … +21 more (grep the name in repo)
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
 
-## `onOk` — function, line 1463
+## `onOk` — function, line 1770
 - **called from:**
-- `static/js/galleryEditor.js:3966`
-- `static/js/galleryEditor.js:3974`
-- `static/js/skills.js:1463`
-- `static/js/ui.js:665`
-- `static/js/ui.js:764`
-- `static/js/ui.js:785`
-
-## `onCancel` — function, line 1464
-- **called from:**
-- `static/js/cookbookServe.js:1040`
-- `static/js/documentLibrary.js:228`
-- `static/js/galleryEditor.js:3971`
-- `static/js/skills.js:1464`
-- `static/js/skills.js:1465`
-- `static/js/ui.js:667`
-- `static/js/ui.js:765`
-
-## `onBackdrop` — function, line 1465
-- **called from:**
-- `static/js/cookbookServe.js:1052`
-- `static/js/galleryEditor.js:3972`
-- `static/js/skills.js:1465`
-- `static/js/ui.js:668`
-- `static/js/ui.js:766`
-
-## `onKey` — function, line 1466
-- **called from:**
-- `static/js/cookbookServe.js:1053`
-- `static/js/document.js:6145`
-- `static/js/galleryEditor.js:3973`
-- `static/js/settings.js:1933`
-- `static/js/skills.js:1466`
-- `static/js/ui.js:669`
-- `static/js/ui.js:767`
-
-## `_auditAllSkills` — function, line 1482
-- **called from:**
-- `static/js/skills.js:118`
-- `static/js/skills.js:426`
-- `static/js/skills.js:1482`
-- `static/js/skills.js:1845`
-
-## `_findSkillCard` — function, line 1533
-- **called from:**
-- `static/js/skills.js:1533`
-- `static/js/skills.js:1586`
-- `static/js/skills.js:1597`
-
-## `_mergeSkillState` — function, line 1539
-- **called from:**
-- `static/js/skills.js:1539`
-- `static/js/skills.js:1584`
-
-## `_applySkillStateToHeader` — function, line 1545
-- **called from:**
-- `static/js/skills.js:1545`
-- `static/js/skills.js:1586`
-
-## `_applyAuditResults` — function, line 1577
-- **called from:**
-- `static/js/skills.js:1515`
-- `static/js/skills.js:1522`
-- `static/js/skills.js:1577`
-
-## `_highlightAuditCard` — function, line 1593
-- **called from:**
-- `static/js/skills.js:1516`
-- `static/js/skills.js:1523`
-- `static/js/skills.js:1526`
-- `static/js/skills.js:1593`
-- `static/js/skills.js:1656`
-
-## `_fetchAuditStatus` — function, line 1605
-- **called from:**
-- `static/js/skills.js:117`
-- `static/js/skills.js:1486`
-- `static/js/skills.js:1508`
-- `static/js/skills.js:1520`
-- `static/js/skills.js:1605`
-- `static/js/skills.js:1654`
-
-## `_renderAuditPanel` — function, line 1612
-- **called from:**
-- `static/js/skills.js:1514`
-- `static/js/skills.js:1521`
-- `static/js/skills.js:1612`
-- `static/js/skills.js:1655`
-
-## `_enterSelectMode` — function, line 1673
-- **called from:**
-- `static/js/notes.js:1329`
-- `static/js/notes.js:1456`
-- `static/js/sessions.js:863`
-- `static/js/sessions.js:1602`
-- `static/js/sessions.js:1660`
-- `static/js/sessions.js:1672`
-- `static/js/skills.js:414`
-- `static/js/skills.js:1673`
-- `static/js/skills.js:2004`
-
-## `_exitSelectMode` — function, line 1684
-- **called from:**
-- `static/js/gallery.js:2520`
-- `static/js/gallery.js:2523`
-- `static/js/gallery.js:2652`
-- `static/js/gallery.js:2691`
-- `static/js/gallery.js:2729`
-- `static/js/gallery.js:2757`
-- `static/js/gallery.js:2769`
-- `static/js/gallery.js:2787`
-- `static/js/notes.js:1329`
-- `static/js/notes.js:1342`
-- `static/js/notes.js:1356`
-- `static/js/notes.js:1369`
-- `static/js/notes.js:1416`
-- `static/js/notes.js:1467`
-- `static/js/sessions.js:1633`
-- `static/js/sessions.js:1659`
-- `static/js/sessions.js:1664`
-- `static/js/sessions.js:1679`
-- `static/js/sessions.js:1720`
-- `static/js/sessions.js:1741`
-- `static/js/skills.js:641`
-- `static/js/skills.js:1684`
-- `static/js/skills.js:1754`
-- `static/js/skills.js:1813`
-- `static/js/skills.js:1833`
-- `static/js/skills.js:1844`
-- `static/js/skills.js:2004`
-
-## `_updateBulkBar` — function, line 1696
-- **called from:**
-- `static/js/emailLibrary.js:1210`
-- `static/js/emailLibrary.js:1940`
-- `static/js/emailLibrary.js:3028`
-- `static/js/emailLibrary.js:3037`
-- `static/js/emailLibrary.js:3048`
-- `static/js/emailLibrary.js:3103`
-- `static/js/emailLibrary.js:5070`
-- `static/js/emailLibrary.js:5311`
-- `static/js/emailLibrary.js:8077`
-- `static/js/emailLibrary.js:8175`
-- `static/js/emailLibrary.js:8186`
-- `static/js/emailLibrary.js:8366`
-- `static/js/notes.js:1350`
-- `static/js/notes.js:1464`
-- `static/js/notes.js:1479`
-- `static/js/notes.js:2259`
-- `static/js/skills.js:907`
-- `static/js/skills.js:1680`
-- `static/js/skills.js:1696`
-- `static/js/skills.js:1726`
-
-## `_toggleSelectAll` — function, line 1720
-- **called from:**
-- `static/js/skills.js:1720`
-
-## `_bulkDelete` — function, line 1730
-- **called from:**
-- `static/js/gallery.js:2650`
-- `static/js/gallery.js:2683`
-- `static/js/skills.js:1730`
-
-## `_loadSkillApprovalThreshold` — function, line 1759
-- **called from:**
-- `static/js/skills.js:106`
-- `static/js/skills.js:1759`
-
-## `_selectedNonPassingSkills` — function, line 1770
-- **called from:**
-- `static/js/skills.js:1706`
+- `static/js/galleryEditor.js:13606`
+- `static/js/galleryEditor.js:13665`
 - `static/js/skills.js:1770`
-- `static/js/skills.js:1784`
+- `static/js/ui.js:844`
+- `static/js/ui.js:948`
+- `static/js/ui.js:969`
 
-## `_bulkDeleteNonPassing` — function, line 1783
+## `onCancel` — function, line 1771
 - **called from:**
-- `static/js/skills.js:1783`
+- `static/js/cookbookServe.js:1069`
+- `static/js/editor/direct-manipulation-session.js:70`
+- `static/js/galleryEditor.js:13624`
+- `static/js/skills.js:1771`
+- `static/js/skills.js:1772`
+- `static/js/ui.js:846`
+- `static/js/ui.js:949`
 
-## `_bulkApprove` — function, line 1818
+## `onBackdrop` — function, line 1772
 - **called from:**
-- `static/js/skills.js:1818`
+- `static/js/cookbookServe.js:1081`
+- `static/js/galleryEditor.js:13663`
+- `static/js/skills.js:1772`
+- `static/js/ui.js:847`
+- `static/js/ui.js:950`
 
-## `_bulkAudit` — function, line 1838
+## `onKey` — function, line 1773
 - **called from:**
-- `static/js/skills.js:1838`
+- `static/js/cookbookServe.js:1082`
+- `static/js/document.js:9403`
+- `static/js/document.js:9453`
+- `static/js/document.js:9491`
+- `static/js/editor/tools/perspective-crop.js:85`
+- `static/js/galleryEditor.js:13664`
+- `static/js/settings.js:1644`
+- `static/js/skills.js:1773`
+- `static/js/ui.js:848`
+- `static/js/ui.js:951`
 
-## `_showSkillSource` — function, line 1848
+## `_auditAllSkills` — function, line 1789
 - **called from:**
-- `static/js/skills.js:1848`
+- `static/js/skills.js:135`
+- `static/js/skills.js:1789`
+- `static/js/skills.js:2163`
 
-## `importSkillFromUrl` — function, line 1905
+## `_findSkillCard` — function, line 1841
 - **called from:**
-- `static/js/skills.js:1905`
+- `static/js/skills.js:1841`
+- `static/js/skills.js:1897`
+- `static/js/skills.js:1908`
+
+## `_mergeSkillState` — function, line 1847
+- **called from:**
+- `static/js/skills.js:1847`
+- `static/js/skills.js:1895`
+
+## `_applySkillStateToHeader` — function, line 1853
+- **called from:**
+- `static/js/skills.js:1853`
+- `static/js/skills.js:1897`
+
+## `_applyAuditResults` — function, line 1888
+- **called from:**
+- `static/js/skills.js:1823`
+- `static/js/skills.js:1830`
+- `static/js/skills.js:1888`
+
+## `_highlightAuditCard` — function, line 1904
+- **called from:**
+- `static/js/skills.js:1824`
+- `static/js/skills.js:1831`
+- `static/js/skills.js:1834`
+- `static/js/skills.js:1904`
+- `static/js/skills.js:1967`
+
+## `_fetchAuditStatus` — function, line 1916
+- **called from:**
+- `static/js/skills.js:134`
+- `static/js/skills.js:1793`
+- `static/js/skills.js:1816`
+- `static/js/skills.js:1828`
+- `static/js/skills.js:1916`
+- `static/js/skills.js:1965`
+
+## `_renderAuditPanel` — function, line 1923
+- **called from:**
+- `static/js/skills.js:1822`
+- `static/js/skills.js:1829`
+- `static/js/skills.js:1923`
+- `static/js/skills.js:1966`
+
+## `_enterSelectMode` — function, line 1984
+- **called from:**
+- `static/js/features/notes/index.js:142`
+- `static/js/features/notes/index.js:142`
+- `static/js/features/notes/ui/mobileReorder.js:28`
+- `static/js/features/notes/ui/panel.js:237`
+- `static/js/features/notes/ui/selection.js:8`
+- `static/js/sessions.js:1185`
+- `static/js/sessions.js:1940`
+- `static/js/sessions.js:1998`
+- `static/js/sessions.js:2010`
+- `static/js/skills.js:561`
 - `static/js/skills.js:1984`
+- `static/js/skills.js:2340`
 
-## `addSkill` — function, line 1934
+## `_exitSelectMode` — function, line 1995
 - **called from:**
-- `static/js/skills.js:1934`
-- `static/js/skills.js:2014`
+- `static/js/features/notes/index.js:143`
+- `static/js/features/notes/index.js:143`
+- `static/js/features/notes/ui/panel.js:237`
+- `static/js/features/notes/ui/panel.js:250`
+- `static/js/features/notes/ui/panel.js:297`
+- `static/js/features/notes/ui/selection.js:20`
+- `static/js/gallery.js:2880`
+- `static/js/gallery.js:2886`
+- `static/js/gallery.js:2903`
+- `static/js/gallery.js:3032`
+- `static/js/gallery.js:3074`
+- `static/js/gallery.js:3112`
+- `static/js/gallery.js:3140`
+- `static/js/gallery.js:3152`
+- `static/js/gallery.js:3170`
+- `static/js/sessions.js:1971`
+- `static/js/sessions.js:1997`
+- `static/js/sessions.js:2002`
+- `static/js/sessions.js:2017`
+- `static/js/sessions.js:2058`
+- `static/js/sessions.js:2079`
+- `static/js/skills.js:857`
+- `static/js/skills.js:1995`
+- `static/js/skills.js:2069`
+- `static/js/skills.js:2131`
+- `static/js/skills.js:2151`
+- `static/js/skills.js:2162`
+- `static/js/skills.js:2340`
+
+## `_updateBulkBar` — function, line 2007
+- **called from:**
+- `static/js/emailLibrary/index.js:1021`
+- `static/js/emailLibrary/index.js:1373`
+- `static/js/emailLibrary/index.js:1737`
+- `static/js/emailLibrary/index.js:2933`
+- `static/js/emailLibrary/index.js:2942`
+- `static/js/emailLibrary/index.js:2953`
+- `static/js/emailLibrary/index.js:3007`
+- `static/js/emailLibrary/index.js:3077`
+- `static/js/emailLibrary/index.js:5474`
+- `static/js/emailLibrary/index.js:5787`
+- `static/js/emailLibrary/menus.js:506`
+- `static/js/emailLibrary/menus.js:655`
+- `static/js/emailLibrary/menus.js:666`
+- `static/js/emailLibrary/menus.js:706`
+- `static/js/emailLibrary/menus.js:896`
+- `static/js/features/notes/index.js:144`
+- `static/js/features/notes/index.js:144`
+- `static/js/features/notes/ui/cardInteractions.js:144`
+- `static/js/features/notes/ui/selection.js:17`
+- `static/js/features/notes/ui/selection.js:32`
+- `static/js/features/notes/ui/selection.js:53`
+- `static/js/skills.js:1145`
+- `static/js/skills.js:1991`
+- `static/js/skills.js:2007`
+- `static/js/skills.js:2037`
+
+## `_toggleSelectAll` — function, line 2031
+- **called from:**
+- `static/js/skills.js:2031`
+
+## `_bulkDelete` — function, line 2041
+- **called from:**
+- `static/js/gallery.js:3031`
+- `static/js/gallery.js:3063`
+- `static/js/gallery.js:3066`
+- `static/js/skills.js:2041`
+
+## `_loadSkillApprovalThreshold` — function, line 2074
+- **called from:**
+- `static/js/skills.js:123`
+- `static/js/skills.js:2074`
+
+## `_selectedNonPassingSkills` — function, line 2085
+- **called from:**
 - `static/js/skills.js:2017`
+- `static/js/skills.js:2085`
+- `static/js/skills.js:2099`
+
+## `_bulkDeleteNonPassing` — function, line 2098
+- **called from:**
+- `static/js/skills.js:2098`
+
+## `_bulkApprove` — function, line 2136
+- **called from:**
+- `static/js/skills.js:2136`
+
+## `_bulkAudit` — function, line 2156
+- **called from:**
+- `static/js/skills.js:2156`
+
+## `_showSkillSource` — function, line 2166
+- **called from:**
+- `static/js/skills.js:2166`
+
+## `importSkillFromUrl` — function, line 2223
+- **called from:**
+- `static/js/skills.js:2223`
+- `static/js/skills.js:2302`
+
+## `addSkill` — function, line 2252
+- **called from:**
+- `static/js/skills.js:2252`
+- `static/js/skills.js:2350`
+- `static/js/skills.js:2353`

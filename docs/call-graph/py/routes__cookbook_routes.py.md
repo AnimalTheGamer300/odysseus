@@ -1,503 +1,517 @@
 # `routes/cookbook_routes.py` — definitions & call sites
 
-91 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+94 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_windows_local_pid_record_line` — function, line 76
+## `_windows_local_pid_record_line` — function, line 78
 - **called from:**
-- `routes/cookbook_routes.py:1015`
+- `routes/cookbook_routes.py:889`
 - `tests/test_cookbook_local_serve_pid_winpid.py:38`
 - `tests/test_cookbook_local_serve_pid_winpid.py:93`
 
-## `_append_mlx_image_server_script` — function, line 100
+## `_append_mlx_image_server_script` — function, line 102
 - **called from:**
-- `routes/cookbook_routes.py:2574`
+- `routes/cookbook_routes.py:2442`
 
-## `_venv_root_from_serve_cmd` — function, line 117
+## `_normalize_runtime_adapter` — function, line 119
 - **called from:**
-- `routes/cookbook_routes.py:137`
+- `routes/cookbook_routes.py:1887`
 
-## `_append_venv_nvidia_library_path_lines` — function, line 129
+## `_venv_root_from_serve_cmd` — function, line 129
 - **called from:**
-- `routes/cookbook_routes.py:2172`
+- `routes/cookbook_routes.py:149`
 
-## `_serve_port_from_cmd` — function, line 146
+## `_append_venv_nvidia_library_path_lines` — function, line 141
 - **called from:**
-- `routes/cookbook_routes.py:152`
+- `routes/cookbook_routes.py:2083`
 
-## `_append_openai_port_preflight_lines` — function, line 151
+## `_serve_port_from_cmd` — function, line 158
 - **called from:**
-- `routes/cookbook_routes.py:2174`
+- `routes/cookbook_routes.py:164`
 
-## `_is_generated_ollama_docker_exec_cmd` — function, line 188
+## `_append_openai_port_preflight_lines` — function, line 163
 - **called from:**
-- `routes/cookbook_routes.py:1982`
-- `tests/test_cookbook_docker_access.py:259`
-- `tests/test_cookbook_docker_access.py:268`
-- `tests/test_cookbook_docker_access.py:271`
-- `tests/test_cookbook_docker_access.py:274`
-- `tests/test_cookbook_docker_access.py:280`
+- `routes/cookbook_routes.py:2085`
 
-## `_missing_binary_message` — function, line 223
+## `_is_generated_ollama_docker_exec_cmd` — function, line 200
 - **called from:**
-- `routes/cookbook_routes.py:1163`
-- `routes/cookbook_routes.py:2065`
-- `routes/cookbook_routes.py:2076`
-- `tests/test_cookbook_docker_access.py:50`
+- `routes/cookbook_routes.py:1893`
+- `tests/test_cookbook_docker_access.py:264`
+- `tests/test_cookbook_docker_access.py:273`
+- `tests/test_cookbook_docker_access.py:276`
+- `tests/test_cookbook_docker_access.py:279`
+- `tests/test_cookbook_docker_access.py:285`
 
-## `_remote_binary_available` — function (async), line 244
+## `_missing_binary_message` — function, line 235
 - **called from:**
-- `routes/cookbook_routes.py:326`
+- `routes/cookbook_routes.py:1038`
+- `routes/cookbook_routes.py:1976`
+- `routes/cookbook_routes.py:1987`
+- `tests/test_cookbook_docker_access.py:58`
 
-## `_remote_posix_path_prefix` — function, line 276
+## `_remote_binary_available` — function (async), line 256
 - **called from:**
-- `routes/cookbook_routes.py:291`
-- `routes/cookbook_routes.py:308`
+- `routes/cookbook_routes.py:338`
 
-## `_remote_tmux_command` — function, line 280
+## `_remote_posix_path_prefix` — function, line 288
 - **called from:**
-- `routes/cookbook_routes.py:1687`
-- `routes/cookbook_routes.py:3721`
-- `routes/cookbook_routes.py:3734`
-- `routes/cookbook_routes.py:4394`
-- `routes/cookbook_routes.py:4400`
+- `routes/cookbook_routes.py:303`
+- `routes/cookbook_routes.py:320`
 
-## `_remote_tmux_launch_command` — function, line 294
+## `_remote_tmux_command` — function, line 292
 - **called from:**
-- `routes/cookbook_routes.py:1333`
-- `routes/cookbook_routes.py:2759`
+- `routes/cookbook_routes.py:1587`
+- `routes/cookbook_routes.py:3627`
+- `routes/cookbook_routes.py:3640`
+- `routes/cookbook_routes.py:4301`
+- `routes/cookbook_routes.py:4309`
 
-## `_binary_available` — function (async), line 315
+## `_remote_tmux_launch_command` — function, line 306
 - **called from:**
-- `routes/cookbook_routes.py:1160`
-- `routes/cookbook_routes.py:2062`
-- `routes/cookbook_routes.py:2068`
-- `tests/test_cookbook_docker_access.py:40`
-- `tests/test_cookbook_docker_access.py:66`
-- `tests/test_cookbook_docker_access.py:82`
-- `tests/test_cookbook_docker_access.py:104`
+- `routes/cookbook_routes.py:1208`
+- `routes/cookbook_routes.py:2630`
 
-## `_local_ollama_docker_fallback_available` — function, line 344
+## `_binary_available` — function (async), line 327
 - **called from:**
-- `routes/cookbook_routes.py:367`
-- `routes/cookbook_routes.py:1140`
+- `routes/cookbook_routes.py:1035`
+- `routes/cookbook_routes.py:1973`
+- `routes/cookbook_routes.py:1979`
+- `tests/test_cookbook_docker_access.py:48`
+- `tests/test_cookbook_docker_access.py:73`
+- `tests/test_cookbook_docker_access.py:89`
+- `tests/test_cookbook_docker_access.py:111`
 
-## `_local_ollama_docker_access_blocked` — function, line 358
+## `_local_ollama_docker_fallback_available` — function, line 356
 - **called from:**
-- `routes/cookbook_routes.py:1141`
-- `tests/test_cookbook_docker_access.py:288`
-- `tests/test_cookbook_docker_access.py:298`
+- `routes/cookbook_routes.py:379`
+- `routes/cookbook_routes.py:1015`
 
-## `_append_local_ollama_download_command_lines` — function, line 374
+## `_local_ollama_docker_access_blocked` — function, line 370
 - **called from:**
-- `routes/cookbook_routes.py:1137`
-- `tests/test_cookbook_docker_access.py:308`
-- `tests/test_cookbook_docker_access.py:328`
+- `routes/cookbook_routes.py:1016`
+- `tests/test_cookbook_docker_access.py:293`
+- `tests/test_cookbook_docker_access.py:303`
 
-## `setup_cookbook_routes` — function, line 397
+## `_append_local_ollama_download_command_lines` — function, line 386
 - **called from:**
-- `app.py:804`
-- `tests/test_cookbook_docker_access.py:15`
+- `routes/cookbook_routes.py:1012`
+- `tests/test_cookbook_docker_access.py:313`
+- `tests/test_cookbook_docker_access.py:333`
+
+## `setup_cookbook_routes` — function, line 409
+- **called from:**
+- `app.py:888`
+- `tests/test_cookbook_cache_scan_isolation.py:19`
+- `tests/test_cookbook_cache_scan_isolation.py:56`
+- `tests/test_cookbook_cache_scan_isolation.py:71`
+- `tests/test_cookbook_dependency_completion_regression.py:1087`
+- `tests/test_cookbook_dependency_completion_regression.py:1313`
+- `tests/test_cookbook_docker_access.py:21`
+- `tests/test_cookbook_endpoint_registration.py:56`
+- `tests/test_cookbook_endpoint_registration.py:223`
+- `tests/test_cookbook_endpoint_registration.py:457`
+- `tests/test_cookbook_hf_gguf_files.py:11`
 - `tests/test_cookbook_remote_windows_diffusers.py:12`
+- `tests/test_cookbook_serve_lifecycle.py:162`
+- `tests/test_runtime_resource_integration.py:332`
+- `tests/test_wave3_local_control.py:103`
+- `tests/test_wave3_local_control.py:240`
 
-## `_mask_secret` — function, line 404
+## `protect_native_control` — function (async), line 410
 - **called from:**
-- `routes/cookbook_routes.py:612`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_client_host_platform` — function, line 411
+## `protect_local_model_producer` — function, line 432
 - **called from:**
-- `routes/cookbook_routes.py:613`
+- `routes/cookbook_routes.py:943`
+- `routes/cookbook_routes.py:1881`
 
-## `_decrypt_secret` — function, line 414
+## `_mask_secret` — function, line 443
 - **called from:**
-- `routes/cookbook_routes.py:609`
+- `routes/cookbook_routes.py:482`
+
+## `_client_host_platform` — function, line 450
+- **called from:**
+- `routes/cookbook_routes.py:483`
+
+## `_decrypt_secret` — function, line 453
+- **called from:**
+- `routes/cookbook_routes.py:479`
 - `src/webhook_manager.py:384`
 - `src/webhook_manager.py:389`
 
-## `_encrypt_secret` — function, line 420
+## `_encrypt_secret` — function, line 459
 - **called from:**
-- `routes/cookbook_routes.py:625`
+- `routes/cookbook_routes.py:495`
 
-## `_strip_task_secrets` — function, line 424
+## `_strip_task_secrets` — function, line 463
 - **called from:**
-- `routes/cookbook_routes.py:603`
-- `routes/cookbook_routes.py:618`
+- `routes/cookbook_routes.py:473`
+- `routes/cookbook_routes.py:488`
 
-## `_diagnose_serve_output` — function, line 432
+## `_state_for_client` — function, line 471
 - **called from:**
-- `routes/cookbook_routes.py:4557`
-- `tests/test_cookbook_diagnosis.py:10`
-- `tests/test_cookbook_diagnosis.py:29`
-- `tests/test_cookbook_error_feedback.py:6`
-- `tests/test_cookbook_error_feedback.py:14`
-- `tests/test_cookbook_error_feedback.py:22`
-- `tests/test_cookbook_error_feedback.py:30`
-- `tests/test_cookbook_error_feedback.py:37`
-- `tests/test_cookbook_error_feedback.py:47`
-- `tests/test_cookbook_error_feedback.py:53`
-- `tests/test_cookbook_error_feedback.py:57`
-- `tests/test_cookbook_error_feedback.py:58`
-- `tests/test_cookbook_error_feedback.py:63`
-- `tests/test_cookbook_error_feedback.py:70`
+- `routes/cookbook_routes.py:3263`
+- `routes/cookbook_routes.py:3267`
+- `routes/cookbook_routes.py:3270`
+- `routes/cookbook_routes.py:3389`
 
-## `_state_for_client` — function, line 601
+## `_state_for_storage` — function, line 486
 - **called from:**
-- `routes/cookbook_routes.py:3384`
-- `routes/cookbook_routes.py:3388`
-- `routes/cookbook_routes.py:3391`
-- `routes/cookbook_routes.py:3510`
+- `routes/cookbook_routes.py:3380`
 
-## `_state_for_storage` — function, line 616
+## `_load_stored_hf_token` — function, line 505
 - **called from:**
-- `routes/cookbook_routes.py:3501`
+- `routes/cookbook_routes.py:959`
+- `routes/cookbook_routes.py:1888`
+- `routes/cookbook_routes.py:3782`
 
-## `_load_stored_hf_token` — function, line 635
+## `_normalize_minimax_m3_vllm_cmd` — function, line 508
 - **called from:**
-- `routes/cookbook_routes.py:1084`
-- `routes/cookbook_routes.py:1977`
-- `routes/cookbook_routes.py:3876`
+- `routes/cookbook_routes.py:1903`
 
-## `_normalize_minimax_m3_vllm_cmd` — function, line 638
+## `add_env` — function, line 549
 - **called from:**
-- `routes/cookbook_routes.py:1992`
+- `routes/cookbook_routes.py:573`
+- `routes/cookbook_routes.py:574`
+- `routes/cookbook_routes.py:649`
 
-## `add_env` — function, line 675
+## `has_flag` — function, line 553
 - **called from:**
-- `routes/cookbook_routes.py:699`
-- `routes/cookbook_routes.py:700`
-- `routes/cookbook_routes.py:775`
+- `routes/cookbook_routes.py:570`
+- `routes/cookbook_routes.py:659`
+- `routes/cookbook_routes.py:661`
+- `routes/cookbook_routes.py:663`
 
-## `has_flag` — function, line 679
+## `set_flag` — function, line 556
 - **called from:**
-- `routes/cookbook_routes.py:696`
-- `routes/cookbook_routes.py:785`
-- `routes/cookbook_routes.py:787`
-- `routes/cookbook_routes.py:789`
+- `routes/cookbook_routes.py:575`
+- `routes/cookbook_routes.py:576`
+- `routes/cookbook_routes.py:577`
+- `routes/cookbook_routes.py:578`
+- `routes/cookbook_routes.py:579`
+- `routes/cookbook_routes.py:658`
+- `routes/cookbook_routes.py:660`
+- `routes/cookbook_routes.py:662`
+- `routes/cookbook_routes.py:665`
 
-## `set_flag` — function, line 682
+## `add_bool` — function, line 569
 - **called from:**
-- `routes/cookbook_routes.py:701`
-- `routes/cookbook_routes.py:702`
-- `routes/cookbook_routes.py:703`
-- `routes/cookbook_routes.py:704`
-- `routes/cookbook_routes.py:705`
-- `routes/cookbook_routes.py:784`
-- `routes/cookbook_routes.py:786`
-- `routes/cookbook_routes.py:788`
-- `routes/cookbook_routes.py:791`
+- `routes/cookbook_routes.py:580`
+- `routes/cookbook_routes.py:581`
+- `routes/cookbook_routes.py:582`
 
-## `add_bool` — function, line 695
+## `_normalize_deepseek_v4_sglang_cmd` — function, line 585
 - **called from:**
-- `routes/cookbook_routes.py:706`
-- `routes/cookbook_routes.py:707`
-- `routes/cookbook_routes.py:708`
+- `routes/cookbook_routes.py:1904`
 
-## `_normalize_deepseek_v4_sglang_cmd` — function, line 711
+## `add_env` — function, line 609
 - **called from:**
-- `routes/cookbook_routes.py:1993`
+- `routes/cookbook_routes.py:573`
+- `routes/cookbook_routes.py:574`
+- `routes/cookbook_routes.py:649`
 
-## `add_env` — function, line 735
+## `has_flag` — function, line 613
 - **called from:**
-- `routes/cookbook_routes.py:699`
-- `routes/cookbook_routes.py:700`
-- `routes/cookbook_routes.py:775`
+- `routes/cookbook_routes.py:570`
+- `routes/cookbook_routes.py:659`
+- `routes/cookbook_routes.py:661`
+- `routes/cookbook_routes.py:663`
 
-## `has_flag` — function, line 739
+## `flag_value` — function, line 616
 - **called from:**
-- `routes/cookbook_routes.py:696`
-- `routes/cookbook_routes.py:785`
-- `routes/cookbook_routes.py:787`
-- `routes/cookbook_routes.py:789`
+- `routes/cookbook_routes.py:650`
 
-## `flag_value` — function, line 742
+## `set_flag` — function, line 624
 - **called from:**
-- `routes/cookbook_routes.py:776`
+- `routes/cookbook_routes.py:575`
+- `routes/cookbook_routes.py:576`
+- `routes/cookbook_routes.py:577`
+- `routes/cookbook_routes.py:578`
+- `routes/cookbook_routes.py:579`
+- `routes/cookbook_routes.py:658`
+- `routes/cookbook_routes.py:660`
+- `routes/cookbook_routes.py:662`
+- `routes/cookbook_routes.py:665`
 
-## `set_flag` — function, line 750
+## `remove_flag` — function, line 637
 - **called from:**
-- `routes/cookbook_routes.py:701`
-- `routes/cookbook_routes.py:702`
-- `routes/cookbook_routes.py:703`
-- `routes/cookbook_routes.py:704`
-- `routes/cookbook_routes.py:705`
-- `routes/cookbook_routes.py:784`
-- `routes/cookbook_routes.py:786`
-- `routes/cookbook_routes.py:788`
-- `routes/cookbook_routes.py:791`
+- `routes/cookbook_routes.py:664`
 
-## `remove_flag` — function, line 763
+## `_cookbook_ssh_dir` — function, line 668
 - **called from:**
-- `routes/cookbook_routes.py:790`
+- `routes/cookbook_routes.py:679`
+- `routes/cookbook_routes.py:710`
+- `routes/cookbook_routes.py:811`
 
-## `_cookbook_ssh_dir` — function, line 794
+## `_cookbook_ssh_key_path` — function, line 678
 - **called from:**
-- `routes/cookbook_routes.py:805`
-- `routes/cookbook_routes.py:836`
-- `routes/cookbook_routes.py:937`
+- `routes/cookbook_routes.py:757`
+- `routes/cookbook_routes.py:812`
 
-## `_cookbook_ssh_key_path` — function, line 804
+## `_ssh_known_host_name` — function, line 681
 - **called from:**
-- `routes/cookbook_routes.py:883`
-- `routes/cookbook_routes.py:938`
+- `routes/cookbook_routes.py:690`
+- `routes/cookbook_routes.py:734`
 
-## `_ssh_known_host_name` — function, line 807
+## `_known_hosts_targets` — function, line 689
 - **called from:**
-- `routes/cookbook_routes.py:816`
-- `routes/cookbook_routes.py:860`
+- `routes/cookbook_routes.py:718`
 
-## `_known_hosts_targets` — function, line 815
+## `_ssh_host_key_changed` — function, line 696
 - **called from:**
-- `routes/cookbook_routes.py:844`
+- `routes/cookbook_routes.py:1357`
 
-## `_ssh_host_key_changed` — function, line 822
+## `_repair_cookbook_known_host` — function (async), line 703
 - **called from:**
-- `routes/cookbook_routes.py:1467`
+- `routes/cookbook_routes.py:1358`
 
-## `_repair_cookbook_known_host` — function (async), line 829
+## `_read_cookbook_public_key` — function, line 756
 - **called from:**
-- `routes/cookbook_routes.py:1468`
+- `routes/cookbook_routes.py:802`
+- `routes/cookbook_routes.py:832`
 
-## `_read_cookbook_public_key` — function, line 882
+## `_server_env_prefix_for_download` — function, line 762
 - **called from:**
-- `routes/cookbook_routes.py:928`
-- `routes/cookbook_routes.py:958`
+- `routes/cookbook_routes.py:962`
 
-## `_server_env_prefix_for_download` — function, line 888
-- **called from:**
-- `routes/cookbook_routes.py:1087`
-
-## `get_cookbook_ssh_key` — function (async), line 926
+## `get_cookbook_ssh_key` — function (async), line 800
 - **route:** `GET /api/cookbook/ssh-key`
 - decorator: `router.get("/api/cookbook/ssh-key")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `generate_cookbook_ssh_key` — function (async), line 935
+## `generate_cookbook_ssh_key` — function (async), line 809
 - **route:** `POST /api/cookbook/ssh-key`
 - decorator: `router.post("/api/cookbook/ssh-key")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `CookbookSshTestRequest` — class, line 960
+## `CookbookSshTestRequest` — class, line 834
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `test_cookbook_ssh` — function (async), line 965
+## `test_cookbook_ssh` — function (async), line 839
 - **route:** `POST /api/cookbook/test-ssh`
 - decorator: `router.post("/api/cookbook/test-ssh")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_needs_binary` — function, line 989
+## `_needs_binary` — function, line 863
 - **called from:**
-- `routes/cookbook_routes.py:2068`
+- `routes/cookbook_routes.py:1979`
 
-## `_launch_local_detached` — function, line 992
+## `_launch_local_detached` — function, line 866
 - **called from:**
-- `routes/cookbook_routes.py:1373`
-- `routes/cookbook_routes.py:2767`
+- `routes/cookbook_routes.py:1248`
+- `routes/cookbook_routes.py:2638`
 
-## `model_download` — function (async), line 1065
+## `model_download` — function (async), line 939
 - **route:** `POST /api/model/download`
 - decorator: `router.post("/api/model/download")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `model_cached` — function (async), line 1406
+## `model_cached` — function (async), line 1281
 - **route:** `GET /api/model/cached`
 - decorator: `router.get("/api/model/cached")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_run_cached_scan_once` — function (async), line 1429
+## `_run_cached_scan_once` — function (async), line 1300
 - **called from:**
-- `routes/cookbook_routes.py:1464`
-- `routes/cookbook_routes.py:1471`
+- `routes/cookbook_routes.py:1354`
+- `routes/cookbook_routes.py:1361`
 
-## `_auto_register_image_endpoint` — function, line 1521
+## `_auto_register_image_endpoint` — function, line 1411
 - **called from:**
-- `routes/cookbook_routes.py:2790`
+- `routes/cookbook_routes.py:2661`
 
-## `_pick_free_port_for_ollama` — function, line 1595
+## `_pick_free_port_for_ollama` — function, line 1495
 - **called from:**
-- `routes/cookbook_routes.py:2048`
+- `routes/cookbook_routes.py:1959`
 
-## `_serve_crash_watchdog` — function (async), line 1649
+## `_serve_crash_watchdog` — function (async), line 1549
 - **called from:**
-- `routes/cookbook_routes.py:2806`
+- `routes/cookbook_routes.py:2685`
 
-## `_auto_register_llm_endpoint` — function, line 1759
+## `_auto_register_llm_endpoint` — function, line 1683
 - **called from:**
-- `routes/cookbook_routes.py:2792`
+- `routes/cookbook_routes.py:2667`
 
-## `model_serve` — function (async), line 1962
+## `model_serve` — function (async), line 1871
 - **route:** `POST /api/model/serve`
 - decorator: `router.post("/api/model/serve")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `SetupRequest` — class, line 2833
+## `SetupRequest` — class, line 2712
 - **called from:**
 - `tests/test_auth_policy.py:154`
 - `tests/test_auth_policy.py:201`
 - `tests/test_auth_policy.py:212`
+- `tests/test_auth_username_policy.py:35`
 
-## `server_setup` — function (async), line 2838
+## `server_setup` — function (async), line 2717
 - **route:** `POST /api/cookbook/setup`
 - decorator: `router.post("/api/cookbook/setup")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_run_nvidia_smi` — function (async), line 2928
+## `_run_nvidia_smi` — function (async), line 2807
 - **called from:**
-- `routes/cookbook_routes.py:3166`
-- `routes/cookbook_routes.py:3205`
-
-## `_run_gpu_shell` — function (async), line 2951
-- **called from:**
-- `routes/cookbook_routes.py:2981`
-- `routes/cookbook_routes.py:2994`
-- `routes/cookbook_routes.py:3007`
-- `routes/cookbook_routes.py:3013`
-- `routes/cookbook_routes.py:3022`
-- `routes/cookbook_routes.py:3101`
-
-## `_gpu_read_file` — function (async), line 2980
-- **called from:**
-- `routes/cookbook_routes.py:3040`
-- `routes/cookbook_routes.py:3043`
-- `routes/cookbook_routes.py:3044`
 - `routes/cookbook_routes.py:3045`
-- `routes/cookbook_routes.py:3058`
-- `routes/cookbook_routes.py:3060`
-- `routes/cookbook_routes.py:3062`
-- `routes/cookbook_routes.py:3071`
+- `routes/cookbook_routes.py:3084`
 
-## `_probe_gpu_device_processes` — function (async), line 2986
+## `_run_gpu_shell` — function (async), line 2830
 - **called from:**
-- `routes/cookbook_routes.py:3082`
-- `routes/cookbook_routes.py:3292`
+- `routes/cookbook_routes.py:2860`
+- `routes/cookbook_routes.py:2873`
+- `routes/cookbook_routes.py:2886`
+- `routes/cookbook_routes.py:2892`
+- `routes/cookbook_routes.py:2901`
+- `routes/cookbook_routes.py:2980`
 
-## `_probe_amd_sysfs` — function (async), line 3012
+## `_gpu_read_file` — function (async), line 2859
 - **called from:**
-- `routes/cookbook_routes.py:3276`
+- `routes/cookbook_routes.py:2919`
+- `routes/cookbook_routes.py:2922`
+- `routes/cookbook_routes.py:2923`
+- `routes/cookbook_routes.py:2924`
+- `routes/cookbook_routes.py:2937`
+- `routes/cookbook_routes.py:2939`
+- `routes/cookbook_routes.py:2941`
+- `routes/cookbook_routes.py:2950`
 
-## `_probe_apple_unified_memory` — function (async), line 3088
+## `_probe_gpu_device_processes` — function (async), line 2865
 - **called from:**
-- `routes/cookbook_routes.py:3270`
+- `routes/cookbook_routes.py:2961`
+- `routes/cookbook_routes.py:3171`
 
-## `list_gpus` — function (async), line 3142
+## `_probe_amd_sysfs` — function (async), line 2891
+- **called from:**
+- `routes/cookbook_routes.py:3155`
+
+## `_probe_apple_unified_memory` — function (async), line 2967
+- **called from:**
+- `routes/cookbook_routes.py:3149`
+
+## `list_gpus` — function (async), line 3021
 - **route:** `GET /api/cookbook/gpus`
 - decorator: `router.get("/api/cookbook/gpus")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `KillPidRequest` — class, line 3310
+## `KillPidRequest` — class, line 3189
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `kill_pid` — function (async), line 3317
+## `kill_pid` — function (async), line 3196
 - **route:** `POST /api/cookbook/kill-pid`
 - decorator: `router.post("/api/cookbook/kill-pid")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_cookbook_state` — function (async), line 3368
+## `get_cookbook_state` — function (async), line 3247
 - **route:** `GET /api/cookbook/state`
 - decorator: `router.get("/api/cookbook/state")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `save_cookbook_state` — function (async), line 3396
+## `save_cookbook_state` — function (async), line 3275
 - **route:** `POST /api/cookbook/state`
 - decorator: `router.post("/api/cookbook/state")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `hf_latest` — function (async), line 3519
+## `hf_latest` — function (async), line 3398
 - **route:** `GET /api/cookbook/hf-latest`
 - decorator: `router.get("/api/cookbook/hf-latest")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_est_vram_fp16` — function, line 3546
+## `_est_vram_fp16` — function, line 3432
 - **called from:**
-- `routes/cookbook_routes.py:3605`
+- `routes/cookbook_routes.py:3507`
 
-## `_quant_factor` — function, line 3554
+## `_quant_factor` — function, line 3440
 - **called from:**
-- `routes/cookbook_routes.py:3606`
+- `routes/cookbook_routes.py:3508`
 
-## `_is_excluded` — function, line 3579
+## `_is_excluded` — function, line 3465
 - **called from:**
-- `routes/cookbook_routes.py:3602`
+- `routes/cookbook_routes.py:3502`
 
-## `_maybe_sweep_orphans` — function, line 3642
+## `_is_official` — function, line 3485
 - **called from:**
-- `routes/cookbook_routes.py:4326`
+- `routes/cookbook_routes.py:3504`
 
-## `_run_sweep` — function, line 3670
+## `_maybe_sweep_orphans` — function, line 3548
+- **called from:**
+- `routes/cookbook_routes.py:4233`
+
+## `_run_sweep` — function, line 3576
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_sync_sweep_orphans` — function, line 3684
+## `_sync_sweep_orphans` — function, line 3590
 - **called from:**
-- `routes/cookbook_routes.py:3672`
+- `routes/cookbook_routes.py:3578`
 
-## `hf_gguf_files` — function (async), line 3868
+## `hf_gguf_files` — function (async), line 3774
 - **route:** `GET /api/cookbook/hf-gguf-files`
 - decorator: `router.get("/api/cookbook/hf-gguf-files")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ollama_library` — function (async), line 3934
+## `ollama_library` — function (async), line 3840
 - **route:** `GET /api/cookbook/ollama/library`
 - decorator: `router.get("/api/cookbook/ollama/library")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `vllm_recipe_manifest` — function (async), line 4021
+## `vllm_recipe_manifest` — function (async), line 3927
 - **route:** `GET /api/cookbook/vllm-recipe-manifest`
 - decorator: `router.get("/api/cookbook/vllm-recipe-manifest")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_fetch_sync` — function, line 4038
+## `_fetch_sync` — function, line 3944
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `vllm_recipe` — function (async), line 4081
+## `vllm_recipe` — function (async), line 3987
 - **route:** `GET /api/cookbook/vllm-recipe`
 - decorator: `router.get("/api/cookbook/vllm-recipe")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_fetch_sync` — function, line 4104
+## `_fetch_sync` — function, line 4010
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `cookbook_tasks_status` — function (async), line 4197
+## `cookbook_tasks_status` — function (async), line 4103
 - **route:** `GET /api/cookbook/tasks/status`
 - decorator: `router.get("/api/cookbook/tasks/status")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_compute` — function (async), line 4213
+## `_compute` — function (async), line 4119
 - **called from:**
-- `routes/cookbook_routes.py:4218`
+- `routes/cookbook_routes.py:4124`
 
-## `_cookbook_tasks_status_sync` — function, line 4226
+## `_cookbook_tasks_status_sync` — function, line 4132
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_pick_download_progress` — function, line 4229
+## `_pick_download_progress` — function, line 4135
 - **called from:**
-- `routes/cookbook_routes.py:4432`
-- `routes/cookbook_routes.py:4471`
+- `routes/cookbook_routes.py:4342`
+- `routes/cookbook_routes.py:4382`
 
-## `_download_cache_complete` — function, line 4251
+## `_download_cache_complete` — function, line 4157
 - **called from:**
-- `routes/cookbook_routes.py:4542`
+- `routes/cookbook_routes.py:4456`
 
-## `_download_cache_incomplete` — function, line 4278
+## `_download_cache_incomplete` — function, line 4184
 - **called from:**
-- `routes/cookbook_routes.py:4489`
+- `routes/cookbook_routes.py:4400`

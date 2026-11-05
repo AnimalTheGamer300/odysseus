@@ -19,7 +19,7 @@
 
 ## `prior_tool_outputs_context_message` — function, line 111
 - **called from:**
-- `routes/chat_helpers.py:957`
+- `routes/chat_helpers.py:1549`
 - `tests/test_tool_replay.py:21`
 - `tests/test_tool_replay.py:22`
 - `tests/test_tool_replay.py:23`
@@ -40,13 +40,13 @@
 
 ## `replay_tool_events_as_native` — function, line 197
 - **called from:**
-- `routes/chat_helpers.py:944`
+- `routes/chat_helpers.py:1536`
 - `tests/test_temporal_grounding_stamps.py:98`
 
 ## `inject_continue_separator` — function, line 301
 - **called from:**
-- `routes/chat_helpers.py:995`
+- `routes/chat_helpers.py:1595`
 
 ## `build_continue_separator_event` — function, line 344
 - **called from:**
-- `routes/chat_routes.py:349`
+- `routes/chat_routes.py:1545`

@@ -55,7 +55,7 @@
 
 ## `build_enhanced_query` — function, line 119
 - **called from:**
-- `services/search/providers.py:293`
+- `services/search/providers.py:362`
 - `tests/test_search_query_nonstring.py:33`
 - `tests/test_src_search_query_nonstring.py:15`
 
@@ -69,4 +69,4 @@
 
 ## `_cache_duration_for_query` — function, line 145
 - **called from:**
-- `services/search/core.py:198`
+- `services/search/core.py:956`

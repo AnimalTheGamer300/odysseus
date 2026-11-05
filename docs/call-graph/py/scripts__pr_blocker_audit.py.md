@@ -24,89 +24,112 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `ProgressReporter.phase` — method, line 122
 - **called from:**
 - `scripts/pr_blocker_audit.py:172`
 - `scripts/pr_blocker_audit.py:203`
+- `static/js/markdown.js:334`
 
 ## `ProgressReporter.update` — method, line 127
 - **called from:**
-- `app.py:335`
-- `app.py:446`
-- `app.py:1152`
-- `app.py:1172`
-- `core/database.py:2770`
-- `core/session_manager.py:606`
-- `core/session_manager.py:1087`
-- `routes/auth_routes.py:424`
-- `routes/auth_routes.py:437`
+- `app.py:487`
+- `app.py:1336`
+- `app.py:1356`
+- `core/database.py:3084`
+- `core/session_manager.py:989`
+- `routes/auth_routes.py:474`
+- `routes/auth_routes.py:487`
 - `routes/backup_routes.py:197`
 - `routes/backup_routes.py:204`
 - `routes/backup_routes.py:212`
-- `routes/chat_helpers.py:451`
-- `routes/chat_helpers.py:556`
-- `routes/chat_helpers.py:564`
-- `routes/chat_routes.py:246`
-- `routes/chat_routes.py:297`
-- `routes/chat_routes.py:1681`
-- `routes/chat_routes.py:1691`
-- `routes/chat_routes.py:1703`
-- `routes/chat_routes.py:1721`
-- `routes/chat_routes.py:1736`
-- `routes/chat_routes.py:1738`
-- `routes/chat_routes.py:1740`
-- `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:1754`
-- `routes/chat_routes.py:1762`
-- `routes/chat_routes.py:1766`
-- `routes/chat_routes.py:1770`
-- `routes/chat_routes.py:1781`
-- `routes/chat_routes.py:1784`
-- `routes/chat_routes.py:1791`
-- `routes/chat_routes.py:2163`
-- `routes/chat_routes.py:2401`
-- `routes/chat_routes.py:2420`
-- `routes/cookbook_routes.py:3385`
-- `routes/cookbook_routes.py:3389`
-- `routes/cookbook_routes.py:3392`
-- `routes/cookbook_routes.py:3507`
-- `routes/cookbook_routes.py:4215`
+- `routes/chat_helpers.py:919`
+- `routes/chat_helpers.py:1062`
+- `routes/chat_helpers.py:1079`
+- `routes/chat_helpers.py:1096`
+- `routes/chat_routes.py:1442`
+- `routes/chat_routes.py:1493`
+- `routes/chat_routes.py:3580`
+- `routes/chat_routes.py:3639`
+- `routes/chat_routes.py:3651`
+- `routes/chat_routes.py:3669`
+- `routes/chat_routes.py:3685`
+- `routes/chat_routes.py:3687`
+- `routes/chat_routes.py:3690`
+- `routes/chat_routes.py:3692`
+- `routes/chat_routes.py:3694`
+- `routes/chat_routes.py:3697`
+- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3713`
+- `routes/chat_routes.py:3717`
+- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3732`
+- `routes/chat_routes.py:3735`
+- `routes/chat_routes.py:3742`
+- `routes/chat_routes.py:3826`
+- `routes/chat_routes.py:3835`
+- `routes/chat_routes.py:3839`
+- `routes/chat_routes.py:4025`
+- `routes/chat_routes.py:4439`
+- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:4699`
+- `routes/chat_routes.py:5001`
+- `routes/chat_routes.py:5005`
+- `routes/cookbook_routes.py:3264`
+- `routes/cookbook_routes.py:3268`
+- `routes/cookbook_routes.py:3271`
+- `routes/cookbook_routes.py:3386`
+- `routes/cookbook_routes.py:4121`
 - `routes/device_flow.py:156`
-- `routes/email_pollers.py:786`
-- `routes/email_routes.py:145`
-- `routes/email_routes.py:1177`
-- `routes/email_routes.py:1993`
-- `routes/email_routes.py:2311`
-- `routes/email_routes.py:3524`
-- `routes/email_routes.py:3871`
-- `routes/email_routes.py:3872`
-- `routes/email_routes.py:3875`
-- `routes/email_routes.py:3880`
-- `routes/email_routes.py:4939`
-- `routes/email_routes.py:5571`
-- `routes/email_routes.py:5695`
-- `routes/email_routes.py:6000`
-- `routes/gallery/gallery_routes.py:2170`
-- `routes/gallery/gallery_routes.py:2189`
-- `routes/gallery/gallery_routes.py:2208`
-- `routes/gallery/gallery_routes.py:2310`
-- `routes/history/history_routes.py:707`
-- … +205 more (grep the name in repo)
+- `routes/email/email_pollers.py:969`
+- `routes/email/email_routes.py:187`
+- `routes/email/email_routes.py:1307`
+- `routes/email/email_routes.py:2526`
+- `routes/email/email_routes.py:2872`
+- `routes/email/email_routes.py:4906`
+- `routes/email/email_routes.py:4976`
+- `routes/email/email_routes.py:5502`
+- `routes/email/email_routes.py:5503`
+- `routes/email/email_routes.py:5506`
+- `routes/email/email_routes.py:5511`
+- `routes/email/email_routes.py:6640`
+- … +548 more (grep the name in repo)
 
 ## `ProgressReporter.finish_line` — method, line 141
 - **called from:**
@@ -115,7 +138,11 @@
 ## `ProgressReporter.summary` — method, line 147
 - **called from:**
 - `scripts/pr_blocker_audit.py:235`
-- `static/js/emailLibrary.js:7511`
+- `tests/test_agent_trace.py:47`
+- `tests/test_agent_trace.py:150`
+- `tests/test_agent_trace.py:158`
+- `tests/test_agent_trace.py:180`
+- `static/js/emailLibrary/reader.js:643`
 
 ## `load_json_file` — function, line 154
 - **called from:**
@@ -294,6 +321,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/pr_blocker_audit.py:362`
 - `scripts/pr_blocker_audit.py:381`
 - `scripts/pr_blocker_audit.py:584`
+- `src/agent_loop.py:19019`
+- `src/agent_loop.py:19020`
+- `static/js/editor/look-recipes.js:30`
 
 ## `title_keywords` — function, line 583
 - **called from:**
@@ -336,15 +366,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `render_json` — function, line 713
 - **called from:**
 - `scripts/pr_blocker_audit.py:1040`
+- `scripts/ref_parity_audit.py:577`
 - `tests/test_pr_blocker_audit.py:934`
 - `tests/test_pr_blocker_audit.py:935`
 
 ## `render_markdown` — function, line 717
 - **called from:**
 - `scripts/pr_blocker_audit.py:1042`
+- `scripts/ref_parity_audit.py:577`
 - `tests/test_pr_blocker_audit.py:583`
 - `tests/test_pr_blocker_audit.py:604`
 - `tests/test_pr_blocker_audit.py:691`
+- `tests/test_ref_parity_audit.py:298`
 
 ## `render_terminal` — function, line 750
 - **called from:**
@@ -447,6 +480,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_table` — function, line 961
 - **called from:**
+- `scripts/generate_env_reference.py:1156`
 - `scripts/pr_blocker_audit.py:735`
 - `scripts/pr_blocker_audit.py:737`
 
@@ -479,61 +513,80 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `write_output` — function, line 1000
 - **called from:**
+- `scripts/eval_odysseus_contextual_tool_use.py:935`
+- `scripts/eval_odysseus_contextual_tool_use.py:938`
 - `scripts/pr_blocker_audit.py:1043`
 
 ## `build_parser` — function, line 1007
 - **called from:**
 - `scripts/pr_blocker_audit.py:1025`
+- `scripts/ref_parity_audit.py:556`
 - `tests/run_focus.py:299`
 - `tests/run_order_report.py:137`
 - `tests/test_pr_blocker_audit.py:239`
 - `tests/test_pr_blocker_audit.py:960`
+- `tests/test_ref_parity_audit.py:351`
 
 ## `main` — function, line 1024
 - **called from:**
 - `integrations/claude/skills/odysseus/scripts/odysseus_api.py:218`
 - `integrations/codex/scripts/odysseus_api.py:218`
-- `scripts/add_hwfit_models.py:422`
+- `scripts/add_hwfit_models.py:512`
 - `scripts/agent_migration_manifest.py:635`
-- `scripts/backfill_model_release_dates.py:133`
+- `scripts/analyze_odysseus_eval_targets.py:180`
+- `scripts/assemble_sft_clean_corpus.py:74`
+- `scripts/audit_c5_benchmark_evidence.py:1637`
+- `scripts/audit_email_sft_with_deepseek.py:323`
+- `scripts/audit_historical_tool_routing.py:121`
+- `scripts/audit_sft_corpus_with_deepseek.py:344`
+- `scripts/audit_typo_tool_routing.py:99`
+- `scripts/backfill_model_release_dates.py:136`
+- `scripts/build_frontend.py:148`
+- `scripts/build_historical_harness_queue.py:333`
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:274`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:353`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:361`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:267`
+- `scripts/build_odysseus_sft_repair_manifest.py:230`
+- `scripts/build_odysseus_tool_efficiency_sft_slice.py:447`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:557`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:519`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:551`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:394`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:288`
+- `scripts/build_odysseus_web_teacher_sft.py:500`
+- `scripts/build_odysseus_web_v53_repair_sft.py:483`
+- `scripts/build_sft_environment_inventories.py:97`
+- `scripts/build_sft_expansion_manifest.py:161`
+- `scripts/build_sft_expansion_splits.py:110`
+- `scripts/build_v66_calendar_heldout_cases.py:113`
+- `scripts/check_brotli.py:122`
+- `scripts/check_ca_trust.py:180`
 - `scripts/claim_ownerless.py:106`
+- `scripts/cook_sft_alex_conversations.py:298`
+- `scripts/css_snapshot.py:295`
+- `scripts/curate_public_search_seed_cases.py:324`
+- `scripts/curate_sft_trace_run.py:178`
 - `scripts/demo_email/seed_demo_emails.py:394`
 - `scripts/dump_agent_prompt.py:545`
+- `scripts/eval_ajax_basic_tools.py:71`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_app_route_smoke.py:400`
+- `scripts/eval_odysseus_contextual_tool_use.py:944`
+- `scripts/eval_odysseus_crud.py:925`
+- `scripts/eval_odysseus_everyday_live_hard.py:590`
+- `scripts/eval_odysseus_live_hard_direct.py:261`
+- `scripts/eval_odysseus_live_hard_examples.py:468`
+- `scripts/eval_odysseus_tool_use.py:1490`
+- `scripts/eval_qwen35_document_shape_direct.py:303`
+- `scripts/eval_qwen35_implicit_memory.py:279`
+- `scripts/eval_qwen35_tool_router_extended.py:571`
+- `scripts/filter_sft_seed_hygiene.py:90`
+- `scripts/generate_env_reference.py:1270`
+- `scripts/generate_sft_environment_expansion.py:399`
+- `scripts/generate_sft_flow_variants_with_kimi.py:211`
 - `scripts/hf_download.py:182`
-- `scripts/import_from_vllm_recipes.py:341`
+- `scripts/import_from_vllm_recipes.py:348`
 - `scripts/index_documents.py:117`
-- `scripts/migrate_searxng_settings.py:166`
-- `scripts/mlx_image_server.py:470`
-- `scripts/pr_blocker_audit.py:1051`
-- `tests/run_focus.py:325`
-- `tests/run_order_report.py:156`
-- `tests/test_agent_migration_manifest.py:302`
-- `tests/test_agent_migration_manifest.py:325`
-- `tests/test_app.py:98`
-- `tests/test_backup_import_skills_dedup.py:112`
-- `tests/test_pr_blocker_audit.py:219`
-- `tests/test_pr_blocker_audit.py:230`
-- `tests/test_pr_blocker_audit.py:255`
-- `tests/test_pr_blocker_audit.py:270`
-- `tests/test_pr_blocker_audit.py:289`
-- `tests/test_pr_blocker_audit.py:307`
-- `tests/test_pr_blocker_audit.py:324`
-- `tests/test_pr_blocker_audit.py:342`
-- `tests/test_pr_blocker_audit.py:362`
-- `tests/test_pr_blocker_audit.py:383`
-- `tests/test_pr_blocker_audit.py:704`
-- `tests/test_pr_blocker_audit.py:716`
-- `tests/test_pr_blocker_audit.py:753`
-- `tests/test_pr_blocker_audit.py:763`
-- `tests/test_pr_blocker_audit.py:802`
-- `tests/test_pr_blocker_audit.py:815`
-- `tests/test_pr_blocker_audit.py:835`
-- `tests/test_pr_blocker_audit.py:853`
-- `tests/test_pr_blocker_audit.py:870`
-- `tests/test_pr_blocker_audit.py:892`
-- `tests/test_pr_blocker_audit.py:919`
-- `tests/test_pr_blocker_audit.py:947`
-- `tests/test_rag_search_signature.py:22`
-- `tests/test_research_session_id_validation.py:55`
-- `tests/test_setup_admin_user.py:61`
-- `tests/tools/build_oversized_test_split_plan.py:574`
+- … +139 more (grep the name in repo)

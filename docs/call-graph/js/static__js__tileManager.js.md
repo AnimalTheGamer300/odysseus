@@ -1,148 +1,159 @@
 # `static/js/tileManager.js` — definitions & call sites
 
-23 definitions (regex-based, best-effort).
+24 definitions (regex-based, best-effort).
 **Exports:** `_zoneForContentForTests`, `_zoneForPointerForTests`, `clearPreview`, `previewZoneAt`, `snapModalToZone`
 
-## `_isDesktop` — function, line 30
+## `_isDesktop` — function, line 26
 - **called from:**
-- `static/js/tileManager.js:30`
-- `static/js/tileManager.js:245`
-- `static/js/tileManager.js:261`
-- `static/js/tileManager.js:288`
-- `static/js/tileManager.js:362`
+- `static/js/tileManager.js:26`
+- `static/js/tileManager.js:246`
+- `static/js/tileManager.js:262`
+- `static/js/tileManager.js:289`
+- `static/js/tileManager.js:369`
 
-## `_dockClassForSide` — function, line 32
+## `_dockClassForSide` — function, line 28
 - **called from:**
 - `static/js/modalSnap.js:33`
 - `static/js/modalSnap.js:38`
-- `static/js/modalSnap.js:359`
-- `static/js/modalSnap.js:837`
-- `static/js/tileManager.js:32`
-- `static/js/tileManager.js:37`
+- `static/js/modalSnap.js:397`
+- `static/js/modalSnap.js:875`
+- `static/js/tileManager.js:28`
+- `static/js/tileManager.js:33`
 
-## `_hasOtherDockedWindow` — function, line 36
+## `_hasOtherDockedWindow` — function, line 32
 - **called from:**
 - `static/js/modalSnap.js:37`
 - `static/js/modalSnap.js:48`
 - `static/js/modalSnap.js:48`
 - `static/js/modalSnap.js:53`
-- `static/js/modalSnap.js:566`
-- `static/js/modalSnap.js:618`
-- `static/js/modalSnap.js:706`
-- `static/js/tileManager.js:36`
-- `static/js/tileManager.js:48`
+- `static/js/modalSnap.js:604`
+- `static/js/modalSnap.js:656`
+- `static/js/modalSnap.js:744`
+- `static/js/tileManager.js:32`
+- `static/js/tileManager.js:44`
 
-## `_clearDockSide` — function, line 46
+## `_clearDockSide` — function, line 42
 - **called from:**
-- `static/js/tileManager.js:46`
-- `static/js/tileManager.js:148`
+- `static/js/tileManager.js:42`
 - `static/js/tileManager.js:149`
+- `static/js/tileManager.js:150`
 
-## `_ensureGhost` — function, line 56
+## `_ensureGhost` — function, line 52
 - **called from:**
-- `static/js/tileManager.js:56`
-- `static/js/tileManager.js:69`
+- `static/js/tileManager.js:52`
+- `static/js/tileManager.js:65`
 
-## `_hideGhost` — function, line 64
+## `_hideGhost` — function, line 60
+- **called from:**
+- `static/js/tileManager.js:60`
+- `static/js/tileManager.js:279`
+- `static/js/tileManager.js:288`
+- `static/js/tileManager.js:369`
+- `static/js/tileManager.js:375`
+- `static/js/tileManager.js:380`
+
+## `_showGhost` — function, line 64
 - **called from:**
 - `static/js/tileManager.js:64`
-- `static/js/tileManager.js:278`
-- `static/js/tileManager.js:287`
-- `static/js/tileManager.js:362`
-- `static/js/tileManager.js:368`
+- `static/js/tileManager.js:276`
+- `static/js/tileManager.js:374`
+
+## `_viewportSafeRect` — function, line 73
+- **called from:**
+- `static/js/tileManager.js:73`
+- `static/js/tileManager.js:106`
+- `static/js/tileManager.js:301`
+- `static/js/tileManager.js:400`
+
+## `reserve` — arrow, line 81
+- **called from:**
+- `static/js/features/notes/ui/windowLayout.js:29`
+- `static/js/features/notes/ui/windowLayout.js:30`
+- `static/js/tileManager.js:89`
+- `static/js/tileManager.js:91`
+
+## `_zoneForPointer` — function, line 105
+- **called from:**
+- `static/js/tileManager.js:105`
+- `static/js/tileManager.js:128`
 - `static/js/tileManager.js:373`
+- `static/js/tileManager.js:385`
 
-## `_showGhost` — function, line 68
+## `_zoneForContent` — function, line 126
 - **called from:**
-- `static/js/tileManager.js:68`
-- `static/js/tileManager.js:275`
-- `static/js/tileManager.js:367`
+- `static/js/tileManager.js:126`
+- `static/js/tileManager.js:274`
+- `static/js/tileManager.js:373`
+- `static/js/tileManager.js:389`
 
-## `_viewportSafeRect` — function, line 77
+## `_clearEdgeDockResidue` — function, line 140
 - **called from:**
-- `static/js/tileManager.js:77`
-- `static/js/tileManager.js:95`
-- `static/js/tileManager.js:300`
+- `static/js/tileManager.js:140`
+- `static/js/tileManager.js:184`
 
-## `_zoneForPointer` — function, line 94
+## `_applySnap` — function, line 172
 - **called from:**
-- `static/js/tileManager.js:94`
-- `static/js/tileManager.js:127`
-- `static/js/tileManager.js:366`
-- `static/js/tileManager.js:378`
+- `static/js/tileManager.js:172`
+- `static/js/tileManager.js:290`
+- `static/js/tileManager.js:412`
 
-## `_zoneForContent` — function, line 125
+## `_unsnap` — function, line 217
 - **called from:**
-- `static/js/tileManager.js:125`
-- `static/js/tileManager.js:273`
-- `static/js/tileManager.js:366`
-- `static/js/tileManager.js:382`
+- `static/js/tileManager.js:217`
+- `static/js/tileManager.js:269`
+- `static/js/tileManager.js:315`
 
-## `_clearEdgeDockResidue` — function, line 139
+## `_findDragTarget` — function, line 234
 - **called from:**
-- `static/js/tileManager.js:139`
-- `static/js/tileManager.js:183`
+- `static/js/tileManager.js:234`
+- `static/js/tileManager.js:247`
 
-## `_applySnap` — function, line 171
+## `_reclampAll` — function, line 297
 - **called from:**
-- `static/js/tileManager.js:171`
-- `static/js/tileManager.js:289`
-- `static/js/tileManager.js:391`
+- `static/js/tileManager.js:297`
+- `static/js/tileManager.js:340`
 
-## `_unsnap` — function, line 216
+## `_reclampAllThrottled` — function, line 336
 - **called from:**
-- `static/js/tileManager.js:216`
-- `static/js/tileManager.js:268`
+- `static/js/tileManager.js:336`
+- `static/js/tileManager.js:344`
+- `static/js/tileManager.js:355`
 
-## `_findDragTarget` — function, line 233
+## `attribute` — class, line 346
 - **called from:**
-- `static/js/tileManager.js:233`
-- `static/js/tileManager.js:246`
+- `static/js/cookbook.js:2082`
+- `static/js/markdown.js:1214`
 
-## `_reclampAll` — function, line 296
+## `_watchSidebar` — function, line 348
 - **called from:**
-- `static/js/tileManager.js:296`
-- `static/js/tileManager.js:333`
-
-## `_reclampAllThrottled` — function, line 329
-- **called from:**
-- `static/js/tileManager.js:329`
-- `static/js/tileManager.js:337`
 - `static/js/tileManager.js:348`
-
-## `attribute` — class, line 339
-- **called from:**
-- `static/js/cookbook.js:2038`
-- `static/js/markdown.js:932`
-
-## `_watchSidebar` — function, line 341
-- **called from:**
-- `static/js/tileManager.js:341`
-- `static/js/tileManager.js:354`
-
-## `previewZoneAt` — function, line 361
-- **called from:**
-- `static/js/modalManager.js:801`
 - `static/js/tileManager.js:361`
 
-## `clearPreview` — function, line 372
+## `previewZoneAt` — function, line 368
 - **called from:**
-- `static/js/modalManager.js:805`
-- `static/js/modalManager.js:928`
-- `static/js/tileManager.js:372`
+- `static/js/modalManager.js:811`
+- `static/js/tileManager.js:368`
 
-## `_zoneForPointerForTests` — function, line 377
+## `clearPreview` — function, line 379
 - **called from:**
-- `static/js/tileManager.js:377`
+- `static/js/editor/tools/eyedropper.js:70`
+- `static/js/galleryEditor.js:10547`
+- `static/js/modalManager.js:815`
+- `static/js/modalManager.js:940`
+- `static/js/tileManager.js:379`
 
-## `_zoneForContentForTests` — function, line 381
+## `_zoneForPointerForTests` — function, line 384
 - **called from:**
-- `static/js/tileManager.js:381`
+- `static/js/tileManager.js:384`
 
-## `snapModalToZone` — function, line 386
+## `_zoneForContentForTests` — function, line 388
 - **called from:**
-- `static/js/memory.js:132`
-- `static/js/modalManager.js:934`
-- `static/js/notes.js:170`
-- `static/js/theme.js:1626`
-- `static/js/tileManager.js:386`
+- `static/js/tileManager.js:388`
+
+## `snapModalToZone` — function, line 393
+- **called from:**
+- `static/js/features/notes/ui/windowLayout.js:61`
+- `static/js/memory.js:137`
+- `static/js/modalManager.js:946`
+- `static/js/theme.js:1710`
+- `static/js/tileManager.js:393`

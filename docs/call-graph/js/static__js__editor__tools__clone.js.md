@@ -3,22 +3,55 @@
 2 definitions (regex-based, best-effort).
 **Exports:** `createCloneTool`
 
-## `createCloneTool` — function, line 21
+## `createCloneTool` — function, line 23
 - **called from:**
-- `static/js/editor/tools/clone.js:21`
-- `static/js/galleryEditor.js:1711`
+- `static/js/editor/tools/clone.js:23`
+- `static/js/galleryEditor.js:6992`
 
-## `begin` — method?, line 23
+## `begin` — method?, line 25
 - **called from:**
-- `core/database.py:1990`
+- `core/database.py:1399`
+- `core/database.py:1517`
+- `core/database.py:2249`
+- `core/database.py:2375`
+- `tests/test_chatgpt_session_binding.py:151`
+- `tests/test_chatgpt_session_binding.py:157`
+- `tests/test_cookbook_endpoint_registration.py:303`
 - `tests/test_email_account_default_serialization.py:241`
 - `tests/test_email_account_default_serialization.py:278`
+- `tests/test_request_authority.py:375`
+- `static/js/editor/brush-engine.js:62`
+- `static/js/editor/direct-manipulation-session.js:24`
+- `static/js/editor/render-cancellation.js:5`
+- `static/js/editor/stroke-pipeline.js:390`
 - `static/js/editor/tools/clone.js:7`
-- `static/js/editor/tools/clone.js:23`
-- `static/js/editor/tools/crop.js:23`
-- `static/js/editor/tools/lasso.js:20`
-- `static/js/editor/tools/move.js:38`
+- `static/js/editor/tools/clone.js:25`
+- `static/js/editor/tools/crop.js:51`
+- `static/js/editor/tools/crop.js:61`
+- `static/js/editor/tools/crop.js:72`
+- `static/js/editor/tools/gradient.js:58`
+- `static/js/editor/tools/lasso.js:84`
+- `static/js/editor/tools/liquify.js:141`
+- `static/js/editor/tools/marquee.js:51`
+- `static/js/editor/tools/marquee.js:61`
+- `static/js/editor/tools/marquee.js:80`
+- `static/js/editor/tools/move.js:47`
+- `static/js/editor/tools/patch.js:6`
+- `static/js/editor/tools/pen-path.js:37`
+- `static/js/editor/tools/pen-selection.js:50`
 - `static/js/editor/tools/stroke.js:16`
-- `static/js/galleryEditor.js:1414`
-- `static/js/windowResize.js:87`
-- `static/js/windowResize.js:160`
+- `static/js/editor/tools/transform-drag.js:75`
+- `static/js/editor/tools/transform-drag.js:86`
+- `static/js/galleryEditor.js:4016`
+- `static/js/galleryEditor.js:5572`
+- `static/js/galleryEditor.js:5573`
+- `static/js/galleryEditor.js:5574`
+- `static/js/galleryEditor.js:5575`
+- `static/js/galleryEditor.js:5590`
+- `static/js/galleryEditor.js:5591`
+- `static/js/galleryEditor.js:5592`
+- `static/js/galleryEditor.js:5596`
+- `static/js/galleryEditor.js:5597`
+- `static/js/galleryEditor.js:7164`
+- `static/js/windowResize.js:124`
+- `static/js/windowResize.js:197`

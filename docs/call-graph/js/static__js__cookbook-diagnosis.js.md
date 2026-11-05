@@ -1,203 +1,212 @@
 # `static/js/cookbook-diagnosis.js` — definitions & call sites
 
-24 definitions (regex-based, best-effort).
+26 definitions (regex-based, best-effort).
 **Exports:** `ERROR_PATTERNS`, `_clearDiagnosis`, `_diagnose`, `_runQuickCmd`, `_showDiagnosis`, `openCookbookDependencies`
 
 ## `_diagEsc` — function, line 29
 - **called from:**
 - `static/js/cookbook-diagnosis.js:29`
-- `static/js/cookbook-diagnosis.js:1025`
-- `static/js/cookbook-diagnosis.js:1071`
-- `static/js/cookbook-diagnosis.js:1072`
-- `static/js/cookbook-diagnosis.js:1076`
+- `static/js/cookbook-diagnosis.js:1040`
+- `static/js/cookbook-diagnosis.js:1086`
+- `static/js/cookbook-diagnosis.js:1087`
+- `static/js/cookbook-diagnosis.js:1091`
 
-## `_diagFixIcon` — function, line 36
+## `_diagFetchWithTimeout` — function, line 33
 - **called from:**
-- `static/js/cookbook-diagnosis.js:36`
-- `static/js/cookbook-diagnosis.js:1025`
+- `static/js/cookbook-diagnosis.js:33`
+- `static/js/cookbook-diagnosis.js:1074`
 
-## `_svg` — arrow, line 38
+## `abortFromParent` — arrow, line 37
 - **called from:**
-- `static/js/cookbook-diagnosis.js:41`
-- `static/js/cookbook-diagnosis.js:44`
-- `static/js/cookbook-diagnosis.js:47`
-- `static/js/cookbook-diagnosis.js:50`
-- `static/js/cookbook-diagnosis.js:53`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_diagFixIcon` — function, line 51
+- **called from:**
+- `static/js/cookbook-diagnosis.js:51`
+- `static/js/cookbook-diagnosis.js:1040`
+
+## `_svg` — arrow, line 53
+- **called from:**
 - `static/js/cookbook-diagnosis.js:56`
 - `static/js/cookbook-diagnosis.js:59`
 - `static/js/cookbook-diagnosis.js:62`
-- `static/js/skills.js:386`
-- `static/js/skills.js:400`
-- `static/js/skills.js:761`
-- `static/js/skills.js:773`
-
-## `openCookbookDependencies` — function, line 71
-- **called from:**
+- `static/js/cookbook-diagnosis.js:65`
+- `static/js/cookbook-diagnosis.js:68`
 - `static/js/cookbook-diagnosis.js:71`
-- `static/js/cookbook-hwfit.js:127`
-- `static/js/cookbookServe.js:2313`
-
-## `_openCookbookDependencies` — function, line 74
-- **called from:**
-- `static/js/cookbook-diagnosis.js:72`
 - `static/js/cookbook-diagnosis.js:74`
-- `static/js/cookbook-diagnosis.js:270`
-- `static/js/cookbook-diagnosis.js:361`
-- `static/js/cookbook-diagnosis.js:459`
-- `static/js/cookbook-diagnosis.js:522`
-- `static/js/cookbook-diagnosis.js:538`
-- `static/js/cookbook-diagnosis.js:545`
-- `static/js/cookbook-diagnosis.js:555`
-- `static/js/cookbook-diagnosis.js:564`
-- `static/js/cookbook-diagnosis.js:574`
-- `static/js/cookbook-diagnosis.js:662`
-- `static/js/cookbook-diagnosis.js:684`
-- `static/js/cookbook-diagnosis.js:694`
-- `static/js/cookbook-diagnosis.js:702`
-- `static/js/cookbook-diagnosis.js:710`
-- `static/js/cookbook-diagnosis.js:729`
-- `static/js/cookbook-diagnosis.js:736`
+- `static/js/cookbook-diagnosis.js:77`
+- `static/js/skills.js:527`
+- `static/js/skills.js:549`
+- `static/js/skills.js:1003`
+- `static/js/skills.js:1015`
 
-## `tryHighlight` — arrow, line 83
+## `openCookbookDependencies` — function, line 86
 - **called from:**
-- `static/js/cookbook-diagnosis.js:90`
-- `static/js/cookbook-diagnosis.js:133`
-- `static/js/galleryEditor.js:3764`
-- `static/js/galleryEditor.js:3774`
+- `static/js/cookbook-diagnosis.js:86`
+- `static/js/cookbook-hwfit.js:153`
+- `static/js/cookbookServe.js:2385`
 
-## `_openServeEditFromDiagnosis` — function, line 136
+## `_openCookbookDependencies` — function, line 89
 - **called from:**
-- `static/js/cookbook-diagnosis.js:136`
-- `static/js/cookbook-diagnosis.js:143`
-- `static/js/cookbook-diagnosis.js:280`
-- `static/js/cookbook-diagnosis.js:309`
-- `static/js/cookbook-diagnosis.js:317`
+- `static/js/cookbook-diagnosis.js:87`
+- `static/js/cookbook-diagnosis.js:89`
+- `static/js/cookbook-diagnosis.js:285`
+- `static/js/cookbook-diagnosis.js:376`
+- `static/js/cookbook-diagnosis.js:474`
+- `static/js/cookbook-diagnosis.js:537`
+- `static/js/cookbook-diagnosis.js:553`
+- `static/js/cookbook-diagnosis.js:560`
+- `static/js/cookbook-diagnosis.js:570`
+- `static/js/cookbook-diagnosis.js:579`
+- `static/js/cookbook-diagnosis.js:589`
+- `static/js/cookbook-diagnosis.js:677`
+- `static/js/cookbook-diagnosis.js:699`
+- `static/js/cookbook-diagnosis.js:709`
+- `static/js/cookbook-diagnosis.js:717`
+- `static/js/cookbook-diagnosis.js:725`
+- `static/js/cookbook-diagnosis.js:744`
+- `static/js/cookbook-diagnosis.js:751`
+
+## `tryHighlight` — arrow, line 98
+- **called from:**
+- `static/js/cookbook-diagnosis.js:105`
+- `static/js/cookbook-diagnosis.js:148`
+- `static/js/galleryEditor.js:13313`
+- `static/js/galleryEditor.js:13323`
+
+## `_openServeEditFromDiagnosis` — function, line 151
+- **called from:**
+- `static/js/cookbook-diagnosis.js:151`
+- `static/js/cookbook-diagnosis.js:158`
+- `static/js/cookbook-diagnosis.js:295`
+- `static/js/cookbook-diagnosis.js:324`
 - `static/js/cookbook-diagnosis.js:332`
-- `static/js/cookbook-diagnosis.js:353`
-- `static/js/cookbook-diagnosis.js:504`
-- `static/js/cookbook-diagnosis.js:534`
-- `static/js/cookbook-diagnosis.js:573`
+- `static/js/cookbook-diagnosis.js:347`
+- `static/js/cookbook-diagnosis.js:368`
+- `static/js/cookbook-diagnosis.js:519`
+- `static/js/cookbook-diagnosis.js:549`
 - `static/js/cookbook-diagnosis.js:588`
-- `static/js/cookbook-diagnosis.js:605`
-- `static/js/cookbook-diagnosis.js:719`
-- `static/js/cookbook-diagnosis.js:720`
-- `static/js/cookbook-diagnosis.js:728`
-- `static/js/cookbook-diagnosis.js:796`
-- `static/js/cookbook-diagnosis.js:918`
+- `static/js/cookbook-diagnosis.js:603`
+- `static/js/cookbook-diagnosis.js:620`
+- `static/js/cookbook-diagnosis.js:734`
+- `static/js/cookbook-diagnosis.js:735`
+- `static/js/cookbook-diagnosis.js:743`
+- `static/js/cookbook-diagnosis.js:811`
+- `static/js/cookbook-diagnosis.js:933`
 
-## `_openCpuServeEdit` — function, line 142
+## `_openCpuServeEdit` — function, line 157
 - **called from:**
-- `static/js/cookbook-diagnosis.js:142`
-- `static/js/cookbook-diagnosis.js:587`
-- `static/js/cookbook-diagnosis.js:604`
+- `static/js/cookbook-diagnosis.js:157`
+- `static/js/cookbook-diagnosis.js:602`
+- `static/js/cookbook-diagnosis.js:619`
 
-## `_taskForDiagnosisPanel` — function, line 152
-- **called from:**
-- `static/js/cookbook-diagnosis.js:152`
-- `static/js/cookbook-diagnosis.js:168`
-- `static/js/cookbook-diagnosis.js:185`
-- `static/js/cookbook-diagnosis.js:201`
-- `static/js/cookbook-diagnosis.js:1045`
-
-## `_pythonFromServeCmd` — function, line 159
-- **called from:**
-- `static/js/cookbook-diagnosis.js:159`
-- `static/js/cookbook-diagnosis.js:169`
-
-## `_pythonForDiagnosisPanel` — function, line 167
+## `_taskForDiagnosisPanel` — function, line 167
 - **called from:**
 - `static/js/cookbook-diagnosis.js:167`
-- `static/js/cookbook-diagnosis.js:177`
-- `static/js/cookbook-diagnosis.js:181`
-
-## `_sglangKernelRepairCommand` — function, line 176
-- **called from:**
-- `static/js/cookbook-diagnosis.js:176`
-- `static/js/cookbook-diagnosis.js:190`
-- `static/js/cookbook-diagnosis.js:536`
-
-## `_mlxLmInstallCommand` — function, line 180
-- **called from:**
-- `static/js/cookbook-diagnosis.js:180`
-- `static/js/cookbook-diagnosis.js:206`
-
-## `_repairSglangKernel` — function, line 184
-- **called from:**
-- `static/js/cookbook-diagnosis.js:184`
-- `static/js/cookbook-diagnosis.js:535`
-
-## `_installMlxLm` — function, line 200
-- **called from:**
+- `static/js/cookbook-diagnosis.js:183`
 - `static/js/cookbook-diagnosis.js:200`
-- `static/js/cookbook-diagnosis.js:554`
+- `static/js/cookbook-diagnosis.js:216`
+- `static/js/cookbook-diagnosis.js:1060`
 
-## `_diagnosisTargetMeta` — function, line 213
+## `_pythonFromServeCmd` — function, line 174
 - **called from:**
-- `static/js/cookbook-diagnosis.js:209`
-- `static/js/cookbook-diagnosis.js:213`
+- `static/js/cookbook-diagnosis.js:174`
+- `static/js/cookbook-diagnosis.js:184`
 
-## `_gpuCleanupCommand` — function, line 220
+## `_pythonForDiagnosisPanel` — function, line 182
 - **called from:**
-- `static/js/cookbook-diagnosis.js:220`
-- `static/js/cookbook-diagnosis.js:261`
-- `static/js/cookbook-diagnosis.js:503`
+- `static/js/cookbook-diagnosis.js:182`
+- `static/js/cookbook-diagnosis.js:192`
+- `static/js/cookbook-diagnosis.js:196`
 
-## `_clearGpuProcesses` — function, line 259
+## `_sglangKernelRepairCommand` — function, line 191
 - **called from:**
-- `static/js/cookbook-diagnosis.js:259`
-- `static/js/cookbook-diagnosis.js:502`
+- `static/js/cookbook-diagnosis.js:191`
+- `static/js/cookbook-diagnosis.js:205`
+- `static/js/cookbook-diagnosis.js:551`
 
-## `_diagnose` — function, line 869
+## `_mlxLmInstallCommand` — function, line 195
 - **called from:**
-- `static/js/cookbook-diagnosis.js:869`
-- `static/js/cookbookDownload.js:436`
-- `static/js/cookbookDownload.js:450`
-- `static/js/cookbookRunning.js:262`
-- `static/js/cookbookRunning.js:307`
-- `static/js/cookbookRunning.js:3097`
-- `static/js/cookbookRunning.js:3154`
-- `static/js/cookbookRunning.js:3523`
-- `static/js/cookbookRunning.js:3599`
+- `static/js/cookbook-diagnosis.js:195`
+- `static/js/cookbook-diagnosis.js:221`
 
-## `_diagnosisCopyBundle` — function, line 877
+## `_repairSglangKernel` — function, line 199
 - **called from:**
-- `static/js/cookbook-diagnosis.js:877`
-- `static/js/cookbook-diagnosis.js:958`
+- `static/js/cookbook-diagnosis.js:199`
+- `static/js/cookbook-diagnosis.js:550`
 
-## `_showDiagnosis` — function, line 898
+## `_installMlxLm` — function, line 215
 - **called from:**
-- `static/js/cookbook-diagnosis.js:898`
-- `static/js/cookbookDownload.js:437`
-- `static/js/cookbookDownload.js:451`
-- `static/js/cookbookRunning.js:2370`
-- `static/js/cookbookRunning.js:2418`
-- `static/js/cookbookRunning.js:2420`
-- `static/js/cookbookRunning.js:3105`
-- `static/js/cookbookRunning.js:3147`
-- `static/js/cookbookRunning.js:3167`
+- `static/js/cookbook-diagnosis.js:215`
+- `static/js/cookbook-diagnosis.js:569`
+
+## `_diagnosisTargetMeta` — function, line 228
+- **called from:**
+- `static/js/cookbook-diagnosis.js:224`
+- `static/js/cookbook-diagnosis.js:228`
+
+## `_gpuCleanupCommand` — function, line 235
+- **called from:**
+- `static/js/cookbook-diagnosis.js:235`
+- `static/js/cookbook-diagnosis.js:276`
+- `static/js/cookbook-diagnosis.js:518`
+
+## `_clearGpuProcesses` — function, line 274
+- **called from:**
+- `static/js/cookbook-diagnosis.js:274`
+- `static/js/cookbook-diagnosis.js:517`
+
+## `_diagnose` — function, line 884
+- **called from:**
+- `static/js/cookbook-diagnosis.js:884`
+- `static/js/cookbookDownload.js:443`
+- `static/js/cookbookDownload.js:457`
+- `static/js/cookbookRunning.js:266`
+- `static/js/cookbookRunning.js:311`
+- `static/js/cookbookRunning.js:3153`
+- `static/js/cookbookRunning.js:3210`
+- `static/js/cookbookRunning.js:3579`
+- `static/js/cookbookRunning.js:3655`
+
+## `_diagnosisCopyBundle` — function, line 892
+- **called from:**
+- `static/js/cookbook-diagnosis.js:892`
+- `static/js/cookbook-diagnosis.js:973`
+
+## `_showDiagnosis` — function, line 913
+- **called from:**
+- `static/js/cookbook-diagnosis.js:913`
+- `static/js/cookbookDownload.js:444`
+- `static/js/cookbookDownload.js:458`
+- `static/js/cookbookRunning.js:2425`
+- `static/js/cookbookRunning.js:2473`
+- `static/js/cookbookRunning.js:2475`
+- `static/js/cookbookRunning.js:3161`
+- `static/js/cookbookRunning.js:3203`
 - `static/js/cookbookRunning.js:3223`
-- `static/js/cookbookRunning.js:3527`
-- `static/js/cookbookRunning.js:3607`
-- `static/js/cookbookRunning.js:4256`
+- `static/js/cookbookRunning.js:3279`
+- `static/js/cookbookRunning.js:3583`
+- `static/js/cookbookRunning.js:3663`
+- `static/js/cookbookRunning.js:4333`
 
-## `runFix` — arrow, line 986
+## `runFix` — arrow, line 1001
 - **called from:**
-- `static/js/cookbook-diagnosis.js:1028`
+- `static/js/cookbook-diagnosis.js:1043`
 
-## `_clearDiagnosis` — function, line 1036
+## `_clearDiagnosis` — function, line 1051
 - **called from:**
-- `static/js/cookbook-diagnosis.js:979`
-- `static/js/cookbook-diagnosis.js:1036`
-- `static/js/cookbookDownload.js:293`
-- `static/js/cookbookDownload.js:369`
-- `static/js/cookbookRunning.js:3295`
-- `static/js/cookbookRunning.js:3534`
+- `static/js/cookbook-diagnosis.js:994`
+- `static/js/cookbook-diagnosis.js:1051`
+- `static/js/cookbookDownload.js:300`
+- `static/js/cookbookDownload.js:376`
+- `static/js/cookbookRunning.js:3351`
+- `static/js/cookbookRunning.js:3590`
 
-## `_runQuickCmd` — function, line 1044
+## `_runQuickCmd` — function, line 1059
 - **called from:**
-- `static/js/cookbook-diagnosis.js:261`
-- `static/js/cookbook-diagnosis.js:404`
-- `static/js/cookbook-diagnosis.js:755`
-- `static/js/cookbook-diagnosis.js:762`
-- `static/js/cookbook-diagnosis.js:851`
-- `static/js/cookbook-diagnosis.js:1044`
+- `static/js/cookbook-diagnosis.js:276`
+- `static/js/cookbook-diagnosis.js:419`
+- `static/js/cookbook-diagnosis.js:770`
+- `static/js/cookbook-diagnosis.js:777`
+- `static/js/cookbook-diagnosis.js:866`
+- `static/js/cookbook-diagnosis.js:1059`

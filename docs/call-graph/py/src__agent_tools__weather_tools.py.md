@@ -1,0 +1,88 @@
+# `src/agent_tools/weather_tools.py` — definitions & call sites
+
+4 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `_get_json` — function, line 10
+- **called from:**
+- `src/agent_runtime/context_resolution.py:331`
+- `src/agent_runtime/context_resolution.py:339`
+- `src/agent_runtime/context_resolution.py:365`
+
+## `weather_location_from_query` — function, line 16
+- **called from:**
+- `src/agent_tools/web_tools.py:397`
+- `src/agent_tools/web_tools_prewave3.py:401`
+- `tests/test_weather_search_recovery.py:92`
+- `tests/test_weather_search_recovery.py:93`
+- `tests/test_weather_search_recovery.py:94`
+
+## `WeatherTool` — class, line 34
+- **called from:**
+- `src/agent_tools/__init__.py:44`
+- `src/agent_tools/web_tools.py:424`
+- `src/agent_tools/web_tools_prewave3.py:428`
+- `tests/test_weather_search_recovery.py:37`
+
+## `WeatherTool.execute` — method (async), line 35
+- **called from:**
+- `core/database.py:146`
+- `core/database.py:151`
+- `core/database.py:158`
+- `core/database.py:160`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
+- `core/database.py:1268`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
+- `core/database.py:1406`
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)

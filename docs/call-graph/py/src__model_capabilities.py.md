@@ -95,19 +95,66 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `Modalities.to_dict` — method, line 468
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:3149`
-- `services/memory/skills.py:226`
-- `services/memory/skills.py:382`
-- `services/memory/skills.py:430`
-- `src/model_capabilities.py:538`
-- `src/model_capability_readers/base.py:66`
-- `src/model_capability_readers/base.py:67`
-- `src/model_capability_readers/base.py:68`
-- `tests/test_history_compact_tool_calls.py:90`
-- `tests/test_model_capabilities.py:68`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:154`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
 
 ## `ModelCapability` — class, line 476
 - decorator: `dataclass(frozen=True)`
@@ -118,6 +165,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `classmethod`
 - **called from:**
 - `scripts/dump_agent_prompt.py:424`
+- `scripts/generate_env_reference.py:1232`
+- `src/agent_runtime/effect_log.py:303`
+- `src/agent_runtime/effect_log.py:330`
+- `src/agent_trace.py:468`
+- `src/agent_trace.py:578`
+- `src/agent_trace.py:655`
 - `src/model_capabilities.py:523`
 - `src/model_capabilities.py:582`
 - `src/model_capabilities.py:583`
@@ -135,6 +188,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/model_capability_readers/google_ai_studio_mapping.py:89`
 - `src/model_capability_readers/llamacpp.py:172`
 - `src/model_capability_readers/llamacpp.py:182`
+- `tests/test_env_reference.py:37`
 - `tests/test_model_capabilities.py:85`
 - `tests/test_model_capabilities.py:107`
 - `tests/test_model_capabilities.py:115`
@@ -150,25 +204,131 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `ModelCapability.from_dict` — method, line 517
 - decorator: `classmethod`
 - **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
 - `tests/test_model_capabilities.py:43`
 - `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
 
 ## `ModelCapability.to_dict` — method, line 534
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:3149`
-- `services/memory/skills.py:226`
-- `services/memory/skills.py:382`
-- `services/memory/skills.py:430`
-- `src/model_capabilities.py:538`
-- `src/model_capability_readers/base.py:66`
-- `src/model_capability_readers/base.py:67`
-- `src/model_capability_readers/base.py:68`
-- `tests/test_history_compact_tool_calls.py:90`
-- `tests/test_model_capabilities.py:68`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:154`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
 
 ## `CapabilityAssertion` — class, line 547
 - decorator: `dataclass(frozen=True)`
@@ -179,6 +339,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `classmethod`
 - **called from:**
 - `scripts/dump_agent_prompt.py:424`
+- `scripts/generate_env_reference.py:1232`
+- `src/agent_runtime/effect_log.py:303`
+- `src/agent_runtime/effect_log.py:330`
+- `src/agent_trace.py:468`
+- `src/agent_trace.py:578`
+- `src/agent_trace.py:655`
 - `src/model_capabilities.py:523`
 - `src/model_capabilities.py:582`
 - `src/model_capabilities.py:583`
@@ -196,6 +362,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/model_capability_readers/google_ai_studio_mapping.py:89`
 - `src/model_capability_readers/llamacpp.py:172`
 - `src/model_capability_readers/llamacpp.py:182`
+- `tests/test_env_reference.py:37`
 - `tests/test_model_capabilities.py:85`
 - `tests/test_model_capabilities.py:107`
 - `tests/test_model_capabilities.py:115`
@@ -211,25 +378,131 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `CapabilityAssertion.from_dict` — method, line 580
 - decorator: `classmethod`
 - **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
 - `tests/test_model_capabilities.py:43`
 - `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
 
 ## `CapabilityAssertion.to_dict` — method, line 592
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:3149`
-- `services/memory/skills.py:226`
-- `services/memory/skills.py:382`
-- `services/memory/skills.py:430`
-- `src/model_capabilities.py:538`
-- `src/model_capability_readers/base.py:66`
-- `src/model_capability_readers/base.py:67`
-- `src/model_capability_readers/base.py:68`
-- `tests/test_history_compact_tool_calls.py:90`
-- `tests/test_model_capabilities.py:68`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:154`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
 
 ## `DeterministicControl` — class, line 604
 - decorator: `dataclass(frozen=True)`
@@ -240,6 +513,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `classmethod`
 - **called from:**
 - `scripts/dump_agent_prompt.py:424`
+- `scripts/generate_env_reference.py:1232`
+- `src/agent_runtime/effect_log.py:303`
+- `src/agent_runtime/effect_log.py:330`
+- `src/agent_trace.py:468`
+- `src/agent_trace.py:578`
+- `src/agent_trace.py:655`
 - `src/model_capabilities.py:523`
 - `src/model_capabilities.py:582`
 - `src/model_capabilities.py:583`
@@ -257,6 +536,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/model_capability_readers/google_ai_studio_mapping.py:89`
 - `src/model_capability_readers/llamacpp.py:172`
 - `src/model_capability_readers/llamacpp.py:182`
+- `tests/test_env_reference.py:37`
 - `tests/test_model_capabilities.py:85`
 - `tests/test_model_capabilities.py:107`
 - `tests/test_model_capabilities.py:115`
@@ -272,25 +552,131 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `DeterministicControl.from_dict` — method, line 637
 - decorator: `classmethod`
 - **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
 - `tests/test_model_capabilities.py:43`
 - `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
 
 ## `DeterministicControl.to_dict` — method, line 649
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:3149`
-- `services/memory/skills.py:226`
-- `services/memory/skills.py:382`
-- `services/memory/skills.py:430`
-- `src/model_capabilities.py:538`
-- `src/model_capability_readers/base.py:66`
-- `src/model_capability_readers/base.py:67`
-- `src/model_capability_readers/base.py:68`
-- `tests/test_history_compact_tool_calls.py:90`
-- `tests/test_model_capabilities.py:68`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:154`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
 
 ## `CapabilityProbeResult` — class, line 661
 - decorator: `dataclass(frozen=True)`
@@ -301,6 +687,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `classmethod`
 - **called from:**
 - `scripts/dump_agent_prompt.py:424`
+- `scripts/generate_env_reference.py:1232`
+- `src/agent_runtime/effect_log.py:303`
+- `src/agent_runtime/effect_log.py:330`
+- `src/agent_trace.py:468`
+- `src/agent_trace.py:578`
+- `src/agent_trace.py:655`
 - `src/model_capabilities.py:523`
 - `src/model_capabilities.py:582`
 - `src/model_capabilities.py:583`
@@ -318,6 +710,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/model_capability_readers/google_ai_studio_mapping.py:89`
 - `src/model_capability_readers/llamacpp.py:172`
 - `src/model_capability_readers/llamacpp.py:182`
+- `tests/test_env_reference.py:37`
 - `tests/test_model_capabilities.py:85`
 - `tests/test_model_capabilities.py:107`
 - `tests/test_model_capabilities.py:115`
@@ -333,8 +726,67 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `CapabilityProbeResult.from_dict` — method, line 709
 - decorator: `classmethod`
 - **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
 - `tests/test_model_capabilities.py:43`
 - `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
 
 ## `CapabilityProbeResult.to_assertion` — method, line 726
 - **called from:**
@@ -344,19 +796,66 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `CapabilityProbeResult.to_dict` — method, line 750
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:3149`
-- `services/memory/skills.py:226`
-- `services/memory/skills.py:382`
-- `services/memory/skills.py:430`
-- `src/model_capabilities.py:538`
-- `src/model_capability_readers/base.py:66`
-- `src/model_capability_readers/base.py:67`
-- `src/model_capability_readers/base.py:68`
-- `tests/test_history_compact_tool_calls.py:90`
-- `tests/test_model_capabilities.py:68`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:154`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
 
 ## `capability_assertions_from_capability` — function, line 766
 - **called from:**
@@ -386,21 +885,58 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `CapabilityQuery.matches` — method, line 815
 - **called from:**
-- `src/agent_loop.py:5058`
+- `src/agent_loop.py:25951`
 - `src/model_capabilities.py:903`
+- `src/tool_execution.py:1773`
 - `tests/test_calendar_cli_overlap.py:85`
-- `tests/test_foreground_model_routing.py:303`
-- `tests/test_tool_approval_task_scope.py:217`
-- `static/js/a11y.js:105`
-- `static/js/a11y.js:116`
-- `static/js/a11y.js:135`
-- `static/js/a11y.js:152`
-- `static/js/dragSort.js:45`
-- `static/js/dragSort.js:163`
-- `static/js/dragSort.js:194`
+- `tests/test_foreground_model_routing.py:357`
+- `tests/test_owned_resource_identity.py:364`
+- `tests/test_request_authority.py:291`
+- `tests/test_resource_identity.py:579`
+- `tests/test_resource_identity.py:693`
+- `tests/test_tool_approval_task_scope.py:226`
+- `static/js/a11y.js:136`
+- `static/js/a11y.js:147`
+- `static/js/a11y.js:195`
+- `static/js/a11y.js:212`
+- `static/js/calendar.js:1502`
+- `static/js/document.js:5905`
+- `static/js/document.js:7885`
+- `static/js/document.js:8401`
+- `static/js/document.js:9832`
+- `static/js/dragSort.js:50`
+- `static/js/dragSort.js:175`
+- `static/js/dragSort.js:227`
+- `static/js/dragSort.js:289`
+- `static/js/editor/control-kit.js:145`
+- `static/js/editor/control-kit.js:146`
+- `static/js/editor/control-kit.js:147`
+- `static/js/editor/control-kit.js:148`
+- `static/js/editor/control-kit.js:177`
+- `static/js/editor/control-kit.js:186`
+- `static/js/editor/layer-panel.js:319`
+- `static/js/editor/layer-panel.js:340`
+- `static/js/editor/layer-style-menu.js:29`
+- `static/js/editor/panel-visibility.js:98`
 - `static/js/editor/slider-ux.js:97`
-- `static/js/emailLibrary.js:3806`
-- `static/js/ui.js:152`
+- `static/js/editor/tools/bucket.js:20`
+- `static/js/editor/tools/bucket.js:62`
+- `static/js/editor/wire-extra-menus.js:45`
+- `static/js/editor/wire-topbar-overflow.js:66`
+- `static/js/editor/wire-topbar-overflow.js:69`
+- `static/js/editor/wire-topbar-overflow.js:80`
+- `static/js/emailLibrary/index.js:3911`
+- `static/js/galleryEditor.js:6345`
+- `static/js/galleryEditor.js:6350`
+- `static/js/galleryEditor.js:11015`
+- `static/js/galleryEditor.js:11018`
+- `static/js/mobileBulkSelect.js:13`
+- `static/js/mobileBulkSelect.js:14`
+- `static/js/mobileBulkSelect.js:19`
+- `static/js/mobileBulkSelect.js:24`
+- `static/js/turnRendering.js:81`
+- `static/js/turnRendering.js:88`
+- `static/js/ui.js:223`
 
 ## `display_surfaces_for` — function, line 902
 - **called from:**

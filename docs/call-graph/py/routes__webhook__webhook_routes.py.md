@@ -20,7 +20,7 @@
 
 ## `setup_webhook_routes` — function, line 64
 - **called from:**
-- `app.py:848`
+- `app.py:932`
 - `tests/test_api_chat_security.py:258`
 
 ## `list_webhooks` — function, line 72

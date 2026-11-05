@@ -4,7 +4,7 @@
 
 ## `setup_stt_routes` — function, line 12
 - **called from:**
-- `app.py:762`
+- `app.py:842`
 
 ## `get_stt_stats` — function (async), line 17
 - **route:** `GET /stats`

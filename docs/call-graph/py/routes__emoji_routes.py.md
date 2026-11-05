@@ -14,7 +14,7 @@
 
 ## `setup_emoji_routes` — function, line 69
 - **called from:**
-- `app.py:677`
+- `app.py:755`
 - `tests/test_emoji_svg_hardening.py:7`
 
 ## `_blank` — function, line 72

@@ -1,0 +1,161 @@
+# `scripts/eval_followup_domain_continuity.py` — definitions & call sites
+
+6 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `history` — function, line 61
+- **called from:**
+- `scripts/eval_followup_domain_continuity.py:102`
+- `src/agent_runtime/effect_adapters.py:503`
+- `src/agent_runtime/effect_adapters.py:515`
+- `src/agent_runtime/effect_log.py:383`
+- `src/agent_runtime/effect_log.py:504`
+- `src/agent_runtime/journal.py:86`
+- `src/agent_runtime/journal.py:105`
+- `tests/test_browser_resource_identity.py:133`
+- `tests/test_effect_journal_persistence.py:54`
+- `tests/test_effect_journal_persistence.py:63`
+- `tests/test_effect_journal_persistence.py:66`
+- `tests/test_effect_journal_persistence.py:81`
+- `tests/test_effect_journal_persistence.py:85`
+- `tests/test_effect_journal_persistence.py:99`
+- `tests/test_effect_journal_persistence.py:108`
+- `tests/test_effect_journal_persistence.py:142`
+- `tests/test_effect_journal_persistence.py:165`
+- `tests/test_effect_journal_persistence.py:211`
+- `tests/test_effect_journal_persistence.py:223`
+- `tests/test_effect_journal_persistence.py:225`
+- `tests/test_effect_journal_persistence.py:244`
+- `tests/test_effect_journal_persistence.py:274`
+- `tests/test_effect_journal_persistence.py:289`
+- `tests/test_effect_journal_persistence.py:290`
+- `tests/test_effect_resource_bindings.py:86`
+- `tests/test_effect_resource_bindings.py:118`
+- `tests/test_effect_resource_bindings.py:126`
+- `tests/test_effect_resource_bindings.py:216`
+- `tests/test_effect_resource_bindings.py:227`
+- `tests/test_effect_resource_bindings.py:236`
+- `tests/test_effect_resource_bindings.py:246`
+- `tests/test_effect_resource_bindings.py:294`
+- `tests/test_effect_resource_bindings.py:302`
+- `tests/test_effect_resource_bindings.py:321`
+- `tests/test_effect_resource_bindings.py:328`
+- `tests/test_effect_resource_bindings.py:351`
+- `tests/test_effect_resource_bindings.py:376`
+- `tests/test_effect_resource_bindings.py:408`
+- `tests/test_effect_resource_bindings.py:438`
+- `tests/test_effect_resource_bindings.py:440`
+- `tests/test_effect_resource_bindings.py:444`
+- `tests/test_effect_resource_bindings.py:468`
+- `tests/test_effect_verification_adapters.py:91`
+- `tests/test_effect_verification_adapters.py:145`
+- `tests/test_effect_verification_adapters.py:149`
+- `tests/test_effect_verification_adapters.py:150`
+- `tests/test_effect_verification_adapters.py:157`
+- `tests/test_effect_verification_adapters.py:180`
+- `tests/test_effect_verification_adapters.py:202`
+- `tests/test_effect_verification_adapters.py:235`
+- `tests/test_effect_verification_adapters.py:248`
+- `tests/test_effect_verification_adapters.py:263`
+- `tests/test_effect_verification_adapters.py:265`
+- `tests/test_effect_verification_adapters.py:268`
+- `tests/test_effect_verification_adapters.py:303`
+- `tests/test_effect_verification_adapters.py:320`
+- `tests/test_effect_verification_adapters.py:321`
+- `tests/test_effect_verification_adapters.py:335`
+- `tests/test_effect_verification_adapters.py:354`
+- `tests/test_effect_verification_adapters.py:380`
+- … +9 more (grep the name in repo)
+
+## `build_cases` — function, line 71
+- **called from:**
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:256`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:335`
+- `scripts/curate_public_search_seed_cases.py:291`
+- `scripts/eval_followup_domain_continuity.py:178`
+- `scripts/run_sft_overnight_fixture_flows.py:755`
+
+## `contract_for` — function, line 101
+- **called from:**
+- `scripts/eval_followup_domain_continuity.py:128`
+
+## `endpoint_from_database` — function, line 117
+- **called from:**
+- `scripts/eval_followup_domain_continuity.py:177`
+
+## `run_case` — function (async), line 127
+- **called from:**
+- `scripts/eval_followup_domain_continuity.py:183`
+- `scripts/eval_odysseus_everyday_live_hard.py:554`
+- `scripts/eval_odysseus_live_hard_direct.py:242`
+- `scripts/eval_odysseus_tool_use.py:1434`
+- `scripts/eval_qwen35_document_shape_direct.py:271`
+- `scripts/eval_qwen35_implicit_memory.py:223`
+- `scripts/eval_qwen35_tool_router_extended.py:503`
+- `scripts/run_sft_environment_expansion.py:819`
+- `scripts/run_sft_overnight_fixture_flows.py:782`
+- `tests/test_eval_script_contract.py:204`
+- `tests/test_eval_script_contract.py:266`
+
+## `main` — function (async), line 176
+- **called from:**
+- `integrations/claude/skills/odysseus/scripts/odysseus_api.py:218`
+- `integrations/codex/scripts/odysseus_api.py:218`
+- `scripts/add_hwfit_models.py:512`
+- `scripts/agent_migration_manifest.py:635`
+- `scripts/analyze_odysseus_eval_targets.py:180`
+- `scripts/assemble_sft_clean_corpus.py:74`
+- `scripts/audit_c5_benchmark_evidence.py:1637`
+- `scripts/audit_email_sft_with_deepseek.py:323`
+- `scripts/audit_historical_tool_routing.py:121`
+- `scripts/audit_sft_corpus_with_deepseek.py:344`
+- `scripts/audit_typo_tool_routing.py:99`
+- `scripts/backfill_model_release_dates.py:136`
+- `scripts/build_frontend.py:148`
+- `scripts/build_historical_harness_queue.py:333`
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:274`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:353`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:361`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:267`
+- `scripts/build_odysseus_sft_repair_manifest.py:230`
+- `scripts/build_odysseus_tool_efficiency_sft_slice.py:447`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:557`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:519`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:551`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:394`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:288`
+- `scripts/build_odysseus_web_teacher_sft.py:500`
+- `scripts/build_odysseus_web_v53_repair_sft.py:483`
+- `scripts/build_sft_environment_inventories.py:97`
+- `scripts/build_sft_expansion_manifest.py:161`
+- `scripts/build_sft_expansion_splits.py:110`
+- `scripts/build_v66_calendar_heldout_cases.py:113`
+- `scripts/check_brotli.py:122`
+- `scripts/check_ca_trust.py:180`
+- `scripts/claim_ownerless.py:106`
+- `scripts/cook_sft_alex_conversations.py:298`
+- `scripts/css_snapshot.py:295`
+- `scripts/curate_public_search_seed_cases.py:324`
+- `scripts/curate_sft_trace_run.py:178`
+- `scripts/demo_email/seed_demo_emails.py:394`
+- `scripts/dump_agent_prompt.py:545`
+- `scripts/eval_ajax_basic_tools.py:71`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_app_route_smoke.py:400`
+- `scripts/eval_odysseus_contextual_tool_use.py:944`
+- `scripts/eval_odysseus_crud.py:925`
+- `scripts/eval_odysseus_everyday_live_hard.py:590`
+- `scripts/eval_odysseus_live_hard_direct.py:261`
+- `scripts/eval_odysseus_live_hard_examples.py:468`
+- `scripts/eval_odysseus_tool_use.py:1490`
+- `scripts/eval_qwen35_document_shape_direct.py:303`
+- `scripts/eval_qwen35_implicit_memory.py:279`
+- `scripts/eval_qwen35_tool_router_extended.py:571`
+- `scripts/filter_sft_seed_hygiene.py:90`
+- `scripts/generate_env_reference.py:1270`
+- `scripts/generate_sft_environment_expansion.py:399`
+- `scripts/generate_sft_flow_variants_with_kimi.py:211`
+- `scripts/hf_download.py:182`
+- `scripts/import_from_vllm_recipes.py:348`
+- `scripts/index_documents.py:117`
+- … +139 more (grep the name in repo)

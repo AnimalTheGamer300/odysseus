@@ -9,13 +9,14 @@
 
 ## `constructor` — method?, line 7
 - **called from:**
+- `static/js/editor/document-codec.js:74`
 - `static/js/signature.js:39`
 - `static/js/spinner.js:15`
 - `static/js/tts-ai.js:7`
 
 ## `checkAvailability` — method?, line 33
 - **called from:**
-- `static/js/settings.js:849`
+- `static/js/settings/speech.js:76`
 - `static/js/tts-ai.js:30`
 - `static/js/tts-ai.js:33`
 
@@ -50,8 +51,9 @@
 
 ## `play` — method?, line 177
 - **called from:**
-- `static/js/settings.js:926`
-- `static/js/slashCommands.js:2104`
+- `static/js/editor/actions-panel.js:169`
+- `static/js/settings/speech.js:153`
+- `static/js/slashCommands.js:2108`
 - `static/js/tts-ai.js:120`
 - `static/js/tts-ai.js:177`
 - `static/js/tts-ai.js:192`
@@ -65,28 +67,35 @@
 
 ## `stop` — method?, line 224
 - **called from:**
-- `app.py:1290`
+- `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:3099`
-- `tests/test_compare_stop_disconnect_poll.py:146`
-- `tests/test_compare_stop_disconnect_poll.py:232`
+- `routes/chat_routes.py:5561`
+- `tests/smoke/stub_provider.py:172`
+- `tests/test_client_tool_routing.py:88`
+- `tests/test_compare_stop_disconnect_poll.py:147`
 - `tests/test_compare_stop_disconnect_poll.py:233`
-- `tests/test_compare_stop_disconnect_poll.py:235`
-- `static/js/admin.js:673`
-- `static/js/chat.js:4889`
-- `static/js/chat.js:4980`
-- `static/js/chatRenderer.js:145`
-- `static/js/compare/stream.js:250`
-- `static/js/compare/stream.js:287`
-- `static/js/cookbookRunning.js:2895`
-- `static/js/documentLibrary.js:3280`
-- `static/js/documentLibrary.js:3433`
-- `static/js/emailLibrary.js:8414`
-- `static/js/fileHandler.js:347`
-- `static/js/galleryEditor.js:3664`
-- `static/js/keyboard-shortcuts.js:171`
-- `static/js/models.js:220`
-- `static/js/settings.js:2652`
+- `tests/test_compare_stop_disconnect_poll.py:234`
+- `tests/test_compare_stop_disconnect_poll.py:236`
+- `tests/test_nested_invocation_ownership.py:77`
+- `tests/test_notes_native_cleanup.py:30`
+- `static/js/admin.js:1379`
+- `static/js/chat.js:6534`
+- `static/js/chat.js:6625`
+- `static/js/chatRenderer.js:543`
+- `static/js/compare/stream.js:306`
+- `static/js/compare/stream.js:343`
+- `static/js/cookbookRunning.js:2951`
+- `static/js/documentLibrary.js:3346`
+- `static/js/documentLibrary.js:3499`
+- `static/js/editor/editor-bridge.js:96`
+- `static/js/emailLibrary/aiReply.js:56`
+- `static/js/fileHandler.js:389`
+- `static/js/galleryEditor.js:12858`
+- `static/js/galleryEditor.js:13203`
+- `static/js/galleryEditor.js:14092`
+- `static/js/keyboard-shortcuts.js:172`
+- `static/js/models.js:222`
+- `static/js/settings.js:2365`
 - `static/js/spinner.js:260`
 - `static/js/spinner.js:268`
 - `static/js/spinner.js:274`
@@ -95,7 +104,7 @@
 - `static/js/spinner.js:408`
 - `static/js/spinner.js:425`
 - `static/js/spinner.js:437`
-- `static/js/tasks.js:2865`
+- `static/js/tasks.js:3011`
 - `static/js/tts-ai.js:179`
 - `static/js/tts-ai.js:224`
 - `static/js/tts-ai.js:503`
@@ -106,7 +115,7 @@
 
 ## `enqueue` — method?, line 256
 - **called from:**
-- `static/js/chat.js:4760`
+- `static/js/chat.js:6391`
 - `static/js/tts-ai.js:256`
 - `static/js/tts-ai.js:401`
 - `static/js/tts-ai.js:445`
@@ -114,11 +123,11 @@
 
 ## `_processQueue` — method?, line 263
 - **called from:**
-- `static/js/cookbookRunning.js:662`
-- `static/js/cookbookRunning.js:3251`
-- `static/js/cookbookRunning.js:3305`
-- `static/js/cookbookRunning.js:3312`
-- `static/js/cookbookRunning.js:3551`
+- `static/js/cookbookRunning.js:666`
+- `static/js/cookbookRunning.js:3307`
+- `static/js/cookbookRunning.js:3361`
+- `static/js/cookbookRunning.js:3368`
+- `static/js/cookbookRunning.js:3607`
 - `static/js/tts-ai.js:259`
 - `static/js/tts-ai.js:263`
 
@@ -129,13 +138,13 @@
 
 ## `streamingStart` — method?, line 347
 - **called from:**
-- `static/js/chat.js:2574`
+- `static/js/chat.js:3632`
 - `static/js/tts-ai.js:347`
 
 ## `streamingUpdate` — method?, line 354
 - **called from:**
-- `static/js/chat.js:3374`
-- `static/js/chat.js:3522`
+- `static/js/chat.js:4920`
+- `static/js/chat.js:5066`
 - `static/js/tts-ai.js:354`
 
 ## `_processStreamingSentences` — method?, line 363
@@ -151,12 +160,12 @@
 
 ## `streamingAttachButton` — method?, line 415
 - **called from:**
-- `static/js/chat.js:4750`
+- `static/js/chat.js:6381`
 - `static/js/tts-ai.js:415`
 
 ## `streamingEnd` — method?, line 426
 - **called from:**
-- `static/js/chat.js:4749`
+- `static/js/chat.js:6380`
 - `static/js/tts-ai.js:426`
 
 ## `clearCache` — method?, line 450
@@ -165,7 +174,7 @@
 
 ## `addAITTSButton` — function, line 462
 - **called from:**
-- `static/js/chat.js:4733`
+- `static/js/chat.js:6364`
 - `static/js/tts-ai.js:462`
 
 ## `resetButton` — function, line 491

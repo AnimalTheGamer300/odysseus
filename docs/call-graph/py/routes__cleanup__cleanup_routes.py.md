@@ -4,9 +4,10 @@
 
 ## `setup_cleanup_routes` — function, line 10
 - **called from:**
-- `app.py:732`
+- `app.py:812`
 - `tests/test_cleanup_owner_scope.py:159`
 - `tests/test_cleanup_owner_scope.py:181`
+- `tests/test_cleanup_transcript_preservation.py:28`
 
 ## `cleanup_preview` — function (async), line 23
 - **route:** `GET /preview`

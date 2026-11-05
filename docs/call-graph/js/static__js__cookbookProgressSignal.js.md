@@ -6,4 +6,4 @@
 ## `computeProgressSignal` — function, line 23
 - **called from:**
 - `static/js/cookbookProgressSignal.js:23`
-- `static/js/cookbookRunning.js:3359`
+- `static/js/cookbookRunning.js:3415`

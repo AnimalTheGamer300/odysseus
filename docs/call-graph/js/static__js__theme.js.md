@@ -1,75 +1,87 @@
 # `static/js/theme.js` — definitions & call sites
 
-105 definitions (regex-based, best-effort).
-**Exports:** `THEMES`, `applyBgEffectColor`, `applyBgEffectIntensity`, `applyBgEffectSize`, `applyBgPattern`, `applyColors`, `applyFontDensity`, `applyFrostedGlass`, `applyUiScale`, `closePopup`, `default`, `deleteCustomTheme`, `getCustomThemes`, `getSaved`, `initThemeUI`, `initThemeZoneHighlight`, `makeDraggable`, `save`, `saveCustomTheme`, `setFaviconBusy`, `togglePopup`
+113 definitions (regex-based, best-effort).
+**Exports:** `THEMES`, `applyBgEffectColor`, `applyBgEffectIntensity`, `applyBgEffectSize`, `applyBgEffectSpeed`, `applyBgPattern`, `applyColors`, `applyFontDensity`, `applyFrostedGlass`, `closePopup`, `default`, `deleteCustomTheme`, `getCustomThemes`, `getSaved`, `initThemeUI`, `initThemeZoneHighlight`, `makeDraggable`, `openPopup`, `save`, `saveCustomTheme`, `setFaviconBusy`, `togglePopup`
 
-## `_loadCustomThemes` — function, line 85
+## `normalizeFont` — function, line 54
 - **called from:**
-- `static/js/theme.js:85`
-- `static/js/theme.js:92`
-- `static/js/theme.js:114`
-- `static/js/theme.js:789`
-- `static/js/theme.js:1016`
-- `static/js/theme.js:1165`
-- `static/js/theme.js:1669`
-- `static/js/theme.js:2249`
-
-## `_saveCustomThemes` — function, line 88
-- **called from:**
-- `static/js/theme.js:88`
-- `static/js/theme.js:108`
-- `static/js/theme.js:116`
-- `static/js/theme.js:2255`
-
-## `saveCustomTheme` — function, line 91
-- **called from:**
-- `static/js/chatStream.js:134`
-- `static/js/slashCommands.js:1482`
-- `static/js/theme.js:91`
-- `static/js/theme.js:1019`
-- `static/js/theme.js:1063`
-- `static/js/theme.js:1167`
-- `static/js/theme.js:1484`
-
-## `deleteCustomTheme` — function, line 113
-- **called from:**
-- `static/js/slashCommands.js:1492`
-- `static/js/slashCommands.js:1496`
-- `static/js/theme.js:113`
-- `static/js/theme.js:901`
-
-## `_syncCustomThemesToServer` — function, line 120
-- **called from:**
-- `static/js/theme.js:109`
-- `static/js/theme.js:117`
+- `static/js/theme.js:54`
 - `static/js/theme.js:120`
+- `static/js/theme.js:135`
+- `static/js/theme.js:564`
+- `static/js/theme.js:670`
+- `static/js/theme.js:677`
+- `static/js/theme.js:677`
+- `static/js/theme.js:922`
+- `static/js/theme.js:1311`
 
-## `hexToHSL` — function, line 132
+## `_loadCustomThemes` — function, line 117
 - **called from:**
-- `static/js/theme.js:132`
-- `static/js/theme.js:161`
-- `static/js/theme.js:162`
-- `static/js/theme.js:163`
-- `static/js/theme.js:221`
+- `static/js/theme.js:117`
+- `static/js/theme.js:128`
+- `static/js/theme.js:151`
+- `static/js/theme.js:845`
+- `static/js/theme.js:1080`
+- `static/js/theme.js:1230`
+- `static/js/theme.js:1751`
+- `static/js/theme.js:2461`
 
-## `hslToHex` — function, line 150
+## `_saveCustomThemes` — function, line 124
 - **called from:**
+- `static/js/theme.js:124`
+- `static/js/theme.js:145`
+- `static/js/theme.js:153`
+- `static/js/theme.js:2467`
+
+## `saveCustomTheme` — function, line 127
+- **called from:**
+- `static/js/chatStream.js:135`
+- `static/js/slashCommands.js:1486`
+- `static/js/theme.js:127`
+- `static/js/theme.js:1083`
+- `static/js/theme.js:1128`
+- `static/js/theme.js:1232`
+- `static/js/theme.js:1565`
+
+## `deleteCustomTheme` — function, line 150
+- **called from:**
+- `static/js/slashCommands.js:1496`
+- `static/js/slashCommands.js:1500`
 - `static/js/theme.js:150`
-- `static/js/theme.js:167`
-- `static/js/theme.js:169`
-- `static/js/theme.js:170`
-- `static/js/theme.js:171`
-- `static/js/theme.js:172`
-- `static/js/theme.js:174`
-- `static/js/theme.js:175`
-- `static/js/theme.js:176`
-- `static/js/theme.js:177`
-- `static/js/theme.js:249`
-- `static/js/theme.js:250`
-- `static/js/theme.js:251`
-- `static/js/theme.js:252`
+- `static/js/theme.js:965`
 
-## `f` — arrow, line 155
+## `_syncCustomThemesToServer` — function, line 157
+- **called from:**
+- `static/js/theme.js:146`
+- `static/js/theme.js:154`
+- `static/js/theme.js:157`
+
+## `hexToHSL` — function, line 169
+- **called from:**
+- `static/js/theme.js:169`
+- `static/js/theme.js:198`
+- `static/js/theme.js:199`
+- `static/js/theme.js:200`
+- `static/js/theme.js:258`
+
+## `hslToHex` — function, line 187
+- **called from:**
+- `static/js/theme.js:187`
+- `static/js/theme.js:204`
+- `static/js/theme.js:206`
+- `static/js/theme.js:207`
+- `static/js/theme.js:208`
+- `static/js/theme.js:209`
+- `static/js/theme.js:211`
+- `static/js/theme.js:212`
+- `static/js/theme.js:213`
+- `static/js/theme.js:214`
+- `static/js/theme.js:286`
+- `static/js/theme.js:287`
+- `static/js/theme.js:288`
+- `static/js/theme.js:289`
+
+## `f` — arrow, line 192
 - **called from:**
 - `tests/test_gallery_endpoint_hardening.py:25`
 - `tests/test_gallery_endpoint_hardening.py:26`
@@ -82,230 +94,253 @@
 - `tests/test_gallery_endpoint_hardening.py:47`
 - `tests/test_gallery_endpoint_hardening.py:48`
 - `tests/test_gallery_endpoint_hardening.py:168`
-- `static/js/theme.js:157`
-- `static/js/theme.js:157`
-- `static/js/theme.js:157`
+- `static/js/theme.js:194`
+- `static/js/theme.js:194`
+- `static/js/theme.js:194`
 
-## `toHex` — arrow, line 156
+## `toHex` — arrow, line 193
 - **called from:**
-- `static/js/theme.js:157`
-- `static/js/theme.js:157`
-- `static/js/theme.js:157`
+- `static/js/theme.js:194`
+- `static/js/theme.js:194`
+- `static/js/theme.js:194`
 
-## `deriveSyntaxColors` — function, line 160
+## `deriveSyntaxColors` — function, line 197
 - **called from:**
-- `static/js/theme.js:160`
-- `static/js/theme.js:200`
-- `static/js/theme.js:271`
+- `static/js/theme.js:197`
+- `static/js/theme.js:237`
+- `static/js/theme.js:308`
 
-## `computeAdvancedDefaults` — function, line 199
+## `computeAdvancedDefaults` — function, line 236
 - **called from:**
-- `static/js/theme.js:199`
-- `static/js/theme.js:285`
-- `static/js/theme.js:666`
-- `static/js/theme.js:914`
-- `static/js/theme.js:954`
-- `static/js/theme.js:963`
-- `static/js/theme.js:974`
-- `static/js/theme.js:1055`
-- `static/js/theme.js:1135`
-- `static/js/theme.js:1235`
+- `static/js/theme.js:236`
+- `static/js/theme.js:322`
+- `static/js/theme.js:722`
+- `static/js/theme.js:978`
+- `static/js/theme.js:1018`
+- `static/js/theme.js:1027`
+- `static/js/theme.js:1038`
+- `static/js/theme.js:1120`
+- `static/js/theme.js:1200`
+- `static/js/theme.js:1301`
 
-## `generateHarmonyColors` — function, line 220
+## `generateHarmonyColors` — function, line 257
 - **called from:**
-- `static/js/theme.js:220`
-- `static/js/theme.js:1384`
-- `static/js/theme.js:1405`
+- `static/js/theme.js:257`
+- `static/js/theme.js:1449`
+- `static/js/theme.js:1480`
 
-## `applyColors` — function, line 257
+## `applyColors` — function, line 294
 - **called from:**
 - `static/js/chatStream.js:103`
 - `static/js/chatStream.js:120`
 - `static/js/slashCommands.js:874`
-- `static/js/slashCommands.js:1507`
-- `static/js/slashCommands.js:5157`
-- `static/js/theme.js:257`
-- `static/js/theme.js:857`
-- `static/js/theme.js:908`
-- `static/js/theme.js:1010`
-- `static/js/theme.js:1089`
-- `static/js/theme.js:1159`
-- `static/js/theme.js:1191`
-- `static/js/theme.js:1385`
-- `static/js/theme.js:1487`
-- `static/js/theme.js:2241`
+- `static/js/slashCommands.js:1511`
+- `static/js/slashCommands.js:5168`
+- `static/js/theme.js:294`
+- `static/js/theme.js:917`
+- `static/js/theme.js:972`
+- `static/js/theme.js:1074`
+- `static/js/theme.js:1154`
+- `static/js/theme.js:1224`
+- `static/js/theme.js:1257`
+- `static/js/theme.js:1450`
+- `static/js/theme.js:1568`
+- `static/js/theme.js:2453`
 
-## `_setFavicon` — function, line 340
+## `_setFavicon` — function, line 377
 - **called from:**
-- `static/js/theme.js:340`
-- `static/js/theme.js:361`
-- `static/js/theme.js:461`
-
-## `_updateFavicon` — function, line 350
-- **called from:**
-- `static/js/theme.js:291`
-- `static/js/theme.js:350`
-- `static/js/theme.js:504`
-
-## `_busyFrameNow` — function, line 392
-- **called from:**
-- `static/js/theme.js:392`
-- `static/js/theme.js:444`
-
-## `_busyIconDataURI` — function, line 397
-- **called from:**
-- `static/js/theme.js:397`
-- `static/js/theme.js:409`
-
-## `_loadBusyIcon` — function, line 408
-- **called from:**
-- `static/js/theme.js:408`
-- `static/js/theme.js:425`
-
-## `_renderBusyFavicon` — function, line 417
-- **called from:**
-- `static/js/theme.js:370`
-- `static/js/theme.js:417`
-- `static/js/theme.js:469`
-- `static/js/theme.js:487`
-- `static/js/theme.js:497`
-
-## `_startBusyTimer` — function, line 464
-- **called from:**
-- `static/js/theme.js:464`
-- `static/js/theme.js:488`
+- `static/js/theme.js:377`
+- `static/js/theme.js:398`
 - `static/js/theme.js:498`
 
-## `_stopBusyTimer` — function, line 472
+## `_updateFavicon` — function, line 387
 - **called from:**
-- `static/js/theme.js:472`
-- `static/js/theme.js:500`
+- `static/js/theme.js:328`
+- `static/js/theme.js:387`
+- `static/js/theme.js:541`
 
-## `setFaviconBusy` — function, line 493
+## `_busyFrameNow` — function, line 429
 - **called from:**
-- `static/js/chat.js:1247`
-- `static/js/chat.js:1255`
-- `static/js/theme.js:493`
+- `static/js/theme.js:429`
+- `static/js/theme.js:481`
 
-## `_injectFontFace` — function, line 514
+## `_busyIconDataURI` — function, line 434
 - **called from:**
-- `static/js/theme.js:514`
-- `static/js/theme.js:532`
+- `static/js/theme.js:434`
+- `static/js/theme.js:446`
 
-## `applyFontDensity` — function, line 526
+## `_loadBusyIcon` — function, line 445
 - **called from:**
-- `static/js/theme.js:526`
-- `static/js/theme.js:871`
-- `static/js/theme.js:1091`
-- `static/js/theme.js:1256`
-- `static/js/theme.js:1271`
-- `static/js/theme.js:1297`
-- `static/js/theme.js:1488`
+- `static/js/theme.js:445`
+- `static/js/theme.js:462`
 
-## `applyUiScale` — function, line 547
+## `_renderBusyFavicon` — function, line 454
 - **called from:**
-- `static/js/theme.js:547`
-- `static/js/theme.js:1307`
-- `static/js/theme.js:1309`
+- `static/js/theme.js:407`
+- `static/js/theme.js:454`
+- `static/js/theme.js:506`
+- `static/js/theme.js:524`
+- `static/js/theme.js:534`
 
-## `applyBgEffectColor` — function, line 563
+## `_startBusyTimer` — function, line 501
+- **called from:**
+- `static/js/theme.js:501`
+- `static/js/theme.js:525`
+- `static/js/theme.js:535`
+
+## `_stopBusyTimer` — function, line 509
+- **called from:**
+- `static/js/theme.js:509`
+- `static/js/theme.js:537`
+
+## `setFaviconBusy` — function, line 530
+- **called from:**
+- `static/js/chat.js:2142`
+- `static/js/chat.js:2150`
+- `static/js/theme.js:530`
+
+## `_injectFontFace` — function, line 551
+- **called from:**
+- `static/js/theme.js:551`
+- `static/js/theme.js:569`
+
+## `applyFontDensity` — function, line 563
+- **called from:**
+- `static/js/theme.js:563`
+- `static/js/theme.js:932`
+- `static/js/theme.js:1156`
+- `static/js/theme.js:1323`
+- `static/js/theme.js:1339`
+- `static/js/theme.js:1365`
+- `static/js/theme.js:1569`
+
+## `applyBgEffectColor` — function, line 588
 - **called from:**
 - `static/js/chatStream.js:129`
-- `static/js/theme.js:563`
-- `static/js/theme.js:872`
-- `static/js/theme.js:1221`
-- `static/js/theme.js:1257`
-- `static/js/theme.js:1326`
-- `static/js/theme.js:1489`
+- `static/js/theme.js:588`
+- `static/js/theme.js:933`
+- `static/js/theme.js:1287`
+- `static/js/theme.js:1324`
+- `static/js/theme.js:1382`
+- `static/js/theme.js:1570`
 
-## `applyBgEffectIntensity` — function, line 567
+## `applyBgEffectIntensity` — function, line 592
 - **called from:**
 - `static/js/chatStream.js:130`
-- `static/js/theme.js:567`
-- `static/js/theme.js:873`
-- `static/js/theme.js:1258`
-- `static/js/theme.js:1335`
+- `static/js/theme.js:592`
+- `static/js/theme.js:934`
+- `static/js/theme.js:1325`
+- `static/js/theme.js:1391`
+- `static/js/theme.js:1571`
 
-## `applyBgEffectSize` — function, line 573
+## `applyBgEffectSize` — function, line 598
 - **called from:**
 - `static/js/chatStream.js:131`
-- `static/js/theme.js:573`
-- `static/js/theme.js:874`
-- `static/js/theme.js:1259`
-- `static/js/theme.js:1344`
+- `static/js/theme.js:598`
+- `static/js/theme.js:935`
+- `static/js/theme.js:1326`
+- `static/js/theme.js:1400`
+- `static/js/theme.js:1572`
 
-## `applyFrostedGlass` — function, line 582
+## `applyBgEffectSpeed` — function, line 604
 - **called from:**
 - `static/js/chatStream.js:132`
-- `static/js/theme.js:582`
-- `static/js/theme.js:875`
-- `static/js/theme.js:1260`
-- `static/js/theme.js:1353`
+- `static/js/theme.js:604`
+- `static/js/theme.js:936`
+- `static/js/theme.js:1327`
+- `static/js/theme.js:1409`
+- `static/js/theme.js:1573`
 
-## `_getEffectSize` — function, line 587
+## `applyFrostedGlass` — function, line 613
 - **called from:**
-- `static/js/theme.js:587`
-- `static/js/theme.js:1817`
-- `static/js/theme.js:2044`
-- `static/js/theme.js:2106`
-- `static/js/theme.js:2194`
+- `static/js/chatStream.js:133`
+- `static/js/theme.js:613`
+- `static/js/theme.js:937`
+- `static/js/theme.js:1328`
+- `static/js/theme.js:1418`
 
-## `applyBgPattern` — function, line 595
+## `_getEffectSize` — function, line 618
+- **called from:**
+- `static/js/theme.js:618`
+- `static/js/theme.js:1900`
+- `static/js/theme.js:2126`
+- `static/js/theme.js:2249`
+- `static/js/theme.js:2312`
+- `static/js/theme.js:2401`
+
+## `_getEffectSpeed` — function, line 623
+- **called from:**
+- `static/js/theme.js:623`
+- `static/js/theme.js:1818`
+- `static/js/theme.js:1899`
+- `static/js/theme.js:1980`
+- `static/js/theme.js:2064`
+- `static/js/theme.js:2128`
+- `static/js/theme.js:2172`
+- `static/js/theme.js:2251`
+- `static/js/theme.js:2314`
+- `static/js/theme.js:2388`
+
+## `applyBgPattern` — function, line 631
 - **called from:**
 - `static/js/chatStream.js:128`
-- `static/js/theme.js:595`
-- `static/js/theme.js:876`
-- `static/js/theme.js:1092`
-- `static/js/theme.js:1261`
-- `static/js/theme.js:1317`
-- `static/js/theme.js:1490`
+- `static/js/theme.js:631`
+- `static/js/theme.js:655`
+- `static/js/theme.js:938`
+- `static/js/theme.js:1157`
+- `static/js/theme.js:1329`
+- `static/js/theme.js:1373`
+- `static/js/theme.js:1574`
 
-## `getSaved` — function, line 610
+## `getSaved` — function, line 658
 - **called from:**
-- `static/js/slashCommands.js:1480`
-- `static/js/theme.js:610`
-- `static/js/theme.js:691`
-- `static/js/theme.js:787`
-- `static/js/theme.js:1014`
-- `static/js/theme.js:1163`
-- `static/js/theme.js:1222`
-- `static/js/theme.js:1272`
-- `static/js/theme.js:1298`
-- `static/js/theme.js:1318`
-- `static/js/theme.js:1327`
-- `static/js/theme.js:1336`
-- `static/js/theme.js:1345`
-- `static/js/theme.js:1354`
-- `static/js/theme.js:1429`
-- `static/js/theme.js:2236`
+- `static/js/slashCommands.js:1484`
+- `static/js/theme.js:658`
+- `static/js/theme.js:747`
+- `static/js/theme.js:843`
+- `static/js/theme.js:1078`
+- `static/js/theme.js:1228`
+- `static/js/theme.js:1288`
+- `static/js/theme.js:1340`
+- `static/js/theme.js:1366`
+- `static/js/theme.js:1374`
+- `static/js/theme.js:1383`
+- `static/js/theme.js:1392`
+- `static/js/theme.js:1401`
+- `static/js/theme.js:1410`
+- `static/js/theme.js:1419`
+- `static/js/theme.js:1504`
+- `static/js/theme.js:2443`
 
-## `save` — function, line 619
+## `save` — function, line 674
 - **called from:**
 - `companion/pairing.py:224`
 - `mcp_servers/memory_server.py:187`
 - `mcp_servers/memory_server.py:215`
 - `mcp_servers/memory_server.py:243`
-- `routes/auth_routes.py:261`
+- `routes/auth_routes.py:285`
 - `routes/backup_routes.py:107`
 - `routes/backup_routes.py:191`
-- `routes/gallery/gallery_routes.py:54`
-- `routes/gallery/gallery_routes.py:548`
-- `routes/gallery/gallery_routes.py:1337`
-- `routes/gallery/gallery_routes.py:1340`
-- `routes/gallery/gallery_routes.py:1410`
-- `routes/gallery/gallery_routes.py:1443`
-- `routes/gallery/gallery_routes.py:1445`
-- `routes/gallery/gallery_routes.py:1733`
-- `routes/gallery/gallery_routes.py:1782`
-- `routes/gallery/gallery_routes.py:1830`
-- `routes/gallery/gallery_routes.py:2052`
-- `routes/gallery/gallery_routes.py:2102`
-- `routes/gallery/gallery_routes.py:2116`
+- `routes/gallery/gallery_routes.py:346`
+- `routes/gallery/gallery_routes.py:378`
+- `routes/gallery/gallery_routes.py:380`
+- `routes/gallery/gallery_routes.py:394`
+- `routes/gallery/gallery_routes.py:1054`
+- `routes/gallery/gallery_routes.py:1866`
+- `routes/gallery/gallery_routes.py:1869`
+- `routes/gallery/gallery_routes.py:1914`
+- `routes/gallery/gallery_routes.py:1986`
+- `routes/gallery/gallery_routes.py:2515`
+- `routes/gallery/gallery_routes.py:2566`
+- `routes/gallery/gallery_routes.py:2616`
+- `routes/gallery/gallery_routes.py:2925`
+- `routes/gallery/gallery_routes.py:2976`
+- `routes/gallery/gallery_routes.py:2990`
 - `routes/memory/memory_routes.py:137`
-- `routes/memory/memory_routes.py:511`
-- `routes/memory/memory_routes.py:540`
-- `routes/memory/memory_routes.py:562`
-- `routes/upload_routes.py:401`
+- `routes/memory/memory_routes.py:518`
+- `routes/memory/memory_routes.py:547`
+- `routes/memory/memory_routes.py:569`
+- `routes/upload_routes.py:524`
 - `scripts/diffusion_server.py:253`
 - `scripts/diffusion_server.py:1075`
 - `scripts/diffusion_server.py:1170`
@@ -315,227 +350,274 @@
 - `scripts/mlx_image_server.py:181`
 - `scripts/mlx_image_server.py:200`
 - `scripts/mlx_image_server.py:318`
-- `services/memory/memory_extractor.py:652`
-- `services/memory/memory_extractor.py:841`
+- `scripts/odysseus_domain_audit.py:343`
+- `scripts/odysseus_domain_audit.py:371`
+- `services/memory/memory_extractor.py:856`
+- `services/memory/memory_extractor.py:1138`
 - `services/memory/service.py:123`
-- `src/ai_interaction.py:401`
-- `src/ai_interaction.py:440`
-- `src/ai_interaction.py:472`
-- `src/builtin_actions.py:730`
+- `src/agent_tools/editor_tools.py:307`
+- `src/agent_tools/editor_tools.py:569`
+- `src/agent_tools/media_tools.py:396`
+- `src/agent_tools/media_tools.py:495`
+- `src/agent_tools/media_tools.py:881`
+- `src/agent_tools/media_tools.py:1004`
+- `src/agent_tools/media_tools.py:1526`
+- `src/agent_tools/media_tools.py:1537`
+- `src/agent_tools/media_tools.py:1738`
+- `src/agent_tools/media_tools.py:1847`
+- `src/ai_interaction.py:450`
+- `src/ai_interaction.py:491`
+- `src/ai_interaction.py:525`
+- `src/builtin_actions.py:858`
 - `src/caldav_writeback.py:156`
-- `src/chat_handler.py:349`
-- `src/document_processor.py:141`
-- `src/document_processor.py:385`
-- `src/document_processor.py:509`
-- `src/memory.py:212`
-- `src/memory.py:255`
-- `src/memory.py:315`
-- `src/memory_provider.py:166`
-- `src/memory_provider.py:249`
-- `src/pdf_forms.py:253`
-- `src/pdf_forms.py:362`
-- `src/pdf_forms.py:398`
-- `src/preset_manager.py:74`
-- `src/preset_manager.py:97`
-- `src/preset_manager.py:109`
-- `src/preset_manager.py:155`
-- `src/preset_manager.py:175`
-- `src/preset_manager.py:181`
-- … +87 more (grep the name in repo)
+- `src/chat_handler.py:365`
+- `src/clean_agent_preview.py:5463`
+- `src/document_processor.py:152`
+- `src/document_processor.py:491`
+- … +184 more (grep the name in repo)
 
-## `_syncToServer` — function, line 634
+## `_syncToServer` — function, line 690
 - **called from:**
-- `static/js/cookbookRunning.js:911`
-- `static/js/cookbookRunning.js:1326`
-- `static/js/cookbookRunning.js:1361`
-- `static/js/theme.js:631`
-- `static/js/theme.js:634`
+- `static/js/cookbookRunning.js:915`
+- `static/js/cookbookRunning.js:1356`
+- `static/js/cookbookRunning.js:1391`
+- `static/js/theme.js:687`
+- `static/js/theme.js:690`
 
-## `_loadFromServer` — function, line 645
+## `_loadFromServer` — function, line 701
 - **called from:**
-- `static/js/theme.js:645`
-- `static/js/theme.js:2237`
+- `static/js/theme.js:701`
+- `static/js/theme.js:2444`
 
-## `syncPickers` — function, line 654
+## `syncPickers` — function, line 710
 - **called from:**
-- `static/js/theme.js:654`
-- `static/js/theme.js:860`
-- `static/js/theme.js:909`
-- `static/js/theme.js:1090`
-- `static/js/theme.js:1386`
+- `static/js/theme.js:710`
+- `static/js/theme.js:920`
+- `static/js/theme.js:973`
+- `static/js/theme.js:1155`
+- `static/js/theme.js:1451`
 
-## `syncAdvancedPickers` — function, line 664
+## `syncAdvancedPickers` — function, line 720
 - **called from:**
-- `static/js/theme.js:660`
-- `static/js/theme.js:664`
-- `static/js/theme.js:693`
-- `static/js/theme.js:1193`
+- `static/js/theme.js:716`
+- `static/js/theme.js:720`
+- `static/js/theme.js:749`
+- `static/js/theme.js:1259`
 
-## `initThemeUI` — function, line 673
+## `initThemeUI` — function, line 729
 - **called from:**
-- `static/js/theme.js:110`
-- `static/js/theme.js:118`
-- `static/js/theme.js:673`
-- `static/js/theme.js:2258`
+- `static/js/theme.js:147`
+- `static/js/theme.js:155`
+- `static/js/theme.js:729`
+- `static/js/theme.js:2470`
 
-## `_wireOpacityToggle` — function, line 740
+## `_wireOpacityToggle` — function, line 796
 - **called from:**
-- `static/js/theme.js:740`
+- `static/js/theme.js:796`
 
-## `apply` — arrow, line 746
+## `apply` — arrow, line 802
 - **called from:**
-- `static/app.js:199`
-- `static/js/admin.js:1765`
-- `static/js/admin.js:1769`
+- `tests/test_review_calendar_invitation.py:52`
+- `tests/test_review_calendar_invitation.py:54`
+- `tests/test_review_calendar_invitation.py:60`
+- `tests/test_review_calendar_invitation.py:61`
+- `tests/test_review_calendar_invitation.py:70`
+- `tests/test_review_calendar_invitation.py:71`
+- `tests/test_review_calendar_invitation.py:78`
+- `tests/test_review_calendar_invitation.py:79`
+- `tests/test_review_calendar_invitation.py:81`
+- `tests/test_review_calendar_invitation.py:89`
+- `tests/test_review_calendar_invitation.py:109`
+- `tests/test_review_calendar_invitation.py:111`
+- `tests/test_review_calendar_invitation.py:173`
+- `tests/test_review_calendar_invitation.py:174`
+- `tests/test_review_calendar_invitation.py:176`
+- `tests/test_review_calendar_invitation.py:184`
+- `tests/test_review_calendar_invitation.py:185`
+- `tests/test_review_calendar_invitation.py:192`
+- `tests/test_review_calendar_invitation.py:201`
+- `tests/test_review_calendar_invitation.py:202`
+- `tests/test_review_calendar_invitation.py:209`
+- `tests/test_review_calendar_invitation.py:210`
+- `tests/test_review_calendar_invitation.py:211`
+- `static/app.js:207`
+- `static/js/admin.js:2634`
+- `static/js/admin.js:2638`
+- `static/js/calendar.js:1515`
 - `static/js/composerHistoryRecall.js:175`
 - `static/js/composerHistoryRecall.js:189`
 - `static/js/composerHistoryRecall.js:193`
 - `static/js/cookbookSchedule.js:22`
-- `static/js/document.js:812`
-- `static/js/document.js:821`
-- `static/js/document.js:6225`
-- `static/js/sessions.js:38`
-- `static/js/settings.js:194`
-- `static/js/settings.js:213`
-- `static/js/skills.js:54`
-- `static/js/theme.js:775`
-- `static/js/theme.js:780`
-- `static/js/ui.js:587`
+- `static/js/document.js:1725`
+- `static/js/document.js:1734`
+- `static/js/document.js:10179`
+- `static/js/editor/fx/cube-lut.js:2`
+- `static/js/editor/panel-visibility.js:81`
+- `static/js/editor/panel-visibility.js:137`
+- `static/js/editor/panel-visibility.js:150`
+- `static/js/editor/panel-visibility.js:158`
+- `static/js/editor/tools/perspective-crop.js:87`
+- `static/js/editor/tools/perspective-crop.js:90`
+- `static/js/galleryEditor.js:6770`
+- `static/js/galleryEditor.js:10650`
+- `static/js/galleryEditor.js:10666`
+- `static/js/galleryEditor.js:11478`
+- `static/js/sessions.js:40`
+- `static/js/settings.js:130`
+- `static/js/settings.js:149`
+- `static/js/skills.js:69`
+- `static/js/theme.js:831`
+- `static/js/theme.js:836`
+- `static/js/ui.js:653`
+- `static/js/ui.js:656`
+- `static/js/ui.js:757`
 
-## `_getOpts` — function, line 827
+## `_getOpts` — function, line 885
 - **called from:**
-- `static/js/theme.js:827`
-- `static/js/theme.js:845`
-- `static/js/theme.js:1062`
+- `static/js/theme.js:885`
+- `static/js/theme.js:905`
+- `static/js/theme.js:1127`
 
-## `_saveFull` — function, line 845
+## `_saveFull` — function, line 905
 - **called from:**
-- `static/js/theme.js:845`
-- `static/js/theme.js:1025`
-- `static/js/theme.js:1027`
-- `static/js/theme.js:1173`
-- `static/js/theme.js:1175`
-- `static/js/theme.js:1192`
+- `static/js/theme.js:905`
+- `static/js/theme.js:1090`
+- `static/js/theme.js:1092`
+- `static/js/theme.js:1239`
+- `static/js/theme.js:1241`
+- `static/js/theme.js:1258`
+- `static/js/theme.js:1288`
+- `static/js/theme.js:1340`
+- `static/js/theme.js:1366`
+- `static/js/theme.js:1374`
+- `static/js/theme.js:1383`
+- `static/js/theme.js:1392`
+- `static/js/theme.js:1401`
+- `static/js/theme.js:1410`
+- `static/js/theme.js:1419`
+- `static/js/theme.js:1452`
+
+## `clearAllActive` — function, line 909
+- **called from:**
+- `static/js/theme.js:909`
+- `static/js/theme.js:918`
+
+## `syncResetButtons` — function, line 981
+- **called from:**
+- `static/js/theme.js:981`
+- `static/js/theme.js:1096`
+- `static/js/theme.js:1245`
+- `static/js/theme.js:1260`
+- `static/js/theme.js:1308`
+
+## `_norm` — arrow, line 1046
+- **called from:**
+- `routes/hwfit_routes.py:391`
+- `routes/hwfit_routes.py:393`
+- `static/js/cookbookServe.js:2556`
+- `static/js/cookbookServe.js:2556`
+- `static/js/theme.js:1065`
+- `static/js/theme.js:1065`
+
+## `hx` — arrow, line 1052
+- **called from:**
+- `static/js/theme.js:1053`
+- `static/js/theme.js:1053`
+- `static/js/theme.js:1053`
+
+## `doSave` — arrow, line 1109
+- **called from:**
+- `static/js/galleryEditor.js:4747`
+- `static/js/theme.js:1143`
+
+## `readCurrentColors` — function, line 1190
+- **called from:**
+- `static/js/theme.js:1190`
+- `static/js/theme.js:1199`
 - `static/js/theme.js:1222`
-- `static/js/theme.js:1272`
-- `static/js/theme.js:1298`
-- `static/js/theme.js:1318`
-- `static/js/theme.js:1327`
-- `static/js/theme.js:1336`
-- `static/js/theme.js:1345`
-- `static/js/theme.js:1354`
-- `static/js/theme.js:1387`
+- `static/js/theme.js:1255`
+- `static/js/theme.js:1501`
 
-## `clearAllActive` — function, line 849
+## `readAdvanced` — function, line 1197
 - **called from:**
-- `static/js/theme.js:849`
-- `static/js/theme.js:858`
+- `static/js/theme.js:744`
+- `static/js/theme.js:1197`
+- `static/js/theme.js:1223`
+- `static/js/theme.js:1502`
 
-## `syncResetButtons` — function, line 917
+## `_showThemeZoneHighlight` — function, line 1623
 - **called from:**
-- `static/js/theme.js:917`
-- `static/js/theme.js:1031`
-- `static/js/theme.js:1179`
-- `static/js/theme.js:1194`
-- `static/js/theme.js:1242`
+- `static/js/theme.js:1623`
+- `static/js/theme.js:1678`
+- `static/js/theme.js:1681`
 
-## `_norm` — arrow, line 982
+## `_clearThemeZoneHighlight` — function, line 1644
 - **called from:**
-- `routes/hwfit_routes.py:365`
-- `routes/hwfit_routes.py:367`
-- `static/js/cookbookServe.js:2484`
-- `static/js/cookbookServe.js:2484`
-- `static/js/theme.js:1001`
-- `static/js/theme.js:1001`
+- `static/js/theme.js:1624`
+- `static/js/theme.js:1644`
+- `static/js/theme.js:1688`
 
-## `hx` — arrow, line 988
+## `_flashAutosaved` — function, line 1649
 - **called from:**
-- `static/js/theme.js:989`
-- `static/js/theme.js:989`
-- `static/js/theme.js:989`
-
-## `doSave` — arrow, line 1044
-- **called from:**
-- `static/js/theme.js:1078`
-
-## `readCurrentColors` — function, line 1125
-- **called from:**
-- `static/js/theme.js:1125`
-- `static/js/theme.js:1134`
-- `static/js/theme.js:1157`
-- `static/js/theme.js:1189`
-- `static/js/theme.js:1426`
-
-## `readAdvanced` — function, line 1132
-- **called from:**
-- `static/js/theme.js:688`
+- `static/js/theme.js:1094`
 - `static/js/theme.js:1132`
-- `static/js/theme.js:1158`
-- `static/js/theme.js:1427`
+- `static/js/theme.js:1243`
+- `static/js/theme.js:1649`
 
-## `_showThemeZoneHighlight` — function, line 1539
+## `initThemeZoneHighlight` — function, line 1669
 - **called from:**
-- `static/js/theme.js:1539`
-- `static/js/theme.js:1594`
-- `static/js/theme.js:1597`
+- `static/js/theme.js:1182`
+- `static/js/theme.js:1187`
+- `static/js/theme.js:1669`
 
-## `_clearThemeZoneHighlight` — function, line 1560
+## `makeDraggable` — function, line 1697
 - **called from:**
-- `static/js/theme.js:1540`
-- `static/js/theme.js:1560`
-- `static/js/theme.js:1604`
+- `static/js/compare/index.js:1646`
+- `static/js/compare/scoreboard.js:220`
+- `static/js/compare/selector.js:950`
+- `static/js/editor/draggable-dialog.js:8`
+- `static/js/research/panel.js:305`
+- `static/js/sessions.js:3760`
+- `static/js/sessions.js:4135`
+- `static/js/theme.js:734`
+- `static/js/theme.js:1697`
 
-## `_flashAutosaved` — function, line 1565
+## `openPopup` — function, line 1725
 - **called from:**
-- `static/js/theme.js:1029`
-- `static/js/theme.js:1067`
-- `static/js/theme.js:1177`
-- `static/js/theme.js:1565`
+- `static/app.js:1333`
+- `static/js/theme.js:1725`
+- `static/js/theme.js:1741`
 
-## `initThemeZoneHighlight` — function, line 1585
+## `togglePopup` — function, line 1732
 - **called from:**
-- `static/js/theme.js:1117`
-- `static/js/theme.js:1122`
-- `static/js/theme.js:1585`
+- `static/js/theme.js:1732`
 
-## `makeDraggable` — function, line 1613
+## `closePopup` — function, line 1745
 - **called from:**
-- `static/js/compare/index.js:1513`
-- `static/js/compare/scoreboard.js:219`
-- `static/js/compare/selector.js:874`
-- `static/js/research/panel.js:293`
-- `static/js/sessions.js:3339`
-- `static/js/sessions.js:3705`
-- `static/js/theme.js:678`
-- `static/js/theme.js:1613`
+- `static/app.js:737`
+- `static/app.js:1657`
+- `static/js/theme.js:1739`
+- `static/js/theme.js:1745`
 
-## `togglePopup` — function, line 1641
-- **called from:**
-- `static/js/theme.js:1641`
-
-## `closePopup` — function, line 1652
-- **called from:**
-- `static/app.js:704`
-- `static/app.js:1616`
-- `static/js/theme.js:1652`
-
-## `getCustomThemes` — function, line 1669
+## `getCustomThemes` — function, line 1751
 - **called from:**
 - `static/js/chatStream.js:100`
 - `static/js/slashCommands.js:871`
-- `static/js/slashCommands.js:1469`
-- `static/js/slashCommands.js:5149`
-- `static/js/theme.js:1669`
+- `static/js/slashCommands.js:1473`
+- `static/js/slashCommands.js:5160`
+- `static/js/theme.js:1751`
 
-## `_initSynapse` — function, line 1673
+## `_initSynapse` — function, line 1755
 - **called from:**
-- `static/js/theme.js:1673`
+- `static/js/theme.js:1755`
 
-## `resize` — function, line 1692
+## `resize` — function, line 1774
 - **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
 - `scripts/diffusion_server.py:1013`
 - `scripts/diffusion_server.py:1014`
 - `scripts/diffusion_server.py:1066`
@@ -550,386 +632,100 @@
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
-- `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
-
-## `_onResize` — arrow, line 1699
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `getColor` — function, line 1702
-- **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
-
-## `spawnPulse` — function, line 1707
-- **called from:**
-- `static/js/theme.js:1707`
-- `static/js/theme.js:1731`
-
-## `draw` — function, line 1720
-- **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
-
-## `_initRain` — function, line 1769
-- **called from:**
-- `static/js/theme.js:1769`
-
-## `resize` — function, line 1784
-- **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
-- `scripts/diffusion_server.py:1013`
-- `scripts/diffusion_server.py:1014`
-- `scripts/diffusion_server.py:1066`
-- `scripts/diffusion_server.py:1067`
-- `scripts/diffusion_server.py:1115`
-- `scripts/diffusion_server.py:1135`
-- `scripts/diffusion_server.py:1146`
-- `scripts/diffusion_server.py:1179`
-- `scripts/diffusion_server.py:1298`
-- `scripts/diffusion_server.py:1380`
-- `scripts/diffusion_server.py:1381`
-- `scripts/diffusion_server.py:1398`
-- `scripts/diffusion_server.py:1424`
-- `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
-- `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
-
-## `_onResize` — arrow, line 1790
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `getColor` — function, line 1793
-- **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
-
-## `spawn` — function, line 1798
-- **called from:**
-- `static/js/theme.js:1798`
-- `static/js/theme.js:1819`
-
-## `draw` — function, line 1804
-- **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
-
-## `_initConstellations` — function, line 1844
-- **called from:**
-- `static/js/theme.js:1844`
-
-## `resize` — function, line 1860
-- **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
-- `scripts/diffusion_server.py:1013`
-- `scripts/diffusion_server.py:1014`
-- `scripts/diffusion_server.py:1066`
-- `scripts/diffusion_server.py:1067`
-- `scripts/diffusion_server.py:1115`
-- `scripts/diffusion_server.py:1135`
-- `scripts/diffusion_server.py:1146`
-- `scripts/diffusion_server.py:1179`
-- `scripts/diffusion_server.py:1298`
-- `scripts/diffusion_server.py:1380`
-- `scripts/diffusion_server.py:1381`
-- `scripts/diffusion_server.py:1398`
-- `scripts/diffusion_server.py:1424`
-- `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
-- `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
-
-## `initStars` — function, line 1867
-- **called from:**
-- `static/js/theme.js:1864`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
 - `static/js/theme.js:1867`
-- `static/js/theme.js:1881`
-
-## `_onResize` — arrow, line 1881
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `getColor` — function, line 1884
-- **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
-
-## `draw` — function, line 1890
-- **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
-
-## `_bgNoise2d` — function, line 1941
-- **called from:**
-- `static/js/theme.js:1941`
-- `static/js/theme.js:1944`
-- `static/js/theme.js:1944`
-- `static/js/theme.js:1944`
-- `static/js/theme.js:1944`
-
-## `_bgSmoothNoise` — function, line 1942
-- **called from:**
-- `static/js/theme.js:1942`
-- `static/js/theme.js:1992`
-- `static/js/theme.js:1994`
-
-## `_initPerlinFlow` — function, line 1950
-- **called from:**
-- `static/js/theme.js:1950`
-
-## `resize` — function, line 1963
-- **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
-- `scripts/diffusion_server.py:1013`
-- `scripts/diffusion_server.py:1014`
-- `scripts/diffusion_server.py:1066`
-- `scripts/diffusion_server.py:1067`
-- `scripts/diffusion_server.py:1115`
-- `scripts/diffusion_server.py:1135`
-- `scripts/diffusion_server.py:1146`
-- `scripts/diffusion_server.py:1179`
-- `scripts/diffusion_server.py:1298`
-- `scripts/diffusion_server.py:1380`
-- `scripts/diffusion_server.py:1381`
-- `scripts/diffusion_server.py:1398`
-- `scripts/diffusion_server.py:1424`
-- `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
 - `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
 
-## `_onResize` — arrow, line 1970
+## `_onResize` — arrow, line 1781
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `getColor` — function, line 1972
+## `getColor` — function, line 1784
 - **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
 
-## `getBg` — function, line 1973
+## `spawnPulse` — function, line 1789
 - **called from:**
+- `static/js/theme.js:1789`
+- `static/js/theme.js:1813`
+
+## `draw` — function, line 1802
+- **called from:**
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
 - `static/js/theme.js:1973`
-- `static/js/theme.js:1976`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
 
-## `getFade` — function, line 1975
+## `_initRain` — function, line 1852
 - **called from:**
-- `static/js/theme.js:1975`
-- `static/js/theme.js:1988`
+- `static/js/theme.js:1852`
 
-## `draw` — function, line 1985
+## `resize` — function, line 1867
 - **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
-
-## `_initPetals` — function, line 2007
-- **called from:**
-- `static/js/theme.js:2007`
-
-## `makePetal` — function, line 2020
-- **called from:**
-- `static/js/theme.js:2020`
-- `static/js/theme.js:2033`
-- `static/js/theme.js:2048`
-
-## `resize` — function, line 2029
-- **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
 - `scripts/diffusion_server.py:1013`
 - `scripts/diffusion_server.py:1014`
 - `scripts/diffusion_server.py:1066`
@@ -944,85 +740,100 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
 - `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
 
-## `_onResize` — arrow, line 2036
+## `_onResize` — arrow, line 1873
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `getColor` — function, line 2038
+## `getColor` — function, line 1876
 - **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
 
-## `draw` — function, line 2039
+## `spawn` — function, line 1881
 - **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
+- `static/js/theme.js:1881`
+- `static/js/theme.js:1902`
 
-## `_initSparkles` — function, line 2064
+## `draw` — function, line 1887
 - **called from:**
-- `static/js/theme.js:2064`
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
 
-## `makeSpark` — function, line 2077
+## `_initConstellations` — function, line 1927
 - **called from:**
-- `static/js/theme.js:2077`
-- `static/js/theme.js:2084`
-- `static/js/theme.js:2114`
+- `static/js/theme.js:1927`
 
-## `resize` — function, line 2080
+## `resize` — function, line 1943
 - **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
 - `scripts/diffusion_server.py:1013`
 - `scripts/diffusion_server.py:1014`
 - `scripts/diffusion_server.py:1066`
@@ -1037,91 +848,304 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
 - `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
 
-## `_onResize` — arrow, line 2087
+## `initStars` — function, line 1950
+- **called from:**
+- `static/js/theme.js:1947`
+- `static/js/theme.js:1950`
+- `static/js/theme.js:1964`
+
+## `_onResize` — arrow, line 1964
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `getColor` — function, line 2089
+## `getColor` — function, line 1967
 - **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
 
-## `drawStar` — function, line 2090
+## `draw` — function, line 1973
 - **called from:**
-- `static/js/theme.js:2090`
-- `static/js/theme.js:2112`
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
 
-## `draw` — function, line 2101
+## `_bgNoise2d` — function, line 2025
 - **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
+- `static/js/theme.js:2025`
+- `static/js/theme.js:2028`
+- `static/js/theme.js:2028`
+- `static/js/theme.js:2028`
+- `static/js/theme.js:2028`
 
-## `_initEmbers` — function, line 2122
+## `_bgSmoothNoise` — function, line 2026
+- **called from:**
+- `static/js/theme.js:2026`
+- `static/js/theme.js:2072`
+- `static/js/theme.js:2074`
+
+## `_initPerlinFlow` — function, line 2034
+- **called from:**
+- `static/js/theme.js:2034`
+
+## `resize` — function, line 2047
+- **called from:**
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
+- `scripts/diffusion_server.py:1013`
+- `scripts/diffusion_server.py:1014`
+- `scripts/diffusion_server.py:1066`
+- `scripts/diffusion_server.py:1067`
+- `scripts/diffusion_server.py:1115`
+- `scripts/diffusion_server.py:1135`
+- `scripts/diffusion_server.py:1146`
+- `scripts/diffusion_server.py:1179`
+- `scripts/diffusion_server.py:1298`
+- `scripts/diffusion_server.py:1380`
+- `scripts/diffusion_server.py:1381`
+- `scripts/diffusion_server.py:1398`
+- `scripts/diffusion_server.py:1424`
+- `scripts/diffusion_server.py:1452`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
+- `static/js/theme.js:1963`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
+
+## `_onResize` — arrow, line 2054
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `getColor` — function, line 2056
+- **called from:**
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
+
+## `draw` — function, line 2061
+- **called from:**
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
+
+## `_initStarfieldDepth` — function, line 2092
+- **called from:**
+- `static/js/theme.js:2092`
+
+## `resize` — arrow, line 2102
+- **called from:**
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
+- `scripts/diffusion_server.py:1013`
+- `scripts/diffusion_server.py:1014`
+- `scripts/diffusion_server.py:1066`
+- `scripts/diffusion_server.py:1067`
+- `scripts/diffusion_server.py:1115`
+- `scripts/diffusion_server.py:1135`
+- `scripts/diffusion_server.py:1146`
+- `scripts/diffusion_server.py:1179`
+- `scripts/diffusion_server.py:1298`
+- `scripts/diffusion_server.py:1380`
+- `scripts/diffusion_server.py:1381`
+- `scripts/diffusion_server.py:1398`
+- `scripts/diffusion_server.py:1424`
+- `scripts/diffusion_server.py:1452`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
+- `static/js/theme.js:1963`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
+
+## `getBgFade` — arrow, line 2112
 - **called from:**
 - `static/js/theme.js:2122`
 
-## `makeEmber` — function, line 2135
+## `draw` — arrow, line 2117
 - **called from:**
-- `static/js/theme.js:2135`
-- `static/js/theme.js:2153`
-- `static/js/theme.js:2188`
-- `static/js/theme.js:2212`
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
 
-## `resize` — function, line 2148
+## `_initAsciiFireflies` — function, line 2140
 - **called from:**
-- `routes/gallery/gallery_routes.py:1403`
-- `routes/gallery/gallery_routes.py:1946`
-- `routes/gallery/gallery_routes.py:1997`
+- `static/js/theme.js:2140`
+
+## `resize` — arrow, line 2150
+- **called from:**
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
 - `scripts/diffusion_server.py:1013`
 - `scripts/diffusion_server.py:1014`
 - `scripts/diffusion_server.py:1066`
@@ -1136,136 +1160,462 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:1398`
 - `scripts/diffusion_server.py:1424`
 - `scripts/diffusion_server.py:1452`
-- `src/vision_preprocessing.py:67`
-- `static/app.js:3642`
-- `static/js/calendar.js:1320`
-- `static/js/documentLibrary.js:3402`
-- `static/js/theme.js:1692`
-- `static/js/theme.js:1698`
-- `static/js/theme.js:1699`
-- `static/js/theme.js:1784`
-- `static/js/theme.js:1789`
-- `static/js/theme.js:1790`
-- `static/js/theme.js:1860`
-- `static/js/theme.js:1880`
-- `static/js/theme.js:1881`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
 - `static/js/theme.js:1963`
-- `static/js/theme.js:1969`
-- `static/js/theme.js:1970`
-- `static/js/theme.js:2029`
-- `static/js/theme.js:2035`
-- `static/js/theme.js:2036`
-- `static/js/theme.js:2080`
-- `static/js/theme.js:2086`
-- `static/js/theme.js:2087`
-- `static/js/theme.js:2148`
-- `static/js/theme.js:2156`
-- `static/js/theme.js:2157`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
 
-## `_onResize` — arrow, line 2157
+## `draw` — arrow, line 2166
+- **called from:**
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
+
+## `_initPetals` — function, line 2212
+- **called from:**
+- `static/js/theme.js:2212`
+
+## `makePetal` — function, line 2225
+- **called from:**
+- `static/js/theme.js:2225`
+- `static/js/theme.js:2238`
+- `static/js/theme.js:2254`
+
+## `resize` — function, line 2234
+- **called from:**
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
+- `scripts/diffusion_server.py:1013`
+- `scripts/diffusion_server.py:1014`
+- `scripts/diffusion_server.py:1066`
+- `scripts/diffusion_server.py:1067`
+- `scripts/diffusion_server.py:1115`
+- `scripts/diffusion_server.py:1135`
+- `scripts/diffusion_server.py:1146`
+- `scripts/diffusion_server.py:1179`
+- `scripts/diffusion_server.py:1298`
+- `scripts/diffusion_server.py:1380`
+- `scripts/diffusion_server.py:1381`
+- `scripts/diffusion_server.py:1398`
+- `scripts/diffusion_server.py:1424`
+- `scripts/diffusion_server.py:1452`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
+- `static/js/theme.js:1963`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
+
+## `_onResize` — arrow, line 2241
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `getColor` — function, line 2159
+## `getColor` — function, line 2243
 - **called from:**
-- `static/js/theme.js:1702`
-- `static/js/theme.js:1728`
-- `static/js/theme.js:1793`
-- `static/js/theme.js:1812`
-- `static/js/theme.js:1884`
-- `static/js/theme.js:1899`
-- `static/js/theme.js:1972`
-- `static/js/theme.js:1990`
-- `static/js/theme.js:2038`
-- `static/js/theme.js:2043`
-- `static/js/theme.js:2089`
-- `static/js/theme.js:2105`
-- `static/js/theme.js:2159`
-- `static/js/theme.js:2179`
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
 
-## `rgba` — function, line 2163
+## `draw` — function, line 2244
 - **called from:**
-- `static/app.js:4172`
-- `static/app.js:4215`
-- `static/app.js:4265`
-- `static/app.js:4268`
-- `static/app.js:4269`
-- `static/js/admin.js:2537`
-- `static/js/calendar.js:541`
-- `static/js/chat.js:4093`
-- `static/js/chat.js:4404`
-- `static/js/chat.js:4422`
-- `static/js/chat.js:4432`
-- `static/js/compare/index.js:1077`
-- `static/js/compare/panes.js:456`
-- `static/js/compare/selector.js:455`
-- `static/js/compare/stream.js:801`
-- `static/js/compare/stream.js:802`
-- `static/js/compare/stream.js:803`
-- `static/js/cookbook.js:1282`
-- `static/js/cookbook.js:1292`
-- `static/js/cookbook.js:1841`
-- `static/js/cookbookServe.js:1311`
-- `static/js/cookbookServe.js:1514`
-- `static/js/cookbookServe.js:2528`
-- `static/js/cookbookServe.js:3495`
-- `static/js/document.js:678`
-- `static/js/document.js:1194`
-- `static/js/document.js:1284`
-- `static/js/document.js:1293`
-- `static/js/document.js:1314`
-- `static/js/document.js:1683`
-- `static/js/document.js:1864`
-- `static/js/document.js:4168`
-- `static/js/document.js:9180`
-- `static/js/documentLibrary.js:637`
-- `static/js/documentLibrary.js:661`
-- `static/js/editor/fx/histogram.js:46`
-- `static/js/editor/fx/histogram.js:51`
-- `static/js/editor/fx/histogram.js:62`
-- `static/js/editor/fx/histogram.js:64`
-- `static/js/editor/shortcuts-popover.js:35`
-- `static/js/editor/state.js:122`
-- `static/js/editor/stroke-pipeline.js:65`
-- `static/js/editor/stroke-pipeline.js:66`
-- `static/js/editor/stroke-pipeline.js:107`
-- `static/js/editor/stroke-pipeline.js:118`
-- `static/js/editor/stroke-pipeline.js:131`
-- `static/js/editor/stroke-pipeline.js:136`
-- `static/js/editor/tools/crop.js:96`
-- `static/js/editor/tools/lasso.js:46`
-- `static/js/editor/tools/transform-handles.js:165`
-- `static/js/editor/tools/transform-handles.js:198`
-- `static/js/editor/tools/transform-handles.js:211`
-- `static/js/editor/tools/transform-handles.js:217`
-- `static/js/editor/wire-import.js:115`
-- `static/js/editor/wire-inpaint-controls.js:87`
-- `static/js/editor/wire-inpaint-controls.js:87`
-- `static/js/editor/wire-inpaint-controls.js:154`
-- `static/js/emailLibrary.js:2647`
-- `static/js/emailLibrary.js:7674`
-- `static/js/emailLibrary.js:7940`
-- … +56 more (grep the name in repo)
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
 
-## `draw` — function, line 2167
+## `_initSparkles` — function, line 2270
 - **called from:**
-- `static/js/theme.js:1720`
-- `static/js/theme.js:1765`
-- `static/js/theme.js:1804`
-- `static/js/theme.js:1840`
-- `static/js/theme.js:1890`
-- `static/js/theme.js:1937`
-- `static/js/theme.js:1985`
-- `static/js/theme.js:2003`
-- `static/js/theme.js:2039`
-- `static/js/theme.js:2060`
-- `static/js/theme.js:2101`
-- `static/js/theme.js:2118`
-- `static/js/theme.js:2167`
-- `static/js/theme.js:2221`
+- `static/js/theme.js:2270`
 
-## `_initWithSync` — function, line 2234
+## `makeSpark` — function, line 2283
 - **called from:**
+- `static/js/theme.js:2283`
+- `static/js/theme.js:2290`
+- `static/js/theme.js:2320`
+
+## `resize` — function, line 2286
+- **called from:**
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
+- `scripts/diffusion_server.py:1013`
+- `scripts/diffusion_server.py:1014`
+- `scripts/diffusion_server.py:1066`
+- `scripts/diffusion_server.py:1067`
+- `scripts/diffusion_server.py:1115`
+- `scripts/diffusion_server.py:1135`
+- `scripts/diffusion_server.py:1146`
+- `scripts/diffusion_server.py:1179`
+- `scripts/diffusion_server.py:1298`
+- `scripts/diffusion_server.py:1380`
+- `scripts/diffusion_server.py:1381`
+- `scripts/diffusion_server.py:1398`
+- `scripts/diffusion_server.py:1424`
+- `scripts/diffusion_server.py:1452`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
+- `static/js/theme.js:1963`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
 - `static/js/theme.js:2234`
-- `static/js/theme.js:2262`
-- `static/js/theme.js:2264`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
+
+## `_onResize` — arrow, line 2293
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `getColor` — function, line 2295
+- **called from:**
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
+
+## `drawStar` — function, line 2296
+- **called from:**
+- `static/js/theme.js:2296`
+- `static/js/theme.js:2318`
+
+## `draw` — function, line 2307
+- **called from:**
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
+
+## `_initEmbers` — function, line 2328
+- **called from:**
+- `static/js/theme.js:2328`
+
+## `makeEmber` — function, line 2341
+- **called from:**
+- `static/js/theme.js:2341`
+- `static/js/theme.js:2359`
+- `static/js/theme.js:2395`
+- `static/js/theme.js:2419`
+
+## `resize` — function, line 2354
+- **called from:**
+- `routes/gallery/gallery_routes.py:373`
+- `routes/gallery/gallery_routes.py:374`
+- `routes/gallery/gallery_routes.py:392`
+- `routes/gallery/gallery_routes.py:2809`
+- `routes/gallery/gallery_routes.py:2864`
+- `scripts/diffusion_server.py:1013`
+- `scripts/diffusion_server.py:1014`
+- `scripts/diffusion_server.py:1066`
+- `scripts/diffusion_server.py:1067`
+- `scripts/diffusion_server.py:1115`
+- `scripts/diffusion_server.py:1135`
+- `scripts/diffusion_server.py:1146`
+- `scripts/diffusion_server.py:1179`
+- `scripts/diffusion_server.py:1298`
+- `scripts/diffusion_server.py:1380`
+- `scripts/diffusion_server.py:1381`
+- `scripts/diffusion_server.py:1398`
+- `scripts/diffusion_server.py:1424`
+- `scripts/diffusion_server.py:1452`
+- `src/clean_agent_preview.py:5442`
+- `src/document_processor.py:569`
+- `src/tools/image.py:176`
+- `static/app.js:3742`
+- `static/js/calendar.js:1731`
+- `static/js/documentLibrary.js:3468`
+- `static/js/theme.js:1774`
+- `static/js/theme.js:1780`
+- `static/js/theme.js:1781`
+- `static/js/theme.js:1867`
+- `static/js/theme.js:1872`
+- `static/js/theme.js:1873`
+- `static/js/theme.js:1943`
+- `static/js/theme.js:1963`
+- `static/js/theme.js:1964`
+- `static/js/theme.js:2047`
+- `static/js/theme.js:2053`
+- `static/js/theme.js:2054`
+- `static/js/theme.js:2110`
+- `static/js/theme.js:2164`
+- `static/js/theme.js:2234`
+- `static/js/theme.js:2240`
+- `static/js/theme.js:2241`
+- `static/js/theme.js:2286`
+- `static/js/theme.js:2292`
+- `static/js/theme.js:2293`
+- `static/js/theme.js:2354`
+- `static/js/theme.js:2362`
+- `static/js/theme.js:2363`
+
+## `_onResize` — arrow, line 2363
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `getColor` — function, line 2365
+- **called from:**
+- `static/js/theme.js:1784`
+- `static/js/theme.js:1810`
+- `static/js/theme.js:1876`
+- `static/js/theme.js:1895`
+- `static/js/theme.js:1967`
+- `static/js/theme.js:1983`
+- `static/js/theme.js:2056`
+- `static/js/theme.js:2070`
+- `static/js/theme.js:2243`
+- `static/js/theme.js:2248`
+- `static/js/theme.js:2295`
+- `static/js/theme.js:2311`
+- `static/js/theme.js:2365`
+- `static/js/theme.js:2385`
+
+## `rgba` — function, line 2369
+- **called from:**
+- `static/app.js:4286`
+- `static/app.js:4331`
+- `static/app.js:4381`
+- `static/app.js:4384`
+- `static/app.js:4385`
+- `static/js/admin.js:3411`
+- `static/js/calendar.js:630`
+- `static/js/chat.js:268`
+- `static/js/chat.js:5669`
+- `static/js/chat.js:6023`
+- `static/js/chat.js:6042`
+- `static/js/chat.js:6052`
+- `static/js/colorPicker.js:226`
+- `static/js/compare/index.js:1193`
+- `static/js/compare/selector.js:518`
+- `static/js/compare/stream.js:876`
+- `static/js/compare/stream.js:877`
+- `static/js/compare/stream.js:878`
+- `static/js/cookbook.js:1287`
+- `static/js/cookbook.js:1297`
+- `static/js/cookbook.js:1856`
+- `static/js/cookbookServe.js:1351`
+- `static/js/cookbookServe.js:1558`
+- `static/js/cookbookServe.js:2600`
+- `static/js/cookbookServe.js:3599`
+- `static/js/document.js:1591`
+- `static/js/document.js:2153`
+- `static/js/document.js:2243`
+- `static/js/document.js:2252`
+- `static/js/document.js:2273`
+- `static/js/document.js:2669`
+- `static/js/document.js:2900`
+- `static/js/document.js:4072`
+- `static/js/document.js:4078`
+- `static/js/document.js:6687`
+- `static/js/document.js:10537`
+- `static/js/document.js:10696`
+- `static/js/document.js:14759`
+- `static/js/documentLibrary.js:765`
+- `static/js/documentLibrary.js:789`
+- `static/js/editor/effects-worker.js:48`
+- `static/js/editor/effects-worker.js:50`
+- `static/js/editor/effects.js:148`
+- `static/js/editor/effects.js:150`
+- `static/js/editor/fx/adj-popup.js:1045`
+- `static/js/editor/fx/histogram.js:58`
+- `static/js/editor/fx/histogram.js:63`
+- `static/js/editor/fx/histogram.js:74`
+- `static/js/editor/fx/histogram.js:76`
+- `static/js/editor/precision-guides.js:154`
+- `static/js/editor/precision-guides.js:155`
+- `static/js/editor/precision-guides.js:169`
+- `static/js/editor/precision-guides.js:179`
+- `static/js/editor/shortcuts-popover.js:35`
+- `static/js/editor/state.js:200`
+- `static/js/editor/stroke-pipeline.js:30`
+- `static/js/editor/stroke-pipeline.js:33`
+- `static/js/editor/stroke-pipeline.js:36`
+- `static/js/editor/stroke-pipeline.js:190`
+- `static/js/editor/stroke-pipeline.js:191`
+- … +87 more (grep the name in repo)
+
+## `draw` — function, line 2373
+- **called from:**
+- `static/js/editor/fx/adj-popup.js:1101`
+- `static/js/editor/fx/adj-popup.js:1111`
+- `static/js/editor/fx/adj-popup.js:1119`
+- `static/js/editor/fx/adj-popup.js:1122`
+- `static/js/editor/layer-panel.js:264`
+- `static/js/editor/text-layer.js:123`
+- `static/js/editor/tools/pen-selection.js:82`
+- `static/js/galleryEditor.js:3988`
+- `static/js/galleryEditor.js:6636`
+- `static/js/theme.js:1802`
+- `static/js/theme.js:1848`
+- `static/js/theme.js:1887`
+- `static/js/theme.js:1923`
+- `static/js/theme.js:1973`
+- `static/js/theme.js:2021`
+- `static/js/theme.js:2061`
+- `static/js/theme.js:2088`
+- `static/js/theme.js:2136`
+- `static/js/theme.js:2244`
+- `static/js/theme.js:2266`
+- `static/js/theme.js:2307`
+- `static/js/theme.js:2324`
+- `static/js/theme.js:2373`
+- `static/js/theme.js:2428`
+
+## `_initWithSync` — function, line 2441
+- **called from:**
+- `static/js/theme.js:2441`
+- `static/js/theme.js:2474`
+- `static/js/theme.js:2476`

@@ -17,7 +17,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `setup_compare_routes` — function, line 67
 - **called from:**
-- `app.py:815`
+- `app.py:899`
 - `tests/test_endpoint_owner_scope_followup.py:24`
 
 ## `start_comparison` — function, line 71

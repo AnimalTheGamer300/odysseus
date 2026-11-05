@@ -1,6 +1,6 @@
 # `src/model_context.py` — definitions & call sites
 
-15 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+16 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `_in_tailscale_range` — function, line 33
 - **called from:**
@@ -18,17 +18,27 @@
 ## `_configured_endpoint_kind` — function, line 56
 - **called from:**
 - `src/model_context.py:92`
-- `src/model_context.py:313`
-- `src/model_context.py:470`
+- `src/model_context.py:315`
+- `src/model_context.py:472`
 
 ## `is_local_endpoint` — function, line 90
 - **called from:**
-- `src/llm_core.py:92`
-- `src/llm_core.py:1049`
-- `src/llm_core.py:1090`
-- `src/model_context.py:314`
-- `src/model_context.py:490`
-- `src/model_context.py:535`
+- `src/agent_loop.py:15638`
+- `src/agent_loop.py:24971`
+- `src/agent_runtime/context_resolution.py:430`
+- `src/llm_core.py:35`
+- `src/llm_core.py:121`
+- `src/llm_core.py:1196`
+- `src/llm_core.py:1237`
+- `src/llm_core.py:1285`
+- `src/llm_core.py:1323`
+- `src/llm_core.py:1334`
+- `src/model_context.py:316`
+- `src/model_context.py:492`
+- `src/model_context.py:551`
+- `src/model_pricing.py:165`
+- `tests/test_cost_tracking.py:59`
+- `tests/test_cost_tracking.py:70`
 - `tests/test_model_context.py:59`
 - `tests/test_model_context.py:62`
 - `tests/test_model_context.py:65`
@@ -41,25 +51,27 @@
 - `tests/test_model_context.py:101`
 - `tests/test_model_context.py:104`
 
-## `_context_length_override` — function, line 280
+## `_context_length_override` — function, line 282
 - **called from:**
-- `src/model_context.py:309`
+- `src/model_context.py:311`
 
-## `_get_context_length_cached` — function, line 304
+## `_get_context_length_cached` — function, line 306
 - **called from:**
-- `src/model_context.py:340`
-- `src/model_context.py:349`
+- `src/model_context.py:342`
+- `src/model_context.py:351`
 
-## `get_context_length` — function, line 333
+## `get_context_length` — function, line 335
 - **called from:**
-- `routes/chat_helpers.py:969`
-- `routes/history/history_routes.py:993`
-- `routes/history/history_routes.py:1103`
-- `routes/session_routes.py:1234`
-- `routes/session_routes.py:1577`
+- `routes/chat_helpers.py:1567`
+- `routes/history/history_routes.py:1196`
+- `routes/history/history_routes.py:1486`
+- `routes/session_routes.py:1387`
+- `routes/session_routes.py:1758`
 - `scripts/dump_agent_prompt.py:303`
-- `src/context_compactor.py:433`
-- `src/context_compactor.py:478`
+- `src/context_compactor.py:670`
+- `src/context_compactor.py:747`
+- `src/llm_core.py:3035`
+- `src/llm_core.py:4984`
 - `tests/test_budget_auto_sentinel.py:82`
 - `tests/test_context_cache_per_endpoint.py:24`
 - `tests/test_context_cache_per_endpoint.py:26`
@@ -67,115 +79,140 @@
 - `tests/test_context_cache_per_endpoint.py:33`
 - `tests/test_context_cache_per_endpoint.py:38`
 - `tests/test_context_cache_per_endpoint.py:39`
-- `tests/test_model_context.py:220`
-- `tests/test_model_context.py:221`
-- `tests/test_model_context.py:239`
-- `tests/test_model_context.py:240`
-- `tests/test_model_context.py:267`
-- `tests/test_model_context.py:286`
-- `tests/test_model_context.py:288`
-- `tests/test_model_context.py:302`
-- `tests/test_model_context.py:314`
+- `tests/test_model_context.py:237`
+- `tests/test_model_context.py:238`
+- `tests/test_model_context.py:256`
+- `tests/test_model_context.py:257`
+- `tests/test_model_context.py:284`
+- `tests/test_model_context.py:303`
+- `tests/test_model_context.py:305`
+- `tests/test_model_context.py:319`
+- `tests/test_model_context.py:331`
 
-## `get_context_length_known` — function, line 343
+## `get_context_length_known` — function, line 345
 - **called from:**
-- `src/llm_core.py:2323`
-- `src/llm_core.py:2742`
-- `src/llm_core.py:2999`
-- `src/model_context.py:363`
+- `src/llm_core.py:2667`
+- `src/llm_core.py:3132`
+- `src/llm_core.py:3404`
+- `src/model_context.py:365`
 - `tests/test_budget_auto_sentinel.py:74`
 - `tests/test_budget_auto_sentinel.py:77`
 
-## `budget_context_for_model` — function, line 352
+## `budget_context_for_model` — function, line 354
 - **called from:**
-- `src/agent_loop.py:4723`
+- `src/agent_loop.py:24578`
 - `tests/test_budget_auto_sentinel.py:93`
 - `tests/test_budget_auto_sentinel.py:96`
 - `tests/test_budget_auto_sentinel.py:99`
 - `tests/test_budget_auto_sentinel.py:102`
 - `tests/test_budget_auto_sentinel.py:110`
 
-## `_lookup_known` — function, line 369
+## `_lookup_known` — function, line 371
 - **called from:**
-- `src/model_context.py:468`
-- `tests/test_model_context.py:156`
-- `tests/test_model_context.py:159`
-- `tests/test_model_context.py:162`
-- `tests/test_model_context.py:165`
-- `tests/test_model_context.py:168`
-- `tests/test_model_context.py:172`
-- `tests/test_model_context.py:177`
+- `src/agent_runtime/context_resolution.py:491`
+- `src/model_context.py:470`
+- `tests/test_model_context.py:170`
+- `tests/test_model_context.py:173`
+- `tests/test_model_context.py:176`
+- `tests/test_model_context.py:179`
 - `tests/test_model_context.py:182`
 - `tests/test_model_context.py:185`
-- `tests/test_model_context.py:188`
-- `tests/test_model_context.py:191`
+- `tests/test_model_context.py:189`
+- `tests/test_model_context.py:194`
+- `tests/test_model_context.py:199`
+- `tests/test_model_context.py:202`
+- `tests/test_model_context.py:205`
+- `tests/test_model_context.py:208`
 
-## `_model_ctx_from_entry` — function, line 388
+## `_model_ctx_from_entry` — function, line 390
 - **called from:**
-- `src/model_context.py:446`
-- `src/model_context.py:527`
+- `src/agent_runtime/context_resolution.py:381`
+- `src/model_context.py:448`
+- `src/model_context.py:543`
 
-## `_proxy_catalog_context` — function, line 423
+## `_proxy_catalog_context` — function, line 425
 - **called from:**
-- `src/model_context.py:483`
+- `src/model_context.py:485`
 
-## `_query_context_length` — function, line 465
+## `_query_context_length` — function, line 467
 - **called from:**
-- `src/model_context.py:323`
+- `src/model_context.py:325`
 - `tests/test_llama_server_models_url.py:54`
+- `tests/test_llama_server_models_url.py:79`
 
-## `estimate_tokens` — function, line 552
+## `estimate_text_tokens` — function, line 568
 - **called from:**
-- `routes/chat_helpers.py:976`
-- `routes/chat_helpers.py:980`
-- `routes/chat_routes.py:221`
-- `routes/chat_routes.py:222`
-- `routes/chat_routes.py:2348`
-- `routes/chat_routes.py:2396`
-- `routes/chat_routes.py:2483`
-- `routes/history/history_routes.py:992`
-- `routes/history/history_routes.py:1102`
-- `routes/history/history_routes.py:1232`
+- `src/context_compactor.py:363`
+- `src/context_compactor.py:376`
+- `src/context_compactor.py:387`
+- `src/context_compactor.py:397`
+- `src/context_compactor.py:432`
+- `src/model_context.py:602`
+- `src/model_context.py:606`
+- `src/model_context.py:622`
+- `src/model_context.py:635`
+- `src/model_context.py:639`
+
+## `estimate_tokens` — function, line 585
+- **called from:**
+- `routes/chat_helpers.py:1576`
+- `routes/chat_helpers.py:1580`
+- `routes/chat_routes.py:1417`
+- `routes/chat_routes.py:1418`
+- `routes/chat_routes.py:4626`
+- `routes/chat_routes.py:4675`
+- `routes/chat_routes.py:4764`
+- `routes/history/history_routes.py:1195`
+- `routes/history/history_routes.py:1485`
+- `routes/history/history_routes.py:1623`
 - `scripts/dump_agent_prompt.py:261`
 - `scripts/dump_agent_prompt.py:458`
 - `scripts/dump_agent_prompt.py:528`
-- `src/agent_loop.py:3704`
-- `src/agent_loop.py:4150`
-- `src/agent_loop.py:4231`
-- `src/agent_loop.py:4407`
-- `src/agent_loop.py:4423`
-- `src/agent_loop.py:4732`
-- `src/agent_loop.py:4755`
-- `src/agent_loop.py:4890`
-- `src/agent_loop.py:5456`
-- `src/agent_loop.py:5478`
-- `src/agent_loop.py:5925`
-- `src/agent_loop.py:7026`
-- `src/context_compactor.py:266`
-- `src/context_compactor.py:323`
-- `src/context_compactor.py:343`
-- `src/context_compactor.py:360`
-- `src/context_compactor.py:365`
-- `src/context_compactor.py:379`
-- `src/context_compactor.py:393`
-- `src/context_compactor.py:398`
-- `src/context_compactor.py:403`
-- `src/context_compactor.py:405`
-- `src/context_compactor.py:409`
-- `src/context_compactor.py:434`
-- `src/context_compactor.py:493`
-- `src/context_compactor.py:610`
+- `src/agent_loop.py:16634`
+- `src/agent_loop.py:22124`
+- `src/agent_loop.py:22214`
+- `src/agent_loop.py:22338`
+- `src/agent_loop.py:22374`
+- `src/agent_loop.py:22549`
+- `src/agent_loop.py:22785`
+- `src/agent_loop.py:22999`
+- `src/agent_loop.py:23015`
+- `src/agent_loop.py:24603`
+- `src/agent_loop.py:24693`
+- `src/agent_loop.py:25348`
+- `src/agent_loop.py:26832`
+- `src/agent_loop.py:27112`
+- `src/agent_loop.py:27651`
+- `src/agent_loop.py:28536`
+- `src/agent_loop.py:30675`
+- `src/agent_loop.py:32717`
+- `src/agent_loop.py:38797`
+- `src/context_compactor.py:425`
+- `src/context_compactor.py:482`
+- `src/context_compactor.py:502`
+- `src/context_compactor.py:538`
+- `src/context_compactor.py:543`
+- `src/context_compactor.py:557`
+- `src/context_compactor.py:603`
+- `src/context_compactor.py:607`
+- `src/context_compactor.py:615`
+- `src/context_compactor.py:618`
+- `src/context_compactor.py:628`
+- `src/context_compactor.py:634`
+- `src/context_compactor.py:638`
+- `src/context_compactor.py:671`
+- `src/context_compactor.py:707`
+- `src/context_compactor.py:763`
+- `src/context_compactor.py:884`
+- `src/generation_budget.py:118`
 - `tests/test_compact_truncate_tool_call_args.py:45`
 - `tests/test_compact_truncate_tool_call_args.py:45`
+- `tests/test_context_compactor.py:90`
+- `tests/test_context_compactor.py:116`
+- `tests/test_context_compactor.py:791`
+- `tests/test_context_resolution.py:480`
 - `tests/test_estimate_tokens_tool_calls.py:23`
 - `tests/test_estimate_tokens_tool_calls.py:31`
 - `tests/test_estimate_tokens_tool_calls.py:41`
 - `tests/test_estimate_tokens_tool_calls.py:46`
-- `tests/test_estimate_tokens_tool_calls.py:47`
-- `tests/test_model_context.py:109`
-- `tests/test_model_context.py:113`
-- `tests/test_model_context.py:122`
-- `tests/test_model_context.py:137`
-- `tests/test_model_context.py:143`
-- `tests/test_model_context.py:148`
-- `tests/test_model_context.py:150`
+- … +11 more (grep the name in repo)

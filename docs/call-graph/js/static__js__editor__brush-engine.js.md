@@ -1,0 +1,222 @@
+# `static/js/editor/brush-engine.js` — definitions & call sites
+
+8 definitions (regex-based, best-effort).
+**Exports:** `createBrushSampler`, `normalisePressure`, `pressureValue`
+
+## `normalisePressure` — function, line 6
+- **called from:**
+- `static/js/editor/brush-engine.js:6`
+- `static/js/editor/brush-engine.js:14`
+- `static/js/editor/brush-engine.js:55`
+- `static/js/editor/brush-engine.js:61`
+- `static/js/editor/brush-engine.js:77`
+
+## `pressureValue` — function, line 12
+- **called from:**
+- `static/js/editor/brush-engine.js:12`
+- `static/js/editor/stroke-pipeline.js:174`
+- `static/js/editor/stroke-pipeline.js:177`
+- `static/js/editor/stroke-pipeline.js:178`
+- `static/js/editor/stroke-pipeline.js:205`
+- `static/js/editor/stroke-pipeline.js:208`
+- `static/js/editor/stroke-pipeline.js:209`
+- `static/js/editor/stroke-pipeline.js:244`
+- `static/js/editor/stroke-pipeline.js:247`
+- `static/js/editor/stroke-pipeline.js:248`
+- `static/js/editor/stroke-pipeline.js:312`
+- `static/js/editor/stroke-pipeline.js:314`
+- `static/js/editor/stroke-pipeline.js:315`
+
+## `createBrushSampler` — function, line 17
+- **called from:**
+- `static/js/editor/brush-engine.js:17`
+- `static/js/editor/stroke-pipeline.js:378`
+
+## `output` — arrow, line 22
+- **called from:**
+- `static/js/chatRenderer.js:1577`
+- `static/js/compare/stream.js:603`
+- `static/js/editor/brush-engine.js:43`
+- `static/js/editor/brush-engine.js:57`
+- `static/js/settings.js:4864`
+
+## `emitSpaced` — arrow, line 31
+- **called from:**
+- `static/js/editor/brush-engine.js:70`
+- `static/js/editor/brush-engine.js:77`
+
+## `begin` — arrow, line 53
+- **called from:**
+- `core/database.py:1399`
+- `core/database.py:1517`
+- `core/database.py:2249`
+- `core/database.py:2375`
+- `tests/test_chatgpt_session_binding.py:151`
+- `tests/test_chatgpt_session_binding.py:157`
+- `tests/test_cookbook_endpoint_registration.py:303`
+- `tests/test_email_account_default_serialization.py:241`
+- `tests/test_email_account_default_serialization.py:278`
+- `tests/test_request_authority.py:375`
+- `static/js/editor/brush-engine.js:62`
+- `static/js/editor/direct-manipulation-session.js:24`
+- `static/js/editor/render-cancellation.js:5`
+- `static/js/editor/stroke-pipeline.js:390`
+- `static/js/editor/tools/clone.js:7`
+- `static/js/editor/tools/clone.js:25`
+- `static/js/editor/tools/crop.js:51`
+- `static/js/editor/tools/crop.js:61`
+- `static/js/editor/tools/crop.js:72`
+- `static/js/editor/tools/gradient.js:58`
+- `static/js/editor/tools/lasso.js:84`
+- `static/js/editor/tools/liquify.js:141`
+- `static/js/editor/tools/marquee.js:51`
+- `static/js/editor/tools/marquee.js:61`
+- `static/js/editor/tools/marquee.js:80`
+- `static/js/editor/tools/move.js:47`
+- `static/js/editor/tools/patch.js:6`
+- `static/js/editor/tools/pen-path.js:37`
+- `static/js/editor/tools/pen-selection.js:50`
+- `static/js/editor/tools/stroke.js:16`
+- `static/js/editor/tools/transform-drag.js:75`
+- `static/js/editor/tools/transform-drag.js:86`
+- `static/js/galleryEditor.js:4016`
+- `static/js/galleryEditor.js:5572`
+- `static/js/galleryEditor.js:5573`
+- `static/js/galleryEditor.js:5574`
+- `static/js/galleryEditor.js:5575`
+- `static/js/galleryEditor.js:5590`
+- `static/js/galleryEditor.js:5591`
+- `static/js/galleryEditor.js:5592`
+- `static/js/galleryEditor.js:5596`
+- `static/js/galleryEditor.js:5597`
+- `static/js/galleryEditor.js:7164`
+- `static/js/windowResize.js:124`
+- `static/js/windowResize.js:197`
+
+## `add` — arrow, line 60
+- **called from:**
+- `companion/pairing.py:196`
+- `core/database.py:554`
+- `core/database.py:2269`
+- `core/platform_compat.py:227`
+- `core/session_manager.py:418`
+- `core/session_manager.py:480`
+- `core/session_manager.py:714`
+- `core/session_manager.py:763`
+- `core/session_manager.py:950`
+- `mcp_servers/email_server.py:65`
+- `mcp_servers/email_server.py:582`
+- `mcp_servers/email_server.py:1027`
+- `mcp_servers/email_server.py:1261`
+- `mcp_servers/email_server.py:1345`
+- `mcp_servers/email_server.py:2037`
+- `mcp_servers/email_server.py:2224`
+- `mcp_servers/email_server.py:2859`
+- `mcp_servers/email_server.py:2905`
+- `mcp_servers/email_server.py:2906`
+- `mcp_servers/email_server.py:3075`
+- `mcp_servers/email_server.py:3435`
+- `mcp_servers/email_server.py:3441`
+- `mcp_servers/email_server.py:3502`
+- `mcp_servers/image_gen_server.py:144`
+- `mcp_servers/memory_server.py:190`
+- `mcp_servers/memory_server.py:219`
+- `routes/api_token_routes.py:135`
+- `routes/api_token_routes.py:179`
+- `routes/backup_routes.py:105`
+- `routes/backup_routes.py:176`
+- `routes/backup_routes.py:178`
+- `routes/backup_routes.py:179`
+- `routes/calendar_routes.py:202`
+- `routes/calendar_routes.py:330`
+- `routes/calendar_routes.py:338`
+- `routes/calendar_routes.py:760`
+- `routes/calendar_routes.py:1390`
+- `routes/calendar_routes.py:1545`
+- `routes/calendar_routes.py:1612`
+- `routes/calendar_routes.py:1713`
+- `routes/chat_helpers.py:371`
+- `routes/chat_routes.py:1744`
+- `routes/chat_routes.py:3587`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3924`
+- `routes/chatgpt_subscription_routes.py:91`
+- `routes/chatgpt_subscription_routes.py:155`
+- `routes/chatgpt_subscription_routes.py:185`
+- `routes/compare/compare_routes.py:218`
+- `routes/compare/compare_routes.py:313`
+- `routes/contacts/contacts_routes.py:590`
+- `routes/contacts/contacts_routes.py:718`
+- `routes/cookbook_routes.py:1479`
+- `routes/cookbook_routes.py:1837`
+- `routes/cookbook_routes.py:2885`
+- `routes/cookbook_routes.py:3694`
+- `routes/cookbook_routes.py:3761`
+- `routes/cookbook_routes.py:3877`
+- `routes/cookbook_routes.py:3964`
+- `routes/copilot_routes.py:77`
+- … +2017 more (grep the name in repo)
+
+## `end` — arrow, line 73
+- **called from:**
+- `mcp_servers/email_server.py:2023`
+- `routes/chat_helpers.py:1715`
+- `routes/chat_helpers.py:1727`
+- `routes/chat_routes.py:347`
+- `routes/cookbook_helpers.py:778`
+- `routes/email/email_helpers.py:397`
+- `routes/email/email_routes.py:1130`
+- `routes/email/email_routes.py:1593`
+- `routes/email/email_routes.py:1594`
+- `routes/email/email_routes.py:1598`
+- `scripts/add_hwfit_models.py:117`
+- `services/hwfit/hf_discovery.py:115`
+- `services/search/core.py:800`
+- `src/agent_evidence.py:234`
+- `src/agent_evidence.py:247`
+- `src/agent_loop.py:954`
+- `src/agent_loop.py:1142`
+- `src/agent_loop.py:2319`
+- `src/agent_loop.py:2324`
+- `src/agent_loop.py:2605`
+- `src/agent_loop.py:2621`
+- `src/agent_loop.py:2629`
+- `src/agent_loop.py:2653`
+- `src/agent_loop.py:2666`
+- `src/agent_loop.py:2697`
+- `src/agent_loop.py:2815`
+- `src/agent_loop.py:2819`
+- `src/agent_loop.py:3207`
+- `src/agent_loop.py:4872`
+- `src/agent_loop.py:4876`
+- `src/agent_loop.py:4881`
+- `src/agent_loop.py:4885`
+- `src/agent_loop.py:9123`
+- `src/agent_loop.py:9123`
+- `src/agent_loop.py:13312`
+- `src/agent_loop.py:13313`
+- `src/agent_loop.py:13326`
+- `src/agent_loop.py:13329`
+- `src/agent_loop.py:13341`
+- `src/agent_loop.py:13851`
+- `src/agent_loop.py:13854`
+- `src/agent_loop.py:13854`
+- `src/agent_loop.py:14155`
+- `src/agent_loop.py:18329`
+- `src/agent_loop.py:18331`
+- `src/agent_loop.py:18437`
+- `src/agent_loop.py:25736`
+- `src/agent_runtime/completion.py:91`
+- `src/agent_tools/document_tools.py:384`
+- `src/agent_tools/document_tools.py:438`
+- `src/agent_tools/document_tools.py:730`
+- `src/agent_tools/document_tools.py:735`
+- `src/agent_tools/filesystem_tools.py:66`
+- `src/agent_tools/web_tools.py:892`
+- `src/agent_tools/web_tools_prewave3.py:896`
+- `src/builtin_actions.py:1329`
+- `src/clean_agent_preview.py:843`
+- `src/clean_agent_preview.py:950`
+- `src/clean_agent_preview.py:977`
+- `src/clean_agent_preview.py:1841`
+- … +105 more (grep the name in repo)

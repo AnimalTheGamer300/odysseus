@@ -4,7 +4,8 @@
 
 ## `setup_diagnostics_routes` — function, line 16
 - **called from:**
-- `app.py:728`
+- `app.py:808`
+- `tests/test_admin_listing_authorization.py:133`
 - `tests/test_diagnostics_logs.py:22`
 - `tests/test_diagnostics_service_route.py:38`
 

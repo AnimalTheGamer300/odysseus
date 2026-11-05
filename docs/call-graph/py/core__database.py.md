@@ -1,31 +1,31 @@
 # `core/database.py` — definitions & call sites
 
-106 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+120 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `utcnow_naive` — function, line 23
 - **called from:**
-- `core/database.py:878`
-- `core/database.py:2067`
-- `core/database.py:2686`
-- `core/database.py:2697`
-- `core/database.py:2744`
-- `core/database.py:2789`
-- `core/session_manager.py:1138`
-- `core/session_manager.py:1332`
-- `core/session_manager.py:1333`
-- `routes/chatgpt_subscription_routes.py:58`
-- `routes/session_routes.py:228`
-- `routes/session_routes.py:297`
-- `routes/session_routes.py:550`
-- `routes/session_routes.py:597`
-- `routes/session_routes.py:924`
-- `routes/session_routes.py:958`
-- `routes/session_routes.py:1161`
-- `routes/session_routes.py:1264`
-- `routes/session_routes.py:1324`
-- `routes/session_routes.py:1369`
-- `routes/session_routes.py:1543`
-- `src/chatgpt_subscription.py:279`
+- `core/database.py:930`
+- `core/database.py:2326`
+- `core/database.py:3002`
+- `core/database.py:3013`
+- `core/database.py:3058`
+- `core/database.py:3103`
+- `core/session_manager.py:1135`
+- `core/session_manager.py:1136`
+- `routes/chatgpt_subscription_routes.py:159`
+- `routes/session_routes.py:341`
+- `routes/session_routes.py:434`
+- `routes/session_routes.py:717`
+- `routes/session_routes.py:729`
+- `routes/session_routes.py:791`
+- `routes/session_routes.py:1069`
+- `routes/session_routes.py:1103`
+- `routes/session_routes.py:1307`
+- `routes/session_routes.py:1418`
+- `routes/session_routes.py:1473`
+- `routes/session_routes.py:1675`
+- `src/background_tool_jobs.py:176`
+- `src/chatgpt_subscription.py:433`
 - `tests/test_database_utcnow.py:13`
 - `tests/test_database_utcnow.py:16`
 - `tests/test_session_actions_cleanup.py:76`
@@ -34,7 +34,7 @@
 - `tests/test_session_actions_cleanup.py:112`
 - `tests/test_session_actions_cleanup.py:115`
 - `tests/test_session_actions_cleanup.py:135`
-- `tests/test_session_list_owner_scope.py:89`
+- `tests/test_session_list_owner_scope.py:244`
 
 ## `TimestampMixin` — class, line 28
 - **called from:**
@@ -43,7 +43,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `TimestampMixin.created_at` — method, line 31
 - decorator: `declared_attr`
 - **called from:**
-- `static/js/gallery.js:1396`
+- `static/js/gallery.js:1591`
 
 ## `TimestampMixin.updated_at` — method, line 35
 - decorator: `declared_attr`
@@ -61,8 +61,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_sqlite_db_path` — function, line 88
 - **called from:**
-- `core/database.py:2126`
-- `core/database.py:2155`
+- `core/database.py:2394`
+- `core/database.py:2423`
 - `tests/test_app_db_permissions.py:73`
 - `tests/test_app_db_permissions.py:74`
 - `tests/test_app_db_permissions.py:76`
@@ -97,15 +97,39 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `Session` — class, line 189
 - **called from:**
-- `core/session_manager.py:189`
-- `core/session_manager.py:295`
-- `core/session_manager.py:1056`
-- `tests/test_api_token_tool_authority.py:24`
-- `tests/test_api_token_tool_authority.py:97`
-- `tests/test_draft_promotion_keeps_live_media.py:37`
-- `tests/test_external_context_tool_gate.py:221`
-- `tests/test_history_display_model_hydration.py:245`
-- `tests/test_history_display_model_hydration.py:326`
+- `core/session_manager.py:188`
+- `core/session_manager.py:289`
+- `core/session_manager.py:953`
+- `tests/test_api_token_tool_authority.py:387`
+- `tests/test_api_token_tool_authority.py:460`
+- `tests/test_background_tool_jobs.py:18`
+- `tests/test_background_tool_jobs.py:93`
+- `tests/test_caldav_redirect_hardening.py:103`
+- `tests/test_chat_document_owner_context.py:60`
+- `tests/test_chat_document_owner_context.py:62`
+- `tests/test_chat_image_preservation.py:21`
+- `tests/test_chat_image_preservation.py:49`
+- `tests/test_chat_image_preservation.py:50`
+- `tests/test_chat_tidy_content_preservation.py:61`
+- `tests/test_chat_tidy_content_preservation.py:91`
+- `tests/test_chat_tidy_content_preservation.py:121`
+- `tests/test_clean_v3_route_ownership.py:90`
+- `tests/test_cleanup_transcript_preservation.py:38`
+- `tests/test_cleanup_transcript_preservation.py:43`
+- `tests/test_cleanup_transcript_preservation.py:168`
+- `tests/test_cleanup_transcript_preservation.py:173`
+- `tests/test_cleanup_transcript_preservation.py:179`
+- `tests/test_cleanup_transcript_preservation.py:235`
+- `tests/test_cleanup_transcript_preservation.py:320`
+- `tests/test_cleanup_transcript_preservation.py:325`
+- `tests/test_cleanup_transcript_preservation.py:331`
+- `tests/test_external_context_tool_gate.py:290`
+- `tests/test_history_display_model_hydration.py:249`
+- `tests/test_history_display_model_hydration.py:330`
+- `tests/test_interrupted_thinking_context.py:5`
+- `tests/test_minimal_native_tool_prompt.py:1402`
+- `tests/test_owned_resource_identity.py:67`
+- `tests/test_pinned_model_route_selection.py:42`
 - `tests/test_replace_messages_multimodal.py:32`
 - `tests/test_replace_messages_upload_reservations.py:46`
 - `tests/test_research_query_fallback.py:15`
@@ -133,447 +157,670 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_session_manager.py:157`
 - `tests/test_session_manager.py:158`
 - `tests/test_session_manager.py:173`
-- `tests/test_session_manager.py:188`
-- `tests/test_sqlite_foreign_keys.py:20`
-- `tests/test_tool_approval_task_scope.py:126`
-- `tests/test_tool_approval_task_scope.py:145`
-- `tests/test_tool_approval_task_scope.py:175`
+- … +5 more (grep the name in repo)
 
-## `Session.is_active` — method, line 249
+## `Session.is_active` — method, line 257
 - decorator: `property`
 - **called from:**
-- `routes/chat_routes.py:3115`
-- `routes/session_routes.py:132`
+- `app.py:1225`
+- `routes/chat_routes.py:5585`
+- `routes/session_routes.py:242`
 - `src/agent_jobs.py:295`
-- `src/bg_monitor.py:115`
+- `src/bg_monitor.py:161`
 
-## `Session.to_dict` — method, line 253
+## `Session.to_dict` — method, line 261
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:3149`
-- `services/memory/skills.py:226`
-- `services/memory/skills.py:382`
-- `services/memory/skills.py:430`
-- `src/model_capabilities.py:538`
-- `src/model_capability_readers/base.py:66`
-- `src/model_capability_readers/base.py:67`
-- `src/model_capability_readers/base.py:68`
-- `tests/test_history_compact_tool_calls.py:90`
-- `tests/test_model_capabilities.py:68`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:83`
-- `tests/test_model_capabilities.py:154`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
 
-## `ChatMessage` — class, line 275
+## `ChatMessage` — class, line 289
 - **called from:**
-- `core/session_manager.py:258`
-- `core/session_manager.py:278`
-- `routes/chat_helpers.py:470`
-- `routes/chat_helpers.py:1309`
-- `routes/chat_helpers.py:1312`
-- `routes/chat_routes.py:316`
-- `routes/chat_routes.py:319`
-- `routes/chat_routes.py:1094`
-- `routes/chat_routes.py:1904`
-- `routes/chat_routes.py:2200`
-- `routes/chat_routes.py:3129`
-- `routes/history/history_routes.py:258`
-- `routes/history/history_routes.py:481`
-- `routes/history/history_routes.py:910`
-- `routes/history/history_routes.py:1147`
-- `routes/history/history_routes.py:1153`
-- `routes/research/research_routes.py:770`
-- `routes/session_routes.py:713`
-- `routes/session_routes.py:1258`
+- `core/session_manager.py:252`
+- `core/session_manager.py:272`
+- `routes/chat_helpers.py:952`
+- `routes/chat_helpers.py:1964`
+- `routes/chat_helpers.py:1967`
+- `routes/chat_routes.py:1512`
+- `routes/chat_routes.py:1515`
+- `routes/chat_routes.py:2606`
+- `routes/chat_routes.py:4175`
+- `routes/chat_routes.py:4476`
+- `routes/chat_routes.py:5604`
+- `routes/history/history_routes.py:396`
+- `routes/history/history_routes.py:658`
+- `routes/history/history_routes.py:1111`
+- `routes/history/history_routes.py:1538`
+- `routes/history/history_routes.py:1544`
+- `routes/research/research_routes.py:882`
+- `routes/session_routes.py:907`
+- `routes/session_routes.py:1412`
 - `routes/webhook/webhook_routes.py:377`
 - `routes/webhook/webhook_routes.py:385`
 - `src/agent_jobs.py:326`
-- `src/agent_tools/session_tools.py:229`
-- `src/agent_tools/session_tools.py:230`
-- `src/bg_monitor.py:131`
-- `src/chat_handler.py:351`
-- `src/chat_handler.py:353`
-- `src/context_compactor.py:709`
-- `src/task_scheduler.py:1773`
-- `src/task_scheduler.py:1781`
-- `tests/test_api_token_tool_authority.py:45`
-- `tests/test_api_token_tool_authority.py:50`
-- `tests/test_api_token_tool_authority.py:73`
-- `tests/test_api_token_tool_authority.py:74`
-- `tests/test_api_token_tool_authority.py:103`
-- `tests/test_api_token_tool_authority.py:104`
-- `tests/test_api_token_tool_authority.py:135`
-- `tests/test_api_token_tool_authority.py:136`
-- `tests/test_api_token_tool_authority.py:314`
-- `tests/test_api_token_tool_authority.py:315`
-- `tests/test_draft_promotion_keeps_live_media.py:47`
-- `tests/test_draft_promotion_keeps_live_media.py:83`
-- `tests/test_draft_promotion_keeps_live_media.py:120`
-- `tests/test_fork_session_metadata.py:63`
-- `tests/test_fork_session_metadata.py:64`
-- `tests/test_history_compact_tool_calls.py:175`
-- `tests/test_history_compact_tool_calls.py:176`
-- `tests/test_history_compact_tool_calls.py:177`
-- `tests/test_history_compact_tool_calls.py:178`
-- `tests/test_history_compact_tool_calls.py:179`
-- `tests/test_history_compact_tool_calls.py:180`
-- `tests/test_history_compact_tool_calls.py:193`
-- `tests/test_history_compact_tool_calls.py:194`
-- `tests/test_history_compact_tool_calls.py:195`
-- `tests/test_history_compact_tool_calls.py:196`
-- `tests/test_history_compact_tool_calls.py:207`
-- `tests/test_history_compact_tool_calls.py:208`
-- `tests/test_history_compact_tool_calls.py:209`
-- `tests/test_history_compact_tool_calls.py:210`
-- `tests/test_history_compact_tool_calls.py:211`
-- … +66 more (grep the name in repo)
+- `src/agent_tools/session_tools.py:250`
+- `src/agent_tools/session_tools.py:251`
+- `src/background_tool_jobs.py:179`
+- `src/bg_monitor.py:199`
+- `src/chat_handler.py:367`
+- `src/chat_handler.py:369`
+- `src/context_compactor.py:983`
+- `src/task_scheduler.py:1935`
+- `src/task_scheduler.py:1943`
+- `tests/test_api_token_tool_authority.py:408`
+- `tests/test_api_token_tool_authority.py:413`
+- `tests/test_api_token_tool_authority.py:436`
+- `tests/test_api_token_tool_authority.py:437`
+- `tests/test_api_token_tool_authority.py:466`
+- `tests/test_api_token_tool_authority.py:467`
+- `tests/test_api_token_tool_authority.py:498`
+- `tests/test_api_token_tool_authority.py:499`
+- `tests/test_api_token_tool_authority.py:677`
+- `tests/test_api_token_tool_authority.py:678`
+- `tests/test_background_tool_jobs.py:94`
+- `tests/test_background_tool_jobs.py:94`
+- `tests/test_chat_image_preservation.py:22`
+- `tests/test_chat_image_preservation.py:53`
+- `tests/test_chat_tidy_content_preservation.py:68`
+- `tests/test_chat_tidy_content_preservation.py:70`
+- `tests/test_chat_tidy_content_preservation.py:101`
+- `tests/test_chat_tidy_content_preservation.py:125`
+- `tests/test_chatgpt_session_binding.py:50`
+- `tests/test_cleanup_transcript_preservation.py:50`
+- `tests/test_cleanup_transcript_preservation.py:186`
+- `tests/test_cleanup_transcript_preservation.py:190`
+- `tests/test_cleanup_transcript_preservation.py:241`
+- `tests/test_cleanup_transcript_preservation.py:338`
+- `tests/test_cleanup_transcript_preservation.py:342`
+- `tests/test_database_test_isolation.py:45`
+- `tests/test_database_test_isolation.py:46`
+- `tests/test_fork_session_metadata.py:65`
+- `tests/test_fork_session_metadata.py:66`
+- … +95 more (grep the name in repo)
 
-## `Document` — class, line 304
+## `BackgroundToolJob` — class, line 318
 - **called from:**
-- `mcp_servers/email_server.py:1684`
-- `routes/document/document_routes.py:180`
-- `src/agent_tools/document_tools.py:324`
-- `src/agent_tools/document_tools.py:440`
-- `src/office_doc.py:45`
-- `src/pdf_form_doc.py:230`
-- `src/pdf_form_doc.py:413`
+- `src/background_tool_jobs.py:50`
+
+## `Document` — class, line 334
+- **called from:**
+- `mcp_servers/email_server.py:2883`
+- `routes/document/document_routes.py:185`
+- `scripts/eval_odysseus_everyday_live_hard.py:229`
+- `scripts/eval_odysseus_live_hard_examples.py:237`
+- `scripts/eval_odysseus_tool_use.py:296`
+- `scripts/odysseus_domain_audit.py:324`
+- `scripts/run_sft_environment_expansion.py:132`
+- `scripts/run_sft_environment_expansion.py:602`
+- `src/agent_tools/document_tools.py:474`
+- `src/agent_tools/document_tools.py:590`
+- `src/email_attachment_text.py:30`
+- `src/office_doc.py:50`
+- `src/pdf_form_doc.py:233`
+- `src/pdf_form_doc.py:416`
+- `tests/cli/test_docs_cli_search.py:34`
+- `tests/cli/test_docs_cli_search.py:39`
+- `tests/cli/test_docs_cli_search.py:44`
+- `tests/cli/test_docs_cli_search.py:49`
 - `tests/test_auth_disabled_document_access.py:81`
 - `tests/test_auth_disabled_document_access.py:266`
+- `tests/test_chat_document_owner_context.py:98`
 - `tests/test_document_close_clears_active_route.py:63`
+- `tests/test_document_export_zip_filenames.py:33`
+- `tests/test_document_followup_integrity.py:25`
+- `tests/test_document_followup_integrity.py:27`
+- `tests/test_document_library_literal_search.py:41`
+- `tests/test_document_library_literal_search.py:65`
+- `tests/test_document_read_pagination.py:24`
 - `tests/test_document_render_pdf_iframe.py:165`
-- `tests/test_document_session_owner_scope.py:68`
-- `tests/test_document_session_owner_scope.py:78`
-- `tests/test_document_session_owner_scope.py:88`
+- `tests/test_document_session_owner_scope.py:63`
+- `tests/test_document_session_owner_scope.py:73`
+- `tests/test_document_session_owner_scope.py:83`
 - `tests/test_document_tidy_null_timestamp.py:37`
 - `tests/test_document_tidy_null_timestamp.py:39`
 - `tests/test_markitdown_runtime.py:67`
+- `tests/test_owned_resource_identity.py:69`
+- `tests/test_owned_resource_identity.py:92`
+- `tests/test_owned_resource_identity.py:348`
 - `tests/test_upload_handler_cleanup.py:495`
 - `tests/test_upload_handler_cleanup.py:670`
-- `static/js/document.js:9792`
+- `tests/tools/editor_writing_smoke.py:87`
+- `static/js/document.js:15977`
 
-## `DocumentVersion` — class, line 337
+## `DocumentVersion` — class, line 367
 - **called from:**
-- `mcp_servers/email_server.py:1657`
-- `mcp_servers/email_server.py:1698`
-- `routes/document/document_routes.py:165`
-- `routes/document/document_routes.py:193`
-- `routes/document/document_routes.py:545`
-- `routes/document/document_routes.py:674`
-- `routes/document/document_routes.py:829`
-- `src/agent_tools/document_tools.py:334`
-- `src/agent_tools/document_tools.py:450`
-- `src/agent_tools/document_tools.py:538`
-- `src/agent_tools/document_tools.py:622`
-- `src/agent_tools/document_tools.py:690`
-- `src/office_doc.py:55`
-- `src/pdf_form_doc.py:240`
-- `src/pdf_form_doc.py:423`
+- `mcp_servers/email_server.py:2851`
+- `mcp_servers/email_server.py:2897`
+- `routes/document/document_routes.py:170`
+- `routes/document/document_routes.py:198`
+- `routes/document/document_routes.py:761`
+- `routes/document/document_routes.py:898`
+- `routes/document/document_routes.py:1053`
+- `scripts/eval_odysseus_tool_use.py:308`
+- `scripts/odysseus_domain_audit.py:327`
+- `scripts/run_sft_environment_expansion.py:137`
+- `scripts/run_sft_environment_expansion.py:613`
+- `src/agent_tools/document_tools.py:484`
+- `src/agent_tools/document_tools.py:600`
+- `src/agent_tools/document_tools.py:696`
+- `src/agent_tools/document_tools.py:850`
+- `src/agent_tools/document_tools.py:954`
+- `src/office_doc.py:60`
+- `src/pdf_form_doc.py:243`
+- `src/pdf_form_doc.py:426`
 - `tests/test_upload_handler_cleanup.py:502`
 
-## `GalleryAlbum` — class, line 352
+## `GalleryAlbum` — class, line 382
 - **called from:**
-- `routes/gallery/gallery_routes.py:860`
+- `routes/gallery/gallery_routes.py:1370`
+- `tests/cli/test_gallery_cli_tag_filters.py:18`
 - `tests/test_admin_wipe_gallery.py:18`
 - `tests/test_gallery_null_user_routes.py:28`
 - `tests/test_gallery_null_user_routes.py:29`
 
-## `GalleryImage` — class, line 365
+## `GalleryImage` — class, line 395
 - **called from:**
-- `mcp_servers/image_gen_server.py:143`
-- `routes/gallery/gallery_routes.py:408`
-- `routes/upload_routes.py:236`
-- `src/ai_interaction.py:1115`
-- `src/ai_interaction.py:1262`
-- `src/ai_interaction.py:1532`
+- `mcp_servers/image_gen_server.py:144`
+- `routes/gallery/gallery_routes.py:914`
+- `routes/upload_routes.py:317`
+- `src/agent_tools/editor_tools.py:161`
+- `src/ai_interaction.py:1477`
+- `src/ai_interaction.py:1648`
+- `src/ai_interaction.py:1980`
+- `src/tools/image.py:75`
+- `src/tools/image.py:209`
+- `tests/cli/test_gallery_cli_tag_filters.py:27`
 - `tests/test_admin_wipe_gallery.py:19`
+- `tests/test_chat_image_preservation.py:23`
+- `tests/test_chat_image_preservation.py:52`
 - `tests/test_gallery_delete_file_ordering.py:34`
 - `tests/test_gallery_filename_confinement.py:101`
 - `tests/test_gallery_null_user_routes.py:30`
 - `tests/test_gallery_null_user_routes.py:42`
 - `tests/test_gallery_owner_filter_single_user.py:30`
+- `tests/test_gallery_search_multiword.py:35`
+- `tests/test_gallery_search_multiword.py:45`
+- `tests/test_gallery_search_multiword.py:55`
+- `tests/test_gallery_search_multiword.py:65`
 - `tests/test_session_image_cleanup.py:31`
 - `tests/test_session_image_cleanup.py:41`
 - `tests/test_upload_handler_cleanup.py:134`
 - `tests/test_upload_handler_cleanup.py:508`
 
-## `EmailAccount` — class, line 407
+## `EmailAccount` — class, line 437
 - **called from:**
-- `routes/email_routes.py:5547`
-- `routes/email_routes.py:5666`
+- `routes/email/email_routes.py:7326`
+- `routes/email/email_routes.py:7450`
 - `scripts/demo_email/demo_account.py:107`
 - `tests/test_email_account_default_serialization.py:69`
 - `tests/test_email_account_default_serialization.py:498`
 - `tests/test_email_account_default_serialization.py:505`
+- `tests/test_email_account_host_ssrf.py:238`
+- `tests/test_email_account_host_ssrf.py:324`
 - `tests/test_email_oauth.py:171`
 - `tests/test_email_ownerless_account_owner_scope.py:32`
 - `tests/test_email_test_connection_oauth.py:34`
 
-## `EmailAccountOwnerLock` — class, line 454
+## `EmailAccountOwnerLock` — class, line 484
 - **called from:**
-- `core/database.py:524`
+- `core/database.py:554`
 
-## `lock_email_account_owner_mutations` — function, line 495
+## `lock_email_account_owner_mutations` — function, line 525
 - **called from:**
-- `core/database.py:2062`
-- `routes/auth_routes.py:388`
-- `routes/email_routes.py:203`
+- `core/database.py:2321`
+- `routes/auth_routes.py:438`
+- `routes/email/email_routes.py:245`
 - `scripts/demo_email/demo_account.py:65`
 - `tests/test_email_account_default_serialization.py:358`
 
-## `ModelEndpoint` — class, line 541
+## `ModelEndpoint` — class, line 571
 - **called from:**
-- `routes/chatgpt_subscription_routes.py:71`
-- `routes/cookbook_routes.py:1567`
-- `routes/cookbook_routes.py:1903`
+- `routes/chatgpt_subscription_routes.py:177`
+- `routes/cookbook_routes.py:1466`
+- `routes/cookbook_routes.py:1823`
 - `routes/copilot_routes.py:70`
-- `routes/model_routes.py:2159`
-- `src/agent_tools/admin_tools.py:48`
-- `tests/test_chatgpt_subscription_routes.py:98`
-- `tests/test_chatgpt_subscription_routes.py:175`
+- `routes/model_routes.py:2342`
+- `src/agent_tools/admin_tools.py:62`
+- `tests/test_chat_document_owner_context.py:64`
+- `tests/test_chat_helpers.py:512`
+- `tests/test_chat_helpers.py:566`
+- `tests/test_chat_helpers.py:603`
+- `tests/test_chatgpt_session_binding.py:28`
+- `tests/test_chatgpt_subscription_device_flow_multi_account.py:41`
+- `tests/test_chatgpt_subscription_routes.py:221`
+- `tests/test_chatgpt_subscription_routes.py:266`
+- `tests/test_chatgpt_subscription_routes.py:343`
+- `tests/test_chatgpt_subscription_usage.py:327`
+- `tests/test_cookbook_endpoint_registration.py:121`
+- `tests/test_cookbook_endpoint_registration.py:505`
+- `tests/test_cookbook_serve_lifecycle.py:124`
+- `tests/test_default_chat_model_filter.py:37`
+- `tests/test_editor_planner_ssrf_authorization.py:135`
+- `tests/test_editor_planner_ssrf_authorization.py:159`
+- `tests/test_editor_planner_ssrf_authorization.py:188`
+- `tests/test_editor_planner_ssrf_authorization.py:217`
+- `tests/test_editor_planner_ssrf_authorization.py:225`
+- `tests/test_editor_planner_ssrf_authorization.py:256`
+- `tests/test_editor_planner_ssrf_authorization.py:281`
+- `tests/test_editor_planner_ssrf_authorization.py:345`
+- `tests/test_editor_planner_ssrf_authorization.py:403`
+- `tests/test_editor_planner_ssrf_authorization.py:411`
+- `tests/test_endpoint_registered_authority.py:90`
+- `tests/test_endpoint_registered_authority.py:176`
+- `tests/test_gallery_endpoint_enforcement.py:72`
+- `tests/test_gallery_endpoint_enforcement.py:113`
+- `tests/test_gallery_endpoint_enforcement.py:154`
+- `tests/test_gallery_endpoint_enforcement.py:196`
+- `tests/test_gallery_endpoint_enforcement.py:242`
+- `tests/test_gallery_endpoint_enforcement.py:315`
+- `tests/test_gallery_endpoint_enforcement.py:358`
+- `tests/test_gallery_endpoint_enforcement.py:399`
+- `tests/test_gallery_endpoint_enforcement.py:430`
+- `tests/test_headless_completion_consumers.py:25`
+- `tests/test_pinned_model_route_selection.py:28`
+- `tests/test_request_authority.py:550`
 - `tests/test_resolve_session_auth_chatgpt.py:36`
 - `tests/test_resolve_session_auth_chatgpt.py:88`
 - `tests/test_resolve_session_auth_chatgpt.py:130`
+- `tests/test_resolve_session_auth_chatgpt.py:176`
+- `tests/test_resolve_session_auth_chatgpt.py:180`
+- `tests/test_resolve_session_auth_chatgpt.py:269`
+- `tests/test_review_endpoint_credentials.py:63`
+- `tests/test_task_scheduler_endpoint_authority.py:89`
+- `tests/test_task_scheduler_endpoint_authority.py:101`
+- `tests/test_task_scheduler_endpoint_authority.py:118`
+- `tests/test_task_scheduler_endpoint_authority.py:135`
+- `tests/test_task_scheduler_endpoint_authority.py:156`
+- `tests/test_task_scheduler_endpoint_authority.py:181`
+- `tests/test_task_scheduler_endpoint_authority.py:230`
+- `tests/test_task_scheduler_endpoint_authority.py:242`
+- `tests/test_utility_reasoning_effort.py:328`
+- … +5 more (grep the name in repo)
 
-## `ProviderAuthSession` — class, line 577
+## `ProviderAuthSession` — class, line 611
 - **called from:**
-- `routes/chatgpt_subscription_routes.py:46`
-- `tests/test_chatgpt_subscription_routes.py:92`
+- `routes/chatgpt_subscription_routes.py:147`
+- `tests/test_chatgpt_subscription_device_flow_multi_account.py:37`
+- `tests/test_chatgpt_subscription_routes.py:216`
+- `tests/test_chatgpt_subscription_routes.py:260`
+- `tests/test_chatgpt_subscription_usage.py:28`
+- `tests/test_chatgpt_subscription_usage.py:325`
 
-## `McpServer` — class, line 591
+## `McpServer` — class, line 625
 - **called from:**
-- `routes/mcp/mcp_routes.py:240`
-- `src/agent_tools/admin_tools.py:266`
+- `routes/mcp/mcp_routes.py:260`
+- `src/agent_tools/admin_tools.py:280`
+- `tests/test_admin_listing_authorization.py:64`
+- `tests/test_mcp_oauth.py:363`
+- `tests/test_mcp_oauth.py:414`
 
-## `Comparison` — class, line 608
+## `Comparison` — class, line 642
 - **called from:**
 - `routes/compare/compare_routes.py:203`
 - `routes/compare/compare_routes.py:300`
 
-## `Signature` — class, line 634
+## `Signature` — class, line 668
 - **called from:**
 - `routes/signature_routes.py:108`
 
-## `ApiToken` — class, line 655
+## `ApiToken` — class, line 689
 - **called from:**
 - `companion/pairing.py:196`
 - `routes/api_token_routes.py:135`
-- `src/agent_tools/admin_tools.py:469`
+- `src/agent_tools/admin_tools.py:483`
 
-## `Webhook` — class, line 669
+## `Webhook` — class, line 703
 - **called from:**
 - `routes/webhook/webhook_routes.py:127`
-- `src/agent_tools/admin_tools.py:406`
-- `static/js/settings.js:2373`
-- `static/js/settings.js:2415`
+- `src/agent_tools/admin_tools.py:420`
+- `static/js/settings.js:2086`
+- `static/js/settings.js:2128`
 
-## `UserTool` — class, line 684
+## `UserTool` — class, line 718
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `UserToolData` — class, line 709
+## `UserToolData` — class, line 743
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `CrewMember` — class, line 727
+## `CrewMember` — class, line 761
 - **called from:**
-- `src/task_scheduler.py:2620`
+- `src/task_scheduler.py:2853`
+- `tests/test_endpoint_registered_authority.py:100`
 
-## `ScheduledTask` — class, line 751
+## `ScheduledTask` — class, line 785
 - **called from:**
-- `routes/task/task_routes.py:528`
-- `src/task_scheduler.py:2476`
-- `src/tools/system.py:355`
-- `tests/test_manage_tasks_owner_scope.py:46`
-- `tests/test_scheduler_restart_doublefire.py:128`
-- `tests/test_scheduler_restart_doublefire.py:159`
-- `tests/test_scheduler_restart_doublefire.py:182`
+- `routes/task/task_routes.py:540`
+- `scripts/eval_odysseus_tool_use.py:318`
+- `scripts/odysseus_domain_audit.py:330`
+- `scripts/run_sft_environment_expansion.py:143`
+- `src/task_scheduler.py:2708`
+- `src/tools/system.py:514`
+- `tests/test_endpoint_registered_authority.py:95`
+- `tests/test_manage_tasks_admin_action_policy.py:65`
+- `tests/test_manage_tasks_owner_scope.py:44`
+- `tests/test_request_authority.py:402`
+- `tests/test_scheduler_restart_doublefire.py:148`
+- `tests/test_scheduler_restart_doublefire.py:179`
+- `tests/test_scheduler_restart_doublefire.py:202`
 - `tests/test_task_chain_owner_scope.py:48`
 - `tests/test_task_cookbook_admin_gate.py:124`
-- `tests/test_task_scheduler_cancel.py:47`
-- `static/js/cookbookServe.js:1815`
+- `tests/test_task_scheduler_cancel.py:61`
+- `tests/test_task_scheduler_cancel.py:128`
+- `tests/test_task_scheduler_cancel.py:193`
+- `static/js/cookbookServe.js:1859`
 
-## `EditorDraft` — class, line 799
+## `EditorDraft` — class, line 834
 - **called from:**
-- `routes/editor_draft_routes.py:116`
+- `routes/editor_draft_routes.py:169`
 
-## `TaskRun` — class, line 831
+## `TaskRun` — class, line 866
 - **called from:**
-- `src/task_scheduler.py:749`
-- `src/task_scheduler.py:882`
+- `src/task_scheduler.py:893`
+- `src/task_scheduler.py:1028`
 - `tests/test_task_cookbook_admin_gate.py:270`
+- `tests/test_task_scheduler_cancel.py:132`
 
-## `Memory` — class, line 854
+## `NotificationLog` — class, line 889
 - **called from:**
+- `routes/task/task_routes.py:624`
+- `src/task_scheduler.py:550`
+
+## `Memory` — class, line 906
+- **called from:**
+- `scripts/run_sft_environment_expansion.py:123`
 - `services/memory/service.py:54`
 - `services/memory/service.py:67`
-- `static/js/tasks.js:444`
+- `static/js/tasks.js:451`
 
-## `_migrate_add_last_message_at_column` — function, line 889
+## `_migrate_add_last_message_at_column` — function, line 941
 - **called from:**
-- `core/database.py:2195`
+- `core/database.py:2465`
 
-## `_migrate_add_deleted_at_column` — function, line 934
+## `_migrate_add_memory_extraction_enabled_column` — function, line 986
 - **called from:**
-- `core/database.py:2199`
+- `core/database.py:2466`
 
-## `_migrate_add_document_archived_column` — function, line 965
+## `_migrate_add_skill_injection_enabled_column` — function, line 1008
 - **called from:**
-- `core/database.py:2194`
+- `core/database.py:2468`
 
-## `_migrate_add_owner_column` — function, line 989
+## `_migrate_add_memory_injection_enabled_column` — function, line 1030
 - **called from:**
-- `core/database.py:2193`
+- `core/database.py:2467`
 
-## `_migrate_model_endpoints` — function, line 1013
+## `_migrate_add_session_generation_settings_columns` — function, line 1052
 - **called from:**
-- `core/database.py:2146`
+- `core/database.py:2469`
 
-## `_migrate_add_hidden_models_column` — function, line 1036
+## `_migrate_add_document_archived_column` — function, line 1076
 - **called from:**
-- `core/database.py:2183`
+- `core/database.py:2464`
 
-## `_migrate_add_model_endpoint_owner_column` — function, line 1059
+## `_migrate_add_owner_column` — function, line 1100
 - **called from:**
-- `core/database.py:2189`
+- `core/database.py:2463`
 
-## `_migrate_add_provider_auth_id_column` — function, line 1091
+## `_migrate_model_endpoints` — function, line 1124
 - **called from:**
-- `core/database.py:2190`
+- `core/database.py:2414`
 
-## `_migrate_add_model_type_column` — function, line 1116
+## `_migrate_add_hidden_models_column` — function, line 1147
 - **called from:**
-- `core/database.py:2187`
+- `core/database.py:2451`
 
-## `_migrate_add_model_endpoint_refresh_columns` — function, line 1139
+## `_migrate_add_model_endpoint_owner_column` — function, line 1170
 - **called from:**
-- `core/database.py:2188`
+- `core/database.py:2458`
 
-## `_migrate_add_task_run_model_column` — function, line 1167
+## `_migrate_add_provider_auth_id_column` — function, line 1202
 - **called from:**
-- `core/database.py:2192`
+- `core/database.py:2459`
 
-## `_migrate_add_supports_tools_column` — function, line 1190
+## `_migrate_add_model_type_column` — function, line 1227
 - **called from:**
-- `core/database.py:2191`
+- `core/database.py:2456`
 
-## `_migrate_add_cached_models_column` — function, line 1214
+## `_migrate_add_model_endpoint_refresh_columns` — function, line 1250
 - **called from:**
-- `core/database.py:2184`
+- `core/database.py:2457`
 
-## `_migrate_add_pinned_models_column` — function, line 1236
+## `_migrate_add_task_run_model_column` — function, line 1278
 - **called from:**
-- `core/database.py:2185`
+- `core/database.py:2462`
 
-## `_migrate_add_notes_sort_order` — function, line 1259
+## `_migrate_add_supports_tools_column` — function, line 1301
 - **called from:**
-- `core/database.py:2186`
+- `core/database.py:2460`
 
-## `_migrate_add_mode_column` — function, line 1291
+## `_migrate_add_model_tool_modes_column` — function, line 1325
 - **called from:**
-- `core/database.py:2198`
+- `core/database.py:2461`
 
-## `_migrate_add_folder_column` — function, line 1314
+## `_migrate_add_cached_models_column` — function, line 1349
 - **called from:**
-- `core/database.py:2196`
+- `core/database.py:2452`
 
-## `_migrate_add_token_columns` — function, line 1337
+## `_migrate_add_pinned_models_column` — function, line 1371
 - **called from:**
-- `core/database.py:2197`
+- `core/database.py:2453`
 
-## `_migrate_add_owner_to_table` — function, line 1361
+## `_migrate_add_cookbook_serve_session_id_column` — function, line 1395
 - **called from:**
-- `core/database.py:1387`
-- `core/database.py:1388`
-- `core/database.py:1389`
-- `core/database.py:1390`
-- `core/database.py:1391`
-- `core/database.py:1394`
+- `core/database.py:2454`
+- `tests/test_cookbook_endpoint_registration.py:313`
+- `tests/test_cookbook_endpoint_registration.py:314`
 
-## `_migrate_add_multiuser_owner_columns` — function, line 1385
+## `_migrate_add_notes_sort_order` — function, line 1414
 - **called from:**
-- `core/database.py:2200`
+- `core/database.py:2455`
 
-## `_migrate_add_gallery_caption_column` — function, line 1397
+## `_migrate_add_mode_column` — function, line 1446
 - **called from:**
-- `core/database.py:2201`
+- `core/database.py:2475`
 
-## `_migrate_add_api_token_scopes_column` — function, line 1420
+## `_migrate_add_folder_column` — function, line 1469
 - **called from:**
-- `core/database.py:2202`
+- `core/database.py:2470`
 
-## `_migrate_assign_legacy_owner` — function, line 1448
+## `_migrate_add_session_cwd_column` — function, line 1492
 - **called from:**
-- `core/database.py:2204`
-- `tests/test_foreground_model_routing.py:2063`
+- `core/database.py:2471`
 
-## `_migrate_backfill_document_owner_from_session` — function, line 1572
+## `_migrate_add_session_endpoint_id_column` — function, line 1515
 - **called from:**
-- `core/database.py:2203`
+- `core/database.py:2472`
+- `tests/test_chatgpt_session_binding.py:155`
+- `tests/test_chatgpt_session_binding.py:156`
+- `tests/test_chatgpt_session_binding.py:160`
 
-## `_migrate_add_tidy_verdict` — function, line 1599
+## `_migrate_add_token_columns` — function, line 1528
 - **called from:**
-- `core/database.py:2205`
+- `core/database.py:2473`
 
-## `_migrate_add_doc_source_email_cols` — function, line 1612
+## `_migrate_add_total_cost_usd` — function, line 1552
 - **called from:**
-- `core/database.py:2206`
+- `core/database.py:2474`
+- `tests/test_cost_tracking.py:207`
+- `tests/test_cost_tracking.py:208`
 
-## `_migrate_add_task_automation_columns` — function, line 1636
+## `_migrate_add_owner_to_table` — function, line 1575
 - **called from:**
-- `core/database.py:2209`
+- `core/database.py:1601`
+- `core/database.py:1602`
+- `core/database.py:1603`
+- `core/database.py:1604`
+- `core/database.py:1605`
+- `core/database.py:1608`
 
-## `_migrate_add_email_oauth_columns` — function, line 1709
+## `_migrate_add_multiuser_owner_columns` — function, line 1599
 - **called from:**
-- `core/database.py:2208`
+- `core/database.py:2476`
 
-## `_migrate_add_oauth_config` — function, line 1728
+## `_migrate_add_gallery_caption_column` — function, line 1611
 - **called from:**
-- `core/database.py:2207`
+- `core/database.py:2477`
 
-## `_migrate_add_disabled_tools` — function, line 1740
+## `_migrate_add_api_token_scopes_column` — function, line 1634
 - **called from:**
-- `core/database.py:2210`
+- `core/database.py:2478`
 
-## `_migrate_add_mcp_oauth_tokens_column` — function, line 1752
+## `_migrate_assign_legacy_owner` — function, line 1662
 - **called from:**
-- `core/database.py:2211`
+- `core/database.py:2480`
+- `tests/test_foreground_model_routing.py:2147`
 
-## `_migrate_add_task_v2_columns` — function, line 1769
+## `_migrate_backfill_document_owner_from_session` — function, line 1786
 - **called from:**
-- `core/database.py:2212`
+- `core/database.py:2479`
 
-## `_migrate_drop_ping_notes_tasks` — function, line 1789
+## `_migrate_add_tidy_verdict` — function, line 1813
 - **called from:**
-- `core/database.py:2214`
+- `core/database.py:2481`
 
-## `_migrate_add_notifications_enabled` — function, line 1810
+## `_migrate_add_doc_source_email_cols` — function, line 1826
 - **called from:**
-- `core/database.py:2213`
+- `core/database.py:2482`
 
-## `_migrate_add_crew_member_id` — function, line 1823
+## `_migrate_add_calendar_source_email_cols` — function, line 1851
 - **called from:**
-- `core/database.py:2215`
+- `core/database.py:2483`
 
-## `_migrate_add_assistant_columns` — function, line 1840
+## `_migrate_add_task_automation_columns` — function, line 1873
 - **called from:**
-- `core/database.py:2216`
+- `core/database.py:2486`
 
-## `Note` — class, line 1860
+## `_migrate_add_email_oauth_columns` — function, line 1946
 - **called from:**
-- `routes/note/note_routes.py:663`
-- `src/tools/calendar.py:183`
-- `src/tools/notes.py:215`
+- `core/database.py:2485`
+
+## `_migrate_add_oauth_config` — function, line 1965
+- **called from:**
+- `core/database.py:2484`
+
+## `_migrate_add_disabled_tools` — function, line 1977
+- **called from:**
+- `core/database.py:2488`
+
+## `_migrate_add_mcp_oauth_tokens_column` — function, line 1989
+- **called from:**
+- `core/database.py:2489`
+
+## `_migrate_add_task_v2_columns` — function, line 2006
+- **called from:**
+- `core/database.py:2490`
+
+## `_migrate_drop_ping_notes_tasks` — function, line 2026
+- **called from:**
+- `core/database.py:2492`
+
+## `_migrate_add_notifications_enabled` — function, line 2047
+- **called from:**
+- `core/database.py:2491`
+
+## `_migrate_add_crew_member_id` — function, line 2060
+- **called from:**
+- `core/database.py:2493`
+
+## `_migrate_add_assistant_columns` — function, line 2077
+- **called from:**
+- `core/database.py:2494`
+
+## `Note` — class, line 2097
+- **called from:**
+- `routes/calendar_routes.py:750`
+- `routes/note/note_routes.py:666`
+- `scripts/run_sft_environment_expansion.py:115`
+- `scripts/run_sft_environment_expansion.py:623`
+- `scripts/run_sft_overnight_fixture_flows.py:118`
+- `src/tools/calendar.py:324`
+- `src/tools/notes.py:389`
+- `tests/test_calendar_rrule.py:79`
+- `tests/test_calendar_rrule.py:121`
+- `tests/test_failed_call_correction.py:26`
+- `tests/test_note_ping_delivery_retry.py:45`
+- `tests/test_note_ping_delivery_retry.py:116`
+- `tests/test_notes_checklist_state.py:20`
 - `tests/test_notes_fail_closed_auth.py:113`
 - `tests/test_notes_fail_closed_auth.py:115`
 - `tests/test_notes_fail_closed_auth.py:181`
+- `tests/test_owned_resource_identity.py:72`
+- `tests/test_owned_resource_identity.py:73`
+- `tests/test_owned_resource_identity.py:74`
 - `tests/test_upload_handler_cleanup.py:517`
-- `static/js/slashCommands.js:1715`
+- `static/js/slashCommands.js:1719`
 
-## `CalendarCal` — class, line 1890
+## `CalendarCal` — class, line 2128
 - **called from:**
-- `routes/calendar_routes.py:307`
-- `routes/calendar_routes.py:1367`
-- `routes/calendar_routes.py:1434`
+- `routes/calendar_routes.py:321`
+- `routes/calendar_routes.py:1538`
+- `routes/calendar_routes.py:1605`
+- `scripts/eval_odysseus_app_route_smoke.py:56`
+- `scripts/eval_odysseus_everyday_live_hard.py:188`
+- `scripts/eval_odysseus_tool_use.py:334`
+- `scripts/run_sft_environment_expansion.py:154`
+- `scripts/run_sft_environment_expansion.py:163`
+- `scripts/run_sft_overnight_fixture_flows.py:78`
+- `scripts/run_sft_overnight_fixture_flows.py:133`
 - `src/caldav_sync.py:325`
 - `tests/test_caldav_bidirectional_sync.py:101`
 - `tests/test_caldav_sync_prune_local_events.py:59`
@@ -586,16 +833,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_default_transaction.py:458`
 - `tests/test_calendar_default_transaction.py:501`
 - `tests/test_calendar_import_zero_duration.py:132`
+- `tests/test_calendar_rrule.py:70`
+- `tests/test_calendar_rrule.py:109`
 - `tests/test_checkin_digest_owner_scope.py:31`
 - `tests/test_checkin_digest_owner_scope.py:32`
+- `tests/test_checkin_digest_owner_scope.py:78`
+- `tests/test_checkin_digest_owner_scope.py:96`
+- `tests/test_daily_brief_local_calendar.py:55`
 - `tests/test_upload_handler_cleanup.py:524`
 
-## `CalendarEvent` — class, line 1908
+## `CalendarEvent` — class, line 2146
 - **called from:**
-- `routes/calendar_routes.py:1239`
-- `routes/calendar_routes.py:1528`
+- `routes/calendar_routes.py:1376`
+- `routes/calendar_routes.py:1701`
+- `scripts/eval_odysseus_app_route_smoke.py:66`
+- `scripts/eval_odysseus_everyday_live_hard.py:198`
+- `scripts/eval_odysseus_tool_use.py:343`
+- `scripts/run_sft_environment_expansion.py:168`
+- `scripts/run_sft_overnight_fixture_flows.py:144`
 - `src/caldav_sync.py:437`
-- `src/tools/calendar.py:431`
+- `src/tools/calendar.py:614`
 - `tests/test_caldav_bidirectional_sync.py:108`
 - `tests/test_caldav_sync_prune_local_events.py:61`
 - `tests/test_caldav_sync_prune_local_events.py:67`
@@ -603,158 +860,180 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_default_transaction.py:257`
 - `tests/test_calendar_default_transaction.py:515`
 - `tests/test_calendar_import_zero_duration.py:134`
+- `tests/test_calendar_rrule.py:71`
+- `tests/test_calendar_rrule.py:110`
 - `tests/test_checkin_digest_owner_scope.py:33`
 - `tests/test_checkin_digest_owner_scope.py:36`
 - `tests/test_checkin_digest_owner_scope.py:62`
+- `tests/test_checkin_digest_owner_scope.py:79`
+- `tests/test_checkin_digest_owner_scope.py:103`
+- `tests/test_daily_brief_local_calendar.py:58`
 - `tests/test_upload_handler_cleanup.py:530`
 
-## `CalendarDeletedEvent` — class, line 1942
+## `EmailCalendarInvitation` — class, line 2186
 - **called from:**
-- `routes/calendar_routes.py:189`
+- `src/email_calendar_import.py:114`
+
+## `CalendarDeletedEvent` — class, line 2201
+- **called from:**
+- `routes/calendar_routes.py:201`
 - `tests/test_caldav_bidirectional_sync.py:120`
 
-## `Integration` — class, line 1956
+## `Integration` — class, line 2215
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_migrate_email_account_default_invariant` — function, line 1971
+## `_migrate_email_account_default_invariant` — function, line 2230
 - **called from:**
-- `core/database.py:2218`
+- `core/database.py:2496`
 - `tests/test_email_account_default_serialization.py:262`
 - `tests/test_email_account_default_serialization.py:263`
 
-## `_migrate_seed_email_account` — function, line 2034
+## `_migrate_seed_email_account` — function, line 2293
 - **called from:**
-- `core/database.py:2219`
+- `core/database.py:2497`
 
-## `_enable_sqlite_wal` — function, line 2113
+## `_migrate_add_task_authority_column` — function, line 2372
 - **called from:**
-- `core/database.py:2145`
+- `core/database.py:2487`
+- `tests/test_request_authority.py:379`
+- `tests/test_request_authority.py:380`
 
-## `init_db` — function, line 2140
+## `_enable_sqlite_wal` — function, line 2381
 - **called from:**
-- `core/database.py:2820`
+- `core/database.py:2413`
 
-## `_migrate_backfill_task_folders` — function, line 2233
+## `init_db` — function, line 2408
 - **called from:**
-- `core/database.py:2230`
+- `core/database.py:3134`
 
-## `_migrate_chat_messages_fts` — function, line 2259
+## `_migrate_backfill_task_folders` — function, line 2512
 - **called from:**
-- `core/database.py:2226`
-- `tests/test_session_search.py:251`
+- `core/database.py:2509`
 
-## `_scrub_legacy_chat_message_fts_media` — function, line 2345
+## `_migrate_chat_messages_fts` — function, line 2538
 - **called from:**
-- `core/database.py:2334`
+- `core/database.py:2505`
+- `tests/test_session_search.py:292`
+- `tests/test_session_search.py:334`
+- `tests/test_session_search.py:335`
 
-## `_migrate_add_email_smtp_security` — function, line 2376
+## `_scrub_legacy_chat_message_fts_media` — function, line 2640
 - **called from:**
-- `core/database.py:2217`
+- `core/database.py:2629`
 
-## `_migrate_encrypt_endpoint_keys` — function, line 2407
+## `_migrate_add_email_smtp_security` — function, line 2671
 - **called from:**
-- `core/database.py:2229`
+- `core/database.py:2495`
 
-## `_migrate_encrypt_signatures` — function, line 2431
+## `_migrate_encrypt_endpoint_keys` — function, line 2702
 - **called from:**
-- `core/database.py:2228`
+- `core/database.py:2508`
 
-## `_migrate_encrypt_email_passwords` — function, line 2463
+## `_migrate_encrypt_signatures` — function, line 2726
 - **called from:**
-- `core/database.py:2227`
+- `core/database.py:2507`
 
-## `_migrate_add_calendar_is_utc` — function, line 2497
+## `_migrate_encrypt_email_passwords` — function, line 2758
 - **called from:**
-- `core/database.py:2221`
+- `core/database.py:2506`
 
-## `_migrate_add_calendar_origin` — function, line 2523
+## `_migrate_add_calendar_is_utc` — function, line 2792
 - **called from:**
-- `core/database.py:2222`
+- `core/database.py:2499`
 
-## `_migrate_add_calendar_account_id` — function, line 2550
+## `_migrate_add_calendar_origin` — function, line 2818
 - **called from:**
-- `core/database.py:2223`
+- `core/database.py:2500`
 
-## `_migrate_add_caldav_sync_columns` — function, line 2576
+## `_migrate_add_calendar_account_id` — function, line 2845
 - **called from:**
-- `core/database.py:2224`
+- `core/database.py:2501`
 
-## `_migrate_add_calendar_metadata` — function, line 2601
+## `_migrate_add_caldav_sync_columns` — function, line 2871
 - **called from:**
-- `core/database.py:2220`
+- `core/database.py:2502`
 
-## `_migrate_add_calendar_recurrence_exdates` — function, line 2628
+## `_migrate_add_calendar_metadata` — function, line 2896
 - **called from:**
-- `core/database.py:2225`
+- `core/database.py:2498`
 
-## `get_db` — function, line 2649
+## `_migrate_add_calendar_recurrence_exdates` — function, line 2923
+- **called from:**
+- `core/database.py:2503`
+
+## `_migrate_add_note_gallery_id` — function, line 2944
+- **called from:**
+- `core/database.py:2504`
+
+## `get_db` — function, line 2965
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_db_session` — function, line 2664
+## `get_db_session` — function, line 2980
 - decorator: `contextmanager`
 - **called from:**
 - `companion/pairing.py:195`
-- `core/auth.py:308`
-- `core/database.py:2678`
-- `core/database.py:2696`
-- `core/database.py:2711`
-- `core/database.py:2741`
-- `core/database.py:2756`
-- `core/database.py:2769`
-- `core/database.py:2778`
-- `core/database.py:2790`
-- `core/database.py:2809`
+- `core/auth.py:326`
+- `core/auth.py:471`
+- `core/database.py:2994`
+- `core/database.py:3012`
+- `core/database.py:3025`
+- `core/database.py:3055`
+- `core/database.py:3070`
+- `core/database.py:3083`
+- `core/database.py:3092`
+- `core/database.py:3104`
+- `core/database.py:3123`
 - `routes/api_token_routes.py:82`
 - `routes/api_token_routes.py:134`
 - `routes/api_token_routes.py:165`
 - `routes/api_token_routes.py:199`
 
-## `bulk_insert_messages` — function, line 2676
+## `bulk_insert_messages` — function, line 2992
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `cleanup_old_sessions` — function, line 2692
+## `cleanup_old_sessions` — function, line 3008
 - **called from:**
-- `src/cleanup_service.py:289`
+- `src/cleanup_service.py:350`
 
-## `get_session_stats` — function, line 2709
+## `get_session_stats` — function, line 3023
 - **called from:**
-- `core/database.py:2723`
+- `core/database.py:3037`
 
-## `get_detailed_stats` — function, line 2721
+## `get_detailed_stats` — function, line 3035
 - **called from:**
 - `routes/diagnostics_routes.py:61`
 
-## `update_session_last_accessed` — function, line 2739
+## `update_session_last_accessed` — function, line 3053
 - **called from:**
-- `routes/chat_helpers.py:1298`
-- `routes/chat_helpers.py:1315`
-- `routes/chat_routes.py:1097`
-- `src/chat_handler.py:358`
+- `routes/chat_helpers.py:1953`
+- `routes/chat_helpers.py:1970`
+- `routes/chat_routes.py:2609`
+- `src/chat_handler.py:374`
 
-## `get_session_mode` — function, line 2749
+## `get_session_mode` — function, line 3063
 - **called from:**
-- `routes/chat_routes.py:1511`
+- `routes/chat_routes.py:3228`
 - `tests/test_session_mode_helpers.py:74`
 - `tests/test_session_mode_helpers.py:81`
 
-## `set_session_mode` — function, line 2762
+## `set_session_mode` — function, line 3076
 - **called from:**
-- `routes/chat_routes.py:1810`
-- `routes/chat_routes.py:1874`
+- `routes/chat_routes.py:4066`
+- `routes/chat_routes.py:4145`
 - `tests/test_session_mode_helpers.py:55`
 - `tests/test_session_mode_helpers.py:65`
 
-## `get_session_by_id` — function, line 2776
+## `get_session_by_id` — function, line 3090
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_upcoming_events` — function, line 2781
+## `get_upcoming_events` — function, line 3095
 - **called from:**
-- `routes/email_pollers.py:884`
+- `routes/email/email_pollers.py:1068`
 
-## `archive_session` — function, line 2807
+## `archive_session` — function, line 3121
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_

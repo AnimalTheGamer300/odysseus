@@ -43,9 +43,9 @@
 
 ## `isAdminManagedSettingsTab` — function, line 154
 - **called from:**
-- `static/js/settings.js:5652`
 - `static/js/settings/navigation.js:44`
 - `static/js/settings/registry.js:154`
+- `static/js/settings/shell.js:87`
 
 ## `isAdminOnlySettingsTab` — function, line 158
 - **called from:**
@@ -68,7 +68,7 @@
 
 ## `getSettingsRegistryIssues` — function, line 197
 - **called from:**
-- `static/js/settings.js:2209`
+- `static/js/settings.js:1921`
 - `static/js/settings/registry.js:197`
 
 ## `duplicates` — arrow, line 213

@@ -1,0 +1,2510 @@
+# `src/agent_runtime/resources.py` — definitions & call sites
+
+76 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `_text` — function, line 19
+- **called from:**
+- `src/agent_runtime/effects.py:85`
+- `src/agent_runtime/effects.py:86`
+- `src/agent_runtime/effects.py:212`
+- `src/agent_runtime/effects.py:213`
+- `src/agent_runtime/effects.py:214`
+- `src/agent_runtime/effects.py:304`
+- `src/agent_runtime/effects.py:305`
+- `src/agent_runtime/effects.py:405`
+- `src/agent_runtime/effects.py:469`
+- `src/agent_runtime/effects.py:470`
+- `src/agent_runtime/effects.py:552`
+- `src/agent_runtime/effects.py:554`
+- `src/agent_runtime/resources.py:26`
+- `src/agent_runtime/resources.py:192`
+- `src/agent_runtime/resources.py:222`
+- `src/agent_runtime/resources.py:223`
+- `src/agent_runtime/resources.py:256`
+- `src/agent_runtime/resources.py:257`
+- `src/agent_runtime/resources.py:309`
+- `src/agent_runtime/resources.py:461`
+- `src/agent_runtime/resources.py:463`
+- `src/agent_runtime/resources.py:473`
+- `src/agent_runtime/resources.py:550`
+- `src/agent_runtime/resources.py:551`
+- `src/agent_runtime/resources.py:586`
+- `src/agent_runtime/resources.py:587`
+- `src/agent_runtime/resources.py:624`
+- `src/agent_runtime/resources.py:627`
+- `src/agent_runtime/resources.py:641`
+- `src/agent_runtime/resources.py:671`
+- `src/agent_runtime/resources.py:672`
+- `src/agent_runtime/resources.py:673`
+- `src/agent_runtime/resources.py:688`
+- `src/agent_runtime/resources.py:693`
+
+## `_absolute` — function, line 25
+- **called from:**
+- `src/agent_runtime/resources.py:308`
+- `src/agent_runtime/resources.py:347`
+- `src/agent_runtime/resources.py:360`
+
+## `_effect_store_dirs` — function, line 31
+- **called from:**
+- `src/agent_runtime/resources.py:90`
+- `src/agent_runtime/resources.py:155`
+
+## `_aliases_effect_store` — function, line 40
+- **called from:**
+- `src/agent_runtime/resources.py:155`
+
+## `_control_plane_snapshot` — function, line 70
+- **called from:**
+- `src/agent_runtime/process_resources.py:404`
+- `src/agent_runtime/resources.py:145`
+- `src/agent_tools/filesystem_tools.py:808`
+- `src/agent_tools/filesystem_tools.py:875`
+- `src/agent_tools/filesystem_tools.py:1003`
+- `tests/test_effect_journal_persistence.py:334`
+
+## `_control_plane_path` — function, line 136
+- **called from:**
+- `src/agent_runtime/process_resources.py:405`
+- `src/agent_runtime/resources.py:391`
+- `src/agent_tools/media_tools.py:188`
+- `src/tool_execution.py:978`
+- `src/tool_execution.py:988`
+- `tests/test_effect_journal_persistence.py:328`
+- `tests/test_effect_journal_persistence.py:332`
+- `tests/test_effect_journal_persistence.py:336`
+- `tests/test_effect_journal_persistence.py:338`
+- `tests/test_effect_journal_persistence.py:340`
+- `tests/test_effect_journal_persistence.py:346`
+
+## `FilesystemScope` — class, line 158
+- **called from:**
+- `src/agent_runtime/resources.py:337`
+
+## `ResourceIdentityError` — class, line 165
+- **called from:**
+- `src/agent_runtime/local_model_control.py:54`
+- `src/agent_runtime/local_model_control.py:59`
+- `src/agent_runtime/local_model_control.py:62`
+- `src/agent_runtime/local_model_control.py:70`
+- `src/agent_runtime/local_model_control.py:93`
+- `src/agent_runtime/local_model_control.py:102`
+- `src/agent_runtime/owned_resources.py:20`
+- `src/agent_runtime/owned_resources.py:24`
+- `src/agent_runtime/owned_resources.py:31`
+- `src/agent_runtime/owned_resources.py:34`
+- `src/agent_runtime/owned_resources.py:42`
+- `src/agent_runtime/owned_resources.py:45`
+- `src/agent_runtime/owned_resources.py:52`
+- `src/agent_runtime/owned_resources.py:64`
+- `src/agent_runtime/owned_resources.py:88`
+- `src/agent_runtime/owned_resources.py:91`
+- `src/agent_runtime/owned_resources.py:95`
+- `src/agent_runtime/owned_resources.py:98`
+- `src/agent_runtime/owned_resources.py:108`
+- `src/agent_runtime/owned_resources.py:120`
+- `src/agent_runtime/owned_resources.py:124`
+- `src/agent_runtime/owned_resources.py:128`
+- `src/agent_runtime/owned_resources.py:130`
+- `src/agent_runtime/owned_resources.py:142`
+- `src/agent_runtime/owned_resources.py:156`
+- `src/agent_runtime/owned_resources.py:163`
+- `src/agent_runtime/owned_resources.py:168`
+- `src/agent_runtime/owned_resources.py:223`
+- `src/agent_runtime/owned_resources.py:228`
+- `src/agent_runtime/owned_resources.py:232`
+- `src/agent_runtime/owned_resources.py:235`
+- `src/agent_runtime/owned_resources.py:238`
+- `src/agent_runtime/owned_resources.py:250`
+- `src/agent_runtime/owned_resources.py:257`
+- `src/agent_runtime/owned_resources.py:264`
+- `src/agent_runtime/owned_resources.py:266`
+- `src/agent_runtime/owned_resources.py:277`
+- `src/agent_runtime/owned_resources.py:279`
+- `src/agent_runtime/owned_resources.py:297`
+- `src/agent_runtime/owned_resources.py:300`
+- `src/agent_runtime/owned_resources.py:310`
+- `src/agent_runtime/owned_resources.py:366`
+- `src/agent_runtime/owned_resources.py:380`
+- `src/agent_runtime/owned_resources.py:388`
+- `src/agent_runtime/owned_resources.py:398`
+- `src/agent_runtime/owned_resources.py:418`
+- `src/agent_runtime/owned_resources.py:421`
+- `src/agent_runtime/owned_resources.py:454`
+- `src/agent_runtime/process_resources.py:43`
+- `src/agent_runtime/process_resources.py:73`
+- `src/agent_runtime/process_resources.py:78`
+- `src/agent_runtime/process_resources.py:95`
+- `src/agent_runtime/process_resources.py:104`
+- `src/agent_runtime/process_resources.py:117`
+- `src/agent_runtime/process_resources.py:123`
+- `src/agent_runtime/process_resources.py:126`
+- `src/agent_runtime/process_resources.py:128`
+- `src/agent_runtime/process_resources.py:134`
+- `src/agent_runtime/process_resources.py:140`
+- `src/agent_runtime/process_resources.py:147`
+- … +121 more (grep the name in repo)
+
+## `BrowserSessionObservation` — class, line 170
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/browser_identity.py:433`
+- `tests/test_effect_verification_adapters.py:290`
+
+## `BrowserSessionObservation.__post_init__` — method, line 181
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `BrowserSessionObservation.to_dict` — method, line 201
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `BrowserSessionObservation.from_dict` — method, line 205
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `BrowserSessionResource` — class, line 216
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/browser_identity.py:434`
+- `tests/test_effect_verification_adapters.py:292`
+
+## `BrowserSessionResource.__post_init__` — method, line 221
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `BrowserSessionResource.validate` — method, line 227
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `BrowserSessionResource.to_dict` — method, line 231
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `BrowserSessionResource.from_dict` — method, line 235
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `BrowserPageResource` — class, line 242
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/browser_identity.py:455`
+- `tests/test_effect_verification_adapters.py:315`
+
+## `BrowserPageResource.__post_init__` — method, line 250
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `BrowserPageResource.authority_key` — method, line 261
+- **called from:**
+- `tests/test_browser_identity_transport.py:141`
+- `tests/test_browser_identity_transport.py:141`
+- `tests/test_browser_producer_live_contract.py:47`
+- `tests/test_browser_producer_live_contract.py:47`
+
+## `BrowserPageResource.validate` — method, line 264
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `BrowserPageResource.to_dict` — method, line 268
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `BrowserPageResource.from_dict` — method, line 272
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `FileObjectIdentity` — class, line 279
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/resources.py:338`
+- `src/agent_runtime/resources.py:532`
+
+## `FileObjectIdentity.__post_init__` — method, line 284
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `FileObjectIdentity.observe` — method, line 291
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/effect_adapters.py:371`
+- `src/agent_runtime/process_resources.py:63`
+- `src/agent_runtime/resources.py:321`
+- `src/agent_runtime/resources.py:325`
+- `src/agent_runtime/resources.py:400`
+- `src/agent_runtime/resources.py:406`
+- `src/agent_runtime/resources.py:519`
+- `src/agent_tools/web_tools.py:2457`
+- `src/agent_tools/web_tools.py:2500`
+- `src/agent_tools/web_tools_prewave3.py:2466`
+- `src/agent_tools/web_tools_prewave3.py:2509`
+- `src/browser_identity.py:288`
+- `src/browser_lifecycle.py:155`
+- `src/clean_agent_preview.py:7902`
+- `tests/test_browser_progress.py:14`
+- `tests/test_browser_progress.py:16`
+- `tests/test_browser_progress.py:17`
+- `tests/test_browser_progress.py:18`
+- `tests/test_browser_progress.py:25`
+- `tests/test_browser_progress.py:31`
+- `tests/test_browser_progress.py:32`
+- `tests/test_browser_progress.py:33`
+- `tests/test_browser_progress.py:34`
+- `tests/test_browser_progress.py:35`
+- `tests/test_browser_progress.py:46`
+- `tests/test_effect_journal_persistence.py:75`
+- `tests/test_effect_journal_persistence.py:140`
+- `tests/test_effect_verification_adapters.py:368`
+- `tests/test_effects_foundation.py:216`
+- `tests/test_effects_foundation.py:229`
+- `tests/test_effects_foundation.py:238`
+- `tests/test_effects_foundation.py:240`
+- `tests/test_effects_foundation.py:247`
+- `tests/test_effects_foundation.py:257`
+- `tests/test_effects_foundation.py:268`
+- `tests/test_effects_foundation.py:283`
+- `tests/test_effects_foundation.py:293`
+- `tests/test_effects_foundation.py:304`
+- `tests/test_effects_foundation.py:316`
+- `tests/test_effects_foundation.py:327`
+- `tests/test_effects_foundation.py:330`
+- `tests/test_effects_foundation.py:341`
+- `tests/test_effects_foundation.py:342`
+- `tests/test_effects_foundation.py:349`
+- `tests/test_effects_foundation.py:358`
+- `tests/test_effects_foundation.py:360`
+- `tests/test_effects_foundation.py:369`
+- `tests/test_effects_foundation.py:380`
+- `tests/test_effects_foundation.py:393`
+- `tests/test_effects_foundation.py:411`
+- `tests/test_effects_foundation.py:422`
+- `tests/test_effects_foundation.py:427`
+- `tests/test_effects_foundation.py:450`
+- `tests/test_effects_foundation.py:451`
+- `tests/test_process_lifecycle.py:320`
+- `tests/test_process_lifecycle.py:326`
+- `tests/test_process_lifecycle.py:331`
+- `tests/test_process_lifecycle.py:340`
+- `tests/test_resource_identity.py:62`
+- `static/app.js:336`
+- … +99 more (grep the name in repo)
+
+## `FilesystemRoot` — class, line 301
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `FilesystemRoot.__post_init__` — method, line 307
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `FilesystemRoot.seal` — method, line 319
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:155`
+- `src/agent_runtime/owned_resources.py:92`
+- `src/tool_approvals.py:433`
+- `src/tool_approvals.py:464`
+- `tests/process_resource_helpers.py:81`
+- `tests/runtime_evidence_helpers.py:36`
+- `tests/test_agent_state_dir_confinement.py:113`
+- `tests/test_background_resource_identity.py:172`
+- `tests/test_background_resource_identity.py:179`
+- `tests/test_browser_resource_identity.py:245`
+- `tests/test_browser_resource_identity.py:247`
+- `tests/test_effect_journal_persistence.py:21`
+- `tests/test_effect_journal_persistence.py:155`
+- `tests/test_effect_verification_adapters.py:64`
+- `tests/test_effects_foundation.py:25`
+- `tests/test_effects_foundation.py:118`
+- `tests/test_grep_followup_integrity.py:28`
+- `tests/test_process_resource_identity.py:109`
+- `tests/test_request_authority.py:266`
+- `tests/test_resource_identity.py:274`
+- `tests/test_resource_identity.py:311`
+- `tests/test_resource_identity.py:343`
+- `tests/test_resource_identity.py:534`
+- `tests/test_resource_identity.py:603`
+- `tests/test_tool_approvals.py:41`
+- `tests/test_wave3_launch_cost_lifecycle.py:184`
+- `tests/test_wave3_launch_cost_lifecycle.py:187`
+- `tests/test_write_file_empty_body.py:95`
+
+## `FilesystemRoot.validate` — method, line 323
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `FilesystemRoot.to_dict` — method, line 330
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `FilesystemRoot.from_dict` — method, line 334
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `PathObservation` — class, line 342
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/process_resources.py:63`
+- `src/agent_runtime/resources.py:367`
+- `src/agent_runtime/resources.py:393`
+- `src/agent_runtime/resources.py:404`
+- `src/agent_runtime/resources.py:532`
+
+## `PathObservation.__post_init__` — method, line 346
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `FilesystemResource` — class, line 353
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `FilesystemResource.__post_init__` — method, line 359
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `FilesystemResource.resolve` — method, line 379
+- decorator: `classmethod`
+- **called from:**
+- `core/database.py:66`
+- `core/platform_compat.py:355`
+- `mcp_servers/email_server.py:34`
+- `mcp_servers/image_gen_server.py:17`
+- `mcp_servers/memory_server.py:18`
+- `mcp_servers/rag_server.py:16`
+- `routes/codex_routes.py:267`
+- `routes/codex_routes.py:942`
+- `routes/cookbook_routes.py:104`
+- `routes/embedding_routes.py:49`
+- `routes/embedding_routes.py:53`
+- `routes/mcp/mcp_routes.py:27`
+- `routes/mcp/mcp_routes.py:40`
+- `routes/research/research_routes.py:32`
+- `routes/research/research_routes.py:42`
+- `routes/session_routes.py:154`
+- `scripts/_lib/cli.py:43`
+- `scripts/audit_c5_benchmark_evidence.py:1078`
+- `scripts/audit_c5_benchmark_evidence.py:1083`
+- `scripts/audit_c5_benchmark_evidence.py:1098`
+- `scripts/audit_c5_benchmark_evidence.py:1114`
+- `scripts/audit_c5_benchmark_evidence.py:1145`
+- `scripts/audit_c5_benchmark_evidence.py:1146`
+- `scripts/audit_c5_benchmark_evidence.py:1173`
+- `scripts/audit_c5_benchmark_evidence.py:1179`
+- `scripts/audit_c5_benchmark_evidence.py:1229`
+- `scripts/audit_c5_benchmark_evidence.py:1260`
+- `scripts/audit_email_sft_with_deepseek.py:16`
+- `scripts/audit_historical_tool_routing.py:20`
+- `scripts/audit_historical_tool_routing.py:21`
+- `scripts/audit_search_pipeline.py:12`
+- `scripts/audit_sft_corpus_with_deepseek.py:20`
+- `scripts/audit_typo_tool_routing.py:12`
+- `scripts/build_frontend.py:13`
+- `scripts/build_frontend.py:32`
+- `scripts/build_frontend.py:32`
+- `scripts/build_frontend.py:93`
+- `scripts/build_odysseus_everyday_deepseek_heldout_cases.py:14`
+- `scripts/build_odysseus_everyday_deepseek_heldout_v3_cases.py:14`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:15`
+- `scripts/build_odysseus_realistic_web_synthesis_rows.py:20`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:15`
+- `scripts/build_odysseus_search_teacher_edited_rows.py:17`
+- `scripts/build_odysseus_tool_efficiency_sft_slice.py:413`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:18`
+- `scripts/build_odysseus_v54_live_gap_teacher_sft.py:19`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:18`
+- `scripts/build_odysseus_v55_web_synthesis_teacher_sft.py:19`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:18`
+- `scripts/build_odysseus_v56_broad_web_teacher_sft.py:19`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:13`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:15`
+- `scripts/build_odysseus_v61_app_route_web_rows.py:16`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:13`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:14`
+- `scripts/build_odysseus_v62_teacher_trace_web_rows.py:15`
+- `scripts/build_odysseus_web_teacher_sft.py:17`
+- `scripts/build_odysseus_web_teacher_sft.py:22`
+- `scripts/build_odysseus_web_v53_repair_sft.py:13`
+- `scripts/build_odysseus_web_v53_repair_sft.py:14`
+- … +1043 more (grep the name in repo)
+
+## `FilesystemResource.validate` — method, line 413
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `FilesystemResource.to_dict` — method, line 420
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `intersect_roots` — function, line 424
+- **called from:**
+- `src/agent_runtime/authority.py:244`
+
+## `ProcessResource` — class, line 448
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/process_resources.py:514`
+- `src/bg_jobs.py:165`
+- `tests/process_resource_helpers.py:53`
+- `tests/test_effect_verification_adapters.py:71`
+- `tests/test_effects_foundation.py:123`
+- `tests/test_effects_foundation.py:124`
+- `tests/test_process_resource_identity.py:16`
+- `tests/test_resource_identity.py:724`
+- `tests/test_resource_identity.py:730`
+
+## `ProcessResource.__post_init__` — method, line 458
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `ProcessResource.validate` — method, line 475
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `ProcessResource.to_dict` — method, line 479
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `ProcessResource.from_dict` — method, line 485
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `ProcessLaunchScope` — class, line 496
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/process_resources.py:62`
+- `tests/test_effect_verification_adapters.py:64`
+- `tests/test_process_resource_identity.py:109`
+- `tests/test_request_authority.py:265`
+- `tests/test_tool_approvals.py:41`
+
+## `ProcessLaunchScope.__post_init__` — method, line 504
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `ProcessLaunchScope.validate` — method, line 516
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `ProcessLaunchScope.to_dict` — method, line 522
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `ProcessLaunchScope.from_dict` — method, line 528
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `ProcessLaunchResource` — class, line 537
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/process_resources.py:297`
+- `tests/test_effect_verification_adapters.py:65`
+
+## `ProcessLaunchResource.__post_init__` — method, line 548
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `ProcessLaunchResource.validate` — method, line 559
+- **called from:**
+- `scripts/eval_ajax_basic_tools.py:59`
+- `scripts/test_clean_tool_loop.py:118`
+- `src/agent_runtime/authority.py:250`
+- `src/agent_runtime/effect_adapters.py:392`
+- `src/agent_runtime/effect_adapters.py:397`
+- `src/agent_runtime/effect_adapters.py:408`
+- `src/agent_runtime/owned_resources.py:229`
+- `src/agent_runtime/owned_resources.py:408`
+- `src/agent_runtime/owned_resources.py:422`
+- `src/agent_runtime/owned_resources.py:438`
+- `src/agent_runtime/owned_resources.py:450`
+- `src/agent_runtime/process_resources.py:69`
+- `src/agent_runtime/process_resources.py:153`
+- `src/agent_runtime/process_resources.py:191`
+- `src/agent_runtime/process_resources.py:198`
+- `src/agent_runtime/process_resources.py:208`
+- `src/agent_runtime/process_resources.py:266`
+- `src/agent_runtime/process_resources.py:272`
+- `src/agent_runtime/process_resources.py:326`
+- `src/agent_runtime/process_resources.py:339`
+- `src/agent_runtime/process_resources.py:357`
+- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/remote_resources.py:219`
+- `src/agent_runtime/resource_binding.py:66`
+- `src/agent_runtime/resource_binding.py:81`
+- `src/agent_runtime/resource_binding.py:87`
+- `src/agent_runtime/resource_binding.py:197`
+- `src/agent_runtime/resource_binding.py:213`
+- `src/agent_runtime/resources.py:380`
+- `src/agent_runtime/resources.py:432`
+- `src/agent_runtime/resources.py:433`
+- `src/agent_runtime/resources.py:517`
+- `src/agent_runtime/resources.py:560`
+- `src/agent_tools/bg_job_tools.py:95`
+- `src/agent_tools/filesystem_tools.py:1001`
+- `src/ai_interaction.py:405`
+- `src/bg_jobs.py:168`
+- `src/browser_identity.py:134`
+- `src/browser_identity.py:202`
+- `src/browser_identity.py:491`
+- `src/browser_identity.py:502`
+- `src/browser_identity.py:511`
+- `src/browser_identity.py:537`
+- `src/browser_identity.py:541`
+- `src/browser_identity.py:572`
+- `src/browser_identity.py:583`
+- `src/browser_identity.py:595`
+- `src/browser_identity.py:604`
+- `src/browser_identity.py:632`
+- `src/browser_identity.py:636`
+- `src/clean_agent_preview.py:7436`
+- `src/clean_agent_preview.py:7809`
+- `src/containment_worker.py:54`
+- `src/containment_worker.py:57`
+- `src/tool_execution.py:1251`
+- `src/tool_execution.py:1635`
+- `src/tool_execution.py:1673`
+- `src/tool_execution.py:1989`
+- `src/tool_execution.py:2159`
+- `src/tool_execution.py:2162`
+- … +28 more (grep the name in repo)
+
+## `ProcessLaunchResource.to_dict` — method, line 562
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `ProcessLaunchResource.from_dict` — method, line 567
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `BackgroundJobResource` — class, line 574
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/bg_jobs.py:169`
+- `tests/process_resource_helpers.py:55`
+- `tests/test_effect_verification_adapters.py:73`
+
+## `BackgroundJobResource.__post_init__` — method, line 584
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `BackgroundJobResource.to_dict` — method, line 600
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `BackgroundJobResource.from_dict` — method, line 605
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `ExternalResource` — class, line 612
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/remote_resources.py:63`
+- `src/agent_runtime/remote_resources.py:78`
+- `src/agent_runtime/remote_resources.py:86`
+- `src/mcp_manager.py:568`
+- `src/tool_execution.py:113`
+- `tests/test_browser_identity_transport.py:149`
+- `tests/test_effect_verification_adapters.py:258`
+- `tests/test_effect_verification_adapters.py:273`
+- `tests/test_effect_verification_adapters.py:418`
+- `tests/test_effects_foundation.py:133`
+- `tests/test_effects_foundation.py:234`
+- `tests/test_resource_identity.py:726`
+- `tests/test_resource_identity.py:728`
+- `tests/test_review_regressions.py:1086`
+
+## `ExternalResource.__post_init__` — method, line 622
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `ExternalResource.to_dict` — method, line 629
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `NativeBackendResource` — class, line 634
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/authority.py:636`
+- `src/agent_runtime/local_model_control.py:60`
+- `src/agent_runtime/local_model_control.py:66`
+- `src/agent_runtime/remote_resources.py:144`
+- `src/agent_runtime/remote_resources.py:196`
+- `src/builtin_actions.py:896`
+- `tests/process_resource_helpers.py:17`
+- `tests/process_resource_helpers.py:50`
+- `tests/process_resource_helpers.py:80`
+- `tests/runtime_evidence_helpers.py:36`
+- `tests/test_background_resource_identity.py:119`
+- `tests/test_background_resource_identity.py:133`
+- `tests/test_bg_job_tools.py:68`
+- `tests/test_effect_verification_adapters.py:64`
+- `tests/test_process_resource_identity.py:91`
+- `tests/test_process_resource_identity.py:97`
+- `tests/test_process_resource_identity.py:102`
+- `tests/test_process_resource_identity.py:109`
+- `tests/test_remote_resource_identity.py:260`
+- `tests/test_request_authority.py:265`
+- `tests/test_runtime_resource_integration.py:73`
+- `tests/test_runtime_resource_integration.py:187`
+- `tests/test_runtime_resource_integration.py:363`
+- `tests/test_runtime_resource_integration.py:396`
+- `tests/test_runtime_resource_integration.py:468`
+- `tests/test_tool_approvals.py:41`
+- `tests/test_wave3_launch_cost_lifecycle.py:43`
+- `tests/test_wave3_launch_cost_lifecycle.py:78`
+- `tests/test_wave3_launch_cost_lifecycle.py:162`
+- `tests/test_wave3_launch_cost_lifecycle.py:192`
+- `tests/test_wave3_launch_cost_lifecycle.py:202`
+- `tests/test_wave3_launch_cost_lifecycle.py:211`
+
+## `NativeBackendResource.__post_init__` — method, line 640
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `NativeBackendResource.to_dict` — method, line 645
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `backend_from_dict` — function, line 649
+- **called from:**
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/resources.py:531`
+
+## `OwnedResource` — class, line 660
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/owned_resources.py:54`
+- `src/agent_runtime/owned_resources.py:99`
+- `src/agent_runtime/owned_resources.py:144`
+- `src/agent_runtime/owned_resources.py:173`
+- `src/agent_runtime/owned_resources.py:288`
+- `tests/test_effect_journal_persistence.py:161`
+- `tests/test_effect_verification_adapters.py:231`
+- `tests/test_effect_verification_adapters.py:242`
+- `tests/test_effect_verification_adapters.py:243`
+- `tests/test_effect_verification_adapters.py:330`
+- `tests/test_effect_verification_adapters.py:363`
+- `tests/test_effect_verification_adapters.py:553`
+- `tests/test_effect_verification_adapters.py:557`
+- `tests/test_effects_foundation.py:130`
+- `tests/test_effects_foundation.py:131`
+- `tests/test_effects_foundation.py:445`
+- `tests/test_effects_foundation.py:446`
+- `tests/test_resource_identity.py:725`
+
+## `OwnedResource.__post_init__` — method, line 669
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `OwnedResource.to_dict` — method, line 675
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `OwnedScope` — class, line 680
+- decorator: `dataclass(frozen=True)`
+- **called from:**
+- `src/agent_runtime/resources.py:709`
+- `src/agent_runtime/resources.py:739`
+- `tests/test_owned_resource_identity.py:130`
+- `tests/test_owned_resource_identity.py:161`
+- `tests/test_owned_resource_identity.py:320`
+- `tests/test_owned_resource_identity.py:380`
+
+## `OwnedScope.__post_init__` — method, line 686
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `OwnedScope.permits` — method, line 697
+- **called from:**
+- `routes/chat_routes.py:4027`
+- `src/agent_loop.py:497`
+- `src/agent_loop.py:521`
+- `src/agent_loop.py:600`
+- `src/agent_loop.py:22032`
+- `src/agent_loop.py:22033`
+- `src/agent_loop.py:22066`
+- `src/agent_loop.py:23555`
+- `src/agent_loop.py:33063`
+- `src/agent_loop.py:33900`
+- `src/agent_runtime/authority.py:223`
+- `src/agent_runtime/local_model_control.py:58`
+- `src/agent_runtime/owned_resources.py:419`
+- `src/agent_runtime/process_resources.py:371`
+- `src/agent_tools/web_tools.py:421`
+- `src/agent_tools/web_tools_prewave3.py:425`
+- `src/browser_identity.py:627`
+- `src/builtin_actions.py:893`
+- `src/clean_agent_preview.py:3265`
+- `src/clean_agent_preview.py:3289`
+- `src/clean_agent_preview.py:7434`
+- `src/clean_agent_preview.py:7803`
+- `src/task_scheduler.py:1388`
+- `src/task_scheduler.py:2196`
+- `src/tool_approvals.py:413`
+- `src/tool_approvals.py:450`
+- `src/tool_capabilities.py:1029`
+- `src/tool_execution.py:1776`
+- `src/tool_execution.py:1797`
+- `src/tool_execution.py:2121`
+- `tests/test_background_resource_identity.py:152`
+- `tests/test_chat_route_tool_policy.py:340`
+- `tests/test_chat_route_tool_policy.py:362`
+- `tests/test_chat_route_tool_policy.py:363`
+- `tests/test_chat_route_tool_policy.py:374`
+- `tests/test_local_mcp_capabilities.py:889`
+- `tests/test_local_mcp_capabilities.py:892`
+- `tests/test_local_mcp_capabilities.py:958`
+- `tests/test_local_mcp_capabilities.py:959`
+- `tests/test_local_mcp_capabilities.py:981`
+- `tests/test_local_mcp_capabilities.py:982`
+- `tests/test_local_mcp_capabilities.py:988`
+- `tests/test_local_mcp_capabilities.py:989`
+- `tests/test_local_mcp_capabilities.py:1001`
+- `tests/test_local_mcp_capabilities.py:1002`
+- `tests/test_nested_invocation_ownership.py:236`
+- `tests/test_product_turn_contract_route.py:109`
+- `tests/test_product_turn_contract_route.py:115`
+- `tests/test_product_turn_contract_route.py:125`
+- `tests/test_product_turn_contract_route.py:126`
+- `tests/test_product_turn_contract_route.py:129`
+- `tests/test_product_turn_contract_route.py:230`
+- `tests/test_product_turn_contract_route.py:284`
+- `tests/test_product_turn_contract_route.py:383`
+- `tests/test_request_authority.py:63`
+- `tests/test_request_authority.py:64`
+- `tests/test_request_authority.py:69`
+- `tests/test_request_authority.py:70`
+- `tests/test_request_authority.py:77`
+- `tests/test_request_authority.py:82`
+- … +81 more (grep the name in repo)
+
+## `OwnedScope.intersect` — method, line 704
+- **called from:**
+- `src/agent_runtime/authority.py:243`
+- `src/agent_runtime/authority.py:247`
+- `src/agent_runtime/authority.py:549`
+- `src/agent_runtime/authority.py:643`
+- `src/tool_execution.py:1764`
+- `tests/test_background_resource_identity.py:130`
+- `tests/test_background_resource_identity.py:135`
+- `tests/test_browser_identity_transport.py:131`
+- `tests/test_browser_resource_identity.py:293`
+- `tests/test_browser_resource_identity.py:298`
+- `tests/test_owned_resource_identity.py:163`
+- `tests/test_owned_resource_identity.py:381`
+- `tests/test_process_resource_identity.py:78`
+- `tests/test_process_resource_identity.py:111`
+- `tests/test_process_resource_identity.py:112`
+- `tests/test_process_resource_identity.py:123`
+- `tests/test_remote_resource_identity.py:374`
+- `tests/test_resource_identity.py:313`
+- `tests/test_resource_identity.py:313`
+- `tests/test_resource_identity.py:318`
+- `tests/test_resource_identity.py:319`
+- `tests/test_resource_identity.py:329`
+- `tests/test_resource_identity.py:346`
+- `tests/test_resource_identity.py:366`
+- `tests/test_resource_identity.py:703`
+- `static/js/editor/document-geometry.js:169`
+
+## `OwnedScope.to_dict` — method, line 711
+- **called from:**
+- `core/models.py:175`
+- `routes/chat_routes.py:5624`
+- `services/memory/builtin_skills.py:66`
+- `services/memory/builtin_skills.py:73`
+- `services/memory/skills.py:280`
+- `services/memory/skills.py:453`
+- `services/memory/skills.py:501`
+- `src/agent_evidence.py:1270`
+- `src/agent_loop.py:28789`
+- `src/agent_loop.py:31316`
+- `src/agent_loop.py:31789`
+- `src/agent_loop.py:32054`
+- `src/agent_loop.py:32094`
+- `src/agent_loop.py:32125`
+- `src/agent_loop.py:32178`
+- `src/agent_loop.py:32306`
+- `src/agent_loop.py:32638`
+- `src/agent_loop.py:34858`
+- `src/agent_loop.py:36867`
+- `src/agent_loop.py:37190`
+- `src/agent_loop.py:37403`
+- `src/agent_loop.py:37458`
+- `src/agent_loop.py:37515`
+- `src/agent_loop.py:37849`
+- `src/agent_loop.py:37861`
+- `src/agent_loop.py:37967`
+- `src/agent_loop.py:38889`
+- `src/agent_loop.py:38890`
+- `src/agent_loop.py:38895`
+- `src/agent_runtime/authority.py:282`
+- `src/agent_runtime/authority.py:283`
+- `src/agent_runtime/authority.py:284`
+- `src/agent_runtime/authority.py:285`
+- `src/agent_runtime/authority.py:286`
+- `src/agent_runtime/authority.py:287`
+- `src/agent_runtime/authority.py:288`
+- `src/agent_runtime/authority.py:289`
+- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/completion.py:356`
+- `src/agent_runtime/completion.py:385`
+- `src/agent_runtime/completion.py:388`
+- `src/agent_runtime/completion.py:389`
+- `src/agent_runtime/completion.py:392`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:78`
+- `src/agent_runtime/context_resolution.py:154`
+- `src/agent_runtime/context_resolution.py:155`
+- `src/agent_runtime/context_resolution.py:502`
+- `src/agent_runtime/context_resolution.py:518`
+- `src/agent_runtime/effect_adapters.py:296`
+- `src/agent_runtime/effect_log.py:263`
+- `src/agent_runtime/effects.py:156`
+- `src/agent_runtime/effects.py:161`
+- `src/agent_runtime/effects.py:168`
+- `src/agent_runtime/effects.py:173`
+- `src/agent_runtime/effects.py:177`
+- `src/agent_runtime/effects.py:181`
+- `src/agent_runtime/effects.py:186`
+- … +146 more (grep the name in repo)
+
+## `OwnedScope.from_dict` — method, line 716
+- decorator: `classmethod`
+- **called from:**
+- `src/agent_runtime/authority.py:319`
+- `src/agent_runtime/authority.py:320`
+- `src/agent_runtime/authority.py:321`
+- `src/agent_runtime/authority.py:322`
+- `src/agent_runtime/authority.py:323`
+- `src/agent_runtime/authority.py:324`
+- `src/agent_runtime/authority.py:325`
+- `src/agent_runtime/authority.py:661`
+- `src/agent_runtime/authority.py:683`
+- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/effect_log.py:91`
+- `src/agent_runtime/effects.py:277`
+- `src/agent_runtime/effects.py:340`
+- `src/agent_runtime/effects.py:341`
+- `src/agent_runtime/effects.py:342`
+- `src/agent_runtime/effects.py:343`
+- `src/agent_runtime/effects.py:493`
+- `src/agent_runtime/effects.py:576`
+- `src/agent_runtime/process_resources.py:80`
+- `src/agent_runtime/process_resources.py:89`
+- `src/agent_runtime/process_resources.py:129`
+- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/resources.py:238`
+- `src/agent_runtime/resources.py:275`
+- `src/agent_runtime/resources.py:531`
+- `src/agent_runtime/resources.py:570`
+- `src/agent_runtime/resources.py:608`
+- `src/agent_trace.py:124`
+- `src/bg_jobs.py:227`
+- `src/containment_worker.py:52`
+- `src/containment_worker.py:53`
+- `tests/test_background_resource_identity.py:54`
+- `tests/test_background_resource_identity.py:65`
+- `tests/test_background_resource_identity.py:187`
+- `tests/test_background_resource_identity.py:191`
+- `tests/test_browser_resource_identity.py:160`
+- `tests/test_browser_resource_identity.py:321`
+- `tests/test_effect_journal_persistence.py:43`
+- `tests/test_effects_foundation.py:139`
+- `tests/test_effects_foundation.py:141`
+- `tests/test_effects_foundation.py:143`
+- `tests/test_effects_foundation.py:160`
+- `tests/test_model_capabilities.py:43`
+- `tests/test_model_capabilities.py:83`
+- `tests/test_owned_resource_identity.py:180`
+- `tests/test_owned_resource_identity.py:322`
+- `tests/test_owned_resource_identity.py:327`
+- `tests/test_process_resource_identity.py:31`
+- `tests/test_process_resource_identity.py:37`
+- `tests/test_process_resource_identity.py:41`
+- `tests/test_process_resource_identity.py:88`
+- `tests/test_remote_resource_identity.py:68`
+- `tests/test_remote_resource_identity.py:162`
+- `tests/test_request_authority.py:115`
+- `tests/test_resource_identity.py:379`
+- `tests/test_resource_identity.py:393`
+- `tests/test_resource_identity.py:660`
+- `tests/test_resource_identity.py:683`
+- `tests/test_runtime_resource_integration.py:416`
+- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- … +1 more (grep the name in repo)
+
+## `seal_owned_scopes` — function, line 736
+- **called from:**
+- `src/agent_runtime/authority.py:167`

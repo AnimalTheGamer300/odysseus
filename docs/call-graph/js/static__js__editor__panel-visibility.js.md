@@ -1,0 +1,369 @@
+# `static/js/editor/panel-visibility.js` — definitions & call sites
+
+15 definitions (regex-based, best-effort).
+**Exports:** `PANELS`, `PANEL_IDS`, `_resetCache`, `apply`, `hideAll`, `isVisible`, `list`, `reset`, `setVisible`, `showAll`, `subscribe`, `toggle`
+
+## `readStored` — function, line 38
+- **called from:**
+- `static/js/editor/panel-visibility.js:38`
+- `static/js/editor/panel-visibility.js:51`
+
+## `ensureLoaded` — function, line 49
+- **called from:**
+- `static/js/editor/panel-visibility.js:49`
+- `static/js/editor/panel-visibility.js:62`
+- `static/js/editor/panel-visibility.js:67`
+- `static/js/editor/panel-visibility.js:82`
+- `static/js/editor/panel-visibility.js:131`
+- `static/js/editor/panel-visibility.js:147`
+- `static/js/editor/panel-visibility.js:155`
+
+## `persist` — function, line 55
+- **called from:**
+- `static/js/editor/actions-panel.js:129`
+- `static/js/editor/actions-panel.js:135`
+- `static/js/editor/actions-panel.js:229`
+- `static/js/editor/build/dock.js:81`
+- `static/js/editor/build/dock.js:205`
+- `static/js/editor/panel-visibility.js:55`
+- `static/js/editor/panel-visibility.js:136`
+- `static/js/editor/panel-visibility.js:149`
+- `static/js/editor/panel-visibility.js:157`
+- `static/js/features/notes/application/drafts.js:50`
+- `static/js/features/notes/ui/cardChecklist.js:98`
+
+## `isVisible` — function, line 61
+- **called from:**
+- `static/js/chat.js:6105`
+- `static/js/chat.js:6190`
+- `static/js/cookbook.js:3703`
+- `static/js/cookbook.js:3746`
+- `static/js/cookbook.js:3784`
+- `static/js/cookbook.js:3796`
+- `static/js/cookbookRunning.js:3826`
+- `static/js/document.js:11467`
+- `static/js/document.js:11468`
+- `static/js/document.js:11471`
+- `static/js/document.js:11472`
+- `static/js/editor/panel-visibility.js:61`
+- `static/js/editor/panel-visibility.js:143`
+- `static/js/galleryEditor.js:11470`
+- `static/js/galleryEditor.js:11480`
+- `static/js/turnRendering.js:121`
+- `static/js/turnRendering.js:131`
+- `static/js/turnRendering.js:145`
+
+## `list` — function, line 66
+- **called from:**
+- `app.py:101`
+- `app.py:469`
+- `app.py:1353`
+- `core/database.py:1885`
+- `core/session_manager.py:774`
+- `mcp_servers/email_server.py:451`
+- `mcp_servers/email_server.py:484`
+- `mcp_servers/email_server.py:711`
+- `mcp_servers/email_server.py:1829`
+- `mcp_servers/email_server.py:1944`
+- `mcp_servers/email_server.py:2008`
+- `mcp_servers/email_server.py:2176`
+- `mcp_servers/email_server.py:2293`
+- `mcp_servers/email_server.py:3493`
+- `routes/api_token_routes.py:45`
+- `routes/auth_routes.py:646`
+- `routes/chat_helpers.py:92`
+- `routes/chat_helpers.py:1555`
+- `routes/chat_helpers.py:1708`
+- `routes/chat_routes.py:1401`
+- `routes/chat_routes.py:1495`
+- `routes/chat_routes.py:1497`
+- `routes/chat_routes.py:1566`
+- `routes/chat_routes.py:1567`
+- `routes/chat_routes.py:1635`
+- `routes/chat_routes.py:2340`
+- `routes/chat_routes.py:4130`
+- `routes/chat_routes.py:4131`
+- `routes/chat_routes.py:4256`
+- `routes/chat_routes.py:5658`
+- `routes/cookbook_routes.py:1608`
+- `routes/cookbook_routes.py:3262`
+- `routes/cookbook_routes.py:3568`
+- `routes/cookbook_routes.py:3903`
+- `routes/cookbook_routes.py:4057`
+- `routes/cookbook_routes.py:4061`
+- `routes/cookbook_routes.py:4065`
+- `routes/cookbook_routes.py:4081`
+- `routes/cookbook_routes.py:4088`
+- `routes/cookbook_routes.py:4097`
+- `routes/cookbook_routes.py:4218`
+- `routes/device_flow.py:145`
+- `routes/document/document_routes.py:1761`
+- `routes/document/document_routes.py:1899`
+- `routes/editor_agent_routes.py:125`
+- `routes/editor_agent_routes.py:166`
+- `routes/editor_agent_routes.py:923`
+- `routes/editor_agent_routes.py:949`
+- `routes/editor_agent_routes.py:1395`
+- `routes/editor_agent_routes.py:1486`
+- `routes/editor_agent_routes.py:1493`
+- `routes/editor_agent_routes.py:1499`
+- `routes/editor_agent_routes.py:1511`
+- `routes/editor_agent_routes.py:1515`
+- `routes/editor_agent_routes.py:1761`
+- `routes/editor_agent_routes.py:1773`
+- `routes/editor_agent_routes.py:1779`
+- `routes/email/email_helpers.py:1494`
+- `routes/email/email_helpers.py:1523`
+- `routes/email/email_helpers.py:1549`
+- … +629 more (grep the name in repo)
+
+## `notify` — function, line 71
+- **called from:**
+- `static/js/editor/panel-visibility.js:71`
+- `static/js/editor/panel-visibility.js:138`
+- `static/js/editor/panel-visibility.js:151`
+- `static/js/editor/panel-visibility.js:159`
+- `static/js/features/notes/infrastructure/notifications.js:13`
+
+## `markHidden` — function, line 75
+- **called from:**
+- `static/js/editor/panel-visibility.js:75`
+- `static/js/editor/panel-visibility.js:85`
+- `static/js/editor/panel-visibility.js:86`
+- `static/js/editor/panel-visibility.js:87`
+- `static/js/editor/panel-visibility.js:94`
+- `static/js/editor/panel-visibility.js:98`
+- `static/js/editor/panel-visibility.js:101`
+- `static/js/editor/panel-visibility.js:102`
+- `static/js/editor/panel-visibility.js:108`
+- `static/js/editor/panel-visibility.js:111`
+
+## `apply` — function, line 81
+- **called from:**
+- `tests/test_review_calendar_invitation.py:52`
+- `tests/test_review_calendar_invitation.py:54`
+- `tests/test_review_calendar_invitation.py:60`
+- `tests/test_review_calendar_invitation.py:61`
+- `tests/test_review_calendar_invitation.py:70`
+- `tests/test_review_calendar_invitation.py:71`
+- `tests/test_review_calendar_invitation.py:78`
+- `tests/test_review_calendar_invitation.py:79`
+- `tests/test_review_calendar_invitation.py:81`
+- `tests/test_review_calendar_invitation.py:89`
+- `tests/test_review_calendar_invitation.py:109`
+- `tests/test_review_calendar_invitation.py:111`
+- `tests/test_review_calendar_invitation.py:173`
+- `tests/test_review_calendar_invitation.py:174`
+- `tests/test_review_calendar_invitation.py:176`
+- `tests/test_review_calendar_invitation.py:184`
+- `tests/test_review_calendar_invitation.py:185`
+- `tests/test_review_calendar_invitation.py:192`
+- `tests/test_review_calendar_invitation.py:201`
+- `tests/test_review_calendar_invitation.py:202`
+- `tests/test_review_calendar_invitation.py:209`
+- `tests/test_review_calendar_invitation.py:210`
+- `tests/test_review_calendar_invitation.py:211`
+- `static/app.js:207`
+- `static/js/admin.js:2634`
+- `static/js/admin.js:2638`
+- `static/js/calendar.js:1515`
+- `static/js/composerHistoryRecall.js:175`
+- `static/js/composerHistoryRecall.js:189`
+- `static/js/composerHistoryRecall.js:193`
+- `static/js/cookbookSchedule.js:22`
+- `static/js/document.js:1725`
+- `static/js/document.js:1734`
+- `static/js/document.js:10179`
+- `static/js/editor/fx/cube-lut.js:2`
+- `static/js/editor/panel-visibility.js:81`
+- `static/js/editor/panel-visibility.js:137`
+- `static/js/editor/panel-visibility.js:150`
+- `static/js/editor/panel-visibility.js:158`
+- `static/js/editor/tools/perspective-crop.js:87`
+- `static/js/editor/tools/perspective-crop.js:90`
+- `static/js/galleryEditor.js:6770`
+- `static/js/galleryEditor.js:10650`
+- `static/js/galleryEditor.js:10666`
+- `static/js/galleryEditor.js:11478`
+- `static/js/sessions.js:40`
+- `static/js/settings.js:130`
+- `static/js/settings.js:149`
+- `static/js/skills.js:69`
+- `static/js/theme.js:831`
+- `static/js/theme.js:836`
+- `static/js/ui.js:653`
+- `static/js/ui.js:656`
+- `static/js/ui.js:757`
+
+## `setVisible` — function, line 130
+- **called from:**
+- `static/js/editor/panel-visibility.js:130`
+- `static/js/editor/panel-visibility.js:143`
+- `static/js/galleryEditor.js:10645`
+- `static/js/galleryEditor.js:10664`
+- `static/js/galleryEditor.js:11499`
+- `static/js/galleryEditor.js:12710`
+
+## `toggle` — function, line 142
+- **called from:**
+- `static/app.js:915`
+- `static/app.js:919`
+- `static/app.js:922`
+- `static/app.js:946`
+- `static/app.js:949`
+- `static/app.js:1055`
+- `static/app.js:1066`
+- `static/app.js:1094`
+- `static/app.js:1125`
+- `static/app.js:1223`
+- `static/app.js:1342`
+- `static/app.js:1458`
+- `static/app.js:1830`
+- `static/app.js:1837`
+- `static/app.js:1873`
+- `static/app.js:1897`
+- `static/app.js:1898`
+- `static/app.js:1903`
+- `static/app.js:2016`
+- `static/app.js:2022`
+- `static/app.js:2040`
+- `static/app.js:2095`
+- `static/app.js:2103`
+- `static/app.js:2105`
+- `static/app.js:2129`
+- `static/app.js:2278`
+- `static/app.js:2282`
+- `static/app.js:2284`
+- `static/app.js:2361`
+- `static/app.js:2500`
+- `static/app.js:2505`
+- `static/app.js:2511`
+- `static/app.js:2520`
+- `static/app.js:2534`
+- `static/app.js:2652`
+- `static/app.js:2677`
+- `static/app.js:2839`
+- `static/app.js:2846`
+- `static/app.js:2847`
+- `static/app.js:2848`
+- `static/app.js:2849`
+- `static/app.js:3035`
+- `static/app.js:4240`
+- `static/app.js:4244`
+- `static/app.js:4518`
+- `static/app.js:4519`
+- `static/app.js:4520`
+- `static/js/admin.js:154`
+- `static/js/admin.js:532`
+- `static/js/admin.js:1352`
+- `static/js/admin.js:1796`
+- `static/js/admin.js:2631`
+- `static/js/admin.js:2642`
+- `static/js/admin.js:2841`
+- `static/js/admin.js:2916`
+- `static/js/admin.js:3002`
+- `static/js/admin.js:4084`
+- `static/js/admin.js:4091`
+- `static/js/admin.js:4097`
+- `static/js/backgroundToolJobs.js:47`
+- … +467 more (grep the name in repo)
+
+## `showAll` — function, line 146
+- **called from:**
+- `static/js/editor/panel-visibility.js:146`
+- `static/js/editor/panel-visibility.js:163`
+- `static/js/editor/wire-view-menu.js:40`
+- `static/js/galleryEditor.js:12712`
+
+## `hideAll` — function, line 154
+- **called from:**
+- `static/js/editor/panel-visibility.js:154`
+- `static/js/editor/wire-view-menu.js:41`
+- `static/js/galleryEditor.js:12713`
+
+## `reset` — function, line 162
+- **called from:**
+- `mcp_servers/email_server.py:1985`
+- `mcp_servers/email_server.py:4696`
+- `mcp_servers/email_server.py:4697`
+- `services/search/core.py:521`
+- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/journal.py:157`
+- `src/agent_runtime/journal.py:158`
+- `src/agent_runtime/journal.py:237`
+- `src/agent_runtime/journal.py:280`
+- `src/agent_runtime/owned_resources.py:443`
+- `src/agent_runtime/process_resources.py:349`
+- `src/agent_runtime/remote_resources.py:238`
+- `src/agent_runtime/resource_binding.py:218`
+- `src/agent_tools/web_tools_prewave3.py:2677`
+- `src/browser_identity.py:609`
+- `src/clean_agent_preview.py:7892`
+- `src/teacher_escalation.py:86`
+- `src/tool_execution.py:131`
+- `src/tool_execution.py:2029`
+- `src/turn_contract.py:6494`
+- `tests/test_agent_state_dir_confinement.py:70`
+- `tests/test_agent_state_dir_confinement.py:161`
+- `tests/test_agent_state_dir_confinement.py:508`
+- `tests/test_agent_state_dir_confinement.py:551`
+- `tests/test_codeql_python_residual_closure.py:93`
+- `tests/test_execution_bridge.py:33`
+- `tests/test_execution_bridge.py:53`
+- `tests/test_execution_bridge.py:241`
+- `tests/test_extract_text_tool.py:41`
+- `tests/test_extract_text_tool.py:67`
+- `tests/test_extract_text_tool.py:86`
+- `tests/test_extract_text_tool.py:116`
+- `tests/test_extract_text_tool.py:136`
+- `tests/test_filesystem_tool_argument_validation.py:107`
+- `tests/test_grep_followup_integrity.py:35`
+- `tests/test_grep_followup_integrity.py:71`
+- `tests/test_inspect_media_percent_ranges.py:40`
+- `tests/test_inspect_media_probe_recovery.py:60`
+- `tests/test_inspect_media_tool.py:88`
+- `tests/test_inspect_media_tool.py:116`
+- `tests/test_inspect_media_tool.py:143`
+- `tests/test_inspect_media_tool.py:164`
+- `tests/test_inspect_media_tool.py:189`
+- `tests/test_inspect_media_tool.py:218`
+- `tests/test_inspect_media_tool.py:240`
+- `tests/test_inspect_media_tool.py:267`
+- `tests/test_inspect_media_tool.py:286`
+- `tests/test_inspect_media_tool.py:304`
+- `tests/test_inspect_media_tool.py:318`
+- `tests/test_inspect_media_tool.py:330`
+- `tests/test_inspect_media_tool.py:346`
+- `tests/test_inspect_media_tool.py:361`
+- `tests/test_inspect_media_tool.py:375`
+- `tests/test_inspect_media_tool.py:390`
+- `tests/test_inspect_media_tool.py:403`
+- `tests/test_inspect_media_tool.py:416`
+- `tests/test_inspect_media_tool.py:430`
+- `tests/test_inspect_media_tool.py:454`
+- `tests/test_inspect_media_tool.py:493`
+- `tests/test_inspect_media_tool.py:523`
+- … +111 more (grep the name in repo)
+
+## `subscribe` — function, line 166
+- **called from:**
+- `routes/chat_routes.py:5524`
+- `routes/chat_routes.py:5544`
+- `tests/test_agent_runs_terminal_order.py:19`
+- `tests/test_agent_runs_terminal_order.py:49`
+- `tests/test_compare_stop_disconnect_poll.py:88`
+- `tests/test_compare_stop_disconnect_poll.py:110`
+- `tests/test_compare_stop_disconnect_poll.py:140`
+- `tests/test_compare_stop_disconnect_poll.py:205`
+- `tests/test_compare_stop_disconnect_poll.py:316`
+- `tests/test_compare_stop_disconnect_poll.py:329`
+- `tests/test_nested_invocation_ownership.py:82`
+- `tests/test_nested_invocation_ownership.py:83`
+- `tests/test_pr6020_browser_review_regressions.py:266`
+- `tests/test_stream_error_redaction.py:32`
+- `static/js/editor/panel-visibility.js:166`
+- `static/js/galleryEditor.js:10651`
+
+## `_resetCache` — function, line 172
+- **called from:**
+- `static/js/editor/panel-visibility.js:172`

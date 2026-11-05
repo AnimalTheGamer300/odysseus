@@ -4,7 +4,7 @@
 
 ## `_configured_owner` — function, line 40
 - **called from:**
-- `mcp_servers/email_server.py:90`
+- `mcp_servers/email_server.py:109`
 - `mcp_servers/memory_server.py:75`
 
 ## `_entry_owner` — function, line 48
@@ -57,99 +57,120 @@
 ## `list_tools` — function (async), line 116
 - decorator: `server.list_tools()`
 - **called from:**
-- `mcp_servers/email_server.py:2088`
+- `mcp_servers/email_server.py:3586`
 - `mcp_servers/image_gen_server.py:24`
 - `mcp_servers/memory_server.py:115`
 - `mcp_servers/rag_server.py:46`
-- `src/mcp_manager.py:205`
-- `src/mcp_manager.py:274`
-- `src/mcp_manager.py:362`
+- `src/mcp_manager.py:233`
+- `src/mcp_manager.py:303`
+- `src/mcp_manager.py:393`
+- `tests/test_clean_agent_preview.py:4319`
+- `tests/test_generate_image_native_schema.py:56`
 
 ## `call_tool` — function (async), line 144
 - decorator: `server.call_tool()`
 - **called from:**
-- `mcp_servers/email_server.py:2454`
+- `mcp_servers/email_server.py:4038`
 - `mcp_servers/image_gen_server.py:44`
 - `mcp_servers/memory_server.py:143`
 - `mcp_servers/rag_server.py:68`
-- `src/mcp_manager.py:511`
-- `src/task_scheduler.py:1474`
-- `src/task_scheduler.py:2234`
-- `src/tool_execution.py:713`
-- `src/tool_execution.py:1351`
-- `src/tool_execution.py:1366`
-- `tests/test_mcp_email_decode_header_spaces.py:100`
-- `tests/test_mcp_email_decode_header_spaces.py:114`
-- `tests/test_mcp_email_decode_header_spaces.py:130`
+- `src/mcp_manager.py:639`
+- `src/task_scheduler.py:1628`
+- `src/task_scheduler.py:2436`
+- `src/tool_execution.py:1501`
+- `src/tool_execution.py:2539`
+- `src/tool_execution.py:2562`
+- `tests/test_browser_lifecycle.py:332`
+- `tests/test_email_search_folder_contract.py:24`
+- `tests/test_generated_image_ownership.py:480`
+- `tests/test_generated_image_ownership.py:488`
+- `tests/test_image_quality_defaults.py:64`
+- `tests/test_mcp_email_decode_header_spaces.py:99`
+- `tests/test_mcp_email_decode_header_spaces.py:113`
+- `tests/test_mcp_email_decode_header_spaces.py:127`
 - `tests/test_mcp_email_decode_header_spaces.py:143`
-- `tests/test_mcp_email_decode_header_spaces.py:210`
-- `tests/test_mcp_email_decode_header_spaces.py:228`
-- `tests/test_mcp_email_decode_header_spaces.py:259`
-- `tests/test_mcp_email_decode_header_spaces.py:314`
+- `tests/test_mcp_email_decode_header_spaces.py:156`
+- `tests/test_mcp_email_decode_header_spaces.py:223`
+- `tests/test_mcp_email_decode_header_spaces.py:241`
+- `tests/test_mcp_email_decode_header_spaces.py:272`
+- `tests/test_mcp_email_decode_header_spaces.py:327`
+- `tests/test_mcp_email_search_dates.py:47`
+- `tests/test_mcp_email_search_dates.py:77`
+- `tests/test_mcp_email_search_dates.py:107`
+- `tests/test_mcp_email_search_dates.py:129`
+- `tests/test_mcp_email_search_dates.py:145`
+- `tests/test_mcp_email_search_dates.py:158`
+- `tests/test_mcp_email_search_dates.py:182`
+- `tests/test_mcp_email_search_dates.py:210`
+- `tests/test_mcp_email_search_error_transport.py:10`
 - `tests/test_mcp_memory_owner_scope.py:22`
 - `tests/test_memory_store_unreadable_no_wipe.py:218`
+- `tests/test_memory_tool_contract.py:33`
+- `tests/test_memory_tool_contract.py:42`
 - `tests/test_rag_server_directory_nonstring.py:18`
+- `tests/test_remote_resource_identity.py:177`
+- `tests/test_remote_resource_identity.py:180`
 
 ## `run` — function (async), line 279
 - **called from:**
-- `app.py:1312`
-- `core/platform_compat.py:124`
-- `core/platform_compat.py:406`
-- `core/platform_compat.py:447`
+- `app.py:1228`
+- `app.py:1530`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:469`
 - `launcher.py:114`
 - `launcher.py:149`
-- `mcp_servers/email_server.py:2906`
-- `mcp_servers/email_server.py:2912`
-- `mcp_servers/email_server.py:2912`
-- `mcp_servers/image_gen_server.py:180`
-- `mcp_servers/image_gen_server.py:184`
-- `mcp_servers/image_gen_server.py:184`
+- `mcp_servers/email_server.py:4704`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/image_gen_server.py:188`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/image_gen_server.py:192`
 - `mcp_servers/memory_server.py:281`
 - `mcp_servers/memory_server.py:285`
 - `mcp_servers/memory_server.py:285`
 - `mcp_servers/rag_server.py:156`
 - `mcp_servers/rag_server.py:160`
 - `mcp_servers/rag_server.py:160`
-- `routes/cookbook_routes.py:1627`
-- `routes/cookbook_routes.py:3720`
-- `routes/cookbook_routes.py:3733`
-- `routes/cookbook_routes.py:3744`
-- `routes/cookbook_routes.py:3805`
-- `routes/cookbook_routes.py:4271`
-- `routes/cookbook_routes.py:4273`
-- `routes/cookbook_routes.py:4294`
-- `routes/cookbook_routes.py:4296`
-- `routes/cookbook_routes.py:4457`
-- `routes/cookbook_routes.py:4467`
-- `routes/hwfit_routes.py:128`
+- `routes/cookbook_routes.py:1527`
+- `routes/cookbook_routes.py:3626`
+- `routes/cookbook_routes.py:3639`
+- `routes/cookbook_routes.py:3650`
+- `routes/cookbook_routes.py:3711`
+- `routes/cookbook_routes.py:4177`
+- `routes/cookbook_routes.py:4179`
+- `routes/cookbook_routes.py:4201`
+- `routes/cookbook_routes.py:4203`
+- `routes/cookbook_routes.py:4368`
+- `routes/cookbook_routes.py:4378`
+- `routes/document/document_routes.py:489`
+- `routes/email/email_routes.py:5062`
+- `routes/email/email_routes.py:6861`
+- `routes/hwfit_routes.py:147`
+- `scripts/build_frontend.py:69`
+- `scripts/build_frontend.py:70`
+- `scripts/check_brotli.py:39`
+- `scripts/css_snapshot.py:92`
+- `scripts/css_snapshot.py:131`
 - `scripts/diffusion_server.py:1506`
 - `scripts/dump_agent_prompt.py:415`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_qwen_tool_groups_stream.py:276`
 - `scripts/mlx_image_server.py:207`
 - `scripts/mlx_image_server.py:281`
 - `scripts/mlx_image_server.py:379`
 - `scripts/mlx_image_server.py:466`
 - `scripts/pr_blocker_audit.py:253`
-- `services/hwfit/hardware.py:45`
-- `src/builtin_mcp.py:293`
-- `src/document_processor.py:548`
-- `src/document_processor.py:616`
-- `src/endpoint_resolver.py:184`
-- `src/event_bus.py:43`
-- `src/model_discovery.py:49`
-- `tests/run_focus.py:321`
-- `tests/run_order_report.py:152`
-- `tests/test_admin_tools_registry.py:44`
-- `tests/test_admin_tools_registry.py:56`
-- `tests/test_agent_round_model_provenance_ui.py:35`
-- `tests/test_agent_rounds_exhausted.py:18`
-- `tests/test_agent_state_dir_confinement.py:126`
-- `tests/test_agent_state_dir_confinement.py:129`
-- `tests/test_agent_state_dir_confinement.py:132`
-- `tests/test_agent_state_dir_confinement.py:450`
-- `tests/test_agent_state_dir_confinement.py:453`
-- `tests/test_agent_state_dir_confinement.py:474`
-- `tests/test_agent_state_dir_confinement.py:477`
-- `tests/test_agent_state_dir_confinement.py:609`
-- `tests/test_agent_state_dir_confinement.py:629`
-- `tests/test_agent_state_dir_confinement.py:689`
-- … +553 more (grep the name in repo)
+- `scripts/probe_browser_budget.py:112`
+- `scripts/probe_empty_search_recovery.py:90`
+- `scripts/probe_fixed_search_evidence.py:81`
+- `scripts/ref_parity_audit.py:142`
+- `scripts/ref_parity_audit.py:232`
+- `scripts/review_sft_environment_expansion.py:115`
+- `scripts/run_odysseus_cases_chunked.py:107`
+- `scripts/run_odysseus_search_teacher_pipeline.py:305`
+- `scripts/run_odysseus_search_teacher_pipeline.py:412`
+- `scripts/test_clean_tool_loop.py:209`
+- … +1417 more (grep the name in repo)

@@ -5,67 +5,67 @@
 
 ## `el` — function, line 11
 - **called from:**
-- `static/app.js:281`
-- `static/app.js:283`
-- `static/app.js:287`
-- `static/app.js:311`
-- `static/app.js:312`
-- `static/app.js:330`
-- `static/app.js:331`
-- `static/app.js:336`
+- `static/app.js:289`
+- `static/app.js:291`
+- `static/app.js:295`
+- `static/app.js:322`
+- `static/app.js:323`
 - `static/app.js:341`
-- `static/app.js:346`
-- `static/app.js:354`
-- `static/app.js:365`
-- `static/app.js:393`
-- `static/app.js:418`
-- `static/app.js:428`
+- `static/app.js:342`
+- `static/app.js:353`
+- `static/app.js:358`
+- `static/app.js:363`
+- `static/app.js:371`
+- `static/app.js:383`
+- `static/app.js:411`
+- `static/app.js:415`
+- `static/app.js:472`
+- `static/app.js:482`
 - `static/app.js:486`
-- `static/app.js:500`
-- `static/app.js:514`
-- `static/app.js:539`
-- `static/app.js:566`
-- `static/app.js:578`
-- `static/app.js:590`
-- `static/app.js:634`
-- `static/app.js:635`
-- `static/app.js:636`
-- `static/app.js:640`
-- `static/app.js:646`
-- `static/app.js:755`
-- `static/app.js:855`
-- `static/app.js:864`
-- `static/app.js:868`
-- `static/app.js:876`
-- `static/app.js:877`
-- `static/app.js:878`
-- `static/app.js:879`
-- `static/app.js:892`
-- `static/app.js:893`
-- `static/app.js:908`
+- `static/app.js:491`
+- `static/app.js:549`
+- `static/app.js:563`
+- `static/app.js:599`
+- `static/app.js:611`
+- `static/app.js:623`
+- `static/app.js:667`
+- `static/app.js:668`
+- `static/app.js:669`
+- `static/app.js:673`
+- `static/app.js:679`
+- `static/app.js:788`
+- `static/app.js:888`
+- `static/app.js:897`
+- `static/app.js:901`
 - `static/app.js:909`
 - `static/app.js:910`
-- `static/app.js:921`
+- `static/app.js:911`
+- `static/app.js:912`
+- `static/app.js:925`
 - `static/app.js:926`
-- `static/app.js:937`
-- `static/app.js:939`
-- `static/app.js:940`
-- `static/app.js:957`
-- `static/app.js:979`
-- `static/app.js:999`
-- `static/app.js:1009`
-- `static/app.js:1019`
-- `static/app.js:1027`
-- `static/app.js:1041`
-- `static/app.js:1056`
-- `static/app.js:1069`
-- `static/app.js:1072`
-- `static/app.js:1072`
-- `static/app.js:1085`
-- `static/app.js:1100`
-- `static/app.js:1248`
-- `static/app.js:1258`
-- … +888 more (grep the name in repo)
+- `static/app.js:941`
+- `static/app.js:942`
+- `static/app.js:943`
+- `static/app.js:954`
+- `static/app.js:959`
+- `static/app.js:970`
+- `static/app.js:972`
+- `static/app.js:973`
+- `static/app.js:990`
+- `static/app.js:1012`
+- `static/app.js:1032`
+- `static/app.js:1042`
+- `static/app.js:1052`
+- `static/app.js:1060`
+- `static/app.js:1074`
+- `static/app.js:1089`
+- `static/app.js:1102`
+- `static/app.js:1105`
+- `static/app.js:1105`
+- `static/app.js:1118`
+- `static/app.js:1133`
+- `static/app.js:1141`
+- … +1014 more (grep the name in repo)
 
 ## `hideMobileSidebarForSearch` — function, line 13
 - **called from:**
@@ -74,108 +74,111 @@
 
 ## `openSearch` — function, line 34
 - **called from:**
-- `static/app.js:3755`
-- `static/app.js:3854`
-- `static/js/keyboard-shortcuts.js:150`
+- `static/app.js:3857`
+- `static/app.js:3957`
+- `static/js/keyboard-shortcuts.js:158`
 - `static/js/search-chat.js:34`
 
-## `closeSearch` — function, line 49
+## `closeSearch` — function, line 55
 - **called from:**
-- `static/app.js:690`
-- `static/js/keyboard-shortcuts.js:150`
-- `static/js/search-chat.js:49`
-- `static/js/search-chat.js:134`
-- `static/js/search-chat.js:211`
-
-## `isOpen` — function, line 58
-- **called from:**
-- `static/app.js:689`
-- `static/app.js:862`
-- `static/js/admin.js:1350`
-- `static/js/admin.js:1359`
-- `static/js/admin.js:1367`
-- `static/js/editor/shortcuts-popover.js:144`
-- `static/js/emailLibrary.js:2506`
-- `static/js/galleryEditor.js:3486`
-- `static/js/keyboard-shortcuts.js:150`
-- `static/js/research/panel.js:219`
-- `static/js/search-chat.js:58`
-- `static/js/search-chat.js:154`
-
-## `highlightMatch` — function, line 65
-- **called from:**
-- `static/js/search-chat.js:65`
-- `static/js/search-chat.js:116`
-
-## `formatTimestamp` — function, line 72
-- **called from:**
-- `static/js/search-chat.js:72`
-- `static/js/search-chat.js:117`
-
-## `renderResults` — function, line 86
-- **called from:**
-- `static/js/search-chat.js:86`
-- `static/js/search-chat.js:182`
-- `static/js/search-chat.js:191`
-
-## `navigateToSession` — function, line 133
-- **called from:**
-- `static/js/search-chat.js:128`
-- `static/js/search-chat.js:133`
-- `static/js/search-chat.js:172`
-
-## `updateSelection` — function, line 140
-- **called from:**
+- `static/app.js:723`
+- `static/js/keyboard-shortcuts.js:158`
+- `static/js/search-chat.js:55`
 - `static/js/search-chat.js:140`
-- `static/js/search-chat.js:163`
-- `static/js/search-chat.js:167`
+- `static/js/search-chat.js:217`
 
-## `handleKeydown` — function, line 153
+## `isOpen` — function, line 64
 - **called from:**
-- `static/js/search-chat.js:153`
+- `static/app.js:722`
+- `static/app.js:895`
+- `static/js/admin.js:2219`
+- `static/js/admin.js:2228`
+- `static/js/admin.js:2236`
+- `static/js/editor/shortcuts-popover.js:148`
+- `static/js/emailLibrary/index.js:2324`
+- `static/js/features/notes/ui/layout.js:49`
+- `static/js/galleryEditor.js:9957`
+- `static/js/galleryEditor.js:11749`
+- `static/js/galleryEditor.js:14101`
+- `static/js/keyboard-shortcuts.js:158`
+- `static/js/research/panel.js:221`
+- `static/js/search-chat.js:64`
+- `static/js/search-chat.js:160`
 
-## `handleInput` — function, line 177
+## `highlightMatch` — function, line 71
 - **called from:**
-- `static/js/search-chat.js:177`
+- `static/js/search-chat.js:71`
+- `static/js/search-chat.js:122`
 
-## `init` — function, line 198
+## `formatTimestamp` — function, line 78
 - **called from:**
-- `static/app.js:3724`
-- `static/app.js:3725`
-- `static/app.js:3726`
-- `static/app.js:3727`
-- `static/app.js:3728`
-- `static/app.js:3729`
-- `static/app.js:3731`
-- `static/app.js:3734`
-- `static/app.js:3736`
-- `static/app.js:3739`
-- `static/app.js:3748`
-- `static/app.js:4370`
-- `static/app.js:4371`
-- `static/js/a11y.js:121`
-- `static/js/a11y.js:163`
+- `static/js/search-chat.js:78`
+- `static/js/search-chat.js:123`
+
+## `renderResults` — function, line 92
+- **called from:**
+- `static/js/search-chat.js:92`
+- `static/js/search-chat.js:188`
+- `static/js/search-chat.js:197`
+
+## `navigateToSession` — function, line 139
+- **called from:**
+- `static/js/search-chat.js:134`
+- `static/js/search-chat.js:139`
+- `static/js/search-chat.js:178`
+
+## `updateSelection` — function, line 146
+- **called from:**
+- `static/js/search-chat.js:146`
+- `static/js/search-chat.js:169`
+- `static/js/search-chat.js:173`
+
+## `handleKeydown` — function, line 159
+- **called from:**
+- `static/js/search-chat.js:159`
+
+## `handleInput` — function, line 183
+- **called from:**
+- `static/js/search-chat.js:183`
+
+## `init` — function, line 204
+- **called from:**
+- `static/app.js:3824`
+- `static/app.js:3825`
+- `static/app.js:3826`
+- `static/app.js:3827`
+- `static/app.js:3828`
+- `static/app.js:3829`
+- `static/app.js:3833`
+- `static/app.js:3836`
+- `static/app.js:3838`
+- `static/app.js:3841`
+- `static/app.js:3850`
+- `static/app.js:4486`
+- `static/app.js:4487`
+- `static/js/a11y.js:174`
+- `static/js/a11y.js:223`
 - `static/js/censor.js:44`
-- `static/js/chat.js:1166`
-- `static/js/chat.js:1171`
-- `static/js/compare/index.js:55`
+- `static/js/chat.js:2061`
+- `static/js/chat.js:2066`
+- `static/js/compare/index.js:57`
 - `static/js/cookbookDownload.js:10`
-- `static/js/cookbookRunning.js:333`
-- `static/js/cookbookServe.js:16`
-- `static/js/document.js:154`
-- `static/js/emailInbox.js:157`
-- `static/js/fileHandler.js:173`
+- `static/js/cookbookRunning.js:337`
+- `static/js/cookbookServe.js:21`
+- `static/js/document.js:1065`
+- `static/js/emailInbox.js:159`
+- `static/js/fileHandler.js:201`
 - `static/js/group.js:24`
 - `static/js/models.js:27`
 - `static/js/presets.js:79`
 - `static/js/rag.js:12`
-- `static/js/research/jobs.js:35`
+- `static/js/research/jobs.js:66`
+- `static/js/research/panel.js:206`
 - `static/js/research/panel.js:210`
-- `static/js/research/panel.js:214`
-- `static/js/search-chat.js:198`
+- `static/js/search-chat.js:204`
 - `static/js/search.js:14`
 - `static/js/tourAutoplay.js:117`
 - `static/js/tourAutoplay.js:129`
-- `static/js/tourHints.js:163`
-- `static/js/tourHints.js:175`
+- `static/js/tourHints.js:158`
+- `static/js/tourHints.js:170`
 - `static/js/voiceRecorder.js:268`

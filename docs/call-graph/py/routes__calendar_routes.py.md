@@ -1,10 +1,11 @@
 # `routes/calendar_routes.py` — definitions & call sites
 
-48 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+54 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `_ics_naive_dtstart` — function, line 24
 - **called from:**
-- `routes/calendar_routes.py:1470`
+- `routes/calendar_routes.py:1642`
+- `src/email_calendar_import.py:81`
 - `tests/test_ics_import_dedup_tz.py:22`
 - `tests/test_ics_import_dedup_tz.py:27`
 - `tests/test_ics_import_dedup_tz.py:32`
@@ -13,8 +14,8 @@
 
 ## `_ensure_positive_duration` — function, line 41
 - **called from:**
-- `routes/calendar_routes.py:1487`
-- `routes/calendar_routes.py:1526`
+- `routes/calendar_routes.py:1659`
+- `routes/calendar_routes.py:1699`
 - `src/caldav_sync.py:399`
 - `tests/test_calendar_import_zero_duration.py:45`
 - `tests/test_calendar_import_zero_duration.py:50`
@@ -23,102 +24,118 @@
 
 ## `_require_user` — function, line 69
 - **called from:**
-- `routes/calendar_routes.py:835`
-- `routes/calendar_routes.py:859`
-- `routes/calendar_routes.py:892`
-- `routes/calendar_routes.py:917`
-- `routes/calendar_routes.py:945`
-- `routes/calendar_routes.py:975`
-- `routes/calendar_routes.py:989`
-- `routes/calendar_routes.py:1091`
-- `routes/calendar_routes.py:1098`
-- `routes/calendar_routes.py:1118`
-- `routes/calendar_routes.py:1141`
-- `routes/calendar_routes.py:1207`
-- `routes/calendar_routes.py:1269`
-- `routes/calendar_routes.py:1321`
-- `routes/calendar_routes.py:1363`
-- `routes/calendar_routes.py:1386`
-- `routes/calendar_routes.py:1416`
-- `routes/calendar_routes.py:1566`
-- `routes/calendar_routes.py:1631`
-- `routes/research/research_routes.py:262`
-- `routes/research/research_routes.py:280`
-- `routes/research/research_routes.py:291`
-- `routes/research/research_routes.py:300`
-- `routes/research/research_routes.py:326`
-- `routes/research/research_routes.py:347`
-- `routes/research/research_routes.py:358`
-- `routes/research/research_routes.py:374`
-- `routes/research/research_routes.py:425`
-- `routes/research/research_routes.py:440`
-- `routes/research/research_routes.py:458`
-- `routes/research/research_routes.py:582`
-- `routes/research/research_routes.py:616`
-- `routes/research/research_routes.py:645`
+- `routes/calendar_routes.py:984`
+- `routes/calendar_routes.py:1008`
+- `routes/calendar_routes.py:1038`
+- `routes/calendar_routes.py:1063`
+- `routes/calendar_routes.py:1088`
+- `routes/calendar_routes.py:1115`
+- `routes/calendar_routes.py:1129`
+- `routes/calendar_routes.py:1228`
+- `routes/calendar_routes.py:1235`
+- `routes/calendar_routes.py:1255`
+- `routes/calendar_routes.py:1278`
+- `routes/calendar_routes.py:1344`
+- `routes/calendar_routes.py:1415`
+- `routes/calendar_routes.py:1426`
+- `routes/calendar_routes.py:1489`
+- `routes/calendar_routes.py:1534`
+- `routes/calendar_routes.py:1557`
+- `routes/calendar_routes.py:1587`
+- `routes/calendar_routes.py:1741`
+- `routes/calendar_routes.py:1806`
+- `routes/research/research_routes.py:264`
+- `routes/research/research_routes.py:288`
+- `routes/research/research_routes.py:323`
+- `routes/research/research_routes.py:332`
+- `routes/research/research_routes.py:376`
+- `routes/research/research_routes.py:397`
+- `routes/research/research_routes.py:408`
+- `routes/research/research_routes.py:424`
+- `routes/research/research_routes.py:477`
+- `routes/research/research_routes.py:492`
+- `routes/research/research_routes.py:510`
+- `routes/research/research_routes.py:655`
+- `routes/research/research_routes.py:662`
+- `routes/research/research_routes.py:717`
+- `routes/research/research_routes.py:767`
 
-## `_get_or_404_calendar` — function, line 83
+## `_json_object_body` — function (async), line 83
 - **called from:**
-- `routes/calendar_routes.py:1101`
-- `routes/calendar_routes.py:1390`
-- `routes/calendar_routes.py:1569`
+- `routes/calendar_routes.py:1009`
+- `routes/calendar_routes.py:1064`
+- `routes/calendar_routes.py:1089`
+- `routes/calendar_routes.py:1130`
+- `tests/test_calendar_config_body.py:19`
+
+## `_get_or_404_calendar` — function, line 95
+- **called from:**
+- `routes/calendar_routes.py:1238`
+- `routes/calendar_routes.py:1561`
+- `routes/calendar_routes.py:1744`
 - `tests/test_null_owner_gates.py:75`
 - `tests/test_null_owner_gates.py:85`
 - `tests/test_null_owner_gates.py:94`
 
-## `_get_or_404_event` — function, line 97
+## `_get_or_404_event` — function, line 109
 - **called from:**
-- `routes/calendar_routes.py:172`
-- `routes/calendar_routes.py:1277`
-- `routes/calendar_routes.py:1328`
+- `routes/calendar_routes.py:184`
+- `routes/calendar_routes.py:1419`
+- `routes/calendar_routes.py:1434`
+- `routes/calendar_routes.py:1496`
 - `tests/test_null_owner_gates.py:105`
 - `tests/test_null_owner_gates.py:116`
 
-## `_ics_escape` — function, line 107
+## `_ics_escape` — function, line 119
 - **called from:**
-- `routes/calendar_routes.py:1579`
-- `routes/calendar_routes.py:1584`
-- `routes/calendar_routes.py:1593`
-- `routes/calendar_routes.py:1595`
+- `routes/calendar_routes.py:1754`
+- `routes/calendar_routes.py:1759`
+- `routes/calendar_routes.py:1768`
+- `routes/calendar_routes.py:1770`
 - `tests/test_ics_export_escaping.py:33`
 - `tests/test_ics_export_escaping.py:38`
 - `tests/test_ics_export_escaping.py:47`
 - `tests/test_ics_export_escaping.py:49`
 
-## `_safe_ics_filename` — function, line 125
+## `_safe_ics_filename` — function, line 137
 - **called from:**
-- `routes/calendar_routes.py:1602`
+- `routes/calendar_routes.py:1777`
 
-## `_resolve_base_uid` — function, line 134
+## `_resolve_base_uid` — function, line 146
 - **called from:**
-- `routes/calendar_routes.py:1272`
-- `routes/calendar_routes.py:1323`
-- `src/tools/calendar.py:481`
-- `src/tools/calendar.py:542`
+- `routes/calendar_routes.py:1418`
+- `routes/calendar_routes.py:1429`
+- `routes/calendar_routes.py:1491`
+- `src/tools/calendar.py:679`
+- `src/tools/calendar.py:821`
 - `tests/test_calendar_recurrence.py:20`
 - `tests/test_calendar_recurrence.py:25`
 - `tests/test_calendar_recurrence.py:30`
 - `tests/test_calendar_recurrence.py:36`
 - `tests/test_calendar_recurrence.py:42`
 
-## `_push_caldav_event_after_commit` — function (async), line 151
+## `_push_caldav_event_after_commit` — function (async), line 163
 - **called from:**
-- `routes/calendar_routes.py:1256`
-- `routes/calendar_routes.py:1308`
-- `routes/calendar_routes.py:1343`
-- `routes/calendar_routes.py:1350`
-- `src/tools/calendar.py:456`
-- `src/tools/calendar.py:534`
-- `src/tools/calendar.py:554`
+- `routes/calendar_routes.py:1397`
+- `routes/calendar_routes.py:1472`
+- `routes/calendar_routes.py:1513`
+- `routes/calendar_routes.py:1521`
+- `src/email_calendar_import.py:148`
+- `src/email_calendar_import.py:150`
+- `src/email_calendar_import.py:183`
+- `src/email_calendar_import.py:185`
+- `src/tools/calendar.py:643`
+- `src/tools/calendar.py:789`
+- `src/tools/calendar.py:837`
 
-## `_record_caldav_delete_tombstone` — function, line 181
+## `_record_caldav_delete_tombstone` — function, line 193
 - **called from:**
-- `routes/calendar_routes.py:1346`
-- `src/tools/calendar.py:550`
+- `routes/calendar_routes.py:1516`
+- `src/tools/calendar.py:832`
 
-## `EventCreate` — class, line 200
+## `EventCreate` — class, line 212
 - **called from:**
-- `routes/codex_routes.py:435`
+- `routes/codex_routes.py:481`
 - `tests/test_caldav_writeback_route.py:81`
 - `tests/test_caldav_writeback_route.py:91`
 - `tests/test_caldav_writeback_route.py:101`
@@ -128,13 +145,13 @@
 - `tests/test_calendar_owner_scope.py:258`
 - `tests/test_upload_handler_cleanup.py:789`
 
-## `EventUpdate` — class, line 212
+## `EventUpdate` — class, line 225
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_default_calendar_id` — function, line 228
+## `_default_calendar_id` — function, line 242
 - **called from:**
-- `routes/calendar_routes.py:292`
+- `routes/calendar_routes.py:306`
 - `tests/test_calendar_default_transaction.py:183`
 - `tests/test_calendar_default_transaction.py:192`
 - `tests/test_calendar_default_transaction.py:201`
@@ -155,16 +172,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_default_transaction.py:532`
 - `tests/test_calendar_default_transaction.py:533`
 
-## `_begin_sqlite_default_write` — function, line 247
+## `_begin_sqlite_default_write` — function, line 261
 - **called from:**
-- `routes/calendar_routes.py:284`
+- `routes/calendar_routes.py:298`
 
-## `_ensure_default_calendar` — function, line 267
+## `_ensure_default_calendar` — function, line 281
 - **called from:**
-- `routes/calendar_routes.py:1121`
-- `routes/calendar_routes.py:1222`
-- `src/tools/calendar.py:198`
-- `src/tools/calendar.py:329`
+- `routes/calendar_routes.py:1258`
+- `routes/calendar_routes.py:1359`
+- `src/tools/calendar.py:339`
+- `src/tools/calendar.py:472`
 - `tests/test_calendar_default_transaction.py:182`
 - `tests/test_calendar_default_transaction.py:191`
 - `tests/test_calendar_default_transaction.py:200`
@@ -176,45 +193,45 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_default_transaction.py:477`
 - `tests/test_calendar_default_transaction.py:513`
 
-## `parse_due_for_user` — function, line 360
+## `parse_due_for_user` — function, line 374
 - **called from:**
-- `src/tools/calendar.py:146`
+- `src/tools/calendar.py:264`
 - `tests/test_parse_due_time_first.py:37`
 - `tests/test_parse_due_time_first.py:43`
 - `tests/test_parse_due_time_first.py:49`
 - `tests/test_parse_due_time_first.py:55`
 - `tests/test_parse_due_time_first.py:62`
-- `tests/test_user_time.py:208`
-- `tests/test_user_time.py:229`
+- `tests/test_redos_residual_python.py:170`
+- `tests/test_redos_residual_python.py:171`
+- `tests/test_user_time.py:258`
+- `tests/test_user_time.py:279`
 
-## `_parse_time` — function, line 409
+## `_parse_time` — function, line 423
 - **called from:**
-- `routes/calendar_routes.py:429`
-- `routes/calendar_routes.py:440`
-- `routes/calendar_routes.py:451`
-- `routes/calendar_routes.py:557`
+- `routes/calendar_routes.py:443`
+- `routes/calendar_routes.py:454`
+- `routes/calendar_routes.py:465`
 - `routes/calendar_routes.py:571`
 - `routes/calendar_routes.py:585`
-- `routes/calendar_routes.py:602`
+- `routes/calendar_routes.py:599`
+- `routes/calendar_routes.py:616`
 
-## `_parse_dt_pair` — function, line 467
+## `_parse_dt_pair` — function, line 481
 - **called from:**
-- `routes/calendar_routes.py:1228`
-- `routes/calendar_routes.py:1230`
-- `routes/calendar_routes.py:1285`
-- `routes/calendar_routes.py:1292`
-- `src/tools/calendar.py:146`
+- `routes/calendar_routes.py:1365`
+- `routes/calendar_routes.py:1367`
+- `routes/calendar_routes.py:1442`
+- `routes/calendar_routes.py:1449`
+- `src/tools/calendar.py:264`
 - `tests/test_calendar_parse_dt_naive.py:38`
 
-## `_parse_dt` — function, line 491
+## `_parse_dt` — function, line 505
 - **called from:**
-- `routes/calendar_routes.py:392`
-- `routes/calendar_routes.py:464`
-- `routes/calendar_routes.py:488`
-- `routes/calendar_routes.py:1143`
-- `routes/calendar_routes.py:1144`
-- `src/tools/calendar.py:231`
-- `src/tools/calendar.py:235`
+- `routes/calendar_routes.py:406`
+- `routes/calendar_routes.py:478`
+- `routes/calendar_routes.py:502`
+- `routes/calendar_routes.py:1280`
+- `routes/calendar_routes.py:1281`
 - `tests/test_calendar_parse_dt_naive.py:29`
 - `tests/test_calendar_parse_dt_naive.py:44`
 - `tests/test_calendar_parse_dt_time_first.py:15`
@@ -233,36 +250,68 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_parse_dt_tonight.py:22`
 - `tests/test_calendar_parse_dt_tonight.py:26`
 - `tests/test_calendar_parse_dt_tonight.py:26`
+- `tests/test_redos_residual_python.py:168`
 
-## `_parse_time` — function, line 529
+## `_parse_time` — function, line 543
 - **called from:**
-- `routes/calendar_routes.py:429`
-- `routes/calendar_routes.py:440`
-- `routes/calendar_routes.py:451`
-- `routes/calendar_routes.py:557`
+- `routes/calendar_routes.py:443`
+- `routes/calendar_routes.py:454`
+- `routes/calendar_routes.py:465`
 - `routes/calendar_routes.py:571`
 - `routes/calendar_routes.py:585`
-- `routes/calendar_routes.py:602`
+- `routes/calendar_routes.py:599`
+- `routes/calendar_routes.py:616`
 
-## `_event_to_dict` — function, line 624
+## `_note_due_datetime` — function, line 638
 - **called from:**
-- `routes/calendar_routes.py:705`
-- `routes/calendar_routes.py:731`
-- `routes/calendar_routes.py:749`
+- `routes/calendar_routes.py:689`
 
-## `_recurrence_exdates` — function, line 664
+## `_calendar_reminder_for_event` — function, line 653
 - **called from:**
-- `routes/calendar_routes.py:650`
-- `routes/calendar_routes.py:750`
-- `routes/calendar_routes.py:1335`
+- `routes/calendar_routes.py:780`
+- `src/tools/calendar.py:795`
 
-## `_occurrence_exdate_key` — function, line 677
+## `_delete_calendar_reminders_for_event` — function, line 707
 - **called from:**
-- `routes/calendar_routes.py:1332`
+- `routes/calendar_routes.py:1463`
+- `routes/calendar_routes.py:1517`
+- `src/email_calendar_import.py:129`
+- `src/email_calendar_import.py:144`
+- `src/tools/calendar.py:766`
+- `src/tools/calendar.py:833`
+- `tests/test_calendar_rrule.py:134`
 
-## `_expand_rrule` — function, line 686
+## `_create_calendar_reminder_for_event` — function, line 731
 - **called from:**
-- `routes/calendar_routes.py:1188`
+- `routes/calendar_routes.py:1393`
+- `routes/calendar_routes.py:1465`
+
+## `_event_to_dict` — function, line 764
+- **called from:**
+- `routes/calendar_routes.py:854`
+- `routes/calendar_routes.py:880`
+- `routes/calendar_routes.py:898`
+- `routes/calendar_routes.py:1401`
+- `routes/calendar_routes.py:1420`
+- `routes/calendar_routes.py:1475`
+- `src/tools/calendar.py:410`
+- `tests/test_calendar_rrule.py:93`
+
+## `_recurrence_exdates` — function, line 813
+- **called from:**
+- `routes/calendar_routes.py:791`
+- `routes/calendar_routes.py:899`
+- `routes/calendar_routes.py:1505`
+- `src/email_calendar_import.py:123`
+- `src/email_calendar_import.py:177`
+
+## `_occurrence_exdate_key` — function, line 826
+- **called from:**
+- `routes/calendar_routes.py:1502`
+
+## `_expand_rrule` — function, line 835
+- **called from:**
+- `routes/calendar_routes.py:1325`
 - `tests/test_calendar_recurrence.py:79`
 - `tests/test_calendar_recurrence.py:97`
 - `tests/test_calendar_recurrence.py:121`
@@ -271,18 +320,20 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_recurrence.py:183`
 - `tests/test_calendar_recurrence.py:199`
 - `tests/test_calendar_recurrence.py:221`
-- `tests/test_calendar_recurrence.py:237`
+- `tests/test_calendar_recurrence.py:238`
 - `tests/test_calendar_recurrence.py:254`
-- `tests/test_calendar_recurrence.py:272`
-- `tests/test_calendar_recurrence.py:291`
-- `tests/test_calendar_recurrence.py:314`
-- `tests/test_calendar_recurrence.py:333`
-- `tests/test_calendar_recurrence.py:352`
+- `tests/test_calendar_recurrence.py:269`
+- `tests/test_calendar_recurrence.py:286`
+- `tests/test_calendar_recurrence.py:304`
+- `tests/test_calendar_recurrence.py:323`
+- `tests/test_calendar_recurrence.py:346`
+- `tests/test_calendar_recurrence.py:365`
+- `tests/test_calendar_recurrence.py:384`
 - `tests/test_calendar_rrule_until_utc.py:61`
 
-## `setup_calendar_routes` — function, line 805
+## `setup_calendar_routes` — function, line 954
 - **called from:**
-- `app.py:795`
+- `app.py:879`
 - `tests/test_caldav_test_connection_ssl.py:41`
 - `tests/test_caldav_writeback_route.py:60`
 - `tests/test_calendar_default_transaction.py:71`
@@ -290,98 +341,98 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_owner_scope.py:192`
 - `tests/test_upload_handler_cleanup.py:781`
 
-## `_reserve_calendar_uploads` — function, line 808
+## `_reserve_calendar_uploads` — function, line 957
 - **called from:**
-- `routes/calendar_routes.py:1208`
-- `routes/calendar_routes.py:1270`
-- `routes/calendar_routes.py:1364`
-- `routes/calendar_routes.py:1387`
+- `routes/calendar_routes.py:1345`
+- `routes/calendar_routes.py:1427`
+- `routes/calendar_routes.py:1535`
+- `routes/calendar_routes.py:1558`
 
-## `_get_caldav_accounts` — function, line 819
+## `_get_caldav_accounts` — function, line 968
 - **called from:**
-- `routes/calendar_routes.py:836`
-- `routes/calendar_routes.py:864`
-- `routes/calendar_routes.py:893`
-- `routes/calendar_routes.py:937`
-- `routes/calendar_routes.py:950`
-- `routes/calendar_routes.py:976`
-- `routes/calendar_routes.py:999`
+- `routes/calendar_routes.py:985`
+- `routes/calendar_routes.py:1010`
+- `routes/calendar_routes.py:1039`
+- `routes/calendar_routes.py:1080`
+- `routes/calendar_routes.py:1090`
+- `routes/calendar_routes.py:1116`
+- `routes/calendar_routes.py:1136`
 
-## `_save_caldav_accounts` — function, line 823
+## `_save_caldav_accounts` — function, line 972
 - **called from:**
-- `routes/calendar_routes.py:866`
-- `routes/calendar_routes.py:884`
-- `routes/calendar_routes.py:939`
-- `routes/calendar_routes.py:969`
-- `routes/calendar_routes.py:980`
+- `routes/calendar_routes.py:1012`
+- `routes/calendar_routes.py:1030`
+- `routes/calendar_routes.py:1082`
+- `routes/calendar_routes.py:1109`
+- `routes/calendar_routes.py:1120`
 
-## `get_config` — function (async), line 833
+## `get_config` — function (async), line 982
 - **route:** `GET /config`
 - decorator: `router.get("/config")`
 - **called from:**
 - `tests/test_email_oauth.py:911`
 
-## `save_config` — function (async), line 857
+## `save_config` — function (async), line 1006
 - **route:** `POST /config`
 - decorator: `router.post("/config")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `list_caldav_accounts` — function (async), line 890
+## `list_caldav_accounts` — function (async), line 1036
 - **route:** `GET /config/accounts`
 - decorator: `router.get("/config/accounts")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `add_caldav_account` — function (async), line 914
+## `add_caldav_account` — function (async), line 1060
 - **route:** `POST /config/accounts`
 - decorator: `router.post("/config/accounts")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `update_caldav_account` — function (async), line 943
+## `update_caldav_account` — function (async), line 1086
 - **route:** `PUT /config/accounts/{account_id}`
 - decorator: `router.put("/config/accounts/{account_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `delete_caldav_account` — function (async), line 973
+## `delete_caldav_account` — function (async), line 1113
 - **route:** `DELETE /config/accounts/{account_id}`
 - decorator: `router.delete("/config/accounts/{account_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `test_connection` — function (async), line 984
+## `test_connection` — function (async), line 1124
 - **route:** `POST /test`
 - decorator: `router.post("/test")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `sync_caldav_endpoint` — function (async), line 1087
+## `sync_caldav_endpoint` — function (async), line 1224
 - **route:** `POST /sync`
 - decorator: `router.post("/sync")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `delete_calendar` — function (async), line 1097
+## `delete_calendar` — function (async), line 1234
 - **route:** `DELETE /calendars/{cal_id}`
 - decorator: `router.delete("/calendars/{cal_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `list_calendars` — function (async), line 1117
+## `list_calendars` — function (async), line 1254
 - **route:** `GET /calendars`
 - decorator: `router.get("/calendars")`
 - **called from:**
 - `tests/test_calendar_default_transaction.py:153`
 
-## `list_events` — function (async), line 1140
+## `list_events` — function (async), line 1277
 - **route:** `GET /events`
 - decorator: `router.get("/events")`
 - **called from:**
-- `tests/test_calendar_owner_scope.py:290`
+- `tests/test_calendar_owner_scope.py:292`
 
-## `create_event` — function (async), line 1206
+## `create_event` — function (async), line 1343
 - **route:** `POST /events`
 - decorator: `router.post("/events")`
 - **called from:**
@@ -394,51 +445,57 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_calendar_owner_scope.py:256`
 - `tests/test_upload_handler_cleanup.py:787`
 
-## `update_event` — function (async), line 1268
+## `get_event` — function (async), line 1414
+- **route:** `GET /events/{uid}`
+- decorator: `router.get("/events/{uid}")`
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `update_event` — function (async), line 1425
 - **route:** `PUT /events/{uid}`
 - decorator: `router.put("/events/{uid}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `delete_event` — function (async), line 1320
+## `delete_event` — function (async), line 1488
 - **route:** `DELETE /events/{uid}`
 - decorator: `router.delete("/events/{uid}")`
 - **called from:**
 - `tests/test_caldav_writeback_route.py:105`
 
-## `create_calendar` — function (async), line 1362
+## `create_calendar` — function (async), line 1533
 - **route:** `POST /calendars`
 - decorator: `router.post("/calendars")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `update_calendar` — function (async), line 1385
+## `update_calendar` — function (async), line 1556
 - **route:** `PUT /calendars/{cal_id}`
 - decorator: `router.put("/calendars/{cal_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `import_ics` — function (async), line 1412
+## `import_ics` — function (async), line 1583
 - **route:** `POST /import`
 - decorator: `router.post("/import")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `export_ics` — function (async), line 1562
+## `export_ics` — function (async), line 1737
 - **route:** `GET /export/{cal_id}`
 - decorator: `router.get("/export/{cal_id}")`
 - **called from:**
-- `tests/test_calendar_owner_scope.py:309`
-- `tests/test_calendar_owner_scope.py:323`
-- `tests/test_calendar_owner_scope.py:338`
+- `tests/test_calendar_owner_scope.py:311`
+- `tests/test_calendar_owner_scope.py:325`
+- `tests/test_calendar_owner_scope.py:340`
 
-## `quick_parse` — function (async), line 1620
+## `quick_parse` — function (async), line 1795
 - **route:** `POST /quick-parse`
 - decorator: `router.post("/quick-parse")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_strip_tz` — function, line 1737
+## `_strip_tz` — function, line 1912
 - **called from:**
-- `routes/calendar_routes.py:1747`
-- `routes/calendar_routes.py:1748`
+- `routes/calendar_routes.py:1922`
+- `routes/calendar_routes.py:1923`

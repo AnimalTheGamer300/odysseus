@@ -4,7 +4,7 @@
 
 ## `_is_private_address` — function, line 36
 - **called from:**
-- `services/search/content.py:34`
+- `services/search/content.py:30`
 - `src/outbound_fetch.py:83`
 - `src/outbound_fetch.py:87`
 - `src/outbound_fetch.py:106`
@@ -12,36 +12,38 @@
 
 ## `_resolve_hostname_ips` — function, line 50
 - **called from:**
-- `services/search/content.py:38`
+- `services/search/content.py:34`
 - `src/url_security.py:68`
 - `src/webhook_manager.py:106`
 - `src/webhook_manager.py:153`
 
 ## `_public_http_url` — function, line 64
 - **called from:**
-- `services/search/content.py:42`
+- `services/search/content.py:38`
 - `tests/test_search_content_url_guards.py:20`
 - `tests/test_search_content_url_guards.py:31`
 - `tests/test_search_content_url_guards.py:36`
-- `tests/test_security_regressions.py:848`
 - `tests/test_security_regressions.py:849`
 - `tests/test_security_regressions.py:850`
-- `tests/test_security_regressions.py:860`
-- `tests/test_security_regressions.py:900`
-- `tests/test_security_regressions.py:905`
-- `tests/test_security_regressions.py:912`
-- `tests/test_security_regressions.py:919`
+- `tests/test_security_regressions.py:851`
+- `tests/test_security_regressions.py:861`
+- `tests/test_security_regressions.py:901`
+- `tests/test_security_regressions.py:906`
+- `tests/test_security_regressions.py:913`
+- `tests/test_security_regressions.py:920`
 
 ## `_resolve_public_ips` — function, line 92
 - **called from:**
-- `services/search/content.py:46`
-- `tests/test_security_regressions.py:1299`
+- `services/search/content.py:42`
+- `src/agent_tools/web_tools.py:1250`
+- `src/agent_tools/web_tools_prewave3.py:1254`
+- `tests/test_security_regressions.py:1301`
 
 ## `_PinnedBackend` — class, line 119
 - **called from:**
 - `services/memory/skill_importer.py:192`
 - `src/outbound_fetch.py:171`
-- `tests/test_security_regressions.py:1330`
+- `tests/test_security_regressions.py:1332`
 - `tests/test_skill_importer_dns_pinning.py:39`
 - `tests/test_skill_importer_dns_pinning.py:58`
 
@@ -51,20 +53,42 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `_PinnedBackend.connect_tcp` — method, line 126
 - **called from:**
@@ -74,9 +98,11 @@
 - `src/webhook_manager.py:191`
 - `tests/test_integration_api_call_ssrf.py:203`
 - `tests/test_integration_api_call_ssrf.py:218`
-- `tests/test_security_regressions.py:1333`
+- `tests/test_security_regressions.py:1335`
 - `tests/test_skill_importer_dns_pinning.py:41`
 - `tests/test_skill_importer_dns_pinning.py:61`
+- `tests/test_vision_inline.py:347`
+- `tests/test_vision_inline.py:350`
 
 ## `_PinnedBackend.connect_unix_socket` — method, line 138
 - **called from:**
@@ -87,73 +113,75 @@
 
 ## `_PinnedBackend.sleep` — method, line 141
 - **called from:**
-- `app.py:1136`
-- `app.py:1140`
-- `app.py:1230`
-- `app.py:1235`
-- `app.py:1256`
+- `app.py:1320`
+- `app.py:1324`
+- `app.py:1422`
+- `app.py:1427`
 - `core/session_manager.py:66`
 - `launcher.py:121`
-- `routes/chat_helpers.py:1363`
-- `routes/chat_helpers.py:1371`
-- `routes/chat_routes.py:1961`
-- `routes/cookbook_routes.py:1693`
-- `routes/email_pollers.py:1314`
-- `routes/email_pollers.py:1377`
-- `routes/email_pollers.py:1507`
-- `routes/email_routes.py:3259`
-- `routes/email_routes.py:3272`
-- `routes/research/research_routes.py:605`
-- `routes/shell_routes.py:833`
-- `routes/shell_routes.py:850`
-- `routes/shell_routes.py:929`
-- `routes/shell_routes.py:947`
-- `routes/upload_routes.py:530`
-- `scripts/backfill_model_release_dates.py:109`
+- `routes/chat_helpers.py:821`
+- `routes/chat_helpers.py:825`
+- `routes/chat_helpers.py:2033`
+- `routes/chat_helpers.py:2041`
+- `routes/chat_routes.py:4232`
+- `routes/cookbook_routes.py:1593`
+- `routes/email/email_pollers.py:1514`
+- `routes/email/email_pollers.py:1577`
+- `routes/email/email_pollers.py:1707`
+- `routes/email/email_routes.py:4073`
+- `routes/email/email_routes.py:4086`
+- `routes/research/research_routes.py:706`
+- `routes/session_routes.py:351`
+- `routes/shell_routes.py:1067`
+- `routes/shell_routes.py:1084`
+- `routes/shell_routes.py:1163`
+- `routes/shell_routes.py:1181`
+- `routes/upload_routes.py:642`
+- `scripts/audit_email_sft_with_deepseek.py:270`
+- `scripts/audit_email_sft_with_deepseek.py:281`
+- `scripts/audit_sft_corpus_with_deepseek.py:304`
+- `scripts/backfill_model_release_dates.py:112`
 - `scripts/dump_agent_prompt.py:414`
-- `scripts/import_from_vllm_recipes.py:292`
-- `scripts/import_from_vllm_recipes.py:320`
+- `scripts/eval_followup_domain_continuity.py:156`
+- `scripts/eval_followup_domain_continuity.py:173`
+- `scripts/generate_sft_environment_expansion.py:199`
+- `scripts/generate_sft_flow_variants_with_kimi.py:101`
+- `scripts/import_from_vllm_recipes.py:299`
+- `scripts/import_from_vllm_recipes.py:327`
+- `scripts/odysseus_conversation_qa.py:388`
+- `scripts/odysseus_conversation_qa.py:732`
+- `scripts/odysseus_related_flow_audit.py:568`
+- `scripts/repair_email_sft_with_kimi.py:230`
+- `scripts/repair_sft_corpus_with_kimi.py:209`
+- `scripts/run_odysseus_search_teacher_pipeline.py:170`
+- `scripts/run_sft_overnight_fixture_flows.py:796`
+- `scripts/verify_notes_browser_runtime.py:87`
 - `services/memory/skill_importer.py:162`
 - `services/youtube/youtube_handler.py:156`
 - `src/agent_jobs.py:355`
-- `src/agent_runs.py:88`
-- `src/agent_tools/subprocess_tools.py:184`
-- `src/agent_tools/subprocess_tools.py:234`
-- `src/agent_tools/subprocess_tools.py:244`
-- `src/ai_interaction.py:1370`
-- `src/ai_interaction.py:1637`
-- `src/bg_monitor.py:158`
-- `src/builtin_mcp.py:204`
-- `src/cookbook_serve_lifecycle.py:213`
-- `src/cookbook_serve_lifecycle.py:219`
-- `src/integrations.py:416`
-- `src/llm_core.py:118`
-- `src/llm_core.py:2797`
-- `src/llm_core.py:2860`
-- `src/llm_core.py:2866`
-- `src/llm_core.py:2877`
-- `src/llm_core.py:2888`
-- `src/llm_core.py:2899`
-- `src/llm_core.py:2910`
-- `src/outbound_fetch.py:142`
-- `src/task_scheduler.py:611`
-- `src/task_scheduler.py:622`
-- `src/task_scheduler.py:631`
-- `src/task_scheduler.py:642`
-- `src/task_scheduler.py:674`
-- `src/task_scheduler.py:699`
-- `src/task_scheduler.py:909`
-- `src/task_scheduler.py:912`
-- `src/webhook_manager.py:199`
-- `tests/markdown_browser_check.py:40`
-- `tests/markdown_screenshot.py:63`
-- … +57 more (grep the name in repo)
+- `src/agent_runs.py:90`
+- `src/agent_tools/subprocess_tools.py:756`
+- `src/ai_interaction.py:1767`
+- `src/ai_interaction.py:2085`
+- `src/background_tool_jobs.py:193`
+- `src/bg_monitor.py:237`
+- `src/builtin_mcp.py:205`
+- `src/clean_agent_preview.py:5591`
+- `src/containment.py:1156`
+- `src/containment.py:1242`
+- `src/containment.py:1525`
+- `src/cookbook_serve_lifecycle.py:193`
+- `src/cookbook_serve_lifecycle.py:199`
+- `src/email_calendar_import.py:47`
+- … +148 more (grep the name in repo)
 
 ## `_PinnedTransport` — class, line 163
 - **called from:**
 - `services/memory/skill_importer.py:249`
-- `tests/test_security_regressions.py:1386`
-- `tests/test_security_regressions.py:1432`
+- `src/agent_tools/web_tools.py:1259`
+- `src/agent_tools/web_tools_prewave3.py:1263`
+- `tests/test_security_regressions.py:1388`
+- `tests/test_security_regressions.py:1434`
 - `tests/test_skill_importer_dns_pinning.py:86`
 - `tests/test_skill_importer_dns_pinning.py:205`
 
@@ -163,108 +191,132 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `_PinnedTransport.__enter__` — method, line 174
 - **called from:**
 - `src/outbound_fetch.py:175`
+- `tests/helpers/worker_runtime.py:17`
 - `tests/test_caldav_test_connection_ssl.py:89`
 - `tests/test_web_fetch_size_caps.py:45`
-- `static/js/cookbookDownload.js:156`
+- `static/js/cookbookDownload.js:163`
 
 ## `_PinnedTransport.__exit__` — method, line 178
 - **called from:**
 - `src/outbound_fetch.py:179`
+- `tests/helpers/worker_runtime.py:24`
 - `tests/test_caldav_test_connection_ssl.py:97`
 - `tests/test_web_fetch_size_caps.py:51`
-- `static/js/cookbookDownload.js:157`
+- `static/js/cookbookDownload.js:164`
 
 ## `_PinnedTransport.handle_request` — method, line 181
 - **called from:**
 - `services/memory/skill_importer.py:210`
 - `src/outbound_fetch.py:195`
-- `tests/test_security_regressions.py:1437`
+- `tests/test_security_regressions.py:1439`
 
 ## `_PinnedTransport.close` — method, line 210
 - **called from:**
-- `app.py:333`
-- `app.py:451`
-- `app.py:532`
-- `app.py:1050`
-- `app.py:1174`
-- `app.py:1295`
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
 
 ## `BodyTooLargeError` — class, line 214
 - **called from:**
-- `src/outbound_fetch.py:327`
+- `src/outbound_fetch.py:324`
 
 ## `BodyTooLargeError.__init__` — method, line 217
 - **called from:**
@@ -272,25 +324,49 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `_CappedFetch` — class, line 226
 - **called from:**
-- `src/outbound_fetch.py:301`
-- `src/outbound_fetch.py:342`
+- `src/outbound_fetch.py:300`
+- `src/outbound_fetch.py:339`
+- `tests/test_web_fetch_size_caps.py:221`
+- `tests/test_web_fetch_size_caps.py:230`
 
 ## `_CappedFetch.__init__` — method, line 239
 - **called from:**
@@ -298,119 +374,176 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `_CappedFetch.text` — method, line 258
 - decorator: `property`
 - **called from:**
-- `core/database.py:509`
-- `core/database.py:1581`
-- `core/database.py:1584`
-- `core/database.py:1603`
-- `core/database.py:1605`
-- `core/database.py:1622`
-- `core/database.py:1625`
-- `core/database.py:1628`
-- `core/database.py:1648`
-- `core/database.py:1652`
-- `core/database.py:1663`
-- `core/database.py:1664`
-- `core/database.py:1692`
-- `core/database.py:1702`
-- `core/database.py:1713`
-- `core/database.py:1722`
-- `core/database.py:1732`
-- `core/database.py:1734`
-- `core/database.py:1744`
-- `core/database.py:1746`
-- `core/database.py:1761`
-- `core/database.py:1763`
-- `core/database.py:1778`
-- `core/database.py:1781`
-- `core/database.py:1783`
+- `core/database.py:539`
+- `core/database.py:1407`
+- `core/database.py:1523`
+- `core/database.py:1795`
 - `core/database.py:1798`
-- `core/database.py:1802`
-- `core/database.py:1814`
-- `core/database.py:1816`
-- `core/database.py:1827`
-- `core/database.py:1829`
-- `core/database.py:1832`
-- `core/database.py:1834`
-- `core/database.py:1844`
-- `core/database.py:1846`
-- `core/database.py:1850`
-- `core/database.py:1993`
-- `core/database.py:2014`
-- `core/database.py:2017`
-- `core/database.py:2063`
-- `core/database.py:2068`
-- `core/database.py:2131`
-- `core/database.py:2243`
-- `core/database.py:2246`
-- `core/database.py:2417`
-- `core/database.py:2421`
-- `core/database.py:2442`
-- `core/database.py:2454`
-- `core/database.py:2474`
-- `core/database.py:2488`
+- `core/database.py:1817`
+- `core/database.py:1819`
+- `core/database.py:1836`
+- `core/database.py:1839`
+- `core/database.py:1842`
+- `core/database.py:1861`
+- `core/database.py:1864`
+- `core/database.py:1865`
+- `core/database.py:1885`
+- `core/database.py:1889`
+- `core/database.py:1900`
+- `core/database.py:1901`
+- `core/database.py:1929`
+- `core/database.py:1939`
+- `core/database.py:1950`
+- `core/database.py:1959`
+- `core/database.py:1969`
+- `core/database.py:1971`
+- `core/database.py:1981`
+- `core/database.py:1983`
+- `core/database.py:1998`
+- `core/database.py:2000`
+- `core/database.py:2015`
+- `core/database.py:2018`
+- `core/database.py:2020`
+- `core/database.py:2035`
+- `core/database.py:2039`
+- `core/database.py:2051`
+- `core/database.py:2053`
+- `core/database.py:2064`
+- `core/database.py:2066`
+- `core/database.py:2069`
+- `core/database.py:2071`
+- `core/database.py:2081`
+- `core/database.py:2083`
+- `core/database.py:2087`
+- `core/database.py:2252`
+- `core/database.py:2273`
+- `core/database.py:2276`
+- `core/database.py:2322`
+- `core/database.py:2327`
+- `core/database.py:2378`
+- `core/database.py:2399`
+- `core/database.py:2522`
+- `core/database.py:2525`
+- `core/database.py:2712`
+- `core/database.py:2716`
+- `core/database.py:2737`
+- `core/database.py:2749`
+- `core/database.py:2769`
+- `core/database.py:2783`
 - `scripts/update_database.py:98`
 - `scripts/update_database.py:108`
 - `scripts/update_database.py:118`
 - `scripts/update_database.py:124`
-- `scripts/update_database.py:134`
-- `scripts/update_database.py:145`
-- `scripts/update_database.py:148`
-- `services/search/providers.py:430`
-- `src/session_search.py:121`
-- `src/session_search.py:265`
-- … +69 more (grep the name in repo)
+- … +104 more (grep the name in repo)
 
 ## `_CappedFetch.raise_for_status` — method, line 261
 - **called from:**
-- `routes/email_helpers.py:125`
-- `routes/email_routes.py:6066`
+- `routes/chat_routes.py:841`
+- `routes/email/email_helpers.py:129`
+- `routes/email/email_routes.py:7866`
 - `routes/embedding_routes.py:283`
-- `routes/model_routes.py:943`
-- `routes/model_routes.py:989`
-- `routes/model_routes.py:1010`
-- `routes/model_routes.py:1053`
+- `routes/model_routes.py:999`
+- `routes/model_routes.py:1047`
+- `routes/model_routes.py:1068`
+- `routes/model_routes.py:1111`
 - `routes/webhook/webhook_routes.py:346`
-- `scripts/import_from_vllm_recipes.py:113`
-- `services/search/content.py:395`
-- `services/search/providers.py:193`
-- `services/search/providers.py:325`
-- `services/search/providers.py:395`
-- `services/search/providers.py:495`
-- `services/search/providers.py:553`
-- `services/search/providers.py:614`
+- `scripts/audit_search_pipeline.py:38`
+- `scripts/compare_compact_tool_inventory.py:48`
+- `scripts/eval_ajax_basic_tools.py:51`
+- `scripts/eval_exact_file_routing.py:139`
+- `scripts/eval_followup_domain_continuity.py:158`
+- `scripts/eval_odysseus_crud.py:225`
+- `scripts/eval_odysseus_crud.py:827`
+- `scripts/eval_odysseus_crud.py:853`
+- `scripts/eval_odysseus_live_hard_direct.py:73`
+- `scripts/eval_odysseus_tool_use.py:209`
+- `scripts/eval_odysseus_tool_use.py:237`
+- `scripts/eval_odysseus_tool_use.py:855`
+- `scripts/eval_qwen35_document_shape_direct.py:233`
+- `scripts/eval_qwen35_tool_router_extended.py:165`
+- `scripts/eval_qwen35_tool_router_extended.py:195`
+- `scripts/eval_qwen35_tool_router_extended.py:290`
+- `scripts/import_from_vllm_recipes.py:116`
+- `scripts/odysseus_conversation_qa.py:379`
+- `scripts/odysseus_conversation_qa.py:718`
+- `scripts/odysseus_conversation_qa.py:727`
+- `scripts/odysseus_conversation_qa.py:755`
+- `scripts/odysseus_conversation_qa.py:803`
+- `scripts/odysseus_domain_audit.py:223`
+- `scripts/odysseus_domain_audit.py:279`
+- `scripts/odysseus_domain_audit.py:303`
+- `scripts/odysseus_related_flow_audit.py:402`
+- `scripts/review_sft_environment_expansion.py:72`
+- `scripts/review_sft_environment_expansion.py:77`
+- `scripts/sft_email_overseer.py:443`
+- `scripts/sft_email_overseer.py:470`
+- `scripts/sft_email_overseer.py:540`
+- `scripts/test_clean_tool_loop.py:102`
+- `scripts/test_clean_tool_loop.py:148`
+- `services/search/content.py:334`
+- `services/search/core.py:579`
+- `services/search/providers.py:263`
+- `services/search/providers.py:394`
+- `services/search/providers.py:468`
+- `services/search/providers.py:568`
+- `services/search/providers.py:626`
+- `services/search/providers.py:687`
 - `services/stt/stt_service.py:145`
 - `services/tts/tts_service.py:190`
-- `src/agent_tools/model_interaction_tools.py:164`
-- `src/ai_interaction.py:159`
-- `src/ai_interaction.py:1007`
-- `src/copilot.py:160`
-- `src/copilot.py:179`
-- `src/copilot.py:192`
-- `src/embeddings.py:123`
-- `src/llm_core.py:2227`
-- `src/llm_core.py:2244`
+- `src/agent_tools/editor_tools.py:97`
+- `src/agent_tools/editor_tools.py:493`
+- `src/agent_tools/model_interaction_tools.py:220`
+- `src/agent_tools/web_tools.py:1262`
+- `src/agent_tools/web_tools_prewave3.py:1266`
+- `src/ai_interaction.py:160`
+- `src/ai_interaction.py:1329`
+- `src/clean_agent_preview.py:5579`
+- … +17 more (grep the name in repo)
 
 ## `_get_public_url` — function, line 271
 - **called from:**
-- `services/search/content.py:56`
-- `services/search/content.py:389`
-- `tests/test_security_regressions.py:963`
-- `tests/test_security_regressions.py:1496`
+- `services/search/content.py:52`
+- `services/search/content.py:328`
+- `services/search/content.py:368`
+- `tests/test_security_regressions.py:964`
+- `tests/test_security_regressions.py:1498`

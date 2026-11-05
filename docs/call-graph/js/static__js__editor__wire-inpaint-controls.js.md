@@ -3,37 +3,37 @@
 6 definitions (regex-based, best-effort).
 **Exports:** `wireInpaintControls`
 
-## `wireInpaintControls` — function, line 40
+## `wireInpaintControls` — function, line 41
 - **called from:**
-- `static/js/editor/wire-inpaint-controls.js:40`
-- `static/js/galleryEditor.js:3354`
+- `static/js/editor/wire-inpaint-controls.js:41`
+- `static/js/galleryEditor.js:11590`
 
-## `syncFeatherPreview` — function, line 47
+## `syncFeatherPreview` — function, line 48
 - **called from:**
-- `static/js/editor/wire-inpaint-controls.js:47`
-- `static/js/editor/wire-inpaint-controls.js:77`
-- `static/js/editor/wire-inpaint-controls.js:100`
-
-## `syncStrengthPreview` — function, line 52
-- **called from:**
-- `static/js/editor/wire-inpaint-controls.js:52`
-- `static/js/editor/wire-inpaint-controls.js:95`
+- `static/js/editor/wire-inpaint-controls.js:48`
+- `static/js/editor/wire-inpaint-controls.js:78`
 - `static/js/editor/wire-inpaint-controls.js:101`
 
-## `scheduleInpaintEdgeRefresh` — function, line 61
+## `syncStrengthPreview` — function, line 53
 - **called from:**
-- `static/js/editor/wire-inpaint-controls.js:61`
-- `static/js/editor/wire-inpaint-controls.js:78`
-- `static/js/editor/wire-inpaint-controls.js:91`
+- `static/js/editor/wire-inpaint-controls.js:53`
+- `static/js/editor/wire-inpaint-controls.js:96`
+- `static/js/editor/wire-inpaint-controls.js:102`
 
-## `setInpaintMode` — function, line 136
+## `scheduleInpaintEdgeRefresh` — function, line 62
 - **called from:**
-- `static/js/editor/wire-inpaint-controls.js:136`
-- `static/js/editor/wire-inpaint-controls.js:143`
-- `static/js/editor/wire-inpaint-controls.js:144`
+- `static/js/editor/wire-inpaint-controls.js:62`
+- `static/js/editor/wire-inpaint-controls.js:79`
+- `static/js/editor/wire-inpaint-controls.js:92`
 
-## `applyMaskTintFromHex` — function, line 150
+## `setInpaintMode` — function, line 127
 - **called from:**
-- `static/js/editor/wire-inpaint-controls.js:150`
-- `static/js/editor/wire-inpaint-controls.js:161`
-- `static/js/editor/wire-inpaint-controls.js:162`
+- `static/js/editor/wire-inpaint-controls.js:127`
+- `static/js/editor/wire-inpaint-controls.js:134`
+- `static/js/editor/wire-inpaint-controls.js:135`
+
+## `applyMaskTintFromHex` — function, line 141
+- **called from:**
+- `static/js/editor/wire-inpaint-controls.js:141`
+- `static/js/editor/wire-inpaint-controls.js:152`
+- `static/js/editor/wire-inpaint-controls.js:153`

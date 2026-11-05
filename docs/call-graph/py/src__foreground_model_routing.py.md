@@ -11,19 +11,19 @@
 - `src/foreground_model_routing.py:92`
 - `src/foreground_model_routing.py:138`
 - `src/foreground_model_routing.py:140`
-- `tests/test_foreground_model_routing.py:1665`
-- `tests/test_foreground_model_routing.py:1712`
-- `tests/test_foreground_model_routing.py:1803`
-- `tests/test_foreground_model_routing.py:1837`
-- `tests/test_foreground_model_routing.py:1969`
-- `tests/test_foreground_model_routing.py:1991`
-- `tests/test_foreground_model_routing.py:2015`
-- `tests/test_foreground_model_routing.py:2020`
-- `tests/test_foreground_model_routing.py:2072`
-- `tests/test_foreground_model_routing.py:2107`
-- `tests/test_foreground_model_routing.py:2108`
-- `tests/test_foreground_model_routing.py:2133`
-- `tests/test_foreground_model_routing.py:2212`
+- `tests/test_foreground_model_routing.py:1719`
+- `tests/test_foreground_model_routing.py:1766`
+- `tests/test_foreground_model_routing.py:1887`
+- `tests/test_foreground_model_routing.py:1921`
+- `tests/test_foreground_model_routing.py:2053`
+- `tests/test_foreground_model_routing.py:2075`
+- `tests/test_foreground_model_routing.py:2099`
+- `tests/test_foreground_model_routing.py:2104`
+- `tests/test_foreground_model_routing.py:2156`
+- `tests/test_foreground_model_routing.py:2191`
+- `tests/test_foreground_model_routing.py:2192`
+- `tests/test_foreground_model_routing.py:2217`
+- `tests/test_foreground_model_routing.py:2296`
 
 ## `_load_policy_preferences` — function, line 36
 - **called from:**
@@ -31,28 +31,28 @@
 
 ## `resolve_foreground_model_policy` — function, line 59
 - **called from:**
-- `routes/chat_routes.py:982`
-- `routes/chat_routes.py:1544`
+- `routes/chat_routes.py:2489`
+- `routes/chat_routes.py:3261`
 - `src/foreground_model_routing.py:152`
 - `src/foreground_model_routing.py:164`
 - `src/foreground_model_routing.py:183`
-- `tests/test_foreground_model_routing.py:1837`
-- `tests/test_foreground_model_routing.py:1863`
-- `tests/test_foreground_model_routing.py:1904`
-- `tests/test_foreground_model_routing.py:1939`
-- `tests/test_foreground_model_routing.py:1968`
-- `tests/test_foreground_model_routing.py:1969`
-- `tests/test_foreground_model_routing.py:1991`
-- `tests/test_foreground_model_routing.py:2015`
-- `tests/test_foreground_model_routing.py:2020`
-- `tests/test_foreground_model_routing.py:2072`
-- `tests/test_foreground_model_routing.py:2107`
-- `tests/test_foreground_model_routing.py:2108`
-- `tests/test_foreground_model_routing.py:2132`
-- `tests/test_foreground_model_routing.py:2133`
-- `tests/test_foreground_model_routing.py:2155`
-- `tests/test_foreground_model_routing.py:2186`
-- `tests/test_foreground_model_routing.py:2209`
+- `tests/test_foreground_model_routing.py:1921`
+- `tests/test_foreground_model_routing.py:1947`
+- `tests/test_foreground_model_routing.py:1988`
+- `tests/test_foreground_model_routing.py:2023`
+- `tests/test_foreground_model_routing.py:2052`
+- `tests/test_foreground_model_routing.py:2053`
+- `tests/test_foreground_model_routing.py:2075`
+- `tests/test_foreground_model_routing.py:2099`
+- `tests/test_foreground_model_routing.py:2104`
+- `tests/test_foreground_model_routing.py:2156`
+- `tests/test_foreground_model_routing.py:2191`
+- `tests/test_foreground_model_routing.py:2192`
+- `tests/test_foreground_model_routing.py:2216`
+- `tests/test_foreground_model_routing.py:2217`
+- `tests/test_foreground_model_routing.py:2239`
+- `tests/test_foreground_model_routing.py:2270`
+- `tests/test_foreground_model_routing.py:2293`
 
 ## `resolve_foreground_fallback_candidates` — function, line 149
 - **called from:**
@@ -60,13 +60,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `build_foreground_model_candidates` — function, line 155
 - **called from:**
-- `routes/chat_routes.py:1022`
-- `routes/chat_routes.py:2062`
-- `tests/test_foreground_model_routing.py:1667`
-- `tests/test_foreground_model_routing.py:1798`
+- `routes/chat_routes.py:2532`
+- `routes/chat_routes.py:4334`
+- `tests/test_foreground_model_routing.py:1721`
+- `tests/test_foreground_model_routing.py:1882`
 
 ## `build_foreground_route_descriptors` — function, line 173
 - **called from:**
-- `routes/chat_routes.py:1029`
-- `routes/chat_routes.py:2069`
-- `tests/test_foreground_model_routing.py:1707`
+- `routes/chat_routes.py:2539`
+- `routes/chat_routes.py:4341`
+- `tests/test_foreground_model_routing.py:1761`

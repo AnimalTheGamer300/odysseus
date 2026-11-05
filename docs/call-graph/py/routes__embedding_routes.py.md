@@ -47,15 +47,17 @@
 
 ## `setup_embedding_routes` — function, line 112
 - **called from:**
-- `app.py:740`
+- `app.py:820`
 - `tests/test_embedding_cache_confinement.py:23`
 
 ## `list_models` — function, line 116
 - **route:** `GET /models`
 - decorator: `router.get("/models")`
 - **called from:**
-- `scripts/add_hwfit_models.py:375`
-- `src/agent_tools/model_interaction_tools.py:215`
+- `scripts/add_hwfit_models.py:457`
+- `src/agent_tools/model_interaction_tools.py:271`
+- `tests/test_chatgpt_subscription_routes.py:509`
+- `tests/test_list_models_hardware_fit.py:32`
 
 ## `download_model` — function (async), line 155
 - **route:** `POST /models/{model_name:path}/download`

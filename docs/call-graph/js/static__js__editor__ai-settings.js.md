@@ -1,0 +1,230 @@
+# `static/js/editor/ai-settings.js` — definitions & call sites
+
+8 definitions (regex-based, best-effort).
+**Exports:** `createAiSettings`
+
+## `createAiSettings` — function, line 11
+- **called from:**
+- `static/js/editor/ai-settings.js:11`
+- `static/js/galleryEditor.js:10503`
+
+## `open` — function, line 48
+- **called from:**
+- `app.py:1102`
+- `app.py:1168`
+- `app.py:1334`
+- `app.py:1389`
+- `companion/pairing.py:167`
+- `core/atomic_io.py:38`
+- `core/atomic_io.py:74`
+- `core/atomic_io.py:95`
+- `core/auth.py:135`
+- `core/auth.py:158`
+- `core/database.py:1681`
+- `core/database.py:1739`
+- `core/database.py:1747`
+- `core/database.py:1757`
+- `core/database.py:1779`
+- `core/platform_compat.py:325`
+- `launcher.py:92`
+- `launcher.py:131`
+- `mcp_servers/email_server.py:2400`
+- `routes/admin_wipe/admin_wipe_routes.py:48`
+- `routes/auth_routes.py:559`
+- `routes/chat_helpers.py:245`
+- `routes/chat_helpers.py:264`
+- `routes/chat_helpers.py:282`
+- `routes/chat_helpers.py:286`
+- `routes/chat_helpers.py:311`
+- `routes/chat_helpers.py:346`
+- `routes/chat_helpers.py:349`
+- `routes/chat_helpers.py:1425`
+- `routes/cookbook_routes.py:749`
+- `routes/diagnostics_routes.py:42`
+- `routes/document/document_routes.py:1385`
+- `routes/document/document_routes.py:1445`
+- `routes/document/document_routes.py:1520`
+- `routes/email/email_helpers.py:661`
+- `routes/email/email_helpers.py:1766`
+- `routes/email/email_routes.py:4974`
+- `routes/email/email_routes.py:4998`
+- `routes/email/email_routes.py:5005`
+- `routes/email/email_routes.py:5662`
+- `routes/email/email_routes.py:5686`
+- `routes/gallery/gallery_helpers.py:35`
+- `routes/gallery/gallery_routes.py:62`
+- `routes/gallery/gallery_routes.py:303`
+- `routes/gallery/gallery_routes.py:359`
+- `routes/gallery/gallery_routes.py:362`
+- `routes/gallery/gallery_routes.py:391`
+- `routes/gallery/gallery_routes.py:967`
+- `routes/gallery/gallery_routes.py:1040`
+- `routes/gallery/gallery_routes.py:1855`
+- `routes/gallery/gallery_routes.py:1856`
+- `routes/gallery/gallery_routes.py:1980`
+- `routes/gallery/gallery_routes.py:2861`
+- `routes/history/history_routes.py:62`
+- `routes/history/history_routes.py:88`
+- `routes/history/history_routes.py:93`
+- `routes/mcp/mcp_routes.py:249`
+- `routes/mcp/mcp_routes.py:470`
+- `routes/mcp/mcp_routes.py:586`
+- `routes/mcp/mcp_routes.py:616`
+- … +499 more (grep the name in repo)
+
+## `close` — function, line 58
+- **called from:**
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
+- `companion/pairing.py:151`
+- `companion/routes.py:165`
+- `core/database.py:161`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
+- `core/session_manager.py:68`
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
+
+## `onKey` — arrow, line 66
+- **called from:**
+- `static/js/cookbookServe.js:1082`
+- `static/js/document.js:9403`
+- `static/js/document.js:9453`
+- `static/js/document.js:9491`
+- `static/js/editor/tools/perspective-crop.js:85`
+- `static/js/galleryEditor.js:13664`
+- `static/js/settings.js:1644`
+- `static/js/skills.js:1773`
+- `static/js/ui.js:848`
+- `static/js/ui.js:951`
+
+## `applyModels` — function, line 77
+- **called from:**
+- `static/js/editor/ai-settings.js:77`
+- `static/js/editor/ai-settings.js:98`
+- `static/js/editor/ai-settings.js:116`
+
+## `syncModels` — function, line 97
+- **called from:**
+- `static/js/editor/ai-settings.js:50`
+- `static/js/editor/ai-settings.js:97`
+- `static/js/editor/ai-settings.js:111`
+
+## `onPreferencesChanged` — arrow, line 116
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `destroy` — function, line 135
+- **called from:**
+- `static/app.js:1512`
+- `static/js/admin.js:2381`
+- `static/js/admin.js:2618`
+- `static/js/backgroundToolJobs.js:6`
+- `static/js/calendar.js:2640`
+- `static/js/chat.js:1398`
+- `static/js/chat.js:1617`
+- `static/js/chat.js:1650`
+- `static/js/chat.js:2559`
+- `static/js/chat.js:2564`
+- `static/js/chat.js:3818`
+- `static/js/chat.js:4212`
+- `static/js/chat.js:4214`
+- `static/js/chat.js:4440`
+- `static/js/chat.js:4740`
+- `static/js/chat.js:4771`
+- `static/js/chat.js:4804`
+- `static/js/chat.js:4998`
+- `static/js/chat.js:5539`
+- `static/js/chat.js:5977`
+- `static/js/chat.js:6019`
+- `static/js/chat.js:6062`
+- `static/js/chat.js:6097`
+- `static/js/chat.js:6106`
+- `static/js/chat.js:6528`
+- `static/js/chat.js:7360`
+- `static/js/chat.js:7417`
+- `static/js/chat.js:7494`
+- `static/js/chat.js:7511`
+- `static/js/chat.js:8881`
+- `static/js/chat.js:8895`
+- `static/js/chat.js:8911`
+- `static/js/chat.js:9198`
+- `static/js/codeRunner.js:236`
+- `static/js/compare/panes.js:407`
+- `static/js/compare/stream.js:217`
+- `static/js/compare/stream.js:541`
+- `static/js/compare/stream.js:566`
+- `static/js/compare/stream.js:607`
+- `static/js/compare/stream.js:665`
+- `static/js/compare/stream.js:693`
+- `static/js/compare/stream.js:893`
+- `static/js/cookbook-diagnosis.js:1020`
+- `static/js/cookbook-hwfit.js:743`
+- `static/js/cookbook-hwfit.js:792`
+- `static/js/cookbook-hwfit.js:891`
+- `static/js/cookbook-hwfit.js:905`
+- `static/js/cookbook-hwfit.js:910`
+- `static/js/cookbook-hwfit.js:937`
+- `static/js/cookbook-hwfit.js:1022`
+- `static/js/cookbook-hwfit.js:2344`
+- `static/js/cookbookServe.js:2109`
+- `static/js/cookbookServe.js:2884`
+- `static/js/cookbookServe.js:4005`
+- `static/js/cookbookServe.js:4329`
+- `static/js/cookbookServe.js:4333`
+- `static/js/cookbookServe.js:4340`
+- `static/js/cookbookServe.js:4344`
+- `static/js/cookbookServe.js:4370`
+- `static/js/cookbookServe.js:4376`
+- … +85 more (grep the name in repo)

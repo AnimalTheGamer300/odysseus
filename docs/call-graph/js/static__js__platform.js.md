@@ -5,7 +5,7 @@
 
 ## `isAltGrEvent` — function, line 40
 - **called from:**
-- `static/js/editor/keyboard-shortcuts.js:87`
+- `static/js/editor/keyboard-shortcuts.js:171`
 - `static/js/keyboard-shortcuts.js:23`
 - `static/js/platform.js:40`
-- `static/js/settings.js:1801`
+- `static/js/settings.js:1509`

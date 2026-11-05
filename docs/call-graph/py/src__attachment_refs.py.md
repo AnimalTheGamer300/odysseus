@@ -14,15 +14,15 @@
 
 ## `attachment_ref` — function, line 37
 - **called from:**
-- `routes/chat_helpers.py:450`
+- `routes/chat_helpers.py:918`
 - `src/attachment_refs.py:72`
 - `tests/test_attachment_refs.py:58`
 
 ## `attachment_refs_from_metadata` — function, line 64
 - **called from:**
-- `routes/upload_routes.py:73`
+- `routes/upload_routes.py:78`
 - `src/attachment_refs.py:137`
-- `src/upload_handler.py:181`
+- `src/upload_handler.py:243`
 
 ## `_ref_line` — function, line 78
 - **called from:**
@@ -37,16 +37,15 @@
 
 ## `persistable_message_content` — function, line 124
 - **called from:**
-- `core/session_manager.py:407`
-- `core/session_manager.py:474`
-- `core/session_manager.py:502`
-- `core/session_manager.py:557`
-- `core/session_manager.py:645`
-- `core/session_manager.py:852`
+- `core/session_manager.py:409`
+- `core/session_manager.py:476`
+- `core/session_manager.py:504`
+- `core/session_manager.py:559`
+- `core/session_manager.py:759`
 - `src/attachment_refs.py:164`
 - `tests/test_attachment_refs.py:32`
 
 ## `search_index_text` — function, line 150
 - **called from:**
-- `core/database.py:2370`
+- `core/database.py:2665`
 - `tests/test_attachment_refs.py:52`

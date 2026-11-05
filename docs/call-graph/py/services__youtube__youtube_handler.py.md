@@ -8,13 +8,15 @@
 
 ## `init_youtube` — function, line 48
 - **called from:**
-- `app.py:556`
+- `app.py:634`
+- `src/agent_tools/web_tools.py:2024`
+- `src/agent_tools/web_tools_prewave3.py:2028`
 - `tests/test_youtube_handler_consolidation.py:53`
 
 ## `is_youtube_url` — function, line 61
 - **called from:**
-- `src/chat_handler.py:149`
-- `src/chat_processor.py:477`
+- `src/chat_handler.py:154`
+- `src/chat_processor.py:495`
 - `tests/test_is_youtube_url_nonstring.py:7`
 - `tests/test_is_youtube_url_nonstring.py:8`
 - `tests/test_is_youtube_url_nonstring.py:9`
@@ -30,7 +32,7 @@
 ## `extract_youtube_id` — function, line 78
 - **called from:**
 - `routes/diagnostics_routes.py:77`
-- `src/chat_handler.py:150`
+- `src/chat_handler.py:155`
 - `tests/test_youtube_extract_id_nonstring.py:8`
 - `tests/test_youtube_extract_id_nonstring.py:9`
 - `tests/test_youtube_extract_id_nonstring.py:10`
@@ -42,19 +44,23 @@
 ## `extract_transcript_async` — function (async), line 104
 - **called from:**
 - `routes/diagnostics_routes.py:81`
-- `src/chat_handler.py:156`
+- `src/agent_tools/web_tools.py:2025`
+- `src/agent_tools/web_tools_prewave3.py:2029`
+- `src/chat_handler.py:161`
 
 ## `format_transcript_for_context` — function, line 161
 - **called from:**
-- `src/chat_handler.py:165`
+- `src/chat_handler.py:170`
 - `tests/test_youtube_transcript_seg_nondict.py:17`
 
 ## `fetch_youtube_comments` — function (async), line 208
 - **called from:**
-- `src/chat_handler.py:157`
+- `src/agent_tools/web_tools.py:2011`
+- `src/agent_tools/web_tools_prewave3.py:2015`
+- `src/chat_handler.py:162`
 - `tests/test_youtube_comments_timeout.py:40`
 
 ## `format_comments_for_context` — function, line 282
 - **called from:**
-- `src/chat_handler.py:167`
+- `src/chat_handler.py:172`
 - `tests/test_youtube_svc_comments_nondict.py:13`

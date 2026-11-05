@@ -1,7 +1,7 @@
 # `static/js/settings/sidebar.js` — definitions & call sites
 
-12 definitions (regex-based, best-effort).
-**Exports:** `SETTINGS_SIDEBAR_COLLAPSE_THRESHOLD`, `SETTINGS_SIDEBAR_DEFAULT_WIDTH`, `SETTINGS_SIDEBAR_MAX_WIDTH`, `SETTINGS_SIDEBAR_MIN_WIDTH`, `bindSettingsSidebar`, `setSettingsSidebarCollapsed`, `setSettingsSidebarWidth`
+16 definitions (regex-based, best-effort).
+**Exports:** `SETTINGS_SIDEBAR_COLLAPSE_THRESHOLD`, `SETTINGS_SIDEBAR_DEFAULT_WIDTH`, `SETTINGS_SIDEBAR_MAX_WIDTH`, `SETTINGS_SIDEBAR_MIN_WIDTH`, `bindSettingsSidebar`, `formatSettingsBuildInfo`, `setSettingsSidebarCollapsed`, `setSettingsSidebarWidth`
 
 ## `clampWidth` — function, line 11
 - **called from:**
@@ -15,12 +15,12 @@
 - **called from:**
 - `static/js/settings/sidebar.js:20`
 - `static/js/settings/sidebar.js:101`
-- `static/js/settings/sidebar.js:134`
+- `static/js/settings/sidebar.js:212`
 
 ## `readStoredCollapsed` — function, line 32
 - **called from:**
 - `static/js/settings/sidebar.js:32`
-- `static/js/settings/sidebar.js:137`
+- `static/js/settings/sidebar.js:215`
 
 ## `storeWidth` — function, line 40
 - **called from:**
@@ -31,7 +31,7 @@
 - **called from:**
 - `static/js/settings/sidebar.js:46`
 - `static/js/settings/sidebar.js:108`
-- `static/js/settings/sidebar.js:171`
+- `static/js/settings/sidebar.js:249`
 
 ## `syncResizeHandleAria` — function, line 52
 - **called from:**
@@ -43,38 +43,62 @@
 ## `isDesktopSidebarMode` — function, line 71
 - **called from:**
 - `static/js/settings/sidebar.js:71`
-- `static/js/settings/sidebar.js:145`
-- `static/js/settings/sidebar.js:190`
-- `static/js/settings/sidebar.js:205`
+- `static/js/settings/sidebar.js:223`
+- `static/js/settings/sidebar.js:268`
+- `static/js/settings/sidebar.js:283`
 
 ## `setSettingsSidebarCollapsed` — function, line 81
 - **called from:**
 - `static/js/settings/sidebar.js:81`
-- `static/js/settings/sidebar.js:135`
-- `static/js/settings/sidebar.js:148`
-- `static/js/settings/sidebar.js:165`
-- `static/js/settings/sidebar.js:169`
-- `static/js/settings/sidebar.js:185`
-- `static/js/settings/sidebar.js:218`
-- `static/js/settings/sidebar.js:232`
+- `static/js/settings/sidebar.js:213`
+- `static/js/settings/sidebar.js:226`
+- `static/js/settings/sidebar.js:243`
+- `static/js/settings/sidebar.js:247`
+- `static/js/settings/sidebar.js:263`
+- `static/js/settings/sidebar.js:296`
+- `static/js/settings/sidebar.js:310`
 
 ## `setSettingsSidebarWidth` — function, line 112
 - **called from:**
 - `static/js/settings/sidebar.js:112`
+- `static/js/settings/sidebar.js:212`
+- `static/js/settings/sidebar.js:248`
+- `static/js/settings/sidebar.js:264`
+- `static/js/settings/sidebar.js:314`
+
+## `buildField` — function, line 134
+- **called from:**
 - `static/js/settings/sidebar.js:134`
-- `static/js/settings/sidebar.js:170`
-- `static/js/settings/sidebar.js:186`
-- `static/js/settings/sidebar.js:236`
+- `static/js/settings/sidebar.js:142`
+- `static/js/settings/sidebar.js:143`
+- `static/js/settings/sidebar.js:144`
 
-## `bindSettingsSidebar` — function, line 124
+## `formatSettingsBuildInfo` — function, line 141
 - **called from:**
-- `static/js/settings.js:2207`
-- `static/js/settings/sidebar.js:124`
+- `static/js/settings/sidebar.js:141`
+- `static/js/settings/sidebar.js:193`
 
-## `stopResize` — function, line 154
+## `paintSettingsBuildInfo` — function, line 167
 - **called from:**
-- `static/js/settings/sidebar.js:154`
+- `static/js/settings/sidebar.js:167`
+- `static/js/settings/sidebar.js:193`
 
-## `onPointerMove` — function, line 174
+## `loadSettingsBuildInfo` — function, line 189
 - **called from:**
-- `static/js/settings/sidebar.js:174`
+- `static/js/settings/sidebar.js:189`
+- `static/js/settings/sidebar.js:204`
+
+## `bindSettingsSidebar` — function, line 200
+- **called from:**
+- `static/js/settings.js:1919`
+- `static/js/settings/sidebar.js:200`
+
+## `stopResize` — function, line 232
+- **called from:**
+- `static/js/settings/sidebar.js:232`
+
+## `onPointerMove` — function, line 252
+- **called from:**
+- `static/js/dragSort.js:303`
+- `static/js/editor/tools/perspective-crop.js:71`
+- `static/js/settings/sidebar.js:252`

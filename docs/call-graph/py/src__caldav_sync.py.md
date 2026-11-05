@@ -25,10 +25,10 @@
 
 ## `validate_caldav_url` — function, line 106
 - **called from:**
-- `routes/calendar_routes.py:870`
-- `routes/calendar_routes.py:924`
-- `routes/calendar_routes.py:958`
-- `routes/calendar_routes.py:1020`
+- `routes/calendar_routes.py:1016`
+- `routes/calendar_routes.py:1067`
+- `routes/calendar_routes.py:1098`
+- `routes/calendar_routes.py:1157`
 - `src/caldav_sync.py:644`
 - `src/caldav_writeback.py:295`
 - `tests/test_caldav_url_hardening.py:19`
@@ -59,11 +59,11 @@
 - **called from:**
 - `src/caldav_sync.py:386`
 - `src/caldav_sync.py:390`
-- `src/task_scheduler.py:162`
-- `src/task_scheduler.py:168`
-- `src/task_scheduler.py:192`
-- `src/task_scheduler.py:201`
-- `src/task_scheduler.py:228`
+- `src/task_scheduler.py:204`
+- `src/task_scheduler.py:210`
+- `src/task_scheduler.py:234`
+- `src/task_scheduler.py:243`
+- `src/task_scheduler.py:270`
 
 ## `_find_existing_event` — function, line 166
 - **called from:**
@@ -93,8 +93,8 @@
 - **called from:**
 - `src/caldav_sync.py:282`
 - `src/caldav_writeback.py:194`
-- `tests/test_caldav_redirect_hardening.py:23`
-- `tests/test_caldav_redirect_hardening.py:69`
+- `tests/test_caldav_redirect_hardening.py:24`
+- `tests/test_caldav_redirect_hardening.py:79`
 
 ## `_should_prune_window` — function, line 257
 - **called from:**
@@ -129,7 +129,7 @@
 
 ## `_load_caldav_accounts` — function, line 582
 - **called from:**
-- `routes/calendar_routes.py:821`
+- `routes/calendar_routes.py:970`
 - `src/caldav_sync.py:622`
 - `src/caldav_writeback.py:268`
 
@@ -141,17 +141,17 @@
 
 ## `push_event_create` — function (async), line 659
 - **called from:**
-- `routes/calendar_routes.py:158`
+- `routes/calendar_routes.py:170`
 - `src/caldav_sync.py:669`
 
 ## `push_event_update` — function (async), line 668
 - **called from:**
-- `routes/calendar_routes.py:161`
+- `routes/calendar_routes.py:173`
 - `src/caldav_sync.py:686`
 
 ## `push_event_delete` — function (async), line 672
 - **called from:**
-- `routes/calendar_routes.py:164`
+- `routes/calendar_routes.py:176`
 - `src/caldav_sync.py:696`
 
 ## `push_pending_events` — function (async), line 681
@@ -161,4 +161,4 @@
 
 ## `sync_caldav_direction` — function (async), line 707
 - **called from:**
-- `routes/calendar_routes.py:1093`
+- `routes/calendar_routes.py:1230`

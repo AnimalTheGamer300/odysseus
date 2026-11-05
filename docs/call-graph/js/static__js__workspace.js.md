@@ -1,79 +1,100 @@
 # `static/js/workspace.js` — definitions & call sites
 
-15 definitions (regex-based, best-effort).
-**Exports:** `applyMode`, `clearWorkspace`, `closeWorkspaceBrowser`, `default`, `getWorkspace`, `initWorkspace`, `openWorkspaceBrowser`, `setWorkspace`, `syncWorkspaceIndicator`, `vetAndSetWorkspace`
+16 definitions (regex-based, best-effort).
+**Exports:** `applyMode`, `clearWorkspace`, `closeWorkspaceBrowser`, `default`, `getWorkspace`, `initWorkspace`, `loadDefaultWorkspace`, `openWorkspaceBrowser`, `setWorkspace`, `syncWorkspaceIndicator`, `vetAndSetWorkspace`
 
-## `getWorkspace` — function, line 18
+## `getWorkspace` — function, line 19
 - **called from:**
 - `static/js/slashCommands.js:1265`
-- `static/js/workspace.js:18`
-- `static/js/workspace.js:57`
-- `static/js/workspace.js:189`
-- `static/js/workspace.js:201`
+- `static/js/workspace.js:19`
+- `static/js/workspace.js:58`
+- `static/js/workspace.js:94`
+- `static/js/workspace.js:212`
+- `static/js/workspace.js:224`
 
-## `_basename` — function, line 22
+## `_basename` — function, line 23
 - **called from:**
-- `static/js/workspace.js:22`
-- `static/js/workspace.js:46`
-- `static/js/workspace.js:176`
+- `static/js/workspace.js:23`
+- `static/js/workspace.js:47`
+- `static/js/workspace.js:199`
 
-## `_isChatMode` — function, line 31
+## `_isChatMode` — function, line 32
 - **called from:**
-- `static/js/workspace.js:31`
+- `static/js/workspace.js:32`
+- `static/js/workspace.js:38`
+
+## `syncWorkspaceIndicator` — function, line 37
+- **called from:**
 - `static/js/workspace.js:37`
+- `static/js/workspace.js:58`
+- `static/js/workspace.js:64`
+- `static/js/workspace.js:225`
 
-## `syncWorkspaceIndicator` — function, line 36
+## `applyMode` — function, line 57
 - **called from:**
-- `static/js/workspace.js:36`
+- `static/app.js:1905`
 - `static/js/workspace.js:57`
-- `static/js/workspace.js:63`
-- `static/js/workspace.js:201`
 
-## `applyMode` — function, line 56
+## `setWorkspace` — function, line 61
 - **called from:**
-- `static/app.js:1849`
-- `static/js/workspace.js:56`
+- `static/js/chat.js:5216`
+- `static/js/slashCommands.js:1282`
+- `static/js/slashCommands.js:1294`
+- `static/js/workspace.js:61`
+- `static/js/workspace.js:79`
+- `static/js/workspace.js:95`
+- `static/js/workspace.js:105`
+- `static/js/workspace.js:198`
 
-## `setWorkspace` — function, line 60
-- **called from:**
-- `static/js/chat.js:3672`
-- `static/js/workspace.js:60`
-- `static/js/workspace.js:78`
-- `static/js/workspace.js:88`
-- `static/js/workspace.js:175`
-
-## `vetAndSetWorkspace` — function, line 72
+## `vetAndSetWorkspace` — function, line 73
 - **called from:**
 - `static/js/slashCommands.js:1275`
-- `static/js/workspace.js:72`
+- `static/js/workspace.js:73`
 
-## `clearWorkspace` — function, line 87
+## `loadDefaultWorkspace` — function, line 88
 - **called from:**
-- `static/js/slashCommands.js:1282`
-- `static/js/workspace.js:87`
+- `static/js/workspace.js:88`
+- `static/js/workspace.js:228`
 
-## `_load` — function, line 92
+## `clearWorkspace` — function, line 104
 - **called from:**
-- `core/auth.py:108`
+- `static/js/slashCommands.js:1285`
+- `static/js/workspace.js:104`
+- `static/js/workspace.js:238`
+
+## `_load` — function, line 109
+- **called from:**
+- `core/auth.py:126`
 - `routes/prefs_routes.py:32`
 - `routes/prefs_routes.py:58`
-- `src/bg_jobs.py:156`
-- `src/bg_jobs.py:194`
-- `src/bg_jobs.py:247`
-- `src/bg_jobs.py:255`
-- `src/bg_jobs.py:271`
+- `scripts/analyze_odysseus_eval_targets.py:122`
+- `scripts/summarize_odysseus_eval_delta.py:147`
+- `scripts/summarize_odysseus_eval_delta.py:150`
+- `src/agent_runtime/process_resources.py:171`
+- `src/bg_jobs.py:175`
+- `src/bg_jobs.py:244`
+- `src/bg_jobs.py:363`
+- `src/bg_jobs.py:375`
+- `src/bg_jobs.py:387`
+- `src/bg_jobs.py:397`
+- `src/bg_jobs.py:413`
+- `src/bg_jobs.py:457`
 - `src/foreground_model_routing.py:51`
 - `src/mcp_oauth.py:140`
 - `src/mcp_oauth.py:148`
-- `src/tools/research.py:54`
-- `src/tools/research.py:81`
+- `src/tools/research.py:55`
+- `src/tools/research.py:82`
 - `tests/cli/test_preset_cli_store.py:12`
 - `tests/test_auth_config_lock_concurrency.py:83`
-- `tests/test_bg_job_tools.py:42`
+- `tests/test_background_resource_identity.py:39`
+- `tests/test_background_resource_identity.py:114`
+- `tests/test_background_resource_identity.py:259`
+- `tests/test_background_resource_identity.py:270`
+- `tests/test_bg_job_tools.py:55`
 - `tests/test_bg_jobs_store.py:11`
 - `tests/test_bg_jobs_store.py:28`
-- `tests/test_foreground_model_routing.py:2021`
-- `tests/test_foreground_model_routing.py:2102`
+- `tests/test_foreground_model_routing.py:2105`
+- `tests/test_foreground_model_routing.py:2186`
 - `tests/test_gpu_compose_standalone.py:74`
 - `tests/test_gpu_compose_standalone.py:81`
 - `tests/test_gpu_compose_standalone.py:82`
@@ -89,102 +110,109 @@
 - `tests/test_gpu_compose_standalone.py:199`
 - `tests/test_gpu_compose_standalone.py:200`
 - `tests/test_mcp_oauth.py:116`
+- `tests/test_orphan_reaping.py:357`
+- `tests/test_orphan_reaping.py:382`
+- `tests/test_orphan_reaping.py:392`
 - `tests/test_prefs_routes.py:11`
 - `tests/test_prefs_routes.py:39`
+- `tests/test_runtime_resource_integration.py:272`
 - `tests/test_search_query_nonstring.py:26`
 - `tests/test_search_query_nonstring.py:37`
-- `static/js/workspace.js:92`
-- `static/js/workspace.js:135`
-- `static/js/workspace.js:189`
+- `tests/test_wave3_background_followup.py:35`
+- `static/js/workspace.js:109`
+- `static/js/workspace.js:152`
+- `static/js/workspace.js:212`
 
-## `_render` — function, line 99
+## `_render` — function, line 116
 - **called from:**
-- `static/js/calendar.js:137`
-- `static/js/calendar.js:220`
-- `static/js/calendar.js:265`
-- `static/js/calendar.js:269`
-- `static/js/calendar.js:298`
-- `static/js/calendar.js:331`
-- `static/js/calendar.js:356`
-- `static/js/calendar.js:496`
-- `static/js/calendar.js:750`
-- `static/js/calendar.js:753`
-- `static/js/calendar.js:793`
-- `static/js/calendar.js:796`
-- `static/js/calendar.js:803`
-- `static/js/calendar.js:1202`
-- `static/js/calendar.js:1477`
-- `static/js/calendar.js:1481`
-- `static/js/calendar.js:1485`
-- `static/js/calendar.js:1535`
-- `static/js/calendar.js:1539`
-- `static/js/calendar.js:1544`
-- `static/js/calendar.js:1845`
-- `static/js/calendar.js:1855`
-- `static/js/calendar.js:2089`
-- `static/js/calendar.js:2183`
-- `static/js/calendar.js:2192`
-- `static/js/calendar.js:2194`
-- `static/js/calendar.js:2200`
-- `static/js/calendar.js:2210`
-- `static/js/calendar.js:2226`
-- `static/js/calendar.js:2229`
-- `static/js/calendar.js:2232`
-- `static/js/calendar.js:2301`
-- `static/js/calendar.js:2333`
-- `static/js/calendar.js:2338`
-- `static/js/calendar.js:2385`
-- `static/js/calendar.js:2397`
-- `static/js/calendar.js:2473`
-- `static/js/calendar.js:2607`
-- `static/js/calendar.js:2613`
-- `static/js/calendar.js:2628`
-- `static/js/calendar.js:2670`
-- `static/js/calendar.js:2685`
-- `static/js/calendar.js:2708`
-- `static/js/calendar.js:2747`
-- `static/js/calendar.js:3130`
-- `static/js/calendar.js:3205`
-- `static/js/calendar.js:3340`
-- `static/js/calendar.js:3477`
-- `static/js/calendar.js:3527`
-- `static/js/calendar.js:3547`
-- `static/js/calendar.js:3566`
-- `static/js/calendar.js:3584`
-- `static/js/calendar.js:3675`
-- `static/js/calendar.js:3698`
-- `static/js/calendar.js:3713`
-- `static/js/group.js:64`
-- `static/js/group.js:78`
-- `static/js/group.js:115`
-- `static/js/group.js:314`
-- `static/js/slashAutocomplete.js:159`
-- … +6 more (grep the name in repo)
+- `tests/test_codeql_python_residual_closure.py:583`
+- `tests/test_codeql_python_residual_closure.py:586`
+- `tests/test_codeql_python_residual_closure.py:591`
+- `static/js/calendar.js:142`
+- `static/js/calendar.js:225`
+- `static/js/calendar.js:273`
+- `static/js/calendar.js:278`
+- `static/js/calendar.js:312`
+- `static/js/calendar.js:341`
+- `static/js/calendar.js:366`
+- `static/js/calendar.js:585`
+- `static/js/calendar.js:776`
+- `static/js/calendar.js:881`
+- `static/js/calendar.js:884`
+- `static/js/calendar.js:924`
+- `static/js/calendar.js:927`
+- `static/js/calendar.js:934`
+- `static/js/calendar.js:1342`
+- `static/js/calendar.js:1914`
+- `static/js/calendar.js:1918`
+- `static/js/calendar.js:1922`
+- `static/js/calendar.js:1972`
+- `static/js/calendar.js:1976`
+- `static/js/calendar.js:1981`
+- `static/js/calendar.js:2361`
+- `static/js/calendar.js:2373`
+- `static/js/calendar.js:2650`
+- `static/js/calendar.js:2745`
+- `static/js/calendar.js:2761`
+- `static/js/calendar.js:2768`
+- `static/js/calendar.js:2775`
+- `static/js/calendar.js:2785`
+- `static/js/calendar.js:2801`
+- `static/js/calendar.js:2804`
+- `static/js/calendar.js:2807`
+- `static/js/calendar.js:2876`
+- `static/js/calendar.js:2924`
+- `static/js/calendar.js:2929`
+- `static/js/calendar.js:2976`
+- `static/js/calendar.js:2990`
+- `static/js/calendar.js:3066`
+- `static/js/calendar.js:3217`
+- `static/js/calendar.js:3223`
+- `static/js/calendar.js:3238`
+- `static/js/calendar.js:3280`
+- `static/js/calendar.js:3301`
+- `static/js/calendar.js:3324`
+- `static/js/calendar.js:3366`
+- `static/js/calendar.js:3802`
+- `static/js/calendar.js:3880`
+- `static/js/calendar.js:4015`
+- `static/js/calendar.js:4227`
+- `static/js/calendar.js:4244`
+- `static/js/calendar.js:4304`
+- `static/js/calendar.js:4324`
+- `static/js/calendar.js:4344`
+- `static/js/calendar.js:4366`
+- `static/js/calendar.js:4504`
+- `static/js/calendar.js:4547`
+- `static/js/calendar.js:4570`
+- … +12 more (grep the name in repo)
 
-## `_navigate` — function, line 133
+## `_navigate` — function, line 150
 - **called from:**
-- `static/js/workspace.js:122`
-- `static/js/workspace.js:133`
-- `static/js/workspace.js:171`
+- `static/js/workspace.js:139`
+- `static/js/workspace.js:150`
+- `static/js/workspace.js:194`
 
-## `_getModal` — function, line 141
+## `_getModal` — function, line 158
 - **called from:**
-- `static/js/calendar.js:668`
-- `static/js/calendar.js:3491`
-- `static/js/workspace.js:141`
-- `static/js/workspace.js:186`
+- `static/js/calendar.js:757`
+- `static/js/calendar.js:4231`
+- `static/js/calendar.js:4265`
+- `static/js/workspace.js:158`
+- `static/js/workspace.js:209`
 
-## `openWorkspaceBrowser` — function, line 185
+## `openWorkspaceBrowser` — function, line 208
 - **called from:**
-- `static/js/slashCommands.js:1287`
-- `static/js/workspace.js:185`
+- `static/js/slashCommands.js:1290`
+- `static/js/workspace.js:208`
 
-## `closeWorkspaceBrowser` — function, line 195
+## `closeWorkspaceBrowser` — function, line 218
 - **called from:**
-- `static/js/workspace.js:177`
-- `static/js/workspace.js:195`
+- `static/js/workspace.js:187`
+- `static/js/workspace.js:200`
+- `static/js/workspace.js:218`
 
-## `initWorkspace` — function, line 199
+## `initWorkspace` — function, line 222
 - **called from:**
-- `static/app.js:1980`
-- `static/js/workspace.js:199`
+- `static/app.js:2038`
+- `static/js/workspace.js:222`

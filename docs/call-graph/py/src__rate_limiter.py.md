@@ -4,9 +4,9 @@
 
 ## `RateLimiter` — class, line 9
 - **called from:**
-- `routes/auth_routes.py:119`
-- `routes/auth_routes.py:120`
-- `routes/auth_routes.py:121`
+- `routes/auth_routes.py:126`
+- `routes/auth_routes.py:127`
+- `routes/auth_routes.py:128`
 - `tests/test_rate_limiter.py:10`
 - `tests/test_rate_limiter.py:16`
 - `tests/test_rate_limiter.py:22`
@@ -19,29 +19,51 @@
 - `core/exceptions.py:15`
 - `core/exceptions.py:22`
 - `core/exceptions.py:29`
-- `routes/email_routes.py:1455`
-- `src/builtin_actions.py:428`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
 - `src/outbound_fetch.py:220`
-- `tests/test_agent_state_dir_confinement.py:648`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
 - `tests/test_calendar_default_transaction.py:456`
 - `tests/test_chat_attachment_picker.py:10`
-- `tests/test_deep_research_extraction_controls.py:14`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
 - `tests/test_embedding_lanes.py:257`
 - `tests/test_embedding_lanes.py:284`
 - `tests/test_integrations_store_shape.py:46`
-- `tests/test_retired_settings_interfaces.py:30`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
 - `tests/test_upload_handler_atomicity.py:42`
 - `tests/test_upload_multifile.py:154`
-- `static/js/cookbookDownload.js:148`
+- `static/js/cookbookDownload.js:155`
 
 ## `RateLimiter.check` — method, line 26
 - **called from:**
-- `routes/auth_routes.py:130`
-- `routes/auth_routes.py:148`
-- `routes/auth_routes.py:167`
-- `src/llm_core.py:3117`
-- `src/llm_core.py:3623`
-- `src/llm_core.py:3632`
+- `routes/auth_routes.py:152`
+- `routes/auth_routes.py:171`
+- `routes/auth_routes.py:191`
+- `src/llm_core.py:3535`
+- `src/llm_core.py:4155`
+- `src/llm_core.py:4164`
 - `tests/markdown_browser_check.py:80`
 - `tests/markdown_browser_check.py:82`
 - `tests/markdown_browser_check.py:84`
@@ -56,7 +78,22 @@
 - `tests/markdown_browser_check.py:117`
 - `tests/markdown_browser_check.py:118`
 - `tests/markdown_browser_check.py:126`
-- `tests/test_llm_core_fallback.py:1026`
+- `tests/test_draft_contact_evidence.py:17`
+- `tests/test_draft_contact_evidence.py:21`
+- `tests/test_draft_contact_evidence.py:25`
+- `tests/test_draft_contact_evidence.py:33`
+- `tests/test_llm_core_fallback.py:1048`
+- `tests/test_llm_core_fallback.py:1061`
+- `tests/test_llm_core_fallback.py:1067`
+- `tests/test_llm_core_fallback.py:1077`
+- `tests/test_llm_core_fallback.py:1078`
+- `tests/test_llm_core_fallback.py:1091`
+- `tests/test_llm_core_fallback.py:1122`
+- `tests/test_llm_core_fallback.py:1130`
+- `tests/test_llm_core_fallback.py:1144`
+- `tests/test_llm_core_fallback.py:1162`
+- `tests/test_llm_core_fallback.py:1180`
+- `tests/test_llm_core_fallback.py:1201`
 - `tests/test_rate_limiter.py:11`
 - `tests/test_rate_limiter.py:12`
 - `tests/test_rate_limiter.py:13`
@@ -71,7 +108,8 @@
 - `tests/test_rate_limiter.py:35`
 - `tests/test_rate_limiter.py:42`
 - `tests/test_rate_limiter.py:45`
-- `static/js/skills.js:1352`
+- `static/js/editor/text-layer.js:55`
+- `static/js/skills.js:1632`
 
 ## `RateLimiter._maybe_cleanup` — method, line 41
 - **called from:**

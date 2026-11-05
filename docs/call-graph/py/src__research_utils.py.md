@@ -4,15 +4,16 @@
 
 ## `strip_thinking` — function, line 12
 - **called from:**
-- `routes/chat_routes.py:3285`
-- `src/deep_research.py:394`
-- `src/deep_research.py:724`
-- `src/research_handler.py:165`
-- `src/research_handler.py:192`
-- `src/research_handler.py:852`
-- `src/research_handler.py:903`
-- `src/task_scheduler.py:2118`
-- `src/visual_report.py:1742`
+- `routes/chat_routes.py:5762`
+- `src/background_tool_jobs.py:162`
+- `src/deep_research.py:640`
+- `src/deep_research.py:1758`
+- `src/research_handler.py:181`
+- `src/research_handler.py:208`
+- `src/research_handler.py:1081`
+- `src/research_handler.py:1135`
+- `src/task_scheduler.py:2312`
+- `src/visual_report.py:2750`
 - `tests/test_research_utils.py:9`
 - `tests/test_research_utils.py:13`
 - `tests/test_research_utils.py:17`
@@ -24,13 +25,13 @@
 - `tests/test_research_utils.py:44`
 - `tests/test_research_utils.py:50`
 
-## `is_low_quality` — function, line 55
+## `is_low_quality` — function, line 62
 - **called from:**
 - `services/research/research_handler.py:194`
 - `services/research/research_handler.py:364`
-- `src/deep_research.py:651`
-- `src/research_handler.py:535`
-- `src/research_handler.py:557`
+- `src/deep_research.py:1388`
+- `src/research_handler.py:662`
+- `src/research_handler.py:685`
 - `tests/test_research_utils.py:57`
 - `tests/test_research_utils.py:60`
 - `tests/test_research_utils.py:63`

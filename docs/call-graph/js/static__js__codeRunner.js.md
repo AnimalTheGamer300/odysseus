@@ -1,212 +1,217 @@
 # `static/js/codeRunner.js` — definitions & call sites
 
-13 definitions (regex-based, best-effort).
+14 definitions (regex-based, best-effort).
 **Exports:** `default`, `run`, `runHTML`, `runJavaScript`, `runPython`, `runServer`
 
 ## `getOrCreatePanel` — function, line 16
 - **called from:**
 - `static/js/codeRunner.js:16`
-- `static/js/codeRunner.js:389`
+- `static/js/codeRunner.js:399`
 
 ## `showLoading` — function, line 32
 - **called from:**
 - `static/js/codeRunner.js:32`
-- `static/js/codeRunner.js:188`
 - `static/js/codeRunner.js:199`
-- `static/js/codeRunner.js:245`
-- `static/js/codeRunner.js:312`
+- `static/js/codeRunner.js:210`
+- `static/js/codeRunner.js:256`
+- `static/js/codeRunner.js:323`
 
-## `showOutput` — function, line 39
+## `showEmpty` — function, line 36
 - **called from:**
-- `static/js/codeRunner.js:39`
-- `static/js/codeRunner.js:194`
-- `static/js/codeRunner.js:229`
-- `static/js/codeRunner.js:231`
-- `static/js/codeRunner.js:233`
-- `static/js/codeRunner.js:236`
-- `static/js/codeRunner.js:260`
-- `static/js/codeRunner.js:276`
-- `static/js/codeRunner.js:278`
-- `static/js/codeRunner.js:280`
-- `static/js/codeRunner.js:333`
-- `static/js/codeRunner.js:341`
-- `static/js/codeRunner.js:343`
-- `static/js/codeRunner.js:352`
-- `static/js/codeRunner.js:365`
-- `static/js/codeRunner.js:374`
+- `static/js/codeRunner.js:36`
+- `static/js/codeRunner.js:401`
 
-## `addCopyBtn_unused` — function, line 93
+## `showOutput` — function, line 44
 - **called from:**
-- `static/js/codeRunner.js:93`
-
-## `addCloseBtn` — function, line 140
-- **called from:**
-- `static/js/codeRunner.js:140`
-- `static/js/codeRunner.js:195`
-- `static/js/codeRunner.js:238`
-- `static/js/codeRunner.js:261`
-- `static/js/codeRunner.js:282`
-- `static/js/codeRunner.js:354`
-- `static/js/codeRunner.js:366`
-- `static/js/codeRunner.js:375`
-
-## `loadPyodide` — function, line 145
-- **called from:**
-- `static/js/codeRunner.js:145`
-- `static/js/codeRunner.js:158`
-- `static/js/codeRunner.js:192`
-
-## `runPython` — function, line 187
-- **called from:**
-- `static/js/codeRunner.js:187`
-
-## `runJavaScript` — function, line 244
-- **called from:**
+- `static/js/codeRunner.js:44`
+- `static/js/codeRunner.js:205`
+- `static/js/codeRunner.js:240`
+- `static/js/codeRunner.js:242`
 - `static/js/codeRunner.js:244`
-- `static/js/codeRunner.js:396`
-- `static/js/document.js:9130`
+- `static/js/codeRunner.js:247`
+- `static/js/codeRunner.js:271`
+- `static/js/codeRunner.js:287`
+- `static/js/codeRunner.js:289`
+- `static/js/codeRunner.js:291`
+- `static/js/codeRunner.js:344`
+- `static/js/codeRunner.js:352`
+- `static/js/codeRunner.js:354`
+- `static/js/codeRunner.js:363`
+- `static/js/codeRunner.js:376`
+- `static/js/codeRunner.js:385`
 
-## `cleanup` — arrow, line 253
+## `addCopyBtn_unused` — function, line 104
 - **called from:**
-- `static/js/calendar.js:2592`
-- `static/js/calendar.js:2629`
-- `static/js/calendar.js:2750`
-- `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
-- `static/js/codeRunner.js:262`
-- `static/js/codeRunner.js:283`
-- `static/js/compare/selector.js:102`
-- `static/js/compare/selector.js:877`
-- `static/js/compare/selector.js:910`
-- `static/js/compare/selector.js:914`
-- `static/js/compare/selector.js:963`
-- `static/js/compare/selector.js:1257`
-- `static/js/compare/selector.js:1282`
-- `static/js/compare/selector.js:1295`
-- `static/js/cookbookServe.js:1029`
-- `static/js/cookbookServe.js:1040`
-- `static/js/cookbookServe.js:1041`
-- `static/js/cookbookServe.js:1050`
-- `static/js/cookbookServe.js:1052`
-- `static/js/cookbookServe.js:1057`
-- `static/js/document.js:3847`
-- `static/js/document.js:3848`
-- `static/js/document.js:3849`
-- `static/js/document.js:4393`
-- `static/js/document.js:4400`
-- `static/js/document.js:4442`
-- `static/js/dragSort.js:26`
-- `static/js/editor/slider-ux.js:179`
-- `static/js/editor/slider-ux.js:188`
-- `static/js/gallery.js:1665`
-- `static/js/gallery.js:1674`
-- `static/js/gallery.js:1818`
-- `static/js/gallery.js:1830`
-- `static/js/gallery.js:1834`
-- `static/js/galleryEditor.js:1863`
-- `static/js/galleryEditor.js:1952`
-- `static/js/galleryEditor.js:1987`
-- `static/js/galleryEditor.js:2663`
-- `static/js/galleryEditor.js:2664`
-- `static/js/galleryEditor.js:2667`
-- `static/js/galleryEditor.js:2668`
-- `static/js/galleryEditor.js:2670`
-- `static/js/galleryEditor.js:3958`
-- `static/js/galleryEditor.js:3969`
-- `static/js/galleryEditor.js:3971`
-- `static/js/galleryEditor.js:3972`
-- `static/js/galleryEditor.js:3975`
-- `static/js/settings.js:1928`
-- `static/js/settings.js:1938`
-- `static/js/settings.js:1969`
-- `static/js/skills.js:1454`
-- `static/js/skills.js:1463`
-- `static/js/skills.js:1464`
-- … +21 more (grep the name in repo)
+- `static/js/codeRunner.js:104`
 
-## `onMessage` — arrow, line 266
+## `addCloseBtn` — function, line 151
+- **called from:**
+- `static/js/codeRunner.js:151`
+- `static/js/codeRunner.js:206`
+- `static/js/codeRunner.js:249`
+- `static/js/codeRunner.js:272`
+- `static/js/codeRunner.js:293`
+- `static/js/codeRunner.js:365`
+- `static/js/codeRunner.js:377`
+- `static/js/codeRunner.js:386`
+
+## `loadPyodide` — function, line 156
+- **called from:**
+- `static/js/codeRunner.js:156`
+- `static/js/codeRunner.js:169`
+- `static/js/codeRunner.js:203`
+
+## `runPython` — function, line 198
+- **called from:**
+- `static/js/codeRunner.js:198`
+
+## `runJavaScript` — function, line 255
+- **called from:**
+- `static/js/codeRunner.js:255`
+- `static/js/codeRunner.js:410`
+- `static/js/document.js:14564`
+
+## `cleanup` — arrow, line 264
+- **called from:**
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
+- `static/js/compare/selector.js:102`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
+- `static/js/dragSort.js:26`
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
+
+## `onMessage` — arrow, line 277
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `runServer` — function, line 311
+## `runServer` — function, line 322
 - **called from:**
-- `static/js/codeRunner.js:311`
-- `static/js/codeRunner.js:392`
-- `static/js/codeRunner.js:394`
-- `static/js/document.js:9120`
-- `static/js/document.js:9125`
+- `static/js/codeRunner.js:322`
+- `static/js/codeRunner.js:406`
+- `static/js/codeRunner.js:408`
+- `static/js/document.js:14554`
+- `static/js/document.js:14559`
 
-## `runHTML` — function, line 360
+## `runHTML` — function, line 371
 - **called from:**
-- `static/js/codeRunner.js:360`
-- `static/js/codeRunner.js:398`
+- `static/js/codeRunner.js:371`
+- `static/js/codeRunner.js:412`
 
-## `run` — function, line 381
+## `run` — function, line 392
 - **called from:**
-- `app.py:1312`
-- `core/platform_compat.py:124`
-- `core/platform_compat.py:406`
-- `core/platform_compat.py:447`
+- `app.py:1228`
+- `app.py:1530`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:469`
 - `launcher.py:114`
 - `launcher.py:149`
-- `mcp_servers/email_server.py:2906`
-- `mcp_servers/email_server.py:2912`
-- `mcp_servers/email_server.py:2912`
-- `mcp_servers/image_gen_server.py:180`
-- `mcp_servers/image_gen_server.py:184`
-- `mcp_servers/image_gen_server.py:184`
+- `mcp_servers/email_server.py:4704`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/image_gen_server.py:188`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/image_gen_server.py:192`
 - `mcp_servers/memory_server.py:281`
 - `mcp_servers/memory_server.py:285`
 - `mcp_servers/memory_server.py:285`
 - `mcp_servers/rag_server.py:156`
 - `mcp_servers/rag_server.py:160`
 - `mcp_servers/rag_server.py:160`
-- `routes/cookbook_routes.py:1627`
-- `routes/cookbook_routes.py:3720`
-- `routes/cookbook_routes.py:3733`
-- `routes/cookbook_routes.py:3744`
-- `routes/cookbook_routes.py:3805`
-- `routes/cookbook_routes.py:4271`
-- `routes/cookbook_routes.py:4273`
-- `routes/cookbook_routes.py:4294`
-- `routes/cookbook_routes.py:4296`
-- `routes/cookbook_routes.py:4457`
-- `routes/cookbook_routes.py:4467`
-- `routes/hwfit_routes.py:128`
+- `routes/cookbook_routes.py:1527`
+- `routes/cookbook_routes.py:3626`
+- `routes/cookbook_routes.py:3639`
+- `routes/cookbook_routes.py:3650`
+- `routes/cookbook_routes.py:3711`
+- `routes/cookbook_routes.py:4177`
+- `routes/cookbook_routes.py:4179`
+- `routes/cookbook_routes.py:4201`
+- `routes/cookbook_routes.py:4203`
+- `routes/cookbook_routes.py:4368`
+- `routes/cookbook_routes.py:4378`
+- `routes/document/document_routes.py:489`
+- `routes/email/email_routes.py:5062`
+- `routes/email/email_routes.py:6861`
+- `routes/hwfit_routes.py:147`
+- `scripts/build_frontend.py:69`
+- `scripts/build_frontend.py:70`
+- `scripts/check_brotli.py:39`
+- `scripts/css_snapshot.py:92`
+- `scripts/css_snapshot.py:131`
 - `scripts/diffusion_server.py:1506`
 - `scripts/dump_agent_prompt.py:415`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_qwen_tool_groups_stream.py:276`
 - `scripts/mlx_image_server.py:207`
 - `scripts/mlx_image_server.py:281`
 - `scripts/mlx_image_server.py:379`
 - `scripts/mlx_image_server.py:466`
 - `scripts/pr_blocker_audit.py:253`
-- `services/hwfit/hardware.py:45`
-- `src/builtin_mcp.py:293`
-- `src/document_processor.py:548`
-- `src/document_processor.py:616`
-- `src/endpoint_resolver.py:184`
-- `src/event_bus.py:43`
-- `src/model_discovery.py:49`
-- `tests/run_focus.py:321`
-- `tests/run_order_report.py:152`
-- `tests/test_admin_tools_registry.py:44`
-- `tests/test_admin_tools_registry.py:56`
-- `tests/test_agent_round_model_provenance_ui.py:35`
-- `tests/test_agent_rounds_exhausted.py:18`
-- `tests/test_agent_state_dir_confinement.py:126`
-- `tests/test_agent_state_dir_confinement.py:129`
-- `tests/test_agent_state_dir_confinement.py:132`
-- `tests/test_agent_state_dir_confinement.py:450`
-- `tests/test_agent_state_dir_confinement.py:453`
-- `tests/test_agent_state_dir_confinement.py:474`
-- `tests/test_agent_state_dir_confinement.py:477`
-- `tests/test_agent_state_dir_confinement.py:609`
-- `tests/test_agent_state_dir_confinement.py:629`
-- `tests/test_agent_state_dir_confinement.py:689`
-- … +553 more (grep the name in repo)
+- `scripts/probe_browser_budget.py:112`
+- `scripts/probe_empty_search_recovery.py:90`
+- `scripts/probe_fixed_search_evidence.py:81`
+- `scripts/ref_parity_audit.py:142`
+- `scripts/ref_parity_audit.py:232`
+- `scripts/review_sft_environment_expansion.py:115`
+- `scripts/run_odysseus_cases_chunked.py:107`
+- `scripts/run_odysseus_search_teacher_pipeline.py:305`
+- `scripts/run_odysseus_search_teacher_pipeline.py:412`
+- `scripts/test_clean_tool_loop.py:209`
+- … +1417 more (grep the name in repo)

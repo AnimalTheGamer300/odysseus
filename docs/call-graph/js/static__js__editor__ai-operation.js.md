@@ -1,0 +1,277 @@
+# `static/js/editor/ai-operation.js` — definitions & call sites
+
+6 definitions (regex-based, best-effort).
+**Exports:** `beginAIOperation`, `decodeAIImage`
+
+## `beginAIOperation` — function, line 2
+- **called from:**
+- `static/js/editor/ai-inpaint.js:90`
+- `static/js/editor/ai-operation.js:2`
+- `static/js/editor/ai-tool-runner.js:49`
+- `static/js/editor/ai-tools-misc.js:108`
+- `static/js/editor/ai-tools-misc.js:174`
+
+## `cancel` — arrow, line 8
+- **called from:**
+- `app.py:1459`
+- `app.py:1470`
+- `routes/editor_agent_routes.py:1414`
+- `routes/email/email_routes.py:6869`
+- `routes/shell_routes.py:957`
+- `routes/shell_routes.py:1342`
+- `services/research/research_handler.py:140`
+- `services/research/research_handler.py:143`
+- `services/shell/service.py:163`
+- `services/skills/job_coordinator.py:215`
+- `src/agent_loop.py:26017`
+- `src/agent_loop.py:34321`
+- `src/agent_runs.py:86`
+- `src/agent_runs.py:207`
+- `src/agent_runs.py:210`
+- `src/agent_runs.py:249`
+- `src/agent_runs.py:298`
+- `src/ai_interaction.py:1822`
+- `src/ai_interaction.py:2094`
+- `src/clean_agent_preview.py:5609`
+- `src/clean_agent_preview.py:5617`
+- `src/containment.py:1172`
+- `src/containment.py:1182`
+- `src/llm_core.py:141`
+- `src/mcp_manager.py:440`
+- `src/mcp_oauth.py:63`
+- `src/research_handler.py:502`
+- `src/research_handler.py:505`
+- `src/task_scheduler.py:122`
+- `src/task_scheduler.py:733`
+- `src/task_scheduler.py:741`
+- `src/task_scheduler.py:1063`
+- `src/task_scheduler.py:1145`
+- `src/task_scheduler.py:2470`
+- `src/task_scheduler.py:2495`
+- `tests/test_agent_editor_routes.py:1008`
+- `tests/test_agent_editor_routes.py:1962`
+- `tests/test_agent_editor_routes.py:1971`
+- `tests/test_browser_identity_transport.py:39`
+- `tests/test_browser_identity_transport.py:75`
+- `tests/test_builtin_mcp_bg_tasks.py:101`
+- `tests/test_client_tool_routing.py:867`
+- `tests/test_compare_stop_disconnect_poll.py:377`
+- `tests/test_compare_stop_disconnect_poll.py:434`
+- `tests/test_completion_boundary.py:319`
+- `tests/test_completion_boundary.py:324`
+- `tests/test_containment_enforcement.py:382`
+- `tests/test_containment_enforcement.py:384`
+- `tests/test_containment_enforcement.py:408`
+- `tests/test_containment_enforcement.py:410`
+- `tests/test_cookbook_cache_scan_isolation.py:102`
+- `tests/test_email_summary_llm.py:192`
+- `tests/test_email_urgency_checkpoint.py:457`
+- `tests/test_email_urgency_checkpoint.py:592`
+- `tests/test_host_shell_polling.py:198`
+- `tests/test_nested_invocation_ownership.py:93`
+- `tests/test_nested_invocation_ownership.py:96`
+- `tests/test_nested_invocation_ownership.py:448`
+- `tests/test_nested_invocation_ownership.py:453`
+- `tests/test_review_calendar_invitation.py:135`
+- … +82 more (grep the name in repo)
+
+## `finish` — method?, line 19
+- **called from:**
+- `src/agent_loop.py:32976`
+- `src/agent_loop.py:32989`
+- `src/agent_loop.py:32997`
+- `src/agent_loop.py:34857`
+- `src/agent_runtime/journal.py:267`
+- `src/agent_runtime/journal.py:269`
+- `src/containment.py:1512`
+- `src/containment.py:1518`
+- `src/containment.py:1527`
+- `src/containment.py:1542`
+- `src/containment.py:1545`
+- `src/pdf_forms.py:338`
+- `tests/test_effect_verification_adapters.py:55`
+- `tests/test_effect_verification_adapters.py:121`
+- `tests/test_effect_verification_adapters.py:215`
+- `tests/test_effect_verification_adapters.py:431`
+- `static/js/calendar.js:34`
+- `static/js/calendar.js:42`
+- `static/js/calendar.js:43`
+- `static/js/calendar.js:45`
+- `static/js/chat.js:2122`
+- `static/js/colorPicker.js:237`
+- `static/js/colorPicker.js:243`
+- `static/js/editor/adjustment-layer.js:205`
+- `static/js/editor/adjustment-layer.js:211`
+- `static/js/editor/adjustment-layer.js:215`
+- `static/js/editor/ai-inpaint.js:280`
+- `static/js/editor/ai-operation.js:19`
+- `static/js/editor/ai-tool-runner.js:164`
+- `static/js/editor/ai-tools-misc.js:157`
+- `static/js/editor/ai-tools-misc.js:206`
+- `static/js/editor/effects.js:364`
+- `static/js/editor/effects.js:372`
+- `static/js/editor/effects.js:376`
+- `static/js/editor/layer-panel.js:1424`
+- `static/js/editor/layer-panel.js:1426`
+- `static/js/editor/layer-panel.js:1431`
+- `static/js/editor/precision-guides.js:210`
+- `static/js/editor/precision-guides.js:229`
+- `static/js/editor/tools/pen-path.js:39`
+- `static/js/editor/tools/pen-path.js:46`
+- `static/js/features/notes/ui/cardInteractions.js:234`
+- `static/js/features/notes/ui/cardInteractions.js:238`
+- `static/js/features/notes/ui/colors.js:63`
+- `static/js/features/notes/ui/colors.js:71`
+- `static/js/features/notes/ui/colors.js:72`
+- `static/js/features/notes/ui/colors.js:75`
+- `static/js/fileHandler.js:96`
+- `static/js/fileHandler.js:134`
+- `static/js/fileHandler.js:135`
+- `static/js/fileHandler.js:172`
+- `static/js/fileHandler.js:175`
+- `static/js/gallery.js:2484`
+- `static/js/gallery.js:2487`
+- `static/js/galleryEditor.js:430`
+- `static/js/galleryEditor.js:4572`
+- `static/js/galleryEditor.js:4573`
+- `static/js/galleryEditor.js:4575`
+- `static/js/galleryEditor.js:4655`
+- `static/js/galleryEditor.js:4659`
+- … +4 more (grep the name in repo)
+
+## `decodeAIImage` — function, line 27
+- **called from:**
+- `static/js/editor/ai-inpaint.js:182`
+- `static/js/editor/ai-operation.js:27`
+- `static/js/editor/ai-tool-runner.js:101`
+- `static/js/editor/ai-tools-misc.js:131`
+- `static/js/editor/ai-tools-misc.js:187`
+- `static/js/editor/image-generation.js:49`
+
+## `cleanup` — arrow, line 30
+- **called from:**
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
+- `static/js/compare/selector.js:102`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
+- `static/js/dragSort.js:26`
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
+
+## `abort` — arrow, line 34
+- **called from:**
+- `tests/test_codeql_python_residual_followup.py:148`
+- `static/js/admin.js:887`
+- `static/js/admin.js:895`
+- `static/js/admin.js:1981`
+- `static/js/admin.js:2298`
+- `static/js/admin.js:3909`
+- `static/js/admin.js:4054`
+- `static/js/chat.js:1961`
+- `static/js/chat.js:2995`
+- `static/js/chat.js:3433`
+- `static/js/chat.js:3443`
+- `static/js/chat.js:3449`
+- `static/js/chat.js:6472`
+- `static/js/chat.js:6936`
+- `static/js/chat.js:7036`
+- `static/js/chat.js:7061`
+- `static/js/chat.js:7206`
+- `static/js/compare/index.js:214`
+- `static/js/compare/panes.js:375`
+- `static/js/compare/panes.js:391`
+- `static/js/compare/panes.js:815`
+- `static/js/compare/state.js:46`
+- `static/js/compare/stream.js:378`
+- `static/js/compare/stream.js:381`
+- `static/js/cookbook-diagnosis.js:35`
+- `static/js/cookbook-diagnosis.js:37`
+- `static/js/cookbook-diagnosis.js:39`
+- `static/js/cookbook-hwfit.js:47`
+- `static/js/cookbook-hwfit.js:49`
+- `static/js/cookbook-hwfit.js:51`
+- `static/js/cookbook-hwfit.js:707`
+- `static/js/cookbook-hwfit.js:1110`
+- `static/js/cookbook.js:48`
+- `static/js/cookbook.js:1069`
+- `static/js/cookbook.js:1072`
+- `static/js/cookbook.js:3670`
+- `static/js/cookbookDownload.js:39`
+- `static/js/cookbookDownload.js:277`
+- `static/js/cookbookDownload.js:285`
+- `static/js/cookbookRunning.js:997`
+- `static/js/cookbookRunning.js:1204`
+- `static/js/cookbookRunning.js:1509`
+- `static/js/cookbookRunning.js:2614`
+- `static/js/cookbookRunning.js:2931`
+- `static/js/cookbookRunning.js:3110`
+- `static/js/cookbookRunning.js:3873`
+- `static/js/cookbookSchedule.js:34`
+- `static/js/cookbookSchedule.js:36`
+- `static/js/cookbookSchedule.js:38`
+- `static/js/cookbookServe.js:51`
+- `static/js/cookbookServe.js:53`
+- `static/js/cookbookServe.js:55`
+- `static/js/cookbookServe.js:4242`
+- `static/js/cookbookServe.js:4425`
+- `static/js/document.js:6274`
+- `static/js/document.js:6534`
+- `static/js/editor/ai-models.js:165`
+- `static/js/editor/ai-operation.js:12`
+- `static/js/editor/ai-operation.js:39`
+- `static/js/editor/canvas-events.js:59`
+- … +19 more (grep the name in repo)

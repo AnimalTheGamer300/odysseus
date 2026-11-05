@@ -1,766 +1,882 @@
 # `static/js/gallery.js` — definitions & call sites
 
-76 definitions (regex-based, best-effort).
+83 definitions (regex-based, best-effort).
 **Exports:** `closeGallery`, `default`, `isGalleryOpen`, `openGallery`, `openGalleryImage`
 
-## `_loadEditor` — function, line 29
+## `_loadEditor` — function, line 44
 - **called from:**
-- `static/js/gallery.js:29`
-- `static/js/gallery.js:43`
+- `static/js/gallery.js:44`
+- `static/js/gallery.js:58`
 
-## `openEditor` — function, line 39
+## `openEditor` — function, line 54
 - **called from:**
-- `static/js/chat.js:7741`
-- `static/js/chatRenderer.js:1574`
-- `static/js/gallery.js:39`
-- `static/js/gallery.js:53`
-- `static/js/gallery.js:1006`
-- `static/js/gallery.js:1121`
-- `static/js/gallery.js:1179`
-- `static/js/gallery.js:1182`
-- `static/js/gallery.js:1185`
-- `static/js/gallery.js:1778`
-- `static/js/galleryEditor.js:4068`
-- `static/js/galleryEditor.js:4165`
+- `static/js/chat.js:9355`
+- `static/js/chatRenderer.js:2152`
+- `static/js/gallery.js:54`
+- `static/js/gallery.js:68`
+- `static/js/gallery.js:111`
+- `static/js/gallery.js:1119`
+- `static/js/gallery.js:1243`
+- `static/js/gallery.js:1317`
+- `static/js/gallery.js:1321`
+- `static/js/gallery.js:1325`
+- `static/js/gallery.js:1348`
+- `static/js/gallery.js:2023`
+- `static/js/galleryEditor.js:463`
+- `static/js/galleryEditor.js:11515`
+- `static/js/galleryEditor.js:11541`
+- `static/js/galleryEditor.js:12721`
+- `static/js/galleryEditor.js:12723`
+- `static/js/galleryEditor.js:12953`
+- `static/js/galleryEditor.js:13781`
+- `static/js/galleryEditor.js:13936`
+- `static/js/galleryEditor.js:14291`
 
-## `closeEditor` — function, line 56
+## `closeEditor` — function, line 71
 - **called from:**
-- `static/js/gallery.js:24`
-- `static/js/gallery.js:56`
-- `static/js/gallery.js:57`
-- `static/js/gallery.js:1121`
-- `static/js/gallery.js:2158`
-- `static/js/gallery.js:2943`
-- `static/js/galleryEditor.js:4135`
-- `static/js/galleryEditor.js:4158`
-- `static/js/galleryEditor.js:4189`
-- `static/js/galleryEditor.js:4269`
-- `static/js/galleryEditor.js:4292`
+- `static/js/gallery.js:25`
+- `static/js/gallery.js:71`
+- `static/js/gallery.js:72`
+- `static/js/gallery.js:1243`
+- `static/js/gallery.js:2451`
+- `static/js/gallery.js:3338`
+- `static/js/galleryEditor.js:13903`
+- `static/js/galleryEditor.js:13929`
+- `static/js/galleryEditor.js:13968`
+- `static/js/galleryEditor.js:13975`
+- `static/js/galleryEditor.js:14060`
+- `static/js/galleryEditor.js:14089`
 
-## `isEditorOpen` — function, line 62
+## `isEditorOpen` — function, line 77
 - **called from:**
-- `static/js/gallery.js:24`
-- `static/js/gallery.js:62`
-- `static/js/gallery.js:63`
-- `static/js/gallery.js:1186`
-- `static/js/gallery.js:2129`
-- `static/js/gallery.js:2150`
-- `static/js/gallery.js:2225`
-- `static/js/gallery.js:2801`
-- `static/js/gallery.js:2809`
-- `static/js/gallery.js:2931`
-- `static/js/galleryEditor.js:4165`
-- `static/js/galleryEditor.js:4373`
+- `static/js/gallery.js:25`
+- `static/js/gallery.js:77`
+- `static/js/gallery.js:78`
+- `static/js/gallery.js:2419`
+- `static/js/gallery.js:2443`
+- `static/js/gallery.js:2518`
+- `static/js/gallery.js:3189`
+- `static/js/gallery.js:3197`
+- `static/js/gallery.js:3326`
+- `static/js/galleryEditor.js:13936`
+- `static/js/galleryEditor.js:14247`
 
-## `_updateTagCount` — function, line 80
+## `_readActiveEditorSession` — function, line 81
 - **called from:**
-- `static/js/gallery.js:80`
-- `static/js/gallery.js:170`
+- `static/js/gallery.js:81`
+- `static/js/gallery.js:97`
 
-## `_computeFetchLimit` — function, line 101
+## `_restoreActiveEditorAfterRefresh` — function, line 96
 - **called from:**
-- `static/js/gallery.js:101`
-- `static/js/gallery.js:126`
-- `static/js/gallery.js:2319`
+- `static/js/gallery.js:96`
 
-## `_fetchLibrary` — function, line 123
+## `_updateTagCount` — function, line 143
 - **called from:**
-- `static/js/gallery.js:73`
-- `static/js/gallery.js:123`
-- `static/js/gallery.js:290`
-- `static/js/gallery.js:455`
-- `static/js/gallery.js:461`
-- `static/js/gallery.js:467`
-- `static/js/gallery.js:475`
-- `static/js/gallery.js:703`
-- `static/js/gallery.js:1592`
-- `static/js/gallery.js:1832`
-- `static/js/gallery.js:1921`
-- `static/js/gallery.js:2235`
-- `static/js/gallery.js:2261`
-- `static/js/gallery.js:2270`
-- `static/js/gallery.js:2275`
-- `static/js/gallery.js:2280`
-- `static/js/gallery.js:2300`
-- `static/js/gallery.js:2321`
-- `static/js/gallery.js:2430`
-- `static/js/gallery.js:2470`
-- `static/js/gallery.js:2700`
-- `static/js/gallery.js:2863`
-- `static/js/gallery.js:2903`
+- `static/js/gallery.js:143`
+- `static/js/gallery.js:233`
 
-## `_fetchAlbums` — function, line 180
+## `_computeFetchLimit` — function, line 164
 - **called from:**
-- `static/js/gallery.js:180`
-- `static/js/gallery.js:291`
-- `static/js/gallery.js:762`
-- `static/js/gallery.js:783`
-- `static/js/gallery.js:802`
-- `static/js/gallery.js:848`
-- `static/js/gallery.js:874`
-- `static/js/gallery.js:1853`
-- `static/js/gallery.js:2862`
+- `static/js/gallery.js:164`
+- `static/js/gallery.js:189`
+- `static/js/gallery.js:2612`
 
-## `_patchImage` — function, line 194
+## `_fetchLibrary` — function, line 186
 - **called from:**
-- `static/js/gallery.js:194`
-- `static/js/gallery.js:1572`
-- `static/js/gallery.js:1939`
-- `static/js/gallery.js:1971`
-- `static/js/gallery.js:2764`
-- `static/js/gallery.js:2782`
-
-## `_deleteImage` — function, line 213
-- **called from:**
-- `static/js/gallery.js:213`
-- `static/js/gallery.js:1864`
-- `static/js/gallery.js:2687`
-
-## `_bulkUpload` — function, line 234
-- **called from:**
-- `static/js/gallery.js:234`
-- `static/js/gallery.js:379`
-- `static/js/gallery.js:745`
-- `static/js/gallery.js:847`
-- `static/js/gallery.js:1210`
-
-## `worker` — function, line 254
-- **called from:**
-- `static/js/gallery.js:254`
-
-## `_isMediaFile` — function, line 295
-- **called from:**
-- `static/js/gallery.js:295`
-- `static/js/gallery.js:315`
-- `static/js/gallery.js:364`
-
-## `_isVideoUrl` — function, line 305
-- **called from:**
-- `static/js/gallery.js:305`
-- `static/js/gallery.js:1277`
-- `static/js/gallery.js:1462`
-
-## `_walkEntryForImages` — function, line 311
-- **called from:**
-- `static/js/gallery.js:311`
-- `static/js/gallery.js:360`
-
-## `_handleGalleryDrop` — function, line 334
-- **called from:**
-- `static/js/gallery.js:334`
-- `static/js/gallery.js:2599`
-- `static/js/gallery.js:2619`
-
-## `_renderStats` — function, line 401
-- **called from:**
-- `static/js/gallery.js:174`
-- `static/js/gallery.js:401`
-- `static/js/gallery.js:1873`
-- `static/js/gallery.js:2704`
-- `static/js/gallery.js:2858`
-
-## `_renderTags` — function, line 406
-- **called from:**
-- `static/js/gallery.js:172`
-- `static/js/gallery.js:406`
-
-## `_renderModels` — function, line 416
-- **called from:**
-- `static/js/gallery.js:173`
-- `static/js/gallery.js:416`
-
-## `_renderAlbums` — function, line 427
-- **called from:**
-- `static/js/gallery.js:185`
-- `static/js/gallery.js:427`
-- `static/js/gallery.js:456`
-- `static/js/gallery.js:462`
-- `static/js/gallery.js:468`
-- `static/js/gallery.js:476`
-- `static/js/gallery.js:702`
-- `static/js/gallery.js:785`
-- `static/js/gallery.js:876`
-- `static/js/gallery.js:1593`
-- `static/js/gallery.js:1922`
-- `static/js/gallery.js:2262`
-- `static/js/gallery.js:2701`
-- `static/js/gallery.js:2856`
-
-## `_renderAlbumsTab` — function, line 490
-- **called from:**
-- `static/js/gallery.js:490`
-- `static/js/gallery.js:763`
-- `static/js/gallery.js:784`
-- `static/js/gallery.js:803`
-- `static/js/gallery.js:849`
-- `static/js/gallery.js:875`
-- `static/js/gallery.js:2221`
-- `static/js/gallery.js:2620`
-
-## `_filteredAlbums` — function, line 497
-- **called from:**
-- `static/js/gallery.js:497`
-- `static/js/gallery.js:542`
-- `static/js/gallery.js:571`
-- `static/js/gallery.js:583`
-
-## `_ensureAlbumsToolbar` — function, line 503
-- **called from:**
-- `static/js/gallery.js:493`
-- `static/js/gallery.js:503`
-
-## `_setAlbumSelectMode` — function, line 554
-- **called from:**
-- `static/js/gallery.js:535`
-- `static/js/gallery.js:538`
-- `static/js/gallery.js:554`
-- `static/js/gallery.js:873`
-
-## `_updateAlbumBulkCount` — function, line 564
-- **called from:**
-- `static/js/gallery.js:564`
-- `static/js/gallery.js:667`
-- `static/js/gallery.js:692`
-
-## `_renderAlbumsGrid` — function, line 577
-- **called from:**
-- `static/js/gallery.js:494`
+- `static/js/gallery.js:136`
+- `static/js/gallery.js:186`
+- `static/js/gallery.js:354`
 - `static/js/gallery.js:528`
-- `static/js/gallery.js:545`
-- `static/js/gallery.js:561`
-- `static/js/gallery.js:577`
+- `static/js/gallery.js:534`
+- `static/js/gallery.js:540`
+- `static/js/gallery.js:548`
+- `static/js/gallery.js:556`
+- `static/js/gallery.js:570`
+- `static/js/gallery.js:578`
+- `static/js/gallery.js:800`
+- `static/js/gallery.js:1837`
+- `static/js/gallery.js:2077`
+- `static/js/gallery.js:2166`
+- `static/js/gallery.js:2528`
+- `static/js/gallery.js:2554`
+- `static/js/gallery.js:2563`
+- `static/js/gallery.js:2568`
+- `static/js/gallery.js:2573`
+- `static/js/gallery.js:2593`
+- `static/js/gallery.js:2614`
+- `static/js/gallery.js:2788`
+- `static/js/gallery.js:2828`
+- `static/js/gallery.js:3083`
+- `static/js/gallery.js:3255`
+- `static/js/gallery.js:3298`
 
-## `_wireAlbumsEvents` — function, line 673
+## `_fetchAlbums` — function, line 244
 - **called from:**
-- `static/js/gallery.js:590`
-- `static/js/gallery.js:668`
-- `static/js/gallery.js:673`
-
-## `_bulkDeleteAlbums` — function, line 856
-- **called from:**
-- `static/js/gallery.js:550`
-- `static/js/gallery.js:856`
-
-## `_draftsShowLoading` — function, line 885
-- **called from:**
-- `static/js/gallery.js:885`
-- `static/js/gallery.js:929`
-
-## `_draftsHideLoading` — function, line 909
-- **called from:**
-- `static/js/gallery.js:909`
-- `static/js/gallery.js:939`
-
-## `_renderEditorDrafts` — function, line 921
-- **called from:**
-- `static/js/gallery.js:921`
-- `static/js/gallery.js:1028`
-- `static/js/gallery.js:1102`
-- `static/js/gallery.js:1174`
-
-## `_draftsPaint` — function, line 958
-- **called from:**
-- `static/js/gallery.js:952`
-- `static/js/gallery.js:958`
-- `static/js/gallery.js:996`
-- `static/js/gallery.js:1062`
-- `static/js/gallery.js:1067`
-- `static/js/gallery.js:1076`
-- `static/js/gallery.js:1081`
-
-## `_draftsSyncBulkBar` — function, line 1034
-- **called from:**
+- `static/js/gallery.js:244`
+- `static/js/gallery.js:355`
+- `static/js/gallery.js:859`
+- `static/js/gallery.js:880`
+- `static/js/gallery.js:899`
 - `static/js/gallery.js:945`
-- `static/js/gallery.js:997`
-- `static/js/gallery.js:1031`
-- `static/js/gallery.js:1034`
+- `static/js/gallery.js:971`
+- `static/js/gallery.js:2098`
+- `static/js/gallery.js:3254`
 
-## `_draftsWireOnce` — function, line 1057
+## `_patchImage` — function, line 258
 - **called from:**
-- `static/js/gallery.js:953`
-- `static/js/gallery.js:1057`
+- `static/js/gallery.js:258`
+- `static/js/gallery.js:1817`
+- `static/js/gallery.js:2184`
+- `static/js/gallery.js:2216`
+- `static/js/gallery.js:3147`
+- `static/js/gallery.js:3165`
 
-## `_humanRelativeDate` — function, line 1107
+## `_deleteImage` — function, line 277
 - **called from:**
-- `static/js/gallery.js:968`
-- `static/js/gallery.js:1107`
+- `static/js/gallery.js:277`
+- `static/js/gallery.js:2109`
+- `static/js/gallery.js:3070`
 
-## `_renderEditorLanding` — function, line 1118
+## `_bulkUpload` — function, line 298
 - **called from:**
-- `static/js/gallery.js:1118`
-- `static/js/gallery.js:1186`
-- `static/js/gallery.js:2225`
+- `static/js/gallery.js:298`
+- `static/js/gallery.js:443`
+- `static/js/gallery.js:842`
+- `static/js/gallery.js:944`
+- `static/js/gallery.js:1378`
 
-## `_wireUploadTile` — function, line 1195
+## `worker` — function, line 318
 - **called from:**
-- `static/js/gallery.js:1195`
-- `static/js/gallery.js:1248`
-- `static/js/gallery.js:1293`
+- `static/js/gallery.js:318`
 
-## `_renderSkeletons` — function, line 1219
+## `_isMediaFile` — function, line 359
 - **called from:**
-- `static/js/gallery.js:135`
-- `static/js/gallery.js:1219`
+- `static/js/gallery.js:359`
+- `static/js/gallery.js:379`
+- `static/js/gallery.js:428`
 
-## `_renderGrid` — function, line 1230
+## `_isVideoUrl` — function, line 369
 - **called from:**
-- `static/js/emailLibrary.js:1211`
-- `static/js/emailLibrary.js:1497`
-- `static/js/emailLibrary.js:1941`
-- `static/js/emailLibrary.js:1957`
-- `static/js/emailLibrary.js:1965`
-- `static/js/emailLibrary.js:2827`
-- `static/js/emailLibrary.js:3029`
-- `static/js/emailLibrary.js:3038`
-- `static/js/emailLibrary.js:3049`
-- `static/js/emailLibrary.js:3104`
-- `static/js/emailLibrary.js:3828`
-- `static/js/emailLibrary.js:3852`
-- `static/js/emailLibrary.js:4297`
-- `static/js/emailLibrary.js:4313`
-- `static/js/emailLibrary.js:4408`
-- `static/js/emailLibrary.js:4727`
-- `static/js/emailLibrary.js:4755`
-- `static/js/emailLibrary.js:4954`
-- `static/js/emailLibrary.js:7695`
-- `static/js/emailLibrary.js:7747`
-- `static/js/emailLibrary.js:7754`
-- `static/js/emailLibrary.js:7760`
-- `static/js/emailLibrary.js:7766`
-- `static/js/emailLibrary.js:7789`
-- `static/js/emailLibrary.js:8014`
-- `static/js/emailLibrary.js:8019`
-- `static/js/emailLibrary.js:8031`
-- `static/js/emailLibrary.js:8042`
-- `static/js/emailLibrary.js:8047`
-- `static/js/emailLibrary.js:8059`
-- `static/js/emailLibrary.js:8078`
-- `static/js/emailLibrary.js:8100`
-- `static/js/emailLibrary.js:8176`
-- `static/js/emailLibrary.js:8367`
-- `static/js/gallery.js:171`
-- `static/js/gallery.js:1230`
-- `static/js/gallery.js:1872`
-- `static/js/gallery.js:2704`
-- `static/js/gallery.js:2769`
-- `static/js/gallery.js:2857`
+- `static/js/gallery.js:369`
+- `static/js/gallery.js:1448`
+- `static/js/gallery.js:1457`
+- `static/js/gallery.js:1659`
 
-## `_openDetail` — function, line 1367
+## `_walkEntryForImages` — function, line 375
 - **called from:**
-- `static/js/gallery.js:1315`
-- `static/js/gallery.js:1367`
-- `static/js/gallery.js:1669`
-- `static/js/gallery.js:1726`
-- `static/js/gallery.js:1730`
-- `static/js/gallery.js:1757`
-- `static/js/gallery.js:1758`
-- `static/js/gallery.js:2916`
+- `static/js/gallery.js:375`
+- `static/js/gallery.js:424`
 
-## `_relAgo` — arrow, line 1375
+## `_handleGalleryDrop` — function, line 398
 - **called from:**
-- `static/js/gallery.js:1389`
-- `static/js/gallery.js:1403`
+- `static/js/gallery.js:398`
+- `static/js/gallery.js:2979`
+- `static/js/gallery.js:2999`
 
-## `_removeUserTag` — arrow, line 1568
+## `_renderStats` — function, line 465
 - **called from:**
-- `static/js/gallery.js:1582`
-- `static/js/gallery.js:1913`
+- `static/js/gallery.js:238`
+- `static/js/gallery.js:465`
+- `static/js/gallery.js:2118`
+- `static/js/gallery.js:3087`
+- `static/js/gallery.js:3250`
 
-## `_setMenu` — arrow, line 1603
+## `_filterPill` — function, line 470
 - **called from:**
-- `static/js/gallery.js:1604`
-- `static/js/gallery.js:1607`
-- `static/js/gallery.js:1609`
-- `static/js/gallery.js:1612`
+- `static/js/gallery.js:470`
+- `static/js/gallery.js:509`
+- `static/js/gallery.js:510`
+- `static/js/gallery.js:512`
+- `static/js/gallery.js:517`
 
-## `_toggleDetailFavorite` — arrow, line 1616
+## `_renderTags` — function, line 474
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `static/js/gallery.js:235`
+- `static/js/gallery.js:474`
 
-## `cleanup` — arrow, line 1658
+## `_renderModels` — function, line 484
 - **called from:**
-- `static/js/calendar.js:2592`
-- `static/js/calendar.js:2629`
-- `static/js/calendar.js:2750`
-- `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
-- `static/js/codeRunner.js:262`
-- `static/js/codeRunner.js:283`
-- `static/js/compare/selector.js:102`
-- `static/js/compare/selector.js:877`
-- `static/js/compare/selector.js:910`
-- `static/js/compare/selector.js:914`
-- `static/js/compare/selector.js:963`
-- `static/js/compare/selector.js:1257`
-- `static/js/compare/selector.js:1282`
-- `static/js/compare/selector.js:1295`
-- `static/js/cookbookServe.js:1029`
-- `static/js/cookbookServe.js:1040`
-- `static/js/cookbookServe.js:1041`
-- `static/js/cookbookServe.js:1050`
-- `static/js/cookbookServe.js:1052`
-- `static/js/cookbookServe.js:1057`
-- `static/js/document.js:3847`
-- `static/js/document.js:3848`
-- `static/js/document.js:3849`
-- `static/js/document.js:4393`
-- `static/js/document.js:4400`
-- `static/js/document.js:4442`
-- `static/js/dragSort.js:26`
-- `static/js/editor/slider-ux.js:179`
-- `static/js/editor/slider-ux.js:188`
-- `static/js/gallery.js:1665`
-- `static/js/gallery.js:1674`
-- `static/js/gallery.js:1818`
-- `static/js/gallery.js:1830`
-- `static/js/gallery.js:1834`
-- `static/js/galleryEditor.js:1863`
-- `static/js/galleryEditor.js:1952`
-- `static/js/galleryEditor.js:1987`
-- `static/js/galleryEditor.js:2663`
-- `static/js/galleryEditor.js:2664`
-- `static/js/galleryEditor.js:2667`
-- `static/js/galleryEditor.js:2668`
-- `static/js/galleryEditor.js:2670`
-- `static/js/galleryEditor.js:3958`
-- `static/js/galleryEditor.js:3969`
-- `static/js/galleryEditor.js:3971`
-- `static/js/galleryEditor.js:3972`
-- `static/js/galleryEditor.js:3975`
-- `static/js/settings.js:1928`
-- `static/js/settings.js:1938`
-- `static/js/settings.js:1969`
-- `static/js/skills.js:1454`
-- `static/js/skills.js:1463`
-- `static/js/skills.js:1464`
-- … +21 more (grep the name in repo)
+- `static/js/gallery.js:236`
+- `static/js/gallery.js:484`
 
-## `_done` — arrow, line 1712
+## `_renderAlbums` — function, line 495
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `_openInEditor` — arrow, line 1762
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `_rotate` — arrow, line 1791
-- **called from:**
+- `static/js/gallery.js:237`
+- `static/js/gallery.js:249`
+- `static/js/gallery.js:495`
+- `static/js/gallery.js:529`
+- `static/js/gallery.js:535`
+- `static/js/gallery.js:541`
+- `static/js/gallery.js:549`
+- `static/js/gallery.js:557`
+- `static/js/gallery.js:571`
+- `static/js/gallery.js:579`
+- `static/js/gallery.js:799`
+- `static/js/gallery.js:882`
+- `static/js/gallery.js:973`
 - `static/js/gallery.js:1838`
-- `static/js/gallery.js:1839`
+- `static/js/gallery.js:2167`
+- `static/js/gallery.js:2555`
+- `static/js/gallery.js:3084`
+- `static/js/gallery.js:3248`
 
-## `cleanup` — arrow, line 1807
+## `_renderAlbumsTab` — function, line 593
 - **called from:**
-- `static/js/calendar.js:2592`
-- `static/js/calendar.js:2629`
-- `static/js/calendar.js:2750`
-- `static/js/calendar.js:2759`
-- `static/js/chat.js:5889`
-- `static/js/chat.js:7465`
-- `static/js/chat.js:7473`
-- `static/js/chat.js:7479`
-- `static/js/chat.js:7482`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7533`
-- `static/js/codeRunner.js:262`
-- `static/js/codeRunner.js:283`
+- `static/js/gallery.js:593`
+- `static/js/gallery.js:860`
+- `static/js/gallery.js:881`
+- `static/js/gallery.js:900`
+- `static/js/gallery.js:946`
+- `static/js/gallery.js:972`
+- `static/js/gallery.js:2514`
+- `static/js/gallery.js:3000`
+
+## `_filteredAlbums` — function, line 600
+- **called from:**
+- `static/js/gallery.js:600`
+- `static/js/gallery.js:645`
+- `static/js/gallery.js:674`
+- `static/js/gallery.js:702`
+
+## `_ensureAlbumsToolbar` — function, line 606
+- **called from:**
+- `static/js/gallery.js:596`
+- `static/js/gallery.js:606`
+
+## `_setAlbumSelectMode` — function, line 657
+- **called from:**
+- `static/js/gallery.js:638`
+- `static/js/gallery.js:641`
+- `static/js/gallery.js:657`
+- `static/js/gallery.js:970`
+- `static/js/gallery.js:2890`
+
+## `_updateAlbumBulkCount` — function, line 667
+- **called from:**
+- `static/js/gallery.js:667`
+- `static/js/gallery.js:764`
+- `static/js/gallery.js:789`
+
+## `_albumActionTiles` — function, line 680
+- **called from:**
+- `static/js/gallery.js:680`
+- `static/js/gallery.js:704`
+- `static/js/gallery.js:718`
+
+## `_renderAlbumsGrid` — function, line 696
+- **called from:**
+- `static/js/gallery.js:597`
+- `static/js/gallery.js:631`
+- `static/js/gallery.js:648`
+- `static/js/gallery.js:664`
+- `static/js/gallery.js:696`
+
+## `_wireAlbumsEvents` — function, line 770
+- **called from:**
+- `static/js/gallery.js:705`
+- `static/js/gallery.js:765`
+- `static/js/gallery.js:770`
+
+## `_bulkDeleteAlbums` — function, line 953
+- **called from:**
+- `static/js/gallery.js:653`
+- `static/js/gallery.js:953`
+
+## `_draftsShowLoading` — function, line 982
+- **called from:**
+- `static/js/gallery.js:982`
+- `static/js/gallery.js:1031`
+
+## `_draftsHideLoading` — function, line 1006
+- **called from:**
+- `static/js/gallery.js:1006`
+- `static/js/gallery.js:1041`
+
+## `_draftsView` — arrow, line 1018
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `_renderEditorDrafts` — function, line 1023
+- **called from:**
+- `static/js/gallery.js:1023`
+- `static/js/gallery.js:1141`
+- `static/js/gallery.js:1224`
+- `static/js/gallery.js:1311`
+
+## `_draftsPaint` — function, line 1065
+- **called from:**
+- `static/js/gallery.js:1054`
+- `static/js/gallery.js:1065`
+- `static/js/gallery.js:1109`
+- `static/js/gallery.js:1177`
+- `static/js/gallery.js:1183`
+- `static/js/gallery.js:1189`
+- `static/js/gallery.js:1198`
+- `static/js/gallery.js:1203`
+- `static/js/gallery.js:2896`
+
+## `_draftsSyncBulkBar` — function, line 1147
+- **called from:**
+- `static/js/gallery.js:1047`
+- `static/js/gallery.js:1110`
+- `static/js/gallery.js:1144`
+- `static/js/gallery.js:1147`
+
+## `_draftsWireOnce` — function, line 1172
+- **called from:**
+- `static/js/gallery.js:1060`
+- `static/js/gallery.js:1172`
+
+## `_humanRelativeDate` — function, line 1229
+- **called from:**
+- `static/js/gallery.js:1081`
+- `static/js/gallery.js:1229`
+
+## `_renderEditorLanding` — function, line 1240
+- **called from:**
+- `static/js/gallery.js:38`
+- `static/js/gallery.js:1240`
+- `static/js/gallery.js:1331`
+- `static/js/gallery.js:2518`
+
+## `_wireUploadTile` — function, line 1363
+- **called from:**
+- `static/js/gallery.js:1363`
+- `static/js/gallery.js:1421`
+- `static/js/gallery.js:1476`
+
+## `_renderSkeletons` — function, line 1392
+- **called from:**
+- `static/js/gallery.js:198`
+- `static/js/gallery.js:1392`
+
+## `_renderGrid` — function, line 1403
+- **called from:**
+- `static/js/emailLibrary/index.js:1022`
+- `static/js/emailLibrary/index.js:1738`
+- `static/js/emailLibrary/index.js:1754`
+- `static/js/emailLibrary/index.js:1762`
+- `static/js/emailLibrary/index.js:2934`
+- `static/js/emailLibrary/index.js:2943`
+- `static/js/emailLibrary/index.js:2954`
+- `static/js/emailLibrary/index.js:3008`
+- `static/js/emailLibrary/index.js:3078`
+- `static/js/emailLibrary/index.js:3933`
+- `static/js/emailLibrary/index.js:3957`
+- `static/js/emailLibrary/index.js:4513`
+- `static/js/emailLibrary/index.js:4529`
+- `static/js/emailLibrary/index.js:4628`
+- `static/js/emailLibrary/index.js:5081`
+- `static/js/emailLibrary/index.js:5114`
+- `static/js/emailLibrary/index.js:5332`
+- `static/js/emailLibrary/index.js:5651`
+- `static/js/emailLibrary/index.js:5662`
+- `static/js/emailLibrary/menus.js:82`
+- `static/js/emailLibrary/menus.js:151`
+- `static/js/emailLibrary/menus.js:158`
+- `static/js/emailLibrary/menus.js:164`
+- `static/js/emailLibrary/menus.js:170`
+- `static/js/emailLibrary/menus.js:193`
+- `static/js/emailLibrary/menus.js:443`
+- `static/js/emailLibrary/menus.js:448`
+- `static/js/emailLibrary/menus.js:460`
+- `static/js/emailLibrary/menus.js:471`
+- `static/js/emailLibrary/menus.js:476`
+- `static/js/emailLibrary/menus.js:488`
+- `static/js/emailLibrary/menus.js:507`
+- `static/js/emailLibrary/menus.js:530`
+- `static/js/emailLibrary/menus.js:656`
+- `static/js/emailLibrary/menus.js:707`
+- `static/js/emailLibrary/menus.js:897`
+- `static/js/emailLibrary/settingsPage.js:638`
+- `static/js/emailLibrary/unsubscribe.js:468`
+- `static/js/emailLibrary/unsubscribe.js:573`
+- `static/js/emailLibrary/unsubscribe.js:642`
+- `static/js/gallery.js:234`
+- `static/js/gallery.js:1403`
+- `static/js/gallery.js:2117`
+- `static/js/gallery.js:3087`
+- `static/js/gallery.js:3152`
+- `static/js/gallery.js:3249`
+
+## `_openDetail` — function, line 1558
+- **called from:**
+- `static/js/gallery.js:1498`
+- `static/js/gallery.js:1506`
+- `static/js/gallery.js:1558`
+- `static/js/gallery.js:1914`
+- `static/js/gallery.js:1971`
+- `static/js/gallery.js:1975`
+- `static/js/gallery.js:2002`
+- `static/js/gallery.js:2003`
+- `static/js/gallery.js:3311`
+
+## `_relAgo` — arrow, line 1566
+- **called from:**
+- `static/js/gallery.js:1580`
+- `static/js/gallery.js:1598`
+
+## `_openSourceChat` — arrow, line 1722
+- **called from:**
+- `static/js/gallery.js:1737`
+
+## `_removeUserTag` — arrow, line 1813
+- **called from:**
+- `static/js/gallery.js:1827`
+- `static/js/gallery.js:2158`
+
+## `_setMenu` — arrow, line 1848
+- **called from:**
+- `static/js/gallery.js:1849`
+- `static/js/gallery.js:1852`
+- `static/js/gallery.js:1854`
+- `static/js/gallery.js:1857`
+
+## `_toggleDetailFavorite` — arrow, line 1861
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `cleanup` — arrow, line 1903
+- **called from:**
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
-- `static/js/compare/selector.js:877`
-- `static/js/compare/selector.js:910`
-- `static/js/compare/selector.js:914`
-- `static/js/compare/selector.js:963`
-- `static/js/compare/selector.js:1257`
-- `static/js/compare/selector.js:1282`
-- `static/js/compare/selector.js:1295`
-- `static/js/cookbookServe.js:1029`
-- `static/js/cookbookServe.js:1040`
-- `static/js/cookbookServe.js:1041`
-- `static/js/cookbookServe.js:1050`
-- `static/js/cookbookServe.js:1052`
-- `static/js/cookbookServe.js:1057`
-- `static/js/document.js:3847`
-- `static/js/document.js:3848`
-- `static/js/document.js:3849`
-- `static/js/document.js:4393`
-- `static/js/document.js:4400`
-- `static/js/document.js:4442`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
 - `static/js/dragSort.js:26`
-- `static/js/editor/slider-ux.js:179`
-- `static/js/editor/slider-ux.js:188`
-- `static/js/gallery.js:1665`
-- `static/js/gallery.js:1674`
-- `static/js/gallery.js:1818`
-- `static/js/gallery.js:1830`
-- `static/js/gallery.js:1834`
-- `static/js/galleryEditor.js:1863`
-- `static/js/galleryEditor.js:1952`
-- `static/js/galleryEditor.js:1987`
-- `static/js/galleryEditor.js:2663`
-- `static/js/galleryEditor.js:2664`
-- `static/js/galleryEditor.js:2667`
-- `static/js/galleryEditor.js:2668`
-- `static/js/galleryEditor.js:2670`
-- `static/js/galleryEditor.js:3958`
-- `static/js/galleryEditor.js:3969`
-- `static/js/galleryEditor.js:3971`
-- `static/js/galleryEditor.js:3972`
-- `static/js/galleryEditor.js:3975`
-- `static/js/settings.js:1928`
-- `static/js/settings.js:1938`
-- `static/js/settings.js:1969`
-- `static/js/skills.js:1454`
-- `static/js/skills.js:1463`
-- `static/js/skills.js:1464`
-- … +21 more (grep the name in repo)
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
 
-## `_saveName` — arrow, line 1883
+## `_done` — arrow, line 1957
 - **called from:**
-- `static/js/gallery.js:1902`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_wireTagChip` — arrow, line 1910
+## `_openInEditor` — arrow, line 2007
 - **called from:**
-- `static/js/gallery.js:1958`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_addTags` — arrow, line 1927
+## `_rotate` — arrow, line 2036
 - **called from:**
-- `static/js/gallery.js:1963`
-- `static/js/gallery.js:1966`
+- `static/js/gallery.js:2083`
+- `static/js/gallery.js:2084`
 
-## `_makeGalleryDraggable` — function, line 1979
+## `cleanup` — arrow, line 2052
 - **called from:**
-- `static/js/gallery.js:1979`
-- `static/js/gallery.js:2126`
+- `tests/test_browser_producer_live_contract.py:41`
+- `tests/test_ca_trust.py:43`
+- `static/js/calendar.js:3194`
+- `static/js/calendar.js:3202`
+- `static/js/calendar.js:3239`
+- `static/js/calendar.js:3369`
+- `static/js/calendar.js:3378`
+- `static/js/chat.js:7613`
+- `static/js/chat.js:9104`
+- `static/js/chat.js:9112`
+- `static/js/chat.js:9118`
+- `static/js/chat.js:9121`
+- `static/js/chat.js:9124`
+- `static/js/chat.js:9147`
+- `static/js/codeRunner.js:273`
+- `static/js/codeRunner.js:294`
+- `static/js/compare/selector.js:102`
+- `static/js/compare/selector.js:953`
+- `static/js/compare/selector.js:986`
+- `static/js/compare/selector.js:990`
+- `static/js/compare/selector.js:1046`
+- `static/js/compare/selector.js:1345`
+- `static/js/compare/selector.js:1367`
+- `static/js/compare/selector.js:1380`
+- `static/js/cookbookServe.js:1058`
+- `static/js/cookbookServe.js:1069`
+- `static/js/cookbookServe.js:1070`
+- `static/js/cookbookServe.js:1079`
+- `static/js/cookbookServe.js:1081`
+- `static/js/cookbookServe.js:1086`
+- `static/js/document.js:6258`
+- `static/js/document.js:6263`
+- `static/js/document.js:6978`
+- `static/js/document.js:6985`
+- `static/js/document.js:7028`
+- `static/js/document.js:15678`
+- `static/js/document.js:15699`
+- `static/js/dragSort.js:26`
+- `static/js/editor/ai-operation.js:35`
+- `static/js/editor/ai-operation.js:41`
+- `static/js/editor/ai-operation.js:42`
+- `static/js/editor/slider-ux.js:181`
+- `static/js/editor/slider-ux.js:190`
+- `static/js/editor/wire-topbar-overflow.js:23`
+- `static/js/gallery.js:1910`
+- `static/js/gallery.js:1919`
+- `static/js/gallery.js:2063`
+- `static/js/gallery.js:2075`
+- `static/js/gallery.js:2079`
+- `static/js/galleryEditor.js:7450`
+- `static/js/galleryEditor.js:7530`
+- `static/js/galleryEditor.js:7565`
+- `static/js/galleryEditor.js:8330`
+- `static/js/galleryEditor.js:8354`
+- `static/js/galleryEditor.js:8357`
+- `static/js/galleryEditor.js:8365`
+- `static/js/galleryEditor.js:8368`
+- `static/js/galleryEditor.js:8372`
+- `static/js/galleryEditor.js:8373`
+- `static/js/galleryEditor.js:8375`
+- … +33 more (grep the name in repo)
 
-## `openGallery` — function, line 1992
+## `_saveName` — arrow, line 2128
 - **called from:**
-- `static/app.js:1063`
-- `static/js/chatRenderer.js:1561`
-- `static/js/gallery.js:1992`
-- `static/js/gallery.js:2884`
-- `static/js/gallery.js:2887`
+- `static/js/gallery.js:2147`
+
+## `_wireTagChip` — arrow, line 2155
+- **called from:**
+- `static/js/gallery.js:2203`
+
+## `_addTags` — arrow, line 2172
+- **called from:**
+- `static/js/gallery.js:2208`
+- `static/js/gallery.js:2211`
+
+## `_makeGalleryDraggable` — function, line 2224
+- **called from:**
+- `static/js/gallery.js:2224`
+- `static/js/gallery.js:2416`
+
+## `openGallery` — function, line 2267
+- **called from:**
+- `static/app.js:1096`
+- `static/js/chatRenderer.js:2139`
+- `static/js/gallery.js:100`
+- `static/js/gallery.js:2267`
+- `static/js/gallery.js:3279`
+- `static/js/gallery.js:3282`
 - `static/js/modalManager.js:24`
 
-## `finish` — arrow, line 2184
+## `finish` — arrow, line 2477
 - **called from:**
+- `src/agent_loop.py:32976`
+- `src/agent_loop.py:32989`
+- `src/agent_loop.py:32997`
+- `src/agent_loop.py:34857`
+- `src/agent_runtime/journal.py:267`
+- `src/agent_runtime/journal.py:269`
+- `src/containment.py:1512`
+- `src/containment.py:1518`
+- `src/containment.py:1527`
+- `src/containment.py:1542`
+- `src/containment.py:1545`
 - `src/pdf_forms.py:338`
+- `tests/test_effect_verification_adapters.py:55`
+- `tests/test_effect_verification_adapters.py:121`
+- `tests/test_effect_verification_adapters.py:215`
+- `tests/test_effect_verification_adapters.py:431`
 - `static/js/calendar.js:34`
 - `static/js/calendar.js:42`
 - `static/js/calendar.js:43`
 - `static/js/calendar.js:45`
-- `static/js/chat.js:1227`
-- `static/js/fileHandler.js:92`
-- `static/js/fileHandler.js:129`
-- `static/js/fileHandler.js:130`
-- `static/js/fileHandler.js:144`
-- `static/js/fileHandler.js:147`
-- `static/js/gallery.js:2191`
-- `static/js/gallery.js:2194`
-- `static/js/notes.js:361`
-- `static/js/notes.js:369`
-- `static/js/notes.js:370`
-- `static/js/notes.js:373`
-- `static/js/notes.js:2381`
-- `static/js/notes.js:2385`
+- `static/js/chat.js:2122`
+- `static/js/colorPicker.js:237`
+- `static/js/colorPicker.js:243`
+- `static/js/editor/adjustment-layer.js:205`
+- `static/js/editor/adjustment-layer.js:211`
+- `static/js/editor/adjustment-layer.js:215`
+- `static/js/editor/ai-inpaint.js:280`
+- `static/js/editor/ai-operation.js:19`
+- `static/js/editor/ai-tool-runner.js:164`
+- `static/js/editor/ai-tools-misc.js:157`
+- `static/js/editor/ai-tools-misc.js:206`
+- `static/js/editor/effects.js:364`
+- `static/js/editor/effects.js:372`
+- `static/js/editor/effects.js:376`
+- `static/js/editor/layer-panel.js:1424`
+- `static/js/editor/layer-panel.js:1426`
+- `static/js/editor/layer-panel.js:1431`
+- `static/js/editor/precision-guides.js:210`
+- `static/js/editor/precision-guides.js:229`
+- `static/js/editor/tools/pen-path.js:39`
+- `static/js/editor/tools/pen-path.js:46`
+- `static/js/features/notes/ui/cardInteractions.js:234`
+- `static/js/features/notes/ui/cardInteractions.js:238`
+- `static/js/features/notes/ui/colors.js:63`
+- `static/js/features/notes/ui/colors.js:71`
+- `static/js/features/notes/ui/colors.js:72`
+- `static/js/features/notes/ui/colors.js:75`
+- `static/js/fileHandler.js:96`
+- `static/js/fileHandler.js:134`
+- `static/js/fileHandler.js:135`
+- `static/js/fileHandler.js:172`
+- `static/js/fileHandler.js:175`
+- `static/js/gallery.js:2484`
+- `static/js/gallery.js:2487`
+- `static/js/galleryEditor.js:430`
+- `static/js/galleryEditor.js:4572`
+- `static/js/galleryEditor.js:4573`
+- `static/js/galleryEditor.js:4575`
+- `static/js/galleryEditor.js:4655`
+- `static/js/galleryEditor.js:4659`
+- … +4 more (grep the name in repo)
 
-## `_maybeAutoLoad` — arrow, line 2291
+## `_maybeAutoLoad` — arrow, line 2584
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_onGalleryResize` — arrow, line 2314
+## `_onGalleryResize` — arrow, line 2607
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_setMore` — arrow, line 2441
+## `_fillImageModels` — arrow, line 2650
 - **called from:**
-- `static/js/gallery.js:2442`
-- `static/js/gallery.js:2445`
-- `static/js/gallery.js:2448`
+- `static/js/gallery.js:2704`
 
-## `_selectedDots` — arrow, line 2485
+## `_setMore` — arrow, line 2799
 - **called from:**
-- `static/js/gallery.js:2486`
+- `static/js/gallery.js:2800`
+- `static/js/gallery.js:2803`
+- `static/js/gallery.js:2806`
 
-## `_selectedIds` — arrow, line 2486
+## `_selectedDots` — arrow, line 2843
 - **called from:**
-- `static/js/gallery.js:2647`
-- `static/js/gallery.js:2648`
-- `static/js/gallery.js:2649`
-- `static/js/gallery.js:2650`
-- `static/js/gallery.js:2679`
+- `static/js/gallery.js:2844`
 
-## `_updateBulkCount` — function, line 2488
+## `_selectedIds` — arrow, line 2844
 - **called from:**
-- `static/js/cookbook.js:2272`
-- `static/js/cookbook.js:2283`
-- `static/js/cookbook.js:2287`
-- `static/js/gallery.js:2488`
-- `static/js/gallery.js:2517`
-- `static/js/gallery.js:2529`
-- `static/js/gallery.js:2538`
-- `static/js/gallery.js:2568`
-- `static/js/sessions.js:865`
-- `static/js/sessions.js:1626`
-- `static/js/sessions.js:1630`
-- `static/js/sessions.js:1646`
-- `static/js/sessions.js:1703`
+- `static/js/gallery.js:3027`
+- `static/js/gallery.js:3028`
+- `static/js/gallery.js:3029`
+- `static/js/gallery.js:3031`
+- `static/js/gallery.js:3059`
+- `static/js/gallery.js:3063`
 
-## `_setSelectMode` — function, line 2501
+## `_updateBulkCount` — function, line 2846
 - **called from:**
-- `static/js/gallery.js:2501`
-- `static/js/gallery.js:2520`
-- `static/js/gallery.js:2522`
-- `static/js/gallery.js:2564`
+- `static/js/cookbook.js:2360`
+- `static/js/cookbook.js:2371`
+- `static/js/cookbook.js:2375`
+- `static/js/gallery.js:2846`
+- `static/js/gallery.js:2877`
+- `static/js/gallery.js:2909`
+- `static/js/gallery.js:2918`
+- `static/js/gallery.js:2948`
+- `static/js/sessions.js:1187`
+- `static/js/sessions.js:1964`
+- `static/js/sessions.js:1968`
+- `static/js/sessions.js:1984`
+- `static/js/sessions.js:2041`
 
-## `_exitSelectMode` — function, line 2520
+## `_setSelectMode` — function, line 2861
 - **called from:**
-- `static/js/gallery.js:2520`
-- `static/js/gallery.js:2523`
-- `static/js/gallery.js:2652`
-- `static/js/gallery.js:2691`
-- `static/js/gallery.js:2729`
-- `static/js/gallery.js:2757`
-- `static/js/gallery.js:2769`
-- `static/js/gallery.js:2787`
-- `static/js/notes.js:1329`
-- `static/js/notes.js:1342`
-- `static/js/notes.js:1356`
-- `static/js/notes.js:1369`
-- `static/js/notes.js:1416`
-- `static/js/notes.js:1467`
-- `static/js/sessions.js:1633`
-- `static/js/sessions.js:1659`
-- `static/js/sessions.js:1664`
-- `static/js/sessions.js:1679`
-- `static/js/sessions.js:1720`
-- `static/js/sessions.js:1741`
-- `static/js/skills.js:641`
-- `static/js/skills.js:1684`
-- `static/js/skills.js:1754`
-- `static/js/skills.js:1813`
-- `static/js/skills.js:1833`
-- `static/js/skills.js:1844`
-- `static/js/skills.js:2004`
+- `static/js/gallery.js:2861`
+- `static/js/gallery.js:2880`
+- `static/js/gallery.js:2902`
+- `static/js/gallery.js:2944`
 
-## `cancel` — arrow, line 2552
+## `_exitSelectMode` — function, line 2880
 - **called from:**
-- `app.py:1283`
-- `routes/shell_routes.py:723`
-- `routes/shell_routes.py:1108`
-- `routes/skills_routes.py:1800`
+- `static/js/features/notes/index.js:143`
+- `static/js/features/notes/index.js:143`
+- `static/js/features/notes/ui/panel.js:237`
+- `static/js/features/notes/ui/panel.js:250`
+- `static/js/features/notes/ui/panel.js:297`
+- `static/js/features/notes/ui/selection.js:20`
+- `static/js/gallery.js:2880`
+- `static/js/gallery.js:2886`
+- `static/js/gallery.js:2903`
+- `static/js/gallery.js:3032`
+- `static/js/gallery.js:3074`
+- `static/js/gallery.js:3112`
+- `static/js/gallery.js:3140`
+- `static/js/gallery.js:3152`
+- `static/js/gallery.js:3170`
+- `static/js/sessions.js:1971`
+- `static/js/sessions.js:1997`
+- `static/js/sessions.js:2002`
+- `static/js/sessions.js:2017`
+- `static/js/sessions.js:2058`
+- `static/js/sessions.js:2079`
+- `static/js/skills.js:857`
+- `static/js/skills.js:1995`
+- `static/js/skills.js:2069`
+- `static/js/skills.js:2131`
+- `static/js/skills.js:2151`
+- `static/js/skills.js:2162`
+- `static/js/skills.js:2340`
+
+## `cancel` — arrow, line 2932
+- **called from:**
+- `app.py:1459`
+- `app.py:1470`
+- `routes/editor_agent_routes.py:1414`
+- `routes/email/email_routes.py:6869`
+- `routes/shell_routes.py:957`
+- `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
-- `src/agent_loop.py:5124`
-- `src/agent_loop.py:6401`
-- `src/agent_runs.py:84`
-- `src/agent_runs.py:195`
-- `src/agent_runs.py:198`
-- `src/agent_runs.py:237`
-- `src/agent_runs.py:286`
-- `src/agent_tools/subprocess_tools.py:273`
-- `src/agent_tools/subprocess_tools.py:275`
-- `src/agent_tools/subprocess_tools.py:279`
-- `src/ai_interaction.py:1379`
-- `src/ai_interaction.py:1646`
-- `src/llm_core.py:109`
-- `src/mcp_manager.py:400`
+- `services/skills/job_coordinator.py:215`
+- `src/agent_loop.py:26017`
+- `src/agent_loop.py:34321`
+- `src/agent_runs.py:86`
+- `src/agent_runs.py:207`
+- `src/agent_runs.py:210`
+- `src/agent_runs.py:249`
+- `src/agent_runs.py:298`
+- `src/ai_interaction.py:1822`
+- `src/ai_interaction.py:2094`
+- `src/clean_agent_preview.py:5609`
+- `src/clean_agent_preview.py:5617`
+- `src/containment.py:1172`
+- `src/containment.py:1182`
+- `src/llm_core.py:141`
+- `src/mcp_manager.py:440`
 - `src/mcp_oauth.py:63`
-- `src/research_handler.py:456`
-- `src/research_handler.py:459`
-- `src/task_scheduler.py:100`
-- `src/task_scheduler.py:591`
-- `src/task_scheduler.py:599`
-- `src/task_scheduler.py:917`
-- `src/task_scheduler.py:1012`
-- `src/task_scheduler.py:2272`
-- `src/task_scheduler.py:2296`
+- `src/research_handler.py:502`
+- `src/research_handler.py:505`
+- `src/task_scheduler.py:122`
+- `src/task_scheduler.py:733`
+- `src/task_scheduler.py:741`
+- `src/task_scheduler.py:1063`
+- `src/task_scheduler.py:1145`
+- `src/task_scheduler.py:2470`
+- `src/task_scheduler.py:2495`
+- `tests/test_agent_editor_routes.py:1008`
+- `tests/test_agent_editor_routes.py:1962`
+- `tests/test_agent_editor_routes.py:1971`
+- `tests/test_browser_identity_transport.py:39`
+- `tests/test_browser_identity_transport.py:75`
 - `tests/test_builtin_mcp_bg_tasks.py:101`
-- `tests/test_compare_stop_disconnect_poll.py:376`
-- `tests/test_compare_stop_disconnect_poll.py:433`
+- `tests/test_client_tool_routing.py:867`
+- `tests/test_compare_stop_disconnect_poll.py:377`
+- `tests/test_compare_stop_disconnect_poll.py:434`
+- `tests/test_completion_boundary.py:319`
+- `tests/test_completion_boundary.py:324`
+- `tests/test_containment_enforcement.py:382`
+- `tests/test_containment_enforcement.py:384`
+- `tests/test_containment_enforcement.py:408`
+- `tests/test_containment_enforcement.py:410`
+- `tests/test_cookbook_cache_scan_isolation.py:102`
 - `tests/test_email_summary_llm.py:192`
-- `tests/test_email_urgency_checkpoint.py:419`
-- `tests/test_email_urgency_checkpoint.py:554`
-- `tests/test_task_scheduler_cache.py:34`
-- `tests/test_task_scheduler_cache.py:70`
-- `static/js/chat.js:2849`
-- `static/js/chat.js:5749`
-- `static/js/chat.js:5764`
-- `static/js/documentLibrary.js:182`
-- `static/js/gallery.js:2576`
-- `static/js/gallery.js:2584`
-- `static/js/liveThinkingThrottle.js:20`
-- `static/js/liveThinkingThrottle.js:22`
-- `static/js/liveThinkingThrottle.js:193`
-- `static/js/liveThinkingThrottle.js:198`
-- `static/js/liveThinkingThrottle.js:199`
-- `static/js/settings.js:883`
-- `static/js/slashCommands.js:2439`
-- `static/js/tasks.js:1076`
-- `static/js/tts-ai.js:241`
-- `static/js/windowDrag.js:157`
+- `tests/test_email_urgency_checkpoint.py:457`
+- `tests/test_email_urgency_checkpoint.py:592`
+- `tests/test_host_shell_polling.py:198`
+- `tests/test_nested_invocation_ownership.py:93`
+- `tests/test_nested_invocation_ownership.py:96`
+- `tests/test_nested_invocation_ownership.py:448`
+- `tests/test_nested_invocation_ownership.py:453`
+- `tests/test_review_calendar_invitation.py:135`
+- … +82 more (grep the name in repo)
 
-## `_showGalleryBulkMenu` — function, line 2630
+## `_showGalleryBulkMenu` — function, line 3010
 - **called from:**
-- `static/js/gallery.js:2630`
-- `static/js/gallery.js:2680`
+- `static/js/gallery.js:3010`
+- `static/js/gallery.js:3060`
 
-## `_bulkDelete` — function, line 2683
+## `_bulkDelete` — function, line 3066
 - **called from:**
-- `static/js/gallery.js:2650`
-- `static/js/gallery.js:2683`
-- `static/js/skills.js:1730`
+- `static/js/gallery.js:3031`
+- `static/js/gallery.js:3063`
+- `static/js/gallery.js:3066`
+- `static/js/skills.js:2041`
 
-## `_bulkDownload` — function, line 2707
+## `_bulkDownload` — function, line 3090
 - **called from:**
-- `static/js/gallery.js:2649`
-- `static/js/gallery.js:2707`
+- `static/js/gallery.js:3029`
+- `static/js/gallery.js:3090`
 
-## `_bulkFavorite` — function, line 2761
+## `_bulkFavorite` — function, line 3144
 - **called from:**
-- `static/js/gallery.js:2647`
-- `static/js/gallery.js:2761`
+- `static/js/gallery.js:3027`
+- `static/js/gallery.js:3144`
 
-## `_bulkTag` — function, line 2773
+## `_bulkTag` — function, line 3156
 - **called from:**
-- `static/js/gallery.js:2648`
-- `static/js/gallery.js:2773`
+- `static/js/gallery.js:3028`
+- `static/js/gallery.js:3156`
 
-## `_showImagesTab` — function, line 2867
+## `_showImagesTab` — function, line 3262
 - **called from:**
-- `static/js/gallery.js:2867`
-- `static/js/gallery.js:2888`
+- `static/js/gallery.js:3262`
+- `static/js/gallery.js:3283`
 
-## `openGalleryImage` — function, line 2882
+## `openGalleryImage` — function, line 3277
 - **called from:**
-- `static/js/gallery.js:2882`
+- `static/js/gallery.js:3277`
 
-## `_doCloseGallery` — function, line 2929
+## `_doCloseGallery` — function, line 3324
 - **called from:**
-- `static/js/gallery.js:2118`
-- `static/js/gallery.js:2929`
-- `static/js/gallery.js:2972`
+- `static/js/gallery.js:2408`
+- `static/js/gallery.js:3324`
+- `static/js/gallery.js:3368`
 
-## `closeGallery` — function, line 2967
+## `closeGallery` — function, line 3363
 - **called from:**
-- `static/app.js:1062`
-- `static/js/gallery.js:1527`
-- `static/js/gallery.js:1545`
-- `static/js/gallery.js:2137`
-- `static/js/gallery.js:2793`
-- `static/js/gallery.js:2825`
-- `static/js/gallery.js:2967`
+- `static/app.js:1095`
+- `static/js/gallery.js:1724`
+- `static/js/gallery.js:1749`
+- `static/js/gallery.js:1799`
+- `static/js/gallery.js:2427`
+- `static/js/gallery.js:3176`
+- `static/js/gallery.js:3217`
+- `static/js/gallery.js:3363`
 
-## `isGalleryOpen` — function, line 2976
+## `isGalleryOpen` — function, line 3372
 - **called from:**
-- `static/app.js:1062`
-- `static/js/gallery.js:2976`
+- `static/app.js:1095`
+- `static/js/gallery.js:3372`
 
-## `_esc` — function, line 2983
+## `_esc` — function, line 3379
 - **called from:**
 - `tests/test_ics_escape.py:12`
 - `tests/test_ics_escape.py:16`
@@ -791,42 +907,42 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
-- `static/js/cookbookServe.js:4003`
-- `static/js/cookbookServe.js:4005`
-- `static/js/document.js:313`
-- `static/js/document.js:314`
-- `static/js/document.js:8382`
-- `static/js/document.js:8966`
-- `static/js/documentLibrary.js:70`
-- `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
-- `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/chat.js:6329`
+- `static/js/chat.js:6329`
+- `static/js/cookbookServe.js:4108`
+- `static/js/cookbookServe.js:4110`
+- `static/js/document.js:1225`
+- `static/js/document.js:1226`
+- `static/js/document.js:13760`
+- `static/js/document.js:14380`
+- `static/js/document.js:15402`
+- `static/js/documentLibrary.js:169`
+- `static/js/documentLibrary.js:185`
+- `static/js/documentLibrary.js:705`
+- `static/js/documentLibrary.js:709`
+- `static/js/documentLibrary.js:711`
+- `static/js/documentLibrary.js:2218`
+- `static/js/documentLibrary.js:2223`
+- `static/js/documentLibrary.js:2371`
+- `static/js/documentLibrary.js:2735`
+- `static/js/documentLibrary.js:2780`
+- `static/js/documentLibrary.js:2818`
+- `static/js/documentLibrary.js:2968`
+- `static/js/documentLibrary.js:3017`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3184`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- … +226 more (grep the name in repo)
 
-## `_humanSize` — function, line 2990
+## `_humanSize` — function, line 3386
 - **called from:**
-- `static/js/gallery.js:1394`
-- `static/js/gallery.js:2990`
+- `static/js/gallery.js:1585`
+- `static/js/gallery.js:3386`
 - `static/js/rag.js:17`
 - `static/js/rag.js:64`

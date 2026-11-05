@@ -2,112 +2,179 @@
 
 ## Import edges (file → imports)
 
-- `static/app.js` → `static/js/appConfig.js`, `static/js/calendar.js`, `static/js/censor.js`, `static/js/cookbook.js`, `static/js/fileHandler.js`, `static/js/group.js`, `static/js/keyboard-shortcuts.js`, `static/js/notes.js`, `static/js/presets.js`, `static/js/rag.js`, `static/js/search-chat.js`, `static/js/search.js`, `static/js/section-management.js`, `static/js/sidebar-layout.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/tileManager.js`, `static/js/tts-ai.js`, `static/js/ui.js`, `static/js/ui_visibility.js`, `static/js/voiceRecorder.js`, `static/js/windowDrag.js`, `static/js/workspace.js`
-- `static/js/admin.js` → `static/js/appConfig.js`, `static/js/modelSort.js`, `static/js/providerDeviceFlow.js`, `static/js/providers.js`, `static/js/ui.js`
-- `static/js/assistant.js` → `static/js/modelSort.js`, `static/js/ui.js`
-- `static/js/calendar.js` → `static/js/colorPicker.js`, `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
-- `static/js/calendar/reminders.js` → `static/js/ui.js`
-- `static/js/chat.js` → `static/js/chatStreamErrors.js`, `static/js/codeRunner.js`, `static/js/fileHandler.js`, `static/js/panels.js`, `static/js/presets.js`, `static/js/researchSynapse.js`, `static/js/search.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/streamingRenderer.js`, `static/js/theme.js`, `static/js/tts-ai.js`, `static/js/ui.js`
-- `static/js/chatRenderer.js` → `static/js/appConfig.js`, `static/js/escMenuStack.js`, `static/js/model/matchKey.js`, `static/js/panels.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/tts-ai.js`, `static/js/ui.js`
-- `static/js/chatStream.js` → `static/js/storage.js`, `static/js/theme.js`, `static/js/ui.js`
-- `static/js/codeRunner.js` → `static/js/ui.js`
-- `static/js/compare/index.js` → `static/js/compare/probe.js`, `static/js/compare/scoreboard.js`, `static/js/compare/state.js`, `static/js/compare/vote.js`, `static/js/escMenuStack.js`, `static/js/presets.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/ui.js`
-- `static/js/compare/models.js` → `static/js/compare/state.js`, `static/js/modelSort.js`, `static/js/storage.js`, `static/js/ui.js`
-- `static/js/compare/panes.js` → `static/js/compare/probe.js`, `static/js/compare/state.js`, `static/js/compare/vote.js`, `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/ui.js`
-- `static/js/compare/probe.js` → `static/js/compare/icons.js`, `static/js/compare/state.js`, `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/compare/scoreboard.js` → `static/js/compare/icons.js`, `static/js/compare/state.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/ui.js`
-- `static/js/compare/selector.js` → `static/js/compare/icons.js`, `static/js/compare/probe.js`, `static/js/compare/scoreboard.js`, `static/js/compare/state.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/ui.js`
-- `static/js/compare/stream.js` → `static/js/compare/state.js`, `static/js/compare/vote.js`, `static/js/presets.js`, `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/compare/vote.js` → `static/js/compare/icons.js`, `static/js/compare/scoreboard.js`, `static/js/compare/state.js`, `static/js/storage.js`, `static/js/ui.js`
-- `static/js/cookbook-diagnosis.js` → `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/cookbook-hwfit.js` → `static/js/cookbook-diagnosis.js`, `static/js/cookbookRunning.js`, `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/cookbook.js` → `static/js/cookbook-deps-recipes.js`, `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/escMenuStack.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
-- `static/js/cookbookDownload.js` → `static/js/cookbook-diagnosis.js`, `static/js/ui.js`
-- `static/js/cookbookRunning.js` → `static/js/cookbook-diagnosis.js`, `static/js/cookbookPorts.js`, `static/js/cookbookProgressSignal.js`, `static/js/escMenuStack.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`
-- `static/js/cookbookServe.js` → `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/escMenuStack.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`
-- `static/js/document.js` → `static/js/codeRunner.js`, `static/js/documentLibrary.js`, `static/js/emojiPicker.js`, `static/js/escMenuStack.js`, `static/js/langIcons.js`, `static/js/signature.js`, `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/documentLibrary.js` → `static/js/escMenuStack.js`, `static/js/langIcons.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
+- `static/app.js` → `static/js/appConfig.js`, `static/js/backgroundToolJobs.js`, `static/js/censor.js`, `static/js/cookbook.js`, `static/js/group.js`, `static/js/markdown.js`, `static/js/memory.js`, `static/js/modalManager.js`, `static/js/models.js`, `static/js/rag.js`, `static/js/search-chat.js`, `static/js/search.js`, `static/js/section-management.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/tts-ai.js`, `static/js/voiceRecorder.js`, `static/js/windowDrag.js`, `static/js/workspace.js`
+- `static/js/admin.js` → `static/js/appConfig.js`, `static/js/modelSort.js`, `static/js/providerDeviceFlow.js`, `static/js/providers.js`
+- `static/js/assistant.js` → `static/js/modelSort.js`, `static/js/sessions.js`
+- `static/js/backgroundToolJobs.js` → `static/js/spinner.js`
+- `static/js/calendar.js` → `static/js/escMenuStack.js`, `static/js/modalManager.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/windowDrag.js`
+- `static/js/chat.js` → `static/js/appConfig.js`, `static/js/chatStreamErrors.js`, `static/js/composerHistoryRecall.js`, `static/js/markdown.js`, `static/js/search.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/streamingRenderer.js`, `static/js/tts-ai.js`
+- `static/js/chatRenderer.js` → `static/js/appConfig.js`, `static/js/escMenuStack.js`, `static/js/generatedImageResult.js`, `static/js/markdown.js`, `static/js/model/matchKey.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/tts-ai.js`
+- `static/js/chatStream.js` → `static/js/markdown.js`, `static/js/sessions.js`, `static/js/storage.js`
+- `static/js/colorPicker.js` → `static/js/toolWindowZOrder.js`
+- `static/js/compare/index.js` → `static/js/compare/models.js`, `static/js/compare/probe.js`, `static/js/compare/state.js`, `static/js/escMenuStack.js`, `static/js/markdown.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/storage.js`
+- `static/js/compare/models.js` → `static/js/compare/state.js`, `static/js/modelSort.js`, `static/js/storage.js`
+- `static/js/compare/panes.js` → `static/js/compare/models.js`, `static/js/compare/probe.js`, `static/js/compare/state.js`, `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/storage.js`
+- `static/js/compare/probe.js` → `static/js/compare/state.js`, `static/js/spinner.js`
+- `static/js/compare/scoreboard.js` → `static/js/compare/state.js`, `static/js/storage.js`
+- `static/js/compare/selector.js` → `static/js/compare/models.js`, `static/js/compare/probe.js`, `static/js/compare/state.js`, `static/js/spinner.js`, `static/js/storage.js`
+- `static/js/compare/stream.js` → `static/js/compare/sse.js`, `static/js/compare/state.js`, `static/js/markdown.js`, `static/js/spinner.js`
+- `static/js/compare/vote.js` → `static/js/compare/models.js`, `static/js/compare/state.js`, `static/js/shared/ui/confetti.js`, `static/js/storage.js`
+- `static/js/cookbook-diagnosis.js` → `static/js/spinner.js`
+- `static/js/cookbook-hwfit.js` → `static/js/cookbook-diagnosis.js`, `static/js/cookbookRunning.js`, `static/js/spinner.js`
+- `static/js/cookbook.js` → `static/js/cookbook-deps-recipes.js`, `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/escMenuStack.js`, `static/js/modalManager.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/windowDrag.js`
+- `static/js/cookbookDownload.js` → `static/js/cookbook-diagnosis.js`
+- `static/js/cookbookRunning.js` → `static/js/cookbook-diagnosis.js`, `static/js/cookbookPorts.js`, `static/js/cookbookProgressSignal.js`, `static/js/escMenuStack.js`, `static/js/toolWindowZOrder.js`
+- `static/js/cookbookServe.js` → `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`
+- `static/js/document.js` → `static/js/emailReplyStream.js`, `static/js/emojiPicker.js`, `static/js/escMenuStack.js`, `static/js/markdown.js`, `static/js/modalManager.js`, `static/js/sessions.js`, `static/js/signature.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`
+- `static/js/documentLibrary.js` → `static/js/actionMenuOrder.js`, `static/js/markdown.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/windowDrag.js`
 - `static/js/dragSort.js` → `static/js/storage.js`
-- `static/js/editor/ai-inpaint.js` → `static/js/editor/state.js`
+- `static/js/editor/adjustment-layer.js` → `static/js/editor/blend-modes.js`, `static/js/editor/composite-helpers.js`, `static/js/editor/fx/pixel-pass.js`, `static/js/editor/layer-helpers.js`
+- `static/js/editor/ai-inpaint.js` → `static/js/editor/ai-operation.js`, `static/js/editor/image-result-geometry.js`, `static/js/editor/state.js`
 - `static/js/editor/ai-models.js` → `static/js/editor/state.js`, `static/js/modelSort.js`
-- `static/js/editor/ai-rembg.js` → `static/js/editor/state.js`
-- `static/js/editor/ai-tool-runner.js` → `static/js/editor/state.js`
-- `static/js/editor/ai-tools-misc.js` → `static/js/editor/state.js`
-- `static/js/editor/build/right-panel.js` → `static/js/editor/state.js`
-- `static/js/editor/canvas-events.js` → `static/js/editor/state.js`
-- `static/js/editor/canvas-transforms.js` → `static/js/editor/state.js`
-- `static/js/editor/clipboard-and-drop.js` → `static/js/editor/state.js`
-- `static/js/editor/fx/adj-popup.js` → `static/js/editor/fx/histogram.js`, `static/js/editor/state.js`
-- `static/js/editor/history-panel.js` → `static/js/editor/build/popups.js`, `static/js/editor/layer-helpers.js`, `static/js/editor/state.js`
-- `static/js/editor/keyboard-shortcuts.js` → `static/js/editor/state.js`, `static/js/platform.js`
-- `static/js/editor/layer-panel.js` → `static/js/editor/fx/pixel-pass.js`, `static/js/editor/state.js`, `static/js/editor/wire-merge-buttons.js`
+- `static/js/editor/ai-rembg.js` → `static/js/editor/selection-mask.js`, `static/js/editor/state.js`
+- `static/js/editor/ai-settings.js` → `static/js/editor/ai-models.js`, `static/js/settings/imagePreferences.js`
+- `static/js/editor/ai-tool-runner.js` → `static/js/editor/ai-operation.js`, `static/js/editor/state.js`
+- `static/js/editor/ai-tools-misc.js` → `static/js/editor/ai-operation.js`, `static/js/editor/state.js`
+- `static/js/editor/build/options-bar.js` → `static/js/editor/state.js`
+- `static/js/editor/build/popups.js` → `static/js/editor/tool-shortcuts.js`
+- `static/js/editor/build/right-panel.js` → `static/js/editor/build/dock.js`, `static/js/editor/state.js`
+- `static/js/editor/build/toolbar.js` → `static/js/editor/brush-presets.js`, `static/js/editor/tool-shortcuts.js`
+- `static/js/editor/canvas-context-menu.js` → `static/js/editor/state.js`
+- `static/js/editor/canvas-coords.js` → `static/js/editor/state.js`
+- `static/js/editor/canvas-events.js` → `static/js/editor/canvas-context-menu.js`, `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
+- `static/js/editor/canvas-transforms.js` → `static/js/editor/document-geometry.js`, `static/js/editor/state.js`
+- `static/js/editor/clipboard-and-drop.js` → `static/js/editor/placed-layer.js`, `static/js/editor/state.js`
+- `static/js/editor/document-codec.js` → `static/js/editor/adjustment-layer.js`, `static/js/editor/effects.js`, `static/js/editor/mask-utils.js`
+- `static/js/editor/document-geometry.js` → `static/js/editor/placed-layer.js`, `static/js/editor/shape-layer.js`, `static/js/editor/text-layer.js`
+- `static/js/editor/editor-agent.js` → `static/js/editor/nl-edit.js`, `static/js/settings/imagePreferences.js`
+- `static/js/editor/effects-worker.js` → `static/js/editor/layer-styles.js`
+- `static/js/editor/effects.js` → `static/js/editor/layer-styles.js`
+- `static/js/editor/export-dialog.js` → `static/js/editor/psd.js`
+- `static/js/editor/fx/adj-popup.js` → `static/js/editor/fx/cube-lut.js`, `static/js/editor/fx/histogram.js`, `static/js/editor/state.js`, `static/js/modalManager.js`
+- `static/js/editor/fx/pixel-pass.js` → `static/js/editor/fx/cube-lut.js`, `static/js/editor/fx/develop.js`
+- `static/js/editor/history-panel.js` → `static/js/editor/build/popups.js`, `static/js/editor/layer-helpers.js`, `static/js/editor/state.js`, `static/js/modalManager.js`
+- `static/js/editor/image-generation.js` → `static/js/editor/ai-operation.js`, `static/js/settings/imagePreferences.js`
+- `static/js/editor/keyboard-shortcuts.js` → `static/js/editor/selection-mask.js`, `static/js/editor/state.js`, `static/js/platform.js`
+- `static/js/editor/layer-clipping.js` → `static/js/editor/blend-modes.js`
+- `static/js/editor/layer-geometry.js` → `static/js/editor/layer-groups.js`, `static/js/editor/layer-selection.js`, `static/js/editor/placed-layer.js`, `static/js/editor/state.js`
+- `static/js/editor/layer-groups.js` → `static/js/editor/blend-modes.js`, `static/js/editor/effects.js`, `static/js/editor/layer-clipping.js`
+- `static/js/editor/layer-panel.js` → `static/js/editor/effects.js`, `static/js/editor/fx/pixel-pass.js`, `static/js/editor/mask-utils.js`, `static/js/editor/shape-layer.js`, `static/js/editor/state.js`, `static/js/editor/text-layer.js`, `static/js/editor/wire-merge-buttons.js`
+- `static/js/editor/layer-selection.js` → `static/js/editor/layer-groups.js`
+- `static/js/editor/layer-style-menu.js` → `static/js/editor/layer-styles.js`
+- `static/js/editor/panels/panels.js` → `static/js/editor/canvas-navigation.js`, `static/js/editor/fx/histogram.js`
+- `static/js/editor/panels/studio-panels.js` → `static/js/editor/text-layer.js`
+- `static/js/editor/perspective-crop.js` → `static/js/editor/perspective-warp.js`
+- `static/js/editor/precision-guides.js` → `static/js/editor/state.js`
+- `static/js/editor/select-and-mask.js` → `static/js/editor/selection-mask.js`
+- `static/js/editor/selection-mask.js` → `static/js/editor/mask-utils.js`
+- `static/js/editor/shape-layer.js` → `static/js/editor/gradient-stops.js`
 - `static/js/editor/shortcuts-popover.js` → `static/js/editor/build/popups.js`
 - `static/js/editor/slider-ux.js` → `static/js/editor/state.js`
-- `static/js/editor/stroke-pipeline.js` → `static/js/editor/state.js`
+- `static/js/editor/snap.js` → `static/js/editor/transform-frame-geometry.js`
+- `static/js/editor/stroke-pipeline.js` → `static/js/editor/brush-engine.js`, `static/js/editor/layer-groups.js`, `static/js/editor/state.js`
 - `static/js/editor/stroke-tool-sliders.js` → `static/js/editor/state.js`
-- `static/js/editor/tools/clone.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
-- `static/js/editor/tools/crop.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/checkerboard.js`, `static/js/editor/state.js`
-- `static/js/editor/tools/lasso.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
-- `static/js/editor/tools/move.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/snap.js`, `static/js/editor/state.js`
-- `static/js/editor/tools/stroke.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
-- `static/js/editor/tools/transform-drag.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/bucket.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/clone.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/layer-groups.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/crop.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/checkerboard.js`, `static/js/editor/direct-manipulation-session.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/eyedropper.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/gradient.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/layer-groups.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/lasso.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/selection-modifiers.js`, `static/js/editor/state.js`, `static/js/editor/tools/lasso-mask.js`
+- `static/js/editor/tools/liquify.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/marquee.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/direct-manipulation-session.js`, `static/js/editor/selection-modifiers.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/move.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/layer-groups.js`, `static/js/editor/layer-selection.js`, `static/js/editor/placed-layer.js`, `static/js/editor/snap.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/object-select.js` → `static/js/editor/selection-modifiers.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/patch.js` → `static/js/editor/state.js`
+- `static/js/editor/tools/pen-selection.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/selection-modifiers.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/perspective-crop.js` → `static/js/editor/state.js`
+- `static/js/editor/tools/quick-select.js` → `static/js/editor/selection-modifiers.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/stroke.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/layer-groups.js`, `static/js/editor/state.js`
+- `static/js/editor/tools/transform-drag.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/direct-manipulation-session.js`, `static/js/editor/state.js`, `static/js/editor/transform-frame-geometry.js`
 - `static/js/editor/tools/transform-handles.js` → `static/js/editor/state.js`
-- `static/js/editor/tools/transform-session.js` → `static/js/editor/state.js`
-- `static/js/editor/tools/wand.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/state.js`
-- `static/js/editor/wire-import.js` → `static/js/editor/state.js`
-- `static/js/editor/wire-inpaint-controls.js` → `static/js/editor/state.js`
-- `static/js/editor/wire-merge-buttons.js` → `static/js/editor/state.js`
+- `static/js/editor/tools/transform-session.js` → `static/js/editor/layer-groups.js`, `static/js/editor/layer-selection.js`, `static/js/editor/shape-layer.js`, `static/js/editor/state.js`, `static/js/editor/text-layer.js`
+- `static/js/editor/tools/wand.js` → `static/js/editor/canvas-coords.js`, `static/js/editor/selection-modifiers.js`, `static/js/editor/state.js`
+- `static/js/editor/wire-extra-menus.js` → `static/js/editor/submenu-toggles.js`
+- `static/js/editor/wire-import.js` → `static/js/editor/psd.js`, `static/js/editor/state.js`
+- `static/js/editor/wire-inpaint-controls.js` → `static/js/editor/mask-utils.js`, `static/js/editor/state.js`
+- `static/js/editor/wire-merge-buttons.js` → `static/js/editor/layer-clipping.js`, `static/js/editor/layer-groups.js`, `static/js/editor/shape-layer.js`, `static/js/editor/state.js`, `static/js/editor/text-layer.js`
 - `static/js/editor/wire-selection-controls.js` → `static/js/editor/state.js`
-- `static/js/editor/wire-topbar-menus.js` → `static/js/editor/state.js`
+- `static/js/editor/wire-topbar-menus.js` → `static/js/editor/document-geometry.js`, `static/js/editor/state.js`, `static/js/editor/submenu-toggles.js`
 - `static/js/editor/wire-topbar-overflow.js` → `static/js/editor/state.js`
-- `static/js/editor/wire-topbar.js` → `static/js/editor/state.js`
-- `static/js/emailInbox.js` → `static/js/emailLibrary/replyRecipients.js`, `static/js/emailShared.js`, `static/js/escMenuStack.js`, `static/js/modalSnap.js`, `static/js/spinner.js`
-- `static/js/emailLibrary.js` → `static/js/appConfig.js`, `static/js/emailLibrary/state.js`, `static/js/emailShared.js`, `static/js/escMenuStack.js`, `static/js/modalSnap.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
+- `static/js/editor/wire-topbar.js` → `static/js/editor/layer-groups.js`, `static/js/editor/state.js`, `static/js/toolWindowZOrder.js`
+- `static/js/editor/wire-view-menu.js` → `static/js/editor/panel-visibility.js`, `static/js/editor/state.js`
+- `static/js/editor/workspaces.js` → `static/js/editor/panel-visibility.js`
+- `static/js/emailInbox.js` → `static/js/emailLibrary/replyRecipients.js`, `static/js/emailShared.js`, `static/js/escMenuStack.js`, `static/js/modalManager.js`, `static/js/modalSnap.js`, `static/js/sessions.js`, `static/js/spinner.js`
+- `static/js/emailLibrary/aiReply.js` → `static/js/emailLibrary/index.js`, `static/js/emailLibrary/state.js`, `static/js/emailLibrary/utils.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`
+- `static/js/emailLibrary/attachments.js` → `static/js/emailLibrary/index.js`, `static/js/emailLibrary/reader.js`, `static/js/emailLibrary/state.js`, `static/js/emailLibrary/utils.js`, `static/js/modalManager.js`, `static/js/spinner.js`
+- `static/js/emailLibrary/bodyRender.js` → `static/js/emailLibrary/settingsPage.js`, `static/js/emailLibrary/state.js`
+- `static/js/emailLibrary/index.js` → `static/js/appConfig.js`, `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/bodyRender.js`, `static/js/emailLibrary/reader.js`, `static/js/emailLibrary/state.js`, `static/js/emailShared.js`, `static/js/modalManager.js`, `static/js/modalSnap.js`, `static/js/spinner.js`, `static/js/windowDrag.js`
+- `static/js/emailLibrary/menus.js` → `static/js/actionMenuOrder.js`, `static/js/emailLibrary/reader.js`, `static/js/emailLibrary/state.js`, `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`
+- `static/js/emailLibrary/reader.js` → `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/menus.js`, `static/js/emailLibrary/state.js`, `static/js/emailLibrary/utils.js`, `static/js/modalManager.js`, `static/js/modalSnap.js`, `static/js/spinner.js`
+- `static/js/emailLibrary/settingsPage.js` → `static/js/emailLibrary/bodyRender.js`, `static/js/emailLibrary/state.js`, `static/js/emailLibrary/unsubscribe.js`, `static/js/emailLibrary/utils.js`, `static/js/emailShared.js`, `static/js/spinner.js`
+- `static/js/emailLibrary/unsubscribe.js` → `static/js/emailLibrary/index.js`, `static/js/emailLibrary/state.js`, `static/js/emailLibrary/utils.js`, `static/js/emailShared.js`, `static/js/spinner.js`
 - `static/js/emojiPicker.js` → `static/js/toolWindowZOrder.js`
-- `static/js/fileHandler.js` → `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/gallery.js` → `static/js/escMenuStack.js`, `static/js/fileHandler.js`, `static/js/panels.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
-- `static/js/galleryEditor.js` → `static/js/colorPicker.js`, `static/js/dragSort.js`, `static/js/editor/ai-models.js`, `static/js/editor/ai-rembg.js`, `static/js/editor/ai-tool-runner.js`, `static/js/editor/ai-tools-misc.js`, `static/js/editor/build/right-panel.js`, `static/js/editor/build/topbar.js`, `static/js/editor/canvas-coords.js`, `static/js/editor/canvas-events.js`, `static/js/editor/canvas-transforms.js`, `static/js/editor/checkerboard.js`, `static/js/editor/clipboard-and-drop.js`, `static/js/editor/filters/edge-feather.js`, `static/js/editor/fx/adj-popup.js`, `static/js/editor/fx/histogram.js`, `static/js/editor/history-panel.js`, `static/js/editor/keyboard-shortcuts.js`, `static/js/editor/layer-panel.js`, `static/js/editor/mask-utils.js`, `static/js/editor/shortcuts-popover.js`, `static/js/editor/slider-ux.js`, `static/js/editor/snap.js`, `static/js/editor/state.js`, `static/js/editor/stroke-pipeline.js`, `static/js/editor/stroke-tool-sliders.js`, `static/js/editor/tools/clone.js`, `static/js/editor/tools/crop.js`, `static/js/editor/tools/flood-fill.js`, `static/js/editor/tools/lasso.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-drag.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/tools/wand.js`, `static/js/editor/wire-import.js`, `static/js/editor/wire-merge-buttons.js`, `static/js/editor/wire-selection-controls.js`, `static/js/editor/wire-topbar-menus.js`, `static/js/editor/wire-topbar-overflow.js`, `static/js/editor/wire-topbar.js`, `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/group.js` → `static/js/modelSort.js`, `static/js/presets.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/ui.js`
+- `static/js/features/notes/application/agentActions.js` → `static/js/features/notes/domain/noteRules.js`
+- `static/js/features/notes/application/queries.js` → `static/js/features/notes/domain/noteRules.js`, `static/js/features/notes/domain/recurrence.js`
+- `static/js/features/notes/application/reminders.js` → `static/js/features/notes/domain/recurrence.js`
+- `static/js/features/notes/domain/noteRules.js` → `static/js/features/notes/domain/recurrence.js`
+- `static/js/features/notes/index.js` → `static/js/features/notes/application/agentActions.js`, `static/js/features/notes/application/cardOperations.js`, `static/js/features/notes/application/checklistOperations.js`, `static/js/features/notes/application/deletion.js`, `static/js/features/notes/application/drafts.js`, `static/js/features/notes/application/queries.js`, `static/js/features/notes/application/reminders.js`, `static/js/features/notes/application/selection.js`, `static/js/features/notes/application/state.js`, `static/js/features/notes/application/submission.js`, `static/js/features/notes/application/workflows.js`, `static/js/features/notes/domain/noteRules.js`, `static/js/features/notes/domain/recurrence.js`, `static/js/features/notes/infrastructure/http.js`, `static/js/features/notes/infrastructure/notifications.js`, `static/js/features/notes/infrastructure/storage.js`, `static/js/features/notes/ui/cardChecklist.js`, `static/js/features/notes/ui/cardInteractions.js`, `static/js/features/notes/ui/cardRendering.js`, `static/js/features/notes/ui/cardReorder.js`, `static/js/features/notes/ui/checklist.js`, `static/js/features/notes/ui/checklistReorder.js`, `static/js/features/notes/ui/clipboard.js`, `static/js/features/notes/ui/colors.js`, `static/js/features/notes/ui/draftEditor.js`, `static/js/features/notes/ui/drawing.js`, `static/js/features/notes/ui/editor.js`, `static/js/features/notes/ui/filters.js`, `static/js/features/notes/ui/layout.js`, `static/js/features/notes/ui/lifecycle.js`, `static/js/features/notes/ui/mobileEditor.js`, `static/js/features/notes/ui/mobileReorder.js`, `static/js/features/notes/ui/panel.js`, `static/js/features/notes/ui/quickAdd.js`, `static/js/features/notes/ui/reminderDisplay.js`, `static/js/features/notes/ui/reminderPicker.js`, `static/js/features/notes/ui/selection.js`, `static/js/features/notes/ui/text.js`, `static/js/features/notes/ui/toolbar.js`, `static/js/features/notes/ui/windowLayout.js`
+- `static/js/features/notes/ui/cardRendering.js` → `static/js/features/notes/domain/noteRules.js`, `static/js/features/notes/domain/recurrence.js`
+- `static/js/features/notes/ui/clipboard.js` → `static/js/features/notes/domain/noteRules.js`
+- `static/js/features/notes/ui/filters.js` → `static/js/features/notes/domain/noteRules.js`, `static/js/features/notes/domain/recurrence.js`
+- `static/js/features/notes/ui/reminderDisplay.js` → `static/js/features/notes/domain/noteRules.js`, `static/js/features/notes/domain/recurrence.js`
+- `static/js/features/notes/ui/reminderPicker.js` → `static/js/features/notes/domain/recurrence.js`
+- `static/js/fileHandler.js` → `static/js/spinner.js`
+- `static/js/gallery.js` → `static/js/escMenuStack.js`, `static/js/modalManager.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/windowDrag.js`
+- `static/js/galleryEditor.js` → `static/js/dragSort.js`, `static/js/editor/actions-panel.js`, `static/js/editor/ai-models.js`, `static/js/editor/ai-operation.js`, `static/js/editor/ai-rembg.js`, `static/js/editor/ai-settings.js`, `static/js/editor/ai-tool-runner.js`, `static/js/editor/ai-tools-misc.js`, `static/js/editor/aspect-fit.js`, `static/js/editor/batch-runner.js`, `static/js/editor/build/command-palette.js`, `static/js/editor/build/right-panel.js`, `static/js/editor/build/topbar.js`, `static/js/editor/canvas-coords.js`, `static/js/editor/canvas-events.js`, `static/js/editor/canvas-transforms.js`, `static/js/editor/checkerboard.js`, `static/js/editor/clipboard-and-drop.js`, `static/js/editor/color-mode.js`, `static/js/editor/control-kit.js`, `static/js/editor/document-geometry.js`, `static/js/editor/draggable-dialog.js`, `static/js/editor/editor-agent.js`, `static/js/editor/editor-bridge.js`, `static/js/editor/editor-control.js`, `static/js/editor/export-dialog.js`, `static/js/editor/filters/dehaze.js`, `static/js/editor/filters/edge-feather.js`, `static/js/editor/fx/adj-popup.js`, `static/js/editor/fx/cube-lut.js`, `static/js/editor/fx/histogram.js`, `static/js/editor/history-panel.js`, `static/js/editor/image-generation.js`, `static/js/editor/image-result-geometry.js`, `static/js/editor/keyboard-shortcuts.js`, `static/js/editor/layer-clipping.js`, `static/js/editor/layer-geometry.js`, `static/js/editor/layer-hit-test.js`, `static/js/editor/layer-panel.js`, `static/js/editor/layer-style-menu.js`, `static/js/editor/layer-styles.js`, `static/js/editor/look-recipes.js`, `static/js/editor/mask-ops.js`, `static/js/editor/mask-utils.js`, `static/js/editor/nl-edit.js`, `static/js/editor/panel-visibility.js`, `static/js/editor/panels/panels.js`, `static/js/editor/panels/studio-panels.js`, `static/js/editor/patch-ops.js`, `static/js/editor/path-geometry.js`, `static/js/editor/perspective-crop.js`, `static/js/editor/precision-guides.js`, `static/js/editor/psd.js`, `static/js/editor/quick-edit-job.js`, `static/js/editor/render-cancellation.js`, `static/js/editor/retouch.js`, `static/js/editor/scroll-affordance.js`, `static/js/editor/select-and-mask.js`, `static/js/editor/select-subject.js`, `static/js/editor/shape-boolean.js`, `static/js/editor/shortcuts-popover.js`, `static/js/editor/slider-ux.js`, `static/js/editor/state.js`, `static/js/editor/stroke-pipeline.js`, `static/js/editor/stroke-tool-sliders.js`, `static/js/editor/text-edit-overlay.js`, `static/js/editor/tools/bucket.js`, `static/js/editor/tools/clone.js`, `static/js/editor/tools/color-range.js`, `static/js/editor/tools/crop.js`, `static/js/editor/tools/eyedropper.js`, `static/js/editor/tools/flood-fill.js`, `static/js/editor/tools/gradient.js`, `static/js/editor/tools/lasso.js`, `static/js/editor/tools/liquify.js`, `static/js/editor/tools/marquee.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/object-select.js`, `static/js/editor/tools/patch.js`, `static/js/editor/tools/pen-path.js`, `static/js/editor/tools/pen-selection.js`, `static/js/editor/tools/perspective-crop.js`, `static/js/editor/tools/quick-select.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-drag.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/tools/wand.js`, `static/js/editor/wire-extra-menus.js`, `static/js/editor/wire-import.js`, `static/js/editor/wire-merge-buttons.js`, `static/js/editor/wire-selection-controls.js`, `static/js/editor/wire-topbar-menus.js`, `static/js/editor/wire-topbar-overflow.js`, `static/js/editor/wire-topbar.js`, `static/js/editor/wire-view-menu.js`, `static/js/editor/workspaces.js`, `static/js/modalManager.js`, `static/js/settings/imagePreferences.js`, `static/js/spinner.js`
+- `static/js/group.js` → `static/js/markdown.js`, `static/js/modelSort.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/storage.js`
 - `static/js/init.js` → `static/js/storage.js`
 - `static/js/keyboard-shortcuts.js` → `static/js/appConfig.js`, `static/js/platform.js`
-- `static/js/markdown.js` → `static/js/emojiShortcodes.js`, `static/js/markdown/tableRow.js`, `static/js/ui.js`
-- `static/js/memory.js` → `static/js/spinner.js`, `static/js/tileManager.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
-- `static/js/modalManager.js` → `static/js/escMenuStack.js`, `static/js/modalSnap.js`, `static/js/tileManager.js`, `static/js/toolWindowZOrder.js`
-- `static/js/modelPicker.js` → `static/js/modelSort.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/models.js` → `static/js/dragSort.js`, `static/js/modelSort.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/ui.js`
-- `static/js/notes.js` → `static/js/colorPicker.js`, `static/js/compare/vote.js`, `static/js/escMenuStack.js`, `static/js/modalSnap.js`, `static/js/tileManager.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/windowDrag.js`
-- `static/js/rag.js` → `static/js/spinner.js`, `static/js/ui.js`
-- `static/js/research/panel.js` → `static/js/modelSort.js`, `static/js/researchSynapse.js`, `static/js/spinner.js`, `static/js/theme.js`
-- `static/js/search-chat.js` → `static/js/ui.js`
+- `static/js/markdown.js` → `static/js/emojiShortcodes.js`, `static/js/markdown/tableRow.js`
+- `static/js/memory.js` → `static/js/actionMenuOrder.js`, `static/js/escMenuStack.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/windowDrag.js`
+- `static/js/modalManager.js` → `static/js/escMenuStack.js`, `static/js/modalManager.js`, `static/js/modalSnap.js`, `static/js/toolWindowZOrder.js`
+- `static/js/modelPicker.js` → `static/js/modelSort.js`, `static/js/providers.js`, `static/js/spinner.js`
+- `static/js/models.js` → `static/js/dragSort.js`, `static/js/modelSort.js`, `static/js/providers.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/storage.js`
+- `static/js/notes.js` → `static/js/features/notes/index.js`
+- `static/js/rag.js` → `static/js/spinner.js`
+- `static/js/research/panel.js` → `static/js/actionMenuOrder.js`, `static/js/escMenuStack.js`, `static/js/modelSort.js`, `static/js/searchProviderIcons.js`, `static/js/spinner.js`
+- `static/js/search-chat.js` → `static/js/sessions.js`
 - `static/js/search.js` → `static/js/appConfig.js`
-- `static/js/sessions.js` → `static/js/providers.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/ui.js`
-- `static/js/settings.js` → `static/js/appConfig.js`, `static/js/escMenuStack.js`, `static/js/modelSort.js`, `static/js/platform.js`, `static/js/providers.js`, `static/js/search.js`, `static/js/settings/dom.js`, `static/js/settings/search.js`, `static/js/settings/sidebar.js`, `static/js/ui.js`
-- `static/js/settings/lifecycle.js` → `static/js/modalSnap.js`, `static/js/windowDrag.js`
+- `static/js/sessions.js` → `static/js/actionMenuOrder.js`, `static/js/escMenuStack.js`, `static/js/providers.js`, `static/js/spinner.js`, `static/js/storage.js`
+- `static/js/settings.js` → `static/js/appConfig.js`, `static/js/escMenuStack.js`, `static/js/modelSort.js`, `static/js/platform.js`, `static/js/providers.js`, `static/js/search.js`, `static/js/searchProviderIcons.js`, `static/js/settings/agent.js`, `static/js/settings/api.js`, `static/js/settings/dom.js`, `static/js/settings/imageModels.js`, `static/js/settings/navigation.js`, `static/js/settings/oauthReturn.js`, `static/js/settings/peek.js`, `static/js/settings/registry.js`, `static/js/settings/search.js`, `static/js/settings/shell.js`, `static/js/settings/sidebar.js`, `static/js/settings/speech.js`, `static/js/settings/writingStyle.js`
+- `static/js/settings/agent.js` → `static/js/settings/api.js`, `static/js/settings/dom.js`
+- `static/js/settings/api.js` → `static/js/appConfig.js`
+- `static/js/settings/imageModels.js` → `static/js/editor/ai-models.js`, `static/js/modelSort.js`, `static/js/settings/dom.js`, `static/js/settings/imagePreferences.js`
+- `static/js/settings/imagePreferences.js` → `static/js/appConfig.js`
+- `static/js/settings/lifecycle.js` → `static/js/modalManager.js`, `static/js/modalSnap.js`, `static/js/modalVisibility.js`, `static/js/windowDrag.js`
 - `static/js/settings/navigation.js` → `static/js/settings/registry.js`
-- `static/js/skills.js` → `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`
-- `static/js/slashCommands.js` → `static/js/appConfig.js`, `static/js/cookbook.js`, `static/js/providerDeviceFlow.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/theme.js`, `static/js/ui.js`, `static/js/workspace.js`
+- `static/js/settings/peek.js` → `static/js/settings/dom.js`
+- `static/js/settings/shell.js` → `static/js/settings/lifecycle.js`, `static/js/settings/navigation.js`, `static/js/settings/peek.js`, `static/js/settings/registry.js`
+- `static/js/settings/speech.js` → `static/js/settings/api.js`, `static/js/settings/dom.js`
+- `static/js/settings/writingStyle.js` → `static/js/settings/api.js`, `static/js/settings/dom.js`
+- `static/js/skills.js` → `static/js/actionMenuOrder.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`
+- `static/js/slashCommands.js` → `static/js/appConfig.js`, `static/js/cookbook.js`, `static/js/models.js`, `static/js/providerDeviceFlow.js`, `static/js/sessions.js`, `static/js/spinner.js`, `static/js/storage.js`, `static/js/workspace.js`
 - `static/js/streamingRenderer.js` → `static/js/streamingSegmenter.js`
-- `static/js/tasks.js` → `static/js/appConfig.js`, `static/js/escMenuStack.js`, `static/js/modelSort.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/ui.js`, `static/js/util/ordinal.js`, `static/js/windowDrag.js`
-- `static/js/theme.js` → `static/js/color/hex.js`, `static/js/colorPicker.js`, `static/js/storage.js`, `static/js/tileManager.js`, `static/js/ui.js`, `static/js/windowDrag.js`
+- `static/js/tasks.js` → `static/js/actionMenuOrder.js`, `static/js/appConfig.js`, `static/js/markdown.js`, `static/js/modelSort.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`, `static/js/util/ordinal.js`, `static/js/windowDrag.js`
+- `static/js/theme.js` → `static/js/color/hex.js`, `static/js/modalManager.js`, `static/js/modalVisibility.js`, `static/js/storage.js`, `static/js/windowDrag.js`
+- `static/js/tourHintDismiss.js` → `static/js/escMenuStack.js`
+- `static/js/tourHints.js` → `static/js/tourHintDismiss.js`
 - `static/js/tts-ai.js` → `static/js/appConfig.js`
-- `static/js/ui.js` → `static/js/escMenuStack.js`, `static/js/spinner.js`, `static/js/theme.js`, `static/js/toolWindowZOrder.js`
+- `static/js/ui.js` → `static/js/escMenuStack.js`, `static/js/modalManager.js`, `static/js/spinner.js`, `static/js/toolWindowZOrder.js`
 - `static/js/windowDrag.js` → `static/js/modalSnap.js`, `static/js/windowResize.js`
-- `static/js/workspace.js` → `static/js/storage.js`, `static/js/ui.js`, `static/js/windowDrag.js`
+- `static/js/workspace.js` → `static/js/storage.js`, `static/js/windowDrag.js`
 
 ## Reverse: dependents (if you change X, these import it)
 
-- `static/js/appConfig.js` ← `static/app.js`, `static/js/admin.js`, `static/js/chatRenderer.js`, `static/js/emailLibrary.js`, `static/js/keyboard-shortcuts.js`, `static/js/search.js`, `static/js/settings.js`, `static/js/slashCommands.js`, `static/js/tasks.js`, `static/js/tts-ai.js`
-- `static/js/calendar.js` ← `static/app.js`
+- `static/js/actionMenuOrder.js` ← `static/js/documentLibrary.js`, `static/js/emailLibrary/menus.js`, `static/js/memory.js`, `static/js/research/panel.js`, `static/js/sessions.js`, `static/js/skills.js`, `static/js/tasks.js`
+- `static/js/appConfig.js` ← `static/app.js`, `static/js/admin.js`, `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/emailLibrary/index.js`, `static/js/keyboard-shortcuts.js`, `static/js/search.js`, `static/js/settings.js`, `static/js/settings/api.js`, `static/js/settings/imagePreferences.js`, `static/js/slashCommands.js`, `static/js/tasks.js`, `static/js/tts-ai.js`
+- `static/js/backgroundToolJobs.js` ← `static/app.js`
 - `static/js/censor.js` ← `static/app.js`
 - `static/js/chatStreamErrors.js` ← `static/js/chat.js`
-- `static/js/codeRunner.js` ← `static/js/chat.js`, `static/js/document.js`
 - `static/js/color/hex.js` ← `static/js/theme.js`
-- `static/js/colorPicker.js` ← `static/js/calendar.js`, `static/js/galleryEditor.js`, `static/js/notes.js`, `static/js/theme.js`
-- `static/js/compare/icons.js` ← `static/js/compare/probe.js`, `static/js/compare/scoreboard.js`, `static/js/compare/selector.js`, `static/js/compare/vote.js`
+- `static/js/compare/models.js` ← `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/compare/selector.js`, `static/js/compare/vote.js`
 - `static/js/compare/probe.js` ← `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/compare/selector.js`
-- `static/js/compare/scoreboard.js` ← `static/js/compare/index.js`, `static/js/compare/selector.js`, `static/js/compare/vote.js`
+- `static/js/compare/sse.js` ← `static/js/compare/stream.js`
 - `static/js/compare/state.js` ← `static/js/compare/index.js`, `static/js/compare/models.js`, `static/js/compare/panes.js`, `static/js/compare/probe.js`, `static/js/compare/scoreboard.js`, `static/js/compare/selector.js`, `static/js/compare/stream.js`, `static/js/compare/vote.js`
-- `static/js/compare/vote.js` ← `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/compare/stream.js`, `static/js/notes.js`
+- `static/js/composerHistoryRecall.js` ← `static/js/chat.js`
 - `static/js/cookbook-deps-recipes.js` ← `static/js/cookbook.js`
 - `static/js/cookbook-diagnosis.js` ← `static/js/cookbook-hwfit.js`, `static/js/cookbook.js`, `static/js/cookbookDownload.js`, `static/js/cookbookRunning.js`, `static/js/cookbookServe.js`
 - `static/js/cookbook-hwfit.js` ← `static/js/cookbook.js`, `static/js/cookbookServe.js`
@@ -115,93 +182,232 @@
 - `static/js/cookbookPorts.js` ← `static/js/cookbookRunning.js`
 - `static/js/cookbookProgressSignal.js` ← `static/js/cookbookRunning.js`
 - `static/js/cookbookRunning.js` ← `static/js/cookbook-hwfit.js`
-- `static/js/documentLibrary.js` ← `static/js/document.js`
 - `static/js/dragSort.js` ← `static/js/galleryEditor.js`, `static/js/models.js`
-- `static/js/editor/ai-models.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/actions-panel.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/adjustment-layer.js` ← `static/js/editor/document-codec.js`
+- `static/js/editor/ai-models.js` ← `static/js/editor/ai-settings.js`, `static/js/galleryEditor.js`, `static/js/settings/imageModels.js`
+- `static/js/editor/ai-operation.js` ← `static/js/editor/ai-inpaint.js`, `static/js/editor/ai-tool-runner.js`, `static/js/editor/ai-tools-misc.js`, `static/js/editor/image-generation.js`, `static/js/galleryEditor.js`
 - `static/js/editor/ai-rembg.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/ai-settings.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/ai-tool-runner.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/ai-tools-misc.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/aspect-fit.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/batch-runner.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/blend-modes.js` ← `static/js/editor/adjustment-layer.js`, `static/js/editor/layer-clipping.js`, `static/js/editor/layer-groups.js`
+- `static/js/editor/brush-engine.js` ← `static/js/editor/stroke-pipeline.js`
+- `static/js/editor/brush-presets.js` ← `static/js/editor/build/toolbar.js`
+- `static/js/editor/build/command-palette.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/build/dock.js` ← `static/js/editor/build/right-panel.js`
 - `static/js/editor/build/popups.js` ← `static/js/editor/history-panel.js`, `static/js/editor/shortcuts-popover.js`
 - `static/js/editor/build/right-panel.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/build/topbar.js` ← `static/js/galleryEditor.js`
-- `static/js/editor/canvas-coords.js` ← `static/js/editor/tools/clone.js`, `static/js/editor/tools/crop.js`, `static/js/editor/tools/lasso.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-drag.js`, `static/js/editor/tools/wand.js`, `static/js/galleryEditor.js`
+- `static/js/editor/canvas-context-menu.js` ← `static/js/editor/canvas-events.js`
+- `static/js/editor/canvas-coords.js` ← `static/js/editor/canvas-events.js`, `static/js/editor/tools/bucket.js`, `static/js/editor/tools/clone.js`, `static/js/editor/tools/crop.js`, `static/js/editor/tools/eyedropper.js`, `static/js/editor/tools/gradient.js`, `static/js/editor/tools/lasso.js`, `static/js/editor/tools/liquify.js`, `static/js/editor/tools/marquee.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/pen-selection.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-drag.js`, `static/js/editor/tools/wand.js`, `static/js/galleryEditor.js`
 - `static/js/editor/canvas-events.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/canvas-navigation.js` ← `static/js/editor/panels/panels.js`
 - `static/js/editor/canvas-transforms.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/checkerboard.js` ← `static/js/editor/tools/crop.js`, `static/js/galleryEditor.js`
 - `static/js/editor/clipboard-and-drop.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/color-mode.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/composite-helpers.js` ← `static/js/editor/adjustment-layer.js`
+- `static/js/editor/control-kit.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/direct-manipulation-session.js` ← `static/js/editor/tools/crop.js`, `static/js/editor/tools/marquee.js`, `static/js/editor/tools/transform-drag.js`
+- `static/js/editor/document-geometry.js` ← `static/js/editor/canvas-transforms.js`, `static/js/editor/wire-topbar-menus.js`, `static/js/galleryEditor.js`
+- `static/js/editor/draggable-dialog.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/editor-agent.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/editor-bridge.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/editor-control.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/effects.js` ← `static/js/editor/document-codec.js`, `static/js/editor/layer-groups.js`, `static/js/editor/layer-panel.js`
+- `static/js/editor/export-dialog.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/filters/dehaze.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/filters/edge-feather.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/fx/adj-popup.js` ← `static/js/galleryEditor.js`
-- `static/js/editor/fx/histogram.js` ← `static/js/editor/fx/adj-popup.js`, `static/js/galleryEditor.js`
-- `static/js/editor/fx/pixel-pass.js` ← `static/js/editor/layer-panel.js`
+- `static/js/editor/fx/cube-lut.js` ← `static/js/editor/fx/adj-popup.js`, `static/js/editor/fx/pixel-pass.js`, `static/js/galleryEditor.js`
+- `static/js/editor/fx/develop.js` ← `static/js/editor/fx/pixel-pass.js`
+- `static/js/editor/fx/histogram.js` ← `static/js/editor/fx/adj-popup.js`, `static/js/editor/panels/panels.js`, `static/js/galleryEditor.js`
+- `static/js/editor/fx/pixel-pass.js` ← `static/js/editor/adjustment-layer.js`, `static/js/editor/layer-panel.js`
+- `static/js/editor/gradient-stops.js` ← `static/js/editor/shape-layer.js`
 - `static/js/editor/history-panel.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/image-generation.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/image-result-geometry.js` ← `static/js/editor/ai-inpaint.js`, `static/js/galleryEditor.js`
 - `static/js/editor/keyboard-shortcuts.js` ← `static/js/galleryEditor.js`
-- `static/js/editor/layer-helpers.js` ← `static/js/editor/history-panel.js`
+- `static/js/editor/layer-clipping.js` ← `static/js/editor/layer-groups.js`, `static/js/editor/wire-merge-buttons.js`, `static/js/galleryEditor.js`
+- `static/js/editor/layer-geometry.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/layer-groups.js` ← `static/js/editor/layer-geometry.js`, `static/js/editor/layer-selection.js`, `static/js/editor/stroke-pipeline.js`, `static/js/editor/tools/clone.js`, `static/js/editor/tools/gradient.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/wire-merge-buttons.js`, `static/js/editor/wire-topbar.js`
+- `static/js/editor/layer-helpers.js` ← `static/js/editor/adjustment-layer.js`, `static/js/editor/history-panel.js`
+- `static/js/editor/layer-hit-test.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/layer-panel.js` ← `static/js/galleryEditor.js`
-- `static/js/editor/mask-utils.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/layer-selection.js` ← `static/js/editor/layer-geometry.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/transform-session.js`
+- `static/js/editor/layer-style-menu.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/layer-styles.js` ← `static/js/editor/effects-worker.js`, `static/js/editor/effects.js`, `static/js/editor/layer-style-menu.js`, `static/js/galleryEditor.js`
+- `static/js/editor/look-recipes.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/mask-ops.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/mask-utils.js` ← `static/js/editor/document-codec.js`, `static/js/editor/layer-panel.js`, `static/js/editor/selection-mask.js`, `static/js/editor/wire-inpaint-controls.js`, `static/js/galleryEditor.js`
+- `static/js/editor/nl-edit.js` ← `static/js/editor/editor-agent.js`, `static/js/galleryEditor.js`
+- `static/js/editor/panel-visibility.js` ← `static/js/editor/wire-view-menu.js`, `static/js/editor/workspaces.js`, `static/js/galleryEditor.js`
+- `static/js/editor/panels/panels.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/panels/studio-panels.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/patch-ops.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/path-geometry.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/perspective-crop.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/perspective-warp.js` ← `static/js/editor/perspective-crop.js`
+- `static/js/editor/placed-layer.js` ← `static/js/editor/clipboard-and-drop.js`, `static/js/editor/document-geometry.js`, `static/js/editor/layer-geometry.js`, `static/js/editor/tools/move.js`
+- `static/js/editor/precision-guides.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/psd.js` ← `static/js/editor/export-dialog.js`, `static/js/editor/wire-import.js`, `static/js/galleryEditor.js`
+- `static/js/editor/quick-edit-job.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/render-cancellation.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/retouch.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/scroll-affordance.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/select-and-mask.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/select-subject.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/selection-mask.js` ← `static/js/editor/ai-rembg.js`, `static/js/editor/keyboard-shortcuts.js`, `static/js/editor/select-and-mask.js`
+- `static/js/editor/selection-modifiers.js` ← `static/js/editor/tools/lasso.js`, `static/js/editor/tools/marquee.js`, `static/js/editor/tools/object-select.js`, `static/js/editor/tools/pen-selection.js`, `static/js/editor/tools/quick-select.js`, `static/js/editor/tools/wand.js`
+- `static/js/editor/shape-boolean.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/shape-layer.js` ← `static/js/editor/document-geometry.js`, `static/js/editor/layer-panel.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/wire-merge-buttons.js`
 - `static/js/editor/shortcuts-popover.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/slider-ux.js` ← `static/js/galleryEditor.js`
-- `static/js/editor/snap.js` ← `static/js/editor/tools/move.js`, `static/js/galleryEditor.js`
-- `static/js/editor/state.js` ← `static/js/editor/ai-inpaint.js`, `static/js/editor/ai-models.js`, `static/js/editor/ai-rembg.js`, `static/js/editor/ai-tool-runner.js`, `static/js/editor/ai-tools-misc.js`, `static/js/editor/build/right-panel.js`, `static/js/editor/canvas-events.js`, `static/js/editor/canvas-transforms.js`, `static/js/editor/clipboard-and-drop.js`, `static/js/editor/fx/adj-popup.js`, `static/js/editor/history-panel.js`, `static/js/editor/keyboard-shortcuts.js`, `static/js/editor/layer-panel.js`, `static/js/editor/slider-ux.js`, `static/js/editor/stroke-pipeline.js`, `static/js/editor/stroke-tool-sliders.js`, `static/js/editor/tools/clone.js`, `static/js/editor/tools/crop.js`, `static/js/editor/tools/lasso.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-drag.js`, `static/js/editor/tools/transform-handles.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/tools/wand.js`, `static/js/editor/wire-import.js`, `static/js/editor/wire-inpaint-controls.js`, `static/js/editor/wire-merge-buttons.js`, `static/js/editor/wire-selection-controls.js`, `static/js/editor/wire-topbar-menus.js`, `static/js/editor/wire-topbar-overflow.js`, `static/js/editor/wire-topbar.js`, `static/js/galleryEditor.js`
+- `static/js/editor/snap.js` ← `static/js/editor/tools/move.js`
+- `static/js/editor/state.js` ← `static/js/editor/ai-inpaint.js`, `static/js/editor/ai-models.js`, `static/js/editor/ai-rembg.js`, `static/js/editor/ai-tool-runner.js`, `static/js/editor/ai-tools-misc.js`, `static/js/editor/build/options-bar.js`, `static/js/editor/build/right-panel.js`, `static/js/editor/canvas-context-menu.js`, `static/js/editor/canvas-coords.js`, `static/js/editor/canvas-events.js`, `static/js/editor/canvas-transforms.js`, `static/js/editor/clipboard-and-drop.js`, `static/js/editor/fx/adj-popup.js`, `static/js/editor/history-panel.js`, `static/js/editor/keyboard-shortcuts.js`, `static/js/editor/layer-geometry.js`, `static/js/editor/layer-panel.js`, `static/js/editor/precision-guides.js`, `static/js/editor/slider-ux.js`, `static/js/editor/stroke-pipeline.js`, `static/js/editor/stroke-tool-sliders.js`, `static/js/editor/tools/bucket.js`, `static/js/editor/tools/clone.js`, `static/js/editor/tools/crop.js`, `static/js/editor/tools/eyedropper.js`, `static/js/editor/tools/gradient.js`, `static/js/editor/tools/lasso.js`, `static/js/editor/tools/liquify.js`, `static/js/editor/tools/marquee.js`, `static/js/editor/tools/move.js`, `static/js/editor/tools/object-select.js`, `static/js/editor/tools/patch.js`, `static/js/editor/tools/pen-selection.js`, `static/js/editor/tools/perspective-crop.js`, `static/js/editor/tools/quick-select.js`, `static/js/editor/tools/stroke.js`, `static/js/editor/tools/transform-drag.js`, `static/js/editor/tools/transform-handles.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/tools/wand.js`, `static/js/editor/wire-import.js`, `static/js/editor/wire-inpaint-controls.js`, `static/js/editor/wire-merge-buttons.js`, `static/js/editor/wire-selection-controls.js`, `static/js/editor/wire-topbar-menus.js`, `static/js/editor/wire-topbar-overflow.js`, `static/js/editor/wire-topbar.js`, `static/js/editor/wire-view-menu.js`, `static/js/galleryEditor.js`
 - `static/js/editor/stroke-pipeline.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/stroke-tool-sliders.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/submenu-toggles.js` ← `static/js/editor/wire-extra-menus.js`, `static/js/editor/wire-topbar-menus.js`
+- `static/js/editor/text-edit-overlay.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/text-layer.js` ← `static/js/editor/document-geometry.js`, `static/js/editor/layer-panel.js`, `static/js/editor/panels/studio-panels.js`, `static/js/editor/tools/transform-session.js`, `static/js/editor/wire-merge-buttons.js`
+- `static/js/editor/tool-shortcuts.js` ← `static/js/editor/build/popups.js`, `static/js/editor/build/toolbar.js`
+- `static/js/editor/tools/bucket.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/clone.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/color-range.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/crop.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/eyedropper.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/flood-fill.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/gradient.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/lasso-mask.js` ← `static/js/editor/tools/lasso.js`
 - `static/js/editor/tools/lasso.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/liquify.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/marquee.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/move.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/object-select.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/patch.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/pen-path.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/pen-selection.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/perspective-crop.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/tools/quick-select.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/stroke.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/transform-drag.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/transform-session.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/tools/wand.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/transform-frame-geometry.js` ← `static/js/editor/snap.js`, `static/js/editor/tools/transform-drag.js`
+- `static/js/editor/wire-extra-menus.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/wire-import.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/wire-merge-buttons.js` ← `static/js/editor/layer-panel.js`, `static/js/galleryEditor.js`
 - `static/js/editor/wire-selection-controls.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/wire-topbar-menus.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/wire-topbar-overflow.js` ← `static/js/galleryEditor.js`
 - `static/js/editor/wire-topbar.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/wire-view-menu.js` ← `static/js/galleryEditor.js`
+- `static/js/editor/workspaces.js` ← `static/js/galleryEditor.js`
+- `static/js/emailLibrary/aiReply.js` ← `static/js/emailLibrary/index.js`, `static/js/emailLibrary/reader.js`
+- `static/js/emailLibrary/bodyRender.js` ← `static/js/emailLibrary/index.js`, `static/js/emailLibrary/settingsPage.js`
+- `static/js/emailLibrary/index.js` ← `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/attachments.js`, `static/js/emailLibrary/unsubscribe.js`
+- `static/js/emailLibrary/menus.js` ← `static/js/emailLibrary/reader.js`
+- `static/js/emailLibrary/reader.js` ← `static/js/emailLibrary/attachments.js`, `static/js/emailLibrary/index.js`, `static/js/emailLibrary/menus.js`
 - `static/js/emailLibrary/replyRecipients.js` ← `static/js/emailInbox.js`
-- `static/js/emailLibrary/state.js` ← `static/js/emailLibrary.js`
-- `static/js/emailShared.js` ← `static/js/emailInbox.js`, `static/js/emailLibrary.js`
+- `static/js/emailLibrary/settingsPage.js` ← `static/js/emailLibrary/bodyRender.js`
+- `static/js/emailLibrary/state.js` ← `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/attachments.js`, `static/js/emailLibrary/bodyRender.js`, `static/js/emailLibrary/index.js`, `static/js/emailLibrary/menus.js`, `static/js/emailLibrary/reader.js`, `static/js/emailLibrary/settingsPage.js`, `static/js/emailLibrary/unsubscribe.js`
+- `static/js/emailLibrary/unsubscribe.js` ← `static/js/emailLibrary/settingsPage.js`
+- `static/js/emailLibrary/utils.js` ← `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/attachments.js`, `static/js/emailLibrary/reader.js`, `static/js/emailLibrary/settingsPage.js`, `static/js/emailLibrary/unsubscribe.js`
+- `static/js/emailReplyStream.js` ← `static/js/document.js`
+- `static/js/emailShared.js` ← `static/js/emailInbox.js`, `static/js/emailLibrary/index.js`, `static/js/emailLibrary/settingsPage.js`, `static/js/emailLibrary/unsubscribe.js`
 - `static/js/emojiPicker.js` ← `static/js/document.js`
 - `static/js/emojiShortcodes.js` ← `static/js/markdown.js`
-- `static/js/escMenuStack.js` ← `static/js/calendar.js`, `static/js/chatRenderer.js`, `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/cookbook.js`, `static/js/cookbookRunning.js`, `static/js/cookbookServe.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/emailInbox.js`, `static/js/emailLibrary.js`, `static/js/gallery.js`, `static/js/modalManager.js`, `static/js/notes.js`, `static/js/settings.js`, `static/js/skills.js`, `static/js/tasks.js`, `static/js/ui.js`
-- `static/js/fileHandler.js` ← `static/app.js`, `static/js/chat.js`, `static/js/gallery.js`
+- `static/js/escMenuStack.js` ← `static/js/calendar.js`, `static/js/chatRenderer.js`, `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/cookbook.js`, `static/js/cookbookRunning.js`, `static/js/document.js`, `static/js/emailInbox.js`, `static/js/emailLibrary/menus.js`, `static/js/gallery.js`, `static/js/memory.js`, `static/js/modalManager.js`, `static/js/research/panel.js`, `static/js/sessions.js`, `static/js/settings.js`, `static/js/tourHintDismiss.js`, `static/js/ui.js`
+- `static/js/features/notes/application/agentActions.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/cardOperations.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/checklistOperations.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/deletion.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/drafts.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/queries.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/reminders.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/selection.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/state.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/submission.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/application/workflows.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/domain/noteRules.js` ← `static/js/features/notes/application/agentActions.js`, `static/js/features/notes/application/queries.js`, `static/js/features/notes/index.js`, `static/js/features/notes/ui/cardRendering.js`, `static/js/features/notes/ui/clipboard.js`, `static/js/features/notes/ui/filters.js`, `static/js/features/notes/ui/reminderDisplay.js`
+- `static/js/features/notes/domain/recurrence.js` ← `static/js/features/notes/application/queries.js`, `static/js/features/notes/application/reminders.js`, `static/js/features/notes/domain/noteRules.js`, `static/js/features/notes/index.js`, `static/js/features/notes/ui/cardRendering.js`, `static/js/features/notes/ui/filters.js`, `static/js/features/notes/ui/reminderDisplay.js`, `static/js/features/notes/ui/reminderPicker.js`
+- `static/js/features/notes/index.js` ← `static/js/notes.js`
+- `static/js/features/notes/infrastructure/http.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/infrastructure/notifications.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/infrastructure/storage.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/cardChecklist.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/cardInteractions.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/cardRendering.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/cardReorder.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/checklist.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/checklistReorder.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/clipboard.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/colors.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/draftEditor.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/drawing.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/editor.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/filters.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/layout.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/lifecycle.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/mobileEditor.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/mobileReorder.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/panel.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/quickAdd.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/reminderDisplay.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/reminderPicker.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/selection.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/text.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/toolbar.js` ← `static/js/features/notes/index.js`
+- `static/js/features/notes/ui/windowLayout.js` ← `static/js/features/notes/index.js`
+- `static/js/generatedImageResult.js` ← `static/js/chatRenderer.js`
 - `static/js/group.js` ← `static/app.js`
-- `static/js/keyboard-shortcuts.js` ← `static/app.js`
-- `static/js/langIcons.js` ← `static/js/document.js`, `static/js/documentLibrary.js`
+- `static/js/markdown.js` ← `static/app.js`, `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/chatStream.js`, `static/js/compare/index.js`, `static/js/compare/stream.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/group.js`, `static/js/tasks.js`
 - `static/js/markdown/tableRow.js` ← `static/js/markdown.js`
-- `static/js/modalSnap.js` ← `static/js/emailInbox.js`, `static/js/emailLibrary.js`, `static/js/modalManager.js`, `static/js/notes.js`, `static/js/settings/lifecycle.js`, `static/js/windowDrag.js`
+- `static/js/memory.js` ← `static/app.js`
+- `static/js/modalManager.js` ← `static/app.js`, `static/js/calendar.js`, `static/js/cookbook.js`, `static/js/document.js`, `static/js/editor/fx/adj-popup.js`, `static/js/editor/history-panel.js`, `static/js/emailInbox.js`, `static/js/emailLibrary/attachments.js`, `static/js/emailLibrary/index.js`, `static/js/emailLibrary/reader.js`, `static/js/gallery.js`, `static/js/galleryEditor.js`, `static/js/modalManager.js`, `static/js/settings/lifecycle.js`, `static/js/theme.js`, `static/js/ui.js`
+- `static/js/modalSnap.js` ← `static/js/emailInbox.js`, `static/js/emailLibrary/index.js`, `static/js/emailLibrary/reader.js`, `static/js/modalManager.js`, `static/js/settings/lifecycle.js`, `static/js/windowDrag.js`
+- `static/js/modalVisibility.js` ← `static/js/settings/lifecycle.js`, `static/js/theme.js`
 - `static/js/model/matchKey.js` ← `static/js/chatRenderer.js`
-- `static/js/modelSort.js` ← `static/js/admin.js`, `static/js/assistant.js`, `static/js/compare/models.js`, `static/js/editor/ai-models.js`, `static/js/group.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/research/panel.js`, `static/js/settings.js`, `static/js/tasks.js`
-- `static/js/notes.js` ← `static/app.js`
-- `static/js/panels.js` ← `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/gallery.js`
+- `static/js/modelSort.js` ← `static/js/admin.js`, `static/js/assistant.js`, `static/js/compare/models.js`, `static/js/editor/ai-models.js`, `static/js/group.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/research/panel.js`, `static/js/settings.js`, `static/js/settings/imageModels.js`, `static/js/tasks.js`
+- `static/js/models.js` ← `static/app.js`, `static/js/slashCommands.js`
 - `static/js/platform.js` ← `static/js/editor/keyboard-shortcuts.js`, `static/js/keyboard-shortcuts.js`, `static/js/settings.js`
-- `static/js/presets.js` ← `static/app.js`, `static/js/chat.js`, `static/js/compare/index.js`, `static/js/compare/stream.js`, `static/js/group.js`
 - `static/js/providerDeviceFlow.js` ← `static/js/admin.js`, `static/js/slashCommands.js`
 - `static/js/providers.js` ← `static/js/admin.js`, `static/js/chatRenderer.js`, `static/js/cookbook.js`, `static/js/cookbookServe.js`, `static/js/group.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/sessions.js`, `static/js/settings.js`
 - `static/js/rag.js` ← `static/app.js`
-- `static/js/researchSynapse.js` ← `static/js/chat.js`, `static/js/research/panel.js`
 - `static/js/search-chat.js` ← `static/app.js`
 - `static/js/search.js` ← `static/app.js`, `static/js/chat.js`, `static/js/settings.js`
+- `static/js/searchProviderIcons.js` ← `static/js/research/panel.js`, `static/js/settings.js`
 - `static/js/section-management.js` ← `static/app.js`
-- `static/js/settings/dom.js` ← `static/js/settings.js`
-- `static/js/settings/registry.js` ← `static/js/settings/navigation.js`
+- `static/js/sessions.js` ← `static/app.js`, `static/js/assistant.js`, `static/js/chat.js`, `static/js/chatStream.js`, `static/js/compare/index.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/emailInbox.js`, `static/js/gallery.js`, `static/js/memory.js`, `static/js/models.js`, `static/js/search-chat.js`, `static/js/slashCommands.js`
+- `static/js/settings/agent.js` ← `static/js/settings.js`
+- `static/js/settings/api.js` ← `static/js/settings.js`, `static/js/settings/agent.js`, `static/js/settings/speech.js`, `static/js/settings/writingStyle.js`
+- `static/js/settings/dom.js` ← `static/js/settings.js`, `static/js/settings/agent.js`, `static/js/settings/imageModels.js`, `static/js/settings/peek.js`, `static/js/settings/speech.js`, `static/js/settings/writingStyle.js`
+- `static/js/settings/imageModels.js` ← `static/js/settings.js`
+- `static/js/settings/imagePreferences.js` ← `static/js/editor/ai-settings.js`, `static/js/editor/editor-agent.js`, `static/js/editor/image-generation.js`, `static/js/galleryEditor.js`, `static/js/settings/imageModels.js`
+- `static/js/settings/lifecycle.js` ← `static/js/settings/shell.js`
+- `static/js/settings/navigation.js` ← `static/js/settings.js`, `static/js/settings/shell.js`
+- `static/js/settings/oauthReturn.js` ← `static/js/settings.js`
+- `static/js/settings/peek.js` ← `static/js/settings.js`, `static/js/settings/shell.js`
+- `static/js/settings/registry.js` ← `static/js/settings.js`, `static/js/settings/navigation.js`, `static/js/settings/shell.js`
 - `static/js/settings/search.js` ← `static/js/settings.js`
+- `static/js/settings/shell.js` ← `static/js/settings.js`
 - `static/js/settings/sidebar.js` ← `static/js/settings.js`
-- `static/js/sidebar-layout.js` ← `static/app.js`
+- `static/js/settings/speech.js` ← `static/js/settings.js`
+- `static/js/settings/writingStyle.js` ← `static/js/settings.js`
+- `static/js/shared/ui/confetti.js` ← `static/js/compare/vote.js`
 - `static/js/signature.js` ← `static/js/document.js`
-- `static/js/spinner.js` ← `static/app.js`, `static/js/calendar.js`, `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/compare/probe.js`, `static/js/compare/selector.js`, `static/js/compare/stream.js`, `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/cookbook.js`, `static/js/cookbookServe.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/emailInbox.js`, `static/js/emailLibrary.js`, `static/js/fileHandler.js`, `static/js/gallery.js`, `static/js/galleryEditor.js`, `static/js/group.js`, `static/js/memory.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/rag.js`, `static/js/research/panel.js`, `static/js/sessions.js`, `static/js/skills.js`, `static/js/slashCommands.js`, `static/js/tasks.js`, `static/js/ui.js`
+- `static/js/spinner.js` ← `static/app.js`, `static/js/backgroundToolJobs.js`, `static/js/calendar.js`, `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/compare/index.js`, `static/js/compare/panes.js`, `static/js/compare/probe.js`, `static/js/compare/selector.js`, `static/js/compare/stream.js`, `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/cookbook.js`, `static/js/cookbookServe.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/emailInbox.js`, `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/attachments.js`, `static/js/emailLibrary/index.js`, `static/js/emailLibrary/menus.js`, `static/js/emailLibrary/reader.js`, `static/js/emailLibrary/settingsPage.js`, `static/js/emailLibrary/unsubscribe.js`, `static/js/fileHandler.js`, `static/js/gallery.js`, `static/js/galleryEditor.js`, `static/js/group.js`, `static/js/memory.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/rag.js`, `static/js/research/panel.js`, `static/js/sessions.js`, `static/js/skills.js`, `static/js/slashCommands.js`, `static/js/tasks.js`, `static/js/ui.js`
 - `static/js/storage.js` ← `static/app.js`, `static/js/chat.js`, `static/js/chatStream.js`, `static/js/compare/index.js`, `static/js/compare/models.js`, `static/js/compare/panes.js`, `static/js/compare/scoreboard.js`, `static/js/compare/selector.js`, `static/js/compare/vote.js`, `static/js/dragSort.js`, `static/js/group.js`, `static/js/init.js`, `static/js/models.js`, `static/js/sessions.js`, `static/js/slashCommands.js`, `static/js/theme.js`, `static/js/workspace.js`
 - `static/js/streamingRenderer.js` ← `static/js/chat.js`
 - `static/js/streamingSegmenter.js` ← `static/js/streamingRenderer.js`
-- `static/js/theme.js` ← `static/app.js`, `static/js/chat.js`, `static/js/chatStream.js`, `static/js/compare/index.js`, `static/js/compare/scoreboard.js`, `static/js/compare/selector.js`, `static/js/research/panel.js`, `static/js/sessions.js`, `static/js/slashCommands.js`, `static/js/ui.js`
-- `static/js/tileManager.js` ← `static/app.js`, `static/js/memory.js`, `static/js/modalManager.js`, `static/js/notes.js`, `static/js/theme.js`
-- `static/js/toolWindowZOrder.js` ← `static/js/calendar.js`, `static/js/cookbook.js`, `static/js/cookbookRunning.js`, `static/js/cookbookServe.js`, `static/js/documentLibrary.js`, `static/js/emailLibrary.js`, `static/js/emojiPicker.js`, `static/js/gallery.js`, `static/js/memory.js`, `static/js/modalManager.js`, `static/js/notes.js`, `static/js/skills.js`, `static/js/tasks.js`, `static/js/ui.js`
+- `static/js/toolWindowZOrder.js` ← `static/js/calendar.js`, `static/js/colorPicker.js`, `static/js/cookbook.js`, `static/js/cookbookRunning.js`, `static/js/cookbookServe.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/editor/wire-topbar.js`, `static/js/emailLibrary/aiReply.js`, `static/js/emailLibrary/menus.js`, `static/js/emojiPicker.js`, `static/js/gallery.js`, `static/js/memory.js`, `static/js/modalManager.js`, `static/js/skills.js`, `static/js/tasks.js`, `static/js/ui.js`
+- `static/js/tourHintDismiss.js` ← `static/js/tourHints.js`
 - `static/js/tts-ai.js` ← `static/app.js`, `static/js/chat.js`, `static/js/chatRenderer.js`
-- `static/js/ui.js` ← `static/app.js`, `static/js/admin.js`, `static/js/assistant.js`, `static/js/calendar.js`, `static/js/calendar/reminders.js`, `static/js/chat.js`, `static/js/chatRenderer.js`, `static/js/chatStream.js`, `static/js/codeRunner.js`, `static/js/compare/index.js`, `static/js/compare/models.js`, `static/js/compare/panes.js`, `static/js/compare/probe.js`, `static/js/compare/scoreboard.js`, `static/js/compare/selector.js`, `static/js/compare/stream.js`, `static/js/compare/vote.js`, `static/js/cookbook-diagnosis.js`, `static/js/cookbook-hwfit.js`, `static/js/cookbook.js`, `static/js/cookbookDownload.js`, `static/js/cookbookRunning.js`, `static/js/cookbookServe.js`, `static/js/document.js`, `static/js/documentLibrary.js`, `static/js/emailLibrary.js`, `static/js/fileHandler.js`, `static/js/gallery.js`, `static/js/galleryEditor.js`, `static/js/group.js`, `static/js/markdown.js`, `static/js/memory.js`, `static/js/modelPicker.js`, `static/js/models.js`, `static/js/notes.js`, `static/js/rag.js`, `static/js/search-chat.js`, `static/js/sessions.js`, `static/js/settings.js`, `static/js/skills.js`, `static/js/slashCommands.js`, `static/js/tasks.js`, `static/js/theme.js`, `static/js/workspace.js`
-- `static/js/ui_visibility.js` ← `static/app.js`
 - `static/js/util/ordinal.js` ← `static/js/tasks.js`
 - `static/js/voiceRecorder.js` ← `static/app.js`
-- `static/js/windowDrag.js` ← `static/app.js`, `static/js/calendar.js`, `static/js/cookbook.js`, `static/js/documentLibrary.js`, `static/js/emailLibrary.js`, `static/js/gallery.js`, `static/js/memory.js`, `static/js/notes.js`, `static/js/settings/lifecycle.js`, `static/js/tasks.js`, `static/js/theme.js`, `static/js/workspace.js`
+- `static/js/windowDrag.js` ← `static/app.js`, `static/js/calendar.js`, `static/js/cookbook.js`, `static/js/documentLibrary.js`, `static/js/emailLibrary/index.js`, `static/js/gallery.js`, `static/js/memory.js`, `static/js/settings/lifecycle.js`, `static/js/tasks.js`, `static/js/theme.js`, `static/js/workspace.js`
 - `static/js/windowResize.js` ← `static/js/windowDrag.js`
 - `static/js/workspace.js` ← `static/app.js`, `static/js/slashCommands.js`

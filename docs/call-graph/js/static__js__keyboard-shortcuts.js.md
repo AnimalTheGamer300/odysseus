@@ -6,41 +6,41 @@
 ## `_matchesCombo` — function, line 19
 - **called from:**
 - `static/js/keyboard-shortcuts.js:19`
-- `static/js/keyboard-shortcuts.js:147`
-- `static/js/keyboard-shortcuts.js:154`
-- `static/js/keyboard-shortcuts.js:167`
-- `static/js/keyboard-shortcuts.js:179`
-- `static/js/keyboard-shortcuts.js:194`
-- `static/js/keyboard-shortcuts.js:222`
-- `static/js/keyboard-shortcuts.js:246`
-- `static/js/keyboard-shortcuts.js:249`
-- `static/js/keyboard-shortcuts.js:258`
-- `static/js/keyboard-shortcuts.js:278`
-- `static/js/keyboard-shortcuts.js:285`
+- `static/js/keyboard-shortcuts.js:155`
+- `static/js/keyboard-shortcuts.js:162`
+- `static/js/keyboard-shortcuts.js:168`
+- `static/js/keyboard-shortcuts.js:180`
+- `static/js/keyboard-shortcuts.js:195`
+- `static/js/keyboard-shortcuts.js:223`
+- `static/js/keyboard-shortcuts.js:247`
+- `static/js/keyboard-shortcuts.js:250`
+- `static/js/keyboard-shortcuts.js:259`
+- `static/js/keyboard-shortcuts.js:280`
+- `static/js/keyboard-shortcuts.js:287`
 
 ## `initKeyboardShortcuts` — function, line 50
 - **called from:**
-- `static/app.js:3672`
+- `static/app.js:3772`
 - `static/js/keyboard-shortcuts.js:50`
 
-## `visible` — arrow, line 79
+## `visible` — arrow, line 87
 - **called from:**
-- `static/app.js:2753`
-- `static/js/calendar.js:3703`
-- `static/js/cookbookRunning.js:2133`
-- `static/js/cookbookServe.js:3557`
-- `static/js/document.js:10720`
+- `static/app.js:2829`
+- `static/js/calendar.js:4575`
+- `static/js/cookbookRunning.js:2184`
+- `static/js/cookbookServe.js:3661`
+- `static/js/document.js:17121`
 - `static/js/editor/tools/lasso.js:4`
 - `static/js/editor/wire-merge-buttons.js:8`
-- `static/js/init.js:123`
-- `static/js/sidebar-layout.js:474`
-- `static/js/skills.js:1245`
-- `static/js/ui_visibility.js:52`
+- `static/js/init.js:136`
+- `static/js/sidebar-layout.js:532`
+- `static/js/skills.js:1525`
+- `static/js/ui_visibility.js:53`
 
-## `_windowVisible` — arrow, line 114
+## `_windowVisible` — arrow, line 122
 - **called from:**
-- `static/js/keyboard-shortcuts.js:126`
+- `static/js/keyboard-shortcuts.js:134`
 
-## `_toggleActiveWindow` — arrow, line 122
+## `_toggleActiveWindow` — arrow, line 130
 - **called from:**
-- `static/js/keyboard-shortcuts.js:260`
+- `static/js/keyboard-shortcuts.js:261`

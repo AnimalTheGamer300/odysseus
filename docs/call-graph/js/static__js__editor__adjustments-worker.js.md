@@ -1,0 +1,67 @@
+# `static/js/editor/adjustments-worker.js` — definitions & call sites
+
+1 definitions (regex-based, best-effort).
+
+## `render` — function, line 5
+- **called from:**
+- `scripts/generate_env_reference.py:1219`
+- `src/agent_tools/media_tools.py:493`
+- `src/agent_tools/media_tools.py:1002`
+- `tests/test_audit_c5_benchmark_evidence.py:2875`
+- `tests/test_audit_c5_benchmark_evidence.py:2882`
+- `tests/test_audit_c5_benchmark_evidence.py:2892`
+- `tests/test_audit_c5_benchmark_evidence.py:2906`
+- `tests/test_audit_c5_benchmark_evidence.py:2925`
+- `tests/test_audit_c5_benchmark_evidence.py:2933`
+- `tests/test_audit_c5_benchmark_evidence.py:2935`
+- `tests/test_audit_c5_benchmark_evidence.py:2978`
+- `tests/test_audit_c5_benchmark_evidence.py:3001`
+- `tests/test_audit_c5_benchmark_evidence.py:3006`
+- `tests/test_env_reference.py:168`
+- `tests/test_env_reference.py:179`
+- `static/js/calendar.js:1664`
+- `static/js/calendar.js:2653`
+- `static/js/chat.js:3712`
+- `static/js/chat.js:4841`
+- `static/js/chat.js:5202`
+- `static/js/chat.js:6102`
+- `static/js/chat.js:6252`
+- `static/js/chat.js:7389`
+- `static/js/documentLibrary.js:108`
+- `static/js/documentLibrary.js:124`
+- `static/js/editor/adjustments-worker.js:5`
+- `static/js/editor/adjustments-worker.js:20`
+- `static/js/editor/build/command-palette.js:22`
+- `static/js/editor/build/command-palette.js:56`
+- `static/js/editor/build/command-palette.js:64`
+- `static/js/editor/build/command-palette.js:67`
+- `static/js/editor/build/command-palette.js:68`
+- `static/js/editor/layer-panel.js:186`
+- `static/js/editor/layer-panel.js:302`
+- `static/js/editor/layer-panel.js:440`
+- `static/js/editor/layer-panel.js:490`
+- `static/js/editor/layer-panel.js:581`
+- `static/js/editor/layer-panel.js:613`
+- `static/js/editor/layer-panel.js:672`
+- `static/js/editor/layer-panel.js:711`
+- `static/js/editor/layer-panel.js:725`
+- `static/js/editor/layer-panel.js:739`
+- `static/js/editor/layer-panel.js:751`
+- `static/js/editor/layer-panel.js:795`
+- `static/js/editor/layer-panel.js:807`
+- `static/js/editor/layer-panel.js:839`
+- `static/js/editor/layer-panel.js:918`
+- `static/js/editor/layer-panel.js:929`
+- `static/js/editor/layer-panel.js:942`
+- `static/js/editor/layer-panel.js:962`
+- `static/js/editor/layer-panel.js:992`
+- `static/js/editor/layer-panel.js:1042`
+- `static/js/editor/layer-panel.js:1056`
+- `static/js/editor/layer-panel.js:1079`
+- `static/js/editor/layer-panel.js:1101`
+- `static/js/editor/layer-panel.js:1118`
+- `static/js/editor/layer-panel.js:1132`
+- `static/js/editor/layer-panel.js:1139`
+- `static/js/editor/layer-panel.js:1315`
+- `static/js/editor/layer-panel.js:1342`
+- … +104 more (grep the name in repo)

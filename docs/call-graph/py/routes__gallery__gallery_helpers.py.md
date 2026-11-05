@@ -8,7 +8,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_extract_exif` — function, line 29
 - **called from:**
-- `routes/gallery/gallery_routes.py:404`
+- `routes/gallery/gallery_routes.py:910`
 
 ## `_to_deg` — function, line 74
 - **called from:**
@@ -17,28 +17,29 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_image_to_dict` — function, line 96
 - **called from:**
-- `routes/gallery/gallery_routes.py:795`
-- `routes/gallery/gallery_routes.py:936`
-- `routes/gallery/gallery_routes.py:979`
+- `routes/gallery/gallery_routes.py:1305`
+- `routes/gallery/gallery_routes.py:1446`
+- `routes/gallery/gallery_routes.py:1489`
 
 ## `_owner_filter` — function, line 125
 - **called from:**
-- `routes/gallery/gallery_routes.py:660`
-- `routes/gallery/gallery_routes.py:693`
-- `routes/gallery/gallery_routes.py:706`
-- `routes/gallery/gallery_routes.py:716`
-- `routes/gallery/gallery_routes.py:818`
-- `routes/gallery/gallery_routes.py:825`
-- `routes/gallery/gallery_routes.py:830`
-- `routes/gallery/gallery_routes.py:837`
-- `routes/gallery/gallery_routes.py:880`
-- `routes/gallery/gallery_routes.py:881`
-- `routes/gallery/gallery_routes.py:882`
-- `routes/gallery/gallery_routes.py:910`
-- `routes/gallery/gallery_routes.py:1054`
-- `routes/gallery/gallery_routes.py:1079`
-- `routes/gallery/gallery_routes.py:1106`
-- `src/session_search.py:214`
+- `routes/gallery/gallery_routes.py:1166`
+- `routes/gallery/gallery_routes.py:1199`
+- `routes/gallery/gallery_routes.py:1212`
+- `routes/gallery/gallery_routes.py:1222`
+- `routes/gallery/gallery_routes.py:1328`
+- `routes/gallery/gallery_routes.py:1335`
+- `routes/gallery/gallery_routes.py:1340`
+- `routes/gallery/gallery_routes.py:1347`
+- `routes/gallery/gallery_routes.py:1390`
+- `routes/gallery/gallery_routes.py:1391`
+- `routes/gallery/gallery_routes.py:1392`
+- `routes/gallery/gallery_routes.py:1420`
+- `routes/gallery/gallery_routes.py:1564`
+- `routes/gallery/gallery_routes.py:1589`
+- `routes/gallery/gallery_routes.py:1616`
+- `src/session_search.py:240`
+- `src/session_search.py:278`
 - `tests/test_gallery_owner_filter_single_user.py:41`
 - `tests/test_gallery_owner_filter_single_user.py:51`
 - `tests/test_gallery_owner_filter_single_user.py:52`
@@ -49,4 +50,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_human_size` — function, line 140
 - **called from:**
-- `routes/gallery/gallery_routes.py:890`
+- `routes/gallery/gallery_routes.py:1400`

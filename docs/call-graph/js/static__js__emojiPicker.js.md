@@ -5,6 +5,7 @@
 
 ## `I` — arrow, line 15
 - **called from:**
+- `static/js/editor/keyboard-shortcuts.js:206`
 - `static/js/emojiPicker.js:29`
 - `static/js/emojiPicker.js:30`
 - `static/js/emojiPicker.js:31`
@@ -61,7 +62,7 @@
 
 ## `createEmojiButton` — function, line 118
 - **called from:**
-- `static/js/document.js:5414`
+- `static/js/document.js:8286`
 - `static/js/emojiPicker.js:118`
 
 ## `togglePicker` — function, line 137
@@ -71,67 +72,67 @@
 
 ## `close` — arrow, line 178
 - **called from:**
-- `app.py:333`
-- `app.py:451`
-- `app.py:532`
-- `app.py:1050`
-- `app.py:1174`
-- `app.py:1295`
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
 
 ## `_closePicker` — function, line 198
 - **called from:**
@@ -148,67 +149,67 @@
 
 ## `render` — function, line 227
 - **called from:**
-- `static/js/calendar.js:1259`
-- `static/js/calendar.js:2092`
-- `static/js/chat.js:3658`
-- `static/js/chat.js:4482`
-- `static/js/chat.js:4621`
-- `static/js/editor/layer-panel.js:67`
-- `static/js/editor/layer-panel.js:144`
-- `static/js/editor/layer-panel.js:157`
-- `static/js/editor/layer-panel.js:271`
-- `static/js/editor/layer-panel.js:325`
-- `static/js/editor/layer-panel.js:342`
-- `static/js/editor/layer-panel.js:373`
-- `static/js/editor/layer-panel.js:392`
-- `static/js/editor/layer-panel.js:413`
-- `static/js/editor/layer-panel.js:445`
-- `static/js/editor/layer-panel.js:458`
-- `static/js/editor/layer-panel.js:499`
-- `static/js/editor/layer-panel.js:532`
-- `static/js/editor/layer-panel.js:552`
-- `static/js/editor/layer-panel.js:566`
-- `static/js/emojiPicker.js:227`
-- `static/js/emojiPicker.js:265`
-- `static/js/emojiPicker.js:267`
-- `static/js/galleryEditor.js:3572`
-- `static/js/group.js:478`
-- `static/js/group.js:515`
-- `static/js/group.js:516`
-- `static/js/markdown.js:1361`
-- `static/js/notes.js:3281`
-- `static/js/notes.js:3386`
-- `static/js/notes.js:3389`
-- `static/js/notes.js:3392`
-- `static/js/notes.js:3397`
-- `static/js/notes.js:3400`
-- `static/js/notes.js:3410`
-- `static/js/research/panel.js:721`
-- `static/js/settings.js:309`
-- `static/js/settings.js:352`
-- `static/js/settings.js:367`
-- `static/js/settings.js:371`
-- `static/js/settings.js:374`
-- `static/js/settings.js:1839`
-- `static/js/settings.js:1887`
-- `static/js/settings.js:1929`
-- `static/js/settings.js:1993`
-- `static/js/settings.js:1999`
-- `static/js/settings/search.js:79`
-- `static/js/settings/search.js:129`
-- `static/js/skills.js:1071`
-- `static/js/streamingRenderer.js:57`
-- `static/js/streamingRenderer.js:76`
-- `static/js/streamingRenderer.js:136`
-- `static/js/streamingSegmenter.js:18`
-- `static/js/streamingSegmenter.js:18`
-- `static/js/streamingSegmenter.js:18`
-- `static/js/streamingSegmenter.js:118`
-- `static/js/streamingSegmenter.js:118`
-- `static/js/streamingSegmenter.js:118`
-- `static/js/streamingSegmenter.js:125`
-- `static/js/streamingSegmenter.js:125`
-- … +1 more (grep the name in repo)
+- `scripts/generate_env_reference.py:1219`
+- `src/agent_tools/media_tools.py:493`
+- `src/agent_tools/media_tools.py:1002`
+- `tests/test_audit_c5_benchmark_evidence.py:2875`
+- `tests/test_audit_c5_benchmark_evidence.py:2882`
+- `tests/test_audit_c5_benchmark_evidence.py:2892`
+- `tests/test_audit_c5_benchmark_evidence.py:2906`
+- `tests/test_audit_c5_benchmark_evidence.py:2925`
+- `tests/test_audit_c5_benchmark_evidence.py:2933`
+- `tests/test_audit_c5_benchmark_evidence.py:2935`
+- `tests/test_audit_c5_benchmark_evidence.py:2978`
+- `tests/test_audit_c5_benchmark_evidence.py:3001`
+- `tests/test_audit_c5_benchmark_evidence.py:3006`
+- `tests/test_env_reference.py:168`
+- `tests/test_env_reference.py:179`
+- `static/js/calendar.js:1664`
+- `static/js/calendar.js:2653`
+- `static/js/chat.js:3712`
+- `static/js/chat.js:4841`
+- `static/js/chat.js:5202`
+- `static/js/chat.js:6102`
+- `static/js/chat.js:6252`
+- `static/js/chat.js:7389`
+- `static/js/documentLibrary.js:108`
+- `static/js/documentLibrary.js:124`
+- `static/js/editor/adjustments-worker.js:5`
+- `static/js/editor/adjustments-worker.js:20`
+- `static/js/editor/build/command-palette.js:22`
+- `static/js/editor/build/command-palette.js:56`
+- `static/js/editor/build/command-palette.js:64`
+- `static/js/editor/build/command-palette.js:67`
+- `static/js/editor/build/command-palette.js:68`
+- `static/js/editor/layer-panel.js:186`
+- `static/js/editor/layer-panel.js:302`
+- `static/js/editor/layer-panel.js:440`
+- `static/js/editor/layer-panel.js:490`
+- `static/js/editor/layer-panel.js:581`
+- `static/js/editor/layer-panel.js:613`
+- `static/js/editor/layer-panel.js:672`
+- `static/js/editor/layer-panel.js:711`
+- `static/js/editor/layer-panel.js:725`
+- `static/js/editor/layer-panel.js:739`
+- `static/js/editor/layer-panel.js:751`
+- `static/js/editor/layer-panel.js:795`
+- `static/js/editor/layer-panel.js:807`
+- `static/js/editor/layer-panel.js:839`
+- `static/js/editor/layer-panel.js:918`
+- `static/js/editor/layer-panel.js:929`
+- `static/js/editor/layer-panel.js:942`
+- `static/js/editor/layer-panel.js:962`
+- `static/js/editor/layer-panel.js:992`
+- `static/js/editor/layer-panel.js:1042`
+- `static/js/editor/layer-panel.js:1056`
+- `static/js/editor/layer-panel.js:1079`
+- `static/js/editor/layer-panel.js:1101`
+- `static/js/editor/layer-panel.js:1118`
+- `static/js/editor/layer-panel.js:1132`
+- `static/js/editor/layer-panel.js:1139`
+- `static/js/editor/layer-panel.js:1315`
+- `static/js/editor/layer-panel.js:1342`
+- … +104 more (grep the name in repo)
 
 ## `_insertEmoji` — function, line 273
 - **called from:**

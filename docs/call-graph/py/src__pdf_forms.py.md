@@ -16,9 +16,9 @@
 
 ## `has_form_fields` — function, line 55
 - **called from:**
-- `routes/document/document_routes.py:281`
-- `routes/email_routes.py:3597`
-- `src/document_processor.py:784`
+- `routes/document/document_routes.py:286`
+- `routes/email/email_routes.py:5025`
+- `src/document_processor.py:916`
 
 ## `_infer_label` — function, line 91
 - **called from:**
@@ -36,23 +36,23 @@
 
 ## `extract_fields` — function, line 138
 - **called from:**
-- `routes/document/document_routes.py:286`
-- `routes/email_routes.py:3602`
-- `src/document_processor.py:806`
+- `routes/document/document_routes.py:291`
+- `routes/email/email_routes.py:5030`
+- `src/document_processor.py:938`
 
 ## `stamp_signatures` — function, line 219
 - **called from:**
-- `routes/document/document_routes.py:1565`
-- `routes/document/document_routes.py:1699`
+- `routes/document/document_routes.py:1789`
+- `routes/document/document_routes.py:1923`
 
 ## `stamp_annotations` — function, line 259
 - **called from:**
-- `routes/document/document_routes.py:1463`
-- `routes/document/document_routes.py:1598`
-- `routes/document/document_routes.py:1730`
+- `routes/document/document_routes.py:1687`
+- `routes/document/document_routes.py:1822`
+- `routes/document/document_routes.py:1954`
 
 ## `fill_fields` — function, line 368
 - **called from:**
-- `routes/document/document_routes.py:1431`
-- `routes/document/document_routes.py:1554`
-- `routes/document/document_routes.py:1693`
+- `routes/document/document_routes.py:1655`
+- `routes/document/document_routes.py:1778`
+- `routes/document/document_routes.py:1917`

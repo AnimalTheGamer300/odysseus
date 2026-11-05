@@ -6,55 +6,56 @@
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `setup_preset_routes` — function, line 26
+## `setup_preset_routes` — function, line 28
 - **called from:**
-- `app.py:724`
+- `app.py:804`
 - `tests/test_preset_expand_owner_scope.py:27`
 
-## `get_presets` — function (async), line 30
+## `get_presets` — function (async), line 32
 - **route:** `GET /api/presets`
 - decorator: `router.get("/api/presets")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `update_custom_preset` — function (async), line 34
+## `update_custom_preset` — function (async), line 36
 - **route:** `POST /api/presets/custom`
 - decorator: `router.post("/api/presets/custom")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_user_templates` — function (async), line 53
+## `get_user_templates` — function (async), line 59
 - **route:** `GET /api/presets/templates`
 - decorator: `router.get("/api/presets/templates")`
 - **called from:**
-- `routes/preset_routes.py:54`
+- `routes/preset_routes.py:60`
+- `src/preset_manager.py:160`
 
-## `save_user_template` — function (async), line 57
+## `save_user_template` — function (async), line 63
 - **route:** `POST /api/presets/templates`
 - decorator: `router.post("/api/presets/templates")`
 - **called from:**
-- `routes/preset_routes.py:61`
+- `routes/preset_routes.py:67`
 
-## `delete_user_template` — function (async), line 67
+## `delete_user_template` — function (async), line 73
 - **route:** `DELETE /api/presets/templates/{template_id}`
 - decorator: `router.delete("/api/presets/templates/{template_id}")`
 - **called from:**
-- `routes/preset_routes.py:68`
+- `routes/preset_routes.py:74`
 
-## `expand_character_prompt` — function (async), line 74
+## `expand_character_prompt` — function (async), line 80
 - **route:** `POST /api/presets/expand`
 - decorator: `router.post("/api/presets/expand")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `get_group_presets` — function (async), line 115
+## `get_group_presets` — function (async), line 121
 - **route:** `GET /api/presets/groups`
 - decorator: `router.get("/api/presets/groups")`
 - **called from:**
-- `routes/preset_routes.py:117`
+- `routes/preset_routes.py:123`
 
-## `save_group_presets` — function (async), line 120
+## `save_group_presets` — function (async), line 126
 - **route:** `POST /api/presets/groups`
 - decorator: `router.post("/api/presets/groups")`
 - **called from:**
-- `routes/preset_routes.py:123`
+- `routes/preset_routes.py:129`

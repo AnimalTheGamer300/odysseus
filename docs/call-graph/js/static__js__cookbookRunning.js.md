@@ -1,1100 +1,1129 @@
 # `static/js/cookbookRunning.js` — definitions & call sites
 
-148 definitions (regex-based, best-effort).
+154 definitions (regex-based, best-effort).
 **Exports:** `_addTask`, `_clearCookbookNotif`, `_launchServeTask`, `_loadTasks`, `_nextAvailablePort`, `_parseServePhase`, `_processQueue`, `_removeTask`, `_renderRunningTab`, `_retryDownload`, `_saveTasks`, `_selfHealStaleTasks`, `_serveAutoFix`, `_serveAutoRetry`, `_serveAutoRetryRemove`, `_serveAutoRetryReplace`, `_startBackgroundMonitor`, `_syncFromServer`, `_taskPort`, `_tmuxCmd`, `_tmuxForceKill`, `_tmuxGracefulKill`, `_tmuxIsAliveCheck`, `initRunning`
 
-## `_statusLabel` — function, line 17
+## `_isFinishedDownload` — function, line 17
 - **called from:**
 - `static/js/cookbookRunning.js:17`
-- `static/js/cookbookRunning.js:52`
-- `static/js/cookbookRunning.js:2866`
-- `static/js/cookbookRunning.js:3109`
-- `static/js/cookbookRunning.js:3139`
-- `static/js/cookbookRunning.js:3185`
-- `static/js/cookbookRunning.js:3245`
-- `static/js/cookbookRunning.js:3285`
-- `static/js/cookbookRunning.js:3298`
-- `static/js/cookbookRunning.js:3516`
-- `static/js/cookbookRunning.js:3536`
-- `static/js/cookbookRunning.js:3879`
+- `static/js/cookbookRunning.js:23`
+- `static/js/cookbookRunning.js:2395`
+- `static/js/cookbookRunning.js:2458`
+- `static/js/cookbookRunning.js:2458`
 
-## `_downloadBadgeText` — function, line 24
+## `_statusLabel` — function, line 21
 - **called from:**
-- `static/js/cookbookRunning.js:24`
-- `static/js/cookbookRunning.js:45`
-- `static/js/cookbookRunning.js:4365`
+- `static/js/cookbookRunning.js:21`
+- `static/js/cookbookRunning.js:56`
+- `static/js/cookbookRunning.js:2922`
+- `static/js/cookbookRunning.js:3165`
+- `static/js/cookbookRunning.js:3195`
+- `static/js/cookbookRunning.js:3241`
+- `static/js/cookbookRunning.js:3301`
+- `static/js/cookbookRunning.js:3341`
+- `static/js/cookbookRunning.js:3354`
+- `static/js/cookbookRunning.js:3572`
+- `static/js/cookbookRunning.js:3592`
+- `static/js/cookbookRunning.js:3945`
 
-## `_taskBadge` — function, line 42
+## `_downloadBadgeText` — function, line 28
 - **called from:**
-- `static/js/cookbookRunning.js:42`
-- `static/js/cookbookRunning.js:2346`
-- `static/js/cookbookRunning.js:2397`
+- `static/js/cookbookRunning.js:28`
+- `static/js/cookbookRunning.js:49`
+- `static/js/cookbookRunning.js:4442`
 
-## `_ggufDisplayPartFromPath` — function, line 55
+## `_taskBadge` — function, line 46
 - **called from:**
-- `static/js/cookbookRunning.js:55`
-- `static/js/cookbookRunning.js:68`
-- `static/js/cookbookRunning.js:86`
+- `static/js/cookbookRunning.js:46`
+- `static/js/cookbookRunning.js:2401`
+- `static/js/cookbookRunning.js:2452`
+
+## `_ggufDisplayPartFromPath` — function, line 59
+- **called from:**
+- `static/js/cookbookRunning.js:59`
+- `static/js/cookbookRunning.js:72`
+- `static/js/cookbookRunning.js:90`
+- `static/js/cookbookRunning.js:100`
+
+## `_downloadDisplayName` — function, line 69
+- **called from:**
+- `static/js/cookbookRunning.js:69`
 - `static/js/cookbookRunning.js:96`
 
-## `_downloadDisplayName` — function, line 65
+## `_downloadNameFromPayload` — function, line 76
 - **called from:**
-- `static/js/cookbookRunning.js:65`
-- `static/js/cookbookRunning.js:92`
+- `static/js/cookbookRunning.js:76`
+- `static/js/cookbookRunning.js:96`
+- `static/js/cookbookRunning.js:1561`
 
-## `_downloadNameFromPayload` — function, line 72
+## `_taskDisplayName` — function, line 94
 - **called from:**
-- `static/js/cookbookRunning.js:72`
-- `static/js/cookbookRunning.js:92`
-- `static/js/cookbookRunning.js:1515`
+- `static/js/cookbookRunning.js:94`
+- `static/js/cookbookRunning.js:2454`
 
-## `_taskDisplayName` — function, line 90
-- **called from:**
-- `static/js/cookbookRunning.js:90`
-- `static/js/cookbookRunning.js:2399`
-
-## `_canLaunchDownloadedTask` — function, line 100
-- **called from:**
-- `static/js/cookbookRunning.js:100`
-- `static/js/cookbookRunning.js:2405`
-
-## `_downloadServeFields` — function, line 104
+## `_canLaunchDownloadedTask` — function, line 104
 - **called from:**
 - `static/js/cookbookRunning.js:104`
-- `static/js/cookbookRunning.js:2481`
+- `static/js/cookbookRunning.js:2460`
 
-## `_downloadOutputLooksActive` — function, line 118
+## `_downloadServeFields` — function, line 108
 - **called from:**
-- `static/js/cookbookRunning.js:118`
-- `static/js/cookbookRunning.js:136`
-- `static/js/cookbookRunning.js:141`
-- `static/js/cookbookRunning.js:2094`
-- `static/js/cookbookRunning.js:2501`
-- `static/js/cookbookRunning.js:3756`
+- `static/js/cookbookRunning.js:108`
+- `static/js/cookbookRunning.js:2536`
 
-## `_canClearTask` — function, line 129
+## `_downloadOutputLooksActive` — function, line 122
 - **called from:**
-- `static/js/cookbookRunning.js:129`
-- `static/js/cookbookRunning.js:2241`
-- `static/js/cookbookRunning.js:2256`
-- `static/js/cookbookRunning.js:2356`
-- `static/js/cookbookRunning.js:2405`
-
-## `_clearPillLabel` — function, line 140
-- **called from:**
+- `static/js/cookbookRunning.js:122`
 - `static/js/cookbookRunning.js:140`
-- `static/js/cookbookRunning.js:2358`
-- `static/js/cookbookRunning.js:2405`
-
-## `_venvRootFromPath` — function, line 145
-- **called from:**
-- `static/js/cookbook.js:647`
-- `static/js/cookbook.js:680`
 - `static/js/cookbookRunning.js:145`
-- `static/js/cookbookRunning.js:1981`
+- `static/js/cookbookRunning.js:2145`
+- `static/js/cookbookRunning.js:2556`
+- `static/js/cookbookRunning.js:3812`
 
-## `_depInstallSucceeded` — function, line 160
+## `_canClearTask` — function, line 133
 - **called from:**
-- `static/js/cookbookRunning.js:160`
-- `static/js/cookbookRunning.js:3130`
-- `static/js/cookbookRunning.js:4192`
+- `static/js/cookbookRunning.js:133`
+- `static/js/cookbookRunning.js:2292`
+- `static/js/cookbookRunning.js:2307`
+- `static/js/cookbookRunning.js:2411`
+- `static/js/cookbookRunning.js:2460`
 
-## `_shouldOfferCrashReport` — function, line 169
+## `_clearPillLabel` — function, line 144
 - **called from:**
-- `static/js/cookbookRunning.js:169`
-- `static/js/cookbookRunning.js:2712`
+- `static/js/cookbookRunning.js:144`
+- `static/js/cookbookRunning.js:2413`
+- `static/js/cookbookRunning.js:2460`
 
-## `_serveTaskLooksAwqOnLocalBackend` — function, line 175
+## `_venvRootFromPath` — function, line 149
 - **called from:**
-- `static/js/cookbookRunning.js:175`
-- `static/js/cookbookRunning.js:242`
-- `static/js/cookbookRunning.js:3155`
-- `static/js/cookbookRunning.js:3160`
+- `static/js/cookbook.js:641`
+- `static/js/cookbook.js:674`
+- `static/js/cookbookRunning.js:149`
+- `static/js/cookbookRunning.js:2027`
 
-## `_serveTaskLooksAwqWithoutUsableAccelerator` — function, line 181
+## `_depInstallSucceeded` — function, line 164
 - **called from:**
-- `static/js/cookbookRunning.js:181`
-- `static/js/cookbookRunning.js:252`
+- `static/js/cookbookRunning.js:164`
+- `static/js/cookbookRunning.js:3186`
+- `static/js/cookbookRunning.js:4269`
 
-## `_openDownloadForGgufTask` — function, line 188
+## `_shouldOfferCrashReport` — function, line 173
 - **called from:**
-- `static/js/cookbookRunning.js:188`
-- `static/js/cookbookRunning.js:247`
-- `static/js/cookbookRunning.js:257`
+- `static/js/cookbookRunning.js:173`
+- `static/js/cookbookRunning.js:2768`
 
-## `_terminalServeDiagnosis` — function, line 224
+## `_serveTaskLooksAwqOnLocalBackend` — function, line 179
 - **called from:**
-- `static/js/cookbookRunning.js:224`
-- `static/js/cookbookRunning.js:2368`
-- `static/js/cookbookRunning.js:2417`
+- `static/js/cookbookRunning.js:179`
+- `static/js/cookbookRunning.js:246`
+- `static/js/cookbookRunning.js:3211`
+- `static/js/cookbookRunning.js:3216`
 
-## `_redactCrashReportText` — function, line 273
+## `_serveTaskLooksAwqWithoutUsableAccelerator` — function, line 185
 - **called from:**
-- `static/js/cookbookRunning.js:273`
-- `static/js/cookbookRunning.js:286`
-- `static/js/cookbookRunning.js:306`
+- `static/js/cookbookRunning.js:185`
+- `static/js/cookbookRunning.js:256`
 
-## `_lastLines` — function, line 285
+## `_openDownloadForGgufTask` — function, line 192
 - **called from:**
-- `static/js/cookbookRunning.js:285`
-- `static/js/cookbookRunning.js:329`
+- `static/js/cookbookRunning.js:192`
+- `static/js/cookbookRunning.js:251`
+- `static/js/cookbookRunning.js:261`
 
-## `_codeFence` — function, line 291
+## `_terminalServeDiagnosis` — function, line 228
 - **called from:**
-- `static/js/cookbookRunning.js:291`
-- `static/js/cookbookRunning.js:327`
-- `static/js/cookbookRunning.js:329`
+- `static/js/cookbookRunning.js:228`
+- `static/js/cookbookRunning.js:2423`
+- `static/js/cookbookRunning.js:2472`
 
-## `_taskHostLabel` — function, line 295
+## `_redactCrashReportText` — function, line 277
+- **called from:**
+- `static/js/cookbookRunning.js:277`
+- `static/js/cookbookRunning.js:290`
+- `static/js/cookbookRunning.js:310`
+
+## `_lastLines` — function, line 289
+- **called from:**
+- `static/js/cookbookRunning.js:289`
+- `static/js/cookbookRunning.js:333`
+
+## `_codeFence` — function, line 295
 - **called from:**
 - `static/js/cookbookRunning.js:295`
-- `static/js/cookbookRunning.js:319`
+- `static/js/cookbookRunning.js:331`
+- `static/js/cookbookRunning.js:333`
 
-## `_taskPort` — function, line 300
+## `_taskHostLabel` — function, line 299
 - **called from:**
-- `static/js/cookbook-hwfit.js:1720`
-- `static/js/cookbookRunning.js:300`
+- `static/js/cookbookRunning.js:299`
 - `static/js/cookbookRunning.js:323`
-- `static/js/cookbookRunning.js:518`
-- `static/js/cookbookServe.js:86`
-- `static/js/cookbookServe.js:3364`
 
-## `_buildCrashReport` — function, line 304
+## `_taskPort` — function, line 304
 - **called from:**
+- `static/js/cookbook-hwfit.js:1801`
 - `static/js/cookbookRunning.js:304`
-- `static/js/cookbookRunning.js:2715`
+- `static/js/cookbookRunning.js:327`
+- `static/js/cookbookRunning.js:522`
+- `static/js/cookbookServe.js:115`
+- `static/js/cookbookServe.js:3468`
 
-## `_taskServerSelection` — function, line 357
+## `_buildCrashReport` — function, line 308
 - **called from:**
-- `static/js/cookbookRunning.js:357`
-- `static/js/cookbookRunning.js:397`
+- `static/js/cookbookRunning.js:308`
+- `static/js/cookbookRunning.js:2771`
 
-## `_serverColorForTaskGroup` — function, line 368
+## `_taskServerSelection` — function, line 361
 - **called from:**
-- `static/js/cookbookRunning.js:368`
-- `static/js/cookbookRunning.js:2228`
+- `static/js/cookbookRunning.js:361`
+- `static/js/cookbookRunning.js:401`
 
-## `_serverHeaderStyle` — function, line 381
+## `_serverColorForTaskGroup` — function, line 372
 - **called from:**
-- `static/js/cookbookRunning.js:381`
-- `static/js/cookbookRunning.js:2229`
+- `static/js/cookbookRunning.js:372`
+- `static/js/cookbookRunning.js:2279`
 
-## `_shouldAutoExpandTaskOutput` — function, line 390
+## `_serverHeaderStyle` — function, line 385
 - **called from:**
-- `static/js/cookbookRunning.js:390`
-- `static/js/cookbookRunning.js:2411`
+- `static/js/cookbookRunning.js:385`
+- `static/js/cookbookRunning.js:2280`
 
-## `_selectTaskServer` — function, line 396
+## `_shouldAutoExpandTaskOutput` — function, line 394
 - **called from:**
-- `static/js/cookbookRunning.js:396`
-- `static/js/cookbookRunning.js:1612`
-- `static/js/cookbookRunning.js:2478`
+- `static/js/cookbookRunning.js:394`
+- `static/js/cookbookRunning.js:2466`
 
-## `_parseServePhase` — function, line 438
+## `_selectTaskServer` — function, line 400
 - **called from:**
-- `static/js/cookbookRunning.js:438`
-- `static/js/cookbookRunning.js:3561`
+- `static/js/cookbookRunning.js:400`
+- `static/js/cookbookRunning.js:1658`
+- `static/js/cookbookRunning.js:2533`
 
-## `_nextAvailablePort` — function, line 512
+## `_parseServePhase` — function, line 442
 - **called from:**
-- `static/js/cookbook-hwfit.js:1707`
-- `static/js/cookbookRunning.js:512`
-- `static/js/cookbookServe.js:1541`
+- `static/js/cookbookRunning.js:442`
+- `static/js/cookbookRunning.js:3617`
 
-## `_removeEndpointByUrl` — function, line 530
+## `_nextAvailablePort` — function, line 516
 - **called from:**
-- `static/js/cookbookRunning.js:530`
-- `static/js/cookbookRunning.js:2883`
-- `static/js/cookbookRunning.js:2961`
+- `static/js/cookbook-hwfit.js:1788`
+- `static/js/cookbookRunning.js:516`
+- `static/js/cookbookServe.js:1585`
 
-## `_refreshModelsAfterEndpointChange` — function, line 545
+## `_removeEndpointByUrl` — function, line 534
 - **called from:**
-- `static/js/cookbookRunning.js:540`
-- `static/js/cookbookRunning.js:545`
-- `static/js/cookbookRunning.js:2031`
-- `static/js/cookbookRunning.js:2663`
-- `static/js/cookbookRunning.js:2681`
-- `static/js/cookbookRunning.js:2968`
-- `static/js/cookbookRunning.js:3569`
+- `static/js/cookbookRunning.js:534`
+- `static/js/cookbookRunning.js:2939`
+- `static/js/cookbookRunning.js:3017`
 
-## `_appendCookbookEndpointScope` — function, line 578
+## `_refreshModelsAfterEndpointChange` — function, line 549
 - **called from:**
-- `static/js/cookbookRunning.js:578`
-- `static/js/cookbookRunning.js:2674`
-- `static/js/cookbookRunning.js:3660`
-- `static/js/cookbookRunning.js:4319`
+- `static/js/cookbookRunning.js:544`
+- `static/js/cookbookRunning.js:549`
+- `static/js/cookbookRunning.js:2077`
+- `static/js/cookbookRunning.js:2719`
+- `static/js/cookbookRunning.js:2737`
+- `static/js/cookbookRunning.js:3024`
+- `static/js/cookbookRunning.js:3625`
 
-## `_connectHostFromRemote` — function, line 585
+## `_appendCookbookEndpointScope` — function, line 582
 - **called from:**
-- `static/js/cookbookRunning.js:585`
-- `static/js/cookbookRunning.js:1166`
-- `static/js/cookbookRunning.js:2651`
-- `static/js/cookbookRunning.js:3616`
-- `static/js/cookbookRunning.js:3846`
-- `static/js/cookbookRunning.js:4273`
+- `static/js/cookbookRunning.js:582`
+- `static/js/cookbookRunning.js:2730`
+- `static/js/cookbookRunning.js:3716`
+- `static/js/cookbookRunning.js:4396`
 
-## `_isAnyBindHost` — function, line 591
+## `_connectHostFromRemote` — function, line 589
 - **called from:**
-- `static/js/cookbookRunning.js:591`
-- `static/js/cookbookRunning.js:599`
+- `static/js/cookbookRunning.js:589`
+- `static/js/cookbookRunning.js:1170`
+- `static/js/cookbookRunning.js:2707`
+- `static/js/cookbookRunning.js:3672`
+- `static/js/cookbookRunning.js:3912`
+- `static/js/cookbookRunning.js:4350`
 
-## `_endpointFromAdvertisedUrl` — function, line 596
+## `_isAnyBindHost` — function, line 595
 - **called from:**
-- `static/js/cookbookRunning.js:596`
-- `static/js/cookbookRunning.js:3627`
-- `static/js/cookbookRunning.js:4281`
+- `static/js/cookbookRunning.js:595`
+- `static/js/cookbookRunning.js:603`
 
-## `_serveExpectedModel` — function, line 608
+## `_endpointFromAdvertisedUrl` — function, line 600
 - **called from:**
-- `static/js/cookbookRunning.js:608`
-- `static/js/cookbookRunning.js:631`
-- `static/js/cookbookRunning.js:638`
-- `static/js/cookbookRunning.js:651`
+- `static/js/cookbookRunning.js:600`
+- `static/js/cookbookRunning.js:3683`
+- `static/js/cookbookRunning.js:4358`
 
-## `_modelIdMatchesExpected` — function, line 620
+## `_serveExpectedModel` — function, line 612
 - **called from:**
-- `static/js/cookbookRunning.js:620`
-- `static/js/cookbookRunning.js:634`
-
-## `_endpointMatchesServe` — function, line 630
-- **called from:**
-- `static/js/cookbookRunning.js:630`
-- `static/js/cookbookRunning.js:3642`
-- `static/js/cookbookRunning.js:4304`
-
-## `_markServeEndpointMismatch` — function, line 637
-- **called from:**
-- `static/js/cookbookRunning.js:637`
-- `static/js/cookbookRunning.js:3643`
-- `static/js/cookbookRunning.js:4305`
-
-## `_appendPinnedServeModel` — function, line 650
-- **called from:**
-- `static/js/cookbookRunning.js:650`
-- `static/js/cookbookRunning.js:3661`
-- `static/js/cookbookRunning.js:4320`
-
-## `_isImageServeTask` — function, line 655
-- **called from:**
+- `static/js/cookbookRunning.js:612`
+- `static/js/cookbookRunning.js:635`
+- `static/js/cookbookRunning.js:642`
 - `static/js/cookbookRunning.js:655`
-- `static/js/cookbookRunning.js:2675`
-- `static/js/cookbookRunning.js:3655`
-- `static/js/cookbookRunning.js:4284`
 
-## `_processQueue` — function, line 662
+## `_modelIdMatchesExpected` — function, line 624
 - **called from:**
-- `static/js/cookbookRunning.js:662`
-- `static/js/cookbookRunning.js:3251`
-- `static/js/cookbookRunning.js:3305`
-- `static/js/cookbookRunning.js:3312`
-- `static/js/cookbookRunning.js:3551`
+- `static/js/cookbookRunning.js:624`
+- `static/js/cookbookRunning.js:638`
+
+## `_endpointMatchesServe` — function, line 634
+- **called from:**
+- `static/js/cookbookRunning.js:634`
+- `static/js/cookbookRunning.js:3698`
+- `static/js/cookbookRunning.js:4381`
+
+## `_markServeEndpointMismatch` — function, line 641
+- **called from:**
+- `static/js/cookbookRunning.js:641`
+- `static/js/cookbookRunning.js:3699`
+- `static/js/cookbookRunning.js:4382`
+
+## `_appendPinnedServeModel` — function, line 654
+- **called from:**
+- `static/js/cookbookRunning.js:654`
+- `static/js/cookbookRunning.js:3717`
+- `static/js/cookbookRunning.js:4397`
+
+## `_isImageServeTask` — function, line 659
+- **called from:**
+- `static/js/cookbookRunning.js:659`
+- `static/js/cookbookRunning.js:2731`
+- `static/js/cookbookRunning.js:3711`
+- `static/js/cookbookRunning.js:4361`
+
+## `_processQueue` — function, line 666
+- **called from:**
+- `static/js/cookbookRunning.js:666`
+- `static/js/cookbookRunning.js:3307`
+- `static/js/cookbookRunning.js:3361`
+- `static/js/cookbookRunning.js:3368`
+- `static/js/cookbookRunning.js:3607`
 - `static/js/tts-ai.js:259`
 - `static/js/tts-ai.js:263`
 
-## `_startQueuedDownload` — function, line 678
+## `_startQueuedDownload` — function, line 682
 - **called from:**
-- `static/js/cookbookRunning.js:674`
 - `static/js/cookbookRunning.js:678`
-- `static/js/cookbookRunning.js:2538`
-- `static/js/cookbookRunning.js:2622`
+- `static/js/cookbookRunning.js:682`
+- `static/js/cookbookRunning.js:2593`
+- `static/js/cookbookRunning.js:2678`
 
-## `_serveOutputLooksReady` — function, line 746
+## `_serveOutputLooksReady` — function, line 750
 - **called from:**
-- `static/js/cookbookRunning.js:131`
-- `static/js/cookbookRunning.js:233`
-- `static/js/cookbookRunning.js:746`
-- `static/js/cookbookRunning.js:776`
-- `static/js/cookbookRunning.js:3125`
-- `static/js/cookbookRunning.js:4204`
+- `static/js/cookbookRunning.js:135`
+- `static/js/cookbookRunning.js:237`
+- `static/js/cookbookRunning.js:750`
+- `static/js/cookbookRunning.js:780`
+- `static/js/cookbookRunning.js:3181`
+- `static/js/cookbookRunning.js:4281`
 
-## `_normalizeTaskForDisplay` — function, line 754
+## `_normalizeTaskForDisplay` — function, line 758
 - **called from:**
-- `static/js/cookbookRunning.js:754`
+- `static/js/cookbookRunning.js:758`
 
-## `_loadTasks` — function, line 782
+## `_loadTasks` — function, line 786
 - **called from:**
-- `static/js/cookbook-diagnosis.js:156`
-- `static/js/cookbook-diagnosis.js:915`
-- `static/js/cookbook-hwfit.js:1715`
-- `static/js/cookbook.js:1047`
-- `static/js/cookbook.js:1064`
-- `static/js/cookbook.js:2064`
-- `static/js/cookbookDownload.js:558`
-- `static/js/cookbookDownload.js:596`
-- `static/js/cookbookDownload.js:613`
-- `static/js/cookbookRunning.js:513`
-- `static/js/cookbookRunning.js:689`
-- `static/js/cookbookRunning.js:720`
-- `static/js/cookbookRunning.js:782`
-- `static/js/cookbookRunning.js:828`
-- `static/js/cookbookRunning.js:915`
-- `static/js/cookbookRunning.js:954`
-- `static/js/cookbookRunning.js:984`
-- `static/js/cookbookRunning.js:1339`
-- `static/js/cookbookRunning.js:1396`
-- `static/js/cookbookRunning.js:1512`
-- `static/js/cookbookRunning.js:1562`
-- `static/js/cookbookRunning.js:1626`
-- `static/js/cookbookRunning.js:1668`
-- `static/js/cookbookRunning.js:1701`
-- `static/js/cookbookRunning.js:1928`
-- `static/js/cookbookRunning.js:1947`
-- `static/js/cookbookRunning.js:2084`
-- `static/js/cookbookRunning.js:2240`
-- `static/js/cookbookRunning.js:2290`
-- `static/js/cookbookRunning.js:2502`
-- `static/js/cookbookRunning.js:3267`
-- `static/js/cookbookRunning.js:3288`
-- `static/js/cookbookRunning.js:3751`
-- `static/js/cookbookRunning.js:3830`
-- `static/js/cookbookRunning.js:3947`
-- `static/js/cookbookRunning.js:3983`
+- `static/js/cookbook-diagnosis.js:171`
+- `static/js/cookbook-diagnosis.js:930`
+- `static/js/cookbook-hwfit.js:1796`
+- `static/js/cookbook.js:1041`
+- `static/js/cookbook.js:1058`
+- `static/js/cookbook.js:2108`
+- `static/js/cookbookDownload.js:565`
+- `static/js/cookbookDownload.js:603`
+- `static/js/cookbookDownload.js:620`
+- `static/js/cookbookRunning.js:517`
+- `static/js/cookbookRunning.js:693`
+- `static/js/cookbookRunning.js:724`
+- `static/js/cookbookRunning.js:786`
+- `static/js/cookbookRunning.js:832`
+- `static/js/cookbookRunning.js:919`
+- `static/js/cookbookRunning.js:958`
+- `static/js/cookbookRunning.js:988`
+- `static/js/cookbookRunning.js:1369`
+- `static/js/cookbookRunning.js:1428`
+- `static/js/cookbookRunning.js:1558`
+- `static/js/cookbookRunning.js:1608`
+- `static/js/cookbookRunning.js:1672`
+- `static/js/cookbookRunning.js:1714`
+- `static/js/cookbookRunning.js:1747`
+- `static/js/cookbookRunning.js:1974`
+- `static/js/cookbookRunning.js:1993`
+- `static/js/cookbookRunning.js:2135`
+- `static/js/cookbookRunning.js:2291`
+- `static/js/cookbookRunning.js:2346`
+- `static/js/cookbookRunning.js:2557`
+- `static/js/cookbookRunning.js:3323`
+- `static/js/cookbookRunning.js:3344`
+- `static/js/cookbookRunning.js:3807`
+- `static/js/cookbookRunning.js:3896`
 - `static/js/cookbookRunning.js:4013`
-- `static/js/cookbookRunning.js:4122`
-- `static/js/cookbookRunning.js:4152`
-- `static/js/cookbookRunning.js:4270`
-- `static/js/cookbookServe.js:80`
-- `static/js/cookbookServe.js:3354`
+- `static/js/cookbookRunning.js:4050`
+- `static/js/cookbookRunning.js:4080`
+- `static/js/cookbookRunning.js:4199`
+- `static/js/cookbookRunning.js:4229`
+- `static/js/cookbookRunning.js:4347`
+- `static/js/cookbookServe.js:109`
+- `static/js/cookbookServe.js:3458`
 
-## `_downloadRepoKey` — function, line 787
-- **called from:**
-- `static/js/cookbookRunning.js:787`
-- `static/js/cookbookRunning.js:797`
-
-## `_downloadHostKey` — function, line 791
+## `_downloadRepoKey` — function, line 791
 - **called from:**
 - `static/js/cookbookRunning.js:791`
-- `static/js/cookbookRunning.js:799`
+- `static/js/cookbookRunning.js:801`
 
-## `_downloadDedupeKey` — function, line 795
+## `_downloadHostKey` — function, line 795
 - **called from:**
-- `static/js/cookbookRunning.js:718`
-- `static/js/cookbookRunning.js:730`
 - `static/js/cookbookRunning.js:795`
-- `static/js/cookbookRunning.js:807`
-- `static/js/cookbookRunning.js:815`
-- `static/js/cookbookRunning.js:929`
-- `static/js/cookbookRunning.js:932`
+- `static/js/cookbookRunning.js:803`
 
-## `_pruneQueuedDownloadDuplicates` — function, line 802
+## `_downloadDedupeKey` — function, line 799
 - **called from:**
-- `static/js/cookbookRunning.js:802`
-- `static/js/cookbookRunning.js:829`
+- `static/js/cookbookRunning.js:722`
+- `static/js/cookbookRunning.js:734`
+- `static/js/cookbookRunning.js:799`
+- `static/js/cookbookRunning.js:811`
+- `static/js/cookbookRunning.js:819`
+- `static/js/cookbookRunning.js:933`
+- `static/js/cookbookRunning.js:936`
 
-## `_loadPrunedTasks` — function, line 827
+## `_pruneQueuedDownloadDuplicates` — function, line 806
 - **called from:**
-- `static/js/cookbookRunning.js:663`
-- `static/js/cookbookRunning.js:827`
-- `static/js/cookbookRunning.js:2045`
+- `static/js/cookbookRunning.js:806`
+- `static/js/cookbookRunning.js:833`
 
-## `_loadTombstones` — function, line 841
+## `_loadPrunedTasks` — function, line 831
 - **called from:**
-- `static/js/cookbookRunning.js:841`
-- `static/js/cookbookRunning.js:862`
-- `static/js/cookbookRunning.js:869`
-- `static/js/cookbookRunning.js:1340`
-- `static/js/cookbookRunning.js:1399`
+- `static/js/cookbookRunning.js:667`
+- `static/js/cookbookRunning.js:831`
+- `static/js/cookbookRunning.js:2091`
 
-## `_saveTombstones` — function, line 857
+## `_loadTombstones` — function, line 845
 - **called from:**
-- `static/js/cookbookRunning.js:857`
+- `static/js/cookbookRunning.js:845`
 - `static/js/cookbookRunning.js:866`
-- `static/js/cookbookRunning.js:1404`
-
-## `_tombstoneTask` — function, line 860
-- **called from:**
-- `static/js/cookbookRunning.js:860`
-- `static/js/cookbookRunning.js:983`
-- `static/js/cookbookRunning.js:2255`
-
-## `_isTombstoned` — function, line 868
-- **called from:**
-- `static/js/cookbookRunning.js:868`
-- `static/js/cookbookRunning.js:1407`
-- `static/js/cookbookRunning.js:1409`
-- `static/js/cookbookRunning.js:4127`
-- `static/js/cookbookRunning.js:4158`
-
-## `_redactStoredText` — function, line 873
-- **called from:**
 - `static/js/cookbookRunning.js:873`
-- `static/js/cookbookRunning.js:887`
-- `static/js/cookbookRunning.js:892`
-- `static/js/cookbookRunning.js:893`
-- `static/js/cookbookRunning.js:1247`
-- `static/js/cookbookRunning.js:1248`
+- `static/js/cookbookRunning.js:1370`
+- `static/js/cookbookRunning.js:1431`
 
-## `_isServeOutputPlaceholder` — function, line 879
+## `_saveTombstones` — function, line 861
 - **called from:**
-- `static/js/cookbookRunning.js:879`
-- `static/js/cookbookRunning.js:4233`
+- `static/js/cookbookRunning.js:861`
+- `static/js/cookbookRunning.js:870`
+- `static/js/cookbookRunning.js:1436`
 
-## `_redactTaskForStorage` — function, line 884
+## `_tombstoneTask` — function, line 864
 - **called from:**
-- `static/js/cookbookRunning.js:732`
-- `static/js/cookbookRunning.js:884`
-- `static/js/cookbookRunning.js:935`
-- `static/js/cookbookRunning.js:4163`
+- `static/js/cookbookRunning.js:864`
+- `static/js/cookbookRunning.js:987`
+- `static/js/cookbookRunning.js:2306`
 
-## `_stripStateSecrets` — function, line 898
+## `_isTombstoned` — function, line 872
 - **called from:**
-- `static/js/cookbookRunning.js:898`
-- `static/js/cookbookRunning.js:1354`
+- `static/js/cookbookRunning.js:872`
+- `static/js/cookbookRunning.js:1439`
+- `static/js/cookbookRunning.js:1441`
+- `static/js/cookbookRunning.js:4204`
+- `static/js/cookbookRunning.js:4235`
 
-## `_saveTasks` — function, line 909
+## `_redactStoredText` — function, line 877
 - **called from:**
-- `static/js/cookbook.js:1047`
-- `static/js/cookbook.js:1064`
-- `static/js/cookbook.js:2064`
-- `static/js/cookbookDownload.js:601`
-- `static/js/cookbookDownload.js:615`
-- `static/js/cookbookRunning.js:695`
-- `static/js/cookbookRunning.js:733`
-- `static/js/cookbookRunning.js:830`
-- `static/js/cookbookRunning.js:909`
-- `static/js/cookbookRunning.js:937`
-- `static/js/cookbookRunning.js:958`
-- `static/js/cookbookRunning.js:985`
-- `static/js/cookbookRunning.js:1523`
-- `static/js/cookbookRunning.js:2257`
-- `static/js/cookbookRunning.js:2507`
-- `static/js/cookbookRunning.js:4019`
-- `static/js/cookbookRunning.js:4250`
+- `static/js/cookbookRunning.js:877`
+- `static/js/cookbookRunning.js:891`
+- `static/js/cookbookRunning.js:896`
+- `static/js/cookbookRunning.js:897`
+- `static/js/cookbookRunning.js:1277`
+- `static/js/cookbookRunning.js:1278`
 
-## `_addTask` — function, line 914
+## `_isServeOutputPlaceholder` — function, line 883
 - **called from:**
-- `static/js/cookbook-hwfit.js:1953`
-- `static/js/cookbook.js:1496`
-- `static/js/cookbook.js:1557`
-- `static/js/cookbook.js:1771`
-- `static/js/cookbookDownload.js:639`
-- `static/js/cookbookRunning.js:914`
-- `static/js/cookbookRunning.js:1528`
-- `static/js/cookbookRunning.js:1531`
-- `static/js/cookbookRunning.js:2026`
+- `static/js/cookbookRunning.js:883`
+- `static/js/cookbookRunning.js:4310`
 
-## `_updateTask` — function, line 953
+## `_redactTaskForStorage` — function, line 888
 - **called from:**
-- `static/js/cookbookRunning.js:641`
-- `static/js/cookbookRunning.js:680`
-- `static/js/cookbookRunning.js:706`
-- `static/js/cookbookRunning.js:712`
-- `static/js/cookbookRunning.js:739`
-- `static/js/cookbookRunning.js:953`
-- `static/js/cookbookRunning.js:1479`
-- `static/js/cookbookRunning.js:1502`
-- `static/js/cookbookRunning.js:1508`
-- `static/js/cookbookRunning.js:1536`
-- `static/js/cookbookRunning.js:2295`
-- `static/js/cookbookRunning.js:2662`
-- `static/js/cookbookRunning.js:2679`
-- `static/js/cookbookRunning.js:2863`
-- `static/js/cookbookRunning.js:2879`
-- `static/js/cookbookRunning.js:3106`
-- `static/js/cookbookRunning.js:3136`
-- `static/js/cookbookRunning.js:3182`
-- `static/js/cookbookRunning.js:3242`
-- `static/js/cookbookRunning.js:3264`
-- `static/js/cookbookRunning.js:3280`
-- `static/js/cookbookRunning.js:3292`
-- `static/js/cookbookRunning.js:3384`
-- `static/js/cookbookRunning.js:3414`
-- `static/js/cookbookRunning.js:3518`
-- `static/js/cookbookRunning.js:3542`
-- `static/js/cookbookRunning.js:3564`
-- `static/js/cookbookRunning.js:3582`
-- `static/js/cookbookRunning.js:3590`
-- `static/js/cookbookRunning.js:3592`
-- `static/js/cookbookRunning.js:3647`
-- `static/js/cookbookRunning.js:3669`
-- `static/js/cookbookRunning.js:3710`
-- `static/js/cookbookRunning.js:3723`
-- `static/js/cookbookRunning.js:3728`
-- `static/js/cookbookRunning.js:3861`
-- `static/js/cookbookRunning.js:3866`
-- `static/js/cookbookRunning.js:4286`
-- `static/js/cookbookRunning.js:4308`
+- `static/js/cookbookRunning.js:736`
+- `static/js/cookbookRunning.js:888`
+- `static/js/cookbookRunning.js:939`
+- `static/js/cookbookRunning.js:4240`
+
+## `_stripStateSecrets` — function, line 902
+- **called from:**
+- `static/js/cookbookRunning.js:902`
+- `static/js/cookbookRunning.js:1384`
+
+## `_saveTasks` — function, line 913
+- **called from:**
+- `static/js/cookbook.js:1041`
+- `static/js/cookbook.js:1058`
+- `static/js/cookbook.js:2108`
+- `static/js/cookbookDownload.js:608`
+- `static/js/cookbookDownload.js:622`
+- `static/js/cookbookRunning.js:699`
+- `static/js/cookbookRunning.js:737`
+- `static/js/cookbookRunning.js:834`
+- `static/js/cookbookRunning.js:913`
+- `static/js/cookbookRunning.js:941`
+- `static/js/cookbookRunning.js:962`
+- `static/js/cookbookRunning.js:989`
+- `static/js/cookbookRunning.js:1569`
+- `static/js/cookbookRunning.js:2308`
+- `static/js/cookbookRunning.js:2562`
+- `static/js/cookbookRunning.js:4086`
 - `static/js/cookbookRunning.js:4327`
-- `static/js/tasks.js:84`
-- `static/js/tasks.js:1781`
 
-## `_refreshDepsAfterInstall` — function, line 975
+## `_addTask` — function, line 918
 - **called from:**
-- `static/js/cookbookRunning.js:975`
-- `static/js/cookbookRunning.js:3249`
-- `static/js/cookbookRunning.js:3303`
-- `static/js/cookbookRunning.js:3545`
-- `static/js/cookbookRunning.js:4258`
+- `static/js/cookbook-hwfit.js:2035`
+- `static/js/cookbook.js:1509`
+- `static/js/cookbook.js:1570`
+- `static/js/cookbook.js:1786`
+- `static/js/cookbookDownload.js:655`
+- `static/js/cookbookRunning.js:918`
+- `static/js/cookbookRunning.js:1574`
+- `static/js/cookbookRunning.js:1577`
+- `static/js/cookbookRunning.js:2072`
 
-## `_removeTask` — function, line 982
+## `_updateTask` — function, line 957
 - **called from:**
-- `static/js/cookbookRunning.js:982`
-- `static/js/cookbookRunning.js:992`
-- `static/js/cookbookRunning.js:997`
-- `static/js/cookbookRunning.js:1475`
-- `static/js/cookbookRunning.js:1935`
-- `static/js/cookbookRunning.js:1958`
-- `static/js/cookbookRunning.js:3510`
+- `static/js/cookbookRunning.js:645`
+- `static/js/cookbookRunning.js:684`
+- `static/js/cookbookRunning.js:710`
+- `static/js/cookbookRunning.js:716`
+- `static/js/cookbookRunning.js:743`
+- `static/js/cookbookRunning.js:957`
+- `static/js/cookbookRunning.js:1525`
+- `static/js/cookbookRunning.js:1548`
+- `static/js/cookbookRunning.js:1554`
+- `static/js/cookbookRunning.js:1582`
+- `static/js/cookbookRunning.js:2351`
+- `static/js/cookbookRunning.js:2718`
+- `static/js/cookbookRunning.js:2735`
+- `static/js/cookbookRunning.js:2919`
+- `static/js/cookbookRunning.js:2935`
+- `static/js/cookbookRunning.js:3162`
+- `static/js/cookbookRunning.js:3192`
+- `static/js/cookbookRunning.js:3238`
+- `static/js/cookbookRunning.js:3298`
+- `static/js/cookbookRunning.js:3320`
+- `static/js/cookbookRunning.js:3336`
+- `static/js/cookbookRunning.js:3348`
+- `static/js/cookbookRunning.js:3440`
+- `static/js/cookbookRunning.js:3470`
+- `static/js/cookbookRunning.js:3574`
+- `static/js/cookbookRunning.js:3598`
+- `static/js/cookbookRunning.js:3620`
+- `static/js/cookbookRunning.js:3638`
+- `static/js/cookbookRunning.js:3646`
+- `static/js/cookbookRunning.js:3648`
+- `static/js/cookbookRunning.js:3703`
+- `static/js/cookbookRunning.js:3725`
+- `static/js/cookbookRunning.js:3766`
+- `static/js/cookbookRunning.js:3779`
+- `static/js/cookbookRunning.js:3784`
+- `static/js/cookbookRunning.js:3927`
+- `static/js/cookbookRunning.js:3932`
+- `static/js/cookbookRunning.js:4363`
+- `static/js/cookbookRunning.js:4385`
+- `static/js/cookbookRunning.js:4404`
+- `static/js/tasks.js:91`
+- `static/js/tasks.js:1878`
 
-## `_animateOutThenRemove` — function, line 991
+## `_refreshDepsAfterInstall` — function, line 979
 - **called from:**
-- `static/js/cookbookRunning.js:991`
-- `static/js/cookbookRunning.js:1576`
-- `static/js/cookbookRunning.js:1639`
-- `static/js/cookbookRunning.js:1681`
-- `static/js/cookbookRunning.js:1714`
-- `static/js/cookbookRunning.js:2484`
-- `static/js/cookbookRunning.js:2530`
-- `static/js/cookbookRunning.js:2905`
-- `static/js/cookbookRunning.js:2972`
-- `static/js/research/panel.js:419`
-- `static/js/research/panel.js:1046`
-- `static/js/research/panel.js:1050`
+- `static/js/cookbookRunning.js:979`
+- `static/js/cookbookRunning.js:3305`
+- `static/js/cookbookRunning.js:3359`
+- `static/js/cookbookRunning.js:3601`
+- `static/js/cookbookRunning.js:4335`
 
-## `_taskRemoteHost` — function, line 1002
+## `_removeTask` — function, line 986
 - **called from:**
-- `static/js/cookbookRunning.js:1002`
-- `static/js/cookbookRunning.js:1014`
-- `static/js/cookbookRunning.js:1022`
-- `static/js/cookbookRunning.js:1054`
-- `static/js/cookbookRunning.js:1060`
-- `static/js/cookbookRunning.js:1074`
-- `static/js/cookbookRunning.js:1101`
-- `static/js/cookbookRunning.js:1118`
-- `static/js/cookbookRunning.js:1155`
-- `static/js/cookbookRunning.js:1166`
+- `static/js/cookbookRunning.js:986`
+- `static/js/cookbookRunning.js:996`
+- `static/js/cookbookRunning.js:1001`
+- `static/js/cookbookRunning.js:1521`
+- `static/js/cookbookRunning.js:1981`
+- `static/js/cookbookRunning.js:2004`
+- `static/js/cookbookRunning.js:3566`
 
-## `_remoteTmuxPrefix` — function, line 1006
+## `_animateOutThenRemove` — function, line 995
+- **called from:**
+- `static/js/cookbookRunning.js:995`
+- `static/js/cookbookRunning.js:1622`
+- `static/js/cookbookRunning.js:1685`
+- `static/js/cookbookRunning.js:1727`
+- `static/js/cookbookRunning.js:1760`
+- `static/js/cookbookRunning.js:2539`
+- `static/js/cookbookRunning.js:2585`
+- `static/js/cookbookRunning.js:2961`
+- `static/js/cookbookRunning.js:3028`
+- `static/js/research/panel.js:479`
+- `static/js/research/panel.js:1325`
+- `static/js/research/panel.js:1330`
+
+## `_taskRemoteHost` — function, line 1006
 - **called from:**
 - `static/js/cookbookRunning.js:1006`
-- `static/js/cookbookRunning.js:1016`
-- `static/js/cookbookRunning.js:1049`
-- `static/js/cookbookRunning.js:1076`
-- `static/js/cookbookRunning.js:1103`
-- `static/js/cookbookRunning.js:1120`
+- `static/js/cookbookRunning.js:1018`
+- `static/js/cookbookRunning.js:1026`
+- `static/js/cookbookRunning.js:1058`
+- `static/js/cookbookRunning.js:1064`
+- `static/js/cookbookRunning.js:1078`
+- `static/js/cookbookRunning.js:1105`
+- `static/js/cookbookRunning.js:1122`
+- `static/js/cookbookRunning.js:1159`
+- `static/js/cookbookRunning.js:1170`
 
-## `_tmuxCmd` — function, line 1010
+## `_remoteTmuxPrefix` — function, line 1010
 - **called from:**
 - `static/js/cookbookRunning.js:1010`
-- `static/js/cookbookRunning.js:1567`
-- `static/js/cookbookRunning.js:1635`
-- `static/js/cookbookRunning.js:1677`
-- `static/js/cookbookRunning.js:1710`
-- `static/js/cookbookRunning.js:2527`
-- `static/js/cookbookRunning.js:2942`
-- `static/js/cookbookRunning.js:3061`
-- `static/js/cookbookRunning.js:3075`
-- `static/js/cookbookRunning.js:3274`
-- `static/js/cookbookRunning.js:3392`
-- `static/js/cookbookRunning.js:3507`
-- `static/js/cookbookRunning.js:3549`
-- `static/js/cookbookRunning.js:4008`
+- `static/js/cookbookRunning.js:1020`
+- `static/js/cookbookRunning.js:1053`
+- `static/js/cookbookRunning.js:1080`
+- `static/js/cookbookRunning.js:1107`
+- `static/js/cookbookRunning.js:1124`
 
-## `_winSessionCmd` — function, line 1021
+## `_tmuxCmd` — function, line 1014
 - **called from:**
-- `static/js/cookbookRunning.js:1012`
-- `static/js/cookbookRunning.js:1021`
+- `static/js/cookbookRunning.js:1014`
+- `static/js/cookbookRunning.js:1613`
+- `static/js/cookbookRunning.js:1681`
+- `static/js/cookbookRunning.js:1723`
+- `static/js/cookbookRunning.js:1756`
+- `static/js/cookbookRunning.js:2582`
+- `static/js/cookbookRunning.js:2998`
+- `static/js/cookbookRunning.js:3117`
+- `static/js/cookbookRunning.js:3131`
+- `static/js/cookbookRunning.js:3330`
+- `static/js/cookbookRunning.js:3448`
+- `static/js/cookbookRunning.js:3563`
+- `static/js/cookbookRunning.js:3605`
+- `static/js/cookbookRunning.js:4075`
 
-## `_winPowerShellCmd` — function, line 1052
+## `_winSessionCmd` — function, line 1025
 - **called from:**
-- `static/js/cookbookRunning.js:1031`
-- `static/js/cookbookRunning.js:1037`
+- `static/js/cookbookRunning.js:1016`
+- `static/js/cookbookRunning.js:1025`
+
+## `_winPowerShellCmd` — function, line 1056
+- **called from:**
+- `static/js/cookbookRunning.js:1035`
 - `static/js/cookbookRunning.js:1041`
-- `static/js/cookbookRunning.js:1047`
-- `static/js/cookbookRunning.js:1052`
-- `static/js/cookbookRunning.js:1072`
-
-## `_winSessionStopTreePs` — function, line 1059
-- **called from:**
-- `static/js/cookbookRunning.js:1040`
-- `static/js/cookbookRunning.js:1059`
-- `static/js/cookbookRunning.js:1071`
-
-## `_tmuxGracefulKill` — function, line 1069
-- **called from:**
-- `static/js/cookbook-hwfit.js:1744`
-- `static/js/cookbookRunning.js:1069`
-- `static/js/cookbookRunning.js:1089`
-- `static/js/cookbookRunning.js:1470`
-- `static/js/cookbookRunning.js:1933`
-- `static/js/cookbookRunning.js:1955`
-- `static/js/cookbookRunning.js:2900`
-- `static/js/cookbookRunning.js:2931`
-- `static/js/cookbookServe.js:3401`
-
-## `_tmuxForceKill` — function, line 1085
-- **called from:**
-- `static/js/cookbookRunning.js:1085`
-
-## `_tmuxIsAliveCheck` — function, line 1111
-- **called from:**
-- `static/js/cookbookRunning.js:1111`
-
-## `_shQuote` — function, line 1125
-- **called from:**
+- `static/js/cookbookRunning.js:1045`
+- `static/js/cookbookRunning.js:1051`
 - `static/js/cookbookRunning.js:1056`
-- `static/js/cookbookRunning.js:1103`
-- `static/js/cookbookRunning.js:1120`
-- `static/js/cookbookRunning.js:1125`
-- `static/js/cookbookRunning.js:1154`
-- `static/js/cookbookRunning.js:1154`
-- `static/js/cookbookRunning.js:1157`
+- `static/js/cookbookRunning.js:1076`
 
-## `_taskLooksOllama` — function, line 1129
+## `_winSessionStopTreePs` — function, line 1063
 - **called from:**
+- `static/js/cookbookRunning.js:1044`
+- `static/js/cookbookRunning.js:1063`
+- `static/js/cookbookRunning.js:1075`
+
+## `_tmuxGracefulKill` — function, line 1073
+- **called from:**
+- `static/js/cookbook-hwfit.js:1825`
+- `static/js/cookbookRunning.js:1073`
+- `static/js/cookbookRunning.js:1093`
+- `static/js/cookbookRunning.js:1516`
+- `static/js/cookbookRunning.js:1979`
+- `static/js/cookbookRunning.js:2001`
+- `static/js/cookbookRunning.js:2956`
+- `static/js/cookbookRunning.js:2987`
+- `static/js/cookbookServe.js:3505`
+
+## `_tmuxForceKill` — function, line 1089
+- **called from:**
+- `static/js/cookbookRunning.js:1089`
+
+## `_tmuxIsAliveCheck` — function, line 1115
+- **called from:**
+- `static/js/cookbookRunning.js:1115`
+
+## `_shQuote` — function, line 1129
+- **called from:**
+- `static/js/cookbookRunning.js:1060`
+- `static/js/cookbookRunning.js:1107`
+- `static/js/cookbookRunning.js:1124`
 - `static/js/cookbookRunning.js:1129`
-- `static/js/cookbookRunning.js:1149`
-- `static/js/cookbookRunning.js:1163`
+- `static/js/cookbookRunning.js:1158`
+- `static/js/cookbookRunning.js:1158`
+- `static/js/cookbookRunning.js:1161`
 
-## `_ollamaBaseUrlForTask` — function, line 1134
+## `_taskLooksOllama` — function, line 1133
 - **called from:**
-- `static/js/cookbookRunning.js:1134`
-- `static/js/cookbookRunning.js:1152`
-- `static/js/cookbookRunning.js:1164`
+- `static/js/cookbookRunning.js:1133`
+- `static/js/cookbookRunning.js:1153`
+- `static/js/cookbookRunning.js:1167`
 
-## `_ollamaModelForTask` — function, line 1144
+## `_ollamaBaseUrlForTask` — function, line 1138
 - **called from:**
-- `static/js/cookbookRunning.js:1144`
-- `static/js/cookbookRunning.js:1150`
+- `static/js/cookbookRunning.js:1138`
+- `static/js/cookbookRunning.js:1156`
+- `static/js/cookbookRunning.js:1168`
 
-## `_ollamaUnloadCommand` — function, line 1148
+## `_ollamaModelForTask` — function, line 1148
 - **called from:**
 - `static/js/cookbookRunning.js:1148`
-- `static/js/cookbookRunning.js:2885`
-- `static/js/cookbookRunning.js:2916`
+- `static/js/cookbookRunning.js:1154`
 
-## `_endpointUrlForTask` — function, line 1162
+## `_ollamaUnloadCommand` — function, line 1152
 - **called from:**
-- `static/js/cookbookRunning.js:1162`
-- `static/js/cookbookRunning.js:2883`
-- `static/js/cookbookRunning.js:2960`
+- `static/js/cookbookRunning.js:1152`
+- `static/js/cookbookRunning.js:2941`
+- `static/js/cookbookRunning.js:2972`
 
-## `_startWaveSync` — function, line 1179
+## `_endpointUrlForTask` — function, line 1166
 - **called from:**
-- `static/js/cookbookRunning.js:1179`
-- `static/js/cookbookRunning.js:1191`
-- `static/js/cookbookRunning.js:3014`
+- `static/js/cookbookRunning.js:1166`
+- `static/js/cookbookRunning.js:2939`
+- `static/js/cookbookRunning.js:3016`
 
-## `_registerWaveEl` — function, line 1191
+## `_startWaveSync` — function, line 1183
 - **called from:**
-- `static/js/cookbookRunning.js:1191`
-- `static/js/cookbookRunning.js:2415`
+- `static/js/cookbookRunning.js:1183`
+- `static/js/cookbookRunning.js:1195`
+- `static/js/cookbookRunning.js:3070`
 
-## `_showCookbookNotif` — function, line 1195
+## `_registerWaveEl` — function, line 1195
 - **called from:**
 - `static/js/cookbookRunning.js:1195`
-- `static/js/cookbookRunning.js:3110`
-- `static/js/cookbookRunning.js:3230`
-- `static/js/cookbookRunning.js:3248`
-- `static/js/cookbookRunning.js:3302`
-- `static/js/cookbookRunning.js:3387`
-- `static/js/cookbookRunning.js:3425`
-- `static/js/cookbookRunning.js:3530`
-- `static/js/cookbookRunning.js:3544`
-- `static/js/cookbookRunning.js:3713`
-- `static/js/cookbookRunning.js:3885`
-- `static/js/cookbookRunning.js:4342`
-- `static/js/cookbookRunning.js:4344`
-- `static/js/cookbookRunning.js:4346`
+- `static/js/cookbookRunning.js:2470`
 
-## `_clearCookbookNotif` — function, line 1211
+## `_disposeTaskCard` — function, line 1201
 - **called from:**
-- `static/js/cookbook.js:3415`
-- `static/js/cookbookRunning.js:1211`
-- `static/js/cookbookRunning.js:2046`
-- `static/js/cookbookRunning.js:4348`
-- `static/js/cookbookRunning.js:4387`
+- `static/js/cookbookRunning.js:1201`
+- `static/js/cookbookRunning.js:2314`
+- `static/js/cookbookRunning.js:2325`
+- `static/js/cookbookRunning.js:2437`
 
-## `_presetEnvFields` — function, line 1230
+## `_showCookbookNotif` — function, line 1225
 - **called from:**
-- `static/js/cookbookRunning.js:1230`
+- `static/js/cookbookRunning.js:1225`
+- `static/js/cookbookRunning.js:3166`
+- `static/js/cookbookRunning.js:3286`
+- `static/js/cookbookRunning.js:3304`
+- `static/js/cookbookRunning.js:3358`
+- `static/js/cookbookRunning.js:3443`
+- `static/js/cookbookRunning.js:3481`
+- `static/js/cookbookRunning.js:3586`
+- `static/js/cookbookRunning.js:3600`
+- `static/js/cookbookRunning.js:3769`
+- `static/js/cookbookRunning.js:3951`
+- `static/js/cookbookRunning.js:4419`
+- `static/js/cookbookRunning.js:4421`
+- `static/js/cookbookRunning.js:4423`
+
+## `_clearCookbookNotif` — function, line 1241
+- **called from:**
+- `static/js/cookbook.js:3583`
+- `static/js/cookbookRunning.js:1241`
+- `static/js/cookbookRunning.js:2092`
+- `static/js/cookbookRunning.js:4425`
+- `static/js/cookbookRunning.js:4464`
+
+## `_presetEnvFields` — function, line 1260
+- **called from:**
 - `static/js/cookbookRunning.js:1260`
-- `static/js/cookbookRunning.js:1316`
+- `static/js/cookbookRunning.js:1290`
+- `static/js/cookbookRunning.js:1346`
 
-## `_redactPresetForStorage` — function, line 1244
+## `_redactPresetForStorage` — function, line 1274
 - **called from:**
-- `static/js/cookbookRunning.js:1244`
-- `static/js/cookbookRunning.js:1260`
-- `static/js/cookbookRunning.js:1312`
+- `static/js/cookbookRunning.js:1274`
+- `static/js/cookbookRunning.js:1290`
+- `static/js/cookbookRunning.js:1342`
 
-## `_saveTaskAsPreset` — function, line 1254
+## `_saveTaskAsPreset` — function, line 1284
 - **called from:**
-- `static/js/cookbookRunning.js:1254`
-- `static/js/cookbookRunning.js:2640`
+- `static/js/cookbookRunning.js:1284`
+- `static/js/cookbookRunning.js:2696`
 
-## `_presetsForModelLocal` — function, line 1267
+## `_presetsForModelLocal` — function, line 1297
 - **called from:**
-- `static/js/cookbookRunning.js:1267`
-- `static/js/cookbookRunning.js:1308`
+- `static/js/cookbookRunning.js:1297`
+- `static/js/cookbookRunning.js:1338`
 
-## `_autoConfigLabel` — function, line 1277
+## `_autoConfigLabel` — function, line 1307
 - **called from:**
-- `static/js/cookbookRunning.js:1277`
-- `static/js/cookbookRunning.js:1315`
+- `static/js/cookbookRunning.js:1307`
+- `static/js/cookbookRunning.js:1345`
 
-## `_autoSaveWorkingConfig` — function, line 1293
+## `_autoSaveWorkingConfig` — function, line 1323
 - **called from:**
-- `static/js/cookbookRunning.js:1293`
-- `static/js/cookbookRunning.js:3648`
-- `static/js/cookbookRunning.js:3670`
-- `static/js/cookbookRunning.js:4287`
+- `static/js/cookbookRunning.js:1323`
+- `static/js/cookbookRunning.js:3704`
+- `static/js/cookbookRunning.js:3726`
+- `static/js/cookbookRunning.js:4364`
 
-## `_syncToServer` — function, line 1326
+## `_syncToServer` — function, line 1356
 - **called from:**
-- `static/js/cookbookRunning.js:911`
-- `static/js/cookbookRunning.js:1326`
-- `static/js/cookbookRunning.js:1361`
-- `static/js/theme.js:631`
-- `static/js/theme.js:634`
+- `static/js/cookbookRunning.js:915`
+- `static/js/cookbookRunning.js:1356`
+- `static/js/cookbookRunning.js:1391`
+- `static/js/theme.js:687`
+- `static/js/theme.js:690`
 
-## `_normalizeState` — function, line 1368
+## `_normalizeState` — function, line 1398
 - **called from:**
-- `static/js/cookbookRunning.js:1368`
-- `static/js/cookbookRunning.js:1393`
+- `static/js/cookbookRunning.js:1398`
+- `static/js/cookbookRunning.js:1425`
 
-## `_syncFromServer` — function, line 1389
+## `_syncFromServerImpl` — function, line 1421
 - **called from:**
-- `static/js/cookbook.js:1948`
-- `static/js/cookbook.js:3385`
-- `static/js/cookbook.js:3548`
-- `static/js/cookbookRunning.js:1389`
-- `static/js/cookbookRunning.js:4428`
+- `static/js/cookbookRunning.js:1421`
+- `static/js/cookbookRunning.js:1490`
 
-## `_retryTask` — function, line 1462
+## `_syncFromServer` — function, line 1488
 - **called from:**
-- `static/js/cookbookRunning.js:1462`
-- `static/js/cookbookRunning.js:2976`
-- `static/js/cookbookRunning.js:3208`
-- `static/js/cookbookRunning.js:3216`
-- `static/js/cookbookRunning.js:3380`
+- `static/js/cookbook.js:1980`
+- `static/js/cookbook.js:3566`
+- `static/js/cookbook.js:3601`
+- `static/js/cookbook.js:3759`
+- `static/js/cookbookRunning.js:1488`
+- `static/js/cookbookRunning.js:4505`
 
-## `_retryDownload` — function, line 1489
+## `clearPending` — arrow, line 1491
 - **called from:**
-- `static/js/cookbook.js:2556`
-- `static/js/cookbookRunning.js:1484`
-- `static/js/cookbookRunning.js:1489`
-- `static/js/cookbookRunning.js:3511`
-- `static/js/cookbookServe.js:3960`
+- `static/js/fileHandler.js:249`
+- `static/js/fileHandler.js:478`
 
-## `_guardServeRetry` — function, line 1547
+## `_retryTask` — function, line 1508
 - **called from:**
-- `static/js/cookbookRunning.js:1547`
-- `static/js/cookbookRunning.js:1565`
-- `static/js/cookbookRunning.js:1629`
-- `static/js/cookbookRunning.js:1671`
-- `static/js/cookbookRunning.js:1704`
+- `static/js/cookbookRunning.js:1508`
+- `static/js/cookbookRunning.js:3032`
+- `static/js/cookbookRunning.js:3264`
+- `static/js/cookbookRunning.js:3272`
+- `static/js/cookbookRunning.js:3436`
 
-## `_serveAutoFix` — function, line 1558
+## `_retryDownload` — function, line 1535
 - **called from:**
-- `static/js/cookbook-diagnosis.js:595`
-- `static/js/cookbookRunning.js:1558`
+- `static/js/cookbook.js:2644`
+- `static/js/cookbookRunning.js:1530`
+- `static/js/cookbookRunning.js:1535`
+- `static/js/cookbookRunning.js:3567`
+- `static/js/cookbookServe.js:4065`
 
-## `_openServeEditForTask` — function, line 1597
+## `_guardServeRetry` — function, line 1593
 - **called from:**
-- `static/js/cookbookRunning.js:248`
-- `static/js/cookbookRunning.js:258`
-- `static/js/cookbookRunning.js:269`
-- `static/js/cookbookRunning.js:1597`
-- `static/js/cookbookRunning.js:2462`
-- `static/js/cookbookRunning.js:2465`
-- `static/js/cookbookRunning.js:3165`
+- `static/js/cookbookRunning.js:1593`
+- `static/js/cookbookRunning.js:1611`
+- `static/js/cookbookRunning.js:1675`
+- `static/js/cookbookRunning.js:1717`
+- `static/js/cookbookRunning.js:1750`
 
-## `_serveAutoRetryReplace` — function, line 1622
+## `_serveAutoFix` — function, line 1604
 - **called from:**
-- `static/js/cookbook-diagnosis.js:288`
-- `static/js/cookbook-diagnosis.js:289`
-- `static/js/cookbook-diagnosis.js:290`
-- `static/js/cookbook-diagnosis.js:297`
-- `static/js/cookbook-diagnosis.js:307`
-- `static/js/cookbook-diagnosis.js:308`
-- `static/js/cookbook-diagnosis.js:330`
-- `static/js/cookbook-diagnosis.js:331`
-- `static/js/cookbook-diagnosis.js:339`
-- `static/js/cookbook-diagnosis.js:340`
-- `static/js/cookbook-diagnosis.js:341`
-- `static/js/cookbook-diagnosis.js:342`
-- `static/js/cookbook-diagnosis.js:351`
-- `static/js/cookbook-diagnosis.js:352`
-- `static/js/cookbook-diagnosis.js:372`
-- `static/js/cookbook-diagnosis.js:373`
-- `static/js/cookbook-diagnosis.js:374`
-- `static/js/cookbook-diagnosis.js:382`
-- `static/js/cookbook-diagnosis.js:787`
-- `static/js/cookbookRunning.js:1622`
+- `static/js/cookbook-diagnosis.js:610`
+- `static/js/cookbookRunning.js:1604`
 
-## `_serveAutoRetryRemove` — function, line 1664
+## `_openServeEditForTask` — function, line 1643
 - **called from:**
-- `static/js/cookbook-diagnosis.js:381`
+- `static/js/cookbookRunning.js:252`
+- `static/js/cookbookRunning.js:262`
+- `static/js/cookbookRunning.js:273`
+- `static/js/cookbookRunning.js:1643`
+- `static/js/cookbookRunning.js:2517`
+- `static/js/cookbookRunning.js:2520`
+- `static/js/cookbookRunning.js:3221`
+
+## `_serveAutoRetryReplace` — function, line 1668
+- **called from:**
+- `static/js/cookbook-diagnosis.js:303`
+- `static/js/cookbook-diagnosis.js:304`
+- `static/js/cookbook-diagnosis.js:305`
+- `static/js/cookbook-diagnosis.js:312`
+- `static/js/cookbook-diagnosis.js:322`
+- `static/js/cookbook-diagnosis.js:323`
+- `static/js/cookbook-diagnosis.js:345`
+- `static/js/cookbook-diagnosis.js:346`
+- `static/js/cookbook-diagnosis.js:354`
+- `static/js/cookbook-diagnosis.js:355`
+- `static/js/cookbook-diagnosis.js:356`
+- `static/js/cookbook-diagnosis.js:357`
+- `static/js/cookbook-diagnosis.js:366`
+- `static/js/cookbook-diagnosis.js:367`
+- `static/js/cookbook-diagnosis.js:387`
+- `static/js/cookbook-diagnosis.js:388`
 - `static/js/cookbook-diagnosis.js:389`
 - `static/js/cookbook-diagnosis.js:397`
-- `static/js/cookbookRunning.js:1664`
+- `static/js/cookbook-diagnosis.js:802`
+- `static/js/cookbookRunning.js:1668`
 
-## `_serveAutoRetry` — function, line 1697
+## `_serveAutoRetryRemove` — function, line 1710
 - **called from:**
-- `static/js/cookbook-diagnosis.js:298`
-- `static/js/cookbook-diagnosis.js:299`
-- `static/js/cookbook-diagnosis.js:343`
-- `static/js/cookbook-diagnosis.js:612`
-- `static/js/cookbook-diagnosis.js:613`
-- `static/js/cookbook-diagnosis.js:629`
-- `static/js/cookbook-diagnosis.js:636`
-- `static/js/cookbook-diagnosis.js:643`
-- `static/js/cookbookRunning.js:1697`
+- `static/js/cookbook-diagnosis.js:396`
+- `static/js/cookbook-diagnosis.js:404`
+- `static/js/cookbook-diagnosis.js:412`
+- `static/js/cookbookRunning.js:1710`
 
-## `_promptEditServeCmd` — function, line 1734
+## `_serveAutoRetry` — function, line 1743
 - **called from:**
-- `static/js/cookbookRunning.js:1734`
+- `static/js/cookbook-diagnosis.js:313`
+- `static/js/cookbook-diagnosis.js:314`
+- `static/js/cookbook-diagnosis.js:358`
+- `static/js/cookbook-diagnosis.js:627`
+- `static/js/cookbook-diagnosis.js:628`
+- `static/js/cookbook-diagnosis.js:644`
+- `static/js/cookbook-diagnosis.js:651`
+- `static/js/cookbook-diagnosis.js:658`
+- `static/js/cookbookRunning.js:1743`
 
-## `close` — arrow, line 1752
+## `_promptEditServeCmd` — function, line 1780
 - **called from:**
-- `app.py:333`
-- `app.py:451`
-- `app.py:532`
-- `app.py:1050`
-- `app.py:1174`
-- `app.py:1295`
+- `static/js/cookbookRunning.js:1780`
+
+## `close` — arrow, line 1798
+- **called from:**
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
 
-## `onKey` — arrow, line 1757
+## `onKey` — arrow, line 1803
 - **called from:**
-- `static/js/cookbookServe.js:1053`
-- `static/js/document.js:6145`
-- `static/js/galleryEditor.js:3973`
-- `static/js/settings.js:1933`
-- `static/js/skills.js:1466`
-- `static/js/ui.js:669`
-- `static/js/ui.js:767`
+- `static/js/cookbookServe.js:1082`
+- `static/js/document.js:9403`
+- `static/js/document.js:9453`
+- `static/js/document.js:9491`
+- `static/js/editor/tools/perspective-crop.js:85`
+- `static/js/galleryEditor.js:13664`
+- `static/js/settings.js:1644`
+- `static/js/skills.js:1773`
+- `static/js/ui.js:848`
+- `static/js/ui.js:951`
 
-## `_parseServeCmdToFields` — function, line 1773
+## `_parseServeCmdToFields` — function, line 1819
 - **called from:**
-- `static/js/cookbookRunning.js:1603`
-- `static/js/cookbookRunning.js:1604`
-- `static/js/cookbookRunning.js:1773`
+- `static/js/cookbookRunning.js:1649`
+- `static/js/cookbookRunning.js:1650`
+- `static/js/cookbookRunning.js:1819`
 
-## `ex` — arrow, line 1775
+## `ex` — arrow, line 1821
 - **called from:**
-- `static/js/cookbookRunning.js:1783`
-- `static/js/cookbookRunning.js:1784`
-- `static/js/cookbookRunning.js:1785`
-- `static/js/cookbookRunning.js:1785`
-- `static/js/cookbookRunning.js:1785`
-- `static/js/cookbookRunning.js:1785`
-- `static/js/cookbookRunning.js:1785`
-- `static/js/cookbookRunning.js:1786`
-- `static/js/cookbookRunning.js:1787`
-- `static/js/cookbookRunning.js:1788`
-- `static/js/cookbookRunning.js:1789`
-- `static/js/cookbookRunning.js:1790`
-- `static/js/cookbookRunning.js:1791`
-- `static/js/cookbookRunning.js:1792`
-- `static/js/cookbookRunning.js:1793`
-- `static/js/cookbookRunning.js:1794`
-- `static/js/cookbookRunning.js:1795`
-- `static/js/cookbookRunning.js:1796`
-- `static/js/cookbookRunning.js:1797`
-- `static/js/cookbookRunning.js:1798`
-- `static/js/cookbookRunning.js:1799`
-- `static/js/cookbookRunning.js:1800`
-
-## `_serveCmdNeedsGpuPreflight` — function, line 1817
-- **called from:**
-- `static/js/cookbookRunning.js:1817`
-- `static/js/cookbookRunning.js:1884`
-
-## `_selectedGpuIndexes` — function, line 1824
-- **called from:**
-- `static/js/cookbookRunning.js:1824`
-- `static/js/cookbookRunning.js:1895`
-
-## `_gbFromMb` — function, line 1843
-- **called from:**
+- `static/js/cookbookRunning.js:1829`
+- `static/js/cookbookRunning.js:1830`
+- `static/js/cookbookRunning.js:1831`
+- `static/js/cookbookRunning.js:1831`
+- `static/js/cookbookRunning.js:1831`
+- `static/js/cookbookRunning.js:1831`
+- `static/js/cookbookRunning.js:1831`
+- `static/js/cookbookRunning.js:1832`
+- `static/js/cookbookRunning.js:1833`
+- `static/js/cookbookRunning.js:1834`
+- `static/js/cookbookRunning.js:1835`
+- `static/js/cookbookRunning.js:1836`
+- `static/js/cookbookRunning.js:1837`
+- `static/js/cookbookRunning.js:1838`
+- `static/js/cookbookRunning.js:1839`
+- `static/js/cookbookRunning.js:1840`
+- `static/js/cookbookRunning.js:1841`
+- `static/js/cookbookRunning.js:1842`
 - `static/js/cookbookRunning.js:1843`
-- `static/js/cookbookRunning.js:1861`
-- `static/js/cookbookRunning.js:1873`
-- `static/js/cookbookRunning.js:1873`
-- `static/js/cookbookRunning.js:1875`
-- `static/js/cookbookRunning.js:1875`
+- `static/js/cookbookRunning.js:1844`
+- `static/js/cookbookRunning.js:1845`
+- `static/js/cookbookRunning.js:1846`
 
-## `_gpuPreflightIssues` — function, line 1849
+## `_serveCmdNeedsGpuPreflight` — function, line 1863
 - **called from:**
-- `static/js/cookbookRunning.js:1849`
-- `static/js/cookbookRunning.js:1896`
+- `static/js/cookbookRunning.js:1863`
+- `static/js/cookbookRunning.js:1930`
 
-## `_confirmGpuPreflight` — function, line 1883
+## `_selectedGpuIndexes` — function, line 1870
 - **called from:**
-- `static/js/cookbookRunning.js:1883`
-- `static/js/cookbookRunning.js:2000`
+- `static/js/cookbookRunning.js:1870`
+- `static/js/cookbookRunning.js:1941`
 
-## `_launchServeTask` — function, line 1911
+## `_gbFromMb` — function, line 1889
 - **called from:**
-- `static/js/cookbook-diagnosis.js:187`
-- `static/js/cookbook-diagnosis.js:203`
-- `static/js/cookbook-diagnosis.js:649`
-- `static/js/cookbook-diagnosis.js:660`
-- `static/js/cookbook-diagnosis.js:747`
-- `static/js/cookbook-diagnosis.js:772`
-- `static/js/cookbook-diagnosis.js:794`
-- `static/js/cookbook-diagnosis.js:813`
-- `static/js/cookbook-diagnosis.js:818`
-- `static/js/cookbook.js:2238`
-- `static/js/cookbookRunning.js:1476`
-- `static/js/cookbookRunning.js:1585`
-- `static/js/cookbookRunning.js:1658`
-- `static/js/cookbookRunning.js:1691`
-- `static/js/cookbookRunning.js:1725`
-- `static/js/cookbookRunning.js:1911`
-- `static/js/cookbookRunning.js:3114`
-- `static/js/cookbookServe.js:3712`
+- `static/js/cookbookRunning.js:1889`
+- `static/js/cookbookRunning.js:1907`
+- `static/js/cookbookRunning.js:1919`
+- `static/js/cookbookRunning.js:1919`
+- `static/js/cookbookRunning.js:1921`
+- `static/js/cookbookRunning.js:1921`
 
-## `_renderRunningTab` — function, line 2039
+## `_gpuPreflightIssues` — function, line 1895
 - **called from:**
-- `static/js/cookbook-hwfit.js:1954`
-- `static/js/cookbook.js:3355`
-- `static/js/cookbook.js:3382`
-- `static/js/cookbook.js:3416`
-- `static/js/cookbook.js:3554`
-- `static/js/cookbook.js:3575`
-- `static/js/cookbookDownload.js:567`
-- `static/js/cookbookDownload.js:603`
-- `static/js/cookbookDownload.js:616`
-- `static/js/cookbookRunning.js:681`
-- `static/js/cookbookRunning.js:707`
-- `static/js/cookbookRunning.js:713`
-- `static/js/cookbookRunning.js:734`
-- `static/js/cookbookRunning.js:737`
-- `static/js/cookbookRunning.js:740`
-- `static/js/cookbookRunning.js:940`
-- `static/js/cookbookRunning.js:986`
-- `static/js/cookbookRunning.js:1525`
-- `static/js/cookbookRunning.js:2039`
-- `static/js/cookbookRunning.js:2114`
-- `static/js/cookbookRunning.js:2278`
-- `static/js/cookbookRunning.js:2518`
-- `static/js/cookbookRunning.js:2623`
-- `static/js/cookbookRunning.js:2642`
-- `static/js/cookbookRunning.js:3250`
-- `static/js/cookbookRunning.js:3304`
-- `static/js/cookbookRunning.js:3311`
-- `static/js/cookbookRunning.js:3726`
-- `static/js/cookbookRunning.js:4037`
-- `static/js/cookbookRunning.js:4134`
-- `static/js/cookbookRunning.js:4251`
+- `static/js/cookbookRunning.js:1895`
+- `static/js/cookbookRunning.js:1942`
 
-## `_ensureSection` — function, line 2159
+## `_confirmGpuPreflight` — function, line 1929
 - **called from:**
-- `static/js/cookbookRunning.js:2159`
-- `static/js/cookbookRunning.js:2221`
+- `static/js/cookbookRunning.js:1929`
+- `static/js/cookbookRunning.js:2046`
 
-## `_taskServerKey` — arrow, line 2175
+## `_launchServeTask` — function, line 1957
 - **called from:**
-- `static/js/cookbookRunning.js:2192`
-- `static/js/cookbookRunning.js:2241`
-- `static/js/cookbookRunning.js:2246`
-- `static/js/cookbookRunning.js:2256`
-- `static/js/cookbookRunning.js:2290`
-- `static/js/cookbookRunning.js:2996`
+- `static/js/cookbook-diagnosis.js:202`
+- `static/js/cookbook-diagnosis.js:218`
+- `static/js/cookbook-diagnosis.js:664`
+- `static/js/cookbook-diagnosis.js:675`
+- `static/js/cookbook-diagnosis.js:762`
+- `static/js/cookbook-diagnosis.js:787`
+- `static/js/cookbook-diagnosis.js:809`
+- `static/js/cookbook-diagnosis.js:828`
+- `static/js/cookbook-diagnosis.js:833`
+- `static/js/cookbook.js:2315`
+- `static/js/cookbookRunning.js:1522`
+- `static/js/cookbookRunning.js:1631`
+- `static/js/cookbookRunning.js:1704`
+- `static/js/cookbookRunning.js:1737`
+- `static/js/cookbookRunning.js:1771`
+- `static/js/cookbookRunning.js:1957`
+- `static/js/cookbookRunning.js:3170`
+- `static/js/cookbookServe.js:3816`
 
-## `_serverName` — arrow, line 2176
+## `_renderRunningTab` — function, line 2085
 - **called from:**
-- `static/js/cookbookRunning.js:2193`
-- `static/js/cookbookRunning.js:2248`
-- `static/js/cookbookRunning.js:2249`
-- `static/js/cookbookRunning.js:2254`
-- `static/js/cookbookRunning.js:2291`
+- `static/js/cookbook-hwfit.js:2036`
+- `static/js/cookbook.js:3534`
+- `static/js/cookbook.js:3562`
+- `static/js/cookbook.js:3584`
+- `static/js/cookbook.js:3765`
+- `static/js/cookbook.js:3786`
+- `static/js/cookbookDownload.js:574`
+- `static/js/cookbookDownload.js:610`
+- `static/js/cookbookDownload.js:623`
+- `static/js/cookbookRunning.js:685`
+- `static/js/cookbookRunning.js:711`
+- `static/js/cookbookRunning.js:717`
+- `static/js/cookbookRunning.js:738`
+- `static/js/cookbookRunning.js:741`
+- `static/js/cookbookRunning.js:744`
+- `static/js/cookbookRunning.js:944`
+- `static/js/cookbookRunning.js:990`
+- `static/js/cookbookRunning.js:1571`
+- `static/js/cookbookRunning.js:2085`
+- `static/js/cookbookRunning.js:2165`
+- `static/js/cookbookRunning.js:2334`
+- `static/js/cookbookRunning.js:2573`
+- `static/js/cookbookRunning.js:2679`
+- `static/js/cookbookRunning.js:2698`
+- `static/js/cookbookRunning.js:3306`
+- `static/js/cookbookRunning.js:3360`
+- `static/js/cookbookRunning.js:3367`
+- `static/js/cookbookRunning.js:3782`
+- `static/js/cookbookRunning.js:4104`
+- `static/js/cookbookRunning.js:4211`
+- `static/js/cookbookRunning.js:4328`
+
+## `_ensureSection` — function, line 2210
+- **called from:**
+- `static/js/cookbookRunning.js:2210`
+- `static/js/cookbookRunning.js:2272`
+
+## `_taskServerKey` — arrow, line 2226
+- **called from:**
+- `static/js/cookbookRunning.js:2243`
 - `static/js/cookbookRunning.js:2292`
-- `static/js/cookbookRunning.js:2302`
+- `static/js/cookbookRunning.js:2297`
+- `static/js/cookbookRunning.js:2307`
+- `static/js/cookbookRunning.js:2346`
+- `static/js/cookbookRunning.js:3052`
 
-## `_openEdit` — arrow, line 2462
+## `_serverName` — arrow, line 2227
 - **called from:**
-- `static/js/cookbookRunning.js:2636`
+- `static/js/cookbookRunning.js:2244`
+- `static/js/cookbookRunning.js:2299`
+- `static/js/cookbookRunning.js:2300`
+- `static/js/cookbookRunning.js:2305`
+- `static/js/cookbookRunning.js:2347`
+- `static/js/cookbookRunning.js:2348`
+- `static/js/cookbookRunning.js:2358`
 
-## `_lpStart` — arrow, line 2574
+## `_openEdit` — arrow, line 2517
 - **called from:**
-- `static/js/cookbookRunning.js:2594`
+- `static/js/cookbookRunning.js:2692`
 
-## `_lpCancel` — arrow, line 2583
+## `_lpStart` — arrow, line 2628
 - **called from:**
-- `static/js/cookbookRunning.js:2588`
-- `static/js/memory.js:969`
-- `static/js/skills.js:837`
+- `static/js/cookbookRunning.js:2650`
 
-## `_lpMove` — arrow, line 2586
+## `_lpCancel` — arrow, line 2639
+- **called from:**
+- `static/js/cookbookRunning.js:2644`
+- `static/js/memory.js:1098`
+- `static/js/skills.js:1075`
+
+## `_lpMove` — arrow, line 2642
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_openTaskMenu` — arrow, line 2600
+## `_openTaskMenu` — arrow, line 2656
 - **called from:**
-- `static/js/cookbookRunning.js:2846`
+- `static/js/cookbookRunning.js:2902`
 
-## `closeHandler` — arrow, line 2816
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `scrollClose` — arrow, line 2824
+## `closeHandler` — arrow, line 2872
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_unreg` — arrow, line 2825
+## `scrollClose` — arrow, line 2880
 - **called from:**
-- `static/js/cookbookRunning.js:2827`
-- `static/js/documentLibrary.js:247`
-- `static/js/documentLibrary.js:287`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_cleanup` — arrow, line 2826
+## `_unreg` — arrow, line 2881
+- **called from:**
+- `static/js/cookbookRunning.js:2883`
+- `static/js/documentLibrary.js:371`
+- `static/js/documentLibrary.js:411`
+
+## `_cleanup` — arrow, line 2882
 - **called from:**
 - `scripts/diffusion_server.py:439`
 - `scripts/diffusion_server.py:443`
@@ -1103,145 +1132,203 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/diffusion_server.py:488`
 - `scripts/diffusion_server.py:504`
 - `scripts/diffusion_server.py:635`
-- `static/js/compare/index.js:1391`
-- `static/js/cookbookRunning.js:2784`
-- `static/js/cookbookRunning.js:2818`
-- `static/js/cookbookRunning.js:2824`
-- `static/js/document.js:8306`
-- `static/js/document.js:8953`
-- `static/js/document.js:9024`
-- `static/js/emailInbox.js:1197`
-- `static/js/emailInbox.js:1205`
-- `static/js/emailInbox.js:1210`
+- `src/agent_runtime/effect_adapters.py:353`
+- `tests/test_process_lifecycle.py:248`
+- `tests/test_process_lifecycle.py:269`
+- `tests/test_process_lifecycle.py:295`
+- `static/js/compare/index.js:1524`
+- `static/js/cookbookRunning.js:2840`
+- `static/js/cookbookRunning.js:2874`
+- `static/js/cookbookRunning.js:2880`
+- `static/js/document.js:13672`
+- `static/js/document.js:14367`
+- `static/js/document.js:14439`
+- `static/js/emailInbox.js:1261`
+- `static/js/emailInbox.js:1269`
+- `static/js/emailInbox.js:1274`
 
-## `_reconnectTask` — function, line 3040
+## `_reconnectTask` — function, line 3096
 - **called from:**
-- `static/js/cookbookRunning.js:2553`
-- `static/js/cookbookRunning.js:2867`
-- `static/js/cookbookRunning.js:3010`
-- `static/js/cookbookRunning.js:3040`
-- `static/js/cookbookRunning.js:3190`
-- `static/js/cookbookRunning.js:3288`
+- `static/js/cookbookRunning.js:2608`
+- `static/js/cookbookRunning.js:2923`
+- `static/js/cookbookRunning.js:3066`
+- `static/js/cookbookRunning.js:3096`
+- `static/js/cookbookRunning.js:3246`
+- `static/js/cookbookRunning.js:3344`
 
-## `_trySelectModel` — arrow, line 3679
+## `_trySelectModel` — arrow, line 3735
 - **called from:**
-- `static/js/cookbookRunning.js:3695`
-- `static/js/cookbookRunning.js:3698`
+- `static/js/cookbookRunning.js:3751`
+- `static/js/cookbookRunning.js:3754`
 
-## `_hasLiveTasks` — function, line 3750
-- **called from:**
-- `static/js/cookbookRunning.js:3750`
-- `static/js/cookbookRunning.js:4051`
-- `static/js/cookbookRunning.js:4430`
-
-## `_isRunningTabVisible` — function, line 3760
-- **called from:**
-- `static/js/cookbookRunning.js:3009`
-- `static/js/cookbookRunning.js:3043`
-- `static/js/cookbookRunning.js:3053`
-- `static/js/cookbookRunning.js:3760`
-- `static/js/cookbookRunning.js:3823`
-- `static/js/cookbookRunning.js:4051`
-
-## `_isCookbookVisible` — function, line 3767
-- **called from:**
-- `static/js/cookbookRunning.js:3767`
-- `static/js/cookbookRunning.js:4078`
-- `static/js/cookbookRunning.js:4087`
-
-## `_foregroundChatBusy` — function, line 3777
-- **called from:**
-- `static/js/cookbook.js:3505`
-- `static/js/cookbook.js:3537`
-- `static/js/cookbookRunning.js:3777`
-- `static/js/cookbookRunning.js:3807`
-- `static/js/cookbookRunning.js:3822`
-- `static/js/cookbookRunning.js:4078`
-- `static/js/cookbookRunning.js:4087`
-
-## `_claimBackgroundLeader` — function, line 3785
-- **called from:**
-- `static/js/cookbookRunning.js:3785`
-- `static/js/cookbookRunning.js:3809`
-
-## `_canBackgroundPoll` — function, line 3806
+## `_hasLiveTasks` — function, line 3806
 - **called from:**
 - `static/js/cookbookRunning.js:3806`
-- `static/js/cookbookRunning.js:4044`
-- `static/js/cookbookRunning.js:4055`
+- `static/js/cookbookRunning.js:4128`
+- `static/js/cookbookRunning.js:4507`
+
+## `_isRunningTabVisible` — function, line 3816
+- **called from:**
+- `static/js/cookbookRunning.js:3065`
+- `static/js/cookbookRunning.js:3099`
+- `static/js/cookbookRunning.js:3109`
+- `static/js/cookbookRunning.js:3816`
+- `static/js/cookbookRunning.js:3889`
+- `static/js/cookbookRunning.js:4128`
+
+## `_isCookbookVisible` — function, line 3823
+- **called from:**
+- `static/js/cookbookRunning.js:3823`
+- `static/js/cookbookRunning.js:4155`
+- `static/js/cookbookRunning.js:4164`
+
+## `_foregroundChatBusy` — function, line 3833
+- **called from:**
+- `static/js/cookbook.js:3716`
+- `static/js/cookbook.js:3748`
+- `static/js/cookbookRunning.js:3833`
+- `static/js/cookbookRunning.js:3863`
+- `static/js/cookbookRunning.js:3888`
+- `static/js/cookbookRunning.js:4155`
+- `static/js/cookbookRunning.js:4164`
+
+## `_claimBackgroundLeader` — function, line 3841
+- **called from:**
+- `static/js/cookbookRunning.js:3841`
+- `static/js/cookbookRunning.js:3865`
+
+## `_canBackgroundPoll` — function, line 3862
+- **called from:**
+- `static/js/cookbookRunning.js:3862`
+- `static/js/cookbookRunning.js:4121`
+- `static/js/cookbookRunning.js:4132`
+- `static/js/cookbookRunning.js:4187`
+
+## `_fetchWithTimeout` — function, line 3871
+- **called from:**
+- `static/js/admin.js:2341`
+- `static/js/admin.js:2352`
+- `static/js/cookbookRunning.js:536`
+- `static/js/cookbookRunning.js:543`
+- `static/js/cookbookRunning.js:703`
+- `static/js/cookbookRunning.js:1381`
+- `static/js/cookbookRunning.js:1423`
+- `static/js/cookbookRunning.js:1513`
+- `static/js/cookbookRunning.js:1541`
+- `static/js/cookbookRunning.js:1615`
+- `static/js/cookbookRunning.js:1678`
+- `static/js/cookbookRunning.js:1720`
+- `static/js/cookbookRunning.js:1753`
+- `static/js/cookbookRunning.js:1935`
+- `static/js/cookbookRunning.js:1976`
+- `static/js/cookbookRunning.js:1998`
+- `static/js/cookbookRunning.js:2051`
+- `static/js/cookbookRunning.js:2579`
+- `static/js/cookbookRunning.js:2713`
+- `static/js/cookbookRunning.js:2732`
+- `static/js/cookbookRunning.js:2944`
+- `static/js/cookbookRunning.js:2953`
+- `static/js/cookbookRunning.js:2975`
+- `static/js/cookbookRunning.js:2984`
+- `static/js/cookbookRunning.js:2995`
+- `static/js/cookbookRunning.js:3020`
+- `static/js/cookbookRunning.js:3024`
+- `static/js/cookbookRunning.js:3114`
+- `static/js/cookbookRunning.js:3128`
+- `static/js/cookbookRunning.js:3327`
+- `static/js/cookbookRunning.js:3445`
+- `static/js/cookbookRunning.js:3463`
+- `static/js/cookbookRunning.js:3560`
+- `static/js/cookbookRunning.js:3602`
+- `static/js/cookbookRunning.js:3686`
+- `static/js/cookbookRunning.js:3719`
+- `static/js/cookbookRunning.js:3871`
+- `static/js/cookbookRunning.js:3908`
+- `static/js/cookbookRunning.js:3909`
+- `static/js/cookbookRunning.js:4072`
+- `static/js/cookbookRunning.js:4168`
+- `static/js/cookbookRunning.js:4171`
+- `static/js/cookbookRunning.js:4194`
+- `static/js/cookbookRunning.js:4217`
+- `static/js/cookbookRunning.js:4374`
+- `static/js/cookbookRunning.js:4400`
+
+## `_checkServeReachability` — function, line 3885
+- **called from:**
+- `static/js/cookbookRunning.js:3885`
+- `static/js/cookbookRunning.js:4123`
+- `static/js/cookbookRunning.js:4134`
+
+## `_serveTaskFailed` — function, line 3961
+- **called from:**
+- `static/js/cookbookRunning.js:3961`
+
+## `_setServerDot` — function, line 3966
+- **called from:**
+- `static/js/cookbookRunning.js:3966`
+- `static/js/cookbookRunning.js:3982`
+- `static/js/cookbookRunning.js:3990`
+- `static/js/cookbookRunning.js:4023`
+
+## `_syncSettingsServerDots` — function, line 3973
+- **called from:**
+- `static/js/cookbookRunning.js:3973`
+- `static/js/cookbookRunning.js:4025`
+
+## `_refreshServerDots` — function, line 4011
+- **called from:**
+- `static/js/cookbookRunning.js:965`
+- `static/js/cookbookRunning.js:3640`
+- `static/js/cookbookRunning.js:3953`
+- `static/js/cookbookRunning.js:4011`
+
+## `_taskServerKeyForDot` — arrow, line 4015
+- **called from:**
+- `static/js/cookbookRunning.js:4016`
+- `static/js/cookbookRunning.js:4016`
+
+## `_selfHealStaleTasksImpl` — function, line 4037
+- **called from:**
+- `static/js/cookbookRunning.js:4037`
 - `static/js/cookbookRunning.js:4110`
 
-## `_checkServeReachability` — function, line 3819
-- **called from:**
-- `static/js/cookbookRunning.js:3819`
-- `static/js/cookbookRunning.js:4046`
-- `static/js/cookbookRunning.js:4057`
-
-## `_serveTaskFailed` — function, line 3895
-- **called from:**
-- `static/js/cookbookRunning.js:3895`
-
-## `_setServerDot` — function, line 3900
-- **called from:**
-- `static/js/cookbookRunning.js:3900`
-- `static/js/cookbookRunning.js:3916`
-- `static/js/cookbookRunning.js:3924`
-- `static/js/cookbookRunning.js:3957`
-
-## `_syncSettingsServerDots` — function, line 3907
-- **called from:**
-- `static/js/cookbookRunning.js:3907`
-- `static/js/cookbookRunning.js:3959`
-
-## `_refreshServerDots` — function, line 3945
-- **called from:**
-- `static/js/cookbookRunning.js:961`
-- `static/js/cookbookRunning.js:3584`
-- `static/js/cookbookRunning.js:3887`
-- `static/js/cookbookRunning.js:3945`
-
-## `_taskServerKeyForDot` — arrow, line 3949
-- **called from:**
-- `static/js/cookbookRunning.js:3950`
-- `static/js/cookbookRunning.js:3950`
-
-## `_selfHealStaleTasks` — function, line 3970
-- **called from:**
-- `static/js/cookbook.js:3421`
-- `static/js/cookbookRunning.js:3228`
-- `static/js/cookbookRunning.js:3970`
-- `static/js/cookbookRunning.js:4052`
-
-## `_startBackgroundMonitor` — function, line 4041
-- **called from:**
-- `static/js/cookbookRunning.js:735`
-- `static/js/cookbookRunning.js:943`
-- `static/js/cookbookRunning.js:1526`
-- `static/js/cookbookRunning.js:4041`
-- `static/js/cookbookRunning.js:4430`
-
-## `_stopBackgroundMonitor` — function, line 4061
-- **called from:**
-- `static/js/cookbookRunning.js:4061`
-- `static/js/cookbookRunning.js:4349`
-
-## `_probeEndpointUntilOnline` — function, line 4077
-- **called from:**
-- `static/js/cookbookRunning.js:2667`
-- `static/js/cookbookRunning.js:2685`
-- `static/js/cookbookRunning.js:3652`
-- `static/js/cookbookRunning.js:3676`
-- `static/js/cookbookRunning.js:4077`
-- `static/js/cookbookRunning.js:4312`
-- `static/js/cookbookRunning.js:4333`
-
-## `_pollBackgroundStatus` — function, line 4109
-- **called from:**
-- `static/js/cookbookRunning.js:4045`
-- `static/js/cookbookRunning.js:4056`
-- `static/js/cookbookRunning.js:4109`
-
-## `initRunning` — function, line 4398
+## `_selfHealStaleTasks` — function, line 4108
 - **called from:**
 - `static/js/cookbook.js:3641`
-- `static/js/cookbookRunning.js:4398`
+- `static/js/cookbookRunning.js:3284`
+- `static/js/cookbookRunning.js:4108`
+- `static/js/cookbookRunning.js:4129`
+
+## `_startBackgroundMonitor` — function, line 4118
+- **called from:**
+- `static/js/cookbookRunning.js:739`
+- `static/js/cookbookRunning.js:947`
+- `static/js/cookbookRunning.js:1572`
+- `static/js/cookbookRunning.js:4118`
+- `static/js/cookbookRunning.js:4507`
+
+## `_stopBackgroundMonitor` — function, line 4138
+- **called from:**
+- `static/js/cookbookRunning.js:4138`
+- `static/js/cookbookRunning.js:4426`
+
+## `_probeEndpointUntilOnline` — function, line 4154
+- **called from:**
+- `static/js/cookbookRunning.js:2723`
+- `static/js/cookbookRunning.js:2741`
+- `static/js/cookbookRunning.js:3708`
+- `static/js/cookbookRunning.js:3732`
+- `static/js/cookbookRunning.js:4154`
+- `static/js/cookbookRunning.js:4389`
+- `static/js/cookbookRunning.js:4410`
+
+## `_pollBackgroundStatus` — function, line 4186
+- **called from:**
+- `static/js/cookbookRunning.js:4122`
+- `static/js/cookbookRunning.js:4133`
+- `static/js/cookbookRunning.js:4186`
+
+## `initRunning` — function, line 4475
+- **called from:**
+- `static/js/cookbook.js:3852`
+- `static/js/cookbookRunning.js:4475`

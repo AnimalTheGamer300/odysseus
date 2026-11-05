@@ -34,64 +34,64 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
-- `static/js/cookbookServe.js:4003`
-- `static/js/cookbookServe.js:4005`
-- `static/js/document.js:313`
-- `static/js/document.js:314`
-- `static/js/document.js:8382`
-- `static/js/document.js:8966`
-- `static/js/documentLibrary.js:70`
-- `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
-- `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
+- `static/js/chat.js:6329`
+- `static/js/chat.js:6329`
+- `static/js/cookbookServe.js:4108`
+- `static/js/cookbookServe.js:4110`
+- `static/js/document.js:1225`
+- `static/js/document.js:1226`
+- `static/js/document.js:13760`
+- `static/js/document.js:14380`
+- `static/js/document.js:15402`
+- `static/js/documentLibrary.js:169`
+- `static/js/documentLibrary.js:185`
+- `static/js/documentLibrary.js:705`
+- `static/js/documentLibrary.js:709`
+- `static/js/documentLibrary.js:711`
+- `static/js/documentLibrary.js:2218`
+- `static/js/documentLibrary.js:2223`
+- `static/js/documentLibrary.js:2371`
+- `static/js/documentLibrary.js:2735`
+- `static/js/documentLibrary.js:2780`
+- `static/js/documentLibrary.js:2818`
+- `static/js/documentLibrary.js:2968`
+- `static/js/documentLibrary.js:3017`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3184`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- … +226 more (grep the name in repo)
 
 ## `_looksLikeSignature` — function, line 35
 - **called from:**
-- `static/js/emailLibrary.js:6297`
+- `static/js/emailLibrary/bodyRender.js:656`
 - `static/js/emailLibrary/signatureFold.js:35`
 
 ## `_harvestAttribution` — function, line 66
 - **called from:**
-- `static/js/emailLibrary.js:6280`
+- `static/js/emailLibrary/bodyRender.js:639`
 - `static/js/emailLibrary/signatureFold.js:66`
 
 ## `_extractTurnMetaFromBlockquote` — function, line 91
 - **called from:**
-- `static/js/emailLibrary.js:6288`
+- `static/js/emailLibrary/bodyRender.js:647`
 - `static/js/emailLibrary/signatureFold.js:91`
 
 ## `_foldSummary` — function, line 100
 - **called from:**
-- `static/js/emailLibrary.js:5809`
-- `static/js/emailLibrary.js:5815`
-- `static/js/emailLibrary.js:6194`
-- `static/js/emailLibrary.js:6300`
-- `static/js/emailLibrary.js:6315`
-- `static/js/emailLibrary.js:6407`
-- `static/js/emailLibrary.js:6475`
-- `static/js/emailLibrary.js:6508`
+- `static/js/emailLibrary/bodyRender.js:154`
+- `static/js/emailLibrary/bodyRender.js:160`
+- `static/js/emailLibrary/bodyRender.js:553`
+- `static/js/emailLibrary/bodyRender.js:659`
+- `static/js/emailLibrary/bodyRender.js:674`
+- `static/js/emailLibrary/bodyRender.js:766`
+- `static/js/emailLibrary/bodyRender.js:834`
+- `static/js/emailLibrary/bodyRender.js:867`
 - `static/js/emailLibrary/signatureFold.js:100`
 - `static/js/emailLibrary/signatureFold.js:278`
 - `static/js/emailLibrary/signatureFold.js:295`
@@ -99,11 +99,11 @@
 
 ## `_extractQuoteMeta` — function, line 135
 - **called from:**
-- `static/js/emailLibrary.js:5809`
-- `static/js/emailLibrary.js:6288`
-- `static/js/emailLibrary.js:6388`
-- `static/js/emailLibrary.js:6475`
-- `static/js/emailLibrary.js:6508`
+- `static/js/emailLibrary/bodyRender.js:154`
+- `static/js/emailLibrary/bodyRender.js:647`
+- `static/js/emailLibrary/bodyRender.js:747`
+- `static/js/emailLibrary/bodyRender.js:834`
+- `static/js/emailLibrary/bodyRender.js:867`
 - `static/js/emailLibrary/signatureFold.js:84`
 - `static/js/emailLibrary/signatureFold.js:93`
 - `static/js/emailLibrary/signatureFold.js:135`
@@ -115,7 +115,7 @@
 
 ## `_isBloatedSig` — function, line 214
 - **called from:**
-- `static/js/emailLibrary.js:5814`
+- `static/js/emailLibrary/bodyRender.js:159`
 - `static/js/emailLibrary/signatureFold.js:214`
 - `static/js/emailLibrary/signatureFold.js:276`
 - `static/js/emailLibrary/signatureFold.js:293`
@@ -128,27 +128,29 @@
 
 ## `_foldSignature` — function, line 285
 - **called from:**
-- `static/js/emailLibrary.js:5761`
-- `static/js/emailLibrary.js:5763`
-- `static/js/emailLibrary.js:5770`
-- `static/js/emailLibrary.js:5832`
-- `static/js/emailLibrary.js:5836`
-- `static/js/emailLibrary.js:5837`
+- `static/js/emailLibrary/bodyRender.js:90`
+- `static/js/emailLibrary/bodyRender.js:92`
+- `static/js/emailLibrary/bodyRender.js:108`
+- `static/js/emailLibrary/bodyRender.js:115`
+- `static/js/emailLibrary/bodyRender.js:177`
+- `static/js/emailLibrary/bodyRender.js:181`
+- `static/js/emailLibrary/bodyRender.js:182`
 - `static/js/emailLibrary/signatureFold.js:285`
 
 ## `wrap` — arrow, line 292
 - **called from:**
-- `static/js/emailLibrary.js:6202`
-- `static/js/emailLibrary.js:6209`
-- `static/js/emailLibrary.js:6224`
+- `tests/smoke/areas.py:167`
+- `static/js/emailLibrary/bodyRender.js:561`
+- `static/js/emailLibrary/bodyRender.js:568`
+- `static/js/emailLibrary/bodyRender.js:583`
 - `static/js/emailLibrary/signatureFold.js:299`
 - `static/js/emailLibrary/signatureFold.js:301`
 - `static/js/emailLibrary/signatureFold.js:303`
 - `static/js/emailLibrary/signatureFold.js:308`
 - `static/js/emailLibrary/signatureFold.js:329`
 - `static/js/emailLibrary/signatureFold.js:335`
-- `static/js/tasks.js:1151`
-- `static/js/tasks.js:1152`
-- `static/js/tasks.js:1153`
-- `static/js/tasks.js:1154`
-- `static/js/tasks.js:1155`
+- `static/js/tasks.js:1248`
+- `static/js/tasks.js:1249`
+- `static/js/tasks.js:1250`
+- `static/js/tasks.js:1251`
+- `static/js/tasks.js:1252`

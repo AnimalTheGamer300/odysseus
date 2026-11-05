@@ -1,132 +1,141 @@
 # `static/js/cookbookDownload.js` — definitions & call sites
 
-21 definitions (regex-based, best-effort).
+22 definitions (regex-based, best-effort).
 **Exports:** `_buildDownloadCmd`, `_runModelDownload`, `_runPanelCmd`, `_setPanelCheckbox`, `_setPanelField`, `_wirePanelEvents`, `initDownload`
 
-## `_setPanelField` — function, line 38
+## `_fetchDownloadControlWithTimeout` — function, line 37
 - **called from:**
-- `static/js/cookbook-diagnosis.js:390`
+- `static/js/cookbookDownload.js:37`
+- `static/js/cookbookDownload.js:289`
+- `static/js/cookbookDownload.js:595`
+- `static/js/cookbookDownload.js:638`
+
+## `_setPanelField` — function, line 45
+- **called from:**
 - `static/js/cookbook-diagnosis.js:405`
-- `static/js/cookbook-diagnosis.js:413`
-- `static/js/cookbook-diagnosis.js:493`
-- `static/js/cookbook-diagnosis.js:505`
-- `static/js/cookbook-diagnosis.js:506`
-- `static/js/cookbook-diagnosis.js:513`
-- `static/js/cookbook-diagnosis.js:514`
-- `static/js/cookbook-diagnosis.js:515`
-- `static/js/cookbook-diagnosis.js:614`
-- `static/js/cookbook-diagnosis.js:615`
-- `static/js/cookbookDownload.js:38`
+- `static/js/cookbook-diagnosis.js:420`
+- `static/js/cookbook-diagnosis.js:428`
+- `static/js/cookbook-diagnosis.js:508`
+- `static/js/cookbook-diagnosis.js:520`
+- `static/js/cookbook-diagnosis.js:521`
+- `static/js/cookbook-diagnosis.js:528`
+- `static/js/cookbook-diagnosis.js:529`
+- `static/js/cookbook-diagnosis.js:530`
+- `static/js/cookbook-diagnosis.js:629`
+- `static/js/cookbook-diagnosis.js:630`
+- `static/js/cookbookDownload.js:45`
 
-## `_setPanelCheckbox` — function, line 52
+## `_setPanelCheckbox` — function, line 59
 - **called from:**
-- `static/js/cookbook-diagnosis.js:494`
-- `static/js/cookbook-diagnosis.js:622`
-- `static/js/cookbookDownload.js:52`
+- `static/js/cookbook-diagnosis.js:509`
+- `static/js/cookbook-diagnosis.js:637`
+- `static/js/cookbookDownload.js:59`
 
-## `_firstGgufSource` — function, line 62
+## `_firstGgufSource` — function, line 69
 - **called from:**
-- `static/js/cookbook-hwfit.js:149`
-- `static/js/cookbook-hwfit.js:161`
-- `static/js/cookbookDownload.js:62`
+- `static/js/cookbook-hwfit.js:176`
+- `static/js/cookbook-hwfit.js:188`
+- `static/js/cookbookDownload.js:69`
+- `static/js/cookbookDownload.js:81`
+
+## `_looksLikeGgufRepo` — function, line 74
+- **called from:**
+- `static/js/cookbook-hwfit.js:181`
+- `static/js/cookbook-hwfit.js:190`
 - `static/js/cookbookDownload.js:74`
-
-## `_looksLikeGgufRepo` — function, line 67
-- **called from:**
-- `static/js/cookbook-hwfit.js:154`
-- `static/js/cookbook-hwfit.js:163`
-- `static/js/cookbookDownload.js:67`
-- `static/js/cookbookDownload.js:76`
-
-## `_ggufDownloadSource` — function, line 72
-- **called from:**
-- `static/js/cookbookDownload.js:72`
-- `static/js/cookbookDownload.js:130`
-- `static/js/cookbookDownload.js:470`
-
-## `_ggufIncludePattern` — function, line 83
-- **called from:**
 - `static/js/cookbookDownload.js:83`
-- `static/js/cookbookDownload.js:135`
-- `static/js/cookbookDownload.js:478`
 
-## `_ggufDisplayPartFromInclude` — function, line 89
+## `_ggufDownloadSource` — function, line 79
 - **called from:**
-- `static/js/cookbookDownload.js:89`
-- `static/js/cookbookDownload.js:101`
+- `static/js/cookbookDownload.js:79`
+- `static/js/cookbookDownload.js:137`
+- `static/js/cookbookDownload.js:477`
 
-## `_downloadTaskName` — function, line 99
+## `_ggufIncludePattern` — function, line 90
 - **called from:**
-- `static/js/cookbookDownload.js:99`
-- `static/js/cookbookDownload.js:555`
+- `static/js/cookbookDownload.js:90`
+- `static/js/cookbookDownload.js:142`
+- `static/js/cookbookDownload.js:485`
 
-## `_missingGgufMessage` — function, line 105
+## `_ggufDisplayPartFromInclude` — function, line 96
 - **called from:**
-- `static/js/cookbookDownload.js:105`
-- `static/js/cookbookDownload.js:118`
-- `static/js/cookbookDownload.js:472`
+- `static/js/cookbookDownload.js:96`
+- `static/js/cookbookDownload.js:108`
 
-## `_bashQuote` — function, line 113
+## `_downloadTaskName` — function, line 106
 - **called from:**
-- `static/js/cookbookDownload.js:113`
-- `static/js/cookbookDownload.js:122`
+- `static/js/cookbookDownload.js:106`
+- `static/js/cookbookDownload.js:562`
 
-## `_missingGgufCommand` — function, line 117
+## `_missingGgufMessage` — function, line 112
 - **called from:**
-- `static/js/cookbookDownload.js:117`
+- `static/js/cookbookDownload.js:112`
+- `static/js/cookbookDownload.js:125`
+- `static/js/cookbookDownload.js:479`
+
+## `_bashQuote` — function, line 120
+- **called from:**
+- `static/js/cookbookDownload.js:120`
+- `static/js/cookbookDownload.js:129`
+
+## `_missingGgufCommand` — function, line 124
+- **called from:**
+- `static/js/cookbookDownload.js:124`
+- `static/js/cookbookDownload.js:139`
+
+## `_buildDownloadCmd` — function, line 132
+- **called from:**
+- `static/js/cookbook-hwfit.js:1751`
+- `static/js/cookbook-hwfit.js:1779`
 - `static/js/cookbookDownload.js:132`
 
-## `_buildDownloadCmd` — function, line 125
+## `T` — class, line 154
 - **called from:**
-- `static/js/cookbook-hwfit.js:1670`
-- `static/js/cookbook-hwfit.js:1698`
-- `static/js/cookbookDownload.js:125`
+- `static/js/calendar.js:4111`
+- `static/js/editor/document-geometry.js:769`
+- `static/js/editor/document-geometry.js:769`
 
-## `T` — class, line 147
+## `_getPanelFields` — function, line 215
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `_getPanelFields` — function, line 208
-- **called from:**
-- `static/js/cookbookDownload.js:208`
-- `static/js/cookbookDownload.js:223`
-- `static/js/cookbookDownload.js:316`
-- `static/js/cookbookDownload.js:346`
-
-## `_syncEnvFromPanel` — function, line 222
-- **called from:**
-- `static/js/cookbookDownload.js:222`
-- `static/js/cookbookDownload.js:347`
-- `static/js/cookbookDownload.js:480`
-
-## `_wirePanelEvents` — function, line 230
-- **called from:**
+- `static/js/cookbookDownload.js:215`
 - `static/js/cookbookDownload.js:230`
+- `static/js/cookbookDownload.js:323`
+- `static/js/cookbookDownload.js:353`
 
-## `_updatePanelCmd` — function, line 343
+## `_syncEnvFromPanel` — function, line 229
 - **called from:**
-- `static/js/cookbookDownload.js:248`
-- `static/js/cookbookDownload.js:343`
+- `static/js/cookbookDownload.js:229`
+- `static/js/cookbookDownload.js:354`
+- `static/js/cookbookDownload.js:487`
 
-## `_runPanelCmd` — function, line 363
+## `_wirePanelEvents` — function, line 237
 - **called from:**
-- `static/js/cookbook-hwfit.js:1670`
-- `static/js/cookbook-hwfit.js:1698`
-- `static/js/cookbookDownload.js:363`
+- `static/js/cookbookDownload.js:237`
 
-## `_runModelDownload` — function, line 469
+## `_updatePanelCmd` — function, line 350
 - **called from:**
-- `static/js/cookbook-hwfit.js:1672`
-- `static/js/cookbook-hwfit.js:1700`
-- `static/js/cookbookDownload.js:262`
-- `static/js/cookbookDownload.js:469`
+- `static/js/cookbookDownload.js:255`
+- `static/js/cookbookDownload.js:350`
 
-## `sameDownload` — arrow, line 559
+## `_runPanelCmd` — function, line 370
 - **called from:**
-- `static/js/cookbookDownload.js:565`
-- `static/js/cookbookDownload.js:576`
+- `static/js/cookbook-hwfit.js:1751`
+- `static/js/cookbook-hwfit.js:1779`
+- `static/js/cookbookDownload.js:370`
 
-## `initDownload` — function, line 648
+## `_runModelDownload` — function, line 476
 - **called from:**
-- `static/js/cookbook.js:3646`
-- `static/js/cookbookDownload.js:648`
+- `static/js/cookbook-hwfit.js:1753`
+- `static/js/cookbook-hwfit.js:1781`
+- `static/js/cookbookDownload.js:269`
+- `static/js/cookbookDownload.js:476`
+
+## `sameDownload` — arrow, line 566
+- **called from:**
+- `static/js/cookbookDownload.js:572`
+- `static/js/cookbookDownload.js:583`
+
+## `initDownload` — function, line 666
+- **called from:**
+- `static/js/cookbook.js:3857`
+- `static/js/cookbookDownload.js:666`

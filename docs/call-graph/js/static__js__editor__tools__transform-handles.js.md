@@ -1,45 +1,47 @@
 # `static/js/editor/tools/transform-handles.js` — definitions & call sites
 
-7 definitions (regex-based, best-effort).
-**Exports:** `drawHandles`, `getHandleAt`, `syncOverlay`
+8 definitions (regex-based, best-effort).
+**Exports:** `containsFramePoint`, `drawHandles`, `getHandleAt`, `syncOverlay`
 
-## `syncOverlay` — function, line 31
+## `syncOverlay` — function, line 41
 - **called from:**
 - `static/js/editor/tools/transform-handles.js:9`
-- `static/js/editor/tools/transform-handles.js:31`
-- `static/js/editor/tools/transform-handles.js:120`
+- `static/js/editor/tools/transform-handles.js:41`
+- `static/js/editor/tools/transform-handles.js:196`
 
-## `knobPosition` — function, line 73
+## `frameExtents` — function, line 96
 - **called from:**
-- `static/js/editor/tools/transform-handles.js:73`
-- `static/js/editor/tools/transform-handles.js:182`
-- `static/js/editor/tools/transform-handles.js:245`
+- `static/js/editor/tools/transform-handles.js:96`
+- `static/js/editor/tools/transform-handles.js:196`
 
-## `drawHandles` — function, line 118
+## `rotationHandleInside` — function, line 115
+- **called from:**
+- `static/js/editor/tools/transform-handles.js:115`
+- `static/js/editor/tools/transform-handles.js:188`
+- `static/js/editor/tools/transform-handles.js:290`
+
+## `transformFrame` — function, line 144
+- **called from:**
+- `static/js/editor/tools/transform-handles.js:144`
+- `static/js/editor/tools/transform-handles.js:186`
+- `static/js/editor/tools/transform-handles.js:288`
+- `static/js/editor/tools/transform-handles.js:316`
+
+## `drawHandles` — function, line 183
 - **called from:**
 - `static/js/editor/tools/transform-handles.js:11`
-- `static/js/editor/tools/transform-handles.js:118`
+- `static/js/editor/tools/transform-handles.js:183`
 
-## `rotPt` — arrow, line 144
+## `drawRectOutline` — arrow, line 213
 - **called from:**
-- `static/js/editor/tools/transform-handles.js:148`
-- `static/js/editor/tools/transform-handles.js:149`
-- `static/js/editor/tools/transform-handles.js:150`
-- `static/js/editor/tools/transform-handles.js:151`
+- `static/js/editor/tools/transform-handles.js:226`
+- `static/js/editor/tools/transform-handles.js:230`
 
-## `drawRectOutline` — arrow, line 155
-- **called from:**
-- `static/js/editor/tools/transform-handles.js:168`
-- `static/js/editor/tools/transform-handles.js:171`
-
-## `getHandleAt` — function, line 233
+## `getHandleAt` — function, line 286
 - **called from:**
 - `static/js/editor/tools/transform-handles.js:14`
-- `static/js/editor/tools/transform-handles.js:233`
+- `static/js/editor/tools/transform-handles.js:286`
 
-## `rotCorner` — arrow, line 252
+## `containsFramePoint` — function, line 315
 - **called from:**
-- `static/js/editor/tools/transform-handles.js:256`
-- `static/js/editor/tools/transform-handles.js:257`
-- `static/js/editor/tools/transform-handles.js:258`
-- `static/js/editor/tools/transform-handles.js:259`
+- `static/js/editor/tools/transform-handles.js:315`

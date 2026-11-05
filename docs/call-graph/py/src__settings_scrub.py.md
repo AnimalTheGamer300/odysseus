@@ -21,7 +21,7 @@
 
 ## `scrub_settings` — function, line 66
 - **called from:**
-- `routes/auth_routes.py:724`
+- `routes/auth_routes.py:788`
 - `tests/test_settings_scrub.py:16`
 - `tests/test_settings_scrub.py:23`
 - `tests/test_settings_scrub.py:28`

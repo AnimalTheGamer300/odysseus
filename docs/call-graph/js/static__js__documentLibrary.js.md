@@ -1,274 +1,372 @@
 # `static/js/documentLibrary.js` — definitions & call sites
 
-80 definitions (regex-based, best-effort).
+84 definitions (regex-based, best-effort).
 **Exports:** `closeLibrary`, `initLibrary`, `isLibraryOpen`, `openLibrary`
 
-## `initLibrary` — function, line 29
+## `_isEmailDocument` — function, line 36
 - **called from:**
-- `static/js/document.js:156`
-- `static/js/documentLibrary.js:29`
+- `static/js/documentLibrary.js:36`
+- `static/js/documentLibrary.js:41`
 
-## `_maybeCascadeGrid` — function, line 49
+## `_documentExport` — function, line 40
 - **called from:**
-- `static/js/documentLibrary.js:49`
-- `static/js/documentLibrary.js:460`
-- `static/js/documentLibrary.js:2149`
-- `static/js/documentLibrary.js:2512`
-- `static/js/documentLibrary.js:2783`
-- `static/js/documentLibrary.js:3128`
+- `static/js/documentLibrary.js:40`
+- `static/js/documentLibrary.js:862`
+- `static/js/documentLibrary.js:1574`
 
-## `_hlSearch` — function, line 69
+## `_librarySortIcon` — function, line 71
 - **called from:**
-- `static/js/documentLibrary.js:69`
-- `static/js/documentLibrary.js:562`
-- `static/js/documentLibrary.js:788`
-
-## `_safeResearchHref` — function, line 83
-- **called from:**
-- `static/js/documentLibrary.js:83`
-- `static/js/documentLibrary.js:2953`
-
-## `_collapseExpandedCard` — function, line 101
-- **called from:**
+- `static/js/documentLibrary.js:71`
+- `static/js/documentLibrary.js:92`
 - `static/js/documentLibrary.js:101`
-- `static/js/documentLibrary.js:882`
-- `static/js/documentLibrary.js:888`
-- `static/js/documentLibrary.js:3590`
 
-## `_copyChatById` — function, line 131
+## `_enhanceLibrarySortSelect` — function, line 75
 - **called from:**
-- `static/js/documentLibrary.js:131`
-- `static/js/documentLibrary.js:2093`
-- `static/js/documentLibrary.js:2181`
-- `static/js/documentLibrary.js:2536`
+- `static/js/documentLibrary.js:75`
 
-## `_attachLongPressMenu` — function, line 164
+## `render` — arrow, line 90
 - **called from:**
-- `static/js/documentLibrary.js:164`
-- `static/js/documentLibrary.js:872`
-- `static/js/documentLibrary.js:2203`
-- `static/js/documentLibrary.js:2555`
-- `static/js/documentLibrary.js:2592`
-- `static/js/documentLibrary.js:2630`
-- `static/js/documentLibrary.js:2817`
-- `static/js/documentLibrary.js:3154`
+- `scripts/generate_env_reference.py:1219`
+- `src/agent_tools/media_tools.py:493`
+- `src/agent_tools/media_tools.py:1002`
+- `tests/test_audit_c5_benchmark_evidence.py:2875`
+- `tests/test_audit_c5_benchmark_evidence.py:2882`
+- `tests/test_audit_c5_benchmark_evidence.py:2892`
+- `tests/test_audit_c5_benchmark_evidence.py:2906`
+- `tests/test_audit_c5_benchmark_evidence.py:2925`
+- `tests/test_audit_c5_benchmark_evidence.py:2933`
+- `tests/test_audit_c5_benchmark_evidence.py:2935`
+- `tests/test_audit_c5_benchmark_evidence.py:2978`
+- `tests/test_audit_c5_benchmark_evidence.py:3001`
+- `tests/test_audit_c5_benchmark_evidence.py:3006`
+- `tests/test_env_reference.py:168`
+- `tests/test_env_reference.py:179`
+- `static/js/calendar.js:1664`
+- `static/js/calendar.js:2653`
+- `static/js/chat.js:3712`
+- `static/js/chat.js:4841`
+- `static/js/chat.js:5202`
+- `static/js/chat.js:6102`
+- `static/js/chat.js:6252`
+- `static/js/chat.js:7389`
+- `static/js/documentLibrary.js:108`
+- `static/js/documentLibrary.js:124`
+- `static/js/editor/adjustments-worker.js:5`
+- `static/js/editor/adjustments-worker.js:20`
+- `static/js/editor/build/command-palette.js:22`
+- `static/js/editor/build/command-palette.js:56`
+- `static/js/editor/build/command-palette.js:64`
+- `static/js/editor/build/command-palette.js:67`
+- `static/js/editor/build/command-palette.js:68`
+- `static/js/editor/layer-panel.js:186`
+- `static/js/editor/layer-panel.js:302`
+- `static/js/editor/layer-panel.js:440`
+- `static/js/editor/layer-panel.js:490`
+- `static/js/editor/layer-panel.js:581`
+- `static/js/editor/layer-panel.js:613`
+- `static/js/editor/layer-panel.js:672`
+- `static/js/editor/layer-panel.js:711`
+- `static/js/editor/layer-panel.js:725`
+- `static/js/editor/layer-panel.js:739`
+- `static/js/editor/layer-panel.js:751`
+- `static/js/editor/layer-panel.js:795`
+- `static/js/editor/layer-panel.js:807`
+- `static/js/editor/layer-panel.js:839`
+- `static/js/editor/layer-panel.js:918`
+- `static/js/editor/layer-panel.js:929`
+- `static/js/editor/layer-panel.js:942`
+- `static/js/editor/layer-panel.js:962`
+- `static/js/editor/layer-panel.js:992`
+- `static/js/editor/layer-panel.js:1042`
+- `static/js/editor/layer-panel.js:1056`
+- `static/js/editor/layer-panel.js:1079`
+- `static/js/editor/layer-panel.js:1101`
+- `static/js/editor/layer-panel.js:1118`
+- `static/js/editor/layer-panel.js:1132`
+- `static/js/editor/layer-panel.js:1139`
+- `static/js/editor/layer-panel.js:1315`
+- `static/js/editor/layer-panel.js:1342`
+- … +104 more (grep the name in repo)
 
-## `cancel` — arrow, line 167
+## `initLibrary` — function, line 127
 - **called from:**
-- `app.py:1283`
-- `routes/shell_routes.py:723`
-- `routes/shell_routes.py:1108`
-- `routes/skills_routes.py:1800`
+- `static/js/document.js:1067`
+- `static/js/documentLibrary.js:127`
+
+## `_maybeCascadeGrid` — function, line 148
+- **called from:**
+- `static/js/documentLibrary.js:148`
+- `static/js/documentLibrary.js:583`
+- `static/js/documentLibrary.js:2350`
+- `static/js/documentLibrary.js:2721`
+- `static/js/documentLibrary.js:3194`
+
+## `_hlSearch` — function, line 168
+- **called from:**
+- `static/js/documentLibrary.js:168`
+- `static/js/documentLibrary.js:685`
+- `static/js/documentLibrary.js:945`
+
+## `_safeResearchHref` — function, line 182
+- **called from:**
+- `static/js/documentLibrary.js:182`
+- `static/js/documentLibrary.js:3018`
+
+## `_setLibraryCountChipContent` — function, line 197
+- **called from:**
+- `static/js/documentLibrary.js:197`
+- `static/js/documentLibrary.js:503`
+- `static/js/documentLibrary.js:522`
+- `static/js/documentLibrary.js:2421`
+- `static/js/documentLibrary.js:2859`
+
+## `_collapseExpandedCard` — function, line 208
+- **called from:**
+- `static/js/documentLibrary.js:208`
+- `static/js/documentLibrary.js:1101`
+- `static/js/documentLibrary.js:1107`
+- `static/js/documentLibrary.js:1135`
+- `static/js/documentLibrary.js:3657`
+
+## `_copyChatById` — function, line 239
+- **called from:**
+- `static/js/documentLibrary.js:239`
+- `static/js/documentLibrary.js:2304`
+- `static/js/documentLibrary.js:2382`
+- `static/js/documentLibrary.js:2746`
+
+## `_attachLongPressMenu` — function, line 270
+- **called from:**
+- `static/js/documentLibrary.js:270`
+- `static/js/documentLibrary.js:1091`
+- `static/js/documentLibrary.js:2404`
+- `static/js/documentLibrary.js:2765`
+- `static/js/documentLibrary.js:2803`
+- `static/js/documentLibrary.js:2842`
+- `static/js/documentLibrary.js:3220`
+
+## `cancel` — arrow, line 273
+- **called from:**
+- `app.py:1459`
+- `app.py:1470`
+- `routes/editor_agent_routes.py:1414`
+- `routes/email/email_routes.py:6869`
+- `routes/shell_routes.py:957`
+- `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
-- `src/agent_loop.py:5124`
-- `src/agent_loop.py:6401`
-- `src/agent_runs.py:84`
-- `src/agent_runs.py:195`
-- `src/agent_runs.py:198`
-- `src/agent_runs.py:237`
-- `src/agent_runs.py:286`
-- `src/agent_tools/subprocess_tools.py:273`
-- `src/agent_tools/subprocess_tools.py:275`
-- `src/agent_tools/subprocess_tools.py:279`
-- `src/ai_interaction.py:1379`
-- `src/ai_interaction.py:1646`
-- `src/llm_core.py:109`
-- `src/mcp_manager.py:400`
+- `services/skills/job_coordinator.py:215`
+- `src/agent_loop.py:26017`
+- `src/agent_loop.py:34321`
+- `src/agent_runs.py:86`
+- `src/agent_runs.py:207`
+- `src/agent_runs.py:210`
+- `src/agent_runs.py:249`
+- `src/agent_runs.py:298`
+- `src/ai_interaction.py:1822`
+- `src/ai_interaction.py:2094`
+- `src/clean_agent_preview.py:5609`
+- `src/clean_agent_preview.py:5617`
+- `src/containment.py:1172`
+- `src/containment.py:1182`
+- `src/llm_core.py:141`
+- `src/mcp_manager.py:440`
 - `src/mcp_oauth.py:63`
-- `src/research_handler.py:456`
-- `src/research_handler.py:459`
-- `src/task_scheduler.py:100`
-- `src/task_scheduler.py:591`
-- `src/task_scheduler.py:599`
-- `src/task_scheduler.py:917`
-- `src/task_scheduler.py:1012`
-- `src/task_scheduler.py:2272`
-- `src/task_scheduler.py:2296`
+- `src/research_handler.py:502`
+- `src/research_handler.py:505`
+- `src/task_scheduler.py:122`
+- `src/task_scheduler.py:733`
+- `src/task_scheduler.py:741`
+- `src/task_scheduler.py:1063`
+- `src/task_scheduler.py:1145`
+- `src/task_scheduler.py:2470`
+- `src/task_scheduler.py:2495`
+- `tests/test_agent_editor_routes.py:1008`
+- `tests/test_agent_editor_routes.py:1962`
+- `tests/test_agent_editor_routes.py:1971`
+- `tests/test_browser_identity_transport.py:39`
+- `tests/test_browser_identity_transport.py:75`
 - `tests/test_builtin_mcp_bg_tasks.py:101`
-- `tests/test_compare_stop_disconnect_poll.py:376`
-- `tests/test_compare_stop_disconnect_poll.py:433`
+- `tests/test_client_tool_routing.py:867`
+- `tests/test_compare_stop_disconnect_poll.py:377`
+- `tests/test_compare_stop_disconnect_poll.py:434`
+- `tests/test_completion_boundary.py:319`
+- `tests/test_completion_boundary.py:324`
+- `tests/test_containment_enforcement.py:382`
+- `tests/test_containment_enforcement.py:384`
+- `tests/test_containment_enforcement.py:408`
+- `tests/test_containment_enforcement.py:410`
+- `tests/test_cookbook_cache_scan_isolation.py:102`
 - `tests/test_email_summary_llm.py:192`
-- `tests/test_email_urgency_checkpoint.py:419`
-- `tests/test_email_urgency_checkpoint.py:554`
-- `tests/test_task_scheduler_cache.py:34`
-- `tests/test_task_scheduler_cache.py:70`
-- `static/js/chat.js:2849`
-- `static/js/chat.js:5749`
-- `static/js/chat.js:5764`
-- `static/js/documentLibrary.js:182`
-- `static/js/gallery.js:2576`
-- `static/js/gallery.js:2584`
-- `static/js/liveThinkingThrottle.js:20`
-- `static/js/liveThinkingThrottle.js:22`
-- `static/js/liveThinkingThrottle.js:193`
-- `static/js/liveThinkingThrottle.js:198`
-- `static/js/liveThinkingThrottle.js:199`
-- `static/js/settings.js:883`
-- `static/js/slashCommands.js:2439`
-- `static/js/tasks.js:1076`
-- `static/js/tts-ai.js:241`
-- `static/js/windowDrag.js:157`
+- `tests/test_email_urgency_checkpoint.py:457`
+- `tests/test_email_urgency_checkpoint.py:592`
+- `tests/test_host_shell_polling.py:198`
+- `tests/test_nested_invocation_ownership.py:93`
+- `tests/test_nested_invocation_ownership.py:96`
+- `tests/test_nested_invocation_ownership.py:448`
+- `tests/test_nested_invocation_ownership.py:453`
+- `tests/test_review_calendar_invitation.py:135`
+- … +82 more (grep the name in repo)
 
-## `_showLibDropdown` — function, line 200
+## `_showLibDropdown` — function, line 318
 - **called from:**
-- `static/js/documentLibrary.js:200`
-- `static/js/documentLibrary.js:619`
-- `static/js/documentLibrary.js:2179`
-- `static/js/documentLibrary.js:2534`
-- `static/js/documentLibrary.js:2583`
-- `static/js/documentLibrary.js:2620`
-- `static/js/documentLibrary.js:2804`
-- `static/js/documentLibrary.js:3163`
-- `static/js/documentLibrary.js:3567`
+- `static/js/documentLibrary.js:318`
+- `static/js/documentLibrary.js:747`
+- `static/js/documentLibrary.js:966`
+- `static/js/documentLibrary.js:1047`
+- `static/js/documentLibrary.js:1064`
+- `static/js/documentLibrary.js:2380`
+- `static/js/documentLibrary.js:2744`
+- `static/js/documentLibrary.js:2794`
+- `static/js/documentLibrary.js:2832`
+- `static/js/documentLibrary.js:3229`
+- `static/js/documentLibrary.js:3633`
 
-## `_unreg` — arrow, line 245
+## `_unreg` — arrow, line 369
 - **called from:**
-- `static/js/cookbookRunning.js:2827`
-- `static/js/documentLibrary.js:247`
-- `static/js/documentLibrary.js:287`
+- `static/js/cookbookRunning.js:2883`
+- `static/js/documentLibrary.js:371`
+- `static/js/documentLibrary.js:411`
 
-## `teardown` — arrow, line 246
+## `teardown` — arrow, line 370
 - **called from:**
 - `scripts/demo_email/demo_account.py:180`
 - `tests/test_email_account_default_serialization.py:521`
-- `static/js/document.js:4194`
-- `static/js/documentLibrary.js:211`
-- `static/js/documentLibrary.js:220`
-- `static/js/documentLibrary.js:228`
-- `static/js/documentLibrary.js:251`
-- `static/js/escMenuStack.js:18`
-- `static/js/keyboard-shortcuts.js:66`
+- `static/js/document.js:6713`
+- `static/js/documentLibrary.js:351`
+- `static/js/documentLibrary.js:375`
+- `static/js/keyboard-shortcuts.js:74`
 
-## `close` — arrow, line 251
+## `close` — arrow, line 375
 - **called from:**
-- `app.py:333`
-- `app.py:451`
-- `app.py:532`
-- `app.py:1050`
-- `app.py:1174`
-- `app.py:1295`
+- `app.py:374`
+- `app.py:492`
+- `app.py:609`
+- `app.py:1214`
+- `app.py:1358`
+- `app.py:1482`
 - `companion/pairing.py:151`
 - `companion/routes.py:165`
 - `core/database.py:161`
-- `core/database.py:930`
-- `core/database.py:961`
-- `core/database.py:984`
-- `core/database.py:1009`
-- `core/database.py:1032`
-- `core/database.py:1055`
-- `core/database.py:1086`
-- `core/database.py:1111`
-- `core/database.py:1135`
-- `core/database.py:1163`
-- `core/database.py:1186`
-- `core/database.py:1209`
-- `core/database.py:1232`
-- `core/database.py:1255`
-- `core/database.py:1287`
-- `core/database.py:1310`
-- `core/database.py:1333`
-- `core/database.py:1357`
-- `core/database.py:1381`
-- `core/database.py:1415`
-- `core/database.py:1444`
-- `core/database.py:1517`
-- `core/database.py:2106`
-- `core/database.py:2340`
-- `core/database.py:2402`
-- `core/database.py:2518`
-- `core/database.py:2545`
-- `core/database.py:2571`
-- `core/database.py:2596`
-- `core/database.py:2623`
-- `core/database.py:2645`
-- `core/database.py:2658`
-- `core/database.py:2674`
+- `core/database.py:982`
+- `core/database.py:1004`
+- `core/database.py:1026`
+- `core/database.py:1048`
+- `core/database.py:1074`
+- `core/database.py:1095`
+- `core/database.py:1120`
+- `core/database.py:1143`
+- `core/database.py:1166`
+- `core/database.py:1197`
+- `core/database.py:1222`
+- `core/database.py:1246`
+- `core/database.py:1274`
+- `core/database.py:1297`
+- `core/database.py:1320`
+- `core/database.py:1344`
+- `core/database.py:1367`
+- `core/database.py:1390`
+- `core/database.py:1442`
+- `core/database.py:1465`
+- `core/database.py:1488`
+- `core/database.py:1511`
+- `core/database.py:1548`
+- `core/database.py:1571`
+- `core/database.py:1595`
+- `core/database.py:1629`
+- `core/database.py:1658`
+- `core/database.py:1731`
+- `core/database.py:2365`
+- `core/database.py:2635`
+- `core/database.py:2697`
+- `core/database.py:2813`
+- `core/database.py:2840`
+- `core/database.py:2866`
+- `core/database.py:2891`
+- `core/database.py:2918`
+- `core/database.py:2940`
+- `core/database.py:2962`
+- `core/database.py:2974`
+- `core/database.py:2990`
 - `core/session_manager.py:68`
-- `core/session_manager.py:178`
-- `core/session_manager.py:442`
-- `core/session_manager.py:582`
-- `core/session_manager.py:654`
-- `core/session_manager.py:689`
-- `core/session_manager.py:760`
-- `core/session_manager.py:880`
-- `core/session_manager.py:984`
-- `core/session_manager.py:1014`
-- `core/session_manager.py:1028`
-- `core/session_manager.py:1074`
-- `core/session_manager.py:1118`
-- `core/session_manager.py:1149`
-- `core/session_manager.py:1173`
-- `core/session_manager.py:1209`
-- `core/session_manager.py:1233`
-- `core/session_manager.py:1253`
-- … +763 more (grep the name in repo)
+- `core/session_manager.py:177`
+- `core/session_manager.py:444`
+- `core/session_manager.py:584`
+- `core/session_manager.py:619`
+- `core/session_manager.py:667`
+- `core/session_manager.py:787`
+- `core/session_manager.py:876`
+- `core/session_manager.py:903`
+- `core/session_manager.py:917`
+- `core/session_manager.py:973`
+- … +1048 more (grep the name in repo)
 
-## `libraryRelativeTime` — function, line 300
+## `libraryRelativeTime` — function, line 424
 - **called from:**
-- `static/js/documentLibrary.js:300`
-- `static/js/documentLibrary.js:590`
-
-## `libraryFetch` — function, line 318
-- **called from:**
-- `static/js/documentLibrary.js:318`
-- `static/js/documentLibrary.js:391`
-- `static/js/documentLibrary.js:402`
-- `static/js/documentLibrary.js:482`
-- `static/js/documentLibrary.js:1248`
-- `static/js/documentLibrary.js:1269`
-- `static/js/documentLibrary.js:1572`
-- `static/js/documentLibrary.js:3384`
-- `static/js/documentLibrary.js:3390`
-- `static/js/documentLibrary.js:3395`
-- `static/js/documentLibrary.js:3468`
-- `static/js/documentLibrary.js:3518`
-- `static/js/documentLibrary.js:3602`
-
-## `libraryRenderStats` — function, line 357
-- **called from:**
-- `static/js/documentLibrary.js:348`
-- `static/js/documentLibrary.js:357`
 - `static/js/documentLibrary.js:424`
+- `static/js/documentLibrary.js:711`
 
-## `libraryRenderLangChips` — function, line 368
+## `libraryFetch` — function, line 442
 - **called from:**
-- `static/js/documentLibrary.js:349`
-- `static/js/documentLibrary.js:368`
-- `static/js/documentLibrary.js:425`
+- `static/js/documentLibrary.js:442`
+- `static/js/documentLibrary.js:514`
+- `static/js/documentLibrary.js:525`
+- `static/js/documentLibrary.js:605`
+- `static/js/documentLibrary.js:1472`
+- `static/js/documentLibrary.js:1493`
+- `static/js/documentLibrary.js:1815`
+- `static/js/documentLibrary.js:3450`
+- `static/js/documentLibrary.js:3456`
+- `static/js/documentLibrary.js:3461`
+- `static/js/documentLibrary.js:3534`
+- `static/js/documentLibrary.js:3584`
+- `static/js/documentLibrary.js:3669`
 
-## `libraryRemoveDocumentFromState` — function, line 408
+## `libraryRenderStats` — function, line 481
 - **called from:**
-- `static/js/documentLibrary.js:408`
-- `static/js/documentLibrary.js:746`
-- `static/js/documentLibrary.js:838`
-- `static/js/documentLibrary.js:1205`
+- `static/js/documentLibrary.js:472`
+- `static/js/documentLibrary.js:481`
+- `static/js/documentLibrary.js:547`
 
-## `libraryRenderGrid` — function, line 429
+## `libraryRenderLangChips` — function, line 492
 - **called from:**
-- `static/js/documentLibrary.js:350`
-- `static/js/documentLibrary.js:387`
-- `static/js/documentLibrary.js:429`
-- `static/js/documentLibrary.js:484`
-- `static/js/documentLibrary.js:623`
-- `static/js/documentLibrary.js:747`
-- `static/js/documentLibrary.js:839`
-- `static/js/documentLibrary.js:993`
-- `static/js/documentLibrary.js:1130`
-- `static/js/documentLibrary.js:1142`
-- `static/js/documentLibrary.js:1163`
+- `static/js/documentLibrary.js:473`
+- `static/js/documentLibrary.js:492`
+- `static/js/documentLibrary.js:548`
 
-## `_maybeAutoLoad` — arrow, line 502
+## `libraryRemoveDocumentFromState` — function, line 531
+- **called from:**
+- `static/js/documentLibrary.js:531`
+- `static/js/documentLibrary.js:895`
+- `static/js/documentLibrary.js:1016`
+- `static/js/documentLibrary.js:1429`
+
+## `libraryRenderGrid` — function, line 552
+- **called from:**
+- `static/js/documentLibrary.js:474`
+- `static/js/documentLibrary.js:510`
+- `static/js/documentLibrary.js:552`
+- `static/js/documentLibrary.js:607`
+- `static/js/documentLibrary.js:751`
+- `static/js/documentLibrary.js:835`
+- `static/js/documentLibrary.js:896`
+- `static/js/documentLibrary.js:1017`
+- `static/js/documentLibrary.js:1213`
+- `static/js/documentLibrary.js:1346`
+- `static/js/documentLibrary.js:1358`
+- `static/js/documentLibrary.js:1387`
+
+## `_maybeAutoLoad` — arrow, line 625
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `libraryCreateCard` — function, line 521
+## `libraryCreateCard` — function, line 644
 - **called from:**
-- `static/js/documentLibrary.js:467`
-- `static/js/documentLibrary.js:521`
+- `static/js/documentLibrary.js:590`
+- `static/js/documentLibrary.js:644`
 
-## `_esc` — arrow, line 582
+## `_esc` — arrow, line 703
 - **called from:**
 - `tests/test_ics_escape.py:12`
 - `tests/test_ics_escape.py:16`
@@ -299,591 +397,577 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:4698`
-- `static/js/chat.js:4698`
-- `static/js/cookbookServe.js:4003`
-- `static/js/cookbookServe.js:4005`
-- `static/js/document.js:313`
-- `static/js/document.js:314`
-- `static/js/document.js:8382`
-- `static/js/document.js:8966`
-- `static/js/documentLibrary.js:70`
-- `static/js/documentLibrary.js:86`
-- `static/js/documentLibrary.js:584`
-- `static/js/documentLibrary.js:588`
-- `static/js/documentLibrary.js:590`
-- `static/js/documentLibrary.js:1997`
-- `static/js/documentLibrary.js:2002`
-- `static/js/documentLibrary.js:2170`
-- `static/js/documentLibrary.js:2526`
-- `static/js/documentLibrary.js:2570`
-- `static/js/documentLibrary.js:2607`
-- `static/js/documentLibrary.js:2796`
-- `static/js/documentLibrary.js:2911`
-- `static/js/documentLibrary.js:2952`
-- `static/js/documentLibrary.js:2965`
-- `static/js/documentLibrary.js:3119`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:75`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- `static/js/emailInbox.js:77`
-- … +189 more (grep the name in repo)
-
-## `_cardUnreg` — arrow, line 668
-- **called from:**
-- `static/js/documentLibrary.js:671`
-
-## `hideCardDropdown` — function, line 670
-- **called from:**
-- `static/js/documentLibrary.js:631`
-- `static/js/documentLibrary.js:649`
-- `static/js/documentLibrary.js:670`
-- `static/js/documentLibrary.js:687`
-- `static/js/documentLibrary.js:692`
-- `static/js/documentLibrary.js:703`
-- `static/js/documentLibrary.js:714`
-- `static/js/documentLibrary.js:740`
-- `static/js/documentLibrary.js:759`
-
-## `_di` — arrow, line 678
-- **called from:**
-- `static/js/cookbookServe.js:1258`
-- `static/js/cookbookServe.js:1307`
-- `static/js/document.js:9219`
-- `static/js/document.js:9220`
-- `static/js/document.js:9222`
-- `static/js/document.js:9228`
-- `static/js/document.js:9232`
-- `static/js/document.js:9235`
-- `static/js/document.js:9237`
-- `static/js/documentLibrary.js:685`
-- `static/js/documentLibrary.js:701`
+- `static/js/chat.js:6329`
+- `static/js/chat.js:6329`
+- `static/js/cookbookServe.js:4108`
+- `static/js/cookbookServe.js:4110`
+- `static/js/document.js:1225`
+- `static/js/document.js:1226`
+- `static/js/document.js:13760`
+- `static/js/document.js:14380`
+- `static/js/document.js:15402`
+- `static/js/documentLibrary.js:169`
+- `static/js/documentLibrary.js:185`
+- `static/js/documentLibrary.js:705`
+- `static/js/documentLibrary.js:709`
 - `static/js/documentLibrary.js:711`
-- `static/js/documentLibrary.js:736`
-- `static/js/documentLibrary.js:758`
+- `static/js/documentLibrary.js:2218`
+- `static/js/documentLibrary.js:2223`
+- `static/js/documentLibrary.js:2371`
+- `static/js/documentLibrary.js:2735`
+- `static/js/documentLibrary.js:2780`
+- `static/js/documentLibrary.js:2818`
+- `static/js/documentLibrary.js:2968`
+- `static/js/documentLibrary.js:3017`
+- `static/js/documentLibrary.js:3030`
+- `static/js/documentLibrary.js:3184`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:76`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- `static/js/emailInbox.js:78`
+- … +226 more (grep the name in repo)
 
-## `libraryExpandCard` — function, line 876
+## `_cardUnreg` — arrow, line 796
 - **called from:**
-- `static/js/documentLibrary.js:869`
-- `static/js/documentLibrary.js:876`
+- `static/js/documentLibrary.js:799`
 
-## `libraryRenderLoadMore` — function, line 991
-- **called from:**
-- `static/js/documentLibrary.js:351`
-- `static/js/documentLibrary.js:991`
-- `static/js/documentLibrary.js:3401`
-- `static/js/documentLibrary.js:3406`
-
-## `libraryOpenDocument` — function, line 1000
-- **called from:**
-- `static/js/documentLibrary.js:692`
-- `static/js/documentLibrary.js:812`
-- `static/js/documentLibrary.js:1000`
-
-## `libraryOpenInSession` — function, line 1015
-- **called from:**
-- `static/js/documentLibrary.js:617`
-- `static/js/documentLibrary.js:687`
-- `static/js/documentLibrary.js:807`
-- `static/js/documentLibrary.js:1015`
-
-## `libraryImportDocument` — function, line 1045
-- **called from:**
-- `static/js/documentLibrary.js:618`
-- `static/js/documentLibrary.js:703`
-- `static/js/documentLibrary.js:819`
-- `static/js/documentLibrary.js:1045`
-- `static/js/documentLibrary.js:1288`
-- `static/js/documentLibrary.js:2462`
-
-## `libraryEnterSelectMode` — function, line 1122
-- **called from:**
-- `static/js/documentLibrary.js:620`
-- `static/js/documentLibrary.js:1122`
-- `static/js/documentLibrary.js:3535`
-
-## `libraryExitSelectMode` — function, line 1133
-- **called from:**
-- `static/js/documentLibrary.js:1133`
-- `static/js/documentLibrary.js:1247`
-- `static/js/documentLibrary.js:1268`
-- `static/js/documentLibrary.js:1292`
-- `static/js/documentLibrary.js:3467`
-- `static/js/documentLibrary.js:3534`
-
-## `libraryToggleSelectItem` — function, line 1145
-- **called from:**
-- `static/js/documentLibrary.js:537`
-- `static/js/documentLibrary.js:1145`
-
-## `libraryToggleSelectAll` — function, line 1154
-- **called from:**
-- `static/js/documentLibrary.js:1154`
-- `static/js/documentLibrary.js:3548`
-- `static/js/documentLibrary.js:3556`
-
-## `libraryUpdateBulkCount` — function, line 1166
-- **called from:**
-- `static/js/documentLibrary.js:384`
-- `static/js/documentLibrary.js:426`
-- `static/js/documentLibrary.js:622`
-- `static/js/documentLibrary.js:1129`
-- `static/js/documentLibrary.js:1151`
-- `static/js/documentLibrary.js:1162`
-- `static/js/documentLibrary.js:1166`
-
-## `libraryDeleteSingle` — function, line 1186
+## `hideCardDropdown` — function, line 798
 - **called from:**
 - `static/js/documentLibrary.js:759`
-- `static/js/documentLibrary.js:824`
-- `static/js/documentLibrary.js:1186`
+- `static/js/documentLibrary.js:777`
+- `static/js/documentLibrary.js:798`
+- `static/js/documentLibrary.js:815`
+- `static/js/documentLibrary.js:820`
+- `static/js/documentLibrary.js:831`
+- `static/js/documentLibrary.js:845`
+- `static/js/documentLibrary.js:856`
+- `static/js/documentLibrary.js:889`
+- `static/js/documentLibrary.js:911`
 
-## `libraryBulkDelete` — function, line 1212
+## `_di` — arrow, line 806
 - **called from:**
-- `static/js/documentLibrary.js:1212`
+- `static/js/cookbookServe.js:1298`
+- `static/js/cookbookServe.js:1347`
+- `static/js/document.js:14801`
+- `static/js/document.js:14802`
+- `static/js/document.js:14804`
+- `static/js/document.js:14810`
+- `static/js/document.js:14812`
+- `static/js/document.js:14813`
+- `static/js/document.js:14817`
+- `static/js/document.js:14820`
+- `static/js/document.js:14822`
+- `static/js/documentLibrary.js:813`
+- `static/js/documentLibrary.js:828`
+- `static/js/documentLibrary.js:843`
+- `static/js/documentLibrary.js:854`
+- `static/js/documentLibrary.js:885`
+- `static/js/documentLibrary.js:910`
 
-## `libraryBulkArchive` — function, line 1257
+## `exportDocumentFile` — arrow, line 855
 - **called from:**
-- `static/js/documentLibrary.js:1257`
+- `static/js/documentLibrary.js:874`
+- `static/js/documentLibrary.js:996`
+- `static/js/documentLibrary.js:1054`
+- `static/js/documentLibrary.js:1055`
+- `static/js/documentLibrary.js:1060`
+- `static/js/documentLibrary.js:1061`
 
-## `libraryBulkClone` — function, line 1280
+## `libraryExpandCard` — function, line 1095
 - **called from:**
-- `static/js/documentLibrary.js:1280`
+- `static/js/documentLibrary.js:1088`
+- `static/js/documentLibrary.js:1095`
 
-## `libraryBulkExport` — function, line 1301
+## `libraryRenderLoadMore` — function, line 1211
 - **called from:**
-- `static/js/documentLibrary.js:1301`
+- `static/js/documentLibrary.js:475`
+- `static/js/documentLibrary.js:1211`
+- `static/js/documentLibrary.js:3467`
+- `static/js/documentLibrary.js:3472`
 
-## `ensureXLSX` — function, line 1365
+## `libraryOpenDocument` — function, line 1220
 - **called from:**
-- `static/js/documentLibrary.js:1365`
-- `static/js/documentLibrary.js:1451`
-- `static/js/documentLibrary.js:1535`
+- `static/js/documentLibrary.js:743`
+- `static/js/documentLibrary.js:820`
+- `static/js/documentLibrary.js:970`
+- `static/js/documentLibrary.js:978`
+- `static/js/documentLibrary.js:1220`
 
-## `ensureMammoth` — function, line 1379
+## `libraryOpenInSession` — function, line 1236
 - **called from:**
-- `static/js/documentLibrary.js:1379`
-- `static/js/documentLibrary.js:1464`
+- `static/js/documentLibrary.js:743`
+- `static/js/documentLibrary.js:815`
+- `static/js/documentLibrary.js:970`
+- `static/js/documentLibrary.js:975`
+- `static/js/documentLibrary.js:1236`
 
-## `htmlToMarkdown` — function, line 1393
+## `libraryImportDocument` — function, line 1255
 - **called from:**
-- `static/js/documentLibrary.js:1393`
-- `static/js/documentLibrary.js:1467`
+- `static/js/documentLibrary.js:745`
+- `static/js/documentLibrary.js:845`
+- `static/js/documentLibrary.js:972`
+- `static/js/documentLibrary.js:986`
+- `static/js/documentLibrary.js:1255`
+- `static/js/documentLibrary.js:1512`
+- `static/js/documentLibrary.js:2671`
 
-## `walk` — function, line 1396
+## `libraryEnterSelectMode` — function, line 1338
 - **called from:**
-- `mcp_servers/email_server.py:778`
-- `mcp_servers/email_server.py:1164`
-- `mcp_servers/email_server.py:1193`
+- `static/js/documentLibrary.js:748`
+- `static/js/documentLibrary.js:832`
+- `static/js/documentLibrary.js:1338`
+- `static/js/documentLibrary.js:3601`
+
+## `libraryExitSelectMode` — function, line 1349
+- **called from:**
+- `static/js/documentLibrary.js:1349`
+- `static/js/documentLibrary.js:1471`
+- `static/js/documentLibrary.js:1492`
+- `static/js/documentLibrary.js:1516`
+- `static/js/documentLibrary.js:3533`
+- `static/js/documentLibrary.js:3600`
+
+## `libraryToggleSelectItem` — function, line 1361
+- **called from:**
+- `static/js/documentLibrary.js:660`
+- `static/js/documentLibrary.js:1361`
+
+## `libraryToggleCardSelection` — function, line 1370
+- **called from:**
+- `static/js/documentLibrary.js:732`
+- `static/js/documentLibrary.js:1086`
+- `static/js/documentLibrary.js:1370`
+
+## `libraryToggleSelectAll` — function, line 1378
+- **called from:**
+- `static/js/documentLibrary.js:1378`
+- `static/js/documentLibrary.js:3614`
+- `static/js/documentLibrary.js:3622`
+
+## `libraryUpdateBulkCount` — function, line 1390
+- **called from:**
+- `static/js/documentLibrary.js:507`
+- `static/js/documentLibrary.js:549`
+- `static/js/documentLibrary.js:750`
+- `static/js/documentLibrary.js:834`
+- `static/js/documentLibrary.js:1345`
+- `static/js/documentLibrary.js:1367`
+- `static/js/documentLibrary.js:1386`
+- `static/js/documentLibrary.js:1390`
+
+## `libraryDeleteSingle` — function, line 1410
+- **called from:**
+- `static/js/documentLibrary.js:911`
+- `static/js/documentLibrary.js:1002`
+- `static/js/documentLibrary.js:1410`
+
+## `libraryBulkDelete` — function, line 1436
+- **called from:**
+- `static/js/documentLibrary.js:1436`
+
+## `libraryBulkArchive` — function, line 1481
+- **called from:**
+- `static/js/documentLibrary.js:1481`
+
+## `libraryBulkClone` — function, line 1504
+- **called from:**
+- `static/js/documentLibrary.js:1504`
+
+## `libraryBulkExport` — function, line 1525
+- **called from:**
+- `static/js/documentLibrary.js:1525`
+
+## `ensureXLSX` — function, line 1589
+- **called from:**
+- `static/js/documentLibrary.js:1589`
+- `static/js/documentLibrary.js:1675`
+- `static/js/documentLibrary.js:1778`
+
+## `ensureMammoth` — function, line 1603
+- **called from:**
+- `static/js/documentLibrary.js:1603`
+- `static/js/documentLibrary.js:1688`
+
+## `htmlToMarkdown` — function, line 1617
+- **called from:**
+- `static/js/documentLibrary.js:1617`
+- `static/js/documentLibrary.js:1691`
+
+## `walk` — function, line 1620
+- **called from:**
+- `mcp_servers/email_server.py:928`
+- `mcp_servers/email_server.py:2352`
+- `mcp_servers/email_server.py:2381`
 - `routes/admin_wipe/admin_wipe_routes.py:114`
-- `routes/calendar_routes.py:1446`
-- `routes/email_helpers.py:1467`
-- `routes/email_helpers.py:1526`
-- `routes/email_helpers.py:1590`
-- `routes/email_helpers.py:1629`
-- `routes/email_helpers.py:1648`
-- `routes/email_routes.py:3401`
-- `routes/email_routes.py:3629`
-- `routes/email_routes.py:4808`
+- `routes/calendar_routes.py:1618`
+- `routes/email/email_helpers.py:1614`
+- `routes/email/email_helpers.py:1673`
+- `routes/email/email_helpers.py:1737`
+- `routes/email/email_helpers.py:1776`
+- `routes/email/email_helpers.py:1794`
+- `routes/email/email_pollers.py:94`
+- `routes/email/email_pollers.py:127`
+- `routes/email/email_routes.py:4779`
+- `routes/email/email_routes.py:5105`
+- `routes/email/email_routes.py:6504`
 - `routes/embedding_routes.py:86`
-- `routes/personal_routes.py:66`
-- `routes/personal_routes.py:94`
-- `routes/upload_routes.py:171`
-- `services/memory/skills.py:162`
-- `services/memory/skills.py:515`
-- `src/agent_tools/filesystem_tools.py:105`
-- `src/agent_tools/filesystem_tools.py:635`
-- `src/builtin_actions.py:2657`
+- `routes/personal_routes.py:61`
+- `routes/personal_routes.py:89`
+- `routes/upload_routes.py:188`
+- `scripts/generate_env_reference.py:238`
+- `scripts/generate_env_reference.py:244`
+- `scripts/generate_env_reference.py:275`
+- `scripts/sanitize_trace_artifacts.py:312`
+- `services/memory/skills.py:210`
+- `services/memory/skills.py:602`
+- `src/agent_runtime/process_resources.py:398`
+- `src/agent_tools/filesystem_tools.py:902`
+- `src/builtin_actions.py:2921`
 - `src/caldav_sync.py:377`
-- `src/personal_docs.py:110`
+- `src/personal_docs.py:114`
 - `src/rag_vector.py:505`
-- `src/upload_handler.py:558`
-- `src/upload_handler.py:1128`
+- `src/upload_handler.py:617`
+- `src/upload_handler.py:1182`
 - `tests/test_agent_tool_budget_nonnumeric.py:22`
 - `tests/test_agent_tool_budget_nonnumeric.py:27`
+- `tests/test_agent_turn_contract_boundaries.py:14`
+- `tests/test_agent_turn_contract_boundaries.py:105`
+- `tests/test_agent_turn_contract_boundaries.py:108`
+- `tests/test_agent_turn_contract_boundaries.py:120`
+- `tests/test_agent_turn_contract_boundaries.py:122`
+- `tests/test_agent_turn_contract_boundaries.py:139`
+- `tests/test_aux_llm_owner_scope.py:16`
+- `tests/test_aux_llm_owner_scope.py:23`
 - `tests/test_chat_helpers_bg_tasks_tracked.py:44`
 - `tests/test_chat_helpers_bg_tasks_tracked.py:46`
 - `tests/test_chat_helpers_bg_tasks_tracked.py:50`
-- `tests/test_chat_route_tool_policy.py:36`
-- `tests/test_chat_route_tool_policy.py:44`
-- `tests/test_chat_route_tool_policy.py:63`
-- `tests/test_chat_route_tool_policy.py:70`
-- `tests/test_gallery_album_owner_scope.py:19`
-- `tests/test_gallery_endpoint_hardening.py:114`
-- `tests/test_gallery_endpoint_ssrf.py:23`
-- `tests/test_gallery_image_privileges.py:25`
-- `tests/test_history_db_fallback_hidden.py:24`
-- `tests/test_model_helper_owner_scope.py:10`
-- `tests/test_personal_dir_symlink_escape.py:22`
-- `tests/test_personal_remove_dir_confinement.py:20`
-- `tests/test_research_chat_stream_owner.py:17`
-- `tests/test_tool_implementations_shim.py:144`
-- `tests/test_tool_implementations_shim.py:157`
-- `tests/test_tool_utils_import_clean.py:16`
-- `tests/test_webhook_emitters_use_manager.py:20`
-- `tests/tools/build_oversized_test_split_plan.py:53`
-- `static/js/composerHistoryRecall.js:214`
-- `static/js/documentLibrary.js:1396`
-- `static/js/documentLibrary.js:1431`
+- `tests/test_chat_image_routing.py:110`
+- `tests/test_chat_image_routing.py:125`
+- `tests/test_chat_image_routing.py:128`
+- `tests/test_chat_route_tool_policy.py:132`
+- `tests/test_chat_route_tool_policy.py:140`
+- `tests/test_chat_route_tool_policy.py:159`
+- `tests/test_chat_route_tool_policy.py:166`
+- `tests/test_client_tool_routing.py:890`
+- `tests/test_client_tool_routing.py:947`
+- `tests/test_client_tool_routing.py:960`
+- `tests/test_codeql_induced_redos.py:88`
+- `tests/test_contract_explicit_fallback.py:14`
+- `tests/test_contract_explicit_fallback.py:16`
+- `tests/test_contract_prompt_conversation.py:135`
+- … +33 more (grep the name in repo)
 
-## `walkChildren` — function, line 1431
+## `walkChildren` — function, line 1655
 - **called from:**
-- `static/js/documentLibrary.js:1400`
-- `static/js/documentLibrary.js:1401`
-- `static/js/documentLibrary.js:1402`
-- `static/js/documentLibrary.js:1403`
-- `static/js/documentLibrary.js:1404`
-- `static/js/documentLibrary.js:1405`
-- `static/js/documentLibrary.js:1406`
-- `static/js/documentLibrary.js:1408`
-- `static/js/documentLibrary.js:1409`
-- `static/js/documentLibrary.js:1416`
-- `static/js/documentLibrary.js:1429`
-- `static/js/documentLibrary.js:1431`
-- `static/js/documentLibrary.js:1440`
+- `static/js/documentLibrary.js:1624`
+- `static/js/documentLibrary.js:1625`
+- `static/js/documentLibrary.js:1626`
+- `static/js/documentLibrary.js:1627`
+- `static/js/documentLibrary.js:1628`
+- `static/js/documentLibrary.js:1629`
+- `static/js/documentLibrary.js:1630`
+- `static/js/documentLibrary.js:1632`
+- `static/js/documentLibrary.js:1633`
+- `static/js/documentLibrary.js:1640`
+- `static/js/documentLibrary.js:1653`
+- `static/js/documentLibrary.js:1655`
+- `static/js/documentLibrary.js:1664`
 
-## `convertTable` — function, line 1432
+## `convertTable` — function, line 1656
 - **called from:**
-- `static/js/documentLibrary.js:1419`
-- `static/js/documentLibrary.js:1432`
+- `static/js/documentLibrary.js:1643`
+- `static/js/documentLibrary.js:1656`
 
-## `readFileContent` — function, line 1445
+## `readFileContent` — function, line 1669
 - **called from:**
-- `static/js/documentLibrary.js:1445`
-- `static/js/documentLibrary.js:1552`
+- `static/js/documentLibrary.js:1669`
+- `static/js/documentLibrary.js:1795`
 
-## `libraryImportFiles` — function, line 1480
+## `libraryImportFiles` — function, line 1704
 - **called from:**
-- `static/js/documentLibrary.js:1480`
-- `static/js/documentLibrary.js:3431`
+- `static/js/documentLibrary.js:1704`
+- `static/js/documentLibrary.js:3497`
 
-## `openLibrary` — function, line 1575
+## `openLibrary` — function, line 1818
 - **called from:**
-- `static/app.js:1049`
-- `static/app.js:1236`
-- `static/app.js:1251`
-- `static/app.js:1277`
-- `static/app.js:1284`
-- `static/js/document.js:5198`
-- `static/js/document.js:9554`
-- `static/js/document.js:9658`
-- `static/js/documentLibrary.js:1575`
-- `static/js/research/panel.js:686`
-- `static/js/research/panel.js:734`
-- `static/js/research/panel.js:794`
-- `static/js/sessions.js:3288`
-- `static/js/sessions.js:3291`
-- `static/js/sessions.js:3350`
-- `static/js/slashCommands.js:4602`
+- `static/app.js:1082`
+- `static/app.js:1278`
+- `static/app.js:1293`
+- `static/app.js:1319`
+- `static/app.js:1326`
+- `static/js/document.js:7993`
+- `static/js/document.js:15158`
+- `static/js/document.js:15280`
+- `static/js/documentLibrary.js:1818`
+- `static/js/sessions.js:3709`
+- `static/js/sessions.js:3712`
+- `static/js/sessions.js:3771`
+- `static/js/slashCommands.js:4606`
 
-## `enterFullscreen` — arrow, line 1794
+## `enterFullscreen` — arrow, line 2017
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `exitFullscreen` — arrow, line 1811
+## `exitFullscreen` — arrow, line 2034
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_appendInlineLoadMore` — function, line 1857
+## `_appendInlineLoadMore` — function, line 2080
 - **called from:**
-- `static/js/documentLibrary.js:1857`
-- `static/js/documentLibrary.js:2143`
-- `static/js/documentLibrary.js:2206`
-- `static/js/documentLibrary.js:2506`
-- `static/js/documentLibrary.js:2633`
-- `static/js/documentLibrary.js:2829`
-- `static/js/documentLibrary.js:3096`
-- `static/js/documentLibrary.js:3204`
+- `static/js/documentLibrary.js:2080`
+- `static/js/documentLibrary.js:2344`
+- `static/js/documentLibrary.js:2407`
+- `static/js/documentLibrary.js:2715`
+- `static/js/documentLibrary.js:2845`
+- `static/js/documentLibrary.js:3161`
+- `static/js/documentLibrary.js:3270`
 
-## `_switchLibTab` — function, line 1895
+## `_switchLibTab` — function, line 2114
 - **called from:**
-- `static/js/documentLibrary.js:1608`
-- `static/js/documentLibrary.js:1895`
-- `static/js/documentLibrary.js:1920`
-- `static/js/documentLibrary.js:3377`
+- `static/js/documentLibrary.js:1851`
+- `static/js/documentLibrary.js:2114`
+- `static/js/documentLibrary.js:2138`
+- `static/js/documentLibrary.js:3443`
 
-## `_renderLibChats` — function, line 1931
+## `_renderLibChats` — function, line 2149
 - **called from:**
-- `static/js/documentLibrary.js:1913`
-- `static/js/documentLibrary.js:1931`
-- `static/js/documentLibrary.js:2075`
-- `static/js/documentLibrary.js:2113`
-- `static/js/documentLibrary.js:2182`
-- `static/js/documentLibrary.js:2189`
-- `static/js/documentLibrary.js:2285`
-- `static/js/documentLibrary.js:2330`
-- `static/js/documentLibrary.js:2357`
-- `static/js/sessions.js:3443`
-- `static/js/sessions.js:3449`
+- `static/js/documentLibrary.js:2132`
+- `static/js/documentLibrary.js:2149`
+- `static/js/documentLibrary.js:2293`
+- `static/js/documentLibrary.js:2314`
+- `static/js/documentLibrary.js:2383`
+- `static/js/documentLibrary.js:2390`
+- `static/js/documentLibrary.js:2486`
+- `static/js/documentLibrary.js:2531`
+- `static/js/documentLibrary.js:2558`
+- `static/js/sessions.js:3873`
+- `static/js/sessions.js:3879`
 
-## `_toggleChatPreview` — function, line 1947
+## `_toggleChatPreview` — function, line 2165
 - **called from:**
-- `static/js/documentLibrary.js:1947`
-- `static/js/documentLibrary.js:2201`
-- `static/js/documentLibrary.js:2553`
-- `static/js/documentLibrary.js:2825`
+- `static/js/documentLibrary.js:2165`
+- `static/js/documentLibrary.js:2402`
+- `static/js/documentLibrary.js:2763`
 
-## `_renderChatsGrid` — function, line 2120
+## `_renderChatsGrid` — function, line 2321
 - **called from:**
-- `static/js/documentLibrary.js:1939`
-- `static/js/documentLibrary.js:2120`
-- `static/js/documentLibrary.js:2195`
-- `static/js/documentLibrary.js:2208`
-- `static/js/documentLibrary.js:2220`
-- `static/js/documentLibrary.js:2228`
-- `static/js/documentLibrary.js:2229`
-- `static/js/documentLibrary.js:2230`
-- `static/js/documentLibrary.js:2234`
+- `static/js/documentLibrary.js:2157`
+- `static/js/documentLibrary.js:2321`
+- `static/js/documentLibrary.js:2396`
+- `static/js/documentLibrary.js:2409`
+- `static/js/documentLibrary.js:2421`
+- `static/js/documentLibrary.js:2429`
+- `static/js/documentLibrary.js:2430`
+- `static/js/documentLibrary.js:2431`
+- `static/js/documentLibrary.js:2435`
 
-## `_renderChatsChips` — function, line 2212
+## `_renderChatsChips` — function, line 2413
 - **called from:**
-- `static/js/documentLibrary.js:1940`
-- `static/js/documentLibrary.js:2212`
-- `static/js/documentLibrary.js:2220`
+- `static/js/documentLibrary.js:2158`
+- `static/js/documentLibrary.js:2413`
+- `static/js/documentLibrary.js:2421`
 
-## `mk` — arrow, line 2220
+## `mk` — arrow, line 2421
 - **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
-- `static/js/cookbookServe.js:2709`
-- `static/js/cookbookServe.js:2717`
-- `static/js/cookbookServe.js:2722`
-- `static/js/cookbookServe.js:2723`
-- `static/js/cookbookServe.js:2769`
-- `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
-- `static/js/skills.js:404`
-- `static/js/skills.js:405`
-- `static/js/skills.js:420`
-- `static/js/skills.js:424`
-- `static/js/skills.js:426`
-- `static/js/skills.js:427`
+- `static/js/chat.js:7832`
+- `static/js/chat.js:7833`
+- `static/js/chat.js:7834`
+- `static/js/cookbookServe.js:2781`
+- `static/js/cookbookServe.js:2789`
+- `static/js/cookbookServe.js:2794`
+- `static/js/cookbookServe.js:2795`
+- `static/js/cookbookServe.js:2841`
+- `static/js/cookbookServe.js:2842`
+- `static/js/documentLibrary.js:2422`
+- `static/js/documentLibrary.js:2423`
+- `static/js/documentLibrary.js:2865`
+- `static/js/documentLibrary.js:2866`
+- `static/js/documentLibrary.js:2867`
+- `static/js/documentLibrary.js:2868`
+- `static/js/skills.js:565`
+- `static/js/skills.js:574`
 
-## `_updateChatsCount` — function, line 2225
+## `_updateChatsCount` — function, line 2426
 - **called from:**
-- `static/js/documentLibrary.js:2178`
-- `static/js/documentLibrary.js:2199`
-- `static/js/documentLibrary.js:2225`
-- `static/js/documentLibrary.js:2242`
+- `static/js/documentLibrary.js:2379`
+- `static/js/documentLibrary.js:2400`
+- `static/js/documentLibrary.js:2426`
+- `static/js/documentLibrary.js:2443`
 
-## `_chatsToggleAll` — function, line 2236
+## `_chatsToggleAll` — function, line 2437
 - **called from:**
-- `static/js/documentLibrary.js:2236`
-- `static/js/documentLibrary.js:2247`
+- `static/js/documentLibrary.js:2437`
+- `static/js/documentLibrary.js:2448`
 
-## `_renderLibArchive` — function, line 2381
+## `_renderLibArchive` — function, line 2582
 - **called from:**
-- `static/js/documentLibrary.js:1914`
-- `static/js/documentLibrary.js:2088`
-- `static/js/documentLibrary.js:2113`
-- `static/js/documentLibrary.js:2381`
-- `static/js/documentLibrary.js:2452`
-- `static/js/documentLibrary.js:2457`
-- `static/js/documentLibrary.js:2537`
-- `static/js/documentLibrary.js:2541`
-- `static/js/documentLibrary.js:2584`
-- `static/js/documentLibrary.js:2585`
-- `static/js/documentLibrary.js:2622`
-- `static/js/documentLibrary.js:2623`
-- `static/js/documentLibrary.js:2707`
-- `static/js/documentLibrary.js:2728`
-- `static/js/documentLibrary.js:3037`
-- `static/js/documentLibrary.js:3056`
-- `static/js/sessions.js:3444`
-- `static/js/sessions.js:3488`
-
-## `_toggleArcDocPreview` — function, line 2406
-- **called from:**
-- `static/js/documentLibrary.js:2406`
-- `static/js/documentLibrary.js:2581`
-
-## `is` — class, line 2439
-- **called from:**
-- `static/js/skills.js:886`
-- `static/js/windowResize.js:44`
-
-## `_renderArcGrid` — function, line 2470
-- **called from:**
-- `static/js/documentLibrary.js:2398`
-- `static/js/documentLibrary.js:2470`
-- `static/js/documentLibrary.js:2547`
-- `static/js/documentLibrary.js:2590`
-- `static/js/documentLibrary.js:2628`
-- `static/js/documentLibrary.js:2635`
-- `static/js/documentLibrary.js:2648`
-- `static/js/documentLibrary.js:2662`
-- `static/js/documentLibrary.js:2663`
-- `static/js/documentLibrary.js:2664`
-- `static/js/documentLibrary.js:2668`
-
-## `_renderArcChips` — function, line 2639
-- **called from:**
-- `static/js/documentLibrary.js:2399`
-- `static/js/documentLibrary.js:2639`
-- `static/js/documentLibrary.js:2648`
-
-## `mk` — arrow, line 2644
-- **called from:**
-- `static/js/chat.js:6134`
-- `static/js/chat.js:6135`
-- `static/js/chat.js:6136`
-- `static/js/cookbookServe.js:2709`
-- `static/js/cookbookServe.js:2717`
-- `static/js/cookbookServe.js:2722`
-- `static/js/cookbookServe.js:2723`
-- `static/js/cookbookServe.js:2769`
-- `static/js/cookbookServe.js:2770`
-- `static/js/documentLibrary.js:2221`
-- `static/js/documentLibrary.js:2222`
-- `static/js/documentLibrary.js:2653`
-- `static/js/documentLibrary.js:2654`
-- `static/js/documentLibrary.js:2655`
-- `static/js/documentLibrary.js:2656`
-- `static/js/skills.js:404`
-- `static/js/skills.js:405`
-- `static/js/skills.js:420`
-- `static/js/skills.js:424`
-- `static/js/skills.js:426`
-- `static/js/skills.js:427`
-
-## `_updateArcCount` — function, line 2659
-- **called from:**
-- `static/js/documentLibrary.js:2533`
-- `static/js/documentLibrary.js:2551`
-- `static/js/documentLibrary.js:2577`
-- `static/js/documentLibrary.js:2580`
-- `static/js/documentLibrary.js:2614`
-- `static/js/documentLibrary.js:2617`
-- `static/js/documentLibrary.js:2659`
-- `static/js/documentLibrary.js:2682`
-
-## `_arcToggleAll` — function, line 2672
-- **called from:**
-- `static/js/documentLibrary.js:2672`
-- `static/js/documentLibrary.js:2687`
-
-## `_arcRestoreOne` — function, line 2690
-- **called from:**
-- `static/js/documentLibrary.js:2690`
-
-## `_arcDeleteOne` — function, line 2696
-- **called from:**
-- `static/js/documentLibrary.js:2696`
-
-## `_renderLibTrash` — function, line 2741
-- **called from:**
-- `static/js/documentLibrary.js:1916`
-- `static/js/documentLibrary.js:2084`
-- `static/js/documentLibrary.js:2105`
-- `static/js/documentLibrary.js:2741`
-- `static/js/documentLibrary.js:2805`
-- `static/js/documentLibrary.js:2809`
-- `static/js/documentLibrary.js:2864`
-- `static/js/documentLibrary.js:2874`
-- `static/js/documentLibrary.js:2883`
-
-## `_updateTrashCount` — function, line 2755
-- **called from:**
-- `static/js/documentLibrary.js:2755`
-- `static/js/documentLibrary.js:2803`
-- `static/js/documentLibrary.js:2820`
-- `static/js/documentLibrary.js:2851`
-
-## `_renderTrashGrid` — function, line 2757
-- **called from:**
-- `static/js/documentLibrary.js:2750`
-- `static/js/documentLibrary.js:2757`
-- `static/js/documentLibrary.js:2815`
-- `static/js/documentLibrary.js:2829`
-- `static/js/documentLibrary.js:2833`
+- `static/js/documentLibrary.js:2133`
+- `static/js/documentLibrary.js:2299`
+- `static/js/documentLibrary.js:2314`
+- `static/js/documentLibrary.js:2582`
+- `static/js/documentLibrary.js:2661`
+- `static/js/documentLibrary.js:2666`
+- `static/js/documentLibrary.js:2747`
+- `static/js/documentLibrary.js:2751`
+- `static/js/documentLibrary.js:2795`
+- `static/js/documentLibrary.js:2796`
 - `static/js/documentLibrary.js:2834`
 - `static/js/documentLibrary.js:2835`
-- `static/js/documentLibrary.js:2839`
+- `static/js/documentLibrary.js:2919`
+- `static/js/documentLibrary.js:2940`
+- `static/js/documentLibrary.js:3102`
+- `static/js/documentLibrary.js:3121`
+- `static/js/sessions.js:3874`
+- `static/js/sessions.js:3918`
 
-## `_trashToggleAll` — function, line 2841
+## `_toggleArcDocPreview` — function, line 2607
 - **called from:**
-- `static/js/documentLibrary.js:2841`
-- `static/js/documentLibrary.js:2856`
+- `static/js/documentLibrary.js:2607`
+- `static/js/documentLibrary.js:2792`
 
-## `_renderLibResearch` — function, line 2893
+## `is` — class, line 2648
 - **called from:**
-- `static/js/documentLibrary.js:1915`
-- `static/js/documentLibrary.js:2893`
-- `static/js/documentLibrary.js:3291`
-- `static/js/sessions.js:3446`
-- `static/js/sessions.js:3557`
+- `static/js/skills.js:1124`
+- `static/js/windowResize.js:81`
 
-## `_toggleResearchPreview` — function, line 2920
+## `_renderArcGrid` — function, line 2679
 - **called from:**
-- `static/js/documentLibrary.js:2618`
-- `static/js/documentLibrary.js:2920`
-- `static/js/documentLibrary.js:3152`
+- `static/js/documentLibrary.js:2599`
+- `static/js/documentLibrary.js:2679`
+- `static/js/documentLibrary.js:2757`
+- `static/js/documentLibrary.js:2801`
+- `static/js/documentLibrary.js:2840`
+- `static/js/documentLibrary.js:2847`
+- `static/js/documentLibrary.js:2860`
+- `static/js/documentLibrary.js:2874`
+- `static/js/documentLibrary.js:2875`
+- `static/js/documentLibrary.js:2876`
+- `static/js/documentLibrary.js:2880`
 
-## `_renderResearchGrid` — function, line 3066
+## `_renderArcChips` — function, line 2851
 - **called from:**
-- `static/js/documentLibrary.js:2914`
-- `static/js/documentLibrary.js:3040`
-- `static/js/documentLibrary.js:3059`
-- `static/js/documentLibrary.js:3066`
-- `static/js/documentLibrary.js:3180`
-- `static/js/documentLibrary.js:3194`
-- `static/js/documentLibrary.js:3200`
-- `static/js/documentLibrary.js:3206`
-- `static/js/documentLibrary.js:3212`
-- `static/js/documentLibrary.js:3217`
-- `static/js/documentLibrary.js:3233`
-- `static/js/documentLibrary.js:3277`
-- `static/js/documentLibrary.js:3297`
-- `static/js/documentLibrary.js:3306`
-- `static/js/documentLibrary.js:3330`
-- `static/js/documentLibrary.js:3354`
+- `static/js/documentLibrary.js:2600`
+- `static/js/documentLibrary.js:2851`
+- `static/js/documentLibrary.js:2860`
 
-## `_updateResearchCount` — function, line 3221
+## `mk` — arrow, line 2856
 - **called from:**
-- `static/js/documentLibrary.js:3135`
-- `static/js/documentLibrary.js:3221`
-- `static/js/documentLibrary.js:3305`
-- `static/js/research/panel.js:186`
-- `static/js/research/panel.js:299`
+- `static/js/chat.js:7832`
+- `static/js/chat.js:7833`
+- `static/js/chat.js:7834`
+- `static/js/cookbookServe.js:2781`
+- `static/js/cookbookServe.js:2789`
+- `static/js/cookbookServe.js:2794`
+- `static/js/cookbookServe.js:2795`
+- `static/js/cookbookServe.js:2841`
+- `static/js/cookbookServe.js:2842`
+- `static/js/documentLibrary.js:2422`
+- `static/js/documentLibrary.js:2423`
+- `static/js/documentLibrary.js:2865`
+- `static/js/documentLibrary.js:2866`
+- `static/js/documentLibrary.js:2867`
+- `static/js/documentLibrary.js:2868`
+- `static/js/skills.js:565`
+- `static/js/skills.js:574`
 
-## `_relTime` — function, line 3362
+## `_updateArcCount` — function, line 2871
 - **called from:**
-- `static/js/documentLibrary.js:2171`
-- `static/js/documentLibrary.js:2527`
-- `static/js/documentLibrary.js:2571`
-- `static/js/documentLibrary.js:2608`
-- `static/js/documentLibrary.js:2797`
-- `static/js/documentLibrary.js:3362`
+- `static/js/documentLibrary.js:2743`
+- `static/js/documentLibrary.js:2761`
+- `static/js/documentLibrary.js:2788`
+- `static/js/documentLibrary.js:2791`
+- `static/js/documentLibrary.js:2826`
+- `static/js/documentLibrary.js:2829`
+- `static/js/documentLibrary.js:2871`
+- `static/js/documentLibrary.js:2894`
 
-## `closeLibrary` — function, line 3606
+## `_arcToggleAll` — function, line 2884
 - **called from:**
-- `static/app.js:1047`
-- `static/js/documentLibrary.js:1001`
-- `static/js/documentLibrary.js:1017`
-- `static/js/documentLibrary.js:1107`
-- `static/js/documentLibrary.js:2055`
-- `static/js/documentLibrary.js:3008`
-- `static/js/documentLibrary.js:3452`
-- `static/js/documentLibrary.js:3581`
-- `static/js/documentLibrary.js:3592`
-- `static/js/documentLibrary.js:3606`
-- `static/js/sessions.js:3349`
-- `static/js/sessions.js:3474`
-- `static/js/sessions.js:3479`
-- `static/js/sessions.js:3540`
-- `static/js/sessions.js:3548`
-- `static/js/sessions.js:3649`
+- `static/js/documentLibrary.js:2884`
+- `static/js/documentLibrary.js:2899`
 
-## `isLibraryOpen` — function, line 3635
+## `_arcRestoreOne` — function, line 2902
 - **called from:**
-- `static/app.js:1046`
-- `static/js/documentLibrary.js:3635`
+- `static/js/documentLibrary.js:2902`
+
+## `_arcDeleteOne` — function, line 2908
+- **called from:**
+- `static/js/documentLibrary.js:2908`
+
+## `_renderLibResearch` — function, line 2950
+- **called from:**
+- `static/js/documentLibrary.js:2134`
+- `static/js/documentLibrary.js:2950`
+- `static/js/documentLibrary.js:3357`
+- `static/js/sessions.js:3876`
+- `static/js/sessions.js:3987`
+
+## `_toggleResearchPreview` — function, line 2977
+- **called from:**
+- `static/js/documentLibrary.js:2830`
+- `static/js/documentLibrary.js:2977`
+- `static/js/documentLibrary.js:3218`
+
+## `_renderResearchGrid` — function, line 3131
+- **called from:**
+- `static/js/documentLibrary.js:2971`
+- `static/js/documentLibrary.js:3105`
+- `static/js/documentLibrary.js:3124`
+- `static/js/documentLibrary.js:3131`
+- `static/js/documentLibrary.js:3246`
+- `static/js/documentLibrary.js:3260`
+- `static/js/documentLibrary.js:3266`
+- `static/js/documentLibrary.js:3272`
+- `static/js/documentLibrary.js:3278`
+- `static/js/documentLibrary.js:3283`
+- `static/js/documentLibrary.js:3299`
+- `static/js/documentLibrary.js:3343`
+- `static/js/documentLibrary.js:3363`
+- `static/js/documentLibrary.js:3372`
+- `static/js/documentLibrary.js:3396`
+- `static/js/documentLibrary.js:3420`
+
+## `_updateResearchCount` — function, line 3287
+- **called from:**
+- `static/js/documentLibrary.js:3201`
+- `static/js/documentLibrary.js:3287`
+- `static/js/documentLibrary.js:3371`
+- `static/js/research/panel.js:177`
+- `static/js/research/panel.js:311`
+
+## `_relTime` — function, line 3428
+- **called from:**
+- `static/js/documentLibrary.js:2372`
+- `static/js/documentLibrary.js:2736`
+- `static/js/documentLibrary.js:2781`
+- `static/js/documentLibrary.js:2819`
+- `static/js/documentLibrary.js:3428`
+
+## `closeLibrary` — function, line 3673
+- **called from:**
+- `static/app.js:1080`
+- `static/js/document.js:6408`
+- `static/js/documentLibrary.js:1222`
+- `static/js/documentLibrary.js:1239`
+- `static/js/documentLibrary.js:1323`
+- `static/js/documentLibrary.js:2273`
+- `static/js/documentLibrary.js:3073`
+- `static/js/documentLibrary.js:3518`
+- `static/js/documentLibrary.js:3648`
+- `static/js/documentLibrary.js:3659`
+- `static/js/documentLibrary.js:3673`
+- `static/js/sessions.js:3770`
+- `static/js/sessions.js:3904`
+- `static/js/sessions.js:3909`
+- `static/js/sessions.js:3970`
+- `static/js/sessions.js:3978`
+- `static/js/sessions.js:4079`
+
+## `isLibraryOpen` — function, line 3702
+- **called from:**
+- `static/app.js:1079`
+- `static/js/document.js:6408`
+- `static/js/documentLibrary.js:3702`

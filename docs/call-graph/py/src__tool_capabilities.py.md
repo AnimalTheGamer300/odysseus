@@ -1,263 +1,515 @@
 # `src/tool_capabilities.py` — definitions & call sites
 
-17 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+25 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `ToolEffect` — class, line 21
+## `ToolEffect` — class, line 23
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ResultIntegrity` — class, line 37
+## `ResultIntegrity` — class, line 39
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ToolCapabilities` — class, line 44
+## `ToolCapabilities` — class, line 46
 - decorator: `dataclass(frozen=True)`
 - **called from:**
-- `src/tool_capabilities.py:54`
-- `src/tool_capabilities.py:279`
-- `src/tool_capabilities.py:467`
-- `src/tool_capabilities.py:481`
+- `src/tool_capabilities.py:56`
+- `src/tool_capabilities.py:316`
+- `src/tool_capabilities.py:697`
+- `src/tool_capabilities.py:731`
+- `src/tool_capabilities.py:742`
+- `src/tool_capabilities.py:756`
 
-## `_capabilities` — function, line 50
+## `_capabilities` — function, line 52
 - **called from:**
-- `src/tool_capabilities.py:65`
-- `src/tool_capabilities.py:268`
-- `src/tool_capabilities.py:284`
-- `src/tool_capabilities.py:473`
-- `src/tool_capabilities.py:487`
+- `src/tool_capabilities.py:67`
+- `src/tool_capabilities.py:305`
+- `src/tool_capabilities.py:321`
+- `src/tool_capabilities.py:340`
+- `src/tool_capabilities.py:344`
+- `src/tool_capabilities.py:713`
+- `src/tool_capabilities.py:748`
+- `src/tool_capabilities.py:762`
 
-## `_register` — function, line 60
+## `_register` — function, line 62
 - **called from:**
-- `src/tool_capabilities.py:72`
-- `src/tool_capabilities.py:76`
-- `src/tool_capabilities.py:91`
-- `src/tool_capabilities.py:96`
-- `src/tool_capabilities.py:101`
-- `src/tool_capabilities.py:106`
-- `src/tool_capabilities.py:112`
-- `src/tool_capabilities.py:129`
-- `src/tool_capabilities.py:134`
-- `src/tool_capabilities.py:141`
-- `src/tool_capabilities.py:158`
-- `src/tool_capabilities.py:170`
-- `src/tool_capabilities.py:178`
+- `src/tool_capabilities.py:74`
+- `src/tool_capabilities.py:78`
+- `src/tool_capabilities.py:93`
+- `src/tool_capabilities.py:98`
+- `src/tool_capabilities.py:103`
+- `src/tool_capabilities.py:108`
+- `src/tool_capabilities.py:114`
+- `src/tool_capabilities.py:119`
+- `src/tool_capabilities.py:124`
+- `src/tool_capabilities.py:142`
+- `src/tool_capabilities.py:147`
+- `src/tool_capabilities.py:154`
+- `src/tool_capabilities.py:171`
 - `src/tool_capabilities.py:183`
-- `src/tool_capabilities.py:189`
-- `src/tool_capabilities.py:194`
-- `src/tool_capabilities.py:200`
-- `src/tool_capabilities.py:206`
-- `src/tool_capabilities.py:220`
-- `src/tool_capabilities.py:226`
-- `src/tool_capabilities.py:232`
-- `src/tool_capabilities.py:247`
+- `src/tool_capabilities.py:191`
+- `src/tool_capabilities.py:196`
+- `src/tool_capabilities.py:202`
+- `src/tool_capabilities.py:207`
+- `src/tool_capabilities.py:213`
+- `src/tool_capabilities.py:219`
+- `src/tool_capabilities.py:225`
+- `src/tool_capabilities.py:229`
+- `src/tool_capabilities.py:234`
+- `src/tool_capabilities.py:241`
+- `src/tool_capabilities.py:257`
+- `src/tool_capabilities.py:263`
+- `src/tool_capabilities.py:269`
+- `src/tool_capabilities.py:284`
 
-## `capabilities_for_tool` — function, line 298
+## `_local_mcp_tools` — function, line 350
 - **called from:**
-- `src/tool_capabilities.py:458`
-- `tests/test_external_context_tool_gate.py:131`
-- `tests/test_external_context_tool_gate.py:251`
-- `tests/test_external_context_tool_gate.py:300`
-- `tests/test_external_context_tool_gate.py:326`
-- `tests/test_external_context_tool_gate.py:343`
-- `tests/test_external_context_tool_gate.py:522`
-- `tests/test_external_context_tool_gate.py:537`
+- `src/agent_runtime/authority.py:416`
+- `src/agent_runtime/authority.py:416`
+- `src/tool_capabilities.py:417`
+- `src/tool_capabilities.py:418`
+- `src/tool_capabilities.py:427`
+- `src/tool_capabilities.py:428`
+- `src/tool_capabilities.py:452`
+- `src/tool_capabilities.py:453`
 
-## `_action_from_content` — function, line 412
+## `_current_mcp_manager` — function, line 377
 - **called from:**
-- `src/tool_capabilities.py:462`
+- `src/tool_capabilities.py:432`
+- `src/tool_capabilities.py:457`
+- `src/tool_capabilities.py:990`
 
-## `capabilities_for_action` — function, line 456
+## `_is_declared_local_mcp_tool` — function, line 394
 - **called from:**
-- `src/agent_loop.py:3576`
-- `src/agent_loop.py:6326`
-- `src/teacher_escalation.py:772`
-- `src/tool_approvals.py:248`
-- `src/tool_capabilities.py:527`
-- `src/tool_capabilities.py:670`
-- `tests/test_external_context_tool_gate.py:564`
-- `tests/test_external_context_tool_gate.py:589`
-- `tests/test_external_context_tool_gate.py:619`
-- `tests/test_external_context_tool_gate.py:647`
-- `tests/test_external_context_tool_gate.py:653`
-- `tests/test_foreground_model_routing.py:284`
-- `tests/test_foreground_model_routing.py:327`
-- `tests/test_foreground_model_routing.py:360`
-- `tests/test_foreground_model_routing.py:397`
-- `tests/test_foreground_model_routing.py:429`
-- `tests/test_scheduler_prompt_cache_time.py:85`
+- `src/tool_capabilities.py:425`
+- `src/tool_capabilities.py:450`
+- `src/tool_capabilities.py:979`
+- `src/tool_capabilities.py:1045`
+- `src/tool_capabilities.py:1097`
+
+## `_is_declared_local_mcp_read_tool` — function, line 422
+- **called from:**
+- `src/agent_runtime/authority.py:435`
+- `src/tool_capabilities.py:487`
+- `src/tool_capabilities.py:1063`
+
+## `_is_declared_local_mcp_write_tool` — function, line 447
+- **called from:**
+- `src/agent_runtime/authority.py:436`
+- `src/tool_capabilities.py:489`
+
+## `capabilities_for_tool` — function, line 473
+- **called from:**
+- `src/agent_runtime/authority.py:439`
+- `src/tool_capabilities.py:662`
+- `src/tool_capabilities.py:1047`
+- `tests/test_clean_agent_preview.py:17`
+- `tests/test_clean_agent_preview.py:26`
+- `tests/test_clean_agent_preview.py:35`
+- `tests/test_external_context_tool_gate.py:200`
+- `tests/test_external_context_tool_gate.py:320`
+- `tests/test_external_context_tool_gate.py:369`
+- `tests/test_external_context_tool_gate.py:395`
+- `tests/test_external_context_tool_gate.py:428`
+- `tests/test_external_context_tool_gate.py:607`
+- `tests/test_external_context_tool_gate.py:622`
+- `tests/test_local_mcp_capabilities.py:153`
+- `tests/test_local_mcp_capabilities.py:175`
+- `tests/test_local_mcp_capabilities.py:200`
+- `tests/test_local_mcp_capabilities.py:208`
+- `tests/test_local_mcp_capabilities.py:576`
+- `tests/test_local_mcp_capabilities.py:580`
+- `tests/test_local_mcp_capabilities.py:584`
+- `tests/test_local_mcp_capabilities.py:587`
+- `tests/test_local_mcp_capabilities.py:607`
+- `tests/test_local_mcp_capabilities.py:646`
+- `tests/test_local_mcp_capabilities.py:647`
+- `tests/test_local_mcp_capabilities.py:650`
+- `tests/test_local_mcp_capabilities.py:651`
+- `tests/test_local_mcp_capabilities.py:654`
+- `tests/test_local_mcp_capabilities.py:655`
+- `tests/test_local_mcp_capabilities.py:658`
+- `tests/test_local_mcp_capabilities.py:659`
+
+## `_action_from_content` — function, line 616
+- **called from:**
+- `src/agent_runtime/authority.py:73`
+- `src/tool_capabilities.py:737`
+
+## `capabilities_for_action` — function, line 660
+- **called from:**
+- `src/agent_loop.py:481`
+- `src/agent_loop.py:530`
+- `src/agent_loop.py:16452`
+- `src/agent_loop.py:34204`
+- `src/agent_runtime/effect_adapters.py:239`
+- `src/clean_agent_preview.py:3780`
+- `src/clean_agent_preview.py:3820`
+- `src/clean_agent_preview.py:4036`
+- `src/clean_agent_preview.py:7932`
+- `src/teacher_escalation.py:845`
+- `src/tool_approvals.py:278`
+- `src/tool_capabilities.py:802`
+- `src/tool_capabilities.py:924`
+- `src/tool_capabilities.py:982`
+- `src/tool_capabilities.py:1179`
+- `tests/test_agent_rounds_exhausted.py:3776`
+- `tests/test_exact_approval_ungranted_process.py:32`
+- `tests/test_external_context_tool_gate.py:129`
+- `tests/test_external_context_tool_gate.py:133`
+- `tests/test_external_context_tool_gate.py:410`
+- `tests/test_external_context_tool_gate.py:413`
+- `tests/test_external_context_tool_gate.py:649`
+- `tests/test_external_context_tool_gate.py:674`
+- `tests/test_external_context_tool_gate.py:704`
+- `tests/test_external_context_tool_gate.py:732`
+- `tests/test_external_context_tool_gate.py:745`
+- `tests/test_external_context_tool_gate.py:750`
+- `tests/test_foreground_model_routing.py:338`
+- `tests/test_foreground_model_routing.py:381`
+- `tests/test_foreground_model_routing.py:414`
+- `tests/test_foreground_model_routing.py:451`
+- `tests/test_foreground_model_routing.py:483`
+- `tests/test_local_mcp_capabilities.py:526`
+- `tests/test_owned_resource_identity.py:48`
+- `tests/test_remote_resource_identity.py:38`
+- `tests/test_request_authority.py:269`
+- `tests/test_request_authority.py:289`
+- `tests/test_request_authority.py:302`
+- `tests/test_resource_identity.py:547`
+- `tests/test_runtime_resource_integration.py:43`
+- `tests/test_scheduler_prompt_cache_time.py:90`
+- `tests/test_skills_audit_services.py:327`
 - `tests/test_skills_routes_owner_update.py:166`
-- `tests/test_tool_approval_single_action_scope.py:25`
-- `tests/test_tool_approval_task_scope.py:36`
-- `tests/test_tool_approvals.py:24`
-- `tests/test_tool_approvals.py:200`
-- `tests/test_tool_approvals.py:252`
+- `tests/test_tool_approval_single_action_scope.py:33`
+- `tests/test_tool_approval_task_scope.py:45`
+- `tests/test_tool_approvals.py:32`
+- `tests/test_tool_approvals.py:236`
+- `tests/test_tool_approvals.py:288`
+- `tests/test_turn_contract_integration.py:223`
 
-## `tool_result_is_successful` — function, line 494
+## `tool_result_is_successful` — function, line 769
 - **called from:**
-- `src/agent_loop.py:5133`
+- `src/agent_loop.py:595`
+- `src/agent_loop.py:1971`
+- `src/agent_loop.py:1996`
+- `src/agent_loop.py:2112`
+- `src/agent_loop.py:4744`
+- `src/agent_loop.py:5101`
 - `src/agent_loop.py:6484`
-- `src/tool_capabilities.py:530`
+- `src/agent_loop.py:6559`
+- `src/agent_loop.py:6596`
+- `src/agent_loop.py:6621`
+- `src/agent_loop.py:6834`
+- `src/agent_loop.py:6945`
+- `src/agent_loop.py:6955`
+- `src/agent_loop.py:14103`
+- `src/agent_loop.py:14189`
+- `src/agent_loop.py:14488`
+- `src/agent_loop.py:17471`
+- `src/agent_loop.py:19406`
+- `src/agent_loop.py:20083`
+- `src/agent_loop.py:20120`
+- `src/agent_loop.py:22623`
+- `src/agent_loop.py:26131`
+- `src/agent_loop.py:26150`
+- `src/agent_loop.py:26170`
+- `src/agent_loop.py:26185`
+- `src/agent_loop.py:26234`
+- `src/agent_loop.py:26294`
+- `src/agent_loop.py:26415`
+- `src/agent_loop.py:26436`
+- `src/agent_loop.py:28028`
+- `src/agent_loop.py:34335`
+- `src/agent_loop.py:34402`
+- `src/agent_loop.py:34450`
+- `src/agent_loop.py:34732`
+- `src/agent_loop.py:35445`
+- `src/agent_loop.py:35676`
+- `src/agent_loop.py:35846`
+- `src/agent_loop.py:35877`
+- `src/agent_loop.py:35962`
+- `src/agent_loop.py:35981`
+- `src/agent_loop.py:36152`
+- `src/agent_loop.py:36164`
+- `src/agent_loop.py:36200`
+- `src/agent_loop.py:36238`
+- `src/agent_loop.py:36273`
+- `src/agent_loop.py:36306`
+- `src/agent_loop.py:36352`
+- `src/agent_loop.py:36373`
+- `src/agent_loop.py:36432`
+- `src/agent_loop.py:36449`
+- `src/agent_loop.py:36458`
+- `src/agent_loop.py:36476`
+- `src/agent_loop.py:36484`
+- `src/agent_loop.py:36512`
+- `src/agent_loop.py:36529`
+- `src/agent_loop.py:36552`
+- `src/agent_loop.py:36570`
+- `src/agent_loop.py:36578`
+- `src/agent_loop.py:36590`
+- `src/agent_loop.py:36608`
+- … +24 more (grep the name in repo)
 
-## `tool_result_should_arm_gate` — function, line 506
+## `tool_result_should_arm_gate` — function, line 781
 - **called from:**
-- `src/agent_loop.py:3577`
-- `src/agent_loop.py:3636`
-- `src/tool_capabilities.py:692`
-- `tests/test_external_context_tool_gate.py:177`
-- `tests/test_external_context_tool_gate.py:205`
-- `tests/test_external_context_tool_gate.py:225`
-- `tests/test_external_context_tool_gate.py:236`
-- `tests/test_external_context_tool_gate.py:254`
+- `src/agent_loop.py:16453`
+- `src/agent_loop.py:16522`
+- `src/tool_capabilities.py:1218`
+- `tests/test_external_context_tool_gate.py:246`
+- `tests/test_external_context_tool_gate.py:274`
+- `tests/test_external_context_tool_gate.py:294`
+- `tests/test_external_context_tool_gate.py:305`
+- `tests/test_external_context_tool_gate.py:323`
+- `tests/test_local_mcp_capabilities.py:161`
+- `tests/test_local_mcp_capabilities.py:177`
+- `tests/test_local_mcp_capabilities.py:210`
 
-## `ToolGateDecision` — class, line 569
+## `ToolGateDecision` — class, line 854
 - decorator: `dataclass(frozen=True)`
 - **called from:**
-- `src/tool_capabilities.py:659`
-- `src/tool_capabilities.py:667`
-- `src/tool_capabilities.py:669`
-- `src/tool_capabilities.py:673`
-- `src/tool_capabilities.py:677`
+- `src/tool_capabilities.py:1143`
+- `src/tool_capabilities.py:1151`
+- `src/tool_capabilities.py:1153`
+- `src/tool_capabilities.py:1155`
+- `src/tool_capabilities.py:1157`
+- `src/tool_capabilities.py:1171`
+- `src/tool_capabilities.py:1190`
+- `src/tool_capabilities.py:1197`
+- `src/tool_capabilities.py:1199`
+- `src/tool_capabilities.py:1206`
+- `src/tool_capabilities.py:1210`
+- `tests/test_agent_evidence_loop.py:67`
+- `tests/test_agent_rounds_exhausted.py:61`
+- `tests/test_fenced_example_not_executed_for_native_models.py:59`
+- `tests/test_foreground_model_routing.py:70`
+- `tests/test_tool_task_cancelled_on_disconnect.py:56`
 
-## `messages_contain_external_untrusted_context` — function, line 586
+## `messages_contain_external_untrusted_context` — function, line 887
 - **called from:**
-- `src/agent_loop.py:4020`
-- `src/tool_capabilities.py:639`
-- `src/tool_capabilities.py:651`
-- `tests/test_external_context_tool_gate.py:394`
-- `tests/test_external_context_tool_gate.py:407`
-- `tests/test_external_context_tool_gate.py:421`
-- `tests/test_external_context_tool_gate.py:423`
-- `tests/test_external_context_tool_gate.py:464`
-- `tests/test_external_context_tool_gate.py:480`
-- `tests/test_external_context_tool_gate.py:500`
-- `tests/test_external_context_tool_gate.py:515`
-- `tests/test_external_context_tool_gate.py:736`
+- `src/agent_loop.py:21848`
+- `src/tool_capabilities.py:1134`
+- `tests/test_external_context_tool_gate.py:479`
+- `tests/test_external_context_tool_gate.py:492`
+- `tests/test_external_context_tool_gate.py:506`
+- `tests/test_external_context_tool_gate.py:508`
+- `tests/test_external_context_tool_gate.py:549`
+- `tests/test_external_context_tool_gate.py:565`
+- `tests/test_external_context_tool_gate.py:585`
+- `tests/test_external_context_tool_gate.py:600`
+- `tests/test_external_context_tool_gate.py:833`
 
-## `ToolRunSecurityContext` — class, line 616
+## `delegated_tool_is_blocked` — function, line 916
+- **called from:**
+- `src/agent_loop.py:25077`
+- `src/agent_loop.py:25758`
+- `src/clean_agent_preview.py:5678`
+- `src/tool_capabilities.py:1142`
+- `src/tool_execution.py:1757`
+
+## `_is_authorized_local_mcp_continuation` — function, line 955
+- **called from:**
+- `src/tool_capabilities.py:1167`
+
+## `ToolRunSecurityContext` — class, line 1072
 - decorator: `dataclass`
 - **called from:**
-- `src/agent_loop.py:4013`
-- `tests/test_api_token_tool_authority.py:53`
-- `tests/test_api_token_tool_authority.py:77`
-- `tests/test_api_token_tool_authority.py:108`
-- `tests/test_api_token_tool_authority.py:140`
-- `tests/test_api_token_tool_authority.py:230`
-- `tests/test_api_token_tool_authority.py:240`
-- `tests/test_api_token_tool_authority.py:250`
-- `tests/test_api_token_tool_authority.py:319`
-- `tests/test_api_token_tool_authority.py:323`
-- `tests/test_external_context_tool_gate.py:99`
-- `tests/test_external_context_tool_gate.py:123`
-- `tests/test_external_context_tool_gate.py:152`
-- `tests/test_external_context_tool_gate.py:159`
-- `tests/test_external_context_tool_gate.py:178`
-- `tests/test_external_context_tool_gate.py:185`
-- `tests/test_external_context_tool_gate.py:198`
-- `tests/test_external_context_tool_gate.py:229`
-- `tests/test_external_context_tool_gate.py:255`
-- `tests/test_external_context_tool_gate.py:304`
+- `src/agent_loop.py:21841`
+- `src/clean_agent_preview.py:5867`
+- `tests/test_api_token_tool_authority.py:46`
+- `tests/test_api_token_tool_authority.py:94`
+- `tests/test_api_token_tool_authority.py:98`
+- `tests/test_api_token_tool_authority.py:129`
+- `tests/test_api_token_tool_authority.py:157`
+- `tests/test_api_token_tool_authority.py:175`
+- `tests/test_api_token_tool_authority.py:192`
+- `tests/test_api_token_tool_authority.py:208`
+- `tests/test_api_token_tool_authority.py:215`
+- `tests/test_api_token_tool_authority.py:224`
+- `tests/test_api_token_tool_authority.py:232`
+- `tests/test_api_token_tool_authority.py:264`
+- `tests/test_api_token_tool_authority.py:416`
+- `tests/test_api_token_tool_authority.py:440`
+- `tests/test_api_token_tool_authority.py:471`
+- `tests/test_api_token_tool_authority.py:503`
+- `tests/test_api_token_tool_authority.py:593`
+- `tests/test_api_token_tool_authority.py:603`
+- `tests/test_api_token_tool_authority.py:613`
+- `tests/test_api_token_tool_authority.py:682`
+- `tests/test_api_token_tool_authority.py:686`
+- `tests/test_effect_resource_bindings.py:43`
+- `tests/test_effect_resource_bindings.py:463`
+- `tests/test_exact_approval_ungranted_process.py:42`
+- `tests/test_external_context_tool_gate.py:137`
+- `tests/test_external_context_tool_gate.py:148`
+- `tests/test_external_context_tool_gate.py:157`
+- `tests/test_external_context_tool_gate.py:170`
+- `tests/test_external_context_tool_gate.py:192`
+- `tests/test_external_context_tool_gate.py:221`
+- `tests/test_external_context_tool_gate.py:228`
+- `tests/test_external_context_tool_gate.py:247`
+- `tests/test_external_context_tool_gate.py:254`
+- `tests/test_external_context_tool_gate.py:267`
+- `tests/test_external_context_tool_gate.py:298`
 - `tests/test_external_context_tool_gate.py:324`
-- `tests/test_external_context_tool_gate.py:335`
-- `tests/test_external_context_tool_gate.py:341`
-- `tests/test_external_context_tool_gate.py:358`
-- `tests/test_external_context_tool_gate.py:367`
-- `tests/test_external_context_tool_gate.py:429`
-- `tests/test_external_context_tool_gate.py:481`
-- `tests/test_external_context_tool_gate.py:520`
-- `tests/test_external_context_tool_gate.py:535`
-- `tests/test_external_context_tool_gate.py:569`
-- `tests/test_external_context_tool_gate.py:750`
-- `tests/test_external_context_tool_gate.py:781`
-- `tests/test_tool_approval_single_action_scope.py:46`
-- `tests/test_tool_approval_task_scope.py:85`
-- `tests/test_tool_approval_task_scope.py:92`
-- `tests/test_tool_approval_task_scope.py:138`
-- `tests/test_tool_approval_task_scope.py:156`
-- `tests/test_tool_approvals.py:176`
-- `tests/test_tool_approvals.py:230`
-- `tests/test_tool_approvals.py:274`
-- `tests/test_tool_approvals.py:381`
-- `tests/test_tool_approvals.py:417`
-- `tests/test_tool_approvals.py:453`
+- `tests/test_external_context_tool_gate.py:373`
+- `tests/test_external_context_tool_gate.py:393`
+- `tests/test_external_context_tool_gate.py:404`
+- `tests/test_external_context_tool_gate.py:426`
+- `tests/test_external_context_tool_gate.py:443`
+- `tests/test_external_context_tool_gate.py:452`
+- `tests/test_external_context_tool_gate.py:514`
+- `tests/test_external_context_tool_gate.py:566`
+- `tests/test_external_context_tool_gate.py:605`
+- `tests/test_external_context_tool_gate.py:620`
+- `tests/test_external_context_tool_gate.py:654`
+- `tests/test_external_context_tool_gate.py:847`
+- `tests/test_external_context_tool_gate.py:878`
+- `tests/test_legacy_browser_authority.py:27`
+- `tests/test_local_mcp_capabilities.py:163`
+- `tests/test_local_mcp_capabilities.py:179`
+- `tests/test_local_mcp_capabilities.py:212`
+- `tests/test_local_mcp_capabilities.py:223`
+- `tests/test_local_mcp_capabilities.py:255`
+- `tests/test_local_mcp_capabilities.py:273`
+- `tests/test_local_mcp_capabilities.py:297`
+- `tests/test_local_mcp_capabilities.py:312`
+- … +59 more (grep the name in repo)
 
-## `ToolRunSecurityContext.observe_messages` — method, line 631
+## `ToolRunSecurityContext.__post_init__` — method, line 1093
 - **called from:**
-- `src/agent_loop.py:4889`
-- `src/agent_loop.py:5392`
-- `tests/test_api_token_tool_authority.py:54`
-- `tests/test_api_token_tool_authority.py:78`
-- `tests/test_api_token_tool_authority.py:109`
-- `tests/test_api_token_tool_authority.py:141`
-- `tests/test_api_token_tool_authority.py:320`
-- `tests/test_api_token_tool_authority.py:325`
-- `tests/test_external_context_tool_gate.py:430`
-- `tests/test_external_context_tool_gate.py:482`
-- `tests/test_tool_approval_task_scope.py:139`
-- `tests/test_tool_approval_task_scope.py:157`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `ToolRunSecurityContext.decision_for` — method, line 654
+## `ToolRunSecurityContext.observe_messages` — method, line 1104
 - **called from:**
-- `src/agent_loop.py:6215`
-- `src/tool_execution.py:940`
-- `tests/test_api_token_tool_authority.py:57`
-- `tests/test_api_token_tool_authority.py:81`
-- `tests/test_api_token_tool_authority.py:143`
-- `tests/test_api_token_tool_authority.py:235`
-- `tests/test_api_token_tool_authority.py:236`
-- `tests/test_api_token_tool_authority.py:246`
-- `tests/test_api_token_tool_authority.py:255`
-- `tests/test_api_token_tool_authority.py:256`
-- `tests/test_api_token_tool_authority.py:321`
-- `tests/test_api_token_tool_authority.py:327`
-- `tests/test_external_context_tool_gate.py:103`
-- `tests/test_external_context_tool_gate.py:135`
-- `tests/test_external_context_tool_gate.py:155`
-- `tests/test_external_context_tool_gate.py:164`
-- `tests/test_external_context_tool_gate.py:181`
-- `tests/test_external_context_tool_gate.py:209`
-- `tests/test_external_context_tool_gate.py:240`
-- `tests/test_external_context_tool_gate.py:258`
-- `tests/test_external_context_tool_gate.py:311`
-- `tests/test_external_context_tool_gate.py:327`
-- `tests/test_external_context_tool_gate.py:337`
-- `tests/test_external_context_tool_gate.py:344`
-- `tests/test_external_context_tool_gate.py:351`
-- `tests/test_external_context_tool_gate.py:352`
-- `tests/test_external_context_tool_gate.py:360`
-- `tests/test_external_context_tool_gate.py:375`
-- `tests/test_external_context_tool_gate.py:378`
-- `tests/test_external_context_tool_gate.py:379`
-- `tests/test_external_context_tool_gate.py:433`
-- `tests/test_external_context_tool_gate.py:483`
-- `tests/test_external_context_tool_gate.py:530`
-- `tests/test_external_context_tool_gate.py:546`
-- `tests/test_external_context_tool_gate.py:576`
-- `tests/test_tool_approval_single_action_scope.py:50`
-- `tests/test_tool_approval_task_scope.py:89`
-- `tests/test_tool_approval_task_scope.py:93`
-- `tests/test_tool_approval_task_scope.py:141`
-- `tests/test_tool_approval_task_scope.py:158`
+- `src/agent_loop.py:25347`
+- `src/agent_loop.py:26937`
+- `src/clean_agent_preview.py:5874`
+- `tests/test_api_token_tool_authority.py:233`
+- `tests/test_api_token_tool_authority.py:417`
+- `tests/test_api_token_tool_authority.py:441`
+- `tests/test_api_token_tool_authority.py:472`
+- `tests/test_api_token_tool_authority.py:504`
+- `tests/test_api_token_tool_authority.py:683`
+- `tests/test_api_token_tool_authority.py:688`
+- `tests/test_external_context_tool_gate.py:515`
+- `tests/test_external_context_tool_gate.py:567`
+- `tests/test_local_mcp_capabilities.py:325`
+- `tests/test_tool_approval_task_scope.py:148`
+- `tests/test_tool_approval_task_scope.py:166`
 
-## `ToolRunSecurityContext.observe_tool_result` — method, line 686
+## `ToolRunSecurityContext.decision_for` — method, line 1138
 - **called from:**
-- `src/agent_loop.py:6409`
-- `src/tool_execution.py:981`
-- `tests/test_external_context_tool_gate.py:101`
-- `tests/test_external_context_tool_gate.py:125`
+- `src/agent_loop.py:33879`
+- `src/agent_loop.py:33957`
+- `src/tool_execution.py:1758`
+- `src/tool_execution.py:1967`
+- `src/tool_execution.py:1972`
+- `tests/test_api_token_tool_authority.py:209`
+- `tests/test_api_token_tool_authority.py:211`
+- `tests/test_api_token_tool_authority.py:216`
+- `tests/test_api_token_tool_authority.py:217`
+- `tests/test_api_token_tool_authority.py:228`
+- `tests/test_api_token_tool_authority.py:420`
+- `tests/test_api_token_tool_authority.py:444`
+- `tests/test_api_token_tool_authority.py:506`
+- `tests/test_api_token_tool_authority.py:598`
+- `tests/test_api_token_tool_authority.py:599`
+- `tests/test_api_token_tool_authority.py:609`
+- `tests/test_api_token_tool_authority.py:618`
+- `tests/test_api_token_tool_authority.py:619`
+- `tests/test_api_token_tool_authority.py:684`
+- `tests/test_api_token_tool_authority.py:690`
+- `tests/test_external_context_tool_gate.py:141`
+- `tests/test_external_context_tool_gate.py:152`
 - `tests/test_external_context_tool_gate.py:153`
-- `tests/test_external_context_tool_gate.py:161`
-- `tests/test_external_context_tool_gate.py:179`
-- `tests/test_external_context_tool_gate.py:187`
-- `tests/test_external_context_tool_gate.py:190`
-- `tests/test_external_context_tool_gate.py:206`
-- `tests/test_external_context_tool_gate.py:237`
-- `tests/test_external_context_tool_gate.py:256`
-- `tests/test_external_context_tool_gate.py:305`
-- `tests/test_external_context_tool_gate.py:369`
-- `tests/test_external_context_tool_gate.py:524`
-- `tests/test_external_context_tool_gate.py:539`
-- `tests/test_external_context_tool_gate.py:570`
+- `tests/test_external_context_tool_gate.py:162`
+- `tests/test_external_context_tool_gate.py:163`
+- `tests/test_external_context_tool_gate.py:164`
+- `tests/test_external_context_tool_gate.py:165`
+- `tests/test_external_context_tool_gate.py:166`
+- `tests/test_external_context_tool_gate.py:175`
+- `tests/test_external_context_tool_gate.py:204`
+- `tests/test_external_context_tool_gate.py:224`
+- `tests/test_external_context_tool_gate.py:233`
+- `tests/test_external_context_tool_gate.py:250`
+- `tests/test_external_context_tool_gate.py:278`
+- `tests/test_external_context_tool_gate.py:309`
+- `tests/test_external_context_tool_gate.py:327`
+- `tests/test_external_context_tool_gate.py:380`
+- `tests/test_external_context_tool_gate.py:396`
+- `tests/test_external_context_tool_gate.py:406`
+- `tests/test_external_context_tool_gate.py:429`
+- `tests/test_external_context_tool_gate.py:436`
+- `tests/test_external_context_tool_gate.py:437`
+- `tests/test_external_context_tool_gate.py:445`
+- `tests/test_external_context_tool_gate.py:460`
+- `tests/test_external_context_tool_gate.py:463`
+- `tests/test_external_context_tool_gate.py:464`
+- `tests/test_external_context_tool_gate.py:518`
+- `tests/test_external_context_tool_gate.py:568`
+- `tests/test_external_context_tool_gate.py:615`
+- `tests/test_external_context_tool_gate.py:631`
+- `tests/test_external_context_tool_gate.py:661`
+- `tests/test_local_mcp_capabilities.py:103`
+- `tests/test_local_mcp_capabilities.py:181`
+- `tests/test_local_mcp_capabilities.py:215`
+- `tests/test_local_mcp_capabilities.py:259`
+- `tests/test_local_mcp_capabilities.py:263`
+- `tests/test_local_mcp_capabilities.py:267`
+- `tests/test_local_mcp_capabilities.py:277`
+- `tests/test_local_mcp_capabilities.py:278`
+- `tests/test_local_mcp_capabilities.py:279`
+- … +26 more (grep the name in repo)
 
-## `blocked_tool_result` — function, line 699
+## `ToolRunSecurityContext.observe_tool_result` — method, line 1212
 - **called from:**
-- `src/tool_execution.py:949`
+- `src/agent_loop.py:27287`
+- `src/agent_loop.py:27483`
+- `src/agent_loop.py:27605`
+- `src/agent_loop.py:34399`
+- `src/tool_execution.py:2015`
+- `tests/test_external_context_tool_gate.py:139`
+- `tests/test_external_context_tool_gate.py:194`
+- `tests/test_external_context_tool_gate.py:222`
+- `tests/test_external_context_tool_gate.py:230`
+- `tests/test_external_context_tool_gate.py:248`
+- `tests/test_external_context_tool_gate.py:256`
+- `tests/test_external_context_tool_gate.py:259`
+- `tests/test_external_context_tool_gate.py:275`
+- `tests/test_external_context_tool_gate.py:306`
+- `tests/test_external_context_tool_gate.py:325`
+- `tests/test_external_context_tool_gate.py:374`
+- `tests/test_external_context_tool_gate.py:454`
+- `tests/test_external_context_tool_gate.py:609`
+- `tests/test_external_context_tool_gate.py:624`
+- `tests/test_external_context_tool_gate.py:655`
+- `tests/test_local_mcp_capabilities.py:164`
+- `tests/test_local_mcp_capabilities.py:180`
+- `tests/test_local_mcp_capabilities.py:213`
+- `tests/test_local_mcp_capabilities.py:224`
+- `tests/test_local_mcp_capabilities.py:256`
+- `tests/test_local_mcp_capabilities.py:274`
+- `tests/test_local_mcp_capabilities.py:298`
+- `tests/test_local_mcp_capabilities.py:313`
+- `tests/test_local_mcp_capabilities.py:316`
+- `tests/test_local_mcp_capabilities.py:338`
+- `tests/test_local_mcp_capabilities.py:346`
+- `tests/test_local_mcp_capabilities.py:364`
+- `tests/test_local_mcp_capabilities.py:442`
+- `tests/test_local_mcp_capabilities.py:491`
+- `tests/test_local_mcp_capabilities.py:498`
+- `tests/test_local_mcp_capabilities.py:612`
+- `tests/test_local_mcp_capabilities.py:671`
+- `tests/test_local_mcp_capabilities.py:699`
+- `tests/test_local_mcp_capabilities.py:727`
+- `tests/test_local_mcp_capabilities.py:752`
+- `tests/test_local_mcp_capabilities.py:781`
+- `tests/test_local_mcp_capabilities.py:932`
+- `tests/test_local_mcp_capabilities.py:974`
+
+## `blocked_tool_result` — function, line 1230
+- **called from:**
+- `src/tool_execution.py:1759`
+- `src/tool_execution.py:1981`

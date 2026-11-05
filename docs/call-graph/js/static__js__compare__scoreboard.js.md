@@ -12,8 +12,8 @@
 - **called from:**
 - `static/js/compare/scoreboard.js:29`
 - `static/js/compare/scoreboard.js:198`
-- `static/js/compare/selector.js:847`
-- `static/js/compare/vote.js:79`
+- `static/js/compare/selector.js:923`
+- `static/js/compare/vote.js:80`
 
 ## `renderScoreTable` — function, line 81
 - **called from:**

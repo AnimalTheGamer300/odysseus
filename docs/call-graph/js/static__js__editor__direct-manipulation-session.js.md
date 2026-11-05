@@ -1,0 +1,266 @@
+# `static/js/editor/direct-manipulation-session.js` — definitions & call sites
+
+8 definitions (regex-based, best-effort).
+**Exports:** `createDirectManipulationSession`
+
+## `createDirectManipulationSession` — function, line 3
+- **called from:**
+- `static/js/editor/direct-manipulation-session.js:3`
+- `static/js/editor/tools/crop.js:25`
+- `static/js/editor/tools/marquee.js:23`
+- `static/js/editor/tools/transform-drag.js:35`
+
+## `pointerMatches` — arrow, line 12
+- **called from:**
+- `static/js/editor/direct-manipulation-session.js:43`
+- `static/js/editor/direct-manipulation-session.js:53`
+
+## `releaseCapture` — arrow, line 17
+- **called from:**
+- `static/js/editor/direct-manipulation-session.js:60`
+- `static/js/editor/direct-manipulation-session.js:69`
+
+## `contextIsCurrent` — arrow, line 22
+- **called from:**
+- `static/js/editor/direct-manipulation-session.js:44`
+- `static/js/editor/direct-manipulation-session.js:54`
+
+## `begin` — function, line 24
+- **called from:**
+- `core/database.py:1399`
+- `core/database.py:1517`
+- `core/database.py:2249`
+- `core/database.py:2375`
+- `tests/test_chatgpt_session_binding.py:151`
+- `tests/test_chatgpt_session_binding.py:157`
+- `tests/test_cookbook_endpoint_registration.py:303`
+- `tests/test_email_account_default_serialization.py:241`
+- `tests/test_email_account_default_serialization.py:278`
+- `tests/test_request_authority.py:375`
+- `static/js/editor/brush-engine.js:62`
+- `static/js/editor/direct-manipulation-session.js:24`
+- `static/js/editor/render-cancellation.js:5`
+- `static/js/editor/stroke-pipeline.js:390`
+- `static/js/editor/tools/clone.js:7`
+- `static/js/editor/tools/clone.js:25`
+- `static/js/editor/tools/crop.js:51`
+- `static/js/editor/tools/crop.js:61`
+- `static/js/editor/tools/crop.js:72`
+- `static/js/editor/tools/gradient.js:58`
+- `static/js/editor/tools/lasso.js:84`
+- `static/js/editor/tools/liquify.js:141`
+- `static/js/editor/tools/marquee.js:51`
+- `static/js/editor/tools/marquee.js:61`
+- `static/js/editor/tools/marquee.js:80`
+- `static/js/editor/tools/move.js:47`
+- `static/js/editor/tools/patch.js:6`
+- `static/js/editor/tools/pen-path.js:37`
+- `static/js/editor/tools/pen-selection.js:50`
+- `static/js/editor/tools/stroke.js:16`
+- `static/js/editor/tools/transform-drag.js:75`
+- `static/js/editor/tools/transform-drag.js:86`
+- `static/js/galleryEditor.js:4016`
+- `static/js/galleryEditor.js:5572`
+- `static/js/galleryEditor.js:5573`
+- `static/js/galleryEditor.js:5574`
+- `static/js/galleryEditor.js:5575`
+- `static/js/galleryEditor.js:5590`
+- `static/js/galleryEditor.js:5591`
+- `static/js/galleryEditor.js:5592`
+- `static/js/galleryEditor.js:5596`
+- `static/js/galleryEditor.js:5597`
+- `static/js/galleryEditor.js:7164`
+- `static/js/windowResize.js:124`
+- `static/js/windowResize.js:197`
+
+## `update` — function, line 42
+- **called from:**
+- `app.py:487`
+- `app.py:1336`
+- `app.py:1356`
+- `core/database.py:3084`
+- `core/session_manager.py:989`
+- `routes/auth_routes.py:474`
+- `routes/auth_routes.py:487`
+- `routes/backup_routes.py:197`
+- `routes/backup_routes.py:204`
+- `routes/backup_routes.py:212`
+- `routes/chat_helpers.py:919`
+- `routes/chat_helpers.py:1062`
+- `routes/chat_helpers.py:1079`
+- `routes/chat_helpers.py:1096`
+- `routes/chat_routes.py:1442`
+- `routes/chat_routes.py:1493`
+- `routes/chat_routes.py:3580`
+- `routes/chat_routes.py:3639`
+- `routes/chat_routes.py:3651`
+- `routes/chat_routes.py:3669`
+- `routes/chat_routes.py:3685`
+- `routes/chat_routes.py:3687`
+- `routes/chat_routes.py:3690`
+- `routes/chat_routes.py:3692`
+- `routes/chat_routes.py:3694`
+- `routes/chat_routes.py:3697`
+- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3713`
+- `routes/chat_routes.py:3717`
+- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3732`
+- `routes/chat_routes.py:3735`
+- `routes/chat_routes.py:3742`
+- `routes/chat_routes.py:3826`
+- `routes/chat_routes.py:3835`
+- `routes/chat_routes.py:3839`
+- `routes/chat_routes.py:4025`
+- `routes/chat_routes.py:4439`
+- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:4699`
+- `routes/chat_routes.py:5001`
+- `routes/chat_routes.py:5005`
+- `routes/cookbook_routes.py:3264`
+- `routes/cookbook_routes.py:3268`
+- `routes/cookbook_routes.py:3271`
+- `routes/cookbook_routes.py:3386`
+- `routes/cookbook_routes.py:4121`
+- `routes/device_flow.py:156`
+- `routes/email/email_pollers.py:969`
+- `routes/email/email_routes.py:187`
+- `routes/email/email_routes.py:1307`
+- `routes/email/email_routes.py:2526`
+- `routes/email/email_routes.py:2872`
+- `routes/email/email_routes.py:4906`
+- `routes/email/email_routes.py:4976`
+- `routes/email/email_routes.py:5502`
+- `routes/email/email_routes.py:5503`
+- `routes/email/email_routes.py:5506`
+- `routes/email/email_routes.py:5511`
+- `routes/email/email_routes.py:6640`
+- … +548 more (grep the name in repo)
+
+## `commit` — function, line 52
+- **called from:**
+- `app.py:490`
+- `app.py:1211`
+- `core/database.py:976`
+- `core/database.py:998`
+- `core/database.py:1020`
+- `core/database.py:1042`
+- `core/database.py:1069`
+- `core/database.py:1089`
+- `core/database.py:1114`
+- `core/database.py:1137`
+- `core/database.py:1160`
+- `core/database.py:1191`
+- `core/database.py:1216`
+- `core/database.py:1240`
+- `core/database.py:1269`
+- `core/database.py:1291`
+- `core/database.py:1314`
+- `core/database.py:1338`
+- `core/database.py:1362`
+- `core/database.py:1384`
+- `core/database.py:1437`
+- `core/database.py:1459`
+- `core/database.py:1482`
+- `core/database.py:1505`
+- `core/database.py:1542`
+- `core/database.py:1565`
+- `core/database.py:1589`
+- `core/database.py:1623`
+- `core/database.py:1652`
+- `core/database.py:1726`
+- `core/database.py:1805`
+- `core/database.py:1820`
+- `core/database.py:1846`
+- `core/database.py:1869`
+- `core/database.py:1941`
+- `core/database.py:1960`
+- `core/database.py:1972`
+- `core/database.py:1984`
+- `core/database.py:2001`
+- `core/database.py:2021`
+- `core/database.py:2042`
+- `core/database.py:2054`
+- `core/database.py:2067`
+- `core/database.py:2072`
+- `core/database.py:2084`
+- `core/database.py:2088`
+- `core/database.py:2357`
+- `core/database.py:2530`
+- `core/database.py:2630`
+- `core/database.py:2691`
+- `core/database.py:2720`
+- `core/database.py:2752`
+- `core/database.py:2786`
+- `core/database.py:2807`
+- `core/database.py:2834`
+- `core/database.py:2860`
+- `core/database.py:2890`
+- `core/database.py:2913`
+- `core/database.py:2935`
+- `core/database.py:2957`
+- … +618 more (grep the name in repo)
+
+## `cancel` — function, line 65
+- **called from:**
+- `app.py:1459`
+- `app.py:1470`
+- `routes/editor_agent_routes.py:1414`
+- `routes/email/email_routes.py:6869`
+- `routes/shell_routes.py:957`
+- `routes/shell_routes.py:1342`
+- `services/research/research_handler.py:140`
+- `services/research/research_handler.py:143`
+- `services/shell/service.py:163`
+- `services/skills/job_coordinator.py:215`
+- `src/agent_loop.py:26017`
+- `src/agent_loop.py:34321`
+- `src/agent_runs.py:86`
+- `src/agent_runs.py:207`
+- `src/agent_runs.py:210`
+- `src/agent_runs.py:249`
+- `src/agent_runs.py:298`
+- `src/ai_interaction.py:1822`
+- `src/ai_interaction.py:2094`
+- `src/clean_agent_preview.py:5609`
+- `src/clean_agent_preview.py:5617`
+- `src/containment.py:1172`
+- `src/containment.py:1182`
+- `src/llm_core.py:141`
+- `src/mcp_manager.py:440`
+- `src/mcp_oauth.py:63`
+- `src/research_handler.py:502`
+- `src/research_handler.py:505`
+- `src/task_scheduler.py:122`
+- `src/task_scheduler.py:733`
+- `src/task_scheduler.py:741`
+- `src/task_scheduler.py:1063`
+- `src/task_scheduler.py:1145`
+- `src/task_scheduler.py:2470`
+- `src/task_scheduler.py:2495`
+- `tests/test_agent_editor_routes.py:1008`
+- `tests/test_agent_editor_routes.py:1962`
+- `tests/test_agent_editor_routes.py:1971`
+- `tests/test_browser_identity_transport.py:39`
+- `tests/test_browser_identity_transport.py:75`
+- `tests/test_builtin_mcp_bg_tasks.py:101`
+- `tests/test_client_tool_routing.py:867`
+- `tests/test_compare_stop_disconnect_poll.py:377`
+- `tests/test_compare_stop_disconnect_poll.py:434`
+- `tests/test_completion_boundary.py:319`
+- `tests/test_completion_boundary.py:324`
+- `tests/test_containment_enforcement.py:382`
+- `tests/test_containment_enforcement.py:384`
+- `tests/test_containment_enforcement.py:408`
+- `tests/test_containment_enforcement.py:410`
+- `tests/test_cookbook_cache_scan_isolation.py:102`
+- `tests/test_email_summary_llm.py:192`
+- `tests/test_email_urgency_checkpoint.py:457`
+- `tests/test_email_urgency_checkpoint.py:592`
+- `tests/test_host_shell_polling.py:198`
+- `tests/test_nested_invocation_ownership.py:93`
+- `tests/test_nested_invocation_ownership.py:96`
+- `tests/test_nested_invocation_ownership.py:448`
+- `tests/test_nested_invocation_ownership.py:453`
+- `tests/test_review_calendar_invitation.py:135`
+- … +82 more (grep the name in repo)

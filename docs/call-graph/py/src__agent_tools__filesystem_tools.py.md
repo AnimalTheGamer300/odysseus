@@ -1,722 +1,921 @@
 # `src/agent_tools/filesystem_tools.py` — definitions & call sites
 
-37 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+42 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
-## `_glob_to_regex` — function, line 23
+## `_visible_bound_resource` — function, line 33
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:60`
-- `src/agent_tools/filesystem_tools.py:631`
+- `src/agent_tools/filesystem_tools.py:815`
+- `src/agent_tools/filesystem_tools.py:893`
+- `src/agent_tools/filesystem_tools.py:923`
+- `src/agent_tools/filesystem_tools.py:1066`
 
-## `_python_grep_worker` — function, line 48
+## `_unwrap_fenced_source_body` — function, line 54
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `src/agent_runtime/effect_adapters.py:91`
+- `src/agent_runtime/effect_adapters.py:163`
+- `src/agent_tools/filesystem_tools.py:429`
+- `src/tool_execution.py:759`
+- `src/tool_execution.py:2209`
 
-## `within` — function, line 74
+## `_glob_to_regex` — function, line 70
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:86`
-- `src/agent_tools/filesystem_tools.py:86`
+- `src/agent_tools/filesystem_tools.py:123`
+- `src/agent_tools/filesystem_tools.py:898`
+- `src/agent_tools/filesystem_tools.py:1196`
 
-## `safe_file` — function, line 82
+## `_validate_grep_descriptor` — function, line 95
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:121`
+- `src/agent_tools/filesystem_tools.py:138`
+- `src/agent_tools/filesystem_tools.py:1096`
+- `src/agent_tools/filesystem_tools.py:1234`
+- `src/agent_tools/filesystem_tools.py:1313`
 
-## `walk_files` — function, line 104
+## `_python_grep_worker` — function, line 111
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:118`
+- `tests/test_grep_followup_integrity.py:58`
 
-## `_unified_diff` — function, line 154
+## `_unified_diff` — function, line 167
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:237`
-- `src/agent_tools/filesystem_tools.py:336`
-- `src/agent_tools/filesystem_tools.py:402`
+- `src/agent_tools/filesystem_tools.py:273`
+- `src/agent_tools/filesystem_tools.py:539`
+- `src/agent_tools/filesystem_tools.py:671`
 
-## `EditFileTool` — class, line 182
+## `_edit_file_text` — function, line 195
 - **called from:**
-- `src/agent_tools/__init__.py:45`
-- `tests/test_edit_file.py:64`
-- `tests/test_edit_file.py:75`
-- `tests/test_edit_file.py:84`
+- `src/agent_runtime/effect_adapters.py:126`
+- `src/agent_tools/filesystem_tools.py:243`
+
+## `EditFileTool` — class, line 209
+- **called from:**
+- `src/agent_tools/__init__.py:54`
+- `tests/test_edit_file.py:76`
 - `tests/test_edit_file.py:87`
-- `tests/test_edit_file.py:94`
+- `tests/test_edit_file.py:96`
+- `tests/test_edit_file.py:99`
+- `tests/test_edit_file.py:106`
+- `tests/test_edit_file_preservation.py:11`
+- `tests/test_filesystem_tool_argument_validation.py:17`
+- `tests/test_write_file_empty_body.py:370`
 
-## `EditFileTool.execute` — method (async), line 183
+## `EditFileTool.execute` — method (async), line 210
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `EditFileTool._apply` — method, line 204
+## `EditFileTool._apply` — method, line 238
 - **called from:**
-- `static/js/markdown.js:1469`
-- `static/js/markdown.js:1473`
-- `static/js/theme.js:719`
+- `static/js/markdown.js:1806`
+- `static/js/markdown.js:1810`
+- `static/js/theme.js:775`
 
-## `ReadFileTool` — class, line 242
+## `ReadFileTool` — class, line 278
 - **called from:**
-- `src/agent_tools/__init__.py:43`
+- `src/agent_tools/__init__.py:52`
+- `src/agent_tools/web_tools.py:720`
+- `src/agent_tools/web_tools_prewave3.py:724`
+- `tests/test_filesystem_tool_argument_validation.py:12`
+- `tests/test_filesystem_tool_argument_validation.py:13`
 
-## `ReadFileTool.execute` — method (async), line 243
+## `ReadFileTool.execute` — method (async), line 279
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `ReadFileTool._read` — method, line 260
+## `ReadFileTool._read` — method, line 301
 - **called from:**
 - `services/hwfit/hardware.py:246`
 - `services/hwfit/hardware.py:253`
 - `services/hwfit/hardware.py:254`
 - `services/hwfit/hardware.py:255`
 - `services/hwfit/hardware.py:266`
-- `tests/test_cookbook_dependency_completion_regression.py:12`
-- `tests/test_cookbook_dependency_completion_regression.py:20`
-- `tests/test_cookbook_dependency_completion_regression.py:34`
-- `tests/test_cookbook_dependency_completion_regression.py:49`
-- `tests/test_cookbook_dependency_completion_regression.py:60`
-- `tests/test_cookbook_dependency_completion_regression.py:78`
-- `tests/test_cookbook_dependency_completion_regression.py:92`
-- `tests/test_cookbook_dependency_completion_regression.py:102`
-- `tests/test_cookbook_dependency_completion_regression.py:108`
+- `tests/test_compare_mobile_tabs_static.py:13`
+- `tests/test_compare_mobile_tabs_static.py:14`
+- `tests/test_compare_mobile_tabs_static.py:27`
+- `tests/test_compare_mobile_tabs_static.py:47`
+- `tests/test_compare_mobile_tabs_static.py:69`
+- `tests/test_compare_shuffle_visual_static.py:14`
+- `tests/test_compare_shuffle_visual_static.py:25`
+- `tests/test_compare_shuffle_visual_static.py:26`
+- `tests/test_compare_shuffle_visual_static.py:43`
+- `tests/test_compare_shuffle_visual_static.py:44`
+- `tests/test_compare_shuffle_visual_static.py:56`
+- `tests/test_compare_shuffle_visual_static.py:63`
+- `tests/test_compare_shuffle_visual_static.py:64`
+- `tests/test_compare_shuffle_visual_static.py:65`
+- `tests/test_compare_shuffle_visual_static.py:77`
+- `tests/test_cookbook_dependency_completion_regression.py:24`
+- `tests/test_cookbook_dependency_completion_regression.py:32`
+- `tests/test_cookbook_dependency_completion_regression.py:46`
+- `tests/test_cookbook_dependency_completion_regression.py:61`
+- `tests/test_cookbook_dependency_completion_regression.py:72`
+- `tests/test_cookbook_dependency_completion_regression.py:90`
+- `tests/test_cookbook_dependency_completion_regression.py:104`
+- `tests/test_cookbook_dependency_completion_regression.py:114`
+- `tests/test_cookbook_dependency_completion_regression.py:123`
+- `tests/test_cookbook_dependency_completion_regression.py:130`
+- `tests/test_cookbook_dependency_completion_regression.py:139`
+- `tests/test_cookbook_dependency_completion_regression.py:148`
+- `tests/test_cookbook_dependency_completion_regression.py:158`
+- `tests/test_cookbook_dependency_completion_regression.py:167`
+- `tests/test_cookbook_dependency_completion_regression.py:180`
+- `tests/test_cookbook_dependency_completion_regression.py:188`
+- `tests/test_cookbook_dependency_completion_regression.py:197`
+- `tests/test_cookbook_dependency_completion_regression.py:206`
+- `tests/test_cookbook_dependency_completion_regression.py:216`
+- `tests/test_cookbook_dependency_completion_regression.py:229`
+- `tests/test_cookbook_dependency_completion_regression.py:230`
+- `tests/test_cookbook_dependency_completion_regression.py:240`
+- `tests/test_cookbook_dependency_completion_regression.py:241`
+- `tests/test_cookbook_dependency_completion_regression.py:251`
+- `tests/test_cookbook_dependency_completion_regression.py:262`
+- `tests/test_cookbook_dependency_completion_regression.py:263`
+- `tests/test_cookbook_dependency_completion_regression.py:264`
+- `tests/test_cookbook_dependency_completion_regression.py:273`
+- `tests/test_cookbook_dependency_completion_regression.py:283`
+- `tests/test_cookbook_dependency_completion_regression.py:291`
+- `tests/test_cookbook_dependency_completion_regression.py:299`
+- `tests/test_cookbook_dependency_completion_regression.py:308`
+- `tests/test_cookbook_dependency_completion_regression.py:315`
+- `tests/test_cookbook_dependency_completion_regression.py:316`
+- `tests/test_cookbook_dependency_completion_regression.py:328`
+- `tests/test_cookbook_dependency_completion_regression.py:345`
+- `tests/test_cookbook_dependency_completion_regression.py:358`
+- `tests/test_cookbook_dependency_completion_regression.py:359`
+- `tests/test_cookbook_dependency_completion_regression.py:370`
+- `tests/test_cookbook_dependency_completion_regression.py:371`
+- … +171 more (grep the name in repo)
 
-## `WriteFileTool` — class, line 292
+## `_write_new_file_without_overwrite` — function, line 348
 - **called from:**
-- `src/agent_tools/__init__.py:44`
+- `src/agent_tools/filesystem_tools.py:500`
 
-## `WriteFileTool.execute` — method (async), line 293
+## `_EmptyBodyWouldTruncate` — class, line 378
+- **called from:**
+- `src/agent_tools/filesystem_tools.py:491`
+- `src/agent_tools/filesystem_tools.py:511`
+
+## `_EmptyBodyWouldTruncate.__init__` — method, line 383
+- **called from:**
+- `core/exceptions.py:8`
+- `core/exceptions.py:15`
+- `core/exceptions.py:22`
+- `core/exceptions.py:29`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
+- `src/outbound_fetch.py:220`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
+- `tests/test_calendar_default_transaction.py:456`
+- `tests/test_chat_attachment_picker.py:10`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
+- `tests/test_embedding_lanes.py:257`
+- `tests/test_embedding_lanes.py:284`
+- `tests/test_integrations_store_shape.py:46`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
+- `tests/test_upload_handler_atomicity.py:42`
+- `tests/test_upload_multifile.py:154`
+- `static/js/cookbookDownload.js:155`
+
+## `_parse_write_intent` — function, line 388
+- **called from:**
+- `src/agent_runtime/resource_binding.py:62`
+- `src/agent_runtime/resource_binding.py:133`
+- `src/agent_tools/filesystem_tools.py:419`
+- `src/agent_tools/filesystem_tools.py:420`
+- `src/tool_execution.py:756`
+- `src/tool_execution.py:2206`
+
+## `WriteFileTool` — class, line 412
+- **called from:**
+- `src/agent_tools/__init__.py:53`
+- `tests/test_filesystem_tool_argument_validation.py:14`
+- `tests/test_filesystem_tool_argument_validation.py:15`
+- `tests/test_filesystem_tool_argument_validation.py:55`
+- `tests/test_filesystem_tool_argument_validation.py:72`
+- `tests/test_filesystem_tool_argument_validation.py:89`
+- `tests/test_filesystem_tool_argument_validation.py:103`
+- `tests/test_filesystem_tool_argument_validation.py:122`
+- `tests/test_filesystem_tool_argument_validation.py:138`
+- `tests/test_review_regressions.py:1231`
+- `tests/test_review_regressions.py:1238`
+- `tests/test_review_regressions.py:1243`
+- `tests/test_workspace_artifact_tool_floor.py:492`
+- `tests/test_write_file_empty_body.py:65`
+- `tests/test_write_file_empty_body.py:73`
+- `tests/test_write_file_empty_body.py:81`
+- `tests/test_write_file_empty_body.py:132`
+- `tests/test_write_file_empty_body.py:141`
+- `tests/test_write_file_empty_body.py:150`
+- `tests/test_write_file_empty_body.py:159`
+- `tests/test_write_file_empty_body.py:168`
+- `tests/test_write_file_empty_body.py:181`
+- `tests/test_write_file_empty_body.py:190`
+- `tests/test_write_file_empty_body.py:198`
+- `tests/test_write_file_empty_body.py:210`
+- `tests/test_write_file_empty_body.py:217`
+- `tests/test_write_file_empty_body.py:227`
+- `tests/test_write_file_empty_body.py:230`
+- `tests/test_write_file_empty_body.py:241`
+- `tests/test_write_file_empty_body.py:248`
+- `tests/test_write_file_empty_body.py:258`
+- `tests/test_write_file_empty_body.py:269`
+- `tests/test_write_file_empty_body.py:278`
+- `tests/test_write_file_empty_body.py:299`
+- `tests/test_write_file_empty_body.py:320`
+- `tests/test_write_file_empty_body.py:350`
+- `tests/test_write_file_empty_body.py:359`
+- `tests/test_write_file_empty_body.py:385`
+- `tests/test_write_file_empty_body.py:404`
+
+## `WriteFileTool.execute` — method (async), line 413
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `WriteFileTool._write` — method, line 318
+## `WriteFileTool._write` — method, line 474
 - **called from:**
+- `src/agent_runtime/effect_log.py:312`
+- `tests/test_audit_c5_benchmark_evidence.py:87`
+- `tests/test_audit_c5_benchmark_evidence.py:109`
+- `tests/test_audit_c5_benchmark_evidence.py:149`
+- `tests/test_audit_c5_benchmark_evidence.py:165`
+- `tests/test_audit_c5_benchmark_evidence.py:290`
+- `tests/test_audit_c5_benchmark_evidence.py:291`
+- `tests/test_audit_c5_benchmark_evidence.py:312`
+- `tests/test_audit_c5_benchmark_evidence.py:313`
+- `tests/test_audit_c5_benchmark_evidence.py:341`
+- `tests/test_audit_c5_benchmark_evidence.py:343`
+- `tests/test_audit_c5_benchmark_evidence.py:344`
+- `tests/test_audit_c5_benchmark_evidence.py:375`
+- `tests/test_audit_c5_benchmark_evidence.py:420`
+- `tests/test_audit_c5_benchmark_evidence.py:652`
+- `tests/test_audit_c5_benchmark_evidence.py:665`
+- `tests/test_audit_c5_benchmark_evidence.py:666`
+- `tests/test_audit_c5_benchmark_evidence.py:681`
+- `tests/test_audit_c5_benchmark_evidence.py:682`
+- `tests/test_audit_c5_benchmark_evidence.py:710`
+- `tests/test_audit_c5_benchmark_evidence.py:736`
+- `tests/test_audit_c5_benchmark_evidence.py:737`
+- `tests/test_audit_c5_benchmark_evidence.py:763`
+- `tests/test_audit_c5_benchmark_evidence.py:764`
+- `tests/test_audit_c5_benchmark_evidence.py:774`
+- `tests/test_audit_c5_benchmark_evidence.py:790`
+- `tests/test_audit_c5_benchmark_evidence.py:813`
+- `tests/test_audit_c5_benchmark_evidence.py:832`
+- `tests/test_audit_c5_benchmark_evidence.py:850`
+- `tests/test_audit_c5_benchmark_evidence.py:851`
+- `tests/test_audit_c5_benchmark_evidence.py:879`
+- `tests/test_audit_c5_benchmark_evidence.py:1011`
+- `tests/test_audit_c5_benchmark_evidence.py:1023`
+- `tests/test_audit_c5_benchmark_evidence.py:1031`
+- `tests/test_audit_c5_benchmark_evidence.py:1039`
+- `tests/test_audit_c5_benchmark_evidence.py:1062`
+- `tests/test_audit_c5_benchmark_evidence.py:1209`
+- `tests/test_audit_c5_benchmark_evidence.py:1255`
+- `tests/test_audit_c5_benchmark_evidence.py:1256`
+- `tests/test_audit_c5_benchmark_evidence.py:1282`
+- `tests/test_audit_c5_benchmark_evidence.py:1302`
+- `tests/test_audit_c5_benchmark_evidence.py:1327`
+- `tests/test_audit_c5_benchmark_evidence.py:1351`
+- `tests/test_audit_c5_benchmark_evidence.py:1352`
+- `tests/test_audit_c5_benchmark_evidence.py:1418`
+- `tests/test_effects_foundation.py:92`
+- `tests/test_effects_foundation.py:108`
+- `tests/test_effects_foundation.py:109`
+- `tests/test_effects_foundation.py:322`
+- `tests/test_effects_foundation.py:328`
+- `tests/test_env_reference.py:50`
+- `tests/test_env_reference.py:61`
+- `tests/test_env_reference.py:204`
+- `tests/test_env_reference.py:210`
+- `tests/test_env_reference.py:247`
 - `tests/test_focused_test_guidance.py:110`
 - `tests/test_focused_test_guidance.py:116`
 - `tests/test_focused_test_guidance.py:122`
 - `tests/test_personal_index_hidden_dirs.py:23`
 - `tests/test_personal_index_hidden_dirs.py:24`
-- `tests/test_personal_index_hidden_dirs.py:25`
-- `tests/test_personal_index_hidden_dirs.py:26`
-- `tests/test_personal_index_hidden_dirs.py:27`
-- `tests/test_personal_index_hidden_dirs.py:28`
-- `tests/test_personal_index_hidden_dirs.py:29`
-- `tests/test_personal_index_hidden_dirs.py:34`
-- `tests/test_personal_index_hidden_dirs.py:35`
-- `tests/test_personal_index_hidden_dirs.py:36`
-- `tests/test_personal_index_hidden_dirs.py:43`
-- `tests/test_personal_index_hidden_dirs.py:44`
-- `tests/test_personal_index_hidden_dirs.py:45`
-- `tests/test_personal_index_hidden_dirs.py:52`
-- `tests/test_personal_index_hidden_dirs.py:53`
-- `tests/test_personal_index_hidden_dirs.py:61`
-- `tests/test_personal_index_hidden_dirs.py:62`
-- `tests/test_rag_index_hidden_dirs.py:36`
-- `tests/test_rag_index_hidden_dirs.py:37`
-- `tests/test_rag_index_hidden_dirs.py:38`
-- `tests/test_rag_index_hidden_dirs.py:39`
-- `tests/test_rag_index_hidden_dirs.py:40`
-- `tests/test_rag_index_hidden_dirs.py:41`
-- `tests/test_rag_index_hidden_dirs.py:42`
-- `tests/test_rag_index_hidden_dirs.py:54`
-- `tests/test_rag_index_hidden_dirs.py:55`
-- `tests/test_rag_index_hidden_dirs.py:56`
-- `tests/test_rag_index_hidden_dirs.py:70`
-- `tests/test_rag_index_hidden_dirs.py:71`
-- `tests/test_tidy_research_owner_scope.py:59`
-- `tests/test_tidy_research_owner_scope.py:68`
-- `tests/test_tidy_research_owner_scope.py:69`
-- `tests/test_tidy_research_owner_scope.py:90`
-- `tests/test_tidy_research_owner_scope.py:101`
-- `tests/test_tidy_research_owner_scope.py:102`
-- `tests/test_tidy_research_owner_scope.py:124`
-- `tests/test_tidy_research_owner_scope.py:125`
-- `tests/test_tidy_research_owner_scope.py:136`
-- `tests/test_tidy_research_owner_scope.py:137`
-- `tests/test_tidy_research_owner_scope.py:150`
-- `tests/test_tidy_research_owner_scope.py:151`
+- … +39 more (grep the name in repo)
 
-## `ApplyPatchTool` — class, line 342
+## `ApplyPatchTool` — class, line 550
 - **called from:**
-- `src/agent_tools/__init__.py:46`
+- `src/agent_tools/__init__.py:55`
+- `tests/test_apply_patch_transaction.py:49`
 
-## `ApplyPatchTool.execute` — method (async), line 343
+## `ApplyPatchTool.execute` — method (async), line 551
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `_parse_agent_patch` — function, line 428
+## `_parse_agent_patch` — function, line 697
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:366`
+- `src/agent_runtime/effect_adapters.py:177`
+- `src/agent_runtime/resource_binding.py:158`
+- `src/agent_tools/filesystem_tools.py:574`
 
-## `_apply_patch_hunks` — function, line 490
+## `_apply_patch_hunks` — function, line 759
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:389`
+- `src/agent_runtime/effect_adapters.py:138`
+- `src/agent_tools/filesystem_tools.py:597`
 
-## `LsTool` — class, line 517
+## `LsTool` — class, line 786
 - **called from:**
-- `src/agent_tools/__init__.py:48`
-- `tests/test_agent_state_dir_confinement.py:126`
-- `tests/test_agent_state_dir_confinement.py:609`
+- `src/agent_tools/__init__.py:57`
+- `tests/test_agent_state_dir_confinement.py:240`
+- `tests/test_agent_state_dir_confinement.py:279`
+- `tests/test_agent_state_dir_confinement.py:760`
 
-## `LsTool.execute` — method (async), line 518
+## `LsTool.execute` — method (async), line 787
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `LsTool._ls` — method, line 538
+## `LsTool._ls` — method, line 803
 - **called from:**
-- `routes/email_pollers.py:1175`
+- `routes/email/email_pollers.py:1373`
 
-## `GlobTool` — class, line 572
+## `GlobTool` — class, line 840
 - **called from:**
-- `src/agent_tools/__init__.py:49`
-- `tests/test_agent_state_dir_confinement.py:129`
-- `tests/test_agent_state_dir_confinement.py:450`
-- `tests/test_agent_state_dir_confinement.py:474`
+- `src/agent_tools/__init__.py:58`
+- `tests/test_agent_state_dir_confinement.py:243`
+- `tests/test_agent_state_dir_confinement.py:280`
+- `tests/test_agent_state_dir_confinement.py:601`
+- `tests/test_agent_state_dir_confinement.py:625`
 
-## `GlobTool.execute` — method (async), line 573
+## `GlobTool.execute` — method (async), line 841
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `GlobTool._glob` — method, line 599
+## `GlobTool._glob` — method, line 869
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `GrepTool` — class, line 679
+## `GrepTool` — class, line 947
 - **called from:**
-- `src/agent_tools/__init__.py:50`
-- `tests/test_agent_state_dir_confinement.py:132`
-- `tests/test_agent_state_dir_confinement.py:453`
-- `tests/test_agent_state_dir_confinement.py:477`
-- `tests/test_agent_state_dir_confinement.py:629`
-- `tests/test_agent_state_dir_confinement.py:689`
-- `tests/test_agent_state_dir_confinement.py:711`
-- `tests/test_agent_state_dir_confinement.py:739`
-- `tests/test_agent_state_dir_confinement.py:764`
-- `tests/test_agent_state_dir_confinement.py:785`
-- `tests/test_agent_state_dir_confinement.py:839`
-- `tests/test_agent_state_dir_confinement.py:879`
-- `tests/test_agent_state_dir_confinement.py:883`
-- `tests/test_agent_state_dir_confinement.py:898`
-- `tests/test_agent_state_dir_confinement.py:942`
-- `tests/test_agent_state_dir_confinement.py:961`
-- `tests/test_agent_state_dir_confinement.py:984`
-- `tests/test_agent_state_dir_confinement.py:1039`
+- `src/agent_tools/__init__.py:59`
+- `tests/test_agent_state_dir_confinement.py:246`
+- `tests/test_agent_state_dir_confinement.py:281`
+- `tests/test_agent_state_dir_confinement.py:604`
+- `tests/test_agent_state_dir_confinement.py:628`
+- `tests/test_agent_state_dir_confinement.py:780`
+- `tests/test_agent_state_dir_confinement.py:840`
+- `tests/test_agent_state_dir_confinement.py:862`
+- `tests/test_agent_state_dir_confinement.py:890`
+- `tests/test_agent_state_dir_confinement.py:915`
+- `tests/test_agent_state_dir_confinement.py:936`
+- `tests/test_agent_state_dir_confinement.py:990`
+- `tests/test_agent_state_dir_confinement.py:1030`
+- `tests/test_agent_state_dir_confinement.py:1034`
+- `tests/test_agent_state_dir_confinement.py:1049`
+- `tests/test_agent_state_dir_confinement.py:1093`
+- `tests/test_agent_state_dir_confinement.py:1112`
+- `tests/test_agent_state_dir_confinement.py:1135`
+- `tests/test_agent_state_dir_confinement.py:1190`
+- `tests/test_grep_followup_integrity.py:33`
+- `tests/test_grep_followup_integrity.py:69`
 
-## `GrepTool.execute` — method (async), line 680
+## `GrepTool.execute` — method (async), line 948
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)
 
-## `GrepTool._grep` — method, line 715
+## `GrepTool._grep` — method, line 985
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `GrepTool.is_top_level_safe` — method, line 728
+## `GrepTool.check_deadline` — method, line 1005
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:775`
+- `src/agent_tools/filesystem_tools.py:1010`
+- `src/agent_tools/filesystem_tools.py:1047`
+- `src/agent_tools/filesystem_tools.py:1053`
+- `src/agent_tools/filesystem_tools.py:1072`
+- `src/agent_tools/filesystem_tools.py:1233`
 
-## `GrepTool.safe_targets` — method, line 741
+## `GrepTool.observe_file` — method, line 1009
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:785`
+- `src/agent_tools/filesystem_tools.py:1042`
+- `src/agent_tools/filesystem_tools.py:1069`
 
-## `GrepTool.parse_rg_result` — method, line 793
+## `GrepTool.parse_rg_result` — method, line 1079
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:881`
+- `src/agent_tools/filesystem_tools.py:1170`
 
-## `GrepTool.run_rg` — method, line 812
+## `GrepTool.run_rg` — method, line 1101
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:907`
-- `src/agent_tools/filesystem_tools.py:928`
+- `src/agent_tools/filesystem_tools.py:1210`
+- `src/agent_tools/filesystem_tools.py:1237`
 
-## `GrepTool.enqueue_stdout` — method, line 830
+## `GrepTool.enqueue_stdout` — method, line 1119
 - **called from:**
-- `src/agent_tools/filesystem_tools.py:845`
-- `src/agent_tools/filesystem_tools.py:848`
+- `src/agent_tools/filesystem_tools.py:1134`
+- `src/agent_tools/filesystem_tools.py:1137`
 
-## `GrepTool.read_stdout` — method, line 841
+## `GrepTool.read_stdout` — method, line 1130
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `GrepTool.read_stderr` — method, line 850
+## `GrepTool.read_stderr` — method, line 1139
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `GetWorkspaceTool` — class, line 1028
+## `GetWorkspaceTool` — class, line 1353
 - **called from:**
-- `src/agent_tools/__init__.py:56`
+- `src/agent_tools/__init__.py:65`
 
-## `GetWorkspaceTool.execute` — method (async), line 1031
+## `GetWorkspaceTool.execute` — method (async), line 1356
 - **called from:**
 - `core/database.py:146`
 - `core/database.py:151`
 - `core/database.py:158`
 - `core/database.py:160`
-- `core/database.py:509`
-- `core/database.py:902`
-- `core/database.py:905`
-- `core/database.py:908`
-- `core/database.py:920`
-- `core/database.py:947`
-- `core/database.py:950`
-- `core/database.py:951`
-- `core/database.py:974`
-- `core/database.py:977`
-- `core/database.py:998`
-- `core/database.py:1001`
-- `core/database.py:1002`
-- `core/database.py:1022`
-- `core/database.py:1025`
-- `core/database.py:1045`
-- `core/database.py:1048`
-- `core/database.py:1075`
-- `core/database.py:1078`
-- `core/database.py:1079`
-- `core/database.py:1100`
-- `core/database.py:1103`
-- `core/database.py:1104`
-- `core/database.py:1125`
-- `core/database.py:1128`
-- `core/database.py:1148`
-- `core/database.py:1151`
-- `core/database.py:1153`
-- `core/database.py:1155`
-- `core/database.py:1157`
-- `core/database.py:1176`
-- `core/database.py:1179`
-- `core/database.py:1199`
-- `core/database.py:1202`
-- `core/database.py:1223`
-- `core/database.py:1226`
-- `core/database.py:1245`
-- `core/database.py:1248`
+- `core/database.py:539`
+- `core/database.py:954`
+- `core/database.py:957`
+- `core/database.py:960`
+- `core/database.py:972`
+- `core/database.py:995`
+- `core/database.py:997`
+- `core/database.py:1017`
+- `core/database.py:1019`
+- `core/database.py:1039`
+- `core/database.py:1041`
+- `core/database.py:1060`
+- `core/database.py:1068`
+- `core/database.py:1085`
+- `core/database.py:1088`
+- `core/database.py:1109`
+- `core/database.py:1112`
+- `core/database.py:1113`
+- `core/database.py:1133`
+- `core/database.py:1136`
+- `core/database.py:1156`
+- `core/database.py:1159`
+- `core/database.py:1186`
+- `core/database.py:1189`
+- `core/database.py:1190`
+- `core/database.py:1211`
+- `core/database.py:1214`
+- `core/database.py:1215`
+- `core/database.py:1236`
+- `core/database.py:1239`
+- `core/database.py:1259`
+- `core/database.py:1262`
+- `core/database.py:1264`
+- `core/database.py:1266`
 - `core/database.py:1268`
-- `core/database.py:1271`
-- `core/database.py:1273`
-- `core/database.py:1275`
-- `core/database.py:1277`
-- `core/database.py:1279`
-- `core/database.py:1281`
-- `core/database.py:1300`
-- `core/database.py:1303`
-- `core/database.py:1323`
-- `core/database.py:1326`
-- `core/database.py:1346`
-- `core/database.py:1349`
-- `core/database.py:1350`
-- `core/database.py:1370`
-- `core/database.py:1373`
-- `core/database.py:1374`
+- `core/database.py:1287`
+- `core/database.py:1290`
+- `core/database.py:1310`
+- `core/database.py:1313`
+- `core/database.py:1334`
+- `core/database.py:1337`
+- `core/database.py:1358`
+- `core/database.py:1361`
+- `core/database.py:1380`
+- `core/database.py:1383`
 - `core/database.py:1406`
-- … +335 more (grep the name in repo)
+- `core/database.py:1423`
+- `core/database.py:1426`
+- `core/database.py:1428`
+- `core/database.py:1430`
+- `core/database.py:1432`
+- `core/database.py:1434`
+- `core/database.py:1436`
+- `core/database.py:1455`
+- `core/database.py:1458`
+- `core/database.py:1478`
+- … +725 more (grep the name in repo)

@@ -1,0 +1,229 @@
+# `src/background_tool_jobs.py` — definitions & call sites
+
+9 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+
+## `background_result_context` — function, line 14
+- **called from:**
+- `core/models.py:182`
+- `src/background_tool_jobs.py:117`
+- `src/clean_agent_preview.py:4163`
+- `tests/test_background_tool_jobs.py:98`
+
+## `BackgroundToolJobs` — class, line 29
+- **called from:**
+- `app.py:1224`
+- `tests/test_background_tool_jobs.py:32`
+- `tests/test_background_tool_jobs.py:49`
+- `tests/test_background_tool_jobs.py:61`
+- `tests/test_background_tool_jobs.py:82`
+- `tests/test_background_tool_jobs.py:105`
+- `tests/test_background_tool_jobs.py:130`
+- `tests/test_background_tool_jobs.py:188`
+- `tests/test_background_tool_jobs.py:201`
+- `tests/test_background_tool_jobs.py:216`
+
+## `BackgroundToolJobs.__init__` — method, line 30
+- **called from:**
+- `core/exceptions.py:8`
+- `core/exceptions.py:15`
+- `core/exceptions.py:22`
+- `core/exceptions.py:29`
+- `routes/email/email_helpers.py:205`
+- `routes/email/email_helpers.py:220`
+- `routes/email/email_helpers.py:232`
+- `routes/email/email_helpers.py:248`
+- `routes/email/email_routes.py:1664`
+- `scripts/css_snapshot.py:194`
+- `scripts/probe_browser_budget.py:56`
+- `src/agent_tools/document_tools.py:759`
+- `src/agent_tools/filesystem_tools.py:384`
+- `src/builtin_actions.py:552`
+- `src/chatgpt_subscription.py:495`
+- `src/containment.py:170`
+- `src/outbound_fetch.py:220`
+- `src/path_confinement.py:81`
+- `src/process_ownership.py:110`
+- `src/report_math.py:31`
+- `tests/conftest.py:199`
+- `tests/test_admin_routes_auth_disabled.py:16`
+- `tests/test_agent_state_dir_confinement.py:799`
+- `tests/test_calendar_default_transaction.py:456`
+- `tests/test_chat_attachment_picker.py:10`
+- `tests/test_deep_research_action_planning.py:11`
+- `tests/test_deep_research_browser_fallback.py:10`
+- `tests/test_deep_research_browser_fallback.py:29`
+- `tests/test_deep_research_browser_fallback.py:56`
+- `tests/test_deep_research_extraction_controls.py:13`
+- `tests/test_deep_research_full_loop_navigation.py:11`
+- `tests/test_embedding_lanes.py:257`
+- `tests/test_embedding_lanes.py:284`
+- `tests/test_integrations_store_shape.py:46`
+- `tests/test_llm_core_streaming.py:50`
+- `tests/test_retired_settings_interfaces.py:31`
+- `tests/test_searxng_ca_validation.py:35`
+- `tests/test_upload_handler_atomicity.py:42`
+- `tests/test_upload_multifile.py:154`
+- `static/js/cookbookDownload.js:155`
+
+## `BackgroundToolJobs.register` — method, line 38
+- **called from:**
+- `routes/research/research_routes.py:628`
+- `src/memory_provider.py:264`
+- `src/report_math.py:84`
+- `src/report_math.py:86`
+- `src/report_math.py:87`
+- `tests/test_background_tool_jobs.py:33`
+- `tests/test_background_tool_jobs.py:62`
+- `tests/test_background_tool_jobs.py:83`
+- `tests/test_background_tool_jobs.py:107`
+- `tests/test_background_tool_jobs.py:108`
+- `tests/test_background_tool_jobs.py:202`
+- `tests/test_background_tool_jobs.py:217`
+- `tests/test_cookbook_endpoint_registration.py:63`
+- `tests/test_cookbook_endpoint_registration.py:464`
+- `tests/test_cookbook_serve_lifecycle.py:180`
+- `static/js/calendar.js:4277`
+- `static/js/cookbook.js:3558`
+- `static/js/document.js:11821`
+- `static/js/editor/fx/adj-popup.js:247`
+- `static/js/editor/history-panel.js:62`
+- `static/js/emailLibrary/index.js:2566`
+- `static/js/emailLibrary/reader.js:181`
+- `static/js/features/notes/ui/panel.js:96`
+- `static/js/gallery.js:2405`
+- `static/js/modalManager.js:15`
+- `static/js/modalManager.js:1153`
+- `static/js/modalManager.js:1158`
+- `static/js/modalManager.js:1341`
+- `static/js/modalManager.js:1444`
+
+## `BackgroundToolJobs.complete` — method, line 54
+- **called from:**
+- `routes/research/research_routes.py:642`
+- `src/background_tool_jobs.py:136`
+- `src/background_tool_jobs.py:139`
+- `tests/test_background_tool_jobs.py:34`
+- `tests/test_background_tool_jobs.py:50`
+- `tests/test_background_tool_jobs.py:65`
+- `tests/test_background_tool_jobs.py:84`
+- `tests/test_background_tool_jobs.py:109`
+- `tests/test_background_tool_jobs.py:203`
+- `tests/test_background_tool_jobs.py:218`
+- `static/js/chat.js:1395`
+- `static/js/chat.js:5120`
+- `static/js/cookbook-hwfit.js:2772`
+- `static/js/research/panel.js:1047`
+- `static/js/research/panel.js:1055`
+- `static/js/researchSynapse.js:360`
+- `static/js/streamingSegmenter.js:168`
+
+## `BackgroundToolJobs.list_for_chat` — method, line 67
+- **called from:**
+- `routes/research/research_routes.py:657`
+- `tests/test_background_tool_jobs.py:36`
+- `tests/test_background_tool_jobs.py:41`
+- `tests/test_background_tool_jobs.py:46`
+- `tests/test_background_tool_jobs.py:47`
+- `tests/test_background_tool_jobs.py:52`
+- `tests/test_background_tool_jobs.py:63`
+- `tests/test_background_tool_jobs.py:66`
+- `tests/test_background_tool_jobs.py:70`
+- `tests/test_background_tool_jobs.py:86`
+- `tests/test_background_tool_jobs.py:89`
+- `tests/test_background_tool_jobs.py:114`
+- `tests/test_background_tool_jobs.py:205`
+- `tests/test_background_tool_jobs.py:220`
+
+## `BackgroundToolJobs._summarize` — method (async), line 96
+- **called from:**
+- `src/context_compactor.py:816`
+- `src/context_compactor.py:823`
+- `tests/cli/test_research_cli_preview.py:23`
+- `tests/test_background_tool_jobs.py:188`
+
+## `BackgroundToolJobs.tick` — method (async), line 122
+- **called from:**
+- `src/background_tool_jobs.py:190`
+- `tests/test_background_tool_jobs.py:35`
+- `tests/test_background_tool_jobs.py:39`
+- `tests/test_background_tool_jobs.py:40`
+- `tests/test_background_tool_jobs.py:51`
+- `tests/test_background_tool_jobs.py:85`
+- `tests/test_background_tool_jobs.py:88`
+- `tests/test_background_tool_jobs.py:113`
+- `tests/test_background_tool_jobs.py:204`
+- `tests/test_background_tool_jobs.py:219`
+- `static/js/backgroundToolJobs.js:125`
+- `static/js/backgroundToolJobs.js:127`
+- `static/js/document.js:16847`
+- `static/js/editor/build/transform-popup.js:152`
+- `static/js/editor/build/transform-popup.js:156`
+- `static/js/editor/build/transform-popup.js:159`
+- `static/js/escMenuStack.js:101`
+- `static/js/galleryEditor.js:891`
+- `static/js/galleryEditor.js:14278`
+- `static/js/slashCommands.js:2802`
+
+## `BackgroundToolJobs.run` — method (async), line 187
+- **called from:**
+- `app.py:1228`
+- `app.py:1530`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:469`
+- `launcher.py:114`
+- `launcher.py:149`
+- `mcp_servers/email_server.py:4704`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/image_gen_server.py:188`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/memory_server.py:281`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/rag_server.py:156`
+- `mcp_servers/rag_server.py:160`
+- `mcp_servers/rag_server.py:160`
+- `routes/cookbook_routes.py:1527`
+- `routes/cookbook_routes.py:3626`
+- `routes/cookbook_routes.py:3639`
+- `routes/cookbook_routes.py:3650`
+- `routes/cookbook_routes.py:3711`
+- `routes/cookbook_routes.py:4177`
+- `routes/cookbook_routes.py:4179`
+- `routes/cookbook_routes.py:4201`
+- `routes/cookbook_routes.py:4203`
+- `routes/cookbook_routes.py:4368`
+- `routes/cookbook_routes.py:4378`
+- `routes/document/document_routes.py:489`
+- `routes/email/email_routes.py:5062`
+- `routes/email/email_routes.py:6861`
+- `routes/hwfit_routes.py:147`
+- `scripts/build_frontend.py:69`
+- `scripts/build_frontend.py:70`
+- `scripts/check_brotli.py:39`
+- `scripts/css_snapshot.py:92`
+- `scripts/css_snapshot.py:131`
+- `scripts/diffusion_server.py:1506`
+- `scripts/dump_agent_prompt.py:415`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_qwen_tool_groups_stream.py:276`
+- `scripts/mlx_image_server.py:207`
+- `scripts/mlx_image_server.py:281`
+- `scripts/mlx_image_server.py:379`
+- `scripts/mlx_image_server.py:466`
+- `scripts/pr_blocker_audit.py:253`
+- `scripts/probe_browser_budget.py:112`
+- `scripts/probe_empty_search_recovery.py:90`
+- `scripts/probe_fixed_search_evidence.py:81`
+- `scripts/ref_parity_audit.py:142`
+- `scripts/ref_parity_audit.py:232`
+- `scripts/review_sft_environment_expansion.py:115`
+- `scripts/run_odysseus_cases_chunked.py:107`
+- `scripts/run_odysseus_search_teacher_pipeline.py:305`
+- `scripts/run_odysseus_search_teacher_pipeline.py:412`
+- `scripts/test_clean_tool_loop.py:209`
+- … +1417 more (grep the name in repo)

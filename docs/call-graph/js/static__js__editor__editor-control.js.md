@@ -1,0 +1,224 @@
+# `static/js/editor/editor-control.js` — definitions & call sites
+
+7 definitions (regex-based, best-effort).
+**Exports:** `EDITOR_CONTROL_VERSION`, `createEditorControl`, `default`
+
+## `normalizeError` — function, line 21
+- **called from:**
+- `static/js/editor/editor-control.js:21`
+- `static/js/editor/editor-control.js:68`
+
+## `createEditorControl` — function, line 27
+- **called from:**
+- `static/js/editor/editor-control.js:27`
+
+## `describe` — function, line 38
+- **called from:**
+- `static/js/editor/editor-control.js:14`
+- `static/js/editor/editor-control.js:38`
+- `static/js/galleryEditor.js:12717`
+
+## `list` — function, line 44
+- **called from:**
+- `app.py:101`
+- `app.py:469`
+- `app.py:1353`
+- `core/database.py:1885`
+- `core/session_manager.py:774`
+- `mcp_servers/email_server.py:451`
+- `mcp_servers/email_server.py:484`
+- `mcp_servers/email_server.py:711`
+- `mcp_servers/email_server.py:1829`
+- `mcp_servers/email_server.py:1944`
+- `mcp_servers/email_server.py:2008`
+- `mcp_servers/email_server.py:2176`
+- `mcp_servers/email_server.py:2293`
+- `mcp_servers/email_server.py:3493`
+- `routes/api_token_routes.py:45`
+- `routes/auth_routes.py:646`
+- `routes/chat_helpers.py:92`
+- `routes/chat_helpers.py:1555`
+- `routes/chat_helpers.py:1708`
+- `routes/chat_routes.py:1401`
+- `routes/chat_routes.py:1495`
+- `routes/chat_routes.py:1497`
+- `routes/chat_routes.py:1566`
+- `routes/chat_routes.py:1567`
+- `routes/chat_routes.py:1635`
+- `routes/chat_routes.py:2340`
+- `routes/chat_routes.py:4130`
+- `routes/chat_routes.py:4131`
+- `routes/chat_routes.py:4256`
+- `routes/chat_routes.py:5658`
+- `routes/cookbook_routes.py:1608`
+- `routes/cookbook_routes.py:3262`
+- `routes/cookbook_routes.py:3568`
+- `routes/cookbook_routes.py:3903`
+- `routes/cookbook_routes.py:4057`
+- `routes/cookbook_routes.py:4061`
+- `routes/cookbook_routes.py:4065`
+- `routes/cookbook_routes.py:4081`
+- `routes/cookbook_routes.py:4088`
+- `routes/cookbook_routes.py:4097`
+- `routes/cookbook_routes.py:4218`
+- `routes/device_flow.py:145`
+- `routes/document/document_routes.py:1761`
+- `routes/document/document_routes.py:1899`
+- `routes/editor_agent_routes.py:125`
+- `routes/editor_agent_routes.py:166`
+- `routes/editor_agent_routes.py:923`
+- `routes/editor_agent_routes.py:949`
+- `routes/editor_agent_routes.py:1395`
+- `routes/editor_agent_routes.py:1486`
+- `routes/editor_agent_routes.py:1493`
+- `routes/editor_agent_routes.py:1499`
+- `routes/editor_agent_routes.py:1511`
+- `routes/editor_agent_routes.py:1515`
+- `routes/editor_agent_routes.py:1761`
+- `routes/editor_agent_routes.py:1773`
+- `routes/editor_agent_routes.py:1779`
+- `routes/email/email_helpers.py:1494`
+- `routes/email/email_helpers.py:1523`
+- `routes/email/email_helpers.py:1549`
+- … +629 more (grep the name in repo)
+
+## `snapshot` — function, line 50
+- **called from:**
+- `src/process_reaper.py:207`
+- `src/process_reaper.py:234`
+- `src/process_reaper.py:263`
+- `src/process_reaper.py:271`
+- `static/js/editor/editor-control.js:50`
+- `static/js/editor/editor-control.js:65`
+- `static/js/editor/tools/quick-select.js:3`
+- `static/js/emailLibrary/index.js:3824`
+- `static/js/galleryEditor.js:4243`
+- `static/js/galleryEditor.js:4315`
+
+## `invoke` — function, line 59
+- **called from:**
+- `tests/test_execution_bridge.py:34`
+- `tests/test_execution_bridge.py:54`
+- `tests/test_execution_bridge.py:69`
+- `tests/test_execution_bridge.py:99`
+- `tests/test_execution_bridge.py:129`
+- `tests/test_execution_bridge.py:158`
+- `tests/test_execution_bridge.py:158`
+- `tests/test_execution_bridge.py:183`
+- `tests/test_execution_bridge.py:208`
+- `tests/test_execution_bridge.py:243`
+- `tests/test_execution_bridge.py:271`
+- `tests/test_grep_followup_integrity.py:36`
+- `tests/test_runtime_resource_integration.py:157`
+- `tests/test_session_context_info_tools.py:19`
+- `tests/test_session_context_info_tools.py:20`
+- `static/js/editor/canvas-context-menu.js:26`
+- `static/js/editor/canvas-context-menu.js:27`
+- `static/js/editor/canvas-context-menu.js:84`
+- `static/js/editor/canvas-context-menu.js:85`
+- `static/js/editor/canvas-context-menu.js:86`
+- `static/js/editor/canvas-context-menu.js:92`
+- `static/js/editor/canvas-context-menu.js:93`
+- `static/js/editor/canvas-context-menu.js:94`
+- `static/js/editor/canvas-context-menu.js:98`
+- `static/js/editor/canvas-context-menu.js:99`
+- `static/js/editor/canvas-context-menu.js:112`
+- `static/js/editor/canvas-context-menu.js:113`
+- `static/js/editor/canvas-context-menu.js:114`
+- `static/js/editor/canvas-context-menu.js:119`
+- `static/js/editor/canvas-context-menu.js:120`
+- `static/js/editor/canvas-context-menu.js:138`
+- `static/js/editor/canvas-context-menu.js:145`
+- `static/js/editor/canvas-context-menu.js:146`
+- `static/js/editor/canvas-context-menu.js:147`
+- `static/js/editor/canvas-context-menu.js:148`
+- `static/js/editor/canvas-context-menu.js:154`
+- `static/js/editor/canvas-context-menu.js:155`
+- `static/js/editor/canvas-context-menu.js:156`
+- `static/js/editor/canvas-context-menu.js:158`
+- `static/js/editor/canvas-context-menu.js:159`
+- `static/js/editor/canvas-context-menu.js:161`
+- `static/js/editor/canvas-context-menu.js:162`
+- `static/js/editor/canvas-context-menu.js:163`
+- `static/js/editor/canvas-context-menu.js:164`
+- `static/js/editor/canvas-context-menu.js:166`
+- `static/js/editor/canvas-context-menu.js:167`
+- `static/js/editor/editor-agent.js:37`
+- `static/js/editor/editor-agent.js:65`
+- `static/js/editor/editor-agent.js:67`
+- `static/js/editor/editor-agent.js:155`
+- `static/js/editor/editor-agent.js:157`
+- `static/js/editor/editor-agent.js:188`
+- `static/js/editor/editor-agent.js:229`
+- `static/js/editor/editor-agent.js:246`
+- `static/js/editor/editor-agent.js:257`
+- `static/js/editor/editor-agent.js:260`
+- `static/js/editor/editor-agent.js:276`
+- `static/js/editor/editor-agent.js:282`
+- `static/js/editor/editor-agent.js:293`
+- `static/js/editor/editor-agent.js:299`
+- … +58 more (grep the name in repo)
+
+## `run` — function, line 72
+- **called from:**
+- `app.py:1228`
+- `app.py:1530`
+- `core/platform_compat.py:428`
+- `core/platform_compat.py:469`
+- `launcher.py:114`
+- `launcher.py:149`
+- `mcp_servers/email_server.py:4704`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/email_server.py:4710`
+- `mcp_servers/image_gen_server.py:188`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/image_gen_server.py:192`
+- `mcp_servers/memory_server.py:281`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/memory_server.py:285`
+- `mcp_servers/rag_server.py:156`
+- `mcp_servers/rag_server.py:160`
+- `mcp_servers/rag_server.py:160`
+- `routes/cookbook_routes.py:1527`
+- `routes/cookbook_routes.py:3626`
+- `routes/cookbook_routes.py:3639`
+- `routes/cookbook_routes.py:3650`
+- `routes/cookbook_routes.py:3711`
+- `routes/cookbook_routes.py:4177`
+- `routes/cookbook_routes.py:4179`
+- `routes/cookbook_routes.py:4201`
+- `routes/cookbook_routes.py:4203`
+- `routes/cookbook_routes.py:4368`
+- `routes/cookbook_routes.py:4378`
+- `routes/document/document_routes.py:489`
+- `routes/email/email_routes.py:5062`
+- `routes/email/email_routes.py:6861`
+- `routes/hwfit_routes.py:147`
+- `scripts/build_frontend.py:69`
+- `scripts/build_frontend.py:70`
+- `scripts/check_brotli.py:39`
+- `scripts/css_snapshot.py:92`
+- `scripts/css_snapshot.py:131`
+- `scripts/diffusion_server.py:1506`
+- `scripts/dump_agent_prompt.py:415`
+- `scripts/eval_exact_file_routing.py:202`
+- `scripts/eval_followup_domain_continuity.py:209`
+- `scripts/eval_odysseus_everyday_live_hard.py:586`
+- `scripts/eval_odysseus_live_hard_examples.py:464`
+- `scripts/eval_qwen_tool_groups_stream.py:276`
+- `scripts/mlx_image_server.py:207`
+- `scripts/mlx_image_server.py:281`
+- `scripts/mlx_image_server.py:379`
+- `scripts/mlx_image_server.py:466`
+- `scripts/pr_blocker_audit.py:253`
+- `scripts/probe_browser_budget.py:112`
+- `scripts/probe_empty_search_recovery.py:90`
+- `scripts/probe_fixed_search_evidence.py:81`
+- `scripts/ref_parity_audit.py:142`
+- `scripts/ref_parity_audit.py:232`
+- `scripts/review_sft_environment_expansion.py:115`
+- `scripts/run_odysseus_cases_chunked.py:107`
+- `scripts/run_odysseus_search_teacher_pipeline.py:305`
+- `scripts/run_odysseus_search_teacher_pipeline.py:412`
+- `scripts/test_clean_tool_loop.py:209`
+- … +1417 more (grep the name in repo)

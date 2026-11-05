@@ -1,149 +1,187 @@
 # `static/js/init.js` — definitions & call sites
 
-15 definitions (regex-based, best-effort).
+17 definitions (regex-based, best-effort).
 
 ## `markComposerUserEdited` — function, line 6
 - **called from:**
 - `static/js/init.js:6`
-- `static/js/init.js:18`
 - `static/js/init.js:31`
+- `static/js/init.js:44`
 
-## `clearFreshComposerRestore` — function, line 15
+## `syncComposerModelPicker` — function, line 20
 - **called from:**
-- `static/js/init.js:15`
-- `static/js/init.js:32`
-- `static/js/init.js:61`
+- `static/js/init.js:12`
+- `static/js/init.js:14`
+- `static/js/init.js:20`
 
-## `hideOn` — arrow, line 70
+## `clearFreshComposerRestore` — function, line 28
 - **called from:**
-- `static/js/init.js:77`
-- `static/js/init.js:79`
-- `static/js/init.js:81`
+- `static/js/init.js:28`
+- `static/js/init.js:45`
+- `static/js/init.js:74`
 
-## `with` — class, line 108
+## `hideOn` — arrow, line 83
 - **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+- `static/js/init.js:90`
+- `static/js/init.js:92`
+- `static/js/init.js:94`
 
-## `_measure` — arrow, line 130
-- **called from:**
-- `static/js/init.js:139`
-- `static/js/init.js:159`
-
-## `_sync` — arrow, line 137
-- **called from:**
-- `static/js/init.js:166`
-
-## `attribute` — class, line 173
-- **called from:**
-- `static/js/cookbook.js:2038`
-- `static/js/markdown.js:932`
-
-## `_syncComposerClearance` — arrow, line 191
+## `with` — class, line 121
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `getSavedWidth` — function, line 230
+## `_measure` — arrow, line 143
 - **called from:**
-- `static/js/init.js:230`
+- `static/js/init.js:152`
+- `static/js/init.js:172`
 
-## `onDrag` — function, line 280
+## `_sync` — arrow, line 150
 - **called from:**
-- `static/js/init.js:280`
+- `static/js/init.js:179`
 
-## `stopDrag` — function, line 296
+## `attribute` — class, line 186
 - **called from:**
-- `static/js/init.js:296`
+- `static/js/cookbook.js:2082`
+- `static/js/markdown.js:1214`
 
-## `onExpandDrag` — function, line 315
+## `_syncComposerClearance` — arrow, line 204
 - **called from:**
-- `static/js/init.js:315`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `stopExpandDrag` — function, line 331
+## `getSavedWidth` — function, line 243
 - **called from:**
-- `static/js/init.js:331`
+- `static/js/init.js:243`
 
-## `requestAnimationFrame` — method?, line 367
+## `onDrag` — function, line 293
 - **called from:**
-- `static/app.js:323`
-- `static/app.js:350`
-- `static/app.js:1193`
-- `static/app.js:1229`
-- `static/app.js:2385`
-- `static/app.js:2390`
-- `static/app.js:2394`
-- `static/app.js:2398`
-- `static/app.js:2403`
+- `static/js/init.js:293`
+
+## `stopDrag` — function, line 309
+- **called from:**
+- `static/js/init.js:309`
+
+## `onExpandDrag` — function, line 328
+- **called from:**
+- `static/js/init.js:328`
+
+## `stopExpandDrag` — function, line 344
+- **called from:**
+- `static/js/init.js:344`
+
+## `_syncThroughKeyboardAnimation` — arrow, line 385
+- **called from:**
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
+
+## `requestAnimationFrame` — method?, line 403
+- **called from:**
+- `static/app.js:334`
+- `static/app.js:367`
+- `static/app.js:1234`
+- `static/app.js:1270`
+- `static/app.js:2441`
+- `static/app.js:2446`
+- `static/app.js:2450`
+- `static/app.js:2454`
 - `static/app.js:2459`
-- `static/js/admin.js:1298`
-- `static/js/calendar.js:1159`
-- `static/js/calendar.js:1635`
-- `static/js/calendar.js:2050`
-- `static/js/calendar.js:3290`
-- `static/js/calendar.js:3305`
-- `static/js/chat.js:761`
-- `static/js/chat.js:1198`
-- `static/js/chat.js:7859`
-- `static/js/colorPicker.js:252`
-- `static/js/colorPicker.js:343`
-- `static/js/colorPicker.js:377`
-- `static/js/compare/index.js:526`
-- `static/js/compare/panes.js:460`
-- `static/js/compare/stream.js:335`
-- `static/js/compare/stream.js:337`
-- `static/js/cookbook.js:2882`
-- `static/js/cookbookServe.js:1832`
-- `static/js/cookbookServe.js:1839`
-- `static/js/cookbookServe.js:3889`
-- `static/js/document.js:447`
-- `static/js/document.js:1121`
-- `static/js/document.js:1605`
-- `static/js/document.js:2240`
-- `static/js/document.js:2586`
-- `static/js/document.js:2627`
-- `static/js/document.js:2692`
-- `static/js/document.js:2694`
-- `static/js/document.js:2809`
-- `static/js/document.js:2904`
-- `static/js/document.js:3229`
-- `static/js/document.js:4502`
-- `static/js/document.js:4555`
-- `static/js/document.js:4572`
-- `static/js/document.js:5085`
-- `static/js/document.js:5334`
-- `static/js/document.js:5382`
-- `static/js/document.js:6155`
-- `static/js/document.js:6692`
-- `static/js/document.js:6828`
-- `static/js/document.js:6914`
-- `static/js/document.js:7105`
-- `static/js/document.js:7729`
-- `static/js/document.js:7846`
-- `static/js/document.js:7889`
-- `static/js/document.js:8428`
-- `static/js/document.js:8599`
-- `static/js/document.js:8719`
-- `static/js/document.js:8804`
-- `static/js/document.js:8923`
-- … +155 more (grep the name in repo)
+- `static/app.js:2515`
+- `static/js/admin.js:2167`
+- `static/js/calendar.js:826`
+- `static/js/calendar.js:1294`
+- `static/js/calendar.js:1508`
+- `static/js/calendar.js:2055`
+- `static/js/calendar.js:2068`
+- `static/js/calendar.js:2149`
+- `static/js/calendar.js:2611`
+- `static/js/calendar.js:3965`
+- `static/js/calendar.js:3980`
+- `static/js/calendar.js:4401`
+- `static/js/calendar.js:4418`
+- `static/js/chat.js:1641`
+- `static/js/chat.js:2093`
+- `static/js/chat.js:9522`
+- `static/js/chipScroll.js:119`
+- `static/js/colorPicker.js:348`
+- `static/js/colorPicker.js:445`
+- `static/js/colorPicker.js:479`
+- `static/js/compare/index.js:639`
+- `static/js/compare/panes.js:364`
+- `static/js/compare/panes.js:792`
+- `static/js/compare/stream.js:394`
+- `static/js/compare/stream.js:396`
+- `static/js/cookbook.js:3022`
+- `static/js/cookbookServe.js:1891`
+- `static/js/cookbookServe.js:1898`
+- `static/js/cookbookServe.js:3993`
+- `static/js/document.js:242`
+- `static/js/document.js:309`
+- `static/js/document.js:493`
+- `static/js/document.js:609`
+- `static/js/document.js:728`
+- `static/js/document.js:737`
+- `static/js/document.js:742`
+- `static/js/document.js:1359`
+- `static/js/document.js:2068`
+- `static/js/document.js:2578`
+- `static/js/document.js:3337`
+- `static/js/document.js:4313`
+- `static/js/document.js:4621`
+- `static/js/document.js:4686`
+- `static/js/document.js:4688`
+- `static/js/document.js:4803`
+- `static/js/document.js:4921`
+- `static/js/document.js:5256`
+- `static/js/document.js:5497`
+- `static/js/document.js:5513`
+- `static/js/document.js:5839`
+- `static/js/document.js:7115`
+- … +233 more (grep the name in repo)
 
-## `release` — function, line 410
+## `release` — function, line 423
 - **called from:**
-- `src/llm_core.py:142`
-- `tests/test_task_scheduler_cancel.py:90`
-- `static/js/init.js:410`
-- `static/js/init.js:418`
-- `static/js/modalSnap.js:734`
-- `static/js/modalSnap.js:750`
-- `static/js/modalSnap.js:781`
-- `static/js/windowDrag.js:194`
-- `static/js/windowDrag.js:199`
-- `static/js/windowDrag.js:208`
-- `static/js/windowDrag.js:209`
-- `static/js/windowDrag.js:241`
-- `static/js/windowDrag.js:242`
-- `static/js/windowDrag.js:256`
-- `static/js/windowDrag.js:257`
-- `static/js/windowDrag.js:262`
-- `static/js/windowDrag.js:268`
-- `static/js/windowDrag.js:273`
+- `routes/contacts/contacts_routes.py:481`
+- `src/agent_tools/subprocess_tools.py:556`
+- `src/agent_tools/web_tools_prewave3.py:2676`
+- `src/bg_jobs.py:138`
+- `src/bg_jobs.py:193`
+- `src/containment.py:1066`
+- `src/containment.py:1077`
+- `src/containment.py:1587`
+- `src/containment.py:1633`
+- `src/containment_worker.py:96`
+- `src/llm_core.py:180`
+- `src/process_reaper.py:261`
+- `tests/test_agent_tmux_retirement.py:109`
+- `tests/test_browser_identity_transport.py:77`
+- `tests/test_containment_contract.py:448`
+- `tests/test_containment_enforcement.py:149`
+- `tests/test_containment_enforcement.py:180`
+- `tests/test_containment_enforcement.py:184`
+- `tests/test_containment_process_tree.py:171`
+- `tests/test_containment_process_tree.py:192`
+- `tests/test_containment_process_tree.py:219`
+- `tests/test_orphan_reaping.py:229`
+- `tests/test_runtime_resource_integration.py:148`
+- `tests/test_task_scheduler_cancel.py:104`
+- `tests/test_task_scheduler_cancel.py:168`
+- `static/js/features/notes/ui/cardReorder.js:9`
+- `static/js/features/notes/ui/checklistReorder.js:25`
+- `static/js/features/notes/ui/lifecycle.js:5`
+- `static/js/features/notes/ui/lifecycle.js:24`
+- `static/js/features/notes/ui/lifecycle.js:34`
+- `static/js/init.js:423`
+- `static/js/init.js:431`
+- `static/js/modalSnap.js:772`
+- `static/js/modalSnap.js:788`
+- `static/js/modalSnap.js:819`
+- `static/js/windowDrag.js:212`
+- `static/js/windowDrag.js:217`
+- `static/js/windowDrag.js:226`
+- `static/js/windowDrag.js:227`
+- `static/js/windowDrag.js:259`
+- `static/js/windowDrag.js:260`
 - `static/js/windowDrag.js:274`
+- `static/js/windowDrag.js:275`
+- `static/js/windowDrag.js:280`
+- `static/js/windowDrag.js:286`
+- `static/js/windowDrag.js:291`
+- `static/js/windowDrag.js:292`

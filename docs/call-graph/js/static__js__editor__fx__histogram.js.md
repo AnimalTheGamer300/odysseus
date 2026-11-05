@@ -3,9 +3,10 @@
 1 definitions (regex-based, best-effort).
 **Exports:** `drawHistogram`
 
-## `drawHistogram` — function, line 16
+## `drawHistogram` — function, line 18
 - **called from:**
-- `static/js/editor/fx/adj-popup.js:485`
-- `static/js/editor/fx/adj-popup.js:490`
-- `static/js/editor/fx/adj-popup.js:652`
-- `static/js/editor/fx/histogram.js:16`
+- `static/js/editor/fx/adj-popup.js:661`
+- `static/js/editor/fx/adj-popup.js:1041`
+- `static/js/editor/fx/adj-popup.js:1198`
+- `static/js/editor/fx/histogram.js:18`
+- `static/js/editor/panels/panels.js:408`

@@ -63,6 +63,12 @@
 
 ## `_record` — function, line 247
 - **called from:**
+- `src/agent_loop.py:10999`
+- `src/agent_loop.py:11001`
+- `src/agent_runtime/owned_resources.py:236`
+- `src/agent_runtime/owned_resources.py:312`
+- `src/agent_runtime/owned_resources.py:342`
+- `src/agent_runtime/owned_resources.py:371`
 - `src/model_capability_readers/llamacpp.py:306`
 - `src/model_capability_readers/llamacpp.py:328`
 
