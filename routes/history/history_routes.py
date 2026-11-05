@@ -604,6 +604,15 @@ def setup_history_routes(session_manager, upload_handler=None) -> APIRouter:
             if keep_count < 0:
                 raise HTTPException(400, "keep_count must be a non-negative integer")
             deleted_sft_pairs: list[dict[str, str]] = []
+            # (fork) cancel any active detached run for this session first: a
+            # timed-out turn's run can complete AFTER this truncate and
+            # re-insert rows (the "empty response" marker race — the marker
+            # was saved 3s after a resend's truncate on 2026-11-04).
+            try:
+                from src import agent_runs as _agent_runs
+                _agent_runs.cancel(session_id)
+            except Exception:
+                logger.exception("Failed to cancel active run before truncate")
             # keep_count is always >= 0 here; the block is unconditional.
             db = SessionLocal()
             try:

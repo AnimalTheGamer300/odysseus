@@ -8130,7 +8130,15 @@ function _dbRowCountBefore(box, element) {
   function _userMessageAttachmentIds(msgElement) {
     if (!msgElement) return [];
     const els = msgElement.querySelectorAll('[data-file-id]');
-    const ids = Array.from(els).map(el => el.dataset.fileId).filter(Boolean);
+    // (fork) dedupe: a bubble can carry the same file id on more than one
+    // element (preview + reference stamp); a dup here becomes a duplicated
+    // attachment entry + doubled "[Image attached: ...]" line on resend.
+    const _seenIds = new Set();
+    const ids = [];
+    for (const el of els) {
+      const id = el.dataset.fileId;
+      if (id && !_seenIds.has(id)) { _seenIds.add(id); ids.push(id); }
+    }
     if (!ids.length) {
       const images = msgElement.querySelectorAll('.attach-image-preview img, .attach-card img');
       for (const image of images) {
@@ -8338,6 +8346,11 @@ function _dbRowCountBefore(box, element) {
     const bodyEl = userMsgElement.querySelector('.body');
     let text = (userMsgElement.dataset.raw || (bodyEl ? bodyEl.textContent : '') || '').trim();
     text = text.replace(/\s*\[\d+ attachment\(s\)\]$/, '');
+    // (fork) dev's compose format inlines one "[Image attached: ...]" line per
+    // attachment into the stored content; dataset.raw carries it, so a resend
+    // doubles the line (and the attachment reference). Strip them — the
+    // backend recomposes from the re-sent attachment ids.
+    text = text.replace(/\s*\[Image attached: [^\]]+\]/g, '');
 
     const _ids = _userMessageAttachmentIds(userMsgElement);
 
@@ -8437,6 +8450,10 @@ function _dbRowCountBefore(box, element) {
         const bodyEl = userMsgEl.querySelector('.body');
         userText = (userMsgEl.dataset.raw || (bodyEl ? bodyEl.textContent : '') || '').trim();
         userText = userText.replace(/\s*\[\d+ attachment\(s\)\]$/, '');
+        // (fork) strip dev's per-attachment "[Image attached: ...]" lines —
+        // dataset.raw carries them, so a regen doubles the line. The backend
+        // recomposes from the re-sent attachment ids.
+        userText = userText.replace(/\s*\[Image attached: [^\]]+\]/g, '');
         break;
       }
     }

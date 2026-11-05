@@ -2446,10 +2446,29 @@ def setup_chat_routes(
         req_effort = getattr(chat_request, "reasoning_effort", None)
         if req_effort:
             reasoning_effort = str(req_effort).strip().lower()
+            # (fork) an explicit per-chat picker level overrides the session's
+            # thinking_mode — the fork had no per-session mode at all; the
+            # picker was the only control. 'off' from the picker still
+            # disables; any other level un-vetoes the session's 'off' default
+            # so the picked effort actually reaches the payload.
+            if reasoning_effort == "off":
+                thinking_mode = "off"
+            elif thinking_mode == "off":
+                thinking_mode = None
         elif session_mode.startswith("effort:"):
             reasoning_effort = session_mode[7:].strip()
-        from src.chatgpt_subscription import validate_reasoning_effort
-        reasoning_effort = validate_reasoning_effort(sess.model, reasoning_effort)
+        from src.chatgpt_subscription import validate_reasoning_effort, get_chatgpt_model_metadata
+        # (fork) the chat-box picker's explicit level is applied raw for models
+        # WITHOUT ChatGPT-subscription metadata: validate_reasoning_effort only
+        # knows the codex catalog, so its fail-closed None silently dropped the
+        # picker's level for DeepSeek/NIM/local models — thinking never fired
+        # even though the dynamic menu only offers levels the model supports.
+        # Models WITH metadata (codex) still validate (unsupported → None), and
+        # the utility-call evidence gate is untouched.
+        if req_effort and not get_chatgpt_model_metadata(sess.model):
+            reasoning_effort = str(req_effort).strip().lower()
+        else:
+            reasoning_effort = validate_reasoning_effort(sess.model, reasoning_effort)
         owner = effective_user(request)
         _reconcile_selected_route_from_request(request, sess, session, {
             "selected_model": sess.model,

@@ -300,6 +300,23 @@ def stop(session_id: str, expected_run_id: Optional[str] = None) -> bool:
     return False
 
 
+def cancel(session_id: str) -> bool:
+    """Force-cancel whatever run is active for the session (no run-id check).
+
+    Destructive history operations (truncate) must not race a still-running
+    detached run: the run would complete after the delete and re-insert rows
+    (the "empty response" marker race, 2026-11-04). The Stop button uses
+    stop() with a run id (fail-closed against stale tabs); truncate is
+    server-side and the user is destroying history, so it cancels
+    unconditionally.
+    """
+    run = _RUNS.get(session_id)
+    if run and run.task and not run.task.done():
+        run.task.cancel()
+        return True
+    return False
+
+
 def request_finish(session_id: str, expected_run_id: Optional[str] = None) -> bool:
     """Ask the exact active run to finish after its completed editor work."""
     run = _RUNS.get(session_id)
