@@ -65,16 +65,14 @@ def test_no_promotion_when_metadata_has_no_thinking():
     assert "reasoning_content" not in out[0]
 
 
-def test_disable_thinking_scrubs_reasoning_from_payload(monkeypatch):
-    # Force the "thinking disabled" branch regardless of the ambient env
-    # (the user's shell exports ODYSSEUS_DEEPSEEK_V4_THINKING=1).
-    import src.llm_core as lc
-    monkeypatch.setattr(lc, "_DEEPSEEK_V4_THINKING", "0")
+def test_disable_thinking_scrubs_reasoning_from_payload():
+    # Explicit force (picker Off / utility call) injects the off-switch and
+    # scrubs reasoning_content history.
     payload = {"messages": [
         {"role": "assistant", "content": "a", "reasoning_content": "x"},
         {"role": "user", "content": "b"},
     ]}
-    _disable_deepseek_v4_thinking(payload, "deepseek-v4-flash@opencode.ai")
+    _disable_deepseek_v4_thinking(payload, "deepseek-v4-flash@opencode.ai", force=True)
     assert payload.get("thinking") == {"type": "disabled"}
     for m in payload["messages"]:
         assert "reasoning_content" not in m, (
@@ -82,19 +80,16 @@ def test_disable_thinking_scrubs_reasoning_from_payload(monkeypatch):
         )
 
 
-def test_disable_thinking_leaves_other_models_alone(monkeypatch):
-    import src.llm_core as lc
-    monkeypatch.setattr(lc, "_DEEPSEEK_V4_THINKING", "0")
+def test_disable_thinking_leaves_other_models_alone():
     payload = {"messages": [{"role": "assistant", "content": "a", "reasoning_content": "x"}]}
-    _disable_deepseek_v4_thinking(payload, "claude-opus-4-7")
+    _disable_deepseek_v4_thinking(payload, "claude-opus-4-7", force=True)
     assert "thinking" not in payload
     assert payload["messages"][0]["reasoning_content"] == "x"
 
 
-def test_disable_thinking_respects_opt_in(monkeypatch):
-    # With ODYSSEUS_DEEPSEEK_V4_THINKING=1 the disable fn must do nothing.
-    import src.llm_core as lc
-    monkeypatch.setattr(lc, "_DEEPSEEK_V4_THINKING", "1")
+def test_disable_thinking_no_force_is_noop():
+    # (2026-11-05) Without force the DS V4 server-side default (thinking on)
+    # stands — the env-var forced-off mechanism is gone.
     payload = {"messages": [{"role": "assistant", "content": "a", "reasoning_content": "x"}]}
     _disable_deepseek_v4_thinking(payload, "deepseek-v4-flash@opencode.ai")
     assert "thinking" not in payload

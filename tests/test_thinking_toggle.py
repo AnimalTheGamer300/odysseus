@@ -122,10 +122,9 @@ def test_unknown_cloud_gets_no_experimental_fields():
 
 # ── DeepSeek force semantics (the fold target) ───────────────────────
 
-def test_deepseek_force_disable_overrides_env_optin(monkeypatch):
-    # The toggle folds into disable_thinking=True; force must win over the
-    # user's shell exporting ODYSSEUS_DEEPSEEK_V4_THINKING=1.
-    monkeypatch.setattr(lc, "_DEEPSEEK_V4_THINKING", "1")
+def test_deepseek_force_disable_injects_switch():
+    # Picker Off / global toggle off folds into disable_thinking=True; the
+    # off-switch is injected and reasoning_content history is scrubbed.
     payload = {"messages": [
         {"role": "assistant", "content": "a", "reasoning_content": "x"},
         {"role": "user", "content": "b"},
@@ -136,9 +135,9 @@ def test_deepseek_force_disable_overrides_env_optin(monkeypatch):
         assert "reasoning_content" not in m
 
 
-def test_deepseek_env_optin_still_wins_without_force(monkeypatch):
-    # Toggle ON (no force): the env opt-in must keep working.
-    monkeypatch.setattr(lc, "_DEEPSEEK_V4_THINKING", "1")
+def test_deepseek_without_force_leaves_server_default():
+    # (2026-11-05) The env-var forced-off mechanism is gone: without an
+    # explicit force the DS V4 server-side default (thinking on) stands.
     payload = {"messages": [{"role": "user", "content": "b"}]}
     _disable_deepseek_v4_thinking(payload, "deepseek-v4-flash@opencode.ai", force=False)
     assert "thinking" not in payload

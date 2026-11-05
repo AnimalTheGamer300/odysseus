@@ -541,7 +541,7 @@ def setup_session_routes(
                     "has_documents": s.id in doc_session_ids,
                     "has_images": s.id in img_session_ids,
                     "mode": s.mode,
-                    "thinking_mode": s.thinking_mode or "off",
+                    "thinking_mode": s.thinking_mode or "",
                     "message_count": s.message_count or 0,
                 })
         finally:
@@ -777,7 +777,7 @@ def setup_session_routes(
                 from src.chatgpt_subscription import get_chatgpt_model_metadata
                 meta = get_chatgpt_model_metadata(model)
                 if not meta or current_effort not in [lvl.lower() for lvl in meta.get("supported_reasoning_levels", [])]:
-                    session.thinking_mode = "off"
+                    session.thinking_mode = ""
             # Persist to DB
             db = SessionLocal()
             try:
@@ -787,7 +787,7 @@ def setup_session_routes(
                     db_session.endpoint_url = endpoint_url
                     db_session.endpoint_id = session.endpoint_id
                     db_session.headers = session.headers or {}
-                    db_session.thinking_mode = getattr(session, "thinking_mode", "off") or "off"
+                    db_session.thinking_mode = getattr(session, "thinking_mode", "") or ""
                     db_session.updated_at = utcnow_naive()
                     db.commit()
             finally:
@@ -1155,7 +1155,7 @@ def setup_session_routes(
                     "id": s.id,
                     "name": s.name,
                     "model": s.model,
-                    "thinking_mode": s.thinking_mode or "off",
+                    "thinking_mode": s.thinking_mode or "",
                     "message_count": s.message_count or 0,
                     "created_at": s.created_at.isoformat() if s.created_at else None,
                     "updated_at": s.updated_at.isoformat() if s.updated_at else None,

@@ -376,7 +376,7 @@ class TestMaybeCompactReasoningRegression:
     """Compaction summary must never contain chain-of-thought.
 
     Root cause (2026-08-09): the session model deepseek-v4-flash-free runs
-    with thinking ON (ODYSSEUS_DEEPSEEK_V4_THINKING=1). llm_call_async fell
+    with thinking ON (DS V4 server-side default). llm_call_async fell
     back to reasoning_content when content was empty, so the compactor
     persisted the model's cut-off internal monologue ("We need to produce the
     conversation summary. We're at turn 52? ...") as the [Conversation

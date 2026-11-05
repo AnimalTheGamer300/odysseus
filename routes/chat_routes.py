@@ -2436,7 +2436,7 @@ def setup_chat_routes(
             sess = session_manager.get_session(session)
         except KeyError:
             raise HTTPException(404, f"Session '{session}' not found")
-        session_mode = str(getattr(sess, "thinking_mode", "") or "off").lower()
+        session_mode = str(getattr(sess, "thinking_mode", "") or "").lower()
         if session_mode in {"on", "off"}:
             thinking_mode = session_mode
         from src.model_profiles import supports_user_thinking_toggle
@@ -2993,7 +2993,7 @@ def setup_chat_routes(
             _verify_session_owner(request, session)
             sess = session_manager.get_session(session)
 
-            session_mode = str(getattr(sess, "thinking_mode", "") or "off").lower()
+            session_mode = str(getattr(sess, "thinking_mode", "") or "").lower()
             # An explicit request-scoped mode (headless eval, API client, or
             # UI override) wins over the persisted session default. The old
             # unconditional assignment made `thinking_mode=off` impossible

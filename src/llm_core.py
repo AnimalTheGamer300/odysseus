@@ -1511,9 +1511,14 @@ def _apply_deepseek_v4_reasoning_defaults(
     model: str,
     thinking_mode: Optional[str] = None,
 ) -> None:
-    """Apply DeepSeek V4 reasoning defaults without overriding an explicit toggle."""
-    if not _host_match(target_url, "deepseek.com"):
-        return
+    """Apply DeepSeek V4 reasoning defaults without overriding an explicit toggle.
+
+    (2026-11-05, user directive) The enable-default stays host-gated to
+    deepseek.com (documented API); every other host gets DS V4's server-side
+    default — thinking ON — which is exactly the pre-mechanism behavior. The
+    mode==off branch is NOT host-gated: the thinking picker must be able to
+    turn DS V4 thinking off regardless of provider.
+    """
     if not re.search(
         r"(?:^|[/_-])deepseek-v4(?:[-_/]|$)",
         str(model or ""),
@@ -1521,8 +1526,13 @@ def _apply_deepseek_v4_reasoning_defaults(
     ):
         return
     if _normalize_thinking_mode(thinking_mode) == "off":
+        # Picker authority: Off disables DS V4 thinking on ANY host.
         payload["thinking"] = {"type": "disabled"}
         payload["reasoning_effort"] = "none"
+        return
+    if not _host_match(target_url, "deepseek.com"):
+        # Non-DeepSeek hosts: leave the server-side default (thinking ON) —
+        # no injection, matching the pre-mechanism behavior.
         return
     payload.setdefault("thinking", {"type": "enabled"})
     payload.setdefault("reasoning_effort", _DEEPSEEK_REASONING_EFFORT)
@@ -1797,28 +1807,28 @@ _DEEPSEEK_REASONING_EFFORT = os.getenv(
 if _DEEPSEEK_REASONING_EFFORT not in {"high", "max"}:
     _DEEPSEEK_REASONING_EFFORT = "high"
 
-# DeepSeek V4 models (deepseek-v4 / deepseek-v4-flash via OpenCode Zen or the
-# DeepSeek API) enable thinking BY DEFAULT. Per DeepSeek's docs, the only way to
-# turn it off per-request is an explicit "thinking": {"type": "disabled"} - merely
-# omitting the field leaves thinking ON. Default here: thinking DISABLED. Set
-# ODYSSEUS_DEEPSEEK_V4_THINKING=1 to leave the upstream default (thinking on).
-_DEEPSEEK_V4_THINKING = os.getenv("ODYSSEUS_DEEPSEEK_V4_THINKING", "0").strip().lower()
+# DeepSeek V4 models (deepseek-v4 / deepseek-v4-flash) enable thinking BY
+# DEFAULT — per DeepSeek's docs, merely omitting the field leaves thinking ON.
+# (2026-11-05, user directive) The old env-var forced-off mechanism
+# (ODYSSEUS_DEEPSEEK_V4_THINKING) is completely removed: the per-chat thinking
+# picker is the ONLY control. This helper now injects the off-switch ONLY when
+# the caller explicitly asks (picker Off, global toggle off, or internal
+# utility calls) — never by default.
 
 def _disable_deepseek_v4_thinking(payload: dict, model: str, force: bool = False) -> None:
-    """Inject DeepSeek V4's thinking-off switch unless the user opted back in.
+    """Inject DeepSeek V4's thinking-off switch — ONLY on explicit request.
 
-    ``force=True`` disables thinking even when ODYSSEUS_DEEPSEEK_V4_THINKING=1.
-    Compaction/summary calls pass force=True: a summary generated from
+    ``force=True`` comes from the thinking picker (Off), the global toggle, or
+    internal utility calls (compaction/summary: a summary generated from
     chain-of-thought is worse than useless, and a thinking model burns the
     summary's whole max_tokens budget on reasoning before the real summary is
-    ever written (the "summary is a cut-off internal monologue" bug).
+    ever written). Without force this is a no-op — DS V4's server-side default
+    (thinking on) stands, exactly like the pre-mechanism behavior.
     """
-    if not payload or not model:
+    if not force or not payload or not model:
         return
     if "deepseek-v4" not in model.lower():
         return
-    if not force and _DEEPSEEK_V4_THINKING in ("1", "true", "yes", "on", "enabled"):
-        return  # leave upstream default (thinking on)
     payload["thinking"] = {"type": "disabled"}
     # Thinking-off requests must not carry reasoning_content history: the
     # pass-back contract only exists while thinking is ON, and DeepSeek
