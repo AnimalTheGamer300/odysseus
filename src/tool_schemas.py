@@ -30,7 +30,7 @@ _BINARY_VISUAL_MEDIA_SUFFIXES = {
 
 
 _REQUIRED_NATIVE_TOOL_ARGS = {
-    "web_search": ("query", "queries"),
+    "web_search": ("query", "queries", "command"),
     "get_weather": ("location",),
     "web_fetch": ("url", "urls"),
     "pdf_extract": ("url", "path"),
