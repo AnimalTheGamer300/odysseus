@@ -3257,7 +3257,18 @@ export function addMessage(role, content, modelName, metadata) {
             break;
           }
         }
-        if (lastTextIdx >= 0) {
+        // (2026-11-06) Prefix-aware sync: when content = earlier rounds +
+        // final round concatenated (a preamble that survived into
+        // full_response), split the prefix back off instead of overwriting
+        // the last round with the whole thing — that merge garbled
+        // multi-round turns on every DB re-render.
+        const earlierJoin = lastTextIdx > 0
+          ? roundTexts.slice(0, lastTextIdx).map(t => String(t || '').trim()).join('')
+          : '';
+        const trimmedRaw = textRaw.trim();
+        if (lastTextIdx >= 0 && earlierJoin && trimmedRaw.startsWith(earlierJoin)) {
+          roundTexts[lastTextIdx] = trimmedRaw.slice(earlierJoin.length).trim();
+        } else if (lastTextIdx >= 0) {
           roundTexts[lastTextIdx] = textRaw;
         } else {
           roundTexts.push(textRaw);

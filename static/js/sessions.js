@@ -3,7 +3,7 @@
 
 import Storage from './storage.js';
 import uiModule, { autoResize, styledPrompt } from './ui.js?v=20261104modfix1';
-import chatRenderer from './chatRenderer.js?v=20261104thinkfix1';
+import chatRenderer from './chatRenderer.js?v=20261106roundfix1';
 import { providerLogo } from './providers.js';
 import { initModelPicker, updateModelPicker } from './modelPicker.js?v=20260909routeidentity1';
 import themeModule from './theme.js?v=20260911organsrain1';

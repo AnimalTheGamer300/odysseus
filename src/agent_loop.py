@@ -30844,9 +30844,26 @@ async def stream_agent_loop(
             # progress but is not the answer. It has already streamed, so
             # remove it from the final/history response before the next tool
             # round contributes the actual result.
-            full_response = _drop_rejected_round_response(full_response, cleaned_round)
-            cleaned_round = ""
-            _dropped_tool_preamble_from_stream = True
+            # (2026-11-06) Drop the RAW round text (round_response), not the
+            # cleaned variant: _drop_rejected_round_response matches exact
+            # substrings of the accumulated raw text, while cleaned_round has
+            # been normalized — the match could silently fail while
+            # round_texts still got cleared below. full_response then kept
+            # the preamble, the linkify reconcile merged it into the next
+            # round's text, and every DB re-render showed [tools][merged
+            # text] instead of [text][tools][text] (the SCP review garble,
+            # session 8c03ca56). If the drop still fails, keep cleaned_round
+            # so round_texts stays consistent with full_response.
+            _preamble_raw = round_response or cleaned_round
+            full_response = _drop_rejected_round_response(full_response, _preamble_raw)
+            if _preamble_raw.strip() and _preamble_raw.strip() in full_response:
+                # Drop failed: the preamble is still in full_response. Keep
+                # the round text too — clearing only round_texts is what
+                # garbled the saved round structure.
+                pass
+            else:
+                cleaned_round = ""
+                _dropped_tool_preamble_from_stream = True
         round_texts.append(cleaned_round)
         round_models.append(_round_actual_model)
         round_endpoint_ids.append(_round_actual_endpoint_id)
@@ -38810,7 +38827,19 @@ async def stream_agent_loop(
         if round_texts and full_response.strip():
             for _idx in range(len(round_texts) - 1, -1, -1):
                 if _visible_response_text(str(round_texts[_idx] or "")):
-                    round_texts[_idx] = full_response.strip()
+                    # (2026-11-06) Prefix-aware sync: when an earlier round's
+                    # preamble survived into full_response (failed preamble
+                    # drop), full_response = earlier + final. Overwriting the
+                    # last round with the whole thing merged the rounds and
+                    # garbled every DB re-render. Split the prefix back off.
+                    _earlier_join = "".join(
+                        str(t or "") for _j, t in enumerate(round_texts) if _j < _idx
+                    ).strip()
+                    _fr = full_response.strip()
+                    if _earlier_join and _fr.startswith(_earlier_join):
+                        round_texts[_idx] = _fr[len(_earlier_join):].strip()
+                    else:
+                        round_texts[_idx] = _fr
                     break
 
     if (
