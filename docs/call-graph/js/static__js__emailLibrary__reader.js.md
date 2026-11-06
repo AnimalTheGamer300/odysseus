@@ -47,7 +47,7 @@
 - `tests/test_hwfit_gpu_count_nonnumeric.py:101`
 - `static/app.js:402`
 - `static/app.js:3980`
-- `static/js/chat.js:5588`
+- `static/js/chat.js:5559`
 - `static/js/chatRenderer.js:2322`
 - `static/js/chatRenderer.js:2329`
 - `static/js/chatRenderer.js:2338`

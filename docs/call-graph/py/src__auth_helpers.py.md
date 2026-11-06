@@ -19,7 +19,7 @@
 - `routes/backup_routes.py:67`
 - `routes/chat_routes.py:1855`
 - `routes/chat_routes.py:1897`
-- `routes/chat_routes.py:2929`
+- `routes/chat_routes.py:2948`
 - `routes/chatgpt_subscription_routes.py:396`
 - `routes/chatgpt_subscription_routes.py:420`
 - `routes/cleanup/cleanup_routes.py:30`
@@ -81,13 +81,13 @@
 - `routes/chat_helpers.py:1314`
 - `routes/chat_routes.py:1853`
 - `routes/chat_routes.py:2309`
-- `routes/chat_routes.py:2453`
-- `routes/chat_routes.py:3009`
-- `routes/chat_routes.py:3217`
-- `routes/chat_routes.py:3245`
-- `routes/chat_routes.py:3282`
-- `routes/chat_routes.py:3681`
-- `routes/chat_routes.py:5622`
+- `routes/chat_routes.py:2472`
+- `routes/chat_routes.py:3028`
+- `routes/chat_routes.py:3236`
+- `routes/chat_routes.py:3264`
+- `routes/chat_routes.py:3301`
+- `routes/chat_routes.py:3700`
+- `routes/chat_routes.py:5641`
 - `routes/chatgpt_subscription_routes.py:231`
 - `routes/chatgpt_subscription_routes.py:316`
 - `routes/chatgpt_subscription_routes.py:396`
@@ -100,9 +100,9 @@
 - `routes/contacts/contacts_routes.py:1052`
 - `routes/contacts/contacts_routes.py:1060`
 - `routes/history/history_routes.py:286`
-- `routes/history/history_routes.py:627`
-- `routes/history/history_routes.py:739`
-- `routes/history/history_routes.py:1473`
+- `routes/history/history_routes.py:643`
+- `routes/history/history_routes.py:755`
+- `routes/history/history_routes.py:1489`
 - `routes/model_routes.py:1458`
 - `routes/model_routes.py:1771`
 - `routes/preset_routes.py:111`
@@ -143,7 +143,7 @@
 ## `is_delegated_credential` — function, line 65
 - **called from:**
 - `routes/chat_routes.py:1306`
-- `routes/chat_routes.py:3578`
+- `routes/chat_routes.py:3597`
 - `routes/session_routes.py:283`
 - `routes/session_routes.py:322`
 - `routes/session_routes.py:1273`
@@ -155,7 +155,7 @@
 ## `require_api_token_scope` — function, line 81
 - **called from:**
 - `routes/chat_routes.py:2416`
-- `routes/chat_routes.py:2636`
+- `routes/chat_routes.py:2655`
 - `routes/editor_agent_routes.py:1323`
 - `src/auth_helpers.py:101`
 
@@ -205,7 +205,7 @@
 - `routes/calendar_routes.py:75`
 - `routes/codex_routes.py:97`
 - `routes/codex_routes.py:111`
-- `routes/history/history_routes.py:1169`
+- `routes/history/history_routes.py:1185`
 - `routes/memory/memory_routes.py:241`
 - `routes/note/note_routes.py:601`
 - `routes/note/note_routes.py:861`
@@ -292,4 +292,4 @@
 - `src/endpoint_resolver.py:500`
 - `src/endpoint_resolver.py:556`
 - `src/endpoint_resolver.py:645`
-- `src/llm_core.py:2507`
+- `src/llm_core.py:2517`

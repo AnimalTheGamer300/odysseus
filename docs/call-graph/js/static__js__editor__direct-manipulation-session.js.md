@@ -91,32 +91,32 @@
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -135,7 +135,7 @@
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `commit` — function, line 52
 - **called from:**
@@ -207,19 +207,21 @@
 - `app.py:1470`
 - `routes/editor_agent_routes.py:1414`
 - `routes/email/email_routes.py:6869`
+- `routes/history/history_routes.py:613`
 - `routes/shell_routes.py:957`
 - `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
-- `src/agent_loop.py:26017`
-- `src/agent_loop.py:34321`
+- `src/agent_loop.py:26037`
+- `src/agent_loop.py:34341`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
 - `src/agent_runs.py:249`
 - `src/agent_runs.py:298`
+- `src/agent_runs.py:315`
 - `src/ai_interaction.py:1822`
 - `src/ai_interaction.py:2094`
 - `src/clean_agent_preview.py:5609`
@@ -261,6 +263,4 @@
 - `tests/test_nested_invocation_ownership.py:93`
 - `tests/test_nested_invocation_ownership.py:96`
 - `tests/test_nested_invocation_ownership.py:448`
-- `tests/test_nested_invocation_ownership.py:453`
-- `tests/test_review_calendar_invitation.py:135`
-- … +82 more (grep the name in repo)
+- … +84 more (grep the name in repo)

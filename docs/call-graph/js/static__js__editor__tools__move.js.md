@@ -136,7 +136,7 @@
 - `src/agent_loop.py:18329`
 - `src/agent_loop.py:18331`
 - `src/agent_loop.py:18437`
-- `src/agent_loop.py:25736`
+- `src/agent_loop.py:25756`
 - `src/agent_runtime/completion.py:91`
 - `src/agent_tools/document_tools.py:384`
 - `src/agent_tools/document_tools.py:438`

@@ -5,9 +5,9 @@
 
 ## `createTerminalStreamError` — function, line 2
 - **called from:**
-- `static/js/chat.js:4738`
-- `static/js/chat.js:6088`
-- `static/js/chat.js:7487`
+- `static/js/chat.js:4709`
+- `static/js/chat.js:6059`
+- `static/js/chat.js:7469`
 - `static/js/chatStreamErrors.js:2`
 
 ## `stream` — class, line 16
@@ -22,10 +22,10 @@
 - `scripts/run_sft_overnight_fixture_flows.py:236`
 - `scripts/sft_email_overseer.py:533`
 - `src/clean_agent_preview.py:5556`
-- `src/llm_core.py:3493`
-- `src/llm_core.py:3614`
-- `src/llm_core.py:3713`
-- `src/llm_core.py:3921`
+- `src/llm_core.py:3503`
+- `src/llm_core.py:3624`
+- `src/llm_core.py:3723`
+- `src/llm_core.py:3931`
 - `src/outbound_fetch.py:296`
 - `tests/smoke/test_chat_smoke.py:37`
 - `tests/smoke/test_compare_smoke.py:21`
@@ -67,5 +67,5 @@
 
 ## `isRecoverableStreamError` — function, line 17
 - **called from:**
-- `static/js/chat.js:6694`
+- `static/js/chat.js:6658`
 - `static/js/chatStreamErrors.js:17`

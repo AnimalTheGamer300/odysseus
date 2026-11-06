@@ -29,7 +29,7 @@
 
 ## `_rewrite_docker_host_for_native_runtime` — function, line 82
 - **called from:**
-- `src/agent_loop.py:26863`
+- `src/agent_loop.py:26883`
 - `src/endpoint_resolver.py:178`
 - `src/endpoint_resolver.py:187`
 - `tests/test_provider_endpoints_normalization.py:32`
@@ -336,7 +336,7 @@
 - `src/agent_runtime/context_resolution.py:265`
 - `src/agent_tools/model_interaction_tools.py:217`
 - `src/ai_interaction.py:157`
-- `src/llm_core.py:2551`
+- `src/llm_core.py:2561`
 - `src/model_context.py:438`
 - `src/model_context.py:533`
 - `tests/test_endpoint_resolver_urls.py:80`
@@ -423,7 +423,7 @@
 - `routes/email/email_routes.py:6982`
 - `routes/email/email_routes.py:7093`
 - `routes/email/email_routes.py:7099`
-- `routes/history/history_routes.py:1510`
+- `routes/history/history_routes.py:1526`
 - `routes/memory/memory_routes.py:372`
 - `routes/note/note_routes.py:217`
 - `routes/note/note_routes.py:219`

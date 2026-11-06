@@ -4,7 +4,7 @@
 
 ## `analyze_topics` — function, line 21
 - **called from:**
-- `routes/history/history_routes.py:1171`
+- `routes/history/history_routes.py:1187`
 - `tests/test_history_topics_owner_scope.py:100`
 - `tests/test_history_topics_owner_scope.py:134`
 - `tests/test_history_topics_owner_scope.py:275`

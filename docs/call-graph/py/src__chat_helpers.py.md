@@ -202,4 +202,4 @@
 
 ## `coerce_message_and_session` — function, line 723
 - **called from:**
-- `routes/chat_routes.py:2968`
+- `routes/chat_routes.py:2987`

@@ -408,13 +408,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `get_mcp_manager` — function, line 1274
 - **called from:**
-- `routes/chat_routes.py:3823`
+- `routes/chat_routes.py:3842`
 - `routes/task/task_routes.py:1075`
 - `scripts/dump_agent_prompt.py:391`
 - `scripts/ody_eval_email_fixture.py:36`
 - `src/agent_loop.py:21466`
 - `src/agent_loop.py:21880`
 - `src/agent_runtime/authority.py:390`
+- `src/agent_runtime/authority.py:506`
 - `src/agent_runtime/remote_resources.py:134`
 - `src/agent_tools/admin_tools.py:242`
 - `src/agent_tools/admin_tools.py:289`
@@ -564,15 +565,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22171`
 - `src/agent_loop.py:22280`
 - `src/agent_loop.py:22597`
-- `src/agent_loop.py:25980`
-- `src/agent_loop.py:27217`
-- `src/agent_loop.py:27417`
-- `src/agent_loop.py:27539`
-- `src/agent_loop.py:27851`
-- `src/agent_loop.py:27922`
-- `src/agent_loop.py:34590`
-- `src/agent_loop.py:35901`
-- `src/agent_loop.py:38296`
+- `src/agent_loop.py:26000`
+- `src/agent_loop.py:27237`
+- `src/agent_loop.py:27437`
+- `src/agent_loop.py:27559`
+- `src/agent_loop.py:27871`
+- `src/agent_loop.py:27942`
+- `src/agent_loop.py:34610`
+- `src/agent_loop.py:35921`
+- `src/agent_loop.py:38316`
 - `src/clean_agent_preview.py:7170`
 - `src/clean_agent_preview.py:7875`
 - `tests/test_api_token_tool_authority.py:33`
@@ -637,9 +638,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `format_tool_result` — function, line 2646
 - **called from:**
-- `src/agent_loop.py:26395`
-- `src/agent_loop.py:36411`
-- `src/agent_loop.py:38342`
+- `src/agent_loop.py:26415`
+- `src/agent_loop.py:36431`
+- `src/agent_loop.py:38362`
 - `tests/test_agent_loop_tool_output_truncation.py:50`
 - `tests/test_agent_loop_tool_output_truncation.py:60`
 - `tests/test_document_read_pagination.py:48`

@@ -20,7 +20,7 @@
 
 ## `matches` — function, line 20
 - **called from:**
-- `src/agent_loop.py:25951`
+- `src/agent_loop.py:25971`
 - `src/model_capabilities.py:903`
 - `src/tool_execution.py:1773`
 - `tests/test_calendar_cli_overlap.py:85`

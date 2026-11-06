@@ -251,10 +251,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `McpManager.get_all_openai_schemas` — method, line 698
 - **called from:**
-- `routes/chat_routes.py:3837`
+- `routes/chat_routes.py:3856`
 - `src/agent_loop.py:14864`
 - `src/agent_loop.py:21467`
-- `src/agent_loop.py:24853`
+- `src/agent_loop.py:24873`
 
 ## `McpManager.get_all_tools` — method, line 737
 - **called from:**

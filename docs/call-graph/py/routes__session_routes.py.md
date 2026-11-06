@@ -62,14 +62,14 @@
 
 ## `_message_role` — function, line 212
 - **called from:**
-- `routes/history/history_routes.py:1503`
+- `routes/history/history_routes.py:1519`
 - `routes/session_routes.py:818`
 - `routes/session_routes.py:868`
 - `services/memory/memory_extractor.py:336`
 
 ## `_message_text` — function, line 220
 - **called from:**
-- `routes/history/history_routes.py:1504`
+- `routes/history/history_routes.py:1520`
 - `routes/session_routes.py:1378`
 - `routes/session_routes.py:1429`
 - `services/memory/memory_extractor.py:338`
@@ -80,35 +80,35 @@
 
 ## `_reject_compact_during_active_run` — function, line 240
 - **called from:**
-- `routes/history/history_routes.py:1478`
+- `routes/history/history_routes.py:1494`
 - `routes/session_routes.py:1338`
 
 ## `_verify_session_owner` — function, line 246
 - **called from:**
 - `routes/chat_routes.py:2433`
-- `routes/chat_routes.py:2974`
-- `routes/chat_routes.py:5539`
-- `routes/chat_routes.py:5559`
-- `routes/chat_routes.py:5567`
-- `routes/chat_routes.py:5577`
-- `routes/chat_routes.py:5600`
-- `routes/chat_routes.py:5702`
-- `routes/history/history_routes.py:415`
-- `routes/history/history_routes.py:560`
-- `routes/history/history_routes.py:643`
-- `routes/history/history_routes.py:667`
-- `routes/history/history_routes.py:755`
-- `routes/history/history_routes.py:810`
-- `routes/history/history_routes.py:865`
-- `routes/history/history_routes.py:916`
-- `routes/history/history_routes.py:1048`
-- `routes/history/history_routes.py:1183`
-- `routes/history/history_routes.py:1240`
-- `routes/history/history_routes.py:1276`
-- `routes/history/history_routes.py:1315`
-- `routes/history/history_routes.py:1351`
-- `routes/history/history_routes.py:1414`
-- `routes/history/history_routes.py:1471`
+- `routes/chat_routes.py:2993`
+- `routes/chat_routes.py:5558`
+- `routes/chat_routes.py:5578`
+- `routes/chat_routes.py:5586`
+- `routes/chat_routes.py:5596`
+- `routes/chat_routes.py:5619`
+- `routes/chat_routes.py:5721`
+- `routes/history/history_routes.py:422`
+- `routes/history/history_routes.py:567`
+- `routes/history/history_routes.py:659`
+- `routes/history/history_routes.py:683`
+- `routes/history/history_routes.py:771`
+- `routes/history/history_routes.py:826`
+- `routes/history/history_routes.py:881`
+- `routes/history/history_routes.py:932`
+- `routes/history/history_routes.py:1064`
+- `routes/history/history_routes.py:1199`
+- `routes/history/history_routes.py:1256`
+- `routes/history/history_routes.py:1292`
+- `routes/history/history_routes.py:1331`
+- `routes/history/history_routes.py:1367`
+- `routes/history/history_routes.py:1430`
+- `routes/history/history_routes.py:1487`
 - `routes/session_routes.py:701`
 - `routes/session_routes.py:809`
 - `routes/session_routes.py:882`
@@ -195,7 +195,7 @@
 - **called from:**
 - `core/session_manager.py:1113`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:1085`
+- `routes/history/history_routes.py:1101`
 - `routes/research/research_routes.py:849`
 - `routes/session_routes.py:656`
 - `routes/session_routes.py:1279`

@@ -618,10 +618,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/effects.py:471`
 - `src/agent_runtime/effects.py:555`
 - `src/agent_runtime/effects.py:819`
-- `static/js/chat.js:7865`
-- `static/js/chat.js:7874`
-- `static/js/chat.js:7897`
-- `static/js/chat.js:7898`
+- `static/js/chat.js:7847`
+- `static/js/chat.js:7856`
+- `static/js/chat.js:7879`
+- `static/js/chat.js:7880`
 - `static/js/modalSnap.js:1077`
 - `static/js/modalSnap.js:1116`
 - `static/js/slashAutocomplete.js:141`

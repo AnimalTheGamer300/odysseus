@@ -231,7 +231,7 @@
 - `src/agent_loop.py:18329`
 - `src/agent_loop.py:18331`
 - `src/agent_loop.py:18437`
-- `src/agent_loop.py:25736`
+- `src/agent_loop.py:25756`
 - `src/agent_runtime/completion.py:91`
 - `src/agent_tools/document_tools.py:384`
 - `src/agent_tools/document_tools.py:438`
@@ -295,10 +295,10 @@
 
 ## `finish` — arrow, line 833
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -377,11 +377,11 @@
 - `static/js/calendar.js:1664`
 - `static/js/calendar.js:2653`
 - `static/js/chat.js:3712`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5202`
-- `static/js/chat.js:6102`
-- `static/js/chat.js:6252`
-- `static/js/chat.js:7389`
+- `static/js/chat.js:4812`
+- `static/js/chat.js:5173`
+- `static/js/chat.js:6073`
+- `static/js/chat.js:6217`
+- `static/js/chat.js:7371`
 - `static/js/documentLibrary.js:108`
 - `static/js/documentLibrary.js:124`
 - `static/js/editor/adjustments-worker.js:5`
@@ -423,10 +423,10 @@
 
 ## `finish` — arrow, line 1410
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`

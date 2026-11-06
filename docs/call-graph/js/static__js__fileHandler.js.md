@@ -51,10 +51,10 @@
 
 ## `finish` — function, line 96
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`

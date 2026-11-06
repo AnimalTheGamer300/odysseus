@@ -83,4 +83,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ChatHandler.handle_memory_command` — method (async), line 355
 - **called from:**
-- `routes/chat_routes.py:2485`
+- `routes/chat_routes.py:2504`

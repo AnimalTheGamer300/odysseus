@@ -23,8 +23,8 @@
 - `routes/calendar_routes.py:87`
 - `routes/calendar_routes.py:1813`
 - `routes/chat_routes.py:842`
-- `routes/chat_routes.py:2641`
-- `routes/chat_routes.py:5691`
+- `routes/chat_routes.py:2660`
+- `routes/chat_routes.py:5710`
 - `routes/cookbook_routes.py:420`
 - `routes/cookbook_routes.py:3293`
 - `routes/cookbook_routes.py:3426`

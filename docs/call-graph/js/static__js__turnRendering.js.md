@@ -6,10 +6,10 @@
 ## `normalize` — arrow, line 7
 - **called from:**
 - `scripts/generate_sft_environment_expansion.py:267`
-- `src/agent_loop.py:34856`
-- `src/agent_runtime/authority.py:504`
-- `src/agent_runtime/authority.py:619`
-- `src/agent_runtime/authority.py:621`
+- `src/agent_loop.py:34876`
+- `src/agent_runtime/authority.py:532`
+- `src/agent_runtime/authority.py:647`
+- `src/agent_runtime/authority.py:649`
 - `src/agent_runtime/journal.py:232`
 - `src/agent_runtime/journal.py:253`
 - `src/agent_runtime/local_model_control.py:50`
@@ -69,8 +69,8 @@
 
 ## `startsContinuationRound` — function, line 9
 - **called from:**
-- `static/js/chat.js:5904`
-- `static/js/chat.js:7603`
+- `static/js/chat.js:5875`
+- `static/js/chat.js:7585`
 - `static/js/turnRendering.js:9`
 
 ## `signature` — function, line 18
@@ -79,7 +79,7 @@
 - `routes/hwfit_routes.py:331`
 - `scripts/diffusion_server.py:224`
 - `scripts/diffusion_server.py:240`
-- `src/agent_runtime/authority.py:574`
+- `src/agent_runtime/authority.py:602`
 - `src/agent_runtime/completion.py:207`
 - `src/agent_runtime/journal.py:241`
 - `src/agent_tools/web_tools.py:756`
@@ -119,7 +119,7 @@
 ## `createTurnRendering` — function, line 52
 - **called from:**
 - `static/js/chat.js:3699`
-- `static/js/chat.js:7306`
+- `static/js/chat.js:7288`
 - `static/js/turnRendering.js:52`
 
 ## `accepts` — function, line 58
@@ -131,13 +131,13 @@
 - `src/agent_runtime/effect_log.py:333`
 - `src/agent_runtime/effect_log.py:423`
 - `static/js/chat.js:3708`
-- `static/js/chat.js:4788`
-- `static/js/chat.js:4827`
-- `static/js/chat.js:5903`
-- `static/js/chat.js:6013`
-- `static/js/chat.js:7491`
-- `static/js/chat.js:7499`
-- `static/js/chat.js:7603`
+- `static/js/chat.js:4759`
+- `static/js/chat.js:4798`
+- `static/js/chat.js:5874`
+- `static/js/chat.js:5984`
+- `static/js/chat.js:7473`
+- `static/js/chat.js:7481`
+- `static/js/chat.js:7585`
 - `static/js/turnRendering.js:58`
 - `static/js/turnRendering.js:129`
 
@@ -164,11 +164,11 @@
 - **called from:**
 - `static/js/chat.js:3700`
 - `static/js/chat.js:3716`
-- `static/js/chat.js:6451`
-- `static/js/chat.js:7359`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7497`
-- `static/js/chat.js:7678`
+- `static/js/chat.js:6415`
+- `static/js/chat.js:7341`
+- `static/js/chat.js:7467`
+- `static/js/chat.js:7479`
+- `static/js/chat.js:7660`
 - `static/js/emailLibrary/index.js:5974`
 - `static/js/startupShell.js:136`
 - `static/js/startupShell.js:145`
@@ -186,8 +186,8 @@
 
 ## `isVisible` — function, line 121
 - **called from:**
-- `static/js/chat.js:6105`
-- `static/js/chat.js:6190`
+- `static/js/chat.js:6076`
+- `static/js/chat.js:6161`
 - `static/js/cookbook.js:3703`
 - `static/js/cookbook.js:3746`
 - `static/js/cookbook.js:3784`
@@ -225,11 +225,11 @@
 - `static/js/calendar.js:1664`
 - `static/js/calendar.js:2653`
 - `static/js/chat.js:3712`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5202`
-- `static/js/chat.js:6102`
-- `static/js/chat.js:6252`
-- `static/js/chat.js:7389`
+- `static/js/chat.js:4812`
+- `static/js/chat.js:5173`
+- `static/js/chat.js:6073`
+- `static/js/chat.js:6217`
+- `static/js/chat.js:7371`
 - `static/js/documentLibrary.js:108`
 - `static/js/documentLibrary.js:124`
 - `static/js/editor/adjustments-worker.js:5`

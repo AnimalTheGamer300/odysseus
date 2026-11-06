@@ -98,7 +98,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:4418`
 - `static/js/chat.js:1641`
 - `static/js/chat.js:2093`
-- `static/js/chat.js:9522`
+- `static/js/chat.js:9521`
 - `static/js/chipScroll.js:119`
 - `static/js/colorPicker.js:348`
 - `static/js/colorPicker.js:445`

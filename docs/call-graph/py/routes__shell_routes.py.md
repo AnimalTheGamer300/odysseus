@@ -276,18 +276,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `empty` — function (async), line 1219
 - **called from:**
-- `routes/chat_routes.py:3805`
+- `routes/chat_routes.py:3824`
 - `routes/shell_routes.py:1223`
 - `routes/skills_routes.py:610`
 - `services/skills/agent_runner.py:65`
 - `services/skills/agent_runner.py:213`
 - `src/agent_runtime/authority.py:265`
-- `src/agent_runtime/authority.py:539`
-- `src/agent_runtime/authority.py:587`
-- `src/agent_runtime/authority.py:592`
-- `src/agent_runtime/authority.py:641`
-- `src/agent_runtime/authority.py:663`
-- `src/agent_runtime/authority.py:694`
+- `src/agent_runtime/authority.py:567`
+- `src/agent_runtime/authority.py:615`
+- `src/agent_runtime/authority.py:620`
+- `src/agent_runtime/authority.py:669`
+- `src/agent_runtime/authority.py:691`
+- `src/agent_runtime/authority.py:722`
 - `src/bg_monitor.py:80`
 - `tests/test_resource_identity.py:642`
 - `tests/test_skills_audit_services.py:198`

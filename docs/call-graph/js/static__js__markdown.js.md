@@ -154,7 +154,7 @@
 
 ## `neutralizeStrayThinkTags` — function, line 461
 - **called from:**
-- `static/js/chat.js:4865`
+- `static/js/chat.js:4836`
 - `static/js/chatRenderer.js:3319`
 - `static/js/chatRenderer.js:3645`
 - `static/js/markdown.js:461`
@@ -233,14 +233,14 @@
 
 ## `hasUnclosedThinkTag` — function, line 566
 - **called from:**
-- `static/js/chat.js:4540`
+- `static/js/chat.js:4511`
 - `static/js/markdown.js:566`
 - `static/js/markdown.js:707`
 
 ## `startsWithReasoningPrefix` — function, line 577
 - **called from:**
-- `static/js/chat.js:4941`
-- `static/js/chat.js:6221`
+- `static/js/chat.js:4912`
+- `static/js/chat.js:6186`
 - `static/js/liveThinkingThrottle.js:105`
 - `static/js/markdown.js:577`
 - `static/js/markdown.js:609`
@@ -253,12 +253,11 @@
 - `static/js/chat.js:4152`
 - `static/js/chat.js:4368`
 - `static/js/chat.js:4399`
-- `static/js/chat.js:4413`
-- `static/js/chat.js:4453`
-- `static/js/chat.js:4481`
-- `static/js/chat.js:4924`
-- `static/js/chat.js:7381`
-- `static/js/chat.js:9264`
+- `static/js/chat.js:4442`
+- `static/js/chat.js:4452`
+- `static/js/chat.js:4895`
+- `static/js/chat.js:7363`
+- `static/js/chat.js:9263`
 - `static/js/chatRenderer.js:3245`
 - `static/js/markdown.js:567`
 - `static/js/markdown.js:581`
@@ -272,10 +271,9 @@
 ## `extractThinkingBlocks` — function, line 663
 - **called from:**
 - `static/js/chat.js:4154`
-- `static/js/chat.js:4414`
-- `static/js/chat.js:4485`
-- `static/js/chat.js:6205`
-- `static/js/chat.js:6295`
+- `static/js/chat.js:4456`
+- `static/js/chat.js:6170`
+- `static/js/chat.js:6259`
 - `static/js/chatRenderer.js:1584`
 - `static/js/chatRenderer.js:3245`
 - `static/js/chatRenderer.js:3301`
@@ -335,16 +333,16 @@
 - `static/js/chat.js:2588`
 - `static/js/chat.js:3704`
 - `static/js/chat.js:4378`
-- `static/js/chat.js:4572`
-- `static/js/chat.js:6262`
-- `static/js/chat.js:6299`
-- `static/js/chat.js:6414`
-- `static/js/chat.js:7387`
-- `static/js/chat.js:8772`
-- `static/js/chat.js:8927`
-- `static/js/chat.js:9135`
-- `static/js/chat.js:9246`
-- `static/js/chat.js:9282`
+- `static/js/chat.js:4543`
+- `static/js/chat.js:6227`
+- `static/js/chat.js:6263`
+- `static/js/chat.js:6378`
+- `static/js/chat.js:7369`
+- `static/js/chat.js:8771`
+- `static/js/chat.js:8926`
+- `static/js/chat.js:9134`
+- `static/js/chat.js:9245`
+- `static/js/chat.js:9281`
 - `static/js/chatRenderer.js:352`
 - `static/js/chatRenderer.js:3380`
 - `static/js/chatRenderer.js:3653`
@@ -424,11 +422,9 @@
 - **called from:**
 - `static/js/chat.js:1626`
 - `static/js/chat.js:4228`
-- `static/js/chat.js:4466`
-- `static/js/chat.js:4524`
-- `static/js/chat.js:6199`
-- `static/js/chat.js:6242`
-- `static/js/chat.js:7388`
+- `static/js/chat.js:4495`
+- `static/js/chat.js:6207`
+- `static/js/chat.js:7370`
 - `static/js/document.js:3605`
 - `static/js/document.js:3628`
 - `static/js/document.js:15395`
@@ -460,19 +456,17 @@
 - `static/js/chat.js:2589`
 - `static/js/chat.js:3704`
 - `static/js/chat.js:4378`
-- `static/js/chat.js:4466`
-- `static/js/chat.js:4524`
-- `static/js/chat.js:4572`
-- `static/js/chat.js:6199`
-- `static/js/chat.js:6242`
-- `static/js/chat.js:6262`
-- `static/js/chat.js:6415`
-- `static/js/chat.js:7385`
-- `static/js/chat.js:8773`
-- `static/js/chat.js:8928`
-- `static/js/chat.js:9135`
-- `static/js/chat.js:9247`
-- `static/js/chat.js:9283`
+- `static/js/chat.js:4495`
+- `static/js/chat.js:4543`
+- `static/js/chat.js:6207`
+- `static/js/chat.js:6227`
+- `static/js/chat.js:6379`
+- `static/js/chat.js:7367`
+- `static/js/chat.js:8772`
+- `static/js/chat.js:8927`
+- `static/js/chat.js:9134`
+- `static/js/chat.js:9246`
+- `static/js/chat.js:9282`
 - `static/js/chatRenderer.js:3380`
 - `static/js/chatRenderer.js:3583`
 - `static/js/chatRenderer.js:3762`
@@ -497,7 +491,7 @@
 
 ## `renderMermaid` — function, line 1601
 - **called from:**
-- `static/js/chat.js:6316`
+- `static/js/chat.js:6280`
 - `static/js/chatRenderer.js:3481`
 - `static/js/chatRenderer.js:3866`
 - `static/js/document.js:16178`
@@ -560,7 +554,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5522`
+- `routes/chat_routes.py:5541`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -646,7 +640,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5522`
+- `routes/chat_routes.py:5541`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`

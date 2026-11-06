@@ -434,11 +434,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:1664`
 - `static/js/calendar.js:2653`
 - `static/js/chat.js:3712`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5202`
-- `static/js/chat.js:6102`
-- `static/js/chat.js:6252`
-- `static/js/chat.js:7389`
+- `static/js/chat.js:4812`
+- `static/js/chat.js:5173`
+- `static/js/chat.js:6073`
+- `static/js/chat.js:6217`
+- `static/js/chat.js:7371`
 - `static/js/documentLibrary.js:108`
 - `static/js/documentLibrary.js:124`
 - `static/js/editor/adjustments-worker.js:5`
@@ -610,7 +610,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `_registerAiEndpointRefresh` — method?, line 418
 - **called from:**
@@ -761,7 +761,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `_registerAiEndpointRefresh` — method?, line 577
 - **called from:**
@@ -894,7 +894,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `_registerAiEndpointRefresh` — method?, line 678
 - **called from:**
@@ -1189,7 +1189,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `initAppearance` — function, line 1313
 - **called from:**
@@ -1253,11 +1253,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:1664`
 - `static/js/calendar.js:2653`
 - `static/js/chat.js:3712`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5202`
-- `static/js/chat.js:6102`
-- `static/js/chat.js:6252`
-- `static/js/chat.js:7389`
+- `static/js/chat.js:4812`
+- `static/js/chat.js:5173`
+- `static/js/chat.js:6073`
+- `static/js/chat.js:6217`
+- `static/js/chat.js:7371`
 - `static/js/documentLibrary.js:108`
 - `static/js/documentLibrary.js:124`
 - `static/js/editor/adjustments-worker.js:5`
@@ -1328,13 +1328,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -1413,8 +1413,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `openPanel` — method?, line 1913
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9370`
-- `static/js/chat.js:9411`
+- `static/js/chat.js:9369`
+- `static/js/chat.js:9410`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`
@@ -1869,8 +1869,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`
@@ -2025,10 +2025,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_close` — arrow, line 3482
 - **called from:**
-- `static/js/chat.js:7876`
-- `static/js/chat.js:7884`
-- `static/js/chat.js:7892`
-- `static/js/chat.js:7895`
+- `static/js/chat.js:7858`
+- `static/js/chat.js:7866`
+- `static/js/chat.js:7874`
+- `static/js/chat.js:7877`
 - `static/js/chatRenderer.js:659`
 - `static/js/document.js:8109`
 - `static/js/document.js:8140`
@@ -2044,8 +2044,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_open` — arrow, line 3483
 - **called from:**
-- `static/js/chat.js:7871`
-- `static/js/chat.js:7884`
+- `static/js/chat.js:7853`
+- `static/js/chat.js:7866`
 - `static/js/settings.js:3493`
 
 ## `_applyPreset` — arrow, line 3522

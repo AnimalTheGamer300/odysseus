@@ -514,7 +514,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `core/session_manager.py:1113`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:1085`
+- `routes/history/history_routes.py:1101`
 - `routes/research/research_routes.py:849`
 - `routes/session_routes.py:656`
 - `routes/session_routes.py:1279`

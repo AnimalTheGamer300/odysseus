@@ -68,7 +68,7 @@
 
 ## `get_active_document` — function, line 76
 - **called from:**
-- `routes/chat_routes.py:3416`
+- `routes/chat_routes.py:3435`
 - `tests/test_active_document_clear.py:17`
 - `tests/test_active_document_clear.py:19`
 - `tests/test_active_document_clear.py:26`

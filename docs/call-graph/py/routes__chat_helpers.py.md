@@ -74,8 +74,8 @@
 - **called from:**
 - `routes/chat_helpers.py:951`
 - `routes/history/history_routes.py:299`
-- `routes/history/history_routes.py:498`
-- `routes/history/history_routes.py:507`
+- `routes/history/history_routes.py:505`
+- `routes/history/history_routes.py:514`
 
 ## `_spawn_bg` — function, line 368
 - **called from:**
@@ -135,13 +135,13 @@
 
 ## `_allowed_models_for_request` — function, line 483
 - **called from:**
-- `routes/chat_routes.py:2491`
-- `routes/chat_routes.py:3263`
+- `routes/chat_routes.py:2510`
+- `routes/chat_routes.py:3282`
 
 ## `_enforce_chat_privileges` — function, line 498
 - **called from:**
-- `routes/chat_routes.py:2477`
-- `routes/chat_routes.py:3214`
+- `routes/chat_routes.py:2496`
+- `routes/chat_routes.py:3233`
 - `tests/test_chat_helpers.py:95`
 - `tests/test_chat_helpers.py:105`
 - `tests/test_chat_helpers.py:121`
@@ -240,8 +240,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `resolve_session_auth` — function, line 1037
 - **called from:**
-- `routes/chat_routes.py:2473`
-- `routes/chat_routes.py:3217`
+- `routes/chat_routes.py:2492`
+- `routes/chat_routes.py:3236`
 - `tests/test_chatgpt_session_binding.py:74`
 - `tests/test_chatgpt_session_binding.py:90`
 - `tests/test_resolve_session_auth_chatgpt.py:58`
@@ -273,8 +273,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `build_chat_context` — function (async), line 1191
 - **called from:**
-- `routes/chat_routes.py:2495`
-- `routes/chat_routes.py:3299`
+- `routes/chat_routes.py:2514`
+- `routes/chat_routes.py:3318`
 - `tests/test_c5_rag_disable.py:63`
 - `tests/test_chat_helpers.py:712`
 - `tests/test_chat_helpers.py:816`
@@ -297,8 +297,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `accumulate_token_usage` — function, line 1628
 - **called from:**
 - `routes/chat_helpers.py:2178`
-- `routes/chat_routes.py:4732`
-- `routes/chat_routes.py:5221`
+- `routes/chat_routes.py:4751`
+- `routes/chat_routes.py:5240`
 - `tests/test_cost_tracking.py:155`
 - `tests/test_cost_tracking.py:156`
 - `tests/test_cost_tracking.py:172`
@@ -319,8 +319,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `clean_thinking_for_save` — function, line 1838
 - **called from:**
 - `routes/chat_routes.py:1501`
-- `routes/chat_routes.py:2584`
-- `routes/chat_routes.py:4174`
+- `routes/chat_routes.py:2603`
+- `routes/chat_routes.py:4193`
 - `tests/test_chat_helpers.py:67`
 - `tests/test_chat_helpers.py:385`
 - `tests/test_chat_helpers.py:396`
@@ -330,13 +330,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `save_assistant_response` — function, line 1868
 - **called from:**
-- `routes/chat_routes.py:4722`
-- `routes/chat_routes.py:4810`
-- `routes/chat_routes.py:4861`
-- `routes/chat_routes.py:5208`
-- `routes/chat_routes.py:5270`
-- `routes/chat_routes.py:5337`
-- `routes/chat_routes.py:5393`
+- `routes/chat_routes.py:4741`
+- `routes/chat_routes.py:4829`
+- `routes/chat_routes.py:4880`
+- `routes/chat_routes.py:5227`
+- `routes/chat_routes.py:5289`
+- `routes/chat_routes.py:5356`
+- `routes/chat_routes.py:5412`
 - `tests/test_chat_helpers.py:440`
 
 ## `_model_value` — function, line 1893
@@ -357,8 +357,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `run_post_response_tasks` — function, line 2049
 - **called from:**
-- `routes/chat_routes.py:2613`
-- `routes/chat_routes.py:4824`
-- `routes/chat_routes.py:5285`
-- `routes/chat_routes.py:5349`
+- `routes/chat_routes.py:2632`
+- `routes/chat_routes.py:4843`
+- `routes/chat_routes.py:5304`
+- `routes/chat_routes.py:5368`
 - `tests/test_kv_cache_invalidation_2927.py:325`

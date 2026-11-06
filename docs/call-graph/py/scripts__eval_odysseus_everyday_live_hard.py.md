@@ -13,7 +13,7 @@
 - `scripts/run_sft_overnight_fixture_flows.py:462`
 - `scripts/run_sft_overnight_fixture_flows.py:499`
 - `static/js/calendar.js:3526`
-- `static/js/chat.js:5718`
+- `static/js/chat.js:5689`
 - `static/js/chatRenderer.js:3435`
 - `static/js/cookbookRunning.js:3485`
 

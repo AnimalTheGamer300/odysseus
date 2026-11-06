@@ -95,10 +95,10 @@
 
 ## `_close` — function, line 210
 - **called from:**
-- `static/js/chat.js:7876`
-- `static/js/chat.js:7884`
-- `static/js/chat.js:7892`
-- `static/js/chat.js:7895`
+- `static/js/chat.js:7858`
+- `static/js/chat.js:7866`
+- `static/js/chat.js:7874`
+- `static/js/chat.js:7877`
 - `static/js/chatRenderer.js:659`
 - `static/js/document.js:8109`
 - `static/js/document.js:8140`

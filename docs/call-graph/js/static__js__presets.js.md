@@ -171,8 +171,8 @@
 ## `getCharacterName` — function, line 977
 - **called from:**
 - `static/js/chat.js:3512`
-- `static/js/chat.js:5236`
-- `static/js/chat.js:6127`
+- `static/js/chat.js:5207`
+- `static/js/chat.js:6098`
 - `static/js/presets.js:977`
 
 ## `getShowPersonaName` — function, line 985

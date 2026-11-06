@@ -1,6 +1,6 @@
 # HTTP endpoints (FastAPI) ↔ JS fetch() callers
 
-551 route decorators found. JS side: 1085 literal `fetch('/...')` call sites.
+551 route decorators found. JS side: 1086 literal `fetch('/...')` call sites.
 
 Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 
@@ -435,29 +435,29 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/slashCommands.js:655` → `/api/chat`
 
 ## `POST /api/chat/finish/{session_id}`
-- handler: `chat_finish` — `routes/chat_routes.py:5565`
+- handler: `chat_finish` — `routes/chat_routes.py:5584`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/chat/reasoning-control`
-- handler: `reasoning_control` — `routes/chat_routes.py:5638`
+- handler: `reasoning_control` — `routes/chat_routes.py:5657`
 - **JS callers:**
-  - `static/js/chat.js:7814` → `/api/chat/reasoning-control?model=`
+  - `static/js/chat.js:7796` → `/api/chat/reasoning-control?model=`
 
 ## `GET /api/chat/resume/{session_id}`
-- handler: `chat_resume` — `routes/chat_routes.py:5538`
+- handler: `chat_resume` — `routes/chat_routes.py:5557`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/chat/stop/{session_id}`
-- handler: `chat_stop` — `routes/chat_routes.py:5558`
+- handler: `chat_stop` — `routes/chat_routes.py:5577`
 - **JS callers:**
   - `static/js/chat.js:1919` → `/api/chat/stop/${encodeURIComponent(sessionId)}`
 
 ## `GET /api/chat/stream_status/{session_id}`
-- handler: `chat_stream_status` — `routes/chat_routes.py:5576`
+- handler: `chat_stream_status` — `routes/chat_routes.py:5595`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/chat_stream`
-- handler: `chat_stream` — `routes/chat_routes.py:2635`
+- handler: `chat_stream` — `routes/chat_routes.py:2654`
 - **JS callers:**
   - `static/js/chat.js:3568` → `/api/chat_stream`
   - `static/js/compare/stream.js:299` → `/api/chat_stream`
@@ -743,7 +743,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/settings.js:3878` → `/api/contacts/list`
 
 ## `GET /api/conversations/topics`
-- handler: `get_conversation_topics` — `routes/history/history_routes.py:1167`
+- handler: `get_conversation_topics` — `routes/history/history_routes.py:1183`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/cookbook/gpus`
@@ -887,8 +887,8 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - **JS callers:**
   - `static/js/chat.js:3179` → `/api/document`
   - `static/js/chat.js:3179` → `/api/document`
-  - `static/js/chat.js:9402` → `/api/document`
-  - `static/js/chat.js:9402` → `/api/document`
+  - `static/js/chat.js:9401` → `/api/document`
+  - `static/js/chat.js:9401` → `/api/document`
   - `static/js/document.js:7296` → `/api/document`
   - `static/js/document.js:7296` → `/api/document`
   - `static/js/document.js:12003` → `/api/document`
@@ -912,8 +912,8 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - **JS callers:**
   - `static/js/chat.js:3179` → `/api/document`
   - `static/js/chat.js:3179` → `/api/document`
-  - `static/js/chat.js:9402` → `/api/document`
-  - `static/js/chat.js:9402` → `/api/document`
+  - `static/js/chat.js:9401` → `/api/document`
+  - `static/js/chat.js:9401` → `/api/document`
   - `static/js/document.js:7296` → `/api/document`
   - `static/js/document.js:7296` → `/api/document`
   - `static/js/document.js:12003` → `/api/document`
@@ -1031,7 +1031,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/documents/import-pdf`
 - handler: `import_pdf` — `routes/document/document_routes.py:227`
 - **JS callers:**
-  - `static/js/chat.js:9397` → `/api/documents/import-pdf`
+  - `static/js/chat.js:9396` → `/api/documents/import-pdf`
   - `static/js/document.js:15169` → `/api/documents/import-pdf`
   - `static/js/document.js:16047` → `/api/documents/import-pdf`
   - `static/js/documentLibrary.js:1745` → `/api/documents/import-pdf`
@@ -1072,7 +1072,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `GET /api/documents/{session_id}`
 - handler: `list_documents` — `routes/document/document_routes.py:636`
 - **JS callers:**
-  - `static/js/chat.js:9397` → `/api/documents/import-pdf`
+  - `static/js/chat.js:9396` → `/api/documents/import-pdf`
   - `static/js/document.js:5401` → `/api/documents/library?`
   - `static/js/document.js:15169` → `/api/documents/import-pdf`
   - `static/js/document.js:15178` → `/api/documents/import-docx`
@@ -1738,7 +1738,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/history/{session_id}`
-- handler: `get_session_history` — `routes/history/history_routes.py:409`
+- handler: `get_session_history` — `routes/history/history_routes.py:416`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/history/{session_id}`
@@ -1845,7 +1845,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/admin.js:3746` → `/api/import`
 
 ## `POST /api/inject_context/{session_id}`
-- handler: `inject_context` — `routes/chat_routes.py:5599`
+- handler: `inject_context` — `routes/chat_routes.py:5618`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `GET /api/mcp/oauth/authorize/{server_id}`
@@ -2438,9 +2438,9 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/rewrite`
-- handler: `rewrite_message` — `routes/chat_routes.py:5684`
+- handler: `rewrite_message` — `routes/chat_routes.py:5703`
 - **JS callers:**
-  - `static/js/chat.js:9201` → `/api/rewrite`
+  - `static/js/chat.js:9200` → `/api/rewrite`
 
 ## `GET /api/runtime`
 - handler: `runtime_info` — `app.py:1098`
@@ -2448,7 +2448,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/admin.js:1892` → `/api/runtime`
 
 ## `GET /api/search`
-- handler: `search_messages` — `routes/chat_routes.py:5614`
+- handler: `search_messages` — `routes/chat_routes.py:5633`
 - **JS callers:**
   - `static/js/compare/index.js:1061` → `/api/search`
   - `static/js/search-chat.js:194` → `/api/search?q=`
@@ -2495,7 +2495,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 ## `POST /api/session`
 - handler: `create_session` — `routes/session_routes.py:553`
 - **JS callers:**
-  - `static/js/chat.js:9384` → `/api/session`
+  - `static/js/chat.js:9383` → `/api/session`
   - `static/js/compare/index.js:311` → `/api/session`
   - `static/js/compare/panes.js:740` → `/api/session`
   - `static/js/compare/panes.js:936` → `/api/session`
@@ -2516,7 +2516,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/compact`
-- handler: `compact_session` — `routes/history/history_routes.py:1469`
+- handler: `compact_session` — `routes/history/history_routes.py:1485`
 - **JS callers:**
   - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
   - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
@@ -2528,7 +2528,7 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
   - `static/js/chat.js:1154` → `/api/session/${encodeURIComponent(sid)}/compact`
 
 ## `GET /api/session/{session_id}/context`
-- handler: `get_session_context_usage` — `routes/history/history_routes.py:1176`
+- handler: `get_session_context_usage` — `routes/history/history_routes.py:1192`
 - **JS callers:**
   - `static/js/chat.js:1184` → `/api/session/${encodeURIComponent(sid)}/context`
 
@@ -2537,19 +2537,19 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/delete-messages`
-- handler: `delete_messages` — `routes/history/history_routes.py:665`
+- handler: `delete_messages` — `routes/history/history_routes.py:681`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/edit-message`
-- handler: `edit_message` — `routes/history/history_routes.py:753`
+- handler: `edit_message` — `routes/history/history_routes.py:769`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/fork`
-- handler: `fork_session` — `routes/history/history_routes.py:1035`
+- handler: `fork_session` — `routes/history/history_routes.py:1051`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/generation-settings`
-- handler: `set_session_generation_settings` — `routes/history/history_routes.py:1350`
+- handler: `set_session_generation_settings` — `routes/history/history_routes.py:1366`
 - **JS callers:**
   - `static/js/chat.js:1133` → `/api/session/${encodeURIComponent(sid)}/generation-settings`
 
@@ -2558,42 +2558,42 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/mark-stopped`
-- handler: `mark_stopped` — `routes/history/history_routes.py:808`
+- handler: `mark_stopped` — `routes/history/history_routes.py:824`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/memory-extraction`
-- handler: `set_session_memory_extraction` — `routes/history/history_routes.py:1238`
+- handler: `set_session_memory_extraction` — `routes/history/history_routes.py:1254`
 - **JS callers:**
   - `static/js/chat.js:1028` → `/api/session/${encodeURIComponent(sid)}/memory-extraction`
 
 ## `POST /api/session/{session_id}/memory-injection`
-- handler: `set_session_memory_injection` — `routes/history/history_routes.py:1313`
+- handler: `set_session_memory_injection` — `routes/history/history_routes.py:1329`
 - **JS callers:**
   - `static/js/chat.js:1102` → `/api/session/${encodeURIComponent(sid)}/memory-injection`
 
 ## `POST /api/session/{session_id}/merge-last-assistant`
-- handler: `merge_last_assistant` — `routes/history/history_routes.py:914`
+- handler: `merge_last_assistant` — `routes/history/history_routes.py:930`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/message`
-- handler: `add_message` — `routes/history/history_routes.py:641`
+- handler: `add_message` — `routes/history/history_routes.py:657`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/skill-injection`
-- handler: `set_session_skill_injection` — `routes/history/history_routes.py:1274`
+- handler: `set_session_skill_injection` — `routes/history/history_routes.py:1290`
 - **JS callers:**
   - `static/js/chat.js:1066` → `/api/session/${encodeURIComponent(sid)}/skill-injection`
 
 ## `POST /api/session/{session_id}/truncate`
-- handler: `truncate_session` — `routes/history/history_routes.py:559`
+- handler: `truncate_session` — `routes/history/history_routes.py:566`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/uncompact`
-- handler: `uncompact_session` — `routes/history/history_routes.py:1406`
+- handler: `uncompact_session` — `routes/history/history_routes.py:1422`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `POST /api/session/{session_id}/update-last-meta`
-- handler: `update_last_meta` — `routes/history/history_routes.py:863`
+- handler: `update_last_meta` — `routes/history/history_routes.py:879`
 - _no literal JS fetch found (dynamic URL, server-side call, or unused)_
 
 ## `DELETE /api/session/{sid}`
@@ -3359,30 +3359,31 @@ Match rule: fetch URL matched against route paths with `{param}` as `[^/]+`.
 - `static/js/chat.js:2633` → `/api/session/`
 - `static/js/chat.js:3657` → `/api/chat/finish/`
 - `static/js/chat.js:3728` → `/api/history/`
-- `static/js/chat.js:5360` → `/api/upload/`
-- `static/js/chat.js:5362` → `/api/upload/`
-- `static/js/chat.js:5384` → `/api/upload/`
-- `static/js/chat.js:6429` → `/api/session/`
-- `static/js/chat.js:6662` → `/api/session/`
-- `static/js/chat.js:7018` → `/api/chat/stream_status/`
-- `static/js/chat.js:7081` → `/api/chat/stream_status/`
-- `static/js/chat.js:7156` → `/api/session/`
-- `static/js/chat.js:7270` → `/api/chat/resume/`
-- `static/js/chat.js:7641` → `/api/history/`
-- `static/js/chat.js:8213` → `/api/session/`
-- `static/js/chat.js:8280` → `/api/session/`
-- `static/js/chat.js:8372` → `/api/session/`
-- `static/js/chat.js:8529` → `/api/session/`
-- `static/js/chat.js:8602` → `/api/session/`
-- `static/js/chat.js:8700` → `/api/session/`
-- `static/js/chat.js:8733` → `/api/research/status/`
-- `static/js/chat.js:8744` → `/api/research/result/`
-- `static/js/chat.js:8892` → `/api/research/status/`
-- `static/js/chat.js:8918` → `/api/research/result/`
-- `static/js/chat.js:9054` → `/api/session/`
-- `static/js/chat.js:9127` → `/api/session/`
-- `static/js/chat.js:9294` → `/api/session/`
-- `static/js/chat.js:9349` → `/api/upload/`
+- `static/js/chat.js:5331` → `/api/upload/`
+- `static/js/chat.js:5333` → `/api/upload/`
+- `static/js/chat.js:5355` → `/api/upload/`
+- `static/js/chat.js:6393` → `/api/session/`
+- `static/js/chat.js:6626` → `/api/session/`
+- `static/js/chat.js:6665` → `/api/chat/stream_status/`
+- `static/js/chat.js:7000` → `/api/chat/stream_status/`
+- `static/js/chat.js:7063` → `/api/chat/stream_status/`
+- `static/js/chat.js:7138` → `/api/session/`
+- `static/js/chat.js:7252` → `/api/chat/resume/`
+- `static/js/chat.js:7623` → `/api/history/`
+- `static/js/chat.js:8203` → `/api/session/`
+- `static/js/chat.js:8270` → `/api/session/`
+- `static/js/chat.js:8367` → `/api/session/`
+- `static/js/chat.js:8528` → `/api/session/`
+- `static/js/chat.js:8601` → `/api/session/`
+- `static/js/chat.js:8699` → `/api/session/`
+- `static/js/chat.js:8732` → `/api/research/status/`
+- `static/js/chat.js:8743` → `/api/research/result/`
+- `static/js/chat.js:8891` → `/api/research/status/`
+- `static/js/chat.js:8917` → `/api/research/result/`
+- `static/js/chat.js:9053` → `/api/session/`
+- `static/js/chat.js:9126` → `/api/session/`
+- `static/js/chat.js:9293` → `/api/session/`
+- `static/js/chat.js:9348` → `/api/upload/`
 - `static/js/chatRenderer.js:548` → `/api/upload/`
 - `static/js/chatRenderer.js:601` → `/api/upload/`
 - `static/js/chatRenderer.js:647` → `/api/upload/`

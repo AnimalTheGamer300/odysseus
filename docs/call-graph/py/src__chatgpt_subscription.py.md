@@ -88,6 +88,7 @@
 
 ## `get_chatgpt_model_metadata` — function, line 208
 - **called from:**
+- `routes/chat_routes.py:2468`
 - `routes/model_routes.py:1719`
 - `routes/session_routes.py:778`
 - `src/chatgpt_subscription.py:234`
@@ -99,8 +100,8 @@
 
 ## `validate_reasoning_effort` — function, line 226
 - **called from:**
-- `routes/chat_routes.py:2452`
-- `routes/chat_routes.py:2991`
+- `routes/chat_routes.py:2471`
+- `routes/chat_routes.py:3010`
 - `routes/history/history_routes.py:268`
 - `src/utility_effort.py:80`
 - `src/utility_effort.py:87`
@@ -420,7 +421,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16888 more (grep the name in repo)
+- … +16891 more (grep the name in repo)
 
 ## `UsageCache.put` — method, line 717
 - **called from:**
@@ -457,10 +458,10 @@
 - `routes/upload_routes.py:614`
 - `services/shell/service.py:119`
 - `services/shell/service.py:121`
-- `src/agent_loop.py:25976`
-- `src/agent_loop.py:25993`
-- `src/agent_loop.py:34242`
-- `src/agent_loop.py:34296`
+- `src/agent_loop.py:25996`
+- `src/agent_loop.py:26013`
+- `src/agent_loop.py:34262`
+- `src/agent_loop.py:34316`
 - `src/agent_tools/filesystem_tools.py:128`
 - `src/agent_tools/filesystem_tools.py:151`
 - `src/agent_tools/filesystem_tools.py:158`
@@ -527,10 +528,10 @@
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4555`
-- `src/llm_core.py:4556`
-- `src/llm_core.py:4754`
-- `src/llm_core.py:5114`
+- `src/llm_core.py:4565`
+- `src/llm_core.py:4566`
+- `src/llm_core.py:4764`
+- `src/llm_core.py:5124`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`
@@ -587,5 +588,5 @@
 
 ## `build_responses_input` — function, line 803
 - **called from:**
-- `src/llm_core.py:1620`
+- `src/llm_core.py:1630`
 - `tests/test_chatgpt_zero_native_tools.py:225`

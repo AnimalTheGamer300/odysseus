@@ -36,7 +36,7 @@
 - `static/js/calendar.js:3322`
 - `static/js/calendar.js:3364`
 - `static/js/chat.js:2253`
-- `static/js/chat.js:7775`
+- `static/js/chat.js:7757`
 - `static/js/cookbook-hwfit.js:413`
 - `static/js/document.js:1037`
 - `static/js/document.js:1044`

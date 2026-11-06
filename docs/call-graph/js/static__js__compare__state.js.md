@@ -9,7 +9,7 @@
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`

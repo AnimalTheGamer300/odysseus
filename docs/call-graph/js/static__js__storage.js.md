@@ -136,7 +136,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16888 more (grep the name in repo)
+- … +16891 more (grep the name in repo)
 
 ## `set` — function, line 72
 - **called from:**
@@ -168,27 +168,27 @@
 - `routes/chat_routes.py:928`
 - `routes/chat_routes.py:928`
 - `routes/chat_routes.py:1721`
-- `routes/chat_routes.py:3574`
-- `routes/chat_routes.py:3753`
-- `routes/chat_routes.py:3797`
-- `routes/chat_routes.py:3799`
-- `routes/chat_routes.py:3843`
-- `routes/chat_routes.py:3854`
-- `routes/chat_routes.py:3861`
-- `routes/chat_routes.py:3863`
-- `routes/chat_routes.py:3879`
-- `routes/chat_routes.py:3887`
+- `routes/chat_routes.py:3593`
+- `routes/chat_routes.py:3772`
+- `routes/chat_routes.py:3816`
+- `routes/chat_routes.py:3818`
+- `routes/chat_routes.py:3862`
+- `routes/chat_routes.py:3873`
+- `routes/chat_routes.py:3880`
+- `routes/chat_routes.py:3882`
+- `routes/chat_routes.py:3898`
 - `routes/chat_routes.py:3906`
-- `routes/chat_routes.py:3907`
-- `routes/chat_routes.py:4983`
-- `routes/chat_routes.py:4985`
-- `routes/chat_routes.py:4987`
-- `routes/chat_routes.py:4997`
-- `routes/chat_routes.py:5000`
+- `routes/chat_routes.py:3925`
+- `routes/chat_routes.py:3926`
+- `routes/chat_routes.py:5002`
 - `routes/chat_routes.py:5004`
-- `routes/chat_routes.py:5015`
-- `routes/chat_routes.py:5017`
-- `routes/chat_routes.py:5059`
+- `routes/chat_routes.py:5006`
+- `routes/chat_routes.py:5016`
+- `routes/chat_routes.py:5019`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5034`
+- `routes/chat_routes.py:5036`
+- `routes/chat_routes.py:5078`
 - `routes/chatgpt_subscription_routes.py:82`
 - `routes/codex_routes.py:89`
 - `routes/codex_routes.py:103`
@@ -200,7 +200,7 @@
 - `routes/cookbook_routes.py:2877`
 - `routes/cookbook_routes.py:3326`
 - `routes/cookbook_routes.py:3872`
-- … +2020 more (grep the name in repo)
+- … +2023 more (grep the name in repo)
 
 ## `remove` — function, line 83
 - **called from:**
@@ -300,7 +300,7 @@
 - `static/js/chat.js:3055`
 - `static/js/chat.js:3326`
 - `static/js/chat.js:3416`
-- `static/js/chat.js:6357`
+- `static/js/chat.js:6321`
 - `static/js/compare/index.js:97`
 - `static/js/compare/index.js:355`
 - `static/js/storage.js:93`
@@ -333,7 +333,7 @@
 
 ## `setToggle` — function, line 106
 - **called from:**
-- `static/js/chat.js:6847`
+- `static/js/chat.js:6829`
 - `static/js/slashCommands.js:927`
 - `static/js/slashCommands.js:939`
 - `static/js/storage.js:106`

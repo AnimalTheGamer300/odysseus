@@ -1057,8 +1057,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `isVisible` — function, line 3703
 - **called from:**
-- `static/js/chat.js:6105`
-- `static/js/chat.js:6190`
+- `static/js/chat.js:6076`
+- `static/js/chat.js:6161`
 - `static/js/cookbook.js:3703`
 - `static/js/cookbook.js:3746`
 - `static/js/cookbook.js:3784`

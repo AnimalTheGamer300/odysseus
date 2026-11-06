@@ -15,10 +15,10 @@
 ## `normalize` — function, line 83
 - **called from:**
 - `scripts/generate_sft_environment_expansion.py:267`
-- `src/agent_loop.py:34856`
-- `src/agent_runtime/authority.py:504`
-- `src/agent_runtime/authority.py:619`
-- `src/agent_runtime/authority.py:621`
+- `src/agent_loop.py:34876`
+- `src/agent_runtime/authority.py:532`
+- `src/agent_runtime/authority.py:647`
+- `src/agent_runtime/authority.py:649`
 - `src/agent_runtime/journal.py:232`
 - `src/agent_runtime/journal.py:253`
 - `src/agent_runtime/local_model_control.py:50`

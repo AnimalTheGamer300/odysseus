@@ -4,7 +4,7 @@
 
 ## `plan_mode_disabled_tools` — function, line 192
 - **called from:**
-- `routes/chat_routes.py:3742`
+- `routes/chat_routes.py:3761`
 - `src/agent_loop.py:21694`
 - `src/agent_loop.py:21955`
 - `tests/test_email_registry_sync.py:53`
@@ -17,9 +17,9 @@
 
 ## `email_tool_policy_names` — function, line 223
 - **called from:**
-- `src/agent_loop.py:24163`
-- `src/agent_loop.py:28175`
-- `src/agent_loop.py:33887`
+- `src/agent_loop.py:24183`
+- `src/agent_loop.py:28195`
+- `src/agent_loop.py:33907`
 - `src/tool_execution.py:1786`
 - `src/tool_execution.py:2090`
 - `tests/test_email_registry_sync.py:76`
@@ -62,7 +62,7 @@
 
 ## `blocked_tools_for_owner` — function, line 290
 - **called from:**
-- `routes/chat_routes.py:3824`
+- `routes/chat_routes.py:3843`
 - `routes/session_routes.py:1730`
 - `src/agent_loop.py:21934`
 - `tests/test_cookbook_readonly_tools_admin_gate.py:75`
@@ -76,8 +76,8 @@
 
 ## `delegated_credential_blocked_tools` — function, line 297
 - **called from:**
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3826`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3845`
 - `routes/session_routes.py:1732`
 - `src/agent_loop.py:21688`
 - `src/agent_loop.py:21943`

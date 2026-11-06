@@ -102,7 +102,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:1395`
 - `routes/gallery/gallery_routes.py:1396`
 - `routes/gallery/gallery_routes.py:1423`
-- `routes/history/history_routes.py:425`
+- `routes/history/history_routes.py:432`
 - `routes/session_routes.py:957`
 - `routes/session_routes.py:1009`
 - `routes/session_routes.py:1143`
@@ -117,8 +117,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:19520`
 - `src/agent_loop.py:19520`
 - `src/agent_loop.py:19520`
-- `src/agent_loop.py:26493`
-- `src/agent_loop.py:30737`
+- `src/agent_loop.py:26513`
+- `src/agent_loop.py:30757`
 - `src/agent_tools/document_tools.py:740`
 - `src/agent_tools/document_tools.py:892`
 - `src/agent_tools/document_tools.py:1030`
@@ -186,9 +186,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -204,7 +204,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `MemoryVectorStore.add` — method, line 104
 - **called from:**
@@ -250,9 +250,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -268,7 +268,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `MemoryVectorStore.remove` — method, line 122
 - **called from:**
@@ -372,13 +372,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:1819`
 - `routes/chat_routes.py:1822`
 - `routes/chat_routes.py:1893`
-- `routes/chat_routes.py:2757`
-- `routes/chat_routes.py:2763`
-- `routes/chat_routes.py:2779`
+- `routes/chat_routes.py:2776`
 - `routes/chat_routes.py:2782`
-- `routes/chat_routes.py:3447`
-- `routes/chat_routes.py:3597`
-- `routes/chat_routes.py:3598`
+- `routes/chat_routes.py:2798`
+- `routes/chat_routes.py:2801`
+- `routes/chat_routes.py:3466`
+- `routes/chat_routes.py:3616`
+- `routes/chat_routes.py:3617`
 - `routes/contacts/contacts_routes.py:617`
 - `routes/contacts/contacts_routes.py:621`
 - `routes/contacts/contacts_routes.py:625`

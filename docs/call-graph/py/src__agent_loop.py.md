@@ -4,7 +4,7 @@
 
 ## `_local_media_discovery_call_allowed` — function, line 119
 - **called from:**
-- `src/agent_loop.py:33967`
+- `src/agent_loop.py:33987`
 - `tests/test_workspace_artifact_tool_floor.py:1695`
 - `tests/test_workspace_artifact_tool_floor.py:1696`
 - `tests/test_workspace_artifact_tool_floor.py:1697`
@@ -16,7 +16,7 @@
 
 ## `_resolved_tool_call_id` — function, line 143
 - **called from:**
-- `src/agent_loop.py:32951`
+- `src/agent_loop.py:32971`
 - `tests/test_tool_event_call_ids.py:5`
 - `tests/test_tool_event_call_ids.py:22`
 - `tests/test_tool_event_call_ids.py:23`
@@ -27,9 +27,9 @@
 - **called from:**
 - `src/agent_loop.py:345`
 - `src/agent_loop.py:393`
-- `src/agent_loop.py:25765`
-- `src/agent_loop.py:26793`
-- `src/agent_loop.py:26822`
+- `src/agent_loop.py:25785`
+- `src/agent_loop.py:26813`
+- `src/agent_loop.py:26842`
 
 ## `_route_thinking_policy` — function, line 184
 - **called from:**
@@ -38,7 +38,7 @@
 ## `_thinking_mode_for_route` — function, line 189
 - **called from:**
 - `src/agent_loop.py:22763`
-- `src/agent_loop.py:25256`
+- `src/agent_loop.py:25276`
 - `tests/test_model_tool_modes.py:64`
 - `tests/test_model_tool_modes.py:69`
 - `tests/test_model_tool_modes.py:77`
@@ -52,9 +52,9 @@
 
 ## `_allow_visual_tool_evidence_for_model` — function, line 233
 - **called from:**
-- `src/agent_loop.py:26412`
-- `src/agent_loop.py:37163`
-- `src/agent_loop.py:38372`
+- `src/agent_loop.py:26432`
+- `src/agent_loop.py:37183`
+- `src/agent_loop.py:38392`
 - `tests/test_minimal_native_tool_prompt.py:295`
 - `tests/test_minimal_native_tool_prompt.py:298`
 - `tests/test_minimal_native_tool_prompt.py:299`
@@ -65,27 +65,27 @@
 
 ## `_looks_like_explicit_web_search_request` — function, line 252
 - **called from:**
-- `src/agent_loop.py:29381`
+- `src/agent_loop.py:29401`
 - `tests/test_minimal_native_tool_prompt.py:27`
 - `tests/test_minimal_native_tool_prompt.py:34`
 
 ## `_repeated_artifact_mutation_can_finish` — function, line 279
 - **called from:**
-- `src/agent_loop.py:32884`
+- `src/agent_loop.py:32904`
 - `tests/test_minimal_native_tool_prompt.py:40`
 - `tests/test_minimal_native_tool_prompt.py:44`
 - `tests/test_minimal_native_tool_prompt.py:48`
 
 ## `_malformed_write_needs_body_handoff` — function, line 294
 - **called from:**
-- `src/agent_loop.py:28481`
+- `src/agent_loop.py:28501`
 - `tests/test_minimal_native_tool_prompt.py:55`
 - `tests/test_minimal_native_tool_prompt.py:60`
 - `tests/test_minimal_native_tool_prompt.py:65`
 
 ## `_post_finish_inspection_should_converge` — function, line 312
 - **called from:**
-- `src/agent_loop.py:37213`
+- `src/agent_loop.py:37233`
 - `tests/test_minimal_native_tool_prompt.py:81`
 - `tests/test_minimal_native_tool_prompt.py:82`
 - `tests/test_minimal_native_tool_prompt.py:85`
@@ -106,9 +106,9 @@
 
 ## `_apply_tool_surface_to_schemas` — function, line 389
 - **called from:**
-- `src/agent_loop.py:25835`
-- `src/agent_loop.py:25906`
-- `src/agent_loop.py:25940`
+- `src/agent_loop.py:25855`
+- `src/agent_loop.py:25926`
+- `src/agent_loop.py:25960`
 - `tests/test_model_tool_modes.py:50`
 - `tests/test_model_tool_modes.py:58`
 
@@ -124,16 +124,16 @@
 
 ## `_contract_prompt_domains` — function, line 413
 - **called from:**
-- `src/agent_loop.py:23406`
+- `src/agent_loop.py:23426`
 - `tests/test_contract_prompt_conversation.py:68`
 
 ## `_contract_allows_single_action_terminal` — function, line 423
 - **called from:**
 - `src/agent_loop.py:21778`
-- `src/agent_loop.py:36973`
-- `src/agent_loop.py:37012`
-- `src/agent_loop.py:37023`
-- `src/agent_loop.py:37034`
+- `src/agent_loop.py:36993`
+- `src/agent_loop.py:37032`
+- `src/agent_loop.py:37043`
+- `src/agent_loop.py:37054`
 - `tests/test_contract_prompt_conversation.py:78`
 - `tests/test_contract_prompt_conversation.py:79`
 - `tests/test_contract_prompt_conversation.py:80`
@@ -141,34 +141,34 @@
 ## `_request_has_compound_actions` — function, line 428
 - **called from:**
 - `src/agent_loop.py:21779`
-- `src/agent_loop.py:27327`
+- `src/agent_loop.py:27347`
 - `tests/test_tool_policy.py:1996`
 - `tests/test_tool_policy.py:1999`
 - `tests/test_tool_policy.py:2004`
 
 ## `_request_forbids_execution_retry` — function, line 455
 - **called from:**
-- `src/agent_loop.py:25621`
+- `src/agent_loop.py:25641`
 - `tests/test_contract_prompt_conversation.py:119`
 - `tests/test_contract_prompt_conversation.py:123`
 
 ## `_contract_mutation_signature` — function, line 473
 - **called from:**
-- `src/agent_loop.py:32868`
-- `src/agent_loop.py:33855`
-- `src/agent_loop.py:34336`
+- `src/agent_loop.py:32888`
+- `src/agent_loop.py:33875`
+- `src/agent_loop.py:34356`
 - `tests/test_contract_prompt_conversation.py:86`
 - `tests/test_contract_prompt_conversation.py:104`
 - `tests/test_contract_prompt_conversation.py:109`
 
 ## `_has_accepted_contract_tool_call` — function, line 494
 - **called from:**
-- `src/agent_loop.py:29501`
+- `src/agent_loop.py:29521`
 
 ## `_required_safe_read_operation` — function, line 501
 - **called from:**
-- `src/agent_loop.py:27330`
-- `src/agent_loop.py:28573`
+- `src/agent_loop.py:27350`
+- `src/agent_loop.py:28593`
 - `tests/test_required_read_operation.py:37`
 - `tests/test_required_read_operation.py:38`
 - `tests/test_required_read_operation.py:49`
@@ -249,7 +249,7 @@
 
 ## `_required_read_native_id` — function, line 536
 - **called from:**
-- `src/agent_loop.py:28584`
+- `src/agent_loop.py:28604`
 
 ## `canonical_name` — function, line 539
 - **called from:**
@@ -265,12 +265,12 @@
 
 ## `_dispatch_required_safe_read` — function (async), line 591
 - **called from:**
-- `src/agent_loop.py:28587`
+- `src/agent_loop.py:28607`
 - `tests/test_required_read_operation.py:119`
 
 ## `_tool_rejection_reason` — function, line 599
 - **called from:**
-- `src/agent_loop.py:34125`
+- `src/agent_loop.py:34145`
 - `tests/test_runtime_behavior_regressions.py:204`
 
 ## `_canonical_native_tool_name_for_offered` — function, line 684
@@ -279,7 +279,7 @@
 
 ## `_native_tool_name_was_accepted` — function, line 702
 - **called from:**
-- `src/agent_loop.py:28442`
+- `src/agent_loop.py:28462`
 - `tests/test_tool_resolution_audit_aliases.py:7`
 - `tests/test_tool_resolution_audit_aliases.py:8`
 - `tests/test_tool_resolution_audit_aliases.py:9`
@@ -295,8 +295,8 @@
 
 ## `_drop_legacy_email_alias_schemas_when_mcp_available` — function, line 768
 - **called from:**
-- `src/agent_loop.py:25905`
-- `src/agent_loop.py:25939`
+- `src/agent_loop.py:25925`
+- `src/agent_loop.py:25959`
 
 ## `_is_qwen38_tool_router` — function, line 873
 - **called from:**
@@ -305,12 +305,12 @@
 - `src/agent_loop.py:14740`
 - `src/agent_loop.py:22047`
 - `src/agent_loop.py:22741`
-- `src/agent_loop.py:23634`
-- `src/agent_loop.py:23695`
-- `src/agent_loop.py:25084`
-- `src/agent_loop.py:25252`
-- `src/agent_loop.py:38093`
-- `src/agent_loop.py:38116`
+- `src/agent_loop.py:23654`
+- `src/agent_loop.py:23715`
+- `src/agent_loop.py:25104`
+- `src/agent_loop.py:25272`
+- `src/agent_loop.py:38113`
+- `src/agent_loop.py:38136`
 - `tests/test_minimal_native_tool_prompt.py:277`
 - `tests/test_minimal_native_tool_prompt.py:278`
 - `tests/test_minimal_native_tool_prompt.py:279`
@@ -354,14 +354,14 @@
 - `src/agent_loop.py:9397`
 - `src/agent_loop.py:11241`
 - `src/agent_loop.py:11323`
-- `src/agent_loop.py:23185`
-- `src/agent_loop.py:23329`
-- `src/agent_loop.py:23476`
-- `src/agent_loop.py:23545`
-- `src/agent_loop.py:23717`
-- `src/agent_loop.py:23733`
-- `src/agent_loop.py:23816`
-- `src/agent_loop.py:23969`
+- `src/agent_loop.py:23205`
+- `src/agent_loop.py:23349`
+- `src/agent_loop.py:23496`
+- `src/agent_loop.py:23565`
+- `src/agent_loop.py:23737`
+- `src/agent_loop.py:23753`
+- `src/agent_loop.py:23836`
+- `src/agent_loop.py:23989`
 - `tests/test_private_browser_tool.py:478`
 - `tests/test_private_browser_tool.py:481`
 - `tests/test_private_browser_tool.py:484`
@@ -372,7 +372,7 @@
 ## `_parse_explicit_private_browser_inspection` — function, line 1046
 - **called from:**
 - `src/agent_loop.py:9396`
-- `src/agent_loop.py:29008`
+- `src/agent_loop.py:29028`
 - `tests/test_tool_policy.py:64`
 - `tests/test_tool_policy.py:72`
 - `tests/test_tool_policy.py:83`
@@ -383,7 +383,7 @@
 - **called from:**
 - `src/agent_loop.py:8096`
 - `src/agent_loop.py:22026`
-- `src/agent_loop.py:23186`
+- `src/agent_loop.py:23206`
 - `tests/test_tool_policy.py:1064`
 
 ## `_looks_like_youtube_tool_turn` — function, line 1133
@@ -396,16 +396,16 @@
 
 ## `_explicitly_named_personal_tools` — function, line 1168
 - **called from:**
-- `src/agent_loop.py:23918`
+- `src/agent_loop.py:23938`
 - `tests/test_explicit_personal_tool_routing.py:6`
 - `tests/test_explicit_personal_tool_routing.py:13`
 - `tests/test_explicit_personal_tool_routing.py:14`
 
 ## `_qwen38_router_tool_names` — function, line 1178
 - **called from:**
-- `src/agent_loop.py:23696`
-- `src/agent_loop.py:23741`
-- `src/agent_loop.py:24116`
+- `src/agent_loop.py:23716`
+- `src/agent_loop.py:23761`
+- `src/agent_loop.py:24136`
 - `tests/test_agent_runtime_context.py:646`
 - `tests/test_minimal_native_tool_prompt.py:557`
 - `tests/test_minimal_native_tool_prompt.py:558`
@@ -429,8 +429,8 @@
 
 ## `_parse_explicit_skill_request` — function, line 1284
 - **called from:**
-- `src/agent_loop.py:28995`
-- `src/agent_loop.py:31515`
+- `src/agent_loop.py:29015`
+- `src/agent_loop.py:31535`
 - `tests/test_minimal_native_tool_prompt.py:1143`
 - `tests/test_minimal_native_tool_prompt.py:1154`
 - `tests/test_minimal_native_tool_prompt.py:1157`
@@ -445,8 +445,8 @@
 
 ## `_parse_qwen_explicit_create_request` — function, line 1415
 - **called from:**
-- `src/agent_loop.py:27359`
-- `src/agent_loop.py:29142`
+- `src/agent_loop.py:27379`
+- `src/agent_loop.py:29162`
 - `tests/test_minimal_native_tool_prompt.py:1170`
 - `tests/test_minimal_native_tool_prompt.py:1178`
 - `tests/test_minimal_native_tool_prompt.py:1186`
@@ -464,7 +464,7 @@
 ## `_parse_explicit_open_panel_request` — function, line 1654
 - **called from:**
 - `src/agent_loop.py:4910`
-- `src/agent_loop.py:28992`
+- `src/agent_loop.py:29012`
 - `tests/test_redos_core_parsers.py:332`
 - `tests/test_tool_policy.py:2266`
 - `tests/test_tool_policy.py:2272`
@@ -486,42 +486,42 @@
 
 ## `_parse_explicit_theme_change_request` — function, line 1789
 - **called from:**
-- `src/agent_loop.py:29010`
+- `src/agent_loop.py:29030`
 - `tests/test_tool_policy.py:2305`
 - `tests/test_tool_policy.py:2310`
 
 ## `_calendar_open_panel_snapshot_command` — function, line 1813
 - **called from:**
-- `src/agent_loop.py:35881`
+- `src/agent_loop.py:35901`
 
 ## `_inherit_calendar_open_range_from_tool_events` — function, line 1866
 - **called from:**
-- `src/agent_loop.py:34851`
+- `src/agent_loop.py:34871`
 - `tests/test_minimal_native_tool_prompt.py:938`
 
 ## `_fabricated_calendar_event_anchor_without_tool` — function, line 1918
 - **called from:**
-- `src/agent_loop.py:31686`
+- `src/agent_loop.py:31706`
 - `tests/test_tool_policy.py:2463`
 - `tests/test_tool_policy.py:2467`
 
 ## `_calendar_anchor_was_already_persisted` — function, line 1929
 - **called from:**
-- `src/agent_loop.py:31689`
+- `src/agent_loop.py:31709`
 - `tests/test_minimal_native_tool_prompt.py:1061`
 - `tests/test_minimal_native_tool_prompt.py:1064`
 
 ## `_calendar_expected_mutation_actions` — function, line 1945
 - **called from:**
-- `src/agent_loop.py:31688`
-- `src/agent_loop.py:31693`
-- `src/agent_loop.py:32194`
+- `src/agent_loop.py:31708`
+- `src/agent_loop.py:31713`
+- `src/agent_loop.py:32214`
 - `tests/test_tool_policy.py:2473`
 
 ## `_has_successful_calendar_action_evidence` — function, line 1958
 - **called from:**
-- `src/agent_loop.py:31691`
-- `src/agent_loop.py:32198`
+- `src/agent_loop.py:31711`
+- `src/agent_loop.py:32218`
 - `tests/test_tool_policy.py:2475`
 - `tests/test_tool_policy.py:2485`
 
@@ -531,7 +531,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_state_manager_expected_action` — function, line 2010
 - **called from:**
-- `src/agent_loop.py:31417`
+- `src/agent_loop.py:31437`
 - `tests/test_state_manager_intent_boundaries.py:11`
 - `tests/test_state_manager_intent_boundaries.py:17`
 - `tests/test_state_manager_intent_boundaries.py:23`
@@ -543,50 +543,50 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_has_successful_state_manager_evidence` — function, line 2099
 - **called from:**
-- `src/agent_loop.py:29524`
-- `src/agent_loop.py:31523`
-- `src/agent_loop.py:31552`
+- `src/agent_loop.py:29544`
+- `src/agent_loop.py:31543`
+- `src/agent_loop.py:31572`
 
 ## `_tool_block_action` — function, line 2145
 - **called from:**
 - `src/agent_loop.py:2165`
-- `src/agent_loop.py:29527`
-- `src/agent_loop.py:29537`
+- `src/agent_loop.py:29547`
+- `src/agent_loop.py:29557`
 
 ## `_memory_search_precedes_unrequested_list` — function, line 2158
 - **called from:**
-- `src/agent_loop.py:30140`
+- `src/agent_loop.py:30160`
 - `tests/test_tui_round_cap.py:425`
 - `tests/test_tui_round_cap.py:426`
 
 ## `_drop_rejected_round_response` — function, line 2171
 - **called from:**
-- `src/agent_loop.py:28707`
-- `src/agent_loop.py:30591`
-- `src/agent_loop.py:30719`
-- `src/agent_loop.py:30765`
-- `src/agent_loop.py:30786`
-- `src/agent_loop.py:30802`
-- `src/agent_loop.py:30834`
-- `src/agent_loop.py:30963`
-- `src/agent_loop.py:31013`
-- `src/agent_loop.py:31115`
-- `src/agent_loop.py:31386`
-- `src/agent_loop.py:31446`
-- `src/agent_loop.py:31478`
-- `src/agent_loop.py:31538`
-- `src/agent_loop.py:31569`
-- `src/agent_loop.py:31608`
-- `src/agent_loop.py:31642`
-- `src/agent_loop.py:31707`
-- `src/agent_loop.py:31766`
-- `src/agent_loop.py:31894`
-- `src/agent_loop.py:32209`
+- `src/agent_loop.py:28727`
+- `src/agent_loop.py:30611`
+- `src/agent_loop.py:30739`
+- `src/agent_loop.py:30785`
+- `src/agent_loop.py:30806`
+- `src/agent_loop.py:30822`
+- `src/agent_loop.py:30854`
+- `src/agent_loop.py:30983`
+- `src/agent_loop.py:31033`
+- `src/agent_loop.py:31135`
+- `src/agent_loop.py:31406`
+- `src/agent_loop.py:31466`
+- `src/agent_loop.py:31498`
+- `src/agent_loop.py:31558`
+- `src/agent_loop.py:31589`
+- `src/agent_loop.py:31628`
+- `src/agent_loop.py:31662`
+- `src/agent_loop.py:31727`
+- `src/agent_loop.py:31786`
+- `src/agent_loop.py:31914`
+- `src/agent_loop.py:32229`
 - `tests/test_tool_policy.py:2500`
 
 ## `_calendar_lookup_requires_fresh_tool` — function, line 2185
 - **called from:**
-- `src/agent_loop.py:31588`
+- `src/agent_loop.py:31608`
 - `tests/test_tool_policy.py:2010`
 - `tests/test_tool_policy.py:2249`
 - `tests/test_tool_policy.py:2254`
@@ -595,13 +595,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_looks_like_agent_reasoning_preamble` — function, line 2233
 - **called from:**
-- `src/agent_loop.py:30664`
-- `src/agent_loop.py:30791`
-- `src/agent_loop.py:36634`
-- `src/agent_loop.py:36981`
-- `src/agent_loop.py:38077`
-- `src/agent_loop.py:38585`
-- `src/agent_loop.py:38680`
+- `src/agent_loop.py:30684`
+- `src/agent_loop.py:30811`
+- `src/agent_loop.py:36654`
+- `src/agent_loop.py:37001`
+- `src/agent_loop.py:38097`
+- `src/agent_loop.py:38605`
+- `src/agent_loop.py:38700`
 - `tests/test_codeql_induced_redos.py:117`
 - `tests/test_failed_tool_completion_preamble.py:18`
 - `tests/test_failed_tool_completion_preamble.py:105`
@@ -622,23 +622,23 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_strip_trailing_done` — function, line 2329
 - **called from:**
-- `src/agent_loop.py:38219`
+- `src/agent_loop.py:38239`
 - `tests/test_redos_core_parsers.py:214`
 
 ## `_strip_trailing_answer_promise` — function, line 2336
 - **called from:**
-- `src/agent_loop.py:30761`
+- `src/agent_loop.py:30781`
 - `tests/test_tool_policy.py:2046`
 - `tests/test_tool_policy.py:2053`
 
 ## `_parse_qwen_explicit_recurring_task_request` — function, line 2362
 - **called from:**
-- `src/agent_loop.py:28993`
+- `src/agent_loop.py:29013`
 
 ## `_parse_explicit_task_state_request` — function, line 2444
 - **called from:**
-- `src/agent_loop.py:28994`
-- `src/agent_loop.py:31498`
+- `src/agent_loop.py:29014`
+- `src/agent_loop.py:31518`
 - `tests/test_tool_policy.py:2315`
 - `tests/test_tool_policy.py:2324`
 
@@ -648,22 +648,22 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_explicit_memory_state_request` — function, line 2507
 - **called from:**
-- `src/agent_loop.py:28996`
-- `src/agent_loop.py:31500`
+- `src/agent_loop.py:29016`
+- `src/agent_loop.py:31520`
 
 ## `_parse_explicit_memory_lookup_request` — function, line 2538
 - **called from:**
 - `src/agent_loop.py:22527`
-- `src/agent_loop.py:29001`
-- `src/agent_loop.py:31506`
+- `src/agent_loop.py:29021`
+- `src/agent_loop.py:31526`
 - `tests/test_minimal_native_tool_prompt.py:438`
 - `tests/test_tool_policy.py:223`
 - `tests/test_tool_policy.py:2149`
 
 ## `_parse_qwen_explicit_note_delete` — function, line 2577
 - **called from:**
-- `src/agent_loop.py:25495`
-- `src/agent_loop.py:26037`
+- `src/agent_loop.py:25515`
+- `src/agent_loop.py:26057`
 - `tests/test_minimal_native_tool_prompt.py:1333`
 - `tests/test_minimal_native_tool_prompt.py:1336`
 
@@ -714,25 +714,25 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_qwen_explicit_note_update` — function, line 2700
 - **called from:**
-- `src/agent_loop.py:25502`
-- `src/agent_loop.py:26041`
-- `src/agent_loop.py:26099`
-- `src/agent_loop.py:26104`
+- `src/agent_loop.py:25522`
+- `src/agent_loop.py:26061`
+- `src/agent_loop.py:26119`
+- `src/agent_loop.py:26124`
 
 ## `_parse_qwen_explicit_note_search` — function, line 2717
 - **called from:**
-- `src/agent_loop.py:25497`
+- `src/agent_loop.py:25517`
 
 ## `_parse_qwen_explicit_note_view` — function, line 2734
 - **called from:**
-- `src/agent_loop.py:25498`
+- `src/agent_loop.py:25518`
 - `tests/test_tui_round_cap.py:430`
 - `tests/test_tui_round_cap.py:433`
 
 ## `_is_qwen_explicit_model_list_request` — function, line 2752
 - **called from:**
 - `src/agent_loop.py:2944`
-- `src/agent_loop.py:29263`
+- `src/agent_loop.py:29283`
 - `tests/test_tool_policy.py:2787`
 - `tests/test_tool_policy.py:2790`
 - `tests/test_tool_policy.py:2793`
@@ -742,7 +742,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_is_qwen_explicit_endpoint_list_request` — function, line 2781
 - **called from:**
 - `src/agent_loop.py:2942`
-- `src/agent_loop.py:29259`
+- `src/agent_loop.py:29279`
 - `tests/test_config_file_settings_routing.py:27`
 - `tests/test_config_file_settings_routing.py:32`
 
@@ -767,14 +767,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_explicit_teacher_request` — function, line 2837
 - **called from:**
-- `src/agent_loop.py:29009`
+- `src/agent_loop.py:29029`
 - `tests/test_tool_policy.py:132`
 - `tests/test_tool_policy.py:140`
 
 ## `_parse_qwen_explicit_admin_request` — function, line 2852
 - **called from:**
-- `src/agent_loop.py:27362`
-- `src/agent_loop.py:29003`
+- `src/agent_loop.py:27382`
+- `src/agent_loop.py:29023`
 - `tests/test_config_file_settings_routing.py:18`
 - `tests/test_config_file_settings_routing.py:28`
 - `tests/test_config_file_settings_routing.py:50`
@@ -819,15 +819,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_explicit_cookbook_task_action` — function, line 3053
 - **called from:**
-- `src/agent_loop.py:27344`
+- `src/agent_loop.py:27364`
 - `tests/test_tool_policy.py:2769`
 - `tests/test_tool_policy.py:2775`
 - `tests/test_tool_policy.py:3283`
 
 ## `_parse_qwen_explicit_session_action` — function, line 3082
 - **called from:**
-- `src/agent_loop.py:27341`
-- `src/agent_loop.py:29007`
+- `src/agent_loop.py:27361`
+- `src/agent_loop.py:29027`
 - `tests/test_tool_policy.py:2708`
 - `tests/test_tool_policy.py:2721`
 - `tests/test_tool_policy.py:2934`
@@ -836,13 +836,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_qwen_explicit_session_create` — function, line 3129
 - **called from:**
-- `src/agent_loop.py:27342`
-- `src/agent_loop.py:29004`
+- `src/agent_loop.py:27362`
+- `src/agent_loop.py:29024`
 - `tests/test_tool_policy.py:2955`
 
 ## `_parse_qwen_explicit_session_send` — function, line 3165
 - **called from:**
-- `src/agent_loop.py:27343`
+- `src/agent_loop.py:27363`
 - `tests/test_tool_policy.py:2744`
 
 ## `_session_find_query_capture` — function, line 3200
@@ -852,40 +852,40 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_qwen_explicit_session_find` — function, line 3213
 - **called from:**
-- `src/agent_loop.py:27361`
-- `src/agent_loop.py:29006`
+- `src/agent_loop.py:27381`
+- `src/agent_loop.py:29026`
 - `tests/test_tool_policy.py:2963`
 - `tests/test_tool_policy.py:2967`
 - `tests/test_tool_policy.py:2973`
 
 ## `_parse_qwen_explicit_chat_transcript_search` — function, line 3243
 - **called from:**
-- `src/agent_loop.py:27137`
-- `src/agent_loop.py:27360`
-- `src/agent_loop.py:29005`
+- `src/agent_loop.py:27157`
+- `src/agent_loop.py:27380`
+- `src/agent_loop.py:29025`
 - `tests/test_tool_policy.py:2978`
 - `tests/test_tool_policy.py:2984`
 
 ## `_parse_qwen_explicit_resolve_contact` — function, line 3261
 - **called from:**
-- `src/agent_loop.py:29154`
+- `src/agent_loop.py:29174`
 - `tests/test_tool_policy.py:2992`
 - `tests/test_tool_policy.py:2996`
 
 ## `_has_successful_tool_evidence` — function, line 3281
 - **called from:**
-- `src/agent_loop.py:29507`
-- `src/agent_loop.py:31141`
+- `src/agent_loop.py:29527`
+- `src/agent_loop.py:31161`
 - `tests/test_tool_policy.py:3166`
 
 ## `_summary_for_preemptive_admin_session_tool` — function, line 3303
 - **called from:**
-- `src/agent_loop.py:27632`
+- `src/agent_loop.py:27652`
 
 ## `_is_email_account_identity_request` — function, line 3358
 - **called from:**
-- `src/agent_loop.py:29058`
-- `src/agent_loop.py:29193`
+- `src/agent_loop.py:29078`
+- `src/agent_loop.py:29213`
 - `tests/test_tool_policy.py:2074`
 - `tests/test_tool_policy.py:2075`
 - `tests/test_tool_policy.py:2076`
@@ -894,39 +894,39 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_is_qwen_explicit_latest_email_request` — function, line 3386
 - **called from:**
-- `src/agent_loop.py:23236`
-- `src/agent_loop.py:29252`
-- `src/agent_loop.py:35175`
+- `src/agent_loop.py:23256`
+- `src/agent_loop.py:29272`
+- `src/agent_loop.py:35195`
 - `tests/test_tui_round_cap.py:941`
 - `tests/test_tui_round_cap.py:943`
 
 ## `_is_explicit_latest_email_open_request` — function, line 3420
 - **called from:**
-- `src/agent_loop.py:23235`
-- `src/agent_loop.py:29807`
-- `src/agent_loop.py:35012`
+- `src/agent_loop.py:23255`
+- `src/agent_loop.py:29827`
+- `src/agent_loop.py:35032`
 
 ## `_parse_qwen_explicit_email_search_request` — function, line 3446
 - **called from:**
 - `src/agent_loop.py:3565`
-- `src/agent_loop.py:23238`
-- `src/agent_loop.py:29153`
-- `src/agent_loop.py:29794`
-- `src/agent_loop.py:35011`
+- `src/agent_loop.py:23258`
+- `src/agent_loop.py:29173`
+- `src/agent_loop.py:29814`
+- `src/agent_loop.py:35031`
 
 ## `_parse_qwen_explicit_email_topic_bulk_action_request` — function, line 3482
 - **called from:**
-- `src/agent_loop.py:27324`
-- `src/agent_loop.py:27333`
-- `src/agent_loop.py:27489`
-- `src/agent_loop.py:29107`
-- `src/agent_loop.py:29150`
-- `src/agent_loop.py:34974`
+- `src/agent_loop.py:27344`
+- `src/agent_loop.py:27353`
+- `src/agent_loop.py:27509`
+- `src/agent_loop.py:29127`
+- `src/agent_loop.py:29170`
+- `src/agent_loop.py:34994`
 - `tests/test_agent_loop.py:110`
 
 ## `_parse_explicit_email_uid_action` — function, line 3516
 - **called from:**
-- `src/agent_loop.py:27345`
+- `src/agent_loop.py:27365`
 - `tests/test_tool_policy.py:2833`
 - `tests/test_tool_policy.py:2843`
 - `tests/test_tool_policy.py:2853`
@@ -936,61 +936,61 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_explicit_email_search_tool` — function, line 3564
 - **called from:**
-- `src/agent_loop.py:27358`
+- `src/agent_loop.py:27378`
 - `tests/test_tool_policy.py:2876`
 - `tests/test_tool_policy.py:2887`
 
 ## `_parse_qwen_explicit_spam_scan_request` — function, line 3573
 - **called from:**
-- `src/agent_loop.py:23237`
-- `src/agent_loop.py:29083`
-- `src/agent_loop.py:29147`
-- `src/agent_loop.py:29768`
+- `src/agent_loop.py:23257`
+- `src/agent_loop.py:29103`
+- `src/agent_loop.py:29167`
+- `src/agent_loop.py:29788`
 - `tests/test_tool_policy.py:3411`
 - `tests/test_tool_policy.py:3416`
 
 ## `_parse_qwen_explicit_unsubscribe_scan_request` — function, line 3596
 - **called from:**
-- `src/agent_loop.py:29077`
-- `src/agent_loop.py:29145`
+- `src/agent_loop.py:29097`
+- `src/agent_loop.py:29165`
 - `tests/test_tool_policy.py:3018`
 
 ## `_parse_qwen_explicit_unsubscribe_email_request` — function, line 3609
 - **called from:**
-- `src/agent_loop.py:29071`
-- `src/agent_loop.py:29146`
+- `src/agent_loop.py:29091`
+- `src/agent_loop.py:29166`
 - `tests/test_tool_policy.py:3025`
 - `tests/test_tool_policy.py:3033`
 
 ## `_parse_qwen_explicit_download_attachment_request` — function, line 3627
 - **called from:**
-- `src/agent_loop.py:29065`
-- `src/agent_loop.py:29144`
+- `src/agent_loop.py:29085`
+- `src/agent_loop.py:29164`
 - `tests/test_tool_policy.py:3002`
 - `tests/test_tool_policy.py:3009`
 
 ## `_parse_qwen_explicit_blocked_sender_list_request` — function, line 3648
 - **called from:**
-- `src/agent_loop.py:29151`
+- `src/agent_loop.py:29171`
 
 ## `_parse_qwen_explicit_block_sender_request` — function, line 3661
 - **called from:**
-- `src/agent_loop.py:29095`
-- `src/agent_loop.py:29148`
+- `src/agent_loop.py:29115`
+- `src/agent_loop.py:29168`
 - `tests/test_tool_policy.py:3057`
 - `tests/test_tool_policy.py:3065`
 
 ## `_parse_qwen_explicit_bulk_email_request` — function, line 3679
 - **called from:**
-- `src/agent_loop.py:29101`
-- `src/agent_loop.py:29149`
+- `src/agent_loop.py:29121`
+- `src/agent_loop.py:29169`
 - `tests/test_tool_policy.py:3038`
 - `tests/test_tool_policy.py:3045`
 - `tests/test_tool_policy.py:3052`
 
 ## `_parse_qwen_explicit_unblock_sender_request` — function, line 3710
 - **called from:**
-- `src/agent_loop.py:29152`
+- `src/agent_loop.py:29172`
 
 ## `_email_relative_date_range` — function, line 3720
 - **called from:**
@@ -998,8 +998,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_qwen_explicit_email_date_list_request` — function, line 3742
 - **called from:**
-- `src/agent_loop.py:29246`
-- `src/agent_loop.py:29781`
+- `src/agent_loop.py:29266`
+- `src/agent_loop.py:29801`
 
 ## `_looks_like_effectful_request` — function, line 3795
 - **called from:**
@@ -1007,21 +1007,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_looks_like_tool_claim_narration` — function, line 3800
 - **called from:**
-- `src/agent_loop.py:31842`
-- `src/agent_loop.py:38828`
+- `src/agent_loop.py:31862`
+- `src/agent_loop.py:38848`
 
 ## `_recent_user_request_is_effectful` — function, line 3809
 - **called from:**
-- `src/agent_loop.py:31841`
-- `src/agent_loop.py:38827`
+- `src/agent_loop.py:31861`
+- `src/agent_loop.py:38847`
 
 ## `_looks_like_conclusion` — function, line 3862
 - **called from:**
-- `src/agent_loop.py:31845`
+- `src/agent_loop.py:31865`
 
 ## `_tools_ran_in_history_since_last_user` — function, line 3878
 - **called from:**
-- `src/agent_loop.py:31846`
+- `src/agent_loop.py:31866`
 
 ## `_qwen_no_tool_boundary_answer` — function, line 3895
 - **called from:**
@@ -1032,59 +1032,59 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_qwen_explicit_calendar_delete` — function, line 4051
 - **called from:**
-- `src/agent_loop.py:25506`
-- `src/agent_loop.py:33718`
+- `src/agent_loop.py:25526`
+- `src/agent_loop.py:33738`
 - `tests/test_minimal_native_tool_prompt.py:1343`
 - `tests/test_minimal_native_tool_prompt.py:1346`
 - `tests/test_minimal_native_tool_prompt.py:1357`
 
 ## `_parse_qwen_explicit_calendar_move` — function, line 4085
 - **called from:**
-- `src/agent_loop.py:29156`
-- `src/agent_loop.py:33654`
+- `src/agent_loop.py:29176`
+- `src/agent_loop.py:33674`
 
 ## `_parse_qwen_explicit_calendar_absence_verify` — function, line 4156
 - **called from:**
-- `src/agent_loop.py:25507`
+- `src/agent_loop.py:25527`
 - `tests/test_minimal_native_tool_prompt.py:1349`
 
 ## `_parse_qwen_explicit_memory_search` — function, line 4187
 - **called from:**
-- `src/agent_loop.py:25672`
+- `src/agent_loop.py:25692`
 - `tests/test_minimal_native_tool_prompt.py:1363`
 - `tests/test_minimal_native_tool_prompt.py:1366`
 
 ## `_parse_qwen_explicit_memory_delete` — function, line 4203
 - **called from:**
-- `src/agent_loop.py:25673`
-- `src/agent_loop.py:26048`
+- `src/agent_loop.py:25693`
+- `src/agent_loop.py:26068`
 - `tests/test_minimal_native_tool_prompt.py:1371`
 
 ## `_qwen_memory_id_from_search_output` — function, line 4220
 - **called from:**
-- `src/agent_loop.py:26178`
-- `src/agent_loop.py:36440`
+- `src/agent_loop.py:26198`
+- `src/agent_loop.py:36460`
 
 ## `_extract_memory_add_text_from_user` — function, line 4238
 - **called from:**
-- `src/agent_loop.py:29002`
-- `src/agent_loop.py:31508`
-- `src/agent_loop.py:33359`
+- `src/agent_loop.py:29022`
+- `src/agent_loop.py:31528`
+- `src/agent_loop.py:33379`
 
 ## `_parse_qwen_explicit_document_request` — function, line 4257
 - **called from:**
-- `src/agent_loop.py:29143`
+- `src/agent_loop.py:29163`
 - `tests/test_minimal_native_tool_prompt.py:1377`
 - `tests/test_minimal_native_tool_prompt.py:1383`
 - `tests/test_tool_policy.py:2333`
 
 ## `_parse_qwen_document_absence_verify` — function, line 4289
 - **called from:**
-- `src/agent_loop.py:33468`
+- `src/agent_loop.py:33488`
 
 ## `_parse_qwen_explicit_contact_request` — function, line 4314
 - **called from:**
-- `src/agent_loop.py:29155`
+- `src/agent_loop.py:29175`
 - `tests/test_minimal_native_tool_prompt.py:1389`
 
 ## `_compact_openai_tool_schema` — function, line 4362
@@ -1100,13 +1100,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_model_request_capture_enabled` — function, line 4382
 - **called from:**
-- `src/agent_loop.py:27657`
+- `src/agent_loop.py:27677`
 - `tests/test_model_request_snapshot.py:6`
 - `tests/test_model_request_snapshot.py:8`
 
 ## `_model_request_snapshot` — function, line 4391
 - **called from:**
-- `src/agent_loop.py:27669`
+- `src/agent_loop.py:27689`
 - `tests/test_model_request_snapshot.py:14`
 
 ## `_safe_runtime_value` — function, line 4418
@@ -1140,7 +1140,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_expand_browser_mcp_tools` — function, line 4559
 - **called from:**
-- `src/agent_loop.py:23358`
+- `src/agent_loop.py:23378`
 
 ## `_should_hide_raw_browser_mcp` — function, line 4592
 - **called from:**
@@ -1163,8 +1163,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_note_list_summary_from_tool_output` — function, line 4650
 - **called from:**
 - `src/agent_loop.py:13888`
-- `src/agent_loop.py:35339`
-- `src/agent_loop.py:38675`
+- `src/agent_loop.py:35359`
+- `src/agent_loop.py:38695`
 - `src/clean_agent_preview.py:1045`
 - `tests/test_minimal_native_tool_prompt.py:844`
 - `tests/test_minimal_native_tool_prompt.py:864`
@@ -1173,7 +1173,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_note_title_id_pairs_from_tool_output` — function, line 4708
 - **called from:**
 - `src/agent_loop.py:4753`
-- `src/agent_loop.py:35274`
+- `src/agent_loop.py:35294`
 - `tests/test_tool_policy.py:2643`
 
 ## `add_pair` — function, line 4715
@@ -1185,16 +1185,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_linkify_note_titles_from_tool_events` — function, line 4735
 - **called from:**
-- `src/agent_loop.py:38762`
+- `src/agent_loop.py:38782`
 - `tests/test_minimal_native_tool_prompt.py:852`
 
 ## `_notes_expected_actions` — function, line 4782
 - **called from:**
 - `src/agent_loop.py:5077`
-- `src/agent_loop.py:30893`
-- `src/agent_loop.py:30949`
-- `src/agent_loop.py:31151`
-- `src/agent_loop.py:31628`
+- `src/agent_loop.py:30913`
+- `src/agent_loop.py:30969`
+- `src/agent_loop.py:31171`
+- `src/agent_loop.py:31648`
 - `tests/test_tool_policy.py:2523`
 - `tests/test_tool_policy.py:2547`
 
@@ -1207,12 +1207,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:4974`
 - `src/agent_loop.py:5015`
-- `src/agent_loop.py:33236`
+- `src/agent_loop.py:33256`
 
 ## `_notes_general_definition_answer` — function, line 4815
 - **called from:**
 - `src/agent_loop.py:4917`
-- `src/agent_loop.py:30824`
+- `src/agent_loop.py:30844`
 
 ## `_is_personal_tool_definition_turn` — function, line 4850
 - **called from:**
@@ -1232,7 +1232,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_simple_notes_tool_request` — function, line 4903
 - **called from:**
-- `src/agent_loop.py:30822`
+- `src/agent_loop.py:30842`
 - `tests/test_tool_policy.py:2160`
 - `tests/test_tool_policy.py:2570`
 - `tests/test_tool_policy.py:2586`
@@ -1246,15 +1246,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_notes_body_requested` — function, line 5039
 - **called from:**
-- `src/agent_loop.py:30913`
-- `src/agent_loop.py:35271`
-- `src/agent_loop.py:35357`
+- `src/agent_loop.py:30933`
+- `src/agent_loop.py:35291`
+- `src/agent_loop.py:35377`
 
 ## `_notes_request_requires_fresh_tool` — function, line 5048
 - **called from:**
-- `src/agent_loop.py:30940`
-- `src/agent_loop.py:31148`
-- `src/agent_loop.py:31625`
+- `src/agent_loop.py:30960`
+- `src/agent_loop.py:31168`
+- `src/agent_loop.py:31645`
 - `tests/test_tool_policy.py:2506`
 - `tests/test_tool_policy.py:2511`
 - `tests/test_tool_policy.py:2516`
@@ -1263,9 +1263,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_has_successful_notes_action_evidence` — function, line 5080
 - **called from:**
-- `src/agent_loop.py:30947`
-- `src/agent_loop.py:31149`
-- `src/agent_loop.py:31626`
+- `src/agent_loop.py:30967`
+- `src/agent_loop.py:31169`
+- `src/agent_loop.py:31646`
 - `tests/test_tool_policy.py:2525`
 - `tests/test_tool_policy.py:2535`
 - `tests/test_tool_policy.py:2550`
@@ -1273,9 +1273,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_memory_list_summary_from_tool_output` — function, line 5118
 - **called from:**
 - `src/agent_loop.py:13896`
-- `src/agent_loop.py:26240`
-- `src/agent_loop.py:34517`
-- `src/agent_loop.py:38693`
+- `src/agent_loop.py:26260`
+- `src/agent_loop.py:34537`
+- `src/agent_loop.py:38713`
 - `src/clean_agent_preview.py:1214`
 - `tests/test_agent_search_dedupe.py:58`
 - `tests/test_agent_search_dedupe.py:70`
@@ -1285,8 +1285,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_document_list_summary_from_tool_output` — function, line 5185
 - **called from:**
 - `src/agent_loop.py:13902`
-- `src/agent_loop.py:34558`
-- `src/agent_loop.py:38716`
+- `src/agent_loop.py:34578`
+- `src/agent_loop.py:38736`
 - `src/clean_agent_preview.py:1078`
 - `tests/test_minimal_native_tool_prompt.py:632`
 - `tests/test_minimal_native_tool_prompt.py:642`
@@ -1295,18 +1295,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_document_read_summary_from_tool_output` — function, line 5224
 - **called from:**
 - `src/agent_loop.py:13904`
-- `src/agent_loop.py:38723`
+- `src/agent_loop.py:38743`
 - `tests/test_minimal_native_tool_prompt.py:765`
 
 ## `_document_detail_requested` — function, line 5232
 - **called from:**
-- `src/agent_loop.py:34541`
+- `src/agent_loop.py:34561`
 - `tests/test_minimal_native_tool_prompt.py:754`
 - `tests/test_minimal_native_tool_prompt.py:757`
 
 ## `_single_document_id_from_tool_output` — function, line 5245
 - **called from:**
-- `src/agent_loop.py:34542`
+- `src/agent_loop.py:34562`
 - `tests/test_minimal_native_tool_prompt.py:763`
 - `tests/test_minimal_native_tool_prompt.py:764`
 
@@ -1347,16 +1347,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_skills_list_summary_from_tool_output` — function, line 5446
 - **called from:**
 - `src/agent_loop.py:13928`
-- `src/agent_loop.py:36501`
-- `src/agent_loop.py:38700`
+- `src/agent_loop.py:36521`
+- `src/agent_loop.py:38720`
 - `tests/test_minimal_native_tool_prompt.py:603`
 - `tests/test_skill_deeplink_static.py:43`
 
 ## `_calendar_detail_requested` — function, line 5508
 - **called from:**
-- `src/agent_loop.py:27296`
-- `src/agent_loop.py:35467`
-- `src/agent_loop.py:38684`
+- `src/agent_loop.py:27316`
+- `src/agent_loop.py:35487`
+- `src/agent_loop.py:38704`
 - `tests/test_minimal_native_tool_prompt.py:784`
 
 ## `_calendar_listing_row` — function, line 5521
@@ -1367,9 +1367,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_calendar_list_summary_from_tool_output` — function, line 5560
 - **called from:**
 - `src/agent_loop.py:13892`
-- `src/agent_loop.py:27294`
-- `src/agent_loop.py:35473`
-- `src/agent_loop.py:38682`
+- `src/agent_loop.py:27314`
+- `src/agent_loop.py:35493`
+- `src/agent_loop.py:38702`
 - `src/clean_agent_preview.py:1032`
 - `tests/test_minimal_native_tool_prompt.py:785`
 - `tests/test_minimal_native_tool_prompt.py:786`
@@ -1397,19 +1397,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_normalize_calendar_ordinal_weekday_rrule` — function, line 5709
 - **called from:**
-- `src/agent_loop.py:33826`
+- `src/agent_loop.py:33846`
 - `tests/test_minimal_native_tool_prompt.py:1075`
 - `tests/test_minimal_native_tool_prompt.py:1091`
 - `tests/test_minimal_native_tool_prompt.py:1103`
 
 ## `_calendar_ordinal_week_ask_user_block` — function, line 5731
 - **called from:**
-- `src/agent_loop.py:33668`
+- `src/agent_loop.py:33688`
 - `tests/test_minimal_native_tool_prompt.py:1087`
 
 ## `_normalize_calendar_list_range_args` — function, line 5750
 - **called from:**
-- `src/agent_loop.py:33816`
+- `src/agent_loop.py:33836`
 - `tests/test_minimal_native_tool_prompt.py:1000`
 - `tests/test_minimal_native_tool_prompt.py:1016`
 
@@ -1432,8 +1432,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_simple_calendar_tool_request` — function, line 5884
 - **called from:**
-- `src/agent_loop.py:27181`
-- `src/agent_loop.py:29157`
+- `src/agent_loop.py:27201`
+- `src/agent_loop.py:29177`
 - `tests/test_tool_policy.py:2122`
 - `tests/test_tool_policy.py:2131`
 - `tests/test_tool_policy.py:2140`
@@ -1447,15 +1447,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_parse_ambiguous_calendar_date_ask_user` — function, line 5958
 - **called from:**
-- `src/agent_loop.py:27139`
-- `src/agent_loop.py:29162`
+- `src/agent_loop.py:27159`
+- `src/agent_loop.py:29182`
 - `tests/test_calendar_ordinal_date_guard.py:10`
 - `tests/test_calendar_ordinal_date_guard.py:16`
 - `tests/test_tool_policy.py:2210`
 
 ## `_normalize_calendar_create_relative_args` — function, line 6009
 - **called from:**
-- `src/agent_loop.py:33821`
+- `src/agent_loop.py:33841`
 - `tests/test_minimal_native_tool_prompt.py:1038`
 - `tests/test_minimal_native_tool_prompt.py:1123`
 
@@ -1484,46 +1484,46 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:13938`
 - `src/agent_loop.py:13947`
-- `src/agent_loop.py:38728`
+- `src/agent_loop.py:38748`
 - `tests/test_native_tool_result_threading.py:21`
 
 ## `_single_email_uid_from_tool_output` — function, line 6385
 - **called from:**
-- `src/agent_loop.py:35002`
+- `src/agent_loop.py:35022`
 
 ## `_visible_response_text` — function, line 6397
 - **called from:**
 - `src/agent_loop.py:2235`
 - `src/agent_loop.py:17265`
 - `src/agent_loop.py:17312`
-- `src/agent_loop.py:29600`
-- `src/agent_loop.py:29652`
-- `src/agent_loop.py:29707`
-- `src/agent_loop.py:29748`
-- `src/agent_loop.py:29766`
-- `src/agent_loop.py:29779`
-- `src/agent_loop.py:29792`
-- `src/agent_loop.py:29805`
-- `src/agent_loop.py:30659`
-- `src/agent_loop.py:30756`
-- `src/agent_loop.py:38059`
-- `src/agent_loop.py:38139`
-- `src/agent_loop.py:38217`
-- `src/agent_loop.py:38424`
-- `src/agent_loop.py:38542`
-- `src/agent_loop.py:38584`
-- `src/agent_loop.py:38639`
-- `src/agent_loop.py:38673`
-- `src/agent_loop.py:38680`
-- `src/agent_loop.py:38691`
-- `src/agent_loop.py:38698`
-- `src/agent_loop.py:38705`
-- `src/agent_loop.py:38714`
-- `src/agent_loop.py:38721`
-- `src/agent_loop.py:38733`
-- `src/agent_loop.py:38739`
-- `src/agent_loop.py:38747`
+- `src/agent_loop.py:29620`
+- `src/agent_loop.py:29672`
+- `src/agent_loop.py:29727`
+- `src/agent_loop.py:29768`
+- `src/agent_loop.py:29786`
+- `src/agent_loop.py:29799`
+- `src/agent_loop.py:29812`
+- `src/agent_loop.py:29825`
+- `src/agent_loop.py:30679`
+- `src/agent_loop.py:30776`
+- `src/agent_loop.py:38079`
+- `src/agent_loop.py:38159`
+- `src/agent_loop.py:38237`
+- `src/agent_loop.py:38444`
+- `src/agent_loop.py:38562`
+- `src/agent_loop.py:38604`
+- `src/agent_loop.py:38659`
+- `src/agent_loop.py:38693`
+- `src/agent_loop.py:38700`
+- `src/agent_loop.py:38711`
+- `src/agent_loop.py:38718`
+- `src/agent_loop.py:38725`
+- `src/agent_loop.py:38734`
+- `src/agent_loop.py:38741`
+- `src/agent_loop.py:38753`
+- `src/agent_loop.py:38759`
 - `src/agent_loop.py:38767`
+- `src/agent_loop.py:38787`
 - `tests/test_minimal_native_tool_prompt.py:432`
 
 ## `_format_email_summary_item` — function, line 6411
@@ -1543,7 +1543,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_linkify_email_titles_from_tool_events` — function, line 6468
 - **called from:**
-- `src/agent_loop.py:38763`
+- `src/agent_loop.py:38783`
 
 ## `_calendar_title_uid_pairs_from_tool_event` — function, line 6516
 - **called from:**
@@ -1559,17 +1559,17 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_single_calendar_uid_from_tool_event` — function, line 6541
 - **called from:**
-- `src/agent_loop.py:35861`
+- `src/agent_loop.py:35881`
 
 ## `_linkify_calendar_titles_from_tool_events` — function, line 6550
 - **called from:**
-- `src/agent_loop.py:38764`
+- `src/agent_loop.py:38784`
 - `tests/test_minimal_native_tool_prompt.py:819`
 
 ## `_has_successful_calendar_list_evidence` — function, line 6589
 - **called from:**
-- `src/agent_loop.py:31135`
-- `src/agent_loop.py:31595`
+- `src/agent_loop.py:31155`
+- `src/agent_loop.py:31615`
 
 ## `_has_successful_calendar_tool_evidence` — function, line 6614
 - **called from:**
@@ -1603,24 +1603,24 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:13940`
 - `src/agent_loop.py:13949`
-- `src/agent_loop.py:38730`
+- `src/agent_loop.py:38750`
 
 ## `_email_read_summary_from_tool_output` — function, line 6712
 - **called from:**
 - `src/agent_loop.py:6836`
 - `src/agent_loop.py:13954`
-- `src/agent_loop.py:35105`
-- `src/agent_loop.py:38741`
+- `src/agent_loop.py:35125`
+- `src/agent_loop.py:38761`
 
 ## `_email_attachment_summary_from_tool_output` — function, line 6782
 - **called from:**
 - `src/agent_loop.py:6957`
 - `src/agent_loop.py:13956`
-- `src/agent_loop.py:38746`
+- `src/agent_loop.py:38766`
 
 ## `_email_read_summaries_from_tool_events` — function, line 6829
 - **called from:**
-- `src/agent_loop.py:38520`
+- `src/agent_loop.py:38540`
 
 ## `_strip_horizontal_space_before_lf` — function, line 6842
 - **called from:**
@@ -1629,7 +1629,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_read_evidence_from_tool_output` — function, line 6857
 - **called from:**
-- `src/agent_loop.py:38466`
+- `src/agent_loop.py:38486`
 - `tests/test_email_fact_lookup_completion.py:72`
 
 ## `_is_terse_email_lookup_followup` — function, line 6876
@@ -1640,7 +1640,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_lookup_request_from_messages` — function, line 6886
 - **called from:**
-- `src/agent_loop.py:38452`
+- `src/agent_loop.py:38472`
 - `tests/test_email_fact_lookup_completion.py:37`
 
 ## `_email_fact_lookup_requested` — function, line 6903
@@ -1653,29 +1653,29 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_lookup_needs_post_synthesis` — function, line 6936
 - **called from:**
-- `src/agent_loop.py:38459`
+- `src/agent_loop.py:38479`
 - `tests/test_email_fact_lookup_completion.py:55`
 - `tests/test_email_fact_lookup_completion.py:58`
 
 ## `_email_attachment_summaries_from_tool_events` — function, line 6950
 - **called from:**
-- `src/agent_loop.py:38521`
+- `src/agent_loop.py:38541`
 
 ## `_email_compact_summary_from_read_summaries` — function, line 6963
 - **called from:**
-- `src/agent_loop.py:38633`
+- `src/agent_loop.py:38653`
 
 ## `_email_summary_requested` — function, line 7024
 - **called from:**
 - `src/agent_loop.py:7036`
-- `src/agent_loop.py:35574`
-- `src/agent_loop.py:38632`
+- `src/agent_loop.py:35594`
+- `src/agent_loop.py:38652`
 
 ## `_email_count_requested` — function, line 7028
 - **called from:**
 - `src/agent_loop.py:7036`
 - `src/agent_loop.py:13930`
-- `src/agent_loop.py:35574`
+- `src/agent_loop.py:35594`
 
 ## `_email_direct_listing_requested` — function, line 7032
 - **called from:**
@@ -1684,7 +1684,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_urgent_summary_from_read_summaries` — function, line 7048
 - **called from:**
-- `src/agent_loop.py:38629`
+- `src/agent_loop.py:38649`
 
 ## `_email_accounts_summary_from_tool_output` — function, line 7111
 - **called from:**
@@ -1696,16 +1696,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_load_mcp_disabled_map` — function, line 7176
 - **called from:**
-- `routes/chat_routes.py:3837`
+- `routes/chat_routes.py:3856`
 - `src/agent_loop.py:21467`
 - `src/agent_loop.py:22660`
-- `src/agent_loop.py:24853`
+- `src/agent_loop.py:24873`
 
 ## `_mentions_workspace_script` — function, line 7511
 - **called from:**
 - `src/agent_loop.py:7606`
 - `src/agent_loop.py:7949`
-- `src/agent_loop.py:24380`
+- `src/agent_loop.py:24400`
 - `tests/test_redos_core_parsers.py:258`
 
 ## `_mentions_pdf_url` — function, line 7520
@@ -1717,8 +1717,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_blocked_network_recovery_tools` — function, line 7526
 - **called from:**
-- `src/agent_loop.py:24925`
-- `src/agent_loop.py:26738`
+- `src/agent_loop.py:24945`
+- `src/agent_loop.py:26758`
 - `tests/test_network_guard_recovery_routing.py:17`
 - `tests/test_network_guard_recovery_routing.py:40`
 - `tests/test_network_guard_recovery_routing.py:57`
@@ -1727,7 +1727,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_compact_native_route_tools` — function, line 7569
 - **called from:**
-- `src/agent_loop.py:24826`
+- `src/agent_loop.py:24846`
 - `tests/test_multilingual_domain_routing.py:18`
 - `tests/test_multilingual_domain_routing.py:35`
 - `tests/test_multilingual_domain_routing.py:40`
@@ -1754,8 +1754,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_compact_native_artifact_tools` — function, line 7898
 - **called from:**
 - `src/agent_loop.py:8022`
-- `src/agent_loop.py:24938`
-- `src/agent_loop.py:26798`
+- `src/agent_loop.py:24958`
+- `src/agent_loop.py:26818`
 - `tests/test_tool_routing_audit.py:97`
 - `tests/test_workspace_artifact_tool_floor.py:768`
 - `tests/test_workspace_artifact_tool_floor.py:792`
@@ -1764,13 +1764,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_compact_native_media_analysis_tools` — function, line 7968
 - **called from:**
-- `src/agent_loop.py:24945`
+- `src/agent_loop.py:24965`
 - `tests/test_tool_policy.py:3451`
 - `tests/test_tool_policy.py:3464`
 
 ## `_compact_native_artifact_schemas` — function, line 8002
 - **called from:**
-- `src/agent_loop.py:25912`
+- `src/agent_loop.py:25932`
 - `tests/test_tool_policy.py:3499`
 - `tests/test_tool_policy.py:3559`
 
@@ -1781,12 +1781,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_web_only_route_tools` — function, line 8089
 - **called from:**
-- `src/agent_loop.py:23955`
-- `src/agent_loop.py:26665`
+- `src/agent_loop.py:23975`
+- `src/agent_loop.py:26685`
 
 ## `_workspace_tools_disabled_for_owner` — function, line 8133
 - **called from:**
-- `routes/chat_routes.py:3828`
+- `routes/chat_routes.py:3847`
 - `src/agent_loop.py:8151`
 - `src/agent_loop.py:8167`
 
@@ -1799,10 +1799,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_strip_workspace_tools_for_sft` — function, line 8154
 - **called from:**
-- `src/agent_loop.py:23628`
-- `src/agent_loop.py:23769`
-- `src/agent_loop.py:23890`
-- `src/agent_loop.py:23911`
+- `src/agent_loop.py:23648`
+- `src/agent_loop.py:23789`
+- `src/agent_loop.py:23910`
+- `src/agent_loop.py:23931`
 - `tests/test_core_agent_tool_floor.py:44`
 - `tests/test_tool_policy.py:182`
 - `tests/test_workspace_artifact_tool_floor.py:338`
@@ -1847,19 +1847,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_native_tools_temporarily_disabled` — function, line 8586
 - **called from:**
-- `src/agent_loop.py:24801`
+- `src/agent_loop.py:24821`
 
 ## `_disable_native_tools_temporarily` — function, line 8597
 - **called from:**
-- `src/agent_loop.py:27003`
+- `src/agent_loop.py:27023`
 
 ## `_is_ollama_openai_compat_url` — function, line 8601
 - **called from:**
 - `scripts/dump_agent_prompt.py:90`
 - `scripts/dump_agent_prompt.py:329`
 - `src/agent_loop.py:8734`
-- `src/llm_core.py:3156`
-- `src/llm_core.py:3446`
+- `src/llm_core.py:3166`
+- `src/llm_core.py:3456`
 - `tests/test_llm_core_ollama_thinking.py:79`
 - `tests/test_llm_core_ollama_thinking.py:82`
 - `tests/test_llm_core_ollama_thinking.py:85`
@@ -1933,9 +1933,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -1951,12 +1951,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `_agent_route_tool_mode` — function, line 8662
 - **called from:**
 - `routes/chat_helpers.py:1525`
-- `src/agent_loop.py:24776`
+- `src/agent_loop.py:24796`
 - `tests/test_model_tool_modes.py:118`
 - `tests/test_model_tool_modes.py:121`
 - `tests/test_tool_support_heuristic.py:224`
@@ -1964,13 +1964,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_configured_model_tool_surface_raw` — function, line 8749
 - **called from:**
-- `routes/chat_routes.py:3785`
+- `routes/chat_routes.py:3804`
 - `src/agent_loop.py:8848`
 - `src/agent_loop.py:21574`
 - `src/agent_loop.py:21601`
 - `src/agent_loop.py:21704`
 - `src/agent_loop.py:21723`
-- `src/agent_loop.py:24792`
+- `src/agent_loop.py:24812`
 - `src/clean_agent_preview.py:1458`
 - `src/clean_agent_preview.py:1479`
 - `src/clean_agent_preview.py:1526`
@@ -1978,8 +1978,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_configured_model_tool_surface` — function, line 8839
 - **called from:**
-- `routes/chat_routes.py:3143`
-- `src/agent_loop.py:24782`
+- `routes/chat_routes.py:3162`
+- `src/agent_loop.py:24802`
 - `tests/test_model_tool_modes.py:92`
 
 ## `_detect_admin_intent` — function, line 8851
@@ -2023,11 +2023,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:21608`
 - `src/agent_loop.py:21779`
 - `src/agent_loop.py:21994`
-- `src/agent_loop.py:32946`
+- `src/agent_loop.py:32966`
 
 ## `_completion_verifier_request` — function, line 8877
 - **called from:**
-- `src/agent_loop.py:25375`
+- `src/agent_loop.py:25395`
 - `tests/test_completion_verifier_request.py:10`
 - `tests/test_completion_verifier_request.py:19`
 
@@ -2041,9 +2041,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:17993`
 - `src/agent_loop.py:18092`
 - `src/agent_loop.py:18177`
-- `src/agent_loop.py:24650`
-- `src/agent_loop.py:24730`
-- `src/agent_loop.py:25048`
+- `src/agent_loop.py:24670`
+- `src/agent_loop.py:24750`
+- `src/agent_loop.py:25068`
 
 ## `_user_turn_count` — function, line 8906
 - **called from:**
@@ -2085,21 +2085,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:10113`
 - `src/agent_loop.py:11206`
 - `src/agent_loop.py:16771`
-- `src/agent_loop.py:23206`
-- `src/agent_loop.py:25653`
-- `src/agent_loop.py:31167`
+- `src/agent_loop.py:23226`
+- `src/agent_loop.py:25673`
+- `src/agent_loop.py:31187`
 - `tests/test_tui_round_cap.py:519`
 
 ## `_looks_like_actionable_user_request` — function, line 9128
 - **called from:**
-- `src/agent_loop.py:31667`
+- `src/agent_loop.py:31687`
 - `tests/test_agent_rounds_exhausted.py:890`
 - `tests/test_agent_rounds_exhausted.py:893`
 - `tests/test_agent_rounds_exhausted.py:896`
 
 ## `_looks_like_unattended_clarification` — function, line 9139
 - **called from:**
-- `src/agent_loop.py:31373`
+- `src/agent_loop.py:31393`
 - `tests/test_failed_tool_completion_preamble.py:180`
 - `tests/test_failed_tool_completion_preamble.py:181`
 - `tests/test_failed_tool_completion_preamble.py:193`
@@ -2108,7 +2108,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tui_read_only_inspection_turn` — function, line 9159
 - **called from:**
-- `src/agent_loop.py:24023`
+- `src/agent_loop.py:24043`
 - `tests/test_agent_rounds_exhausted.py:1492`
 - `tests/test_agent_rounds_exhausted.py:1495`
 - `tests/test_agent_rounds_exhausted.py:1498`
@@ -2119,7 +2119,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:9581`
 - `src/agent_loop.py:9663`
 - `src/agent_loop.py:9704`
-- `src/agent_loop.py:23209`
+- `src/agent_loop.py:23229`
 - `tests/test_tui_round_cap.py:196`
 
 ## `_is_explicit_local_network_request` — function, line 9197
@@ -2127,7 +2127,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:9407`
 - `src/agent_loop.py:9564`
 - `src/agent_loop.py:9577`
-- `src/agent_loop.py:29282`
+- `src/agent_loop.py:29302`
 - `tests/test_client_tool_routing.py:60`
 - `tests/test_client_tool_routing.py:63`
 - `tests/test_client_tool_routing.py:66`
@@ -2149,36 +2149,36 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:9563`
 - `src/agent_loop.py:9576`
-- `src/agent_loop.py:23210`
+- `src/agent_loop.py:23230`
 - `tests/test_tui_round_cap.py:788`
 - `tests/test_tui_round_cap.py:920`
 - `tests/test_tui_round_cap.py:948`
 
 ## `_is_host_bridge_failure_result` — function, line 9300
 - **called from:**
-- `src/agent_loop.py:26280`
-- `src/agent_loop.py:34647`
+- `src/agent_loop.py:26300`
+- `src/agent_loop.py:34667`
 - `tests/test_host_shell_polling.py:73`
 - `tests/test_host_shell_polling.py:76`
 - `tests/test_tui_round_cap.py:58`
 
 ## `_normalize_incomplete_shell_artifact_result` — function, line 9327
 - **called from:**
-- `src/agent_loop.py:34329`
+- `src/agent_loop.py:34349`
 - `tests/test_core_agent_tool_floor.py:69`
 - `tests/test_core_agent_tool_floor.py:85`
 - `tests/test_core_agent_tool_floor.py:88`
 
 ## `_host_bridge_failure_response` — function, line 9354
 - **called from:**
-- `src/agent_loop.py:26285`
-- `src/agent_loop.py:26644`
-- `src/agent_loop.py:30631`
+- `src/agent_loop.py:26305`
+- `src/agent_loop.py:26664`
+- `src/agent_loop.py:30651`
 - `tests/test_host_shell_polling.py:82`
 
 ## `_web_search_unavailable_for_turn` — function, line 9362
 - **called from:**
-- `src/agent_loop.py:23534`
+- `src/agent_loop.py:23554`
 - `tests/test_tool_policy.py:104`
 - `tests/test_tool_policy.py:111`
 - `tests/test_tool_policy.py:116`
@@ -2188,15 +2188,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_streamed_tool_markup_complete` — function, line 9438
 - **called from:**
-- `src/agent_loop.py:28290`
+- `src/agent_loop.py:28310`
 - `tests/test_streamed_tool_markup.py:11`
 - `tests/test_streamed_tool_markup.py:12`
 
 ## `_streamed_tool_markup_starts` — function, line 9450
 - **called from:**
 - `src/agent_loop.py:9471`
-- `src/agent_loop.py:28288`
-- `src/agent_loop.py:28291`
+- `src/agent_loop.py:28308`
+- `src/agent_loop.py:28311`
 - `tests/test_streamed_tool_markup.py:28`
 - `tests/test_streamed_tool_markup.py:34`
 - `tests/test_streamed_tool_markup.py:35`
@@ -2236,13 +2236,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_tui_local_workspace_turn` — function, line 9625
 - **called from:**
 - `src/agent_loop.py:9762`
-- `src/agent_loop.py:24011`
-- `src/agent_loop.py:24018`
-- `src/agent_loop.py:25208`
-- `src/agent_loop.py:25218`
-- `src/agent_loop.py:25766`
-- `src/agent_loop.py:29264`
-- `src/agent_loop.py:29376`
+- `src/agent_loop.py:24031`
+- `src/agent_loop.py:24038`
+- `src/agent_loop.py:25228`
+- `src/agent_loop.py:25238`
+- `src/agent_loop.py:25786`
+- `src/agent_loop.py:29284`
+- `src/agent_loop.py:29396`
 - `tests/test_agent_runtime_context.py:502`
 - `tests/test_tui_round_cap.py:656`
 - `tests/test_tui_round_cap.py:789`
@@ -2259,8 +2259,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tui_local_no_web_recovery_turn` — function, line 9639
 - **called from:**
-- `src/agent_loop.py:28384`
-- `src/agent_loop.py:29824`
+- `src/agent_loop.py:28404`
+- `src/agent_loop.py:29844`
 
 ## `_tui_local_no_web_request_turn` — function, line 9667
 - **called from:**
@@ -2274,8 +2274,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:9801`
 - `src/agent_loop.py:14743`
-- `src/agent_loop.py:23999`
-- `src/agent_loop.py:24026`
+- `src/agent_loop.py:24019`
+- `src/agent_loop.py:24046`
 
 ## `_should_use_workspace_toolset` — function, line 9777
 - **called from:**
@@ -2286,10 +2286,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_route_tui_local_workspace_tools` — function, line 9794
 - **called from:**
-- `src/agent_loop.py:23622`
-- `src/agent_loop.py:23763`
-- `src/agent_loop.py:23800`
-- `src/agent_loop.py:24005`
+- `src/agent_loop.py:23642`
+- `src/agent_loop.py:23783`
+- `src/agent_loop.py:23820`
+- `src/agent_loop.py:24025`
 - `tests/test_agent_rounds_exhausted.py:1122`
 - `tests/test_agent_runtime_context.py:473`
 - `tests/test_agent_runtime_context.py:507`
@@ -2314,13 +2314,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:9811`
 - `src/agent_loop.py:10108`
-- `src/agent_loop.py:28388`
-- `src/agent_loop.py:29829`
+- `src/agent_loop.py:28408`
+- `src/agent_loop.py:29849`
 - `tests/test_agent_runtime_context.py:597`
 
 ## `_failed_tool_round_limit` — function, line 9888
 - **called from:**
-- `src/agent_loop.py:37778`
+- `src/agent_loop.py:37798`
 - `tests/test_agent_runtime_context.py:11`
 - `tests/test_agent_runtime_context.py:12`
 - `tests/test_agent_runtime_context.py:13`
@@ -2363,14 +2363,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tui_local_test_runner_host_shell_content` — function, line 9977
 - **called from:**
-- `src/agent_loop.py:33600`
+- `src/agent_loop.py:33620`
 - `tests/test_tui_round_cap.py:485`
 - `tests/test_tui_round_cap.py:486`
 - `tests/test_tui_round_cap.py:487`
 
 ## `_tui_normalize_pytest_command` — function, line 9986
 - **called from:**
-- `src/agent_loop.py:33605`
+- `src/agent_loop.py:33625`
 - `tests/test_tui_round_cap.py:504`
 - `tests/test_tui_round_cap.py:511`
 
@@ -2378,17 +2378,17 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:10112`
 - `src/agent_loop.py:10122`
-- `src/agent_loop.py:25627`
-- `src/agent_loop.py:29296`
-- `src/agent_loop.py:29893`
-- `src/agent_loop.py:29918`
-- `src/agent_loop.py:29946`
-- `src/agent_loop.py:29973`
-- `src/agent_loop.py:30025`
-- `src/agent_loop.py:30053`
-- `src/agent_loop.py:33566`
-- `src/agent_loop.py:33595`
-- `src/agent_loop.py:33622`
+- `src/agent_loop.py:25647`
+- `src/agent_loop.py:29316`
+- `src/agent_loop.py:29913`
+- `src/agent_loop.py:29938`
+- `src/agent_loop.py:29966`
+- `src/agent_loop.py:29993`
+- `src/agent_loop.py:30045`
+- `src/agent_loop.py:30073`
+- `src/agent_loop.py:33586`
+- `src/agent_loop.py:33615`
+- `src/agent_loop.py:33642`
 - `tests/test_agent_runtime_context.py:607`
 - `tests/test_agent_runtime_context.py:612`
 - `tests/test_agent_runtime_context.py:618`
@@ -2401,14 +2401,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tui_recover_invalid_local_tools` — function, line 10099
 - **called from:**
-- `src/agent_loop.py:29839`
+- `src/agent_loop.py:29859`
 - `tests/test_tui_round_cap.py:232`
 - `tests/test_tui_round_cap.py:246`
 - `tests/test_tui_round_cap.py:535`
 
 ## `_native_unattended_workspace_read_floor` — function, line 10131
 - **called from:**
-- `src/agent_loop.py:26688`
+- `src/agent_loop.py:26708`
 - `tests/test_native_unattended_workspace_floor.py:11`
 - `tests/test_native_unattended_workspace_floor.py:22`
 - `tests/test_native_unattended_workspace_floor.py:25`
@@ -2417,35 +2417,35 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_looks_like_malformed_tui_tool_call` — function, line 10162
 - **called from:**
-- `src/agent_loop.py:29913`
+- `src/agent_loop.py:29933`
 - `tests/test_tui_round_cap.py:268`
 - `tests/test_tui_round_cap.py:271`
 - `tests/test_tui_round_cap.py:274`
 
 ## `_tui_project_discovery_summary` — function, line 10176
 - **called from:**
-- `src/agent_loop.py:34474`
+- `src/agent_loop.py:34494`
 - `tests/test_tui_round_cap.py:582`
 
 ## `_tui_network_target_from_text` — function, line 10199
 - **called from:**
 - `src/agent_loop.py:10079`
-- `src/agent_loop.py:34455`
+- `src/agent_loop.py:34475`
 
 ## `_tui_network_summary` — function, line 10214
 - **called from:**
-- `src/agent_loop.py:34453`
+- `src/agent_loop.py:34473`
 - `tests/test_tui_round_cap.py:559`
 
 ## `_tui_normalize_network_host_command` — function, line 10238
 - **called from:**
-- `src/agent_loop.py:33544`
+- `src/agent_loop.py:33564`
 - `tests/test_tui_round_cap.py:200`
 - `tests/test_tui_round_cap.py:213`
 
 ## `_tui_normalize_workspace_host_command` — function, line 10291
 - **called from:**
-- `src/agent_loop.py:33639`
+- `src/agent_loop.py:33659`
 - `tests/test_tui_round_cap.py:256`
 
 ## `_explicitly_references_missing_workspace` — function, line 10317
@@ -2501,18 +2501,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:20315`
 - `src/agent_loop.py:20718`
 - `src/agent_loop.py:20727`
-- `src/agent_loop.py:25719`
-- `src/agent_loop.py:28681`
-- `src/agent_loop.py:30506`
-- `src/agent_loop.py:30609`
-- `src/agent_loop.py:30618`
-- `src/agent_loop.py:31237`
-- `src/agent_loop.py:31370`
-- `src/agent_loop.py:32248`
-- `src/agent_loop.py:37689`
-- `src/agent_loop.py:38060`
-- `src/agent_loop.py:38140`
-- `src/agent_loop.py:38507`
+- `src/agent_loop.py:25739`
+- `src/agent_loop.py:28701`
+- `src/agent_loop.py:30526`
+- `src/agent_loop.py:30629`
+- `src/agent_loop.py:30638`
+- `src/agent_loop.py:31257`
+- `src/agent_loop.py:31390`
+- `src/agent_loop.py:32268`
+- `src/agent_loop.py:37709`
+- `src/agent_loop.py:38080`
+- `src/agent_loop.py:38160`
+- `src/agent_loop.py:38527`
 - `src/context_compactor.py:308`
 - `tests/test_context_compactor.py:309`
 - `tests/test_context_compactor.py:316`
@@ -2564,7 +2564,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_extract_oversized_svg` — function, line 10649
 - **called from:**
-- `src/agent_loop.py:30710`
+- `src/agent_loop.py:30730`
 - `tests/test_builtin_skills.py:114`
 - `tests/test_builtin_skills.py:115`
 
@@ -2591,7 +2591,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:10843`
 - `src/agent_loop.py:11122`
 - `src/agent_loop.py:22457`
-- `src/agent_loop.py:25130`
+- `src/agent_loop.py:25150`
 - `tests/test_minimal_native_tool_prompt.py:228`
 - `tests/test_minimal_native_tool_prompt.py:248`
 - `tests/test_minimal_native_tool_prompt.py:249`
@@ -2605,7 +2605,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_contextual_link_followup_topic` — function, line 10841
 - **called from:**
-- `src/agent_loop.py:25133`
+- `src/agent_loop.py:25153`
 - `tests/test_minimal_native_tool_prompt.py:229`
 
 ## `_assistant_requested_followup` — function, line 10870
@@ -2737,7 +2737,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:2939`
 - `static/js/calendar.js:2941`
 - `static/js/calendar.js:2941`
-- … +453 more (grep the name in repo)
+- … +454 more (grep the name in repo)
 
 ## `_looks_like_explicit_notes_only_turn` — function, line 11339
 - **called from:**
@@ -2789,7 +2789,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_reconcile_inspection_edit_with_read` — function, line 11476
 - **called from:**
-- `src/agent_loop.py:37662`
+- `src/agent_loop.py:37682`
 - `tests/test_exact_file_edit_routing.py:102`
 - `tests/test_exact_file_edit_routing.py:121`
 
@@ -2814,7 +2814,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_has_successful_active_document_mutation` — function, line 11659
 - **called from:**
-- `src/agent_loop.py:31433`
+- `src/agent_loop.py:31453`
 
 ## `_is_email_document_obj` — function, line 11671
 - **called from:**
@@ -2824,8 +2824,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22230`
 - `src/agent_loop.py:22249`
 - `src/agent_loop.py:22486`
-- `src/agent_loop.py:29165`
-- `src/agent_loop.py:35210`
+- `src/agent_loop.py:29185`
+- `src/agent_loop.py:35230`
 
 ## `_minimal_saved_memory_message` — function, line 11683
 - **called from:**
@@ -2873,28 +2873,28 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:17741`
 - `src/agent_loop.py:17770`
 - `src/agent_loop.py:19405`
-- `src/agent_loop.py:28026`
-- `src/agent_loop.py:29430`
-- `src/agent_loop.py:31913`
-- `src/agent_loop.py:32525`
-- `src/agent_loop.py:35143`
-- `src/agent_loop.py:35512`
-- `src/agent_loop.py:35717`
-- `src/agent_loop.py:35798`
-- `src/agent_loop.py:36917`
-- `src/agent_loop.py:36935`
-- `src/agent_loop.py:38175`
-- `src/agent_loop.py:38184`
-- `src/agent_loop.py:38456`
-- `src/agent_loop.py:38529`
-- `src/agent_loop.py:38645`
+- `src/agent_loop.py:28046`
+- `src/agent_loop.py:29450`
+- `src/agent_loop.py:31933`
+- `src/agent_loop.py:32545`
+- `src/agent_loop.py:35163`
+- `src/agent_loop.py:35532`
+- `src/agent_loop.py:35737`
+- `src/agent_loop.py:35818`
+- `src/agent_loop.py:36937`
+- `src/agent_loop.py:36955`
+- `src/agent_loop.py:38195`
+- `src/agent_loop.py:38204`
+- `src/agent_loop.py:38476`
+- `src/agent_loop.py:38549`
+- `src/agent_loop.py:38665`
 
 ## `_minimal_recent_notes_tool_context_message` — function, line 11741
 - **called from:**
 - `src/agent_loop.py:13664`
 - `src/agent_loop.py:13722`
 - `src/agent_loop.py:15223`
-- `src/agent_loop.py:23658`
+- `src/agent_loop.py:23678`
 - `tests/test_minimal_native_tool_prompt.py:918`
 - `tests/test_minimal_native_tool_prompt.py:1322`
 
@@ -2910,13 +2910,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_latest_email_reference_from_recent_tool_context` — function, line 11948
 - **called from:**
 - `src/agent_loop.py:12084`
-- `src/agent_loop.py:29574`
-- `src/agent_loop.py:29656`
-- `src/agent_loop.py:29751`
+- `src/agent_loop.py:29594`
+- `src/agent_loop.py:29676`
+- `src/agent_loop.py:29771`
 
 ## `_recent_mentioned_email_reference` — function, line 11987
 - **called from:**
-- `src/agent_loop.py:29710`
+- `src/agent_loop.py:29730`
 
 ## `_split_before_assistant_prompt` — function, line 12038
 - **called from:**
@@ -2929,7 +2929,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_reply_draft_confirmation_block_from_recent_context` — function, line 12077
 - **called from:**
-- `src/agent_loop.py:29415`
+- `src/agent_loop.py:29435`
 
 ## `_email_account_selector_from_label` — function, line 12097
 - **called from:**
@@ -2938,18 +2938,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_recent_spam_candidates_from_tool_context` — function, line 12105
 - **called from:**
 - `src/agent_loop.py:12281`
-- `src/agent_loop.py:29087`
+- `src/agent_loop.py:29107`
 
 ## `_contextual_spam_confirmation_action` — function, line 12165
 - **called from:**
 - `src/agent_loop.py:12276`
-- `src/agent_loop.py:29451`
+- `src/agent_loop.py:29471`
 - `tests/test_tool_policy.py:3375`
 
 ## `_email_bulk_or_block_tool_succeeded` — function, line 12191
 - **called from:**
 - `src/agent_loop.py:12279`
-- `src/agent_loop.py:29452`
+- `src/agent_loop.py:29472`
 
 ## `_email_bulk_or_block_tool_attempted` — function, line 12214
 - **called from:**
@@ -2957,23 +2957,23 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tool_block_matches_event_args` — function, line 12226
 - **called from:**
-- `src/agent_loop.py:29437`
+- `src/agent_loop.py:29457`
 - `tests/test_tool_policy.py:3579`
 
 ## `_spam_action_success_summary` — function, line 12240
 - **called from:**
-- `src/agent_loop.py:29472`
+- `src/agent_loop.py:29492`
 
 ## `_contextual_spam_confirmation_blocks` — function, line 12270
 - **called from:**
-- `src/agent_loop.py:29394`
+- `src/agent_loop.py:29414`
 - `tests/test_tool_policy.py:3376`
 - `tests/test_tool_policy.py:3395`
 - `tests/test_tool_policy.py:3404`
 
 ## `_looks_like_other_email_attachment_followup` — function, line 12346
 - **called from:**
-- `src/agent_loop.py:29550`
+- `src/agent_loop.py:29570`
 
 ## `_recent_downloaded_attachment_uids` — function, line 12356
 - **called from:**
@@ -2987,55 +2987,55 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_bulk_blocks_from_search_output` — function, line 12406
 - **called from:**
-- `src/agent_loop.py:27506`
-- `src/agent_loop.py:34982`
+- `src/agent_loop.py:27526`
+- `src/agent_loop.py:35002`
 - `tests/test_agent_loop.py:138`
 
 ## `_named_email_row_from_recent_list_context` — function, line 12437
 - **called from:**
 - `src/agent_loop.py:12489`
-- `src/agent_loop.py:29604`
-- `src/agent_loop.py:29727`
+- `src/agent_loop.py:29624`
+- `src/agent_loop.py:29747`
 
 ## `_named_email_reference_from_recent_list_context` — function, line 12488
 - **called from:**
-- `src/agent_loop.py:29734`
+- `src/agent_loop.py:29754`
 
 ## `_attachment_content_requested` — function, line 12498
 - **called from:**
-- `src/agent_loop.py:29731`
+- `src/agent_loop.py:29751`
 
 ## `_email_read_and_attachment_blocks_from_row` — function, line 12508
 - **called from:**
-- `src/agent_loop.py:29732`
+- `src/agent_loop.py:29752`
 
 ## `_alternate_email_attachment_blocks_from_recent_context` — function, line 12535
 - **called from:**
-- `src/agent_loop.py:29551`
+- `src/agent_loop.py:29571`
 
 ## `_looks_like_email_body_followup` — function, line 12590
 - **called from:**
-- `src/agent_loop.py:29709`
-- `src/agent_loop.py:29750`
+- `src/agent_loop.py:29729`
+- `src/agent_loop.py:29770`
 
 ## `_contextual_email_action_request` — function, line 12604
 - **called from:**
 - `src/agent_loop.py:12636`
 - `src/agent_loop.py:12645`
-- `src/agent_loop.py:29654`
+- `src/agent_loop.py:29674`
 
 ## `_inherited_contextual_email_action_request` — function, line 12631
 - **called from:**
-- `src/agent_loop.py:29602`
+- `src/agent_loop.py:29622`
 
 ## `_email_action_tool_succeeded` — function, line 12651
 - **called from:**
-- `src/agent_loop.py:29603`
-- `src/agent_loop.py:29655`
+- `src/agent_loop.py:29623`
+- `src/agent_loop.py:29675`
 
 ## `_email_state_bulk_terminal_summary` — function, line 12689
 - **called from:**
-- `src/agent_loop.py:38522`
+- `src/agent_loop.py:38542`
 
 ## `_looks_like_contextual_email_followup` — function, line 12753
 - **called from:**
@@ -3047,14 +3047,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:2517`
 - `src/agent_loop.py:5909`
 - `src/agent_loop.py:13624`
-- `src/agent_loop.py:29481`
-- `src/agent_loop.py:33268`
-- `src/agent_loop.py:33303`
-- `src/agent_loop.py:33371`
-- `src/agent_loop.py:33425`
-- `src/agent_loop.py:33530`
-- `src/agent_loop.py:33770`
-- `src/agent_loop.py:33796`
+- `src/agent_loop.py:29501`
+- `src/agent_loop.py:33288`
+- `src/agent_loop.py:33323`
+- `src/agent_loop.py:33391`
+- `src/agent_loop.py:33445`
+- `src/agent_loop.py:33550`
+- `src/agent_loop.py:33790`
+- `src/agent_loop.py:33816`
 - `tests/test_minimal_native_tool_prompt.py:1427`
 
 ## `_numbered_row_parenthesized_ids` — function, line 12855
@@ -3064,32 +3064,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_ordinal_collection_mutation_target` — function, line 12927
 - **called from:**
-- `src/agent_loop.py:33401`
-- `src/agent_loop.py:33690`
+- `src/agent_loop.py:33421`
+- `src/agent_loop.py:33710`
 - `tests/test_native_tool_result_threading.py:76`
 - `tests/test_native_tool_result_threading.py:92`
 
 ## `_recent_odysseus_note_title` — function, line 13002
 - **called from:**
-- `src/agent_loop.py:33270`
+- `src/agent_loop.py:33290`
 
 ## `_looks_like_recent_reference` — function, line 13047
 - **called from:**
-- `src/agent_loop.py:33250`
-- `src/agent_loop.py:33300`
-- `src/agent_loop.py:33368`
-- `src/agent_loop.py:33422`
-- `src/agent_loop.py:33527`
-- `src/agent_loop.py:33766`
-- `src/agent_loop.py:33793`
+- `src/agent_loop.py:33270`
+- `src/agent_loop.py:33320`
+- `src/agent_loop.py:33388`
+- `src/agent_loop.py:33442`
+- `src/agent_loop.py:33547`
+- `src/agent_loop.py:33786`
+- `src/agent_loop.py:33813`
 
 ## `_user_named_explicit_title` — function, line 13062
 - **called from:**
-- `src/agent_loop.py:33252`
-- `src/agent_loop.py:33301`
-- `src/agent_loop.py:33423`
-- `src/agent_loop.py:33768`
-- `src/agent_loop.py:33794`
+- `src/agent_loop.py:33272`
+- `src/agent_loop.py:33321`
+- `src/agent_loop.py:33443`
+- `src/agent_loop.py:33788`
+- `src/agent_loop.py:33814`
 
 ## `_extract_followup_content_update` — function, line 13066
 - **called from:**
@@ -3099,46 +3099,46 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:13278`
 - `src/agent_loop.py:22138`
 - `src/agent_loop.py:22228`
-- `src/agent_loop.py:29164`
-- `src/agent_loop.py:33271`
-- `src/agent_loop.py:33309`
-- `src/agent_loop.py:33376`
+- `src/agent_loop.py:29184`
+- `src/agent_loop.py:33291`
+- `src/agent_loop.py:33329`
+- `src/agent_loop.py:33396`
 - `tests/test_tool_policy.py:216`
 
 ## `_active_email_reader_reply_body` — function, line 13098
 - **called from:**
 - `src/agent_loop.py:22061`
-- `src/agent_loop.py:29183`
+- `src/agent_loop.py:29203`
 
 ## `_email_reply_draft_requested` — function, line 13132
 - **called from:**
 - `src/agent_loop.py:11650`
 - `src/agent_loop.py:13158`
-- `src/agent_loop.py:29573`
-- `src/agent_loop.py:35083`
-- `src/agent_loop.py:35488`
+- `src/agent_loop.py:29593`
+- `src/agent_loop.py:35103`
+- `src/agent_loop.py:35508`
 
 ## `_email_reply_suggestion_requested` — function, line 13148
 - **called from:**
-- `src/agent_loop.py:35488`
-- `src/agent_loop.py:35493`
+- `src/agent_loop.py:35508`
+- `src/agent_loop.py:35513`
 
 ## `_email_send_requested` — function, line 13156
 - **called from:**
-- `src/agent_loop.py:35013`
-- `src/agent_loop.py:35035`
-- `src/agent_loop.py:35120`
+- `src/agent_loop.py:35033`
+- `src/agent_loop.py:35055`
+- `src/agent_loop.py:35140`
 
 ## `_email_immediate_send_requested` — function, line 13170
 - **called from:**
 - `src/agent_loop.py:3529`
-- `src/agent_loop.py:33127`
-- `src/agent_loop.py:33142`
-- `src/agent_loop.py:33155`
-- `src/agent_loop.py:33172`
-- `src/agent_loop.py:35038`
-- `src/agent_loop.py:35043`
-- `src/agent_loop.py:35066`
+- `src/agent_loop.py:33147`
+- `src/agent_loop.py:33162`
+- `src/agent_loop.py:33175`
+- `src/agent_loop.py:33192`
+- `src/agent_loop.py:35058`
+- `src/agent_loop.py:35063`
+- `src/agent_loop.py:35086`
 - `tests/test_tool_policy.py:2892`
 - `tests/test_tool_policy.py:2893`
 - `tests/test_tool_policy.py:2894`
@@ -3147,14 +3147,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_draft_review_requested` — function, line 13182
 - **called from:**
-- `src/agent_loop.py:33143`
-- `src/agent_loop.py:33173`
+- `src/agent_loop.py:33163`
+- `src/agent_loop.py:33193`
 - `tests/test_tool_policy.py:2901`
 
 ## `_email_mutation_forbidden` — function, line 13204
 - **called from:**
-- `src/agent_loop.py:32825`
-- `src/agent_loop.py:33895`
+- `src/agent_loop.py:32845`
+- `src/agent_loop.py:33915`
 - `tests/test_tool_policy.py:2915`
 - `tests/test_tool_policy.py:2917`
 - `tests/test_tool_policy.py:2918`
@@ -3164,21 +3164,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_send_recipient_name_from_request` — function, line 13248
 - **called from:**
-- `src/agent_loop.py:35121`
+- `src/agent_loop.py:35141`
 
 ## `_contact_lookup_did_not_resolve_email` — function, line 13264
 - **called from:**
-- `src/agent_loop.py:35122`
+- `src/agent_loop.py:35142`
 
 ## `_email_reply_body_from_request` — function, line 13277
 - **called from:**
-- `src/agent_loop.py:29580`
-- `src/agent_loop.py:35074`
-- `src/agent_loop.py:35097`
+- `src/agent_loop.py:29600`
+- `src/agent_loop.py:35094`
+- `src/agent_loop.py:35117`
 
 ## `_is_generic_email_reply_body` — function, line 13286
 - **called from:**
-- `src/agent_loop.py:33577`
+- `src/agent_loop.py:33597`
 
 ## `_contextual_summary_fragment` — function, line 13299
 - **called from:**
@@ -3193,7 +3193,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_contextual_reply_body_from_recent_email_context` — function, line 13348
 - **called from:**
-- `src/agent_loop.py:33578`
+- `src/agent_loop.py:33598`
 
 ## `_clean_fragment` — function, line 13362
 - **called from:**
@@ -3203,29 +3203,29 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_email_uid_from_read_context` — function, line 13393
 - **called from:**
-- `src/agent_loop.py:35049`
-- `src/agent_loop.py:35084`
+- `src/agent_loop.py:35069`
+- `src/agent_loop.py:35104`
 
 ## `_email_folder_from_read_context` — function, line 13407
 - **called from:**
-- `src/agent_loop.py:35073`
-- `src/agent_loop.py:35095`
+- `src/agent_loop.py:35093`
+- `src/agent_loop.py:35115`
 
 ## `_build_active_email_draft_reply_content` — function, line 13417
 - **called from:**
 - `src/agent_loop.py:6213`
 - `src/agent_loop.py:22154`
-- `src/agent_loop.py:29176`
+- `src/agent_loop.py:29196`
 
 ## `_extract_followup_location_update` — function, line 13436
 - **called from:**
-- `src/agent_loop.py:33772`
-- `src/agent_loop.py:33801`
+- `src/agent_loop.py:33792`
+- `src/agent_loop.py:33821`
 
 ## `_extract_followup_prompt_update` — function, line 13443
 - **called from:**
-- `src/agent_loop.py:33377`
-- `src/agent_loop.py:33436`
+- `src/agent_loop.py:33397`
+- `src/agent_loop.py:33456`
 
 ## `_compact_email_draft_context` — function, line 13456
 - **called from:**
@@ -3233,28 +3233,28 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_minimal_odysseus_doc_messages` — function, line 13491
 - **called from:**
-- `src/agent_loop.py:25086`
+- `src/agent_loop.py:25106`
 - `tests/test_external_context_tool_gate.py:557`
 
 ## `_looks_like_notes_turn` — function, line 13579
 - **called from:**
-- `src/agent_loop.py:23655`
+- `src/agent_loop.py:23675`
 
 ## `_looks_like_notes_calendar_followup` — function, line 13590
 - **called from:**
-- `src/agent_loop.py:23657`
+- `src/agent_loop.py:23677`
 
 ## `_contextual_calendar_action_request` — function, line 13599
 - **called from:**
-- `src/agent_loop.py:29480`
-- `src/agent_loop.py:35860`
+- `src/agent_loop.py:29500`
+- `src/agent_loop.py:35880`
 - `tests/test_minimal_native_tool_prompt.py:1135`
 - `tests/test_minimal_native_tool_prompt.py:1136`
 - `tests/test_minimal_native_tool_prompt.py:1137`
 
 ## `_calendar_context_owns_ambiguous_mutation` — function, line 13610
 - **called from:**
-- `src/agent_loop.py:31424`
+- `src/agent_loop.py:31444`
 - `tests/test_tui_round_cap.py:380`
 - `tests/test_tui_round_cap.py:393`
 
@@ -3265,7 +3265,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_minimal_odysseus_notes_messages` — function, line 13643
 - **called from:**
-- `src/agent_loop.py:25093`
+- `src/agent_loop.py:25113`
 
 ## `_minimal_datetime_context_message` — function, line 13674
 - **called from:**
@@ -3277,25 +3277,25 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22387`
 - `src/agent_loop.py:22714`
 - `src/agent_loop.py:22749`
-- `src/agent_loop.py:25124`
+- `src/agent_loop.py:25144`
 
 ## `_minimal_odysseus_general_messages` — function, line 13704
 - **called from:**
 - `src/agent_loop.py:22712`
 - `src/agent_loop.py:22747`
-- `src/agent_loop.py:25122`
+- `src/agent_loop.py:25142`
 
 ## `_strip_doc_model_artifacts` — function, line 13741
 - **called from:**
 - `src/agent_loop.py:14269`
-- `src/agent_loop.py:27988`
-- `src/agent_loop.py:28273`
+- `src/agent_loop.py:28008`
+- `src/agent_loop.py:28293`
 
 ## `_normalize_ody_qwen_text_artifacts` — function, line 13780
 - **called from:**
-- `src/agent_loop.py:30757`
-- `src/agent_loop.py:35510`
-- `src/agent_loop.py:38223`
+- `src/agent_loop.py:30777`
+- `src/agent_loop.py:35530`
+- `src/agent_loop.py:38243`
 - `tests/test_minimal_native_tool_prompt.py:535`
 - `tests/test_tool_policy.py:232`
 - `tests/test_tool_policy.py:233`
@@ -3303,8 +3303,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_looks_like_ody_qwen_leaked_tool_text` — function, line 13828
 - **called from:**
-- `src/agent_loop.py:30665`
-- `src/agent_loop.py:36982`
+- `src/agent_loop.py:30685`
+- `src/agent_loop.py:37002`
 - `tests/test_redos_core_parsers.py:310`
 - `tests/test_tool_policy.py:236`
 
@@ -3318,13 +3318,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:577`
 - `src/agent_loop.py:17302`
 - `src/agent_loop.py:17308`
-- `src/agent_loop.py:26444`
-- `src/agent_loop.py:27610`
-- `src/agent_loop.py:35456`
-- `src/agent_loop.py:36514`
-- `src/agent_loop.py:36539`
-- `src/agent_loop.py:37096`
-- `src/agent_loop.py:38617`
+- `src/agent_loop.py:26464`
+- `src/agent_loop.py:27630`
+- `src/agent_loop.py:35476`
+- `src/agent_loop.py:36534`
+- `src/agent_loop.py:36559`
+- `src/agent_loop.py:37116`
+- `src/agent_loop.py:38637`
 - `tests/test_minimal_native_tool_prompt.py:447`
 - `tests/test_minimal_native_tool_prompt.py:685`
 - `tests/test_minimal_native_tool_prompt.py:728`
@@ -3340,30 +3340,30 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_tui_verified_coding_summary` — function, line 14088
 - **called from:**
 - `src/agent_loop.py:14129`
-- `src/agent_loop.py:36911`
+- `src/agent_loop.py:36931`
 - `tests/test_minimal_native_tool_prompt.py:492`
 
 ## `_tui_coding_failure_summary` — function, line 14126
 - **called from:**
-- `src/agent_loop.py:28031`
+- `src/agent_loop.py:28051`
 - `tests/test_minimal_native_tool_prompt.py:518`
 
 ## `_looks_like_destructive_request` — function, line 14148
 - **called from:**
-- `src/agent_loop.py:38232`
+- `src/agent_loop.py:38252`
 - `tests/test_redos_core_parsers.py:436`
 
 ## `_looks_like_success_claim` — function, line 14170
 - **called from:**
-- `src/agent_loop.py:38233`
+- `src/agent_loop.py:38253`
 
 ## `_latest_email_action_needs_followup` — function, line 14174
 - **called from:**
-- `src/agent_loop.py:37059`
+- `src/agent_loop.py:37079`
 
 ## `_parse_qwen_task_mutation_request` — function, line 14194
 - **called from:**
-- `src/agent_loop.py:35395`
+- `src/agent_loop.py:35415`
 - `tests/test_minimal_native_tool_prompt.py:570`
 - `tests/test_minimal_native_tool_prompt.py:571`
 - `tests/test_minimal_native_tool_prompt.py:572`
@@ -3371,7 +3371,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_single_task_id_from_manage_tasks_list` — function, line 14206
 - **called from:**
-- `src/agent_loop.py:35396`
+- `src/agent_loop.py:35416`
 - `tests/test_minimal_native_tool_prompt.py:575`
 - `tests/test_minimal_native_tool_prompt.py:579`
 
@@ -3381,7 +3381,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_normalize_stream_document_fences` — function, line 14260
 - **called from:**
-- `src/agent_loop.py:28376`
+- `src/agent_loop.py:28396`
 - `tests/test_odysseus_doc_fence_normalization.py:8`
 - `tests/test_odysseus_doc_fence_normalization.py:23`
 - `tests/test_odysseus_doc_fence_normalization.py:33`
@@ -3392,8 +3392,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_document_stream_events` — function, line 14296
 - **called from:**
-- `src/agent_loop.py:26186`
-- `src/agent_loop.py:34733`
+- `src/agent_loop.py:26206`
+- `src/agent_loop.py:34753`
 - `tests/test_external_context_tool_gate.py:1533`
 
 ## `_recent_context_for_retrieval` — function, line 14329
@@ -3407,51 +3407,51 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_strip_agent_injected_messages` — function, line 14358
 - **called from:**
-- `src/agent_loop.py:24951`
+- `src/agent_loop.py:24971`
 - `tests/test_user_time.py:239`
 
 ## `_prepend_agent_directive` — function, line 14373
 - **called from:**
-- `src/agent_loop.py:25083`
-- `src/agent_loop.py:25134`
-- `src/agent_loop.py:25139`
-- `src/agent_loop.py:25144`
-- `src/agent_loop.py:25160`
-- `src/agent_loop.py:25169`
-- `src/agent_loop.py:25181`
-- `src/agent_loop.py:25190`
-- `src/agent_loop.py:25217`
-- `src/agent_loop.py:25223`
-- `src/agent_loop.py:25225`
-- `src/agent_loop.py:25227`
-- `src/agent_loop.py:25229`
-- `src/agent_loop.py:25231`
-- `src/agent_loop.py:25233`
+- `src/agent_loop.py:25103`
+- `src/agent_loop.py:25154`
+- `src/agent_loop.py:25159`
+- `src/agent_loop.py:25164`
+- `src/agent_loop.py:25180`
+- `src/agent_loop.py:25189`
+- `src/agent_loop.py:25201`
+- `src/agent_loop.py:25210`
+- `src/agent_loop.py:25237`
+- `src/agent_loop.py:25243`
+- `src/agent_loop.py:25245`
+- `src/agent_loop.py:25247`
+- `src/agent_loop.py:25249`
+- `src/agent_loop.py:25251`
+- `src/agent_loop.py:25253`
 
 ## `_tui_runtime_directive` — function, line 14388
 - **called from:**
-- `src/agent_loop.py:25215`
+- `src/agent_loop.py:25235`
 - `tests/test_agent_runtime_context.py:320`
 - `tests/test_agent_runtime_context.py:330`
 
 ## `_tui_read_only_inspection_directive` — function, line 14418
 - **called from:**
-- `src/agent_loop.py:25225`
+- `src/agent_loop.py:25245`
 - `tests/test_agent_rounds_exhausted.py:1503`
 
 ## `_tui_local_network_directive` — function, line 14430
 - **called from:**
-- `src/agent_loop.py:25227`
+- `src/agent_loop.py:25247`
 - `tests/test_agent_rounds_exhausted.py:1506`
 
 ## `_tui_local_workspace_directive` — function, line 14444
 - **called from:**
-- `src/agent_loop.py:25223`
+- `src/agent_loop.py:25243`
 - `tests/test_agent_rounds_exhausted.py:1510`
 
 ## `_substantive_answer_after_failed_tools` — function, line 14469
 - **called from:**
-- `src/agent_loop.py:36832`
+- `src/agent_loop.py:36852`
 - `tests/test_agent_rounds_exhausted.py:1584`
 - `tests/test_agent_rounds_exhausted.py:1590`
 - `tests/test_agent_rounds_exhausted.py:1591`
@@ -3470,8 +3470,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:18178`
 - `src/agent_loop.py:19511`
 - `src/agent_loop.py:19518`
-- `src/agent_loop.py:30790`
-- `src/agent_loop.py:38382`
+- `src/agent_loop.py:30810`
+- `src/agent_loop.py:38402`
 - `tests/test_agent_search_dedupe.py:42`
 - `tests/test_agent_search_dedupe.py:43`
 - `tests/test_agent_search_dedupe.py:44`
@@ -3491,7 +3491,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tui_broad_host_read_reason` — function, line 14527
 - **called from:**
-- `src/agent_loop.py:33908`
+- `src/agent_loop.py:33928`
 - `tests/test_agent_rounds_exhausted.py:1532`
 - `tests/test_agent_rounds_exhausted.py:1546`
 - `tests/test_agent_rounds_exhausted.py:1551`
@@ -3506,14 +3506,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:14583`
 - `src/agent_loop.py:15874`
 - `src/agent_loop.py:20093`
-- `src/agent_loop.py:33047`
-- `src/agent_loop.py:33560`
-- `src/agent_loop.py:33588`
-- `src/agent_loop.py:36315`
+- `src/agent_loop.py:33067`
+- `src/agent_loop.py:33580`
+- `src/agent_loop.py:33608`
+- `src/agent_loop.py:36335`
 
 ## `_tui_bounded_host_read_command` — function, line 14575
 - **called from:**
-- `src/agent_loop.py:33915`
+- `src/agent_loop.py:33935`
 - `tests/test_agent_rounds_exhausted.py:1526`
 - `tests/test_agent_rounds_exhausted.py:1569`
 - `tests/test_agent_rounds_exhausted.py:1572`
@@ -3525,10 +3525,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22046`
 - `src/agent_loop.py:22519`
 - `src/agent_loop.py:22740`
-- `src/agent_loop.py:23636`
-- `src/agent_loop.py:24973`
-- `src/agent_loop.py:26983`
-- `src/agent_loop.py:37148`
+- `src/agent_loop.py:23656`
+- `src/agent_loop.py:24993`
+- `src/agent_loop.py:27003`
+- `src/agent_loop.py:37168`
 
 ## `_is_odysseus_qwen_native` — function, line 14630
 - **called from:**
@@ -3537,7 +3537,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_is_deepseek_flash_vision_model` — function, line 14636
 - **called from:**
-- `src/agent_loop.py:26919`
+- `src/agent_loop.py:26939`
 - `tests/test_agent_evidence_loop.py:52`
 - `tests/test_agent_evidence_loop.py:53`
 - `tests/test_agent_evidence_loop.py:54`
@@ -3545,7 +3545,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_deepseek_flash_visual_continuation` — function, line 14642
 - **called from:**
-- `src/agent_loop.py:26920`
+- `src/agent_loop.py:26940`
 - `tests/test_agent_evidence_loop.py:41`
 - `tests/test_agent_evidence_loop.py:46`
 
@@ -3553,12 +3553,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:22054`
 - `src/agent_loop.py:22759`
-- `src/agent_loop.py:26982`
+- `src/agent_loop.py:27002`
 
 ## `_build_system_prompt` — function, line 14719
 - **called from:**
 - `scripts/dump_agent_prompt.py:153`
-- `src/agent_loop.py:25014`
+- `src/agent_loop.py:25034`
 - `tests/test_agent_runtime_context.py:679`
 - `tests/test_agent_runtime_context.py:1250`
 - `tests/test_contract_prompt_conversation.py:33`
@@ -3595,7 +3595,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_resolve_tool_blocks` — function, line 15668
 - **called from:**
-- `src/agent_loop.py:28395`
+- `src/agent_loop.py:28415`
 - `tests/test_agent_rounds_exhausted.py:912`
 - `tests/test_agent_rounds_exhausted.py:926`
 - `tests/test_fenced_example_not_executed_for_native_models.py:194`
@@ -3624,7 +3624,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_recover_shell_wrapped_file_tool` — function, line 15869
 - **called from:**
-- `src/agent_loop.py:28797`
+- `src/agent_loop.py:28817`
 - `tests/test_agent_evidence_loop.py:744`
 - `tests/test_agent_evidence_loop.py:753`
 - `tests/test_agent_evidence_loop.py:762`
@@ -3632,21 +3632,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_recover_adjacent_fenced_write_file` — function, line 15939
 - **called from:**
-- `src/agent_loop.py:28634`
+- `src/agent_loop.py:28654`
 - `tests/test_agent_evidence_loop.py:786`
 - `tests/test_agent_evidence_loop.py:806`
 - `tests/test_agent_evidence_loop.py:824`
 
 ## `_recover_fenced_media_shell_command` — function, line 15983
 - **called from:**
-- `src/agent_loop.py:28639`
+- `src/agent_loop.py:28659`
 - `tests/test_agent_evidence_loop.py:838`
 - `tests/test_agent_evidence_loop.py:853`
 - `tests/test_agent_evidence_loop.py:862`
 
 ## `_normalize_required_artifact_write_paths` — function, line 16022
 - **called from:**
-- `src/agent_loop.py:28809`
+- `src/agent_loop.py:28829`
 - `tests/test_agent_rounds_exhausted.py:3594`
 
 ## `_artifact_lock_key` — function, line 16079
@@ -3665,7 +3665,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_resolved_value_locks_from_tool_events` — function, line 16095
 - **called from:**
 - `src/agent_loop.py:16177`
-- `src/agent_loop.py:37352`
+- `src/agent_loop.py:37372`
 
 ## `_normalize_csv_write_body_from_resolved_tool_evidence` — function, line 16171
 - **called from:**
@@ -3674,9 +3674,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_append_tool_results` — function, line 16225
 - **called from:**
-- `src/agent_loop.py:26396`
-- `src/agent_loop.py:37138`
-- `src/agent_loop.py:38363`
+- `src/agent_loop.py:26416`
+- `src/agent_loop.py:37158`
+- `src/agent_loop.py:38383`
 - `tests/test_agent_external_tool_schemas.py:287`
 - `tests/test_agent_external_tool_schemas.py:305`
 - `tests/test_agent_loop.py:627`
@@ -3706,13 +3706,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_compact_web_search_tool_text_for_model` — function, line 16542
 - **called from:**
-- `src/agent_loop.py:36413`
-- `src/agent_loop.py:38343`
+- `src/agent_loop.py:36433`
+- `src/agent_loop.py:38363`
 
 ## `_compute_final_metrics` — function, line 16580
 - **called from:**
-- `src/agent_loop.py:28616`
-- `src/agent_loop.py:38798`
+- `src/agent_loop.py:28636`
+- `src/agent_loop.py:38818`
 - `tests/test_agent_loop.py:509`
 - `tests/test_agent_loop.py:516`
 - `tests/test_agent_loop.py:526`
@@ -3736,45 +3736,45 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22688`
 - `src/agent_loop.py:22776`
 - `src/agent_loop.py:22990`
-- `src/agent_loop.py:27118`
-- `src/agent_loop.py:28530`
-- `src/agent_loop.py:30669`
-- `src/agent_loop.py:32711`
+- `src/agent_loop.py:27138`
+- `src/agent_loop.py:28550`
+- `src/agent_loop.py:30689`
+- `src/agent_loop.py:32731`
 
 ## `_usage_bucket_summary` — function, line 16722
 - **called from:**
 - `src/agent_loop.py:22687`
 - `src/agent_loop.py:22816`
 - `src/agent_loop.py:23022`
-- `src/agent_loop.py:28009`
-- `src/agent_loop.py:38852`
+- `src/agent_loop.py:28029`
+- `src/agent_loop.py:38872`
 
 ## `_request_authorizes_workspace_mutation_completion` — function, line 16751
 - **called from:**
-- `src/agent_loop.py:25605`
+- `src/agent_loop.py:25625`
 - `tests/test_failed_tool_completion_preamble.py:156`
 - `tests/test_failed_tool_completion_preamble.py:165`
 
 ## `_requested_post_edit_verification` — function, line 16775
 - **called from:**
-- `src/agent_loop.py:25623`
+- `src/agent_loop.py:25643`
 - `tests/test_agent_evidence_loop.py:879`
 - `tests/test_agent_evidence_loop.py:896`
 
 ## `_requested_artifact_readback` — function, line 16797
 - **called from:**
-- `src/agent_loop.py:25624`
+- `src/agent_loop.py:25644`
 - `tests/test_agent_evidence_loop.py:897`
 
 ## `_parse_explicit_file_creation` — function, line 16811
 - **called from:**
-- `src/agent_loop.py:25603`
+- `src/agent_loop.py:25623`
 - `tests/test_agent_runtime_context.py:624`
 
 ## `_first_explicit_workspace_file` — function, line 16835
 - **called from:**
-- `src/agent_loop.py:33324`
-- `src/agent_loop.py:36689`
+- `src/agent_loop.py:33344`
+- `src/agent_loop.py:36709`
 - `tests/test_agent_runtime_context.py:630`
 
 ## `_read_file_block_path` — function, line 16843
@@ -3786,7 +3786,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_read_file_targets_artifact` — function, line 16855
 - **called from:**
-- `src/agent_loop.py:36389`
+- `src/agent_loop.py:36409`
 - `tests/test_review_20260919_fixes.py:103`
 - `tests/test_review_20260919_fixes.py:104`
 - `tests/test_review_20260919_fixes.py:105`
@@ -3803,9 +3803,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:7877`
 - `src/agent_loop.py:10428`
 - `src/agent_loop.py:17166`
-- `src/agent_loop.py:24336`
-- `src/agent_loop.py:25390`
-- `src/agent_loop.py:25657`
+- `src/agent_loop.py:24356`
+- `src/agent_loop.py:25410`
+- `src/agent_loop.py:25677`
 - `tests/test_workspace_artifact_tool_floor.py:1068`
 
 ## `_explicit_local_media_files` — function, line 16892
@@ -3835,24 +3835,24 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_native_local_media_inputs` — function, line 16958
 - **called from:**
 - `src/agent_loop.py:15203`
-- `src/agent_loop.py:23604`
-- `src/agent_loop.py:23840`
-- `src/agent_loop.py:23845`
-- `src/agent_loop.py:23943`
-- `src/agent_loop.py:24451`
-- `src/agent_loop.py:24886`
-- `src/agent_loop.py:24891`
-- `src/agent_loop.py:24934`
-- `src/agent_loop.py:26534`
-- `src/agent_loop.py:31268`
-- `src/agent_loop.py:31946`
-- `src/agent_loop.py:32548`
+- `src/agent_loop.py:23624`
+- `src/agent_loop.py:23860`
+- `src/agent_loop.py:23865`
+- `src/agent_loop.py:23963`
+- `src/agent_loop.py:24471`
+- `src/agent_loop.py:24906`
+- `src/agent_loop.py:24911`
+- `src/agent_loop.py:24954`
+- `src/agent_loop.py:26554`
+- `src/agent_loop.py:31288`
+- `src/agent_loop.py:31966`
+- `src/agent_loop.py:32568`
 - `tests/test_workspace_artifact_tool_floor.py:536`
 
 ## `_direct_source_media_extraction_requested` — function, line 16970
 - **called from:**
 - `src/agent_loop.py:20305`
-- `src/agent_loop.py:24456`
+- `src/agent_loop.py:24476`
 - `tests/test_workspace_artifact_tool_floor.py:1007`
 - `tests/test_workspace_artifact_tool_floor.py:1011`
 - `tests/test_workspace_artifact_tool_floor.py:1015`
@@ -3861,7 +3861,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_visible_media_caption_requested` — function, line 17019
 - **called from:**
-- `src/agent_loop.py:24464`
+- `src/agent_loop.py:24484`
 - `tests/test_workspace_artifact_tool_floor.py:1027`
 - `tests/test_workspace_artifact_tool_floor.py:1030`
 - `tests/test_workspace_artifact_tool_floor.py:1033`
@@ -3869,9 +3869,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_visual_text_extraction_requested` — function, line 17035
 - **called from:**
 - `src/agent_loop.py:7987`
-- `src/agent_loop.py:23849`
-- `src/agent_loop.py:24471`
-- `src/agent_loop.py:24895`
+- `src/agent_loop.py:23869`
+- `src/agent_loop.py:24491`
+- `src/agent_loop.py:24915`
 - `tests/test_workspace_artifact_tool_floor.py:1039`
 - `tests/test_workspace_artifact_tool_floor.py:1042`
 - `tests/test_workspace_artifact_tool_floor.py:1045`
@@ -3885,9 +3885,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:7995`
 - `src/agent_loop.py:20541`
 - `src/agent_loop.py:20688`
-- `src/agent_loop.py:23875`
-- `src/agent_loop.py:24509`
-- `src/agent_loop.py:24908`
+- `src/agent_loop.py:23895`
+- `src/agent_loop.py:24529`
+- `src/agent_loop.py:24928`
 - `tests/test_workspace_artifact_tool_floor.py:548`
 - `tests/test_workspace_artifact_tool_floor.py:549`
 - `tests/test_workspace_artifact_tool_floor.py:550`
@@ -3901,23 +3901,23 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_local_media_needs_browser_render` — function, line 17104
 - **called from:**
-- `routes/chat_routes.py:2799`
+- `routes/chat_routes.py:2818`
 - `src/agent_loop.py:7672`
 - `src/agent_loop.py:7929`
 - `src/agent_loop.py:7997`
 - `src/agent_loop.py:20393`
 - `src/agent_loop.py:20950`
 - `src/agent_loop.py:21118`
-- `src/agent_loop.py:23865`
-- `src/agent_loop.py:24484`
-- `src/agent_loop.py:24916`
+- `src/agent_loop.py:23885`
+- `src/agent_loop.py:24504`
+- `src/agent_loop.py:24936`
 - `tests/test_workspace_artifact_tool_floor.py:595`
 - `tests/test_workspace_artifact_tool_floor.py:599`
 - `tests/test_workspace_artifact_tool_floor.py:602`
 
 ## `_existing_workspace_files` — function, line 17125
 - **called from:**
-- `src/agent_loop.py:25656`
+- `src/agent_loop.py:25676`
 - `tests/test_agent_runtime_context.py:639`
 - `tests/test_existing_workspace_files_confinement.py:10`
 - `tests/test_existing_workspace_files_confinement.py:22`
@@ -3929,21 +3929,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_requested_verification_command` — function, line 17147
 - **called from:**
 - `src/agent_loop.py:16780`
-- `src/agent_loop.py:25625`
+- `src/agent_loop.py:25645`
 - `tests/test_agent_evidence_loop.py:876`
 - `tests/test_agent_evidence_loop.py:887`
 
 ## `_build_actions_snapshot` — function, line 17181
 - **called from:**
-- `src/agent_loop.py:31335`
+- `src/agent_loop.py:31355`
 
 ## `_run_verifier_subagent` — function (async), line 17199
 - **called from:**
-- `src/agent_loop.py:31333`
+- `src/agent_loop.py:31353`
 
 ## `_empty_response_fallback` — function, line 17249
 - **called from:**
-- `src/agent_loop.py:38208`
+- `src/agent_loop.py:38228`
 - `tests/test_llm_core_reasoning_content_fallback.py:201`
 - `tests/test_llm_core_reasoning_content_fallback.py:217`
 - `tests/test_tui_round_cap.py:280`
@@ -3954,14 +3954,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `build_active_plan_note` — function, line 17340
 - **called from:**
 - `scripts/dump_agent_prompt.py:197`
-- `src/agent_loop.py:25231`
+- `src/agent_loop.py:25251`
 - `tests/test_plan_mode.py:98`
 - `tests/test_plan_mode.py:103`
 - `tests/test_plan_mode.py:104`
 
 ## `_detect_runaway_call` — function, line 17365
 - **called from:**
-- `src/agent_loop.py:32266`
+- `src/agent_loop.py:32286`
 - `tests/test_loop_breaker_runaway.py:36`
 - `tests/test_loop_breaker_runaway.py:41`
 - `tests/test_loop_breaker_runaway.py:46`
@@ -3979,7 +3979,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tool_result_signature` — function, line 17391
 - **called from:**
-- `src/agent_loop.py:37685`
+- `src/agent_loop.py:37705`
 - `tests/test_loop_breaker_runaway.py:65`
 - `tests/test_loop_breaker_runaway.py:68`
 - `tests/test_loop_breaker_runaway.py:75`
@@ -3989,13 +3989,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_tool_call_signature` — function, line 17423
 - **called from:**
-- `src/agent_loop.py:32573`
-- `src/agent_loop.py:32959`
-- `src/agent_loop.py:33848`
+- `src/agent_loop.py:32593`
+- `src/agent_loop.py:32979`
+- `src/agent_loop.py:33868`
 
 ## `_web_fetch_pagination_signature` — function, line 17459
 - **called from:**
-- `src/agent_loop.py:37698`
+- `src/agent_loop.py:37718`
 - `tests/test_agent_rounds_exhausted.py:3697`
 - `tests/test_agent_rounds_exhausted.py:3704`
 
@@ -4038,7 +4038,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:18833`
 - `src/agent_loop.py:18934`
 - `src/agent_loop.py:19090`
-- `src/agent_loop.py:38269`
+- `src/agent_loop.py:38289`
 - `tests/test_tool_policy.py:432`
 
 ## `_web_search_query_drops_user_terms` — function, line 17619
@@ -4054,20 +4054,20 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:18792`
 - `src/agent_loop.py:18814`
-- `src/agent_loop.py:38252`
+- `src/agent_loop.py:38272`
 
 ## `_web_fetch_failure_needs_private_browser` — function, line 17669
 - **called from:**
-- `src/agent_loop.py:34405`
+- `src/agent_loop.py:34425`
 
 ## `_private_browser_blocked_by_bot_check` — function, line 17687
 - **called from:**
-- `src/agent_loop.py:34417`
-- `src/agent_loop.py:34607`
+- `src/agent_loop.py:34437`
+- `src/agent_loop.py:34627`
 
 ## `_should_retry_empty_search_in_browser` — function, line 17704
 - **called from:**
-- `src/agent_loop.py:34577`
+- `src/agent_loop.py:34597`
 - `tests/test_weather_search_recovery.py:153`
 - `tests/test_weather_search_recovery.py:154`
 - `tests/test_weather_search_recovery.py:155`
@@ -4116,7 +4116,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_weather_tool_relevant` — function, line 17924
 - **called from:**
-- `src/agent_loop.py:23901`
+- `src/agent_loop.py:23921`
 - `tests/test_weather_search_recovery.py:98`
 - `tests/test_weather_search_recovery.py:99`
 - `tests/test_weather_search_recovery.py:100`
@@ -4170,7 +4170,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_web_followup_context_directive` — function, line 18156
 - **called from:**
-- `src/agent_loop.py:25162`
+- `src/agent_loop.py:25182`
 - `tests/test_tool_policy.py:364`
 
 ## `_web_search_query_low_relevance` — function, line 18199
@@ -4185,7 +4185,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_web_search_query_missing_context_anchor` — function, line 18256
 - **called from:**
 - `src/agent_loop.py:18783`
-- `src/agent_loop.py:38267`
+- `src/agent_loop.py:38287`
 
 ## `_web_search_query_has_unasked_source_terms` — function, line 18295
 - **called from:**
@@ -4193,7 +4193,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_private_browser_product_query` — function, line 18314
 - **called from:**
-- `src/agent_loop.py:36121`
+- `src/agent_loop.py:36141`
 - `tests/test_native_tool_result_threading.py:28`
 - `tests/test_native_tool_result_threading.py:31`
 - `tests/test_native_tool_result_threading.py:34`
@@ -4201,21 +4201,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_private_browser_uses_unrequested_placeholder` — function, line 18347
 - **called from:**
-- `src/agent_loop.py:34246`
+- `src/agent_loop.py:34266`
 - `tests/test_native_tool_result_threading.py:42`
 - `tests/test_native_tool_result_threading.py:45`
 - `tests/test_native_tool_result_threading.py:60`
 
 ## `_should_emit_buffered_qwen_round` — function, line 18386
 - **called from:**
-- `src/agent_loop.py:30809`
+- `src/agent_loop.py:30829`
 - `tests/test_minimal_native_tool_prompt.py:310`
 - `tests/test_minimal_native_tool_prompt.py:316`
 - `tests/test_minimal_native_tool_prompt.py:322`
 
 ## `_incremental_qwen_visible_text` — function, line 18422
 - **called from:**
-- `src/agent_loop.py:28323`
+- `src/agent_loop.py:28343`
 - `tests/test_minimal_native_tool_prompt.py:334`
 - `tests/test_minimal_native_tool_prompt.py:335`
 - `tests/test_minimal_native_tool_prompt.py:338`
@@ -4224,20 +4224,20 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_private_browser_product_catalog_ready` — function, line 18452
 - **called from:**
-- `src/agent_loop.py:36078`
+- `src/agent_loop.py:36098`
 - `tests/test_minimal_native_tool_prompt.py:360`
 - `tests/test_minimal_native_tool_prompt.py:361`
 
 ## `_private_browser_open_needs_snapshot` — function, line 18473
 - **called from:**
-- `src/agent_loop.py:36019`
+- `src/agent_loop.py:36039`
 - `tests/test_minimal_native_tool_prompt.py:395`
 - `tests/test_minimal_native_tool_prompt.py:396`
 - `tests/test_minimal_native_tool_prompt.py:399`
 
 ## `_private_browser_product_submit_needs_snapshot` — function, line 18481
 - **called from:**
-- `src/agent_loop.py:36045`
+- `src/agent_loop.py:36065`
 - `tests/test_minimal_native_tool_prompt.py:405`
 - `tests/test_minimal_native_tool_prompt.py:408`
 - `tests/test_minimal_native_tool_prompt.py:411`
@@ -4249,13 +4249,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_web_search_query_from_block` — function, line 18521
 - **called from:**
 - `src/agent_loop.py:18724`
-- `src/agent_loop.py:27837`
-- `src/agent_loop.py:30359`
-- `src/agent_loop.py:34263`
-- `src/agent_loop.py:34582`
-- `src/agent_loop.py:34614`
-- `src/agent_loop.py:38251`
-- `src/agent_loop.py:38263`
+- `src/agent_loop.py:27857`
+- `src/agent_loop.py:30379`
+- `src/agent_loop.py:34283`
+- `src/agent_loop.py:34602`
+- `src/agent_loop.py:34634`
+- `src/agent_loop.py:38271`
+- `src/agent_loop.py:38283`
 - `tests/test_agent_loop.py:229`
 - `tests/test_agent_loop.py:240`
 - `tests/test_agent_loop.py:273`
@@ -4268,37 +4268,37 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_normalize_native_tool_shell_wrapper` — function, line 18534
 - **called from:**
-- `src/agent_loop.py:33005`
+- `src/agent_loop.py:33025`
 - `tests/test_workspace_artifact_tool_floor.py:2322`
 - `tests/test_workspace_artifact_tool_floor.py:2328`
 
 ## `_normalize_pdf_extract_source_url` — function, line 18565
 - **called from:**
-- `src/agent_loop.py:33013`
+- `src/agent_loop.py:33033`
 - `tests/test_workspace_artifact_tool_floor.py:368`
 - `tests/test_workspace_artifact_tool_floor.py:391`
 - `tests/test_workspace_artifact_tool_floor.py:410`
 
 ## `_normalize_pdf_extract_query_entities` — function, line 18624
 - **called from:**
-- `src/agent_loop.py:33021`
+- `src/agent_loop.py:33041`
 - `tests/test_workspace_artifact_tool_floor.py:430`
 
 ## `_normalize_local_pdf_inspection_query` — function, line 18684
 - **called from:**
-- `src/agent_loop.py:33029`
+- `src/agent_loop.py:33049`
 - `tests/test_workspace_artifact_tool_floor.py:450`
 - `tests/test_workspace_artifact_tool_floor.py:471`
 
 ## `_normalize_web_search_block_query` — function, line 18708
 - **called from:**
 - `src/agent_loop.py:18999`
-- `src/agent_loop.py:27833`
-- `src/agent_loop.py:30355`
-- `src/agent_loop.py:33080`
+- `src/agent_loop.py:27853`
+- `src/agent_loop.py:30375`
 - `src/agent_loop.py:33100`
-- `src/agent_loop.py:33117`
-- `src/agent_loop.py:38258`
+- `src/agent_loop.py:33120`
+- `src/agent_loop.py:33137`
+- `src/agent_loop.py:38278`
 - `tests/test_agent_loop.py:224`
 - `tests/test_agent_loop.py:235`
 - `tests/test_agent_loop.py:249`
@@ -4321,15 +4321,15 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_contextual_browser_opens_to_web_search` — function, line 18945
 - **called from:**
-- `src/agent_loop.py:33057`
+- `src/agent_loop.py:33077`
 - `tests/test_tool_policy.py:259`
 - `tests/test_tool_policy.py:289`
 - `tests/test_tool_policy.py:304`
 
 ## `_web_search_queries_overlap` — function, line 19006
 - **called from:**
-- `src/agent_loop.py:30360`
-- `src/agent_loop.py:38273`
+- `src/agent_loop.py:30380`
+- `src/agent_loop.py:38293`
 - `tests/test_agent_search_dedupe.py:12`
 - `tests/test_agent_search_dedupe.py:19`
 - `tests/test_agent_search_dedupe.py:26`
@@ -4358,7 +4358,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_web_search_output_has_answer_evidence` — function, line 19115
 - **called from:**
 - `src/agent_loop.py:19279`
-- `src/agent_loop.py:37536`
+- `src/agent_loop.py:37556`
 - `tests/test_tool_policy.py:2350`
 - `tests/test_tool_policy.py:2356`
 - `tests/test_tool_policy.py:2365`
@@ -4367,24 +4367,24 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_web_search_fuel_euro_conversion_answer` — function, line 19169
 - **called from:**
 - `src/agent_loop.py:19268`
-- `src/agent_loop.py:27894`
+- `src/agent_loop.py:27914`
 
 ## `_web_search_answer_from_evidence` — function, line 19266
 - **called from:**
-- `src/agent_loop.py:27819`
-- `src/agent_loop.py:27966`
-- `src/agent_loop.py:28035`
-- `src/agent_loop.py:38438`
+- `src/agent_loop.py:27839`
+- `src/agent_loop.py:27986`
+- `src/agent_loop.py:28055`
+- `src/agent_loop.py:38458`
 
 ## `_official_website_answer_from_search` — function, line 19287
 - **called from:**
-- `src/agent_loop.py:34620`
+- `src/agent_loop.py:34640`
 - `tests/test_agent_loop.py:312`
 - `tests/test_agent_loop.py:315`
 
 ## `_tool_routing_audit_payload` — function, line 19334
 - **called from:**
-- `src/agent_loop.py:26807`
+- `src/agent_loop.py:26827`
 - `tests/test_tool_routing_audit.py:8`
 - `tests/test_tool_routing_audit.py:32`
 - `tests/test_tool_routing_audit.py:49`
@@ -4436,22 +4436,22 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_unoffered_web_search_should_synthesize` — function, line 19395
 - **called from:**
-- `src/agent_loop.py:28453`
+- `src/agent_loop.py:28473`
 - `tests/test_tool_routing_audit.py:127`
 - `tests/test_tool_routing_audit.py:132`
 - `tests/test_tool_routing_audit.py:137`
 
 ## `_web_search_safety_touch_hygiene_postprocess` — function, line 19411
 - **called from:**
-- `src/agent_loop.py:27817`
-- `src/agent_loop.py:27964`
-- `src/agent_loop.py:28033`
-- `src/agent_loop.py:38752`
+- `src/agent_loop.py:27837`
+- `src/agent_loop.py:27984`
+- `src/agent_loop.py:28053`
+- `src/agent_loop.py:38772`
 
 ## `_web_search_requested_unit_postprocess` — function, line 19432
 - **called from:**
-- `src/agent_loop.py:27971`
-- `src/agent_loop.py:38756`
+- `src/agent_loop.py:27991`
+- `src/agent_loop.py:38776`
 
 ## `_looks_like_web_source_dump` — function, line 19447
 - **called from:**
@@ -4459,27 +4459,27 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:18178`
 - `src/agent_loop.py:19518`
 - `src/agent_loop.py:19529`
-- `src/agent_loop.py:38380`
+- `src/agent_loop.py:38400`
 
 ## `_looks_like_web_retry_preamble` — function, line 19458
 - **called from:**
 - `src/agent_loop.py:19511`
-- `src/agent_loop.py:28842`
-- `src/agent_loop.py:38237`
+- `src/agent_loop.py:28862`
+- `src/agent_loop.py:38257`
 - `tests/test_tool_policy.py:447`
 - `tests/test_tool_policy.py:448`
 - `tests/test_tool_policy.py:449`
 
 ## `_web_model_reports_insufficient_evidence` — function, line 19479
 - **called from:**
-- `src/agent_loop.py:31881`
+- `src/agent_loop.py:31901`
 - `tests/test_tool_policy.py:2391`
 - `tests/test_tool_policy.py:2394`
 - `tests/test_tool_policy.py:2397`
 
 ## `_looks_like_web_preamble_only_response` — function, line 19497
 - **called from:**
-- `src/agent_loop.py:38383`
+- `src/agent_loop.py:38403`
 
 ## `_substantive_web_model_answer` — function, line 19514
 - **called from:**
@@ -4489,8 +4489,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_web_search_terminal_summary_should_replace` — function, line 19525
 - **called from:**
-- `src/agent_loop.py:35518`
-- `src/agent_loop.py:38621`
+- `src/agent_loop.py:35538`
+- `src/agent_loop.py:38641`
 
 ## `_web_search_result_snippets` — function, line 19539
 - **called from:**
@@ -4521,7 +4521,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_public_question_misrouted_to_memory` — function, line 19810
 - **called from:**
-- `src/agent_loop.py:33112`
+- `src/agent_loop.py:33132`
 
 ## `_compact_web_search_terminal_summary` — function, line 19825
 - **called from:**
@@ -4537,13 +4537,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_blocked_status_tool_round` — function, line 19914
 - **called from:**
-- `src/agent_loop.py:32249`
+- `src/agent_loop.py:32269`
 - `tests/test_agent_rounds_exhausted.py:1075`
 - `tests/test_agent_rounds_exhausted.py:1076`
 
 ## `_false_unavailable_tool_claim` — function, line 19934
 - **called from:**
-- `src/agent_loop.py:31416`
+- `src/agent_loop.py:31436`
 - `tests/test_tool_policy.py:2662`
 - `tests/test_tool_policy.py:2670`
 
@@ -4551,7 +4551,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_loop.py:14048`
 - `src/agent_loop.py:20011`
-- `src/agent_loop.py:35956`
+- `src/agent_loop.py:35976`
 - `tests/test_agent_rounds_exhausted.py:883`
 - `tests/test_agent_rounds_exhausted.py:884`
 - `tests/test_agent_rounds_exhausted.py:885`
@@ -4560,7 +4560,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_read_only_inspection_tool_round` — function, line 19999
 - **called from:**
-- `src/agent_loop.py:32253`
+- `src/agent_loop.py:32273`
 - `tests/test_agent_rounds_exhausted.py:1059`
 - `tests/test_agent_rounds_exhausted.py:1062`
 - `tests/test_agent_rounds_exhausted.py:1065`
@@ -4572,29 +4572,29 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:20271`
 - `src/agent_loop.py:20932`
 - `src/agent_loop.py:21078`
-- `src/agent_loop.py:31918`
-- `src/agent_loop.py:31982`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32186`
-- `src/agent_loop.py:32445`
-- `src/agent_loop.py:34340`
-- `src/agent_loop.py:36163`
-- `src/agent_loop.py:36199`
-- `src/agent_loop.py:36239`
-- `src/agent_loop.py:37417`
-- `src/agent_loop.py:37728`
-- `src/agent_loop.py:37738`
+- `src/agent_loop.py:31938`
+- `src/agent_loop.py:32002`
+- `src/agent_loop.py:32165`
+- `src/agent_loop.py:32206`
+- `src/agent_loop.py:32465`
+- `src/agent_loop.py:34360`
+- `src/agent_loop.py:36183`
+- `src/agent_loop.py:36219`
+- `src/agent_loop.py:36259`
+- `src/agent_loop.py:37437`
+- `src/agent_loop.py:37748`
+- `src/agent_loop.py:37758`
 - `tests/test_media_export_mutation_classification.py:18`
 - `tests/test_media_export_mutation_classification.py:27`
 
 ## `_failed_workspace_mutation_attempts` — function, line 20074
 - **called from:**
-- `src/agent_loop.py:37717`
+- `src/agent_loop.py:37737`
 - `tests/test_agent_evidence_loop.py:122`
 
 ## `_workspace_pre_mutation_verification_block` — function, line 20087
 - **called from:**
-- `src/agent_loop.py:32385`
+- `src/agent_loop.py:32405`
 - `tests/test_tui_round_cap.py:88`
 - `tests/test_tui_round_cap.py:91`
 - `tests/test_tui_round_cap.py:94`
@@ -4603,19 +4603,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_workspace_mutation_signature` — function, line 20096
 - **called from:**
 - `src/agent_loop.py:20122`
-- `src/agent_loop.py:32867`
+- `src/agent_loop.py:32887`
 - `tests/test_tool_policy.py:3548`
 
 ## `_record_successful_workspace_mutation` — function, line 20113
 - **called from:**
-- `src/agent_loop.py:34342`
+- `src/agent_loop.py:34362`
 - `tests/test_tool_policy.py:3545`
 - `tests/test_tool_policy.py:3549`
 
 ## `_workspace_file_mutation_paths` — function, line 20129
 - **called from:**
-- `src/agent_loop.py:36168`
-- `src/agent_loop.py:36204`
+- `src/agent_loop.py:36188`
+- `src/agent_loop.py:36224`
 - `tests/test_workspace_artifact_tool_floor.py:255`
 - `tests/test_workspace_artifact_tool_floor.py:256`
 - `tests/test_workspace_artifact_tool_floor.py:275`
@@ -4623,18 +4623,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_evidenced_workspace_mutation_paths` — function, line 20159
 - **called from:**
-- `src/agent_loop.py:36169`
-- `src/agent_loop.py:36205`
+- `src/agent_loop.py:36189`
+- `src/agent_loop.py:36225`
 - `tests/test_workspace_artifact_tool_floor.py:293`
 - `tests/test_workspace_artifact_tool_floor.py:298`
 
 ## `_workspace_inspection_tool_block` — function, line 20179
 - **called from:**
 - `src/agent_loop.py:20241`
-- `src/agent_loop.py:32144`
-- `src/agent_loop.py:32201`
-- `src/agent_loop.py:32448`
-- `src/agent_loop.py:34363`
+- `src/agent_loop.py:32164`
+- `src/agent_loop.py:32221`
+- `src/agent_loop.py:32468`
+- `src/agent_loop.py:34383`
 - `tests/test_workspace_artifact_tool_floor.py:667`
 - `tests/test_workspace_artifact_tool_floor.py:671`
 - `tests/test_workspace_artifact_tool_floor.py:688`
@@ -4644,7 +4644,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_personal_read_only_tool_block` — function, line 20217
 - **called from:**
-- `src/agent_loop.py:32202`
+- `src/agent_loop.py:32222`
 
 ## `_read_only_repeat_limit` — function, line 20238
 - **called from:**
@@ -4655,27 +4655,27 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_redundant_read_should_block` — function, line 20256
 - **called from:**
-- `src/agent_loop.py:32967`
+- `src/agent_loop.py:32987`
 - `tests/test_workspace_artifact_tool_floor.py:702`
 - `tests/test_workspace_artifact_tool_floor.py:703`
 - `tests/test_workspace_artifact_tool_floor.py:704`
 
 ## `_artifact_recovery_messages` — function, line 20275
 - **called from:**
-- `src/agent_loop.py:28488`
-- `src/agent_loop.py:28737`
-- `src/agent_loop.py:31770`
-- `src/agent_loop.py:32036`
-- `src/agent_loop.py:32106`
-- `src/agent_loop.py:32160`
-- `src/agent_loop.py:32285`
-- `src/agent_loop.py:32596`
-- `src/agent_loop.py:32642`
-- `src/agent_loop.py:36848`
-- `src/agent_loop.py:37381`
-- `src/agent_loop.py:37439`
-- `src/agent_loop.py:37497`
-- `src/agent_loop.py:37868`
+- `src/agent_loop.py:28508`
+- `src/agent_loop.py:28757`
+- `src/agent_loop.py:31790`
+- `src/agent_loop.py:32056`
+- `src/agent_loop.py:32126`
+- `src/agent_loop.py:32180`
+- `src/agent_loop.py:32305`
+- `src/agent_loop.py:32616`
+- `src/agent_loop.py:32662`
+- `src/agent_loop.py:36868`
+- `src/agent_loop.py:37401`
+- `src/agent_loop.py:37459`
+- `src/agent_loop.py:37517`
+- `src/agent_loop.py:37888`
 - `tests/test_workspace_artifact_tool_floor.py:623`
 - `tests/test_workspace_artifact_tool_floor.py:1087`
 - `tests/test_workspace_artifact_tool_floor.py:1156`
@@ -4685,8 +4685,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_unoffered_recovery_exhausted` — function, line 20486
 - **called from:**
-- `src/agent_loop.py:28743`
-- `src/agent_loop.py:32588`
+- `src/agent_loop.py:28763`
+- `src/agent_loop.py:32608`
 - `tests/test_workspace_artifact_tool_floor.py:22`
 - `tests/test_workspace_artifact_tool_floor.py:23`
 - `tests/test_workspace_artifact_tool_floor.py:24`
@@ -4694,8 +4694,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_source_evidence_ready` — function, line 20492
 - **called from:**
-- `src/agent_loop.py:32004`
-- `src/agent_loop.py:36275`
+- `src/agent_loop.py:32024`
+- `src/agent_loop.py:36295`
 - `tests/test_workspace_artifact_tool_floor.py:1301`
 - `tests/test_workspace_artifact_tool_floor.py:1305`
 - `tests/test_workspace_artifact_tool_floor.py:1327`
@@ -4715,34 +4715,34 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_has_current_inspection` — function, line 20578
 - **called from:**
-- `src/agent_loop.py:27786`
-- `src/agent_loop.py:37218`
-- `src/agent_loop.py:37253`
-- `src/agent_loop.py:37294`
+- `src/agent_loop.py:27806`
+- `src/agent_loop.py:37238`
+- `src/agent_loop.py:37273`
+- `src/agent_loop.py:37314`
 - `tests/test_agent_evidence_loop.py:496`
 - `tests/test_agent_evidence_loop.py:499`
 - `tests/test_agent_evidence_loop.py:502`
 
 ## `_artifact_acquisition_recovery_messages` — function, line 20636
 - **called from:**
-- `src/agent_loop.py:32076`
-- `src/agent_loop.py:37371`
+- `src/agent_loop.py:32096`
+- `src/agent_loop.py:37391`
 - `tests/test_workspace_artifact_tool_floor.py:1328`
 
 ## `_artifact_body_from_synthesis` — function, line 20715
 - **called from:**
-- `src/agent_loop.py:28527`
-- `src/agent_loop.py:28686`
-- `src/agent_loop.py:32708`
+- `src/agent_loop.py:28547`
+- `src/agent_loop.py:28706`
+- `src/agent_loop.py:32728`
 - `tests/test_agent_rounds_exhausted.py:2486`
 - `tests/test_agent_rounds_exhausted.py:2487`
 - `tests/test_agent_rounds_exhausted.py:2499`
 
 ## `_artifact_body_matches_target` — function, line 20742
 - **called from:**
-- `src/agent_loop.py:28545`
-- `src/agent_loop.py:28694`
-- `src/agent_loop.py:32727`
+- `src/agent_loop.py:28565`
+- `src/agent_loop.py:28714`
+- `src/agent_loop.py:32747`
 - `tests/test_agent_rounds_exhausted.py:2500`
 - `tests/test_agent_rounds_exhausted.py:2501`
 - `tests/test_agent_rounds_exhausted.py:2508`
@@ -4758,10 +4758,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:20817`
 - `src/agent_loop.py:20828`
 - `src/agent_loop.py:21043`
-- `src/agent_loop.py:28648`
-- `src/agent_loop.py:28691`
-- `src/agent_loop.py:31272`
-- `src/agent_loop.py:32671`
+- `src/agent_loop.py:28668`
+- `src/agent_loop.py:28711`
+- `src/agent_loop.py:31292`
+- `src/agent_loop.py:32691`
 - `tests/test_workspace_artifact_tool_floor.py:477`
 - `tests/test_workspace_artifact_tool_floor.py:478`
 - `tests/test_workspace_artifact_tool_floor.py:479`
@@ -4769,7 +4769,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_mutation_surface_for_missing` — function, line 20781
 - **called from:**
-- `src/agent_loop.py:26536`
+- `src/agent_loop.py:26556`
 - `tests/test_workspace_artifact_tool_floor.py:614`
 - `tests/test_workspace_artifact_tool_floor.py:619`
 - `tests/test_workspace_artifact_tool_floor.py:996`
@@ -4782,14 +4782,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_recovery_capability_floor` — function, line 20864
 - **called from:**
-- `src/agent_loop.py:26554`
+- `src/agent_loop.py:26574`
 - `tests/test_workspace_artifact_tool_floor.py:1247`
 - `tests/test_workspace_artifact_tool_floor.py:1256`
 
 ## `_force_answer_keeps_artifact_tools` — function, line 20886
 - **called from:**
-- `src/agent_loop.py:25779`
-- `src/agent_loop.py:30476`
+- `src/agent_loop.py:25799`
+- `src/agent_loop.py:30496`
 - `tests/test_workspace_artifact_tool_floor.py:2351`
 - `tests/test_workspace_artifact_tool_floor.py:2357`
 - `tests/test_workspace_artifact_tool_floor.py:2363`
@@ -4798,8 +4798,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_calls_are_verification_only` — function, line 20922
 - **called from:**
-- `src/agent_loop.py:30537`
-- `src/agent_loop.py:37217`
+- `src/agent_loop.py:30557`
+- `src/agent_loop.py:37237`
 - `tests/test_workspace_artifact_tool_floor.py:38`
 - `tests/test_workspace_artifact_tool_floor.py:39`
 - `tests/test_workspace_artifact_tool_floor.py:40`
@@ -4807,8 +4807,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_post_correction_verification_available` — function, line 20936
 - **called from:**
-- `src/agent_loop.py:25789`
-- `src/agent_loop.py:30486`
+- `src/agent_loop.py:25809`
+- `src/agent_loop.py:30506`
 - `tests/test_workspace_artifact_tool_floor.py:54`
 - `tests/test_workspace_artifact_tool_floor.py:57`
 - `tests/test_workspace_artifact_tool_floor.py:60`
@@ -4816,27 +4816,27 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_artifact_browser_render_required` — function, line 20944
 - **called from:**
-- `src/agent_loop.py:26539`
-- `src/agent_loop.py:26556`
-- `src/agent_loop.py:36259`
+- `src/agent_loop.py:26559`
+- `src/agent_loop.py:26576`
+- `src/agent_loop.py:36279`
 - `tests/test_workspace_artifact_tool_floor.py:137`
 - `tests/test_workspace_artifact_tool_floor.py:138`
 
 ## `_completed_artifact_acquisition_tools_to_remove` — function, line 20953
 - **called from:**
-- `src/agent_loop.py:36258`
+- `src/agent_loop.py:36278`
 - `tests/test_workspace_artifact_tool_floor.py:130`
 - `tests/test_workspace_artifact_tool_floor.py:131`
 
 ## `_artifact_mutation_route_surface` — function, line 20970
 - **called from:**
-- `src/agent_loop.py:26560`
+- `src/agent_loop.py:26580`
 - `tests/test_agent_rounds_exhausted.py:1878`
 - `tests/test_agent_rounds_exhausted.py:1888`
 
 ## `_request_scoped_allowed_tool_names` — function, line 20993
 - **called from:**
-- `src/agent_loop.py:32777`
+- `src/agent_loop.py:32797`
 - `tests/test_agent_rounds_exhausted.py:1905`
 - `tests/test_agent_rounds_exhausted.py:1908`
 - `tests/test_runtime_behavior_regressions.py:226`
@@ -4844,13 +4844,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_empty_action_tool_hint` — function, line 21015
 - **called from:**
-- `src/agent_loop.py:31181`
+- `src/agent_loop.py:31201`
 - `tests/test_agent_rounds_exhausted.py:973`
 
 ## `_source_media_text_companion_recovery_tools` — function, line 21034
 - **called from:**
-- `src/agent_loop.py:26719`
-- `src/agent_loop.py:26725`
+- `src/agent_loop.py:26739`
+- `src/agent_loop.py:26745`
 - `tests/test_workspace_artifact_tool_floor.py:1117`
 - `tests/test_workspace_artifact_tool_floor.py:1121`
 - `tests/test_workspace_artifact_tool_floor.py:1125`
@@ -4858,7 +4858,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_bounded_local_media_inspection_blocks` — function, line 21048
 - **called from:**
 - `src/agent_loop.py:21095`
-- `src/agent_loop.py:32544`
+- `src/agent_loop.py:32564`
 
 ## `_bounded_local_pdf_inspection_blocks` — function, line 21086
 - **called from:**
@@ -4868,23 +4868,23 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_browser_render_recovery_blocks` — function, line 21103
 - **called from:**
-- `src/agent_loop.py:32466`
+- `src/agent_loop.py:32486`
 - `tests/test_workspace_artifact_tool_floor.py:642`
 
 ## `_svg_render_recovery_blocks` — function, line 21175
 - **called from:**
-- `src/agent_loop.py:32486`
+- `src/agent_loop.py:32506`
 - `tests/test_workspace_artifact_tool_floor.py:319`
 
 ## `_artifact_synthesis_messages` — function, line 21245
 - **called from:**
-- `src/agent_loop.py:28493`
-- `src/agent_loop.py:32678`
+- `src/agent_loop.py:28513`
+- `src/agent_loop.py:32698`
 - `tests/test_agent_rounds_exhausted.py:2513`
 
 ## `_artifact_generator_execution_block` — function, line 21274
 - **called from:**
-- `src/agent_loop.py:32649`
+- `src/agent_loop.py:32669`
 - `tests/test_workspace_artifact_tool_floor.py:1430`
 - `tests/test_workspace_artifact_tool_floor.py:1470`
 - `tests/test_workspace_artifact_tool_floor.py:1473`
@@ -4899,13 +4899,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_failed_artifact_generator_repair_reads` — function, line 21358
 - **called from:**
-- `src/agent_loop.py:32452`
+- `src/agent_loop.py:32472`
 - `tests/test_workspace_artifact_tool_floor.py:1535`
 - `tests/test_workspace_artifact_tool_floor.py:1543`
 
 ## `_enforce_caller_disabled_tool_policy` — function, line 21400
 - **called from:**
-- `src/agent_loop.py:24216`
+- `src/agent_loop.py:24236`
 - `tests/test_core_agent_tool_floor.py:19`
 
 ## `_blocks_before_inference` — function, line 21432
@@ -5019,113 +5019,113 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22964`
 - `src/agent_loop.py:22977`
 
-## `_route_finetune_modes` — function, line 23633
+## `_route_finetune_modes` — function, line 23653
 - **called from:**
-- `src/agent_loop.py:23778`
-- `src/agent_loop.py:23900`
-- `src/agent_loop.py:24774`
+- `src/agent_loop.py:23798`
+- `src/agent_loop.py:23920`
+- `src/agent_loop.py:24794`
 
-## `_route_relevant_tools` — function, line 23689
+## `_route_relevant_tools` — function, line 23709
 - **called from:**
-- `src/agent_loop.py:23910`
-- `src/agent_loop.py:24775`
+- `src/agent_loop.py:23930`
+- `src/agent_loop.py:24795`
 
-## `_trim_route_request_messages` — function, line 24559
+## `_trim_route_request_messages` — function, line 24579
 - **called from:**
-- `src/agent_loop.py:25336`
-- `src/agent_loop.py:26913`
-- `src/agent_loop.py:27017`
-- `src/agent_loop.py:27660`
-- `src/agent_loop.py:28144`
+- `src/agent_loop.py:25356`
+- `src/agent_loop.py:26933`
+- `src/agent_loop.py:27037`
+- `src/agent_loop.py:27680`
+- `src/agent_loop.py:28164`
 
-## `_without_protection` — function, line 24562
+## `_without_protection` — function, line 24582
 - **called from:**
-- `src/agent_loop.py:24602`
-- `src/agent_loop.py:24704`
-- `src/agent_loop.py:24711`
+- `src/agent_loop.py:24622`
+- `src/agent_loop.py:24724`
+- `src/agent_loop.py:24731`
 
-## `_build_route_request_state` — function (async), line 24713
+## `_build_route_request_state` — function (async), line 24733
 - **called from:**
-- `src/agent_loop.py:25318`
-- `src/agent_loop.py:26902`
-- `src/agent_loop.py:27007`
-- `src/agent_loop.py:28137`
+- `src/agent_loop.py:25338`
+- `src/agent_loop.py:26922`
+- `src/agent_loop.py:27027`
+- `src/agent_loop.py:28157`
 
-## `_is_direct_conversation_message` — function, line 25280
+## `_is_direct_conversation_message` — function, line 25300
 - **called from:**
-- `src/agent_loop.py:25292`
-- `src/agent_loop.py:25296`
-- `src/agent_loop.py:25302`
+- `src/agent_loop.py:25312`
+- `src/agent_loop.py:25316`
+- `src/agent_loop.py:25322`
 
-## `_looks_like_unfinished_action_promise` — function, line 25709
+## `_looks_like_unfinished_action_promise` — function, line 25729
 - **called from:**
-- `src/agent_loop.py:30505`
-- `src/agent_loop.py:30612`
-- `src/agent_loop.py:30663`
-- `src/agent_loop.py:31238`
+- `src/agent_loop.py:30525`
+- `src/agent_loop.py:30632`
+- `src/agent_loop.py:30683`
+- `src/agent_loop.py:31258`
 
-## `_filter_route_tool_schemas` — function, line 25750
+## `_filter_route_tool_schemas` — function, line 25770
 - **called from:**
-- `src/agent_loop.py:25820`
-- `src/agent_loop.py:25843`
-- `src/agent_loop.py:25933`
-- `src/agent_loop.py:25941`
+- `src/agent_loop.py:25840`
+- `src/agent_loop.py:25863`
+- `src/agent_loop.py:25953`
+- `src/agent_loop.py:25961`
 
-## `_tool_schemas_for_route` — function, line 25761
+## `_tool_schemas_for_route` — function, line 25781
 - **called from:**
-- `src/agent_loop.py:26773`
-- `src/agent_loop.py:26938`
+- `src/agent_loop.py:26793`
+- `src/agent_loop.py:26958`
 
-## `_push_approved_progress` — function (async), line 25975
+## `_push_approved_progress` — function (async), line 25995
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_run_approved_tool` — function (async), line 25978
+## `_run_approved_tool` — function (async), line 25998
 - **called from:**
-- `src/agent_loop.py:25995`
+- `src/agent_loop.py:26015`
 
-## `_runtime_candidate` — function, line 26858
+## `_runtime_candidate` — function, line 26878
 - **called from:**
-- `src/agent_loop.py:26869`
-- `src/agent_loop.py:26873`
-- `src/agent_loop.py:26874`
+- `src/agent_loop.py:26889`
+- `src/agent_loop.py:26893`
+- `src/agent_loop.py:26894`
 
-## `_candidate_request` — function (async), line 26894
+## `_candidate_request` — function (async), line 26914
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_candidate_capability_recovery` — function (async), line 26991
+## `_candidate_capability_recovery` — function (async), line 27011
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_apply_candidate_compaction` — function, line 27060
+## `_apply_candidate_compaction` — function, line 27080
 - **called from:**
-- `src/agent_loop.py:28069`
-- `src/agent_loop.py:28190`
-- `src/agent_loop.py:28200`
-- `src/agent_loop.py:28223`
+- `src/agent_loop.py:28089`
+- `src/agent_loop.py:28210`
+- `src/agent_loop.py:28220`
+- `src/agent_loop.py:28243`
 
-## `_finalize_round_usage` — function, line 27094
+## `_finalize_round_usage` — function, line 27114
 - **called from:**
-- `src/agent_loop.py:27178`
-- `src/agent_loop.py:27307`
-- `src/agent_loop.py:27626`
-- `src/agent_loop.py:27643`
-- `src/agent_loop.py:27800`
-- `src/agent_loop.py:27816`
-- `src/agent_loop.py:27832`
-- `src/agent_loop.py:27978`
-- `src/agent_loop.py:28374`
+- `src/agent_loop.py:27198`
+- `src/agent_loop.py:27327`
+- `src/agent_loop.py:27646`
+- `src/agent_loop.py:27663`
+- `src/agent_loop.py:27820`
+- `src/agent_loop.py:27836`
+- `src/agent_loop.py:27852`
+- `src/agent_loop.py:27998`
+- `src/agent_loop.py:28394`
 
-## `_push_progress` — function (async), line 34241
+## `_push_progress` — function (async), line 34261
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_run_tool` — function (async), line 34244
+## `_run_tool` — function (async), line 34264
 - **called from:**
-- `src/agent_loop.py:34298`
+- `src/agent_loop.py:34318`
 
-## `_calendar_time_label` — function, line 35729
+## `_calendar_time_label` — function, line 35749
 - **called from:**
-- `src/agent_loop.py:35762`
-- `src/agent_loop.py:35769`
+- `src/agent_loop.py:35782`
+- `src/agent_loop.py:35789`

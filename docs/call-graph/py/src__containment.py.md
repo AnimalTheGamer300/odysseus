@@ -116,34 +116,34 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `ContainmentGrant.to_dict` — method, line 252
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5624`
+- `routes/chat_routes.py:5643`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
 - `services/memory/skills.py:453`
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
-- `src/agent_loop.py:28789`
-- `src/agent_loop.py:31316`
-- `src/agent_loop.py:31789`
-- `src/agent_loop.py:32054`
-- `src/agent_loop.py:32094`
-- `src/agent_loop.py:32125`
-- `src/agent_loop.py:32178`
-- `src/agent_loop.py:32306`
-- `src/agent_loop.py:32638`
-- `src/agent_loop.py:34858`
-- `src/agent_loop.py:36867`
-- `src/agent_loop.py:37190`
-- `src/agent_loop.py:37403`
-- `src/agent_loop.py:37458`
-- `src/agent_loop.py:37515`
-- `src/agent_loop.py:37849`
-- `src/agent_loop.py:37861`
-- `src/agent_loop.py:37967`
-- `src/agent_loop.py:38889`
-- `src/agent_loop.py:38890`
-- `src/agent_loop.py:38895`
+- `src/agent_loop.py:28809`
+- `src/agent_loop.py:31336`
+- `src/agent_loop.py:31809`
+- `src/agent_loop.py:32074`
+- `src/agent_loop.py:32114`
+- `src/agent_loop.py:32145`
+- `src/agent_loop.py:32198`
+- `src/agent_loop.py:32326`
+- `src/agent_loop.py:32658`
+- `src/agent_loop.py:34878`
+- `src/agent_loop.py:36887`
+- `src/agent_loop.py:37210`
+- `src/agent_loop.py:37423`
+- `src/agent_loop.py:37478`
+- `src/agent_loop.py:37535`
+- `src/agent_loop.py:37869`
+- `src/agent_loop.py:37881`
+- `src/agent_loop.py:37987`
+- `src/agent_loop.py:38909`
+- `src/agent_loop.py:38910`
+- `src/agent_loop.py:38915`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -152,9 +152,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:287`
 - `src/agent_runtime/authority.py:288`
 - `src/agent_runtime/authority.py:289`
-- `src/agent_runtime/authority.py:653`
-- `src/agent_runtime/authority.py:677`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:681`
+- `src/agent_runtime/authority.py:705`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/completion.py:356`
 - `src/agent_runtime/completion.py:385`
 - `src/agent_runtime/completion.py:388`
@@ -783,10 +783,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `finish` — function, line 1471
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -856,7 +856,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_containment_process_tree.py:107`
 - `tests/test_containment_process_tree.py:122`
 - `tests/test_containment_process_tree.py:141`
-- `static/js/chat.js:5511`
+- `static/js/chat.js:5482`
 - `static/js/chatRenderer.js:2334`
 - `static/js/cookbook.js:3186`
 
@@ -874,7 +874,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:168`
 - `static/app.js:4199`
 - `static/js/chat.js:2615`
-- `static/js/chat.js:8583`
+- `static/js/chat.js:8582`
 - `static/js/chatRenderer.js:3147`
 - `static/js/chatRenderer.js:3172`
 - `static/js/chatRenderer.js:3174`
@@ -930,7 +930,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_containment_process_tree.py:107`
 - `tests/test_containment_process_tree.py:122`
 - `tests/test_containment_process_tree.py:141`
-- `static/js/chat.js:5511`
+- `static/js/chat.js:5482`
 - `static/js/chatRenderer.js:2334`
 - `static/js/cookbook.js:3186`
 
@@ -948,7 +948,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:168`
 - `static/app.js:4199`
 - `static/js/chat.js:2615`
-- `static/js/chat.js:8583`
+- `static/js/chat.js:8582`
 - `static/js/chatRenderer.js:3147`
 - `static/js/chatRenderer.js:3172`
 - `static/js/chatRenderer.js:3174`

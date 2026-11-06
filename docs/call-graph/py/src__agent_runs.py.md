@@ -1,6 +1,6 @@
 # `src/agent_runs.py` — definitions & call sites
 
-18 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
+19 definitions. Callers = static call sites (`name(` / `.name(`) across the whole app scope (incl. tests).
 
 ## `_Run` — class, line 26
 - **called from:**
@@ -73,14 +73,14 @@
 ## `is_active` — function, line 100
 - **called from:**
 - `app.py:1225`
-- `routes/chat_routes.py:5585`
+- `routes/chat_routes.py:5604`
 - `routes/session_routes.py:242`
 - `src/agent_jobs.py:295`
 - `src/bg_monitor.py:161`
 
 ## `get_status` — function, line 105
 - **called from:**
-- `routes/chat_routes.py:4214`
+- `routes/chat_routes.py:4233`
 - `routes/research/research_routes.py:298`
 - `routes/research/research_routes.py:669`
 - `services/research/service.py:163`
@@ -103,7 +103,7 @@
 
 ## `get_active_run` — function, line 116
 - **called from:**
-- `routes/chat_routes.py:5540`
+- `routes/chat_routes.py:5559`
 
 ## `_drain` — function (async), line 122
 - **called from:**
@@ -139,7 +139,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5522`
+- `routes/chat_routes.py:5541`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -191,8 +191,8 @@
 
 ## `subscribe` — function (async), line 217
 - **called from:**
-- `routes/chat_routes.py:5524`
-- `routes/chat_routes.py:5544`
+- `routes/chat_routes.py:5543`
+- `routes/chat_routes.py:5563`
 - `tests/test_agent_runs_terminal_order.py:19`
 - `tests/test_agent_runs_terminal_order.py:49`
 - `tests/test_compare_stop_disconnect_poll.py:88`
@@ -212,7 +212,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5561`
+- `routes/chat_routes.py:5580`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`
@@ -222,8 +222,8 @@
 - `tests/test_nested_invocation_ownership.py:77`
 - `tests/test_notes_native_cleanup.py:30`
 - `static/js/admin.js:1379`
-- `static/js/chat.js:6534`
-- `static/js/chat.js:6625`
+- `static/js/chat.js:6498`
+- `static/js/chat.js:6589`
 - `static/js/chatRenderer.js:543`
 - `static/js/compare/stream.js:306`
 - `static/js/compare/stream.js:343`
@@ -256,15 +256,79 @@
 - `static/js/voiceRecorder.js:178`
 - `static/js/voiceRecorder.js:251`
 
-## `request_finish` — function, line 303
+## `cancel` — function, line 303
 - **called from:**
-- `routes/chat_routes.py:5569`
+- `app.py:1459`
+- `app.py:1470`
+- `routes/editor_agent_routes.py:1414`
+- `routes/email/email_routes.py:6869`
+- `routes/history/history_routes.py:613`
+- `routes/shell_routes.py:957`
+- `routes/shell_routes.py:1342`
+- `services/research/research_handler.py:140`
+- `services/research/research_handler.py:143`
+- `services/shell/service.py:163`
+- `services/skills/job_coordinator.py:215`
+- `src/agent_loop.py:26037`
+- `src/agent_loop.py:34341`
+- `src/agent_runs.py:86`
+- `src/agent_runs.py:207`
+- `src/agent_runs.py:210`
+- `src/agent_runs.py:249`
+- `src/agent_runs.py:298`
+- `src/agent_runs.py:315`
+- `src/ai_interaction.py:1822`
+- `src/ai_interaction.py:2094`
+- `src/clean_agent_preview.py:5609`
+- `src/clean_agent_preview.py:5617`
+- `src/containment.py:1172`
+- `src/containment.py:1182`
+- `src/llm_core.py:141`
+- `src/mcp_manager.py:440`
+- `src/mcp_oauth.py:63`
+- `src/research_handler.py:502`
+- `src/research_handler.py:505`
+- `src/task_scheduler.py:122`
+- `src/task_scheduler.py:733`
+- `src/task_scheduler.py:741`
+- `src/task_scheduler.py:1063`
+- `src/task_scheduler.py:1145`
+- `src/task_scheduler.py:2470`
+- `src/task_scheduler.py:2495`
+- `tests/test_agent_editor_routes.py:1008`
+- `tests/test_agent_editor_routes.py:1962`
+- `tests/test_agent_editor_routes.py:1971`
+- `tests/test_browser_identity_transport.py:39`
+- `tests/test_browser_identity_transport.py:75`
+- `tests/test_builtin_mcp_bg_tasks.py:101`
+- `tests/test_client_tool_routing.py:867`
+- `tests/test_compare_stop_disconnect_poll.py:377`
+- `tests/test_compare_stop_disconnect_poll.py:434`
+- `tests/test_completion_boundary.py:319`
+- `tests/test_completion_boundary.py:324`
+- `tests/test_containment_enforcement.py:382`
+- `tests/test_containment_enforcement.py:384`
+- `tests/test_containment_enforcement.py:408`
+- `tests/test_containment_enforcement.py:410`
+- `tests/test_cookbook_cache_scan_isolation.py:102`
+- `tests/test_email_summary_llm.py:192`
+- `tests/test_email_urgency_checkpoint.py:457`
+- `tests/test_email_urgency_checkpoint.py:592`
+- `tests/test_host_shell_polling.py:198`
+- `tests/test_nested_invocation_ownership.py:93`
+- `tests/test_nested_invocation_ownership.py:96`
+- `tests/test_nested_invocation_ownership.py:448`
+- … +84 more (grep the name in repo)
+
+## `request_finish` — function, line 320
+- **called from:**
+- `routes/chat_routes.py:5588`
 - `tests/test_agent_runs_terminal_order.py:44`
 - `tests/test_agent_runs_terminal_order.py:46`
 - `tests/test_nested_invocation_ownership.py:78`
 - `tests/test_nested_invocation_ownership.py:80`
 
-## `should_finish` — function, line 315
+## `should_finish` — function, line 332
 - **called from:**
 - `src/clean_agent_preview.py:6174`
 - `src/clean_agent_preview.py:6697`
@@ -274,6 +338,6 @@
 - `tests/test_agent_runs_terminal_order.py:51`
 - `tests/test_nested_invocation_ownership.py:79`
 
-## `get_finish_event` — function, line 320
+## `get_finish_event` — function, line 337
 - **called from:**
 - `src/clean_agent_preview.py:6693`

@@ -93,7 +93,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchService.get_status` — method, line 161
 - **called from:**
-- `routes/chat_routes.py:4214`
+- `routes/chat_routes.py:4233`
 - `routes/research/research_routes.py:298`
 - `routes/research/research_routes.py:669`
 - `services/research/service.py:163`
@@ -111,19 +111,21 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:1470`
 - `routes/editor_agent_routes.py:1414`
 - `routes/email/email_routes.py:6869`
+- `routes/history/history_routes.py:613`
 - `routes/shell_routes.py:957`
 - `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
-- `src/agent_loop.py:26017`
-- `src/agent_loop.py:34321`
+- `src/agent_loop.py:26037`
+- `src/agent_loop.py:34341`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
 - `src/agent_runs.py:249`
 - `src/agent_runs.py:298`
+- `src/agent_runs.py:315`
 - `src/ai_interaction.py:1822`
 - `src/ai_interaction.py:2094`
 - `src/clean_agent_preview.py:5609`
@@ -165,6 +167,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_nested_invocation_ownership.py:93`
 - `tests/test_nested_invocation_ownership.py:96`
 - `tests/test_nested_invocation_ownership.py:448`
-- `tests/test_nested_invocation_ownership.py:453`
-- `tests/test_review_calendar_invitation.py:135`
-- … +82 more (grep the name in repo)
+- … +84 more (grep the name in repo)

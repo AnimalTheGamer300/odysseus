@@ -185,9 +185,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -203,7 +203,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `PendingDeviceFlowStore.get_payload` — method, line 88
 - **called from:**
@@ -269,14 +269,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:976`
 - `routes/chat_helpers.py:383`
 - `routes/chat_routes.py:206`
-- `routes/chat_routes.py:4247`
-- `routes/chat_routes.py:4319`
-- `routes/chat_routes.py:4392`
-- `routes/chat_routes.py:4397`
-- `routes/chat_routes.py:4480`
-- `routes/chat_routes.py:4941`
-- `routes/chat_routes.py:5484`
-- `routes/chat_routes.py:5495`
+- `routes/chat_routes.py:4266`
+- `routes/chat_routes.py:4338`
+- `routes/chat_routes.py:4411`
+- `routes/chat_routes.py:4416`
+- `routes/chat_routes.py:4499`
+- `routes/chat_routes.py:4960`
+- `routes/chat_routes.py:5503`
+- `routes/chat_routes.py:5514`
 - `routes/codex_routes.py:696`
 - `routes/codex_routes.py:698`
 - `routes/cookbook_routes.py:468`

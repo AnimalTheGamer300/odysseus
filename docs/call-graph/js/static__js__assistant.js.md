@@ -82,8 +82,8 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`

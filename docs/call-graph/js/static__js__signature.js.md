@@ -34,8 +34,8 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`
@@ -187,10 +187,10 @@
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4555`
-- `src/llm_core.py:4556`
-- `src/llm_core.py:4754`
-- `src/llm_core.py:5114`
+- `src/llm_core.py:4565`
+- `src/llm_core.py:4566`
+- `src/llm_core.py:4764`
+- `src/llm_core.py:5124`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`

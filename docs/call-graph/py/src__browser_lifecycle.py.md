@@ -195,8 +195,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_tools/web_tools_prewave3.py:3044`
 - `src/agent_tools/web_tools_prewave3.py:3064`
 - `tests/smoke/stub_provider.py:105`
-- `static/js/chat.js:6083`
-- `static/js/chat.js:6627`
+- `static/js/chat.js:6054`
+- `static/js/chat.js:6591`
 - `static/js/compare/scoreboard.js:21`
 
 ## `StageClock.total_ms` — method, line 332
@@ -213,7 +213,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/verify_frontend_runtime.py:55`
 - `scripts/verify_notes_browser_runtime.py:55`
 - `scripts/verify_notes_browser_runtime.py:57`
-- `src/agent_runtime/authority.py:577`
+- `src/agent_runtime/authority.py:605`
 - `src/agent_runtime/completion.py:213`
 - `src/agent_runtime/journal.py:245`
 - `src/agent_runtime/resource_binding.py:159`

@@ -365,13 +365,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -904,9 +904,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 2769
 - **called from:**
-- `static/js/chat.js:7832`
-- `static/js/chat.js:7833`
-- `static/js/chat.js:7834`
+- `static/js/chat.js:7814`
+- `static/js/chat.js:7815`
+- `static/js/chat.js:7816`
 - `static/js/cookbookServe.js:2781`
 - `static/js/cookbookServe.js:2789`
 - `static/js/cookbookServe.js:2794`
@@ -948,9 +948,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 2829
 - **called from:**
-- `static/js/chat.js:7832`
-- `static/js/chat.js:7833`
-- `static/js/chat.js:7834`
+- `static/js/chat.js:7814`
+- `static/js/chat.js:7815`
+- `static/js/chat.js:7816`
 - `static/js/cookbookServe.js:2781`
 - `static/js/cookbookServe.js:2789`
 - `static/js/cookbookServe.js:2794`
@@ -1109,8 +1109,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`

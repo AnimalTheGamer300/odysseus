@@ -107,12 +107,12 @@
 - `routes/chat_helpers.py:952`
 - `routes/chat_helpers.py:1967`
 - `routes/chat_routes.py:1515`
-- `routes/chat_routes.py:2606`
-- `routes/chat_routes.py:4175`
-- `routes/chat_routes.py:4476`
-- `routes/chat_routes.py:5604`
-- `routes/history/history_routes.py:659`
-- `routes/history/history_routes.py:1111`
+- `routes/chat_routes.py:2625`
+- `routes/chat_routes.py:4194`
+- `routes/chat_routes.py:4495`
+- `routes/chat_routes.py:5623`
+- `routes/history/history_routes.py:675`
+- `routes/history/history_routes.py:1127`
 - `routes/research/research_routes.py:882`
 - `routes/session_routes.py:907`
 - `routes/webhook/webhook_routes.py:377`
@@ -195,12 +195,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `SessionManager.finalize_orphan_draft` — method, line 586
 - **called from:**
 - `core/session_manager.py:234`
-- `routes/history/history_routes.py:356`
-- `routes/history/history_routes.py:373`
+- `routes/history/history_routes.py:363`
+- `routes/history/history_routes.py:380`
 
 ## `SessionManager.truncate_messages` — method, line 621
 - **called from:**
-- `routes/history/history_routes.py:625`
+- `routes/history/history_routes.py:641`
 - `src/agent_tools/session_tools.py:438`
 - `tests/test_database_test_isolation.py:47`
 - `tests/test_truncate_message_count_regression.py:34`
@@ -226,25 +226,25 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/session_manager.py:671`
 - `routes/chat_helpers.py:827`
 - `routes/chat_routes.py:2436`
-- `routes/chat_routes.py:2975`
-- `routes/chat_routes.py:4165`
-- `routes/chat_routes.py:5602`
-- `routes/chat_routes.py:5705`
-- `routes/history/history_routes.py:392`
-- `routes/history/history_routes.py:403`
-- `routes/history/history_routes.py:487`
-- `routes/history/history_routes.py:673`
-- `routes/history/history_routes.py:765`
-- `routes/history/history_routes.py:812`
-- `routes/history/history_routes.py:869`
-- `routes/history/history_routes.py:920`
-- `routes/history/history_routes.py:1076`
-- `routes/history/history_routes.py:1185`
-- `routes/history/history_routes.py:1242`
-- `routes/history/history_routes.py:1278`
-- `routes/history/history_routes.py:1317`
-- `routes/history/history_routes.py:1353`
-- `routes/history/history_routes.py:1475`
+- `routes/chat_routes.py:2994`
+- `routes/chat_routes.py:4184`
+- `routes/chat_routes.py:5621`
+- `routes/chat_routes.py:5724`
+- `routes/history/history_routes.py:399`
+- `routes/history/history_routes.py:410`
+- `routes/history/history_routes.py:494`
+- `routes/history/history_routes.py:689`
+- `routes/history/history_routes.py:781`
+- `routes/history/history_routes.py:828`
+- `routes/history/history_routes.py:885`
+- `routes/history/history_routes.py:936`
+- `routes/history/history_routes.py:1092`
+- `routes/history/history_routes.py:1201`
+- `routes/history/history_routes.py:1258`
+- `routes/history/history_routes.py:1294`
+- `routes/history/history_routes.py:1333`
+- `routes/history/history_routes.py:1369`
+- `routes/history/history_routes.py:1491`
 - `routes/memory/memory_routes.py:127`
 - `routes/memory/memory_routes.py:191`
 - `routes/memory/memory_routes.py:213`
@@ -291,7 +291,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `core/session_manager.py:807`
 - `core/session_manager.py:819`
-- `routes/history/history_routes.py:1462`
+- `routes/history/history_routes.py:1478`
 - `routes/session_routes.py:1110`
 
 ## `SessionManager._touch_session` — method, line 905
@@ -302,7 +302,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `core/session_manager.py:1113`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:1085`
+- `routes/history/history_routes.py:1101`
 - `routes/research/research_routes.py:849`
 - `routes/session_routes.py:656`
 - `routes/session_routes.py:1279`
@@ -393,17 +393,17 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:1507`
 - `routes/chat_routes.py:1516`
 - `routes/chat_routes.py:1548`
-- `routes/chat_routes.py:2610`
-- `routes/chat_routes.py:4176`
-- `routes/chat_routes.py:4477`
-- `routes/chat_routes.py:5605`
-- `routes/chat_routes.py:5789`
-- `routes/history/history_routes.py:854`
-- `routes/history/history_routes.py:905`
-- `routes/history/history_routes.py:1026`
-- `routes/history/history_routes.py:1297`
-- `routes/history/history_routes.py:1334`
-- `routes/history/history_routes.py:1621`
+- `routes/chat_routes.py:2629`
+- `routes/chat_routes.py:4195`
+- `routes/chat_routes.py:4496`
+- `routes/chat_routes.py:5624`
+- `routes/chat_routes.py:5808`
+- `routes/history/history_routes.py:870`
+- `routes/history/history_routes.py:921`
+- `routes/history/history_routes.py:1042`
+- `routes/history/history_routes.py:1313`
+- `routes/history/history_routes.py:1350`
+- `routes/history/history_routes.py:1637`
 - `routes/research/research_routes.py:859`
 - `routes/research/research_routes.py:887`
 - `routes/session_routes.py:912`

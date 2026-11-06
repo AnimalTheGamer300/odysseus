@@ -203,8 +203,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `app.py:1443`
 - `app.py:1451`
 - `routes/chat_helpers.py:370`
-- `routes/chat_routes.py:4412`
-- `routes/chat_routes.py:4422`
+- `routes/chat_routes.py:4431`
+- `routes/chat_routes.py:4441`
 - `routes/cookbook_routes.py:2685`
 - `routes/cookbook_routes.py:4124`
 - `routes/email/email_pollers.py:1746`
@@ -223,8 +223,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/skills/job_coordinator.py:189`
 - `src/agent_jobs.py:181`
 - `src/agent_jobs.py:363`
-- `src/agent_loop.py:25995`
-- `src/agent_loop.py:34298`
+- `src/agent_loop.py:26015`
+- `src/agent_loop.py:34318`
 - `src/agent_runs.py:97`
 - `src/agent_runs.py:213`
 - `src/agent_tools/subprocess_tools.py:790`

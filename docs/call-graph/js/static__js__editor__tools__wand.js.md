@@ -65,9 +65,9 @@
 - `static/js/chat.js:539`
 - `static/js/chat.js:2444`
 - `static/js/chat.js:2625`
-- `static/js/chat.js:5309`
-- `static/js/chat.js:6166`
-- `static/js/chat.js:6654`
-- `static/js/chat.js:6997`
-- `static/js/chat.js:8231`
+- `static/js/chat.js:5280`
+- `static/js/chat.js:6137`
+- `static/js/chat.js:6618`
+- `static/js/chat.js:6979`
+- `static/js/chat.js:8221`
 - … +338 more (grep the name in repo)

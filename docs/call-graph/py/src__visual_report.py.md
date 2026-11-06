@@ -160,7 +160,7 @@
 - `mcp_servers/email_server.py:1768`
 - `mcp_servers/email_server.py:1902`
 - `mcp_servers/email_server.py:2086`
-- … +1611 more (grep the name in repo)
+- … +1613 more (grep the name in repo)
 
 ## `_diagram_text_lines` — function, line 2572
 - **called from:**
@@ -244,7 +244,7 @@
 - `mcp_servers/email_server.py:1768`
 - `mcp_servers/email_server.py:1902`
 - `mcp_servers/email_server.py:2086`
-- … +1611 more (grep the name in repo)
+- … +1613 more (grep the name in repo)
 
 ## `generate_visual_report` — function, line 2736
 - **called from:**

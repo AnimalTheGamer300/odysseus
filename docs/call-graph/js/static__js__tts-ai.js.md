@@ -69,7 +69,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5561`
+- `routes/chat_routes.py:5580`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`
@@ -79,8 +79,8 @@
 - `tests/test_nested_invocation_ownership.py:77`
 - `tests/test_notes_native_cleanup.py:30`
 - `static/js/admin.js:1379`
-- `static/js/chat.js:6534`
-- `static/js/chat.js:6625`
+- `static/js/chat.js:6498`
+- `static/js/chat.js:6589`
 - `static/js/chatRenderer.js:543`
 - `static/js/compare/stream.js:306`
 - `static/js/compare/stream.js:343`
@@ -115,7 +115,7 @@
 
 ## `enqueue` — method?, line 256
 - **called from:**
-- `static/js/chat.js:6391`
+- `static/js/chat.js:6355`
 - `static/js/tts-ai.js:256`
 - `static/js/tts-ai.js:401`
 - `static/js/tts-ai.js:445`
@@ -143,8 +143,8 @@
 
 ## `streamingUpdate` — method?, line 354
 - **called from:**
-- `static/js/chat.js:4920`
-- `static/js/chat.js:5066`
+- `static/js/chat.js:4891`
+- `static/js/chat.js:5037`
 - `static/js/tts-ai.js:354`
 
 ## `_processStreamingSentences` — method?, line 363
@@ -160,12 +160,12 @@
 
 ## `streamingAttachButton` — method?, line 415
 - **called from:**
-- `static/js/chat.js:6381`
+- `static/js/chat.js:6345`
 - `static/js/tts-ai.js:415`
 
 ## `streamingEnd` — method?, line 426
 - **called from:**
-- `static/js/chat.js:6380`
+- `static/js/chat.js:6344`
 - `static/js/tts-ai.js:426`
 
 ## `clearCache` — method?, line 450
@@ -174,7 +174,7 @@
 
 ## `addAITTSButton` — function, line 462
 - **called from:**
-- `static/js/chat.js:6364`
+- `static/js/chat.js:6328`
 - `static/js/tts-ai.js:462`
 
 ## `resetButton` — function, line 491

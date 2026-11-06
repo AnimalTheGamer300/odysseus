@@ -32,7 +32,7 @@
 
 ## `document_content_digest` — function, line 107
 - **called from:**
-- `src/agent_loop.py:34193`
+- `src/agent_loop.py:34213`
 - `src/agent_runtime/owned_resources.py:315`
 - `src/agent_tools/document_tools.py:143`
 - `tests/test_external_context_tool_gate.py:1344`
@@ -55,7 +55,7 @@
 
 ## `PendingToolApproval.public_payload` — method, line 196
 - **called from:**
-- `src/agent_loop.py:34216`
+- `src/agent_loop.py:34236`
 - `src/teacher_escalation.py:848`
 - `tests/test_remote_resource_identity.py:139`
 - `tests/test_request_authority.py:281`
@@ -89,7 +89,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ExactToolApproval.matches` — method, line 312
 - **called from:**
-- `src/agent_loop.py:25951`
+- `src/agent_loop.py:25971`
 - `src/model_capabilities.py:903`
 - `src/tool_execution.py:1773`
 - `tests/test_calendar_cli_overlap.py:85`
@@ -300,7 +300,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5310`
 - `routes/email/email_routes.py:5373`
 - `scripts/demo_email/seed_demo_emails.py:318`
-- `src/agent_loop.py:34183`
+- `src/agent_loop.py:34203`
 - `src/teacher_escalation.py:837`
 - `tests/test_agent_rounds_exhausted.py:3768`
 - `tests/test_daily_brief_local_calendar.py:39`
@@ -351,16 +351,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:1591`
 - `static/js/chat.js:3522`
 - `static/js/chat.js:4058`
-- `static/js/chat.js:5980`
-- `static/js/chat.js:7310`
-- `static/js/chat.js:8809`
+- `static/js/chat.js:5951`
+- `static/js/chat.js:7292`
+- `static/js/chat.js:8808`
 - `static/js/compare/index.js:809`
 - … +31 more (grep the name in repo)
 
 ## `ToolApprovalStore.consume` — method, line 555
 - **called from:**
-- `routes/chat_routes.py:3055`
-- `routes/chat_routes.py:5084`
+- `routes/chat_routes.py:3074`
+- `routes/chat_routes.py:5103`
 - `routes/skills_routes.py:700`
 - `services/skills/agent_runner.py:146`
 - `services/skills/agent_runner.py:277`
@@ -417,7 +417,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ToolApprovalStore.peek` — method, line 605
 - **called from:**
-- `routes/chat_routes.py:3030`
+- `routes/chat_routes.py:3049`
 - `routes/skills_routes.py:692`
 - `src/agent_runtime/process_resources.py:124`
 - `src/agent_tools/bg_job_tools.py:96`
@@ -455,7 +455,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ToolApprovalStore.retire_for_session` — method, line 611
 - **called from:**
-- `routes/chat_routes.py:3108`
+- `routes/chat_routes.py:3127`
 - `tests/test_tool_approvals.py:129`
 - `tests/test_tool_approvals.py:131`
 - `tests/test_tool_approvals.py:133`

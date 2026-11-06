@@ -1533,10 +1533,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/admin.js:3411`
 - `static/js/calendar.js:630`
 - `static/js/chat.js:268`
-- `static/js/chat.js:5669`
+- `static/js/chat.js:5640`
+- `static/js/chat.js:5994`
+- `static/js/chat.js:6013`
 - `static/js/chat.js:6023`
-- `static/js/chat.js:6042`
-- `static/js/chat.js:6052`
 - `static/js/colorPicker.js:226`
 - `static/js/compare/index.js:1193`
 - `static/js/compare/selector.js:518`

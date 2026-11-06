@@ -119,7 +119,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/gallery/gallery_routes.py:1395`
 - `routes/gallery/gallery_routes.py:1396`
 - `routes/gallery/gallery_routes.py:1423`
-- `routes/history/history_routes.py:425`
+- `routes/history/history_routes.py:432`
 - `routes/session_routes.py:957`
 - `routes/session_routes.py:1009`
 - `routes/session_routes.py:1143`
@@ -134,8 +134,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:19520`
 - `src/agent_loop.py:19520`
 - `src/agent_loop.py:19520`
-- `src/agent_loop.py:26493`
-- `src/agent_loop.py:30737`
+- `src/agent_loop.py:26513`
+- `src/agent_loop.py:30757`
 - `src/agent_tools/document_tools.py:740`
 - `src/agent_tools/document_tools.py:892`
 - `src/agent_tools/document_tools.py:1030`

@@ -111,7 +111,7 @@
 - `tests/test_research_chat_runtime.py:53`
 - `tests/test_research_chat_runtime.py:56`
 - `tests/test_research_chat_runtime.py:98`
-- `static/js/chat.js:8991`
+- `static/js/chat.js:8990`
 - `static/js/cookbookRunning.js:2524`
 - `static/js/document.js:3594`
 - `static/js/editor/selection-mask.js:279`
@@ -141,7 +141,7 @@
 - `tests/test_research_chat_runtime.py:53`
 - `tests/test_research_chat_runtime.py:56`
 - `tests/test_research_chat_runtime.py:98`
-- `static/js/chat.js:8991`
+- `static/js/chat.js:8990`
 - `static/js/cookbookRunning.js:2524`
 - `static/js/document.js:3594`
 - `static/js/editor/selection-mask.js:279`

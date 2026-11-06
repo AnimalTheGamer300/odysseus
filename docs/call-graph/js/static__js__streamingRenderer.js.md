@@ -6,9 +6,8 @@
 ## `createStreamRenderer` — function, line 29
 - **called from:**
 - `static/js/chat.js:1599`
-- `static/js/chat.js:4465`
-- `static/js/chat.js:4523`
-- `static/js/chat.js:4571`
+- `static/js/chat.js:4494`
+- `static/js/chat.js:4542`
 - `static/js/streamingRenderer.js:29`
 
 ## `start` — function, line 41
@@ -25,7 +24,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5522`
+- `routes/chat_routes.py:5541`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -207,7 +206,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`
@@ -283,32 +282,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -327,7 +326,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `finalize` — function, line 262
 - **called from:**

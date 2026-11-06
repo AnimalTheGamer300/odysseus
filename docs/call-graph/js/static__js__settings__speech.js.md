@@ -130,7 +130,7 @@
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `setTimeout` — method?, line 158
 - **called from:**
@@ -194,7 +194,7 @@
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `initSttSettings` — function, line 166
 - **called from:**

@@ -224,12 +224,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3966`
 - `static/js/calendar.js:4010`
 - `static/js/calendar.js:4012`
-- `static/js/chat.js:6823`
-- `static/js/chat.js:6824`
-- `static/js/chat.js:8009`
-- `static/js/chat.js:8009`
-- `static/js/chat.js:8162`
-- `static/js/chat.js:9089`
+- `static/js/chat.js:6805`
+- `static/js/chat.js:6806`
+- `static/js/chat.js:7991`
+- `static/js/chat.js:7991`
+- `static/js/chat.js:8152`
+- `static/js/chat.js:9088`
 - `static/js/chatRenderer.js:786`
 - `static/js/chatRenderer.js:798`
 - `static/js/chatRenderer.js:2112`
@@ -507,9 +507,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 546
 - **called from:**
-- `static/js/chat.js:7832`
-- `static/js/chat.js:7833`
-- `static/js/chat.js:7834`
+- `static/js/chat.js:7814`
+- `static/js/chat.js:7815`
+- `static/js/chat.js:7816`
 - `static/js/cookbookServe.js:2781`
 - `static/js/cookbookServe.js:2789`
 - `static/js/cookbookServe.js:2794`
@@ -711,9 +711,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -729,7 +729,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `decide` — arrow, line 1434
 - **called from:**
@@ -778,13 +778,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`

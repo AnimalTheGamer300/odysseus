@@ -121,10 +121,10 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3659`
-- `src/llm_core.py:3677`
-- `src/llm_core.py:3961`
-- `src/llm_core.py:4298`
+- `src/llm_core.py:3669`
+- `src/llm_core.py:3687`
+- `src/llm_core.py:3971`
+- `src/llm_core.py:4308`
 - `src/task_scheduler.py:2849`
 - `src/upload_handler.py:799`
 - `tests/smoke/stub_provider.py:136`
@@ -146,7 +146,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5561`
+- `routes/chat_routes.py:5580`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`
@@ -156,8 +156,8 @@
 - `tests/test_nested_invocation_ownership.py:77`
 - `tests/test_notes_native_cleanup.py:30`
 - `static/js/admin.js:1379`
-- `static/js/chat.js:6534`
-- `static/js/chat.js:6625`
+- `static/js/chat.js:6498`
+- `static/js/chat.js:6589`
 - `static/js/chatRenderer.js:543`
 - `static/js/compare/stream.js:306`
 - `static/js/compare/stream.js:343`

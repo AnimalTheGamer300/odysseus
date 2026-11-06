@@ -25,7 +25,7 @@
 - `routes/chat_helpers.py:964`
 - `routes/document/document_routes.py:212`
 - `routes/email/email_routes.py:459`
-- `routes/history/history_routes.py:1150`
+- `routes/history/history_routes.py:1166`
 - `routes/memory/memory_routes.py:143`
 - `routes/research/research_routes.py:862`
 - `routes/session_routes.py:684`

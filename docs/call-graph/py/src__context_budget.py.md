@@ -13,7 +13,7 @@
 
 ## `compute_input_token_budget` — function, line 28
 - **called from:**
-- `src/agent_loop.py:24615`
+- `src/agent_loop.py:24635`
 - `tests/test_budget_auto_sentinel.py:53`
 - `tests/test_budget_auto_sentinel.py:57`
 - `tests/test_budget_auto_sentinel.py:63`
@@ -44,7 +44,7 @@
 
 ## `compute_trim_context_window` — function, line 84
 - **called from:**
-- `src/agent_loop.py:24634`
+- `src/agent_loop.py:24654`
 - `tests/test_context_budget.py:23`
 - `tests/test_context_budget.py:31`
 

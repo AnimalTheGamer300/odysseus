@@ -4,9 +4,9 @@
 
 ## `is_shutting_down` — function, line 20
 - **called from:**
-- `routes/chat_routes.py:4213`
-- `routes/chat_routes.py:5491`
-- `routes/chat_routes.py:5737`
+- `routes/chat_routes.py:4232`
+- `routes/chat_routes.py:5510`
+- `routes/chat_routes.py:5756`
 - `routes/editor_agent_routes.py:1589`
 - `routes/email/email_routes.py:6863`
 - `routes/research/research_routes.py:668`
@@ -30,7 +30,7 @@
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`

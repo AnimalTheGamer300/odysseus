@@ -760,12 +760,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:4444`
 - `static/app.js:4540`
 - `static/js/chat.js:3582`
-- `static/js/chat.js:5189`
-- `static/js/chat.js:5779`
-- `static/js/chat.js:6704`
-- `static/js/chat.js:6893`
-- `static/js/chat.js:8288`
-- `static/js/chat.js:9385`
+- `static/js/chat.js:5160`
+- `static/js/chat.js:5750`
+- `static/js/chat.js:6686`
+- `static/js/chat.js:6875`
+- `static/js/chat.js:8278`
+- `static/js/chat.js:9384`
 - `static/js/chatRenderer.js:1733`
 - `static/js/document.js:12354`
 - `static/js/documentLibrary.js:2557`
@@ -823,11 +823,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:1158`
 - `static/js/chat.js:1307`
 - `static/js/chat.js:1667`
-- `static/js/chat.js:5187`
-- `static/js/chat.js:6702`
-- `static/js/chat.js:7100`
-- `static/js/chat.js:8098`
-- `static/js/chat.js:8289`
+- `static/js/chat.js:5158`
+- `static/js/chat.js:6684`
+- `static/js/chat.js:7082`
+- `static/js/chat.js:8080`
+- `static/js/chat.js:8279`
 - `static/js/chatRenderer.js:1734`
 - `static/js/chatRenderer.js:1869`
 - `static/js/chatRenderer.js:2860`
@@ -900,7 +900,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:2774`
 - `static/js/chat.js:2785`
 - `static/js/chat.js:2821`
-- `static/js/chat.js:9460`
+- `static/js/chat.js:9459`
 - `static/js/document.js:12323`
 - `static/js/documentLibrary.js:1261`
 - `static/js/documentLibrary.js:1278`
@@ -983,26 +983,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:3769`
 - `static/js/chat.js:4050`
 - `static/js/chat.js:4080`
-- `static/js/chat.js:4447`
-- `static/js/chat.js:4615`
-- `static/js/chat.js:5079`
-- `static/js/chat.js:5156`
-- `static/js/chat.js:5186`
-- `static/js/chat.js:5879`
-- `static/js/chat.js:6103`
-- `static/js/chat.js:6117`
-- `static/js/chat.js:6427`
-- `static/js/chat.js:6477`
-- `static/js/chat.js:6661`
-- `static/js/chat.js:6701`
-- `static/js/chat.js:6765`
-- `static/js/chat.js:6807`
-- `static/js/chat.js:6869`
-- `static/js/chat.js:6909`
-- `static/js/chat.js:6911`
-- `static/js/chat.js:6961`
-- `static/js/chat.js:7013`
-- `static/js/chat.js:7015`
+- `static/js/chat.js:4436`
+- `static/js/chat.js:4586`
+- `static/js/chat.js:5050`
+- `static/js/chat.js:5127`
+- `static/js/chat.js:5157`
+- `static/js/chat.js:5850`
+- `static/js/chat.js:6074`
+- `static/js/chat.js:6088`
+- `static/js/chat.js:6391`
+- `static/js/chat.js:6441`
+- `static/js/chat.js:6625`
+- `static/js/chat.js:6683`
+- `static/js/chat.js:6747`
+- `static/js/chat.js:6789`
+- `static/js/chat.js:6851`
+- `static/js/chat.js:6891`
+- `static/js/chat.js:6893`
+- `static/js/chat.js:6943`
+- `static/js/chat.js:6995`
+- `static/js/chat.js:6997`
 - … +79 more (grep the name in repo)
 
 ## `isCurrentSessionIncognito` — function, line 2848
@@ -1021,11 +1021,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:1581`
 - `static/js/chat.js:2504`
 - `static/js/chat.js:3779`
-- `static/js/chat.js:5956`
-- `static/js/chat.js:6117`
-- `static/js/chat.js:7293`
-- `static/js/chat.js:8766`
-- `static/js/chat.js:8802`
+- `static/js/chat.js:5927`
+- `static/js/chat.js:6088`
+- `static/js/chat.js:7275`
+- `static/js/chat.js:8765`
+- `static/js/chat.js:8801`
 - `static/js/chatStream.js:313`
 - `static/js/documentLibrary.js:1267`
 - `static/js/group.js:141`
@@ -1054,7 +1054,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/chat.js:1364`
 - `static/js/chat.js:2761`
-- `static/js/chat.js:7810`
+- `static/js/chat.js:7792`
 - `static/js/cookbookRunning.js:560`
 - `static/js/document.js:6806`
 - `static/js/document.js:12328`
@@ -1067,7 +1067,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `getCurrentEndpointUrl` — function, line 2865
 - **called from:**
 - `static/js/chat.js:2762`
-- `static/js/chat.js:7811`
+- `static/js/chat.js:7793`
 - `static/js/chatRenderer.js:1152`
 - `static/js/chatRenderer.js:1263`
 - `static/js/sessions.js:2865`
@@ -1153,36 +1153,36 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `markResearching` — function, line 3113
 - **called from:**
-- `static/js/chat.js:5080`
-- `static/js/chat.js:8836`
+- `static/js/chat.js:5051`
+- `static/js/chat.js:8835`
 - `static/js/sessions.js:3113`
 
 ## `clearResearching` — function, line 3120
 - **called from:**
-- `static/js/chat.js:5150`
-- `static/js/chat.js:5157`
-- `static/js/chat.js:5178`
-- `static/js/chat.js:8735`
-- `static/js/chat.js:8743`
-- `static/js/chat.js:8898`
-- `static/js/chat.js:8914`
+- `static/js/chat.js:5121`
+- `static/js/chat.js:5128`
+- `static/js/chat.js:5149`
+- `static/js/chat.js:8734`
+- `static/js/chat.js:8742`
+- `static/js/chat.js:8897`
+- `static/js/chat.js:8913`
 - `static/js/sessions.js:3120`
 
 ## `markStreaming` — function, line 3126
 - **called from:**
 - `static/js/chat.js:3490`
-- `static/js/chat.js:4633`
-- `static/js/chat.js:7200`
-- `static/js/chat.js:7289`
+- `static/js/chat.js:4604`
+- `static/js/chat.js:7182`
+- `static/js/chat.js:7271`
 - `static/js/sessions.js:3126`
 
 ## `clearStreaming` — function, line 3133
 - **called from:**
-- `static/js/chat.js:6491`
-- `static/js/chat.js:6516`
-- `static/js/chat.js:6522`
-- `static/js/chat.js:7202`
-- `static/js/chat.js:7364`
+- `static/js/chat.js:6455`
+- `static/js/chat.js:6480`
+- `static/js/chat.js:6486`
+- `static/js/chat.js:7184`
+- `static/js/chat.js:7346`
 - `static/js/sessions.js:3133`
 
 ## `_clearRunningState` — function, line 3139
@@ -1193,8 +1193,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `markStreamComplete` — function, line 3150
 - **called from:**
-- `static/js/chat.js:4667`
-- `static/js/chat.js:4678`
+- `static/js/chat.js:4638`
+- `static/js/chat.js:4649`
 - `static/js/sessions.js:3150`
 
 ## `setTimeout` — method?, line 3171
@@ -1259,7 +1259,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `_updateRailNotifs` — function, line 3180
 - **called from:**

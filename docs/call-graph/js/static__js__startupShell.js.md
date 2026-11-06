@@ -63,11 +63,11 @@
 - **called from:**
 - `static/js/chat.js:3700`
 - `static/js/chat.js:3716`
-- `static/js/chat.js:6451`
-- `static/js/chat.js:7359`
-- `static/js/chat.js:7485`
-- `static/js/chat.js:7497`
-- `static/js/chat.js:7678`
+- `static/js/chat.js:6415`
+- `static/js/chat.js:7341`
+- `static/js/chat.js:7467`
+- `static/js/chat.js:7479`
+- `static/js/chat.js:7660`
 - `static/js/emailLibrary/index.js:5974`
 - `static/js/startupShell.js:136`
 - `static/js/startupShell.js:145`

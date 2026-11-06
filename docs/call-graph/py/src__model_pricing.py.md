@@ -12,7 +12,7 @@
 ## `is_local_endpoint` — function, line 119
 - **called from:**
 - `src/agent_loop.py:15638`
-- `src/agent_loop.py:24971`
+- `src/agent_loop.py:24991`
 - `src/agent_runtime/context_resolution.py:430`
 - `src/llm_core.py:35`
 - `src/llm_core.py:121`

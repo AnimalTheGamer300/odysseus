@@ -133,11 +133,11 @@
 - `static/js/calendar.js:1664`
 - `static/js/calendar.js:2653`
 - `static/js/chat.js:3712`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5202`
-- `static/js/chat.js:6102`
-- `static/js/chat.js:6252`
-- `static/js/chat.js:7389`
+- `static/js/chat.js:4812`
+- `static/js/chat.js:5173`
+- `static/js/chat.js:6073`
+- `static/js/chat.js:6217`
+- `static/js/chat.js:7371`
 - `static/js/documentLibrary.js:108`
 - `static/js/documentLibrary.js:124`
 - `static/js/editor/adjustments-worker.js:5`
@@ -1522,7 +1522,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `fallback` — arrow, line 4549
 - **called from:**
-- `static/js/chat.js:6390`
+- `static/js/chat.js:6354`
 - `static/js/chatRenderer.js:1881`
 - `static/js/chatRenderer.js:1883`
 - `static/js/cookbook.js:1281`
@@ -1538,10 +1538,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `finish` — arrow, line 4564
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -1636,10 +1636,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `finish` — arrow, line 4646
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -2720,13 +2720,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -4362,13 +4362,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -4523,7 +4523,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `openEditor` — function, line 13781
 - **called from:**
-- `static/js/chat.js:9355`
+- `static/js/chat.js:9354`
 - `static/js/chatRenderer.js:2152`
 - `static/js/gallery.js:54`
 - `static/js/gallery.js:68`

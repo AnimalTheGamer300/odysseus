@@ -70,11 +70,11 @@
 
 ## `canonical` — function, line 421
 - **called from:**
-- `routes/chat_routes.py:3950`
-- `routes/chat_routes.py:3957`
-- `routes/chat_routes.py:3967`
-- `routes/chat_routes.py:3968`
-- `routes/chat_routes.py:4016`
+- `routes/chat_routes.py:3969`
+- `routes/chat_routes.py:3976`
+- `routes/chat_routes.py:3986`
+- `routes/chat_routes.py:3987`
+- `routes/chat_routes.py:4035`
 - `src/clean_agent_preview.py:303`
 - `src/clean_agent_preview.py:360`
 - `src/clean_agent_preview.py:364`
@@ -1011,7 +1011,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `scope_preview_contract` — function, line 3186
 - **called from:**
-- `routes/chat_routes.py:3970`
+- `routes/chat_routes.py:3989`
 - `tests/test_clean_agent_preview.py:4478`
 - `tests/test_clean_agent_preview.py:4488`
 - `tests/test_clean_agent_preview.py:4505`

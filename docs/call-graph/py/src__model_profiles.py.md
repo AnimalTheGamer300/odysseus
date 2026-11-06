@@ -50,9 +50,9 @@
 ## `supports_user_thinking_toggle` — function, line 50
 - **called from:**
 - `routes/chat_routes.py:2443`
-- `routes/chat_routes.py:2986`
-- `routes/chat_routes.py:3138`
-- `routes/history/history_routes.py:1197`
-- `routes/history/history_routes.py:1368`
+- `routes/chat_routes.py:3005`
+- `routes/chat_routes.py:3157`
+- `routes/history/history_routes.py:1213`
+- `routes/history/history_routes.py:1384`
 - `tests/test_kimi_thinking_toggle.py:10`
 - `tests/test_kimi_thinking_toggle.py:17`

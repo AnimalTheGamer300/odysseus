@@ -44,11 +44,11 @@
 - `static/js/calendar.js:1664`
 - `static/js/calendar.js:2653`
 - `static/js/chat.js:3712`
-- `static/js/chat.js:4841`
-- `static/js/chat.js:5202`
-- `static/js/chat.js:6102`
-- `static/js/chat.js:6252`
-- `static/js/chat.js:7389`
+- `static/js/chat.js:4812`
+- `static/js/chat.js:5173`
+- `static/js/chat.js:6073`
+- `static/js/chat.js:6217`
+- `static/js/chat.js:7371`
 - `static/js/documentLibrary.js:108`
 - `static/js/documentLibrary.js:124`
 - `static/js/editor/adjustments-worker.js:5`
@@ -151,19 +151,21 @@
 - `app.py:1470`
 - `routes/editor_agent_routes.py:1414`
 - `routes/email/email_routes.py:6869`
+- `routes/history/history_routes.py:613`
 - `routes/shell_routes.py:957`
 - `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
-- `src/agent_loop.py:26017`
-- `src/agent_loop.py:34321`
+- `src/agent_loop.py:26037`
+- `src/agent_loop.py:34341`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
 - `src/agent_runs.py:249`
 - `src/agent_runs.py:298`
+- `src/agent_runs.py:315`
 - `src/ai_interaction.py:1822`
 - `src/ai_interaction.py:2094`
 - `src/clean_agent_preview.py:5609`
@@ -205,9 +207,7 @@
 - `tests/test_nested_invocation_ownership.py:93`
 - `tests/test_nested_invocation_ownership.py:96`
 - `tests/test_nested_invocation_ownership.py:448`
-- `tests/test_nested_invocation_ownership.py:453`
-- `tests/test_review_calendar_invitation.py:135`
-- … +82 more (grep the name in repo)
+- … +84 more (grep the name in repo)
 
 ## `_showLibDropdown` — function, line 318
 - **called from:**
@@ -397,8 +397,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`
@@ -772,9 +772,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 2421
 - **called from:**
-- `static/js/chat.js:7832`
-- `static/js/chat.js:7833`
-- `static/js/chat.js:7834`
+- `static/js/chat.js:7814`
+- `static/js/chat.js:7815`
+- `static/js/chat.js:7816`
 - `static/js/cookbookServe.js:2781`
 - `static/js/cookbookServe.js:2789`
 - `static/js/cookbookServe.js:2794`
@@ -855,9 +855,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `mk` — arrow, line 2856
 - **called from:**
-- `static/js/chat.js:7832`
-- `static/js/chat.js:7833`
-- `static/js/chat.js:7834`
+- `static/js/chat.js:7814`
+- `static/js/chat.js:7815`
+- `static/js/chat.js:7816`
 - `static/js/cookbookServe.js:2781`
 - `static/js/cookbookServe.js:2789`
 - `static/js/cookbookServe.js:2794`

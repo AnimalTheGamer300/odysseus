@@ -8,7 +8,7 @@
 
 ## `do_edit_image` — function (async), line 100
 - **called from:**
-- `routes/chat_routes.py:4412`
+- `routes/chat_routes.py:4431`
 - `src/tool_execution.py:2468`
 - `tests/test_edit_image_tool.py:82`
 - `tests/test_edit_image_tool.py:107`

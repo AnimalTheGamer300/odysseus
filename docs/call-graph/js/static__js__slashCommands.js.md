@@ -300,8 +300,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `typewriterInto` — function, line 593
 - **called from:**
 - `static/js/chat.js:3610`
-- `static/js/chat.js:6736`
-- `static/js/chat.js:6965`
+- `static/js/chat.js:6718`
+- `static/js/chat.js:6947`
 - `static/js/slashCommands.js:593`
 
 ## `maskKey` — function, line 608
@@ -460,7 +460,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `setWorkspace` — arrow, line 1270
 - **called from:**
-- `static/js/chat.js:5216`
+- `static/js/chat.js:5187`
 - `static/js/slashCommands.js:1282`
 - `static/js/slashCommands.js:1294`
 - `static/js/workspace.js:61`
@@ -677,32 +677,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -721,7 +721,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `destroy` — method?, line 2312
 - **called from:**
@@ -738,26 +738,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:3818`
 - `static/js/chat.js:4212`
 - `static/js/chat.js:4214`
-- `static/js/chat.js:4440`
-- `static/js/chat.js:4740`
-- `static/js/chat.js:4771`
-- `static/js/chat.js:4804`
-- `static/js/chat.js:4998`
-- `static/js/chat.js:5539`
-- `static/js/chat.js:5977`
-- `static/js/chat.js:6019`
-- `static/js/chat.js:6062`
-- `static/js/chat.js:6097`
-- `static/js/chat.js:6106`
-- `static/js/chat.js:6528`
-- `static/js/chat.js:7360`
-- `static/js/chat.js:7417`
-- `static/js/chat.js:7494`
-- `static/js/chat.js:7511`
-- `static/js/chat.js:8881`
-- `static/js/chat.js:8895`
-- `static/js/chat.js:8911`
-- `static/js/chat.js:9198`
+- `static/js/chat.js:4429`
+- `static/js/chat.js:4711`
+- `static/js/chat.js:4742`
+- `static/js/chat.js:4775`
+- `static/js/chat.js:4969`
+- `static/js/chat.js:5510`
+- `static/js/chat.js:5948`
+- `static/js/chat.js:5990`
+- `static/js/chat.js:6033`
+- `static/js/chat.js:6068`
+- `static/js/chat.js:6077`
+- `static/js/chat.js:6492`
+- `static/js/chat.js:7342`
+- `static/js/chat.js:7399`
+- `static/js/chat.js:7476`
+- `static/js/chat.js:7493`
+- `static/js/chat.js:8880`
+- `static/js/chat.js:8894`
+- `static/js/chat.js:8910`
+- `static/js/chat.js:9197`
 - `static/js/codeRunner.js:236`
 - `static/js/compare/panes.js:407`
 - `static/js/compare/stream.js:217`
@@ -830,13 +830,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -888,7 +888,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `delay` — arrow, line 2481
 - **called from:**
 - `static/app.js:3977`
-- `static/js/chat.js:6890`
+- `static/js/chat.js:6872`
 - `static/js/emailLibrary/index.js:1568`
 - `static/js/slashCommands.js:2486`
 - `static/js/slashCommands.js:2540`
@@ -985,32 +985,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -1029,7 +1029,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `destroy` — method?, line 2630
 - **called from:**
@@ -1046,26 +1046,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:3818`
 - `static/js/chat.js:4212`
 - `static/js/chat.js:4214`
-- `static/js/chat.js:4440`
-- `static/js/chat.js:4740`
-- `static/js/chat.js:4771`
-- `static/js/chat.js:4804`
-- `static/js/chat.js:4998`
-- `static/js/chat.js:5539`
-- `static/js/chat.js:5977`
-- `static/js/chat.js:6019`
-- `static/js/chat.js:6062`
-- `static/js/chat.js:6097`
-- `static/js/chat.js:6106`
-- `static/js/chat.js:6528`
-- `static/js/chat.js:7360`
-- `static/js/chat.js:7417`
-- `static/js/chat.js:7494`
-- `static/js/chat.js:7511`
-- `static/js/chat.js:8881`
-- `static/js/chat.js:8895`
-- `static/js/chat.js:8911`
-- `static/js/chat.js:9198`
+- `static/js/chat.js:4429`
+- `static/js/chat.js:4711`
+- `static/js/chat.js:4742`
+- `static/js/chat.js:4775`
+- `static/js/chat.js:4969`
+- `static/js/chat.js:5510`
+- `static/js/chat.js:5948`
+- `static/js/chat.js:5990`
+- `static/js/chat.js:6033`
+- `static/js/chat.js:6068`
+- `static/js/chat.js:6077`
+- `static/js/chat.js:6492`
+- `static/js/chat.js:7342`
+- `static/js/chat.js:7399`
+- `static/js/chat.js:7476`
+- `static/js/chat.js:7493`
+- `static/js/chat.js:8880`
+- `static/js/chat.js:8894`
+- `static/js/chat.js:8910`
+- `static/js/chat.js:9197`
 - `static/js/codeRunner.js:236`
 - `static/js/compare/panes.js:407`
 - `static/js/compare/stream.js:217`
@@ -1309,32 +1309,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -1353,7 +1353,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 2916
 - **called from:**
@@ -1538,32 +1538,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -1582,7 +1582,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 3145
 - **called from:**
@@ -1698,13 +1698,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -1831,32 +1831,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -1875,7 +1875,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `tick` — arrow, line 3383
 - **called from:**
@@ -2073,32 +2073,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -2117,7 +2117,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `tick` — arrow, line 3615
 - **called from:**
@@ -2325,32 +2325,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -2369,7 +2369,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `tick` — arrow, line 3828
 - **called from:**
@@ -2552,32 +2552,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -2596,7 +2596,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `tick` — arrow, line 4028
 - **called from:**
@@ -2783,32 +2783,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -2827,7 +2827,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `tick` — arrow, line 4247
 - **called from:**
@@ -2877,10 +2877,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4555`
-- `src/llm_core.py:4556`
-- `src/llm_core.py:4754`
-- `src/llm_core.py:5114`
+- `src/llm_core.py:4565`
+- `src/llm_core.py:4566`
+- `src/llm_core.py:4764`
+- `src/llm_core.py:5124`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`
@@ -3000,32 +3000,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -3044,7 +3044,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 4480
 - **called from:**
@@ -3208,32 +3208,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -3252,7 +3252,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `_clearHalos` — function, line 4694
 - **called from:**
@@ -3368,13 +3368,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -3467,32 +3467,32 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -3511,7 +3511,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `cleanup` — arrow, line 4980
 - **called from:**
@@ -3522,13 +3522,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`

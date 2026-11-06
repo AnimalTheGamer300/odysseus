@@ -5,7 +5,7 @@
 ## `redact_url` — function, line 13
 - **called from:**
 - `routes/chat_routes.py:2286`
-- `routes/chat_routes.py:4131`
+- `routes/chat_routes.py:4150`
 - `routes/contacts/contacts_routes.py:851`
 - `tests/test_log_safety.py:5`
 - `tests/test_log_safety.py:9`

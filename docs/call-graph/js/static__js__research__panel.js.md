@@ -200,8 +200,8 @@
 ## `openPanel` — function, line 238
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9370`
-- `static/js/chat.js:9411`
+- `static/js/chat.js:9369`
+- `static/js/chat.js:9410`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`
@@ -413,12 +413,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:377`
 - `routes/chat_helpers.py:399`
 - `routes/chat_helpers.py:407`
-- `routes/chat_routes.py:4423`
-- `routes/chat_routes.py:4431`
-- `routes/chat_routes.py:4483`
-- `routes/chat_routes.py:4640`
-- `routes/chat_routes.py:4685`
-- `routes/chat_routes.py:4753`
+- `routes/chat_routes.py:4442`
+- `routes/chat_routes.py:4450`
+- `routes/chat_routes.py:4502`
+- `routes/chat_routes.py:4659`
+- `routes/chat_routes.py:4704`
+- `routes/chat_routes.py:4772`
 - `routes/codex_routes.py:914`
 - `routes/cookbook_routes.py:3362`
 - `routes/cookbook_routes.py:3681`
@@ -1129,8 +1129,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`

@@ -467,7 +467,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `router.post("/api/editor/plan")`
 - **called from:**
 - `static/js/admin.js:2718`
-- `static/js/chat.js:5897`
+- `static/js/chat.js:5868`
 - `static/js/editor/nl-edit.js:130`
 - `static/js/galleryEditor.js:2693`
 

@@ -208,8 +208,8 @@
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`
@@ -327,8 +327,8 @@
 ## `openPanel` — function, line 134
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9370`
-- `static/js/chat.js:9411`
+- `static/js/chat.js:9369`
+- `static/js/chat.js:9410`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`

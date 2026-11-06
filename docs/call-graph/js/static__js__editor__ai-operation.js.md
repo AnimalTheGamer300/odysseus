@@ -17,19 +17,21 @@
 - `app.py:1470`
 - `routes/editor_agent_routes.py:1414`
 - `routes/email/email_routes.py:6869`
+- `routes/history/history_routes.py:613`
 - `routes/shell_routes.py:957`
 - `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
-- `src/agent_loop.py:26017`
-- `src/agent_loop.py:34321`
+- `src/agent_loop.py:26037`
+- `src/agent_loop.py:34341`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
 - `src/agent_runs.py:249`
 - `src/agent_runs.py:298`
+- `src/agent_runs.py:315`
 - `src/ai_interaction.py:1822`
 - `src/ai_interaction.py:2094`
 - `src/clean_agent_preview.py:5609`
@@ -71,16 +73,14 @@
 - `tests/test_nested_invocation_ownership.py:93`
 - `tests/test_nested_invocation_ownership.py:96`
 - `tests/test_nested_invocation_ownership.py:448`
-- `tests/test_nested_invocation_ownership.py:453`
-- `tests/test_review_calendar_invitation.py:135`
-- … +82 more (grep the name in repo)
+- … +84 more (grep the name in repo)
 
 ## `finish` — method?, line 19
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -157,13 +157,13 @@
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -226,11 +226,11 @@
 - `static/js/chat.js:3433`
 - `static/js/chat.js:3443`
 - `static/js/chat.js:3449`
-- `static/js/chat.js:6472`
-- `static/js/chat.js:6936`
-- `static/js/chat.js:7036`
-- `static/js/chat.js:7061`
-- `static/js/chat.js:7206`
+- `static/js/chat.js:6436`
+- `static/js/chat.js:6918`
+- `static/js/chat.js:7018`
+- `static/js/chat.js:7043`
+- `static/js/chat.js:7188`
 - `static/js/compare/index.js:214`
 - `static/js/compare/panes.js:375`
 - `static/js/compare/panes.js:391`

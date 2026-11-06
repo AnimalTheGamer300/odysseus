@@ -214,7 +214,7 @@
 - `static/js/actionMenuOrder.js:10`
 - `static/js/calendar.js:1242`
 - `static/js/calendar.js:2883`
-- `static/js/chat.js:9376`
+- `static/js/chat.js:9375`
 - `static/js/editor/panels/panels.js:91`
 - `static/js/editor/panels/panels.js:91`
 - `static/js/editor/panels/panels.js:91`

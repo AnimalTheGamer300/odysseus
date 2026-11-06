@@ -769,10 +769,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4555`
-- `src/llm_core.py:4556`
-- `src/llm_core.py:4754`
-- `src/llm_core.py:5114`
+- `src/llm_core.py:4565`
+- `src/llm_core.py:4566`
+- `src/llm_core.py:4764`
+- `src/llm_core.py:5124`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`
@@ -1562,27 +1562,27 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:928`
 - `routes/chat_routes.py:928`
 - `routes/chat_routes.py:1721`
-- `routes/chat_routes.py:3574`
-- `routes/chat_routes.py:3753`
-- `routes/chat_routes.py:3797`
-- `routes/chat_routes.py:3799`
-- `routes/chat_routes.py:3843`
-- `routes/chat_routes.py:3854`
-- `routes/chat_routes.py:3861`
-- `routes/chat_routes.py:3863`
-- `routes/chat_routes.py:3879`
-- `routes/chat_routes.py:3887`
+- `routes/chat_routes.py:3593`
+- `routes/chat_routes.py:3772`
+- `routes/chat_routes.py:3816`
+- `routes/chat_routes.py:3818`
+- `routes/chat_routes.py:3862`
+- `routes/chat_routes.py:3873`
+- `routes/chat_routes.py:3880`
+- `routes/chat_routes.py:3882`
+- `routes/chat_routes.py:3898`
 - `routes/chat_routes.py:3906`
-- `routes/chat_routes.py:3907`
-- `routes/chat_routes.py:4983`
-- `routes/chat_routes.py:4985`
-- `routes/chat_routes.py:4987`
-- `routes/chat_routes.py:4997`
-- `routes/chat_routes.py:5000`
+- `routes/chat_routes.py:3925`
+- `routes/chat_routes.py:3926`
+- `routes/chat_routes.py:5002`
 - `routes/chat_routes.py:5004`
-- `routes/chat_routes.py:5015`
-- `routes/chat_routes.py:5017`
-- `routes/chat_routes.py:5059`
+- `routes/chat_routes.py:5006`
+- `routes/chat_routes.py:5016`
+- `routes/chat_routes.py:5019`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5034`
+- `routes/chat_routes.py:5036`
+- `routes/chat_routes.py:5078`
 - `routes/chatgpt_subscription_routes.py:82`
 - `routes/codex_routes.py:89`
 - `routes/codex_routes.py:103`
@@ -1594,7 +1594,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:2877`
 - `routes/cookbook_routes.py:3326`
 - `routes/cookbook_routes.py:3872`
-- … +2020 more (grep the name in repo)
+- … +2023 more (grep the name in repo)
 
 ## `dropdownActive` — arrow, line 4299
 - **called from:**
@@ -2235,13 +2235,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -2445,13 +2445,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -2574,8 +2574,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `openPanel` — function, line 7387
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9370`
-- `static/js/chat.js:9411`
+- `static/js/chat.js:9369`
+- `static/js/chat.js:9410`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`
@@ -2669,10 +2669,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_close` — arrow, line 8133
 - **called from:**
-- `static/js/chat.js:7876`
-- `static/js/chat.js:7884`
-- `static/js/chat.js:7892`
-- `static/js/chat.js:7895`
+- `static/js/chat.js:7858`
+- `static/js/chat.js:7866`
+- `static/js/chat.js:7874`
+- `static/js/chat.js:7877`
 - `static/js/chatRenderer.js:659`
 - `static/js/document.js:8109`
 - `static/js/document.js:8140`
@@ -2810,7 +2810,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `done` — function, line 9388
 - **called from:**
-- `routes/chat_routes.py:4425`
+- `routes/chat_routes.py:4444`
 - `routes/cookbook_routes.py:4116`
 - `routes/editor_agent_routes.py:1413`
 - `routes/editor_agent_routes.py:1612`
@@ -2818,8 +2818,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/research/research_handler.py:142`
 - `services/skills/job_coordinator.py:214`
 - `src/agent_jobs.py:361`
-- `src/agent_loop.py:26016`
-- `src/agent_loop.py:34320`
+- `src/agent_loop.py:26036`
+- `src/agent_loop.py:34340`
 - `src/agent_runs.py:85`
 - `src/agent_runs.py:140`
 - `src/agent_runs.py:169`
@@ -2827,7 +2827,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runs.py:209`
 - `src/agent_runs.py:248`
 - `src/agent_runs.py:297`
-- `src/agent_runs.py:308`
+- `src/agent_runs.py:314`
+- `src/agent_runs.py:325`
 - `src/bg_monitor.py:243`
 - `src/clean_agent_preview.py:5604`
 - `src/containment.py:1218`
@@ -2869,8 +2870,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:9492`
 - `static/js/document.js:9495`
 - `static/js/document.js:9496`
-- `static/js/features/notes/ui/cardRendering.js:60`
-- … +1 more (grep the name in repo)
+- … +2 more (grep the name in repo)
 
 ## `submit` — function, line 9393
 - **called from:**
@@ -2903,7 +2903,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_upload_handler_cleanup.py:346`
 - `tests/test_upload_handler_cleanup.py:348`
 - `tests/test_worker_runtime.py:108`
-- `static/js/chat.js:8955`
+- `static/js/chat.js:8954`
 - `static/js/chatRenderer.js:3181`
 - `static/js/document.js:9393`
 - `static/js/document.js:9416`
@@ -2932,7 +2932,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `done` — function, line 9447
 - **called from:**
-- `routes/chat_routes.py:4425`
+- `routes/chat_routes.py:4444`
 - `routes/cookbook_routes.py:4116`
 - `routes/editor_agent_routes.py:1413`
 - `routes/editor_agent_routes.py:1612`
@@ -2940,8 +2940,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/research/research_handler.py:142`
 - `services/skills/job_coordinator.py:214`
 - `src/agent_jobs.py:361`
-- `src/agent_loop.py:26016`
-- `src/agent_loop.py:34320`
+- `src/agent_loop.py:26036`
+- `src/agent_loop.py:34340`
 - `src/agent_runs.py:85`
 - `src/agent_runs.py:140`
 - `src/agent_runs.py:169`
@@ -2949,7 +2949,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runs.py:209`
 - `src/agent_runs.py:248`
 - `src/agent_runs.py:297`
-- `src/agent_runs.py:308`
+- `src/agent_runs.py:314`
+- `src/agent_runs.py:325`
 - `src/bg_monitor.py:243`
 - `src/clean_agent_preview.py:5604`
 - `src/containment.py:1218`
@@ -2991,8 +2992,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:9492`
 - `static/js/document.js:9495`
 - `static/js/document.js:9496`
-- `static/js/features/notes/ui/cardRendering.js:60`
-- … +1 more (grep the name in repo)
+- … +2 more (grep the name in repo)
 
 ## `submit` — function, line 9452
 - **called from:**
@@ -3025,7 +3025,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_upload_handler_cleanup.py:346`
 - `tests/test_upload_handler_cleanup.py:348`
 - `tests/test_worker_runtime.py:108`
-- `static/js/chat.js:8955`
+- `static/js/chat.js:8954`
 - `static/js/chatRenderer.js:3181`
 - `static/js/document.js:9393`
 - `static/js/document.js:9416`
@@ -3054,7 +3054,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `done` — function, line 9485
 - **called from:**
-- `routes/chat_routes.py:4425`
+- `routes/chat_routes.py:4444`
 - `routes/cookbook_routes.py:4116`
 - `routes/editor_agent_routes.py:1413`
 - `routes/editor_agent_routes.py:1612`
@@ -3062,8 +3062,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/research/research_handler.py:142`
 - `services/skills/job_coordinator.py:214`
 - `src/agent_jobs.py:361`
-- `src/agent_loop.py:26016`
-- `src/agent_loop.py:34320`
+- `src/agent_loop.py:26036`
+- `src/agent_loop.py:34340`
 - `src/agent_runs.py:85`
 - `src/agent_runs.py:140`
 - `src/agent_runs.py:169`
@@ -3071,7 +3071,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runs.py:209`
 - `src/agent_runs.py:248`
 - `src/agent_runs.py:297`
-- `src/agent_runs.py:308`
+- `src/agent_runs.py:314`
+- `src/agent_runs.py:325`
 - `src/bg_monitor.py:243`
 - `src/clean_agent_preview.py:5604`
 - `src/containment.py:1218`
@@ -3113,8 +3114,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/document.js:9492`
 - `static/js/document.js:9495`
 - `static/js/document.js:9496`
-- `static/js/features/notes/ui/cardRendering.js:60`
-- … +1 more (grep the name in repo)
+- … +2 more (grep the name in repo)
 
 ## `submit` — function, line 9490
 - **called from:**
@@ -3147,7 +3147,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_upload_handler_cleanup.py:346`
 - `tests/test_upload_handler_cleanup.py:348`
 - `tests/test_worker_runtime.py:108`
-- `static/js/chat.js:8955`
+- `static/js/chat.js:8954`
 - `static/js/chatRenderer.js:3181`
 - `static/js/document.js:9393`
 - `static/js/document.js:9416`
@@ -3623,8 +3623,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `isVisible` — arrow, line 11463
 - **called from:**
-- `static/js/chat.js:6105`
-- `static/js/chat.js:6190`
+- `static/js/chat.js:6076`
+- `static/js/chat.js:6161`
 - `static/js/cookbook.js:3703`
 - `static/js/cookbook.js:3746`
 - `static/js/cookbook.js:3784`
@@ -3796,7 +3796,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `injectFreshDoc` — function, line 12088
 - **called from:**
-- `static/js/chat.js:9412`
+- `static/js/chat.js:9411`
 - `static/js/document.js:12019`
 - `static/js/document.js:12088`
 - `static/js/emailInbox.js:1136`
@@ -3829,9 +3829,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `loadDocument` — function, line 12264
 - **called from:**
-- `static/js/chat.js:5816`
-- `static/js/chat.js:9371`
-- `static/js/chat.js:9413`
+- `static/js/chat.js:5787`
+- `static/js/chat.js:9370`
+- `static/js/chat.js:9412`
 - `static/js/chatStream.js:256`
 - `static/js/document.js:5015`
 - `static/js/document.js:12264`
@@ -4251,7 +4251,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleDocSuggestions` — function, line 13600
 - **called from:**
-- `static/js/chat.js:5872`
+- `static/js/chat.js:5843`
 - `static/js/document.js:13600`
 
 ## `_showCurrentSuggestion` — function, line 13665
@@ -4409,8 +4409,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/assistant.js:302`
 - `static/js/assistant.js:311`
 - `static/js/assistant.js:311`
-- `static/js/chat.js:6329`
-- `static/js/chat.js:6329`
+- `static/js/chat.js:6293`
+- `static/js/chat.js:6293`
 - `static/js/cookbookServe.js:4108`
 - `static/js/cookbookServe.js:4110`
 - `static/js/document.js:1225`
@@ -4685,13 +4685,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -5040,8 +5040,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `streamDocOpen` — function, line 16706
 - **called from:**
-- `static/js/chat.js:5846`
-- `static/js/chat.js:7515`
+- `static/js/chat.js:5817`
+- `static/js/chat.js:7497`
 - `static/js/document.js:16706`
 
 ## `_animateDocEdit` — function, line 16807
@@ -5073,8 +5073,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `streamDocDelta` — function, line 16885
 - **called from:**
-- `static/js/chat.js:5856`
-- `static/js/chat.js:7518`
+- `static/js/chat.js:5827`
+- `static/js/chat.js:7500`
 - `static/js/document.js:16885`
 
 ## `streamDocFinalize` — function, line 16921
@@ -5103,8 +5103,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleDocUpdate` — function, line 16981
 - **called from:**
-- `static/js/chat.js:5818`
-- `static/js/chat.js:5864`
+- `static/js/chat.js:5789`
+- `static/js/chat.js:5835`
 - `static/js/document.js:16981`
 
 ## `toggleVersionHistory` — function, line 17251

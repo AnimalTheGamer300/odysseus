@@ -68,34 +68,34 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `CompletionRequirements.to_dict` — method, line 83
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5624`
+- `routes/chat_routes.py:5643`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
 - `services/memory/skills.py:453`
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
-- `src/agent_loop.py:28789`
-- `src/agent_loop.py:31316`
-- `src/agent_loop.py:31789`
-- `src/agent_loop.py:32054`
-- `src/agent_loop.py:32094`
-- `src/agent_loop.py:32125`
-- `src/agent_loop.py:32178`
-- `src/agent_loop.py:32306`
-- `src/agent_loop.py:32638`
-- `src/agent_loop.py:34858`
-- `src/agent_loop.py:36867`
-- `src/agent_loop.py:37190`
-- `src/agent_loop.py:37403`
-- `src/agent_loop.py:37458`
-- `src/agent_loop.py:37515`
-- `src/agent_loop.py:37849`
-- `src/agent_loop.py:37861`
-- `src/agent_loop.py:37967`
-- `src/agent_loop.py:38889`
-- `src/agent_loop.py:38890`
-- `src/agent_loop.py:38895`
+- `src/agent_loop.py:28809`
+- `src/agent_loop.py:31336`
+- `src/agent_loop.py:31809`
+- `src/agent_loop.py:32074`
+- `src/agent_loop.py:32114`
+- `src/agent_loop.py:32145`
+- `src/agent_loop.py:32198`
+- `src/agent_loop.py:32326`
+- `src/agent_loop.py:32658`
+- `src/agent_loop.py:34878`
+- `src/agent_loop.py:36887`
+- `src/agent_loop.py:37210`
+- `src/agent_loop.py:37423`
+- `src/agent_loop.py:37478`
+- `src/agent_loop.py:37535`
+- `src/agent_loop.py:37869`
+- `src/agent_loop.py:37881`
+- `src/agent_loop.py:37987`
+- `src/agent_loop.py:38909`
+- `src/agent_loop.py:38910`
+- `src/agent_loop.py:38915`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -104,9 +104,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:287`
 - `src/agent_runtime/authority.py:288`
 - `src/agent_runtime/authority.py:289`
-- `src/agent_runtime/authority.py:653`
-- `src/agent_runtime/authority.py:677`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:681`
+- `src/agent_runtime/authority.py:705`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/completion.py:356`
 - `src/agent_runtime/completion.py:385`
 - `src/agent_runtime/completion.py:388`
@@ -137,34 +137,34 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `EvidenceEvent.to_dict` — method, line 108
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5624`
+- `routes/chat_routes.py:5643`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
 - `services/memory/skills.py:453`
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
-- `src/agent_loop.py:28789`
-- `src/agent_loop.py:31316`
-- `src/agent_loop.py:31789`
-- `src/agent_loop.py:32054`
-- `src/agent_loop.py:32094`
-- `src/agent_loop.py:32125`
-- `src/agent_loop.py:32178`
-- `src/agent_loop.py:32306`
-- `src/agent_loop.py:32638`
-- `src/agent_loop.py:34858`
-- `src/agent_loop.py:36867`
-- `src/agent_loop.py:37190`
-- `src/agent_loop.py:37403`
-- `src/agent_loop.py:37458`
-- `src/agent_loop.py:37515`
-- `src/agent_loop.py:37849`
-- `src/agent_loop.py:37861`
-- `src/agent_loop.py:37967`
-- `src/agent_loop.py:38889`
-- `src/agent_loop.py:38890`
-- `src/agent_loop.py:38895`
+- `src/agent_loop.py:28809`
+- `src/agent_loop.py:31336`
+- `src/agent_loop.py:31809`
+- `src/agent_loop.py:32074`
+- `src/agent_loop.py:32114`
+- `src/agent_loop.py:32145`
+- `src/agent_loop.py:32198`
+- `src/agent_loop.py:32326`
+- `src/agent_loop.py:32658`
+- `src/agent_loop.py:34878`
+- `src/agent_loop.py:36887`
+- `src/agent_loop.py:37210`
+- `src/agent_loop.py:37423`
+- `src/agent_loop.py:37478`
+- `src/agent_loop.py:37535`
+- `src/agent_loop.py:37869`
+- `src/agent_loop.py:37881`
+- `src/agent_loop.py:37987`
+- `src/agent_loop.py:38909`
+- `src/agent_loop.py:38910`
+- `src/agent_loop.py:38915`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -173,9 +173,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:287`
 - `src/agent_runtime/authority.py:288`
 - `src/agent_runtime/authority.py:289`
-- `src/agent_runtime/authority.py:653`
-- `src/agent_runtime/authority.py:677`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:681`
+- `src/agent_runtime/authority.py:705`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/completion.py:356`
 - `src/agent_runtime/completion.py:385`
 - `src/agent_runtime/completion.py:388`
@@ -226,34 +226,34 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `CompletionDecision.to_dict` — method, line 125
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5624`
+- `routes/chat_routes.py:5643`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
 - `services/memory/skills.py:453`
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
-- `src/agent_loop.py:28789`
-- `src/agent_loop.py:31316`
-- `src/agent_loop.py:31789`
-- `src/agent_loop.py:32054`
-- `src/agent_loop.py:32094`
-- `src/agent_loop.py:32125`
-- `src/agent_loop.py:32178`
-- `src/agent_loop.py:32306`
-- `src/agent_loop.py:32638`
-- `src/agent_loop.py:34858`
-- `src/agent_loop.py:36867`
-- `src/agent_loop.py:37190`
-- `src/agent_loop.py:37403`
-- `src/agent_loop.py:37458`
-- `src/agent_loop.py:37515`
-- `src/agent_loop.py:37849`
-- `src/agent_loop.py:37861`
-- `src/agent_loop.py:37967`
-- `src/agent_loop.py:38889`
-- `src/agent_loop.py:38890`
-- `src/agent_loop.py:38895`
+- `src/agent_loop.py:28809`
+- `src/agent_loop.py:31336`
+- `src/agent_loop.py:31809`
+- `src/agent_loop.py:32074`
+- `src/agent_loop.py:32114`
+- `src/agent_loop.py:32145`
+- `src/agent_loop.py:32198`
+- `src/agent_loop.py:32326`
+- `src/agent_loop.py:32658`
+- `src/agent_loop.py:34878`
+- `src/agent_loop.py:36887`
+- `src/agent_loop.py:37210`
+- `src/agent_loop.py:37423`
+- `src/agent_loop.py:37478`
+- `src/agent_loop.py:37535`
+- `src/agent_loop.py:37869`
+- `src/agent_loop.py:37881`
+- `src/agent_loop.py:37987`
+- `src/agent_loop.py:38909`
+- `src/agent_loop.py:38910`
+- `src/agent_loop.py:38915`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -262,9 +262,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:287`
 - `src/agent_runtime/authority.py:288`
 - `src/agent_runtime/authority.py:289`
-- `src/agent_runtime/authority.py:653`
-- `src/agent_runtime/authority.py:677`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:681`
+- `src/agent_runtime/authority.py:705`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/completion.py:356`
 - `src/agent_runtime/completion.py:385`
 - `src/agent_runtime/completion.py:388`
@@ -290,13 +290,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `command_is_validation` — function, line 203
 - **called from:**
 - `src/agent_loop.py:20093`
-- `src/agent_loop.py:36400`
+- `src/agent_loop.py:36420`
 - `tests/test_runtime_evidence_contract.py:551`
 
 ## `command_is_test` — function, line 209
 - **called from:**
 - `src/agent_evidence.py:903`
-- `src/agent_loop.py:36396`
+- `src/agent_loop.py:36416`
 - `tests/test_runtime_evidence_contract.py:550`
 
 ## `_clean_path` — function, line 214
@@ -427,7 +427,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `requirements_from_runtime_context` — function, line 425
 - **called from:**
-- `src/agent_loop.py:25376`
+- `src/agent_loop.py:25396`
 - `src/agent_runtime/completion.py:220`
 - `src/agent_runtime/completion.py:272`
 - `tests/test_agent_evidence.py:148`
@@ -481,7 +481,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_evidence.py:855`
 - `src/agent_loop.py:20070`
 - `src/agent_loop.py:20605`
-- `src/agent_loop.py:36309`
+- `src/agent_loop.py:36329`
 - `src/clean_agent_preview.py:4601`
 - `tests/test_workspace_artifact_tool_floor.py:1586`
 - `tests/test_workspace_artifact_tool_floor.py:1590`
@@ -595,35 +595,35 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `classmethod`
 - **called from:**
 - `src/agent_loop.py:20167`
-- `src/agent_loop.py:25772`
-- `src/agent_loop.py:26529`
-- `src/agent_loop.py:26706`
-- `src/agent_loop.py:27790`
-- `src/agent_loop.py:28473`
-- `src/agent_loop.py:28676`
-- `src/agent_loop.py:28723`
-- `src/agent_loop.py:30467`
-- `src/agent_loop.py:31051`
-- `src/agent_loop.py:31243`
-- `src/agent_loop.py:31746`
-- `src/agent_loop.py:31797`
-- `src/agent_loop.py:31923`
-- `src/agent_loop.py:31974`
-- `src/agent_loop.py:32147`
-- `src/agent_loop.py:32273`
-- `src/agent_loop.py:32437`
-- `src/agent_loop.py:36244`
-- `src/agent_loop.py:36285`
-- `src/agent_loop.py:36834`
-- `src/agent_loop.py:37209`
-- `src/agent_loop.py:37257`
-- `src/agent_loop.py:37298`
-- `src/agent_loop.py:37341`
-- `src/agent_loop.py:37425`
-- `src/agent_loop.py:37483`
-- `src/agent_loop.py:37812`
-- `src/agent_loop.py:37942`
-- `src/agent_loop.py:38871`
+- `src/agent_loop.py:25792`
+- `src/agent_loop.py:26549`
+- `src/agent_loop.py:26726`
+- `src/agent_loop.py:27810`
+- `src/agent_loop.py:28493`
+- `src/agent_loop.py:28696`
+- `src/agent_loop.py:28743`
+- `src/agent_loop.py:30487`
+- `src/agent_loop.py:31071`
+- `src/agent_loop.py:31263`
+- `src/agent_loop.py:31766`
+- `src/agent_loop.py:31817`
+- `src/agent_loop.py:31943`
+- `src/agent_loop.py:31994`
+- `src/agent_loop.py:32167`
+- `src/agent_loop.py:32293`
+- `src/agent_loop.py:32457`
+- `src/agent_loop.py:36264`
+- `src/agent_loop.py:36305`
+- `src/agent_loop.py:36854`
+- `src/agent_loop.py:37229`
+- `src/agent_loop.py:37277`
+- `src/agent_loop.py:37318`
+- `src/agent_loop.py:37361`
+- `src/agent_loop.py:37445`
+- `src/agent_loop.py:37503`
+- `src/agent_loop.py:37832`
+- `src/agent_loop.py:37962`
+- `src/agent_loop.py:38891`
 - `src/agent_runtime/completion.py:29`
 - `src/agent_trace.py:683`
 - `tests/test_agent_evidence.py:201`
@@ -693,39 +693,39 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `EvidenceLedger.record_media_ingress` — method, line 974
 - **called from:**
-- `src/agent_loop.py:38878`
+- `src/agent_loop.py:38898`
 
 ## `EvidenceLedger.evaluate` — method, line 995
 - **called from:**
-- `src/agent_loop.py:25772`
-- `src/agent_loop.py:26529`
-- `src/agent_loop.py:26706`
-- `src/agent_loop.py:27790`
-- `src/agent_loop.py:28473`
-- `src/agent_loop.py:28676`
-- `src/agent_loop.py:28723`
-- `src/agent_loop.py:30467`
-- `src/agent_loop.py:31051`
-- `src/agent_loop.py:31247`
-- `src/agent_loop.py:31746`
-- `src/agent_loop.py:31797`
-- `src/agent_loop.py:31923`
-- `src/agent_loop.py:31974`
-- `src/agent_loop.py:32147`
-- `src/agent_loop.py:32273`
-- `src/agent_loop.py:32437`
-- `src/agent_loop.py:36244`
-- `src/agent_loop.py:36285`
-- `src/agent_loop.py:36834`
-- `src/agent_loop.py:37209`
-- `src/agent_loop.py:37257`
-- `src/agent_loop.py:37298`
-- `src/agent_loop.py:37341`
-- `src/agent_loop.py:37425`
-- `src/agent_loop.py:37483`
-- `src/agent_loop.py:37812`
-- `src/agent_loop.py:37942`
-- `src/agent_loop.py:38879`
+- `src/agent_loop.py:25792`
+- `src/agent_loop.py:26549`
+- `src/agent_loop.py:26726`
+- `src/agent_loop.py:27810`
+- `src/agent_loop.py:28493`
+- `src/agent_loop.py:28696`
+- `src/agent_loop.py:28743`
+- `src/agent_loop.py:30487`
+- `src/agent_loop.py:31071`
+- `src/agent_loop.py:31267`
+- `src/agent_loop.py:31766`
+- `src/agent_loop.py:31817`
+- `src/agent_loop.py:31943`
+- `src/agent_loop.py:31994`
+- `src/agent_loop.py:32167`
+- `src/agent_loop.py:32293`
+- `src/agent_loop.py:32457`
+- `src/agent_loop.py:36264`
+- `src/agent_loop.py:36305`
+- `src/agent_loop.py:36854`
+- `src/agent_loop.py:37229`
+- `src/agent_loop.py:37277`
+- `src/agent_loop.py:37318`
+- `src/agent_loop.py:37361`
+- `src/agent_loop.py:37445`
+- `src/agent_loop.py:37503`
+- `src/agent_loop.py:37832`
+- `src/agent_loop.py:37962`
+- `src/agent_loop.py:38899`
 - `src/agent_runtime/completion.py:284`
 - `src/agent_runtime/completion.py:333`
 - `src/agent_runtime/completion.py:339`
@@ -766,7 +766,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `EvidenceLedger.to_list` — method, line 1269
 - **called from:**
-- `src/agent_loop.py:38883`
+- `src/agent_loop.py:38903`
 - `src/agent_runtime/completion.py:388`
 - `src/agent_runtime/completion.py:389`
 - `tests/test_agent_evidence.py:850`

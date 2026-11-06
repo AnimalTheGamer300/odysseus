@@ -33,7 +33,7 @@
 - `src/agent_loop.py:14808`
 - `src/agent_loop.py:15263`
 - `src/agent_loop.py:15633`
-- `src/agent_loop.py:23384`
+- `src/agent_loop.py:23404`
 - `src/app_initializer.py:91`
 - `src/builtin_actions.py:2138`
 - `src/builtin_actions.py:2271`
@@ -476,7 +476,7 @@
 - `routes/skills_routes.py:872`
 - `src/agent_loop.py:10636`
 - `src/agent_loop.py:15295`
-- `src/agent_loop.py:23393`
+- `src/agent_loop.py:23413`
 - `src/tools/system.py:236`
 - `tests/test_skill_index_toolset_gating.py:133`
 - `tests/test_skill_index_toolset_gating.py:150`

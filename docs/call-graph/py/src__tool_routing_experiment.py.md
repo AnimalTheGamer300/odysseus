@@ -8,7 +8,7 @@
 
 ## `experiment_mode` — function, line 37
 - **called from:**
-- `routes/chat_routes.py:4008`
+- `routes/chat_routes.py:4027`
 - `tests/test_tool_routing_experiment.py:66`
 - `tests/test_tool_routing_experiment.py:67`
 - `tests/test_tool_routing_experiment.py:70`
@@ -25,7 +25,7 @@
 
 ## `select_experiment_inventory` — function, line 56
 - **called from:**
-- `routes/chat_routes.py:4013`
+- `routes/chat_routes.py:4032`
 - `scripts/eval_followup_domain_continuity.py:111`
 - `tests/test_research_chat_runtime.py:17`
 - `tests/test_result_reference_followup.py:43`

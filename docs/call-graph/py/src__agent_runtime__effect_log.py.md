@@ -107,13 +107,13 @@
 - `src/agent_runtime/effect_log.py:333`
 - `src/agent_runtime/effect_log.py:423`
 - `static/js/chat.js:3708`
-- `static/js/chat.js:4788`
-- `static/js/chat.js:4827`
-- `static/js/chat.js:5903`
-- `static/js/chat.js:6013`
-- `static/js/chat.js:7491`
-- `static/js/chat.js:7499`
-- `static/js/chat.js:7603`
+- `static/js/chat.js:4759`
+- `static/js/chat.js:4798`
+- `static/js/chat.js:5874`
+- `static/js/chat.js:5984`
+- `static/js/chat.js:7473`
+- `static/js/chat.js:7481`
+- `static/js/chat.js:7585`
 - `static/js/turnRendering.js:58`
 - `static/js/turnRendering.js:129`
 
@@ -161,9 +161,9 @@
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -179,7 +179,7 @@
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `_records` — function, line 128
 - **called from:**

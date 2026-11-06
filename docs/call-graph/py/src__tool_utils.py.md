@@ -22,13 +22,14 @@
 
 ## `get_mcp_manager` — function, line 25
 - **called from:**
-- `routes/chat_routes.py:3823`
+- `routes/chat_routes.py:3842`
 - `routes/task/task_routes.py:1075`
 - `scripts/dump_agent_prompt.py:391`
 - `scripts/ody_eval_email_fixture.py:36`
 - `src/agent_loop.py:21466`
 - `src/agent_loop.py:21880`
 - `src/agent_runtime/authority.py:390`
+- `src/agent_runtime/authority.py:506`
 - `src/agent_runtime/remote_resources.py:134`
 - `src/agent_tools/admin_tools.py:242`
 - `src/agent_tools/admin_tools.py:289`
@@ -72,24 +73,24 @@
 ## `_truncate` — function, line 47
 - **called from:**
 - `src/agent_loop.py:22618`
-- `src/agent_loop.py:26252`
-- `src/agent_loop.py:26374`
-- `src/agent_loop.py:27254`
-- `src/agent_loop.py:27275`
-- `src/agent_loop.py:27454`
-- `src/agent_loop.py:27473`
-- `src/agent_loop.py:27577`
-- `src/agent_loop.py:27595`
-- `src/agent_loop.py:27886`
-- `src/agent_loop.py:27957`
-- `src/agent_loop.py:34603`
-- `src/agent_loop.py:34806`
-- `src/agent_loop.py:34810`
-- `src/agent_loop.py:34814`
-- `src/agent_loop.py:35928`
-- `src/agent_loop.py:35944`
-- `src/agent_loop.py:38332`
-- `src/agent_loop.py:38359`
+- `src/agent_loop.py:26272`
+- `src/agent_loop.py:26394`
+- `src/agent_loop.py:27274`
+- `src/agent_loop.py:27295`
+- `src/agent_loop.py:27474`
+- `src/agent_loop.py:27493`
+- `src/agent_loop.py:27597`
+- `src/agent_loop.py:27615`
+- `src/agent_loop.py:27906`
+- `src/agent_loop.py:27977`
+- `src/agent_loop.py:34623`
+- `src/agent_loop.py:34826`
+- `src/agent_loop.py:34830`
+- `src/agent_loop.py:34834`
+- `src/agent_loop.py:35948`
+- `src/agent_loop.py:35964`
+- `src/agent_loop.py:38352`
+- `src/agent_loop.py:38379`
 - `src/agent_tools/filesystem_tools.py:838`
 - `src/agent_tools/filesystem_tools.py:945`
 - `src/agent_tools/filesystem_tools.py:1351`
@@ -123,9 +124,9 @@
 
 ## `truncate_tool_output` — function, line 75
 - **called from:**
-- `src/agent_loop.py:34816`
-- `src/agent_loop.py:34818`
-- `src/agent_loop.py:34832`
+- `src/agent_loop.py:34836`
+- `src/agent_loop.py:34838`
+- `src/agent_loop.py:34852`
 
 ## `_parse_tool_args` — function, line 106
 - **called from:**

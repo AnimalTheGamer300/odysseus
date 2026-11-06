@@ -14,8 +14,8 @@
 ## `prune_multimodal_images` — function, line 45
 - **called from:**
 - `src/clean_agent_preview.py:6302`
-- `src/llm_core.py:4609`
-- `src/llm_core.py:4683`
+- `src/llm_core.py:4619`
+- `src/llm_core.py:4693`
 - `tests/test_context_compactor.py:296`
 
 ## `_image_turn_label` — function, line 98
@@ -32,7 +32,7 @@
 
 ## `auto_compact_threshold_percent` — function, line 190
 - **called from:**
-- `routes/history/history_routes.py:1200`
+- `routes/history/history_routes.py:1216`
 - `src/context_compactor.py:673`
 
 ## `_strip_think_blocks` — function, line 234
@@ -56,18 +56,18 @@
 - `src/agent_loop.py:20315`
 - `src/agent_loop.py:20718`
 - `src/agent_loop.py:20727`
-- `src/agent_loop.py:25719`
-- `src/agent_loop.py:28681`
-- `src/agent_loop.py:30506`
-- `src/agent_loop.py:30609`
-- `src/agent_loop.py:30618`
-- `src/agent_loop.py:31237`
-- `src/agent_loop.py:31370`
-- `src/agent_loop.py:32248`
-- `src/agent_loop.py:37689`
-- `src/agent_loop.py:38060`
-- `src/agent_loop.py:38140`
-- `src/agent_loop.py:38507`
+- `src/agent_loop.py:25739`
+- `src/agent_loop.py:28701`
+- `src/agent_loop.py:30526`
+- `src/agent_loop.py:30629`
+- `src/agent_loop.py:30638`
+- `src/agent_loop.py:31257`
+- `src/agent_loop.py:31390`
+- `src/agent_loop.py:32268`
+- `src/agent_loop.py:37709`
+- `src/agent_loop.py:38080`
+- `src/agent_loop.py:38160`
+- `src/agent_loop.py:38527`
 - `src/context_compactor.py:308`
 - `tests/test_context_compactor.py:309`
 - `tests/test_context_compactor.py:316`
@@ -97,7 +97,7 @@
 
 ## `normalize_compaction_summary` — function, line 299
 - **called from:**
-- `routes/history/history_routes.py:1534`
+- `routes/history/history_routes.py:1550`
 - `routes/session_routes.py:1407`
 - `src/context_compactor.py:839`
 - `src/context_compactor.py:982`
@@ -140,11 +140,11 @@
 - **called from:**
 - `routes/chat_helpers.py:1578`
 - `routes/chat_routes.py:1409`
-- `src/agent_loop.py:24639`
+- `src/agent_loop.py:24659`
 - `src/clean_agent_preview.py:5546`
 - `src/context_compactor.py:697`
-- `src/llm_core.py:4620`
-- `src/llm_core.py:4701`
+- `src/llm_core.py:4630`
+- `src/llm_core.py:4711`
 - `tests/test_context_compactor.py:86`
 - `tests/test_context_compactor.py:111`
 - `tests/test_context_compactor.py:129`
@@ -177,8 +177,8 @@
 - **called from:**
 - `routes/chat_helpers.py:1571`
 - `routes/chat_routes.py:1397`
-- `src/agent_loop.py:24757`
-- `src/agent_loop.py:26622`
+- `src/agent_loop.py:24777`
+- `src/agent_loop.py:26642`
 - `tests/test_compaction_summary_failure.py:55`
 - `tests/test_context_compactor.py:406`
 - `tests/test_context_compactor.py:505`
@@ -210,13 +210,13 @@
 
 ## `apply_compaction_state` — function, line 1007
 - **called from:**
-- `routes/chat_routes.py:2577`
-- `routes/chat_routes.py:4492`
-- `src/agent_loop.py:27063`
+- `routes/chat_routes.py:2596`
+- `routes/chat_routes.py:4511`
+- `src/agent_loop.py:27083`
 - `src/context_compactor.py:1060`
 - `tests/test_context_compactor.py:749`
 - `tests/test_context_compactor.py:751`
 
 ## `apply_compaction_state_for_session` — function, line 1046
 - **called from:**
-- `src/agent_loop.py:27067`
+- `src/agent_loop.py:27087`

@@ -139,7 +139,7 @@
 
 ## `preserve_bound_editor_selected_tools` — function, line 776
 - **called from:**
-- `routes/chat_routes.py:3855`
+- `routes/chat_routes.py:3874`
 - `tests/test_editor_research_completion.py:60`
 - `tests/test_editor_writing_action_routing.py:35`
 - `tests/test_turn_contract.py:4197`
@@ -153,7 +153,7 @@
 
 ## `requests_independent_web_source` — function, line 813
 - **called from:**
-- `routes/chat_routes.py:3897`
+- `routes/chat_routes.py:3916`
 - `src/turn_contract.py:1842`
 - `tests/test_turn_contract.py:3326`
 
@@ -219,9 +219,9 @@
 
 ## `selected_tools_for_request` — function, line 1016
 - **called from:**
-- `routes/chat_routes.py:3847`
-- `routes/chat_routes.py:5007`
-- `src/agent_loop.py:23544`
+- `routes/chat_routes.py:3866`
+- `routes/chat_routes.py:5026`
+- `src/agent_loop.py:23564`
 - `src/agent_runtime/authority.py:362`
 - `src/turn_contract.py:3076`
 - `src/turn_contract.py:3111`
@@ -283,7 +283,7 @@
 
 ## `requires_external_web_verification` — function, line 2109
 - **called from:**
-- `routes/chat_routes.py:2767`
+- `routes/chat_routes.py:2786`
 - `src/turn_contract.py:6223`
 
 ## `RequiredReadOperation` — class, line 2172
@@ -592,8 +592,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:487`
 - `src/agent_runtime/authority.py:487`
 - `src/agent_runtime/authority.py:488`
-- `src/agent_runtime/authority.py:494`
-- `src/agent_runtime/authority.py:503`
+- `src/agent_runtime/authority.py:519`
+- `src/agent_runtime/authority.py:522`
+- `src/agent_runtime/authority.py:531`
 - `src/tool_routing_experiment.py:77`
 - `src/tool_routing_experiment.py:92`
 - `src/tool_routing_experiment.py:107`
@@ -638,8 +639,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/turn_contract.py:6367`
 - `src/turn_contract.py:6369`
 - `src/turn_contract.py:6408`
-- `src/turn_contract.py:6410`
-- … +17 more (grep the name in repo)
+- … +18 more (grep the name in repo)
 
 ## `recently_executed_families` — function, line 4442
 - **called from:**
@@ -720,7 +720,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `corrected_browser_target` — function, line 4729
 - **called from:**
-- `routes/chat_routes.py:3488`
+- `routes/chat_routes.py:3507`
 - `src/clean_agent_preview.py:5794`
 - `src/turn_contract.py:4779`
 - `tests/test_browser_target_correction.py:14`
@@ -784,7 +784,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `requested_capabilities` — function, line 4771
 - **called from:**
-- `routes/chat_routes.py:3489`
+- `routes/chat_routes.py:3508`
 - `scripts/audit_historical_tool_routing.py:95`
 - `scripts/audit_typo_tool_routing.py:70`
 - `scripts/audit_typo_tool_routing.py:79`
@@ -862,16 +862,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `TurnContract.permits` — method, line 6328
 - **called from:**
-- `routes/chat_routes.py:4027`
+- `routes/chat_routes.py:4046`
 - `src/agent_loop.py:497`
 - `src/agent_loop.py:521`
 - `src/agent_loop.py:600`
 - `src/agent_loop.py:22032`
 - `src/agent_loop.py:22033`
 - `src/agent_loop.py:22066`
-- `src/agent_loop.py:23555`
-- `src/agent_loop.py:33063`
-- `src/agent_loop.py:33900`
+- `src/agent_loop.py:23575`
+- `src/agent_loop.py:33083`
+- `src/agent_loop.py:33920`
 - `src/agent_runtime/authority.py:223`
 - `src/agent_runtime/local_model_control.py:58`
 - `src/agent_runtime/owned_resources.py:419`
@@ -928,7 +928,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `scripts/eval_followup_domain_continuity.py:129`
 - `src/agent_loop.py:21533`
-- `src/agent_loop.py:25822`
+- `src/agent_loop.py:25842`
 - `src/clean_agent_preview.py:5680`
 - `tests/test_clean_agent_preview.py:1654`
 - `tests/test_clean_agent_preview.py:4480`
@@ -1022,8 +1022,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `resolve_full_inventory_contract` — function, line 6347
 - **called from:**
-- `routes/chat_routes.py:3971`
-- `routes/chat_routes.py:4014`
+- `routes/chat_routes.py:3990`
+- `routes/chat_routes.py:4033`
 - `scripts/eval_followup_domain_continuity.py:105`
 - `scripts/probe_browser_budget.py:31`
 - `scripts/probe_empty_search_recovery.py:46`
@@ -1086,7 +1086,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `resolve_turn_contract` — function, line 6376
 - **called from:**
-- `routes/chat_routes.py:3928`
+- `routes/chat_routes.py:3947`
 - `routes/editor_agent_routes.py:1677`
 - `scripts/eval_followup_domain_continuity.py:108`
 - `tests/test_ajax_email_live.py:116`

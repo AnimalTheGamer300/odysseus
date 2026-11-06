@@ -21,8 +21,9 @@
 - `src/agent_runtime/authority.py:487`
 - `src/agent_runtime/authority.py:487`
 - `src/agent_runtime/authority.py:488`
-- `src/agent_runtime/authority.py:494`
-- `src/agent_runtime/authority.py:503`
+- `src/agent_runtime/authority.py:519`
+- `src/agent_runtime/authority.py:522`
+- `src/agent_runtime/authority.py:531`
 - `src/tool_routing_experiment.py:77`
 - `src/tool_routing_experiment.py:92`
 - `src/tool_routing_experiment.py:107`
@@ -67,8 +68,7 @@
 - `src/turn_contract.py:6367`
 - `src/turn_contract.py:6369`
 - `src/turn_contract.py:6408`
-- `src/turn_contract.py:6410`
-- … +17 more (grep the name in repo)
+- … +18 more (grep the name in repo)
 
 ## `parse_action` — function, line 535
 - **called from:**
@@ -103,7 +103,7 @@
 - **called from:**
 - `core/session_manager.py:1113`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:1085`
+- `routes/history/history_routes.py:1101`
 - `routes/research/research_routes.py:849`
 - `routes/session_routes.py:656`
 - `routes/session_routes.py:1279`

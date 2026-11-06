@@ -4,7 +4,7 @@
 
 ## `uses_compact_preview_runtime` — function, line 15
 - **called from:**
-- `routes/chat_routes.py:3271`
+- `routes/chat_routes.py:3290`
 - `tests/test_context_resolution_route.py:497`
 - `tests/test_context_resolution_route.py:502`
 - `tests/test_context_resolution_route.py:504`

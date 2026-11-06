@@ -164,7 +164,7 @@
 - `tests/test_hwfit_gpu_count_nonnumeric.py:101`
 - `static/app.js:402`
 - `static/app.js:3980`
-- `static/js/chat.js:5588`
+- `static/js/chat.js:5559`
 - `static/js/chatRenderer.js:2322`
 - `static/js/chatRenderer.js:2329`
 - `static/js/chatRenderer.js:2338`
@@ -741,7 +741,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`

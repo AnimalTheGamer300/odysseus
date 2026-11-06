@@ -59,10 +59,10 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3659`
-- `src/llm_core.py:3677`
-- `src/llm_core.py:3961`
-- `src/llm_core.py:4298`
+- `src/llm_core.py:3669`
+- `src/llm_core.py:3687`
+- `src/llm_core.py:3971`
+- `src/llm_core.py:4308`
 - `src/task_scheduler.py:2849`
 - `src/upload_handler.py:799`
 - `tests/smoke/stub_provider.py:136`

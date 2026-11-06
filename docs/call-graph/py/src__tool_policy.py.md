@@ -14,14 +14,14 @@
 
 ## `is_web_search_explicitly_denied` — function, line 39
 - **called from:**
-- `routes/chat_routes.py:3638`
+- `routes/chat_routes.py:3657`
 - `src/tool_policy.py:53`
 - `src/tool_policy.py:70`
 - `tests/test_chat_route_tool_policy.py:494`
 
 ## `web_search_enabled_for_turn` — function, line 45
 - **called from:**
-- `routes/chat_routes.py:2742`
+- `routes/chat_routes.py:2761`
 - `tests/test_chat_route_tool_policy.py:493`
 - `tests/test_tool_policy.py:172`
 - `tests/test_tool_policy.py:173`
@@ -32,7 +32,7 @@
 
 ## `web_intent_may_enable_for_turn` — function, line 58
 - **called from:**
-- `routes/chat_routes.py:3630`
+- `routes/chat_routes.py:3649`
 - `tests/test_chat_route_tool_policy.py:584`
 - `tests/test_chat_route_tool_policy.py:588`
 - `tests/test_chat_route_tool_policy.py:589`
@@ -104,7 +104,7 @@
 
 ## `ToolPolicy.all_disabled_names` — method, line 176
 - **called from:**
-- `routes/chat_routes.py:3759`
+- `routes/chat_routes.py:3778`
 - `src/agent_loop.py:21698`
 - `src/agent_loop.py:21893`
 - `src/agent_loop.py:21930`
@@ -116,19 +116,19 @@
 
 ## `ToolPolicy.blocks` — method, line 179
 - **called from:**
-- `routes/chat_routes.py:2484`
-- `routes/chat_routes.py:2513`
-- `routes/chat_routes.py:2514`
-- `routes/chat_routes.py:4041`
-- `routes/chat_routes.py:4042`
-- `routes/chat_routes.py:4386`
+- `routes/chat_routes.py:2503`
+- `routes/chat_routes.py:2532`
+- `routes/chat_routes.py:2533`
+- `routes/chat_routes.py:4060`
+- `routes/chat_routes.py:4061`
+- `routes/chat_routes.py:4405`
 - `src/agent_loop.py:616`
 - `src/agent_loop.py:17714`
 - `src/agent_loop.py:21493`
 - `src/agent_loop.py:22067`
 - `src/agent_loop.py:22151`
 - `src/agent_loop.py:22255`
-- `src/agent_loop.py:33890`
+- `src/agent_loop.py:33910`
 - `src/agent_tools/web_tools.py:420`
 - `src/agent_tools/web_tools_prewave3.py:424`
 - `src/tool_execution.py:1786`
@@ -153,7 +153,7 @@
 
 ## `ToolPolicy.reason_for` — method, line 184
 - **called from:**
-- `routes/chat_routes.py:4389`
+- `routes/chat_routes.py:4408`
 - `src/agent_loop.py:618`
 
 ## `detect_guide_only_turn` — function, line 192
@@ -174,9 +174,9 @@
 - `scripts/dump_agent_prompt.py:184`
 - `src/agent_loop.py:21917`
 - `src/agent_loop.py:21969`
-- `src/agent_loop.py:23392`
-- `src/agent_loop.py:24038`
-- `src/agent_loop.py:24178`
+- `src/agent_loop.py:23412`
+- `src/agent_loop.py:24058`
+- `src/agent_loop.py:24198`
 - `src/tool_policy.py:251`
 - `tests/runtime_evidence_helpers.py:29`
 - `tests/test_client_tool_contract.py:23`
@@ -184,13 +184,13 @@
 
 ## `build_effective_tool_policy` — function, line 233
 - **called from:**
-- `routes/chat_routes.py:2479`
-- `routes/chat_routes.py:3257`
-- `routes/chat_routes.py:3744`
-- `routes/chat_routes.py:3842`
-- `routes/chat_routes.py:3886`
-- `routes/chat_routes.py:4037`
-- `src/agent_runtime/authority.py:512`
+- `routes/chat_routes.py:2498`
+- `routes/chat_routes.py:3276`
+- `routes/chat_routes.py:3763`
+- `routes/chat_routes.py:3861`
+- `routes/chat_routes.py:3905`
+- `routes/chat_routes.py:4056`
+- `src/agent_runtime/authority.py:540`
 - `tests/test_chat_image_routing.py:145`
 - `tests/test_review_fixture_policy.py:39`
 - `tests/test_review_fixture_policy.py:45`

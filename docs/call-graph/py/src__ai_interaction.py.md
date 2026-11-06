@@ -137,7 +137,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `do_generate_image` — function (async), line 1241
 - **called from:**
-- `routes/chat_routes.py:4422`
+- `routes/chat_routes.py:4441`
 - `routes/gallery/gallery_routes.py:2666`
 - `src/agent_tools/editor_tools.py:664`
 - `src/tool_execution.py:2286`
@@ -229,7 +229,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `do_edit_image` — function (async), line 1551
 - **called from:**
-- `routes/chat_routes.py:4412`
+- `routes/chat_routes.py:4431`
 - `src/tool_execution.py:2468`
 - `tests/test_edit_image_tool.py:82`
 - `tests/test_edit_image_tool.py:107`
@@ -332,7 +332,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `do_edit_image` — function (async), line 1906
 - **called from:**
-- `routes/chat_routes.py:4412`
+- `routes/chat_routes.py:4431`
 - `src/tool_execution.py:2468`
 - `tests/test_edit_image_tool.py:82`
 - `tests/test_edit_image_tool.py:107`

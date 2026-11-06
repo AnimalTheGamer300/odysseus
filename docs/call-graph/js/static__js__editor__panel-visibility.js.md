@@ -34,8 +34,8 @@
 
 ## `isVisible` — function, line 61
 - **called from:**
-- `static/js/chat.js:6105`
-- `static/js/chat.js:6190`
+- `static/js/chat.js:6076`
+- `static/js/chat.js:6161`
 - `static/js/cookbook.js:3703`
 - `static/js/cookbook.js:3746`
 - `static/js/cookbook.js:3784`
@@ -81,10 +81,10 @@
 - `routes/chat_routes.py:1567`
 - `routes/chat_routes.py:1635`
 - `routes/chat_routes.py:2340`
-- `routes/chat_routes.py:4130`
-- `routes/chat_routes.py:4131`
-- `routes/chat_routes.py:4256`
-- `routes/chat_routes.py:5658`
+- `routes/chat_routes.py:4149`
+- `routes/chat_routes.py:4150`
+- `routes/chat_routes.py:4275`
+- `routes/chat_routes.py:5677`
 - `routes/cookbook_routes.py:1608`
 - `routes/cookbook_routes.py:3262`
 - `routes/cookbook_routes.py:3568`
@@ -287,7 +287,7 @@
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`
@@ -347,8 +347,8 @@
 
 ## `subscribe` — function, line 166
 - **called from:**
-- `routes/chat_routes.py:5524`
-- `routes/chat_routes.py:5544`
+- `routes/chat_routes.py:5543`
+- `routes/chat_routes.py:5563`
 - `tests/test_agent_runs_terminal_order.py:19`
 - `tests/test_agent_runs_terminal_order.py:49`
 - `tests/test_compare_stop_disconnect_poll.py:88`

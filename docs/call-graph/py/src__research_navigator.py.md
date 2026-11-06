@@ -167,13 +167,13 @@
 - `routes/chat_routes.py:1819`
 - `routes/chat_routes.py:1822`
 - `routes/chat_routes.py:1893`
-- `routes/chat_routes.py:2757`
-- `routes/chat_routes.py:2763`
-- `routes/chat_routes.py:2779`
+- `routes/chat_routes.py:2776`
 - `routes/chat_routes.py:2782`
-- `routes/chat_routes.py:3447`
-- `routes/chat_routes.py:3597`
-- `routes/chat_routes.py:3598`
+- `routes/chat_routes.py:2798`
+- `routes/chat_routes.py:2801`
+- `routes/chat_routes.py:3466`
+- `routes/chat_routes.py:3616`
+- `routes/chat_routes.py:3617`
 - `routes/contacts/contacts_routes.py:617`
 - `routes/contacts/contacts_routes.py:621`
 - `routes/contacts/contacts_routes.py:625`
@@ -255,7 +255,7 @@
 - `static/js/admin.js:2969`
 - `static/js/admin.js:2980`
 - `static/js/admin.js:2987`
-- … +804 more (grep the name in repo)
+- … +805 more (grep the name in repo)
 
 ## `ResearchNavigator.browser_read` — method (async), line 206
 - **called from:**

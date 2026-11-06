@@ -45,7 +45,7 @@
 - `scripts/odysseus_conversation_qa.py:1504`
 - `services/memory/skills.py:122`
 - `src/agent_jobs.py:111`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/process_resources.py:423`
 - `src/agent_runtime/process_resources.py:519`
 - `src/bg_jobs.py:70`

@@ -10,10 +10,10 @@
 
 ## `finish` — arrow, line 31
 - **called from:**
-- `src/agent_loop.py:32976`
-- `src/agent_loop.py:32989`
-- `src/agent_loop.py:32997`
-- `src/agent_loop.py:34857`
+- `src/agent_loop.py:32996`
+- `src/agent_loop.py:33009`
+- `src/agent_loop.py:33017`
+- `src/agent_loop.py:34877`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -997,27 +997,27 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:928`
 - `routes/chat_routes.py:928`
 - `routes/chat_routes.py:1721`
-- `routes/chat_routes.py:3574`
-- `routes/chat_routes.py:3753`
-- `routes/chat_routes.py:3797`
-- `routes/chat_routes.py:3799`
-- `routes/chat_routes.py:3843`
-- `routes/chat_routes.py:3854`
-- `routes/chat_routes.py:3861`
-- `routes/chat_routes.py:3863`
-- `routes/chat_routes.py:3879`
-- `routes/chat_routes.py:3887`
+- `routes/chat_routes.py:3593`
+- `routes/chat_routes.py:3772`
+- `routes/chat_routes.py:3816`
+- `routes/chat_routes.py:3818`
+- `routes/chat_routes.py:3862`
+- `routes/chat_routes.py:3873`
+- `routes/chat_routes.py:3880`
+- `routes/chat_routes.py:3882`
+- `routes/chat_routes.py:3898`
 - `routes/chat_routes.py:3906`
-- `routes/chat_routes.py:3907`
-- `routes/chat_routes.py:4983`
-- `routes/chat_routes.py:4985`
-- `routes/chat_routes.py:4987`
-- `routes/chat_routes.py:4997`
-- `routes/chat_routes.py:5000`
+- `routes/chat_routes.py:3925`
+- `routes/chat_routes.py:3926`
+- `routes/chat_routes.py:5002`
 - `routes/chat_routes.py:5004`
-- `routes/chat_routes.py:5015`
-- `routes/chat_routes.py:5017`
-- `routes/chat_routes.py:5059`
+- `routes/chat_routes.py:5006`
+- `routes/chat_routes.py:5016`
+- `routes/chat_routes.py:5019`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5034`
+- `routes/chat_routes.py:5036`
+- `routes/chat_routes.py:5078`
 - `routes/chatgpt_subscription_routes.py:82`
 - `routes/codex_routes.py:89`
 - `routes/codex_routes.py:103`
@@ -1029,7 +1029,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/cookbook_routes.py:2877`
 - `routes/cookbook_routes.py:3326`
 - `routes/cookbook_routes.py:3872`
-- … +2020 more (grep the name in repo)
+- … +2023 more (grep the name in repo)
 
 ## `dist` — arrow, line 2684
 - **called from:**
@@ -1106,13 +1106,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3239`
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
-- `static/js/chat.js:7613`
-- `static/js/chat.js:9104`
-- `static/js/chat.js:9112`
-- `static/js/chat.js:9118`
-- `static/js/chat.js:9121`
-- `static/js/chat.js:9124`
-- `static/js/chat.js:9147`
+- `static/js/chat.js:7595`
+- `static/js/chat.js:9103`
+- `static/js/chat.js:9111`
+- `static/js/chat.js:9117`
+- `static/js/chat.js:9120`
+- `static/js/chat.js:9123`
+- `static/js/chat.js:9146`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`

@@ -197,7 +197,7 @@
 - **called from:**
 - `core/session_manager.py:1113`
 - `routes/compare/compare_routes.py:187`
-- `routes/history/history_routes.py:1085`
+- `routes/history/history_routes.py:1101`
 - `routes/research/research_routes.py:849`
 - `routes/session_routes.py:656`
 - `routes/session_routes.py:1279`
@@ -326,7 +326,7 @@
 - `scripts/odysseus_conversation_qa.py:1504`
 - `services/memory/skills.py:122`
 - `src/agent_jobs.py:111`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/process_resources.py:423`
 - `src/agent_runtime/process_resources.py:519`
 - `src/bg_jobs.py:70`

@@ -46,10 +46,10 @@
 - `routes/chat_routes.py:1567`
 - `routes/chat_routes.py:1635`
 - `routes/chat_routes.py:2340`
-- `routes/chat_routes.py:4130`
-- `routes/chat_routes.py:4131`
-- `routes/chat_routes.py:4256`
-- `routes/chat_routes.py:5658`
+- `routes/chat_routes.py:4149`
+- `routes/chat_routes.py:4150`
+- `routes/chat_routes.py:4275`
+- `routes/chat_routes.py:5677`
 - `routes/cookbook_routes.py:1608`
 - `routes/cookbook_routes.py:3262`
 - `routes/cookbook_routes.py:3568`

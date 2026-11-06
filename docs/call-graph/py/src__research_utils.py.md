@@ -4,7 +4,7 @@
 
 ## `strip_thinking` — function, line 12
 - **called from:**
-- `routes/chat_routes.py:5762`
+- `routes/chat_routes.py:5781`
 - `src/background_tool_jobs.py:162`
 - `src/deep_research.py:640`
 - `src/deep_research.py:1758`

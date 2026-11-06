@@ -21,7 +21,7 @@
 
 ## `place` — arrow, line 76
 - **called from:**
-- `static/js/chat.js:7228`
+- `static/js/chat.js:7210`
 - `static/js/editor/canvas-transforms.js:91`
 - `static/js/editor/color-mode.js:18`
 - `static/js/editor/state.js:368`
@@ -35,8 +35,8 @@
 ## `openPanel` — function, line 104
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9370`
-- `static/js/chat.js:9411`
+- `static/js/chat.js:9369`
+- `static/js/chat.js:9410`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`

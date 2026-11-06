@@ -23,8 +23,8 @@
 - decorator: `field_validator('reasoning_effort')`
 - decorator: `classmethod`
 - **called from:**
-- `routes/chat_routes.py:2452`
-- `routes/chat_routes.py:2991`
+- `routes/chat_routes.py:2471`
+- `routes/chat_routes.py:3010`
 - `routes/history/history_routes.py:268`
 - `src/utility_effort.py:80`
 - `src/utility_effort.py:87`

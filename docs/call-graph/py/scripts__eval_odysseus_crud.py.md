@@ -10,7 +10,7 @@
 - **called from:**
 - `routes/email/email_routes.py:6871`
 - `scripts/eval_odysseus_crud.py:226`
-- `static/js/chat.js:4735`
+- `static/js/chat.js:4706`
 - `static/js/dragSort.js:212`
 - `static/js/editor/layer-panel.js:138`
 - `static/js/galleryEditor.js:10526`

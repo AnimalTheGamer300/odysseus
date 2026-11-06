@@ -52,7 +52,7 @@
 - `services/skills/publication.py:138`
 - `services/skills/publication.py:138`
 - `static/js/censor.js:38`
-- `static/js/chat.js:9238`
+- `static/js/chat.js:9237`
 
 ## `similar` — function, line 137
 - **called from:**

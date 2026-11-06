@@ -442,7 +442,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16888 more (grep the name in repo)
+- … +16891 more (grep the name in repo)
 
 ## `MemoryProviderRegistry.all` — method, line 274
 - **called from:**
@@ -478,7 +478,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:2015`
 - `routes/chat_routes.py:2091`
 - `routes/chat_routes.py:2220`
-- `routes/chat_routes.py:3015`
+- `routes/chat_routes.py:3034`
 - `routes/chatgpt_subscription_routes.py:40`
 - `routes/chatgpt_subscription_routes.py:44`
 - `routes/compare/compare_routes.py:329`
@@ -516,7 +516,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_rename_user_owner_sync.py:307`
 - `static/app.js:1021`
 - `static/app.js:1022`
-- `static/js/chat.js:6866`
+- `static/js/chat.js:6848`
 - `static/js/document.js:2292`
 - `static/js/editor/direct-manipulation-session.js:79`
 - `static/js/features/notes/ui/drawing.js:234`

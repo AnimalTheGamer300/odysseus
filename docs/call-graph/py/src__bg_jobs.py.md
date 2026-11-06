@@ -240,7 +240,7 @@
 
 ## `peek` — function, line 385
 - **called from:**
-- `routes/chat_routes.py:3030`
+- `routes/chat_routes.py:3049`
 - `routes/skills_routes.py:692`
 - `src/agent_runtime/process_resources.py:124`
 - `src/agent_tools/bg_job_tools.py:96`
@@ -338,7 +338,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16888 more (grep the name in repo)
+- … +16891 more (grep the name in repo)
 
 ## `kill` — function, line 408
 - decorator: `store_transaction(lambda: _STORE)`

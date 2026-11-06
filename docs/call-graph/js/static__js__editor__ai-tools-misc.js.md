@@ -91,5 +91,5 @@
 ## `away` — arrow, line 260
 - **called from:**
 - `static/app.js:1259`
-- `static/js/chat.js:5184`
+- `static/js/chat.js:5155`
 - `static/js/galleryEditor.js:10324`

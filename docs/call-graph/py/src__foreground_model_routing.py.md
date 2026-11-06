@@ -31,8 +31,8 @@
 
 ## `resolve_foreground_model_policy` — function, line 59
 - **called from:**
-- `routes/chat_routes.py:2489`
-- `routes/chat_routes.py:3261`
+- `routes/chat_routes.py:2508`
+- `routes/chat_routes.py:3280`
 - `src/foreground_model_routing.py:152`
 - `src/foreground_model_routing.py:164`
 - `src/foreground_model_routing.py:183`
@@ -60,13 +60,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `build_foreground_model_candidates` — function, line 155
 - **called from:**
-- `routes/chat_routes.py:2532`
-- `routes/chat_routes.py:4334`
+- `routes/chat_routes.py:2551`
+- `routes/chat_routes.py:4353`
 - `tests/test_foreground_model_routing.py:1721`
 - `tests/test_foreground_model_routing.py:1882`
 
 ## `build_foreground_route_descriptors` — function, line 173
 - **called from:**
-- `routes/chat_routes.py:2539`
-- `routes/chat_routes.py:4341`
+- `routes/chat_routes.py:2558`
+- `routes/chat_routes.py:4360`
 - `tests/test_foreground_model_routing.py:1761`

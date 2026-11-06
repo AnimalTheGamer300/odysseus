@@ -83,9 +83,9 @@
 - `routes/chat_helpers.py:2136`
 - `routes/chat_helpers.py:2165`
 - `routes/chat_routes.py:1552`
-- `routes/chat_routes.py:2943`
-- `routes/chat_routes.py:2955`
-- `routes/chat_routes.py:3433`
+- `routes/chat_routes.py:2962`
+- `routes/chat_routes.py:2974`
+- `routes/chat_routes.py:3452`
 - `routes/chatgpt_subscription_routes.py:337`
 - `routes/cookbook_routes.py:1603`
 - `routes/cookbook_routes.py:1681`

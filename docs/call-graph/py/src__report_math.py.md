@@ -133,10 +133,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:3338`
 - `static/js/chat.js:3915`
 - `static/js/chat.js:3932`
-- `static/js/chat.js:4421`
-- `static/js/chat.js:4424`
-- `static/js/chat.js:4425`
-- `static/js/chat.js:4426`
+- `static/js/chat.js:4410`
+- `static/js/chat.js:4413`
+- `static/js/chat.js:4414`
+- `static/js/chat.js:4415`
 - … +815 more (grep the name in repo)
 
 ## `_DisplayMath.run` — method, line 64

@@ -77,8 +77,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_json` — function, line 45
 - **called from:**
 - `src/agent_runtime/authority.py:69`
-- `src/agent_runtime/authority.py:504`
-- `src/agent_runtime/authority.py:653`
+- `src/agent_runtime/authority.py:532`
+- `src/agent_runtime/authority.py:681`
 
 ## `ExactOperation` — class, line 50
 - decorator: `dataclass(frozen=True)`
@@ -89,10 +89,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `classmethod`
 - **called from:**
 - `scripts/generate_sft_environment_expansion.py:267`
-- `src/agent_loop.py:34856`
-- `src/agent_runtime/authority.py:504`
-- `src/agent_runtime/authority.py:619`
-- `src/agent_runtime/authority.py:621`
+- `src/agent_loop.py:34876`
+- `src/agent_runtime/authority.py:532`
+- `src/agent_runtime/authority.py:647`
+- `src/agent_runtime/authority.py:649`
 - `src/agent_runtime/journal.py:232`
 - `src/agent_runtime/journal.py:253`
 - `src/agent_runtime/local_model_control.py:50`
@@ -155,8 +155,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_runtime/authority.py:106`
 - `src/agent_runtime/authority.py:316`
-- `src/agent_runtime/authority.py:505`
-- `src/agent_runtime/authority.py:630`
+- `src/agent_runtime/authority.py:533`
+- `src/agent_runtime/authority.py:658`
 - `tests/process_resource_helpers.py:16`
 - `tests/process_resource_helpers.py:49`
 - `tests/process_resource_helpers.py:79`
@@ -208,16 +208,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `OperationGrant.permits` — method, line 96
 - **called from:**
-- `routes/chat_routes.py:4027`
+- `routes/chat_routes.py:4046`
 - `src/agent_loop.py:497`
 - `src/agent_loop.py:521`
 - `src/agent_loop.py:600`
 - `src/agent_loop.py:22032`
 - `src/agent_loop.py:22033`
 - `src/agent_loop.py:22066`
-- `src/agent_loop.py:23555`
-- `src/agent_loop.py:33063`
-- `src/agent_loop.py:33900`
+- `src/agent_loop.py:23575`
+- `src/agent_loop.py:33083`
+- `src/agent_loop.py:33920`
 - `src/agent_runtime/authority.py:223`
 - `src/agent_runtime/local_model_control.py:58`
 - `src/agent_runtime/owned_resources.py:419`
@@ -274,8 +274,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_runtime/authority.py:243`
 - `src/agent_runtime/authority.py:247`
-- `src/agent_runtime/authority.py:549`
-- `src/agent_runtime/authority.py:643`
+- `src/agent_runtime/authority.py:577`
+- `src/agent_runtime/authority.py:671`
 - `src/tool_execution.py:1764`
 - `tests/test_background_resource_identity.py:130`
 - `tests/test_background_resource_identity.py:135`
@@ -310,7 +310,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `RequestAuthority` — class, line 111
 - decorator: `dataclass(frozen=True)`
 - **called from:**
-- `src/agent_runtime/authority.py:506`
+- `src/agent_runtime/authority.py:534`
 - `tests/process_resource_helpers.py:16`
 - `tests/process_resource_helpers.py:49`
 - `tests/process_resource_helpers.py:79`
@@ -364,18 +364,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `RequestAuthority.empty` — method, line 209
 - decorator: `classmethod`
 - **called from:**
-- `routes/chat_routes.py:3805`
+- `routes/chat_routes.py:3824`
 - `routes/shell_routes.py:1223`
 - `routes/skills_routes.py:610`
 - `services/skills/agent_runner.py:65`
 - `services/skills/agent_runner.py:213`
 - `src/agent_runtime/authority.py:265`
-- `src/agent_runtime/authority.py:539`
-- `src/agent_runtime/authority.py:587`
-- `src/agent_runtime/authority.py:592`
-- `src/agent_runtime/authority.py:641`
-- `src/agent_runtime/authority.py:663`
-- `src/agent_runtime/authority.py:694`
+- `src/agent_runtime/authority.py:567`
+- `src/agent_runtime/authority.py:615`
+- `src/agent_runtime/authority.py:620`
+- `src/agent_runtime/authority.py:669`
+- `src/agent_runtime/authority.py:691`
+- `src/agent_runtime/authority.py:722`
 - `src/bg_monitor.py:80`
 - `tests/test_resource_identity.py:642`
 - `tests/test_skills_audit_services.py:198`
@@ -405,16 +405,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `RequestAuthority.permits` — method, line 222
 - **called from:**
-- `routes/chat_routes.py:4027`
+- `routes/chat_routes.py:4046`
 - `src/agent_loop.py:497`
 - `src/agent_loop.py:521`
 - `src/agent_loop.py:600`
 - `src/agent_loop.py:22032`
 - `src/agent_loop.py:22033`
 - `src/agent_loop.py:22066`
-- `src/agent_loop.py:23555`
-- `src/agent_loop.py:33063`
-- `src/agent_loop.py:33900`
+- `src/agent_loop.py:23575`
+- `src/agent_loop.py:33083`
+- `src/agent_loop.py:33920`
 - `src/agent_runtime/authority.py:223`
 - `src/agent_runtime/local_model_control.py:58`
 - `src/agent_runtime/owned_resources.py:419`
@@ -469,11 +469,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `RequestAuthority.restrict` — method, line 225
 - **called from:**
-- `routes/chat_routes.py:3803`
-- `routes/chat_routes.py:3937`
-- `src/agent_runtime/authority.py:512`
-- `src/agent_runtime/authority.py:539`
-- `src/agent_runtime/authority.py:605`
+- `routes/chat_routes.py:3822`
+- `routes/chat_routes.py:3956`
+- `src/agent_runtime/authority.py:540`
+- `src/agent_runtime/authority.py:567`
+- `src/agent_runtime/authority.py:633`
 - `src/bg_monitor.py:185`
 - `src/task_scheduler.py:1386`
 - `src/task_scheduler.py:2195`
@@ -486,8 +486,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_runtime/authority.py:243`
 - `src/agent_runtime/authority.py:247`
-- `src/agent_runtime/authority.py:549`
-- `src/agent_runtime/authority.py:643`
+- `src/agent_runtime/authority.py:577`
+- `src/agent_runtime/authority.py:671`
 - `src/tool_execution.py:1764`
 - `tests/test_background_resource_identity.py:130`
 - `tests/test_background_resource_identity.py:135`
@@ -513,40 +513,40 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `RequestAuthority.continuation` — method, line 262
 - **called from:**
-- `src/agent_runtime/authority.py:661`
-- `src/agent_runtime/authority.py:692`
+- `src/agent_runtime/authority.py:689`
+- `src/agent_runtime/authority.py:720`
 
 ## `RequestAuthority.to_dict` — method, line 274
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5624`
+- `routes/chat_routes.py:5643`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
 - `services/memory/skills.py:453`
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
-- `src/agent_loop.py:28789`
-- `src/agent_loop.py:31316`
-- `src/agent_loop.py:31789`
-- `src/agent_loop.py:32054`
-- `src/agent_loop.py:32094`
-- `src/agent_loop.py:32125`
-- `src/agent_loop.py:32178`
-- `src/agent_loop.py:32306`
-- `src/agent_loop.py:32638`
-- `src/agent_loop.py:34858`
-- `src/agent_loop.py:36867`
-- `src/agent_loop.py:37190`
-- `src/agent_loop.py:37403`
-- `src/agent_loop.py:37458`
-- `src/agent_loop.py:37515`
-- `src/agent_loop.py:37849`
-- `src/agent_loop.py:37861`
-- `src/agent_loop.py:37967`
-- `src/agent_loop.py:38889`
-- `src/agent_loop.py:38890`
-- `src/agent_loop.py:38895`
+- `src/agent_loop.py:28809`
+- `src/agent_loop.py:31336`
+- `src/agent_loop.py:31809`
+- `src/agent_loop.py:32074`
+- `src/agent_loop.py:32114`
+- `src/agent_loop.py:32145`
+- `src/agent_loop.py:32198`
+- `src/agent_loop.py:32326`
+- `src/agent_loop.py:32658`
+- `src/agent_loop.py:34878`
+- `src/agent_loop.py:36887`
+- `src/agent_loop.py:37210`
+- `src/agent_loop.py:37423`
+- `src/agent_loop.py:37478`
+- `src/agent_loop.py:37535`
+- `src/agent_loop.py:37869`
+- `src/agent_loop.py:37881`
+- `src/agent_loop.py:37987`
+- `src/agent_loop.py:38909`
+- `src/agent_loop.py:38910`
+- `src/agent_loop.py:38915`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -555,9 +555,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:287`
 - `src/agent_runtime/authority.py:288`
 - `src/agent_runtime/authority.py:289`
-- `src/agent_runtime/authority.py:653`
-- `src/agent_runtime/authority.py:677`
-- `src/agent_runtime/authority.py:677`
+- `src/agent_runtime/authority.py:681`
+- `src/agent_runtime/authority.py:705`
+- `src/agent_runtime/authority.py:705`
 - `src/agent_runtime/completion.py:356`
 - `src/agent_runtime/completion.py:385`
 - `src/agent_runtime/completion.py:388`
@@ -590,9 +590,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/authority.py:323`
 - `src/agent_runtime/authority.py:324`
 - `src/agent_runtime/authority.py:325`
-- `src/agent_runtime/authority.py:661`
-- `src/agent_runtime/authority.py:683`
-- `src/agent_runtime/authority.py:686`
+- `src/agent_runtime/authority.py:689`
+- `src/agent_runtime/authority.py:711`
+- `src/agent_runtime/authority.py:714`
 - `src/agent_runtime/effect_log.py:91`
 - `src/agent_runtime/effects.py:277`
 - `src/agent_runtime/effects.py:340`
@@ -669,9 +669,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `create_request_authority` — function, line 469
 - **called from:**
-- `src/agent_runtime/authority.py:541`
-- `src/agent_runtime/authority.py:595`
-- `src/agent_runtime/authority.py:628`
+- `src/agent_runtime/authority.py:569`
+- `src/agent_runtime/authority.py:623`
+- `src/agent_runtime/authority.py:656`
 - `tests/test_agent_external_tool_schemas.py:437`
 - `tests/test_edit_file.py:59`
 - `tests/test_local_mcp_capabilities.py:884`
@@ -690,13 +690,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_resource_identity.py:717`
 - `tests/test_runtime_resource_integration.py:286`
 
-## `active_request_authority` — function, line 519
+## `active_request_authority` — function, line 547
 - **called from:**
 - `services/skills/agent_runner.py:213`
-- `src/agent_loop.py:34208`
-- `src/agent_loop.py:38919`
-- `src/agent_runtime/authority.py:580`
-- `src/agent_runtime/authority.py:639`
+- `src/agent_loop.py:34228`
+- `src/agent_loop.py:38939`
+- `src/agent_runtime/authority.py:608`
+- `src/agent_runtime/authority.py:667`
 - `src/agent_runtime/local_model_control.py:49`
 - `src/agent_runtime/process_resources.py:367`
 - `src/agent_tools/subprocess_tools.py:530`
@@ -722,36 +722,36 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_request_authority.py:581`
 - `tests/test_runtime_resource_integration.py:156`
 
-## `is_internal_tool_request` — function, line 523
+## `is_internal_tool_request` — function, line 551
 - **called from:**
-- `routes/chat_routes.py:2506`
-- `routes/chat_routes.py:2508`
-- `routes/chat_routes.py:3329`
-- `routes/chat_routes.py:3335`
+- `routes/chat_routes.py:2525`
+- `routes/chat_routes.py:2527`
+- `routes/chat_routes.py:3348`
+- `routes/chat_routes.py:3354`
 - `routes/codex_routes.py:128`
 - `routes/shell_routes.py:68`
 - `routes/task/task_routes.py:33`
-- `src/agent_runtime/authority.py:531`
-- `src/agent_runtime/authority.py:538`
+- `src/agent_runtime/authority.py:559`
+- `src/agent_runtime/authority.py:566`
 - `tests/test_request_authority.py:449`
 
-## `require_user_approval_request` — function, line 530
+## `require_user_approval_request` — function, line 558
 - **called from:**
-- `routes/chat_routes.py:3029`
+- `routes/chat_routes.py:3048`
 - `routes/skills_routes.py:664`
 - `tests/test_request_authority.py:451`
 - `tests/test_request_authority.py:454`
 
-## `request_authority_for_http` — function, line 536
+## `request_authority_for_http` — function, line 564
 - **called from:**
-- `routes/chat_routes.py:3790`
+- `routes/chat_routes.py:3809`
 - `routes/skills_routes.py:609`
 - `tests/test_request_authority.py:463`
 
-## `bind_request_authority` — function, line 545
+## `bind_request_authority` — function, line 573
 - decorator: `contextmanager`
 - **called from:**
-- `src/agent_runtime/authority.py:606`
+- `src/agent_runtime/authority.py:634`
 - `src/task_scheduler.py:1416`
 - `src/task_scheduler.py:2271`
 - `src/tool_execution.py:1966`
@@ -789,22 +789,22 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_wave3_local_control.py:165`
 - `tests/test_wave3_local_control.py:187`
 
-## `_request_text` — function, line 557
+## `_request_text` — function, line 585
 - **called from:**
-- `src/agent_runtime/authority.py:595`
+- `src/agent_runtime/authority.py:623`
 
-## `with_request_authority` — function, line 572
+## `with_request_authority` — function, line 600
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `wrapped` — function (async), line 576
+## `wrapped` — function (async), line 604
 - decorator: `wraps(func)`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `task_operation` — function, line 615
+## `task_operation` — function, line 643
 - **called from:**
-- `src/agent_runtime/authority.py:627`
+- `src/agent_runtime/authority.py:655`
 - `src/task_scheduler.py:1387`
 - `src/task_scheduler.py:2196`
 - `tests/test_request_authority.py:136`
@@ -812,7 +812,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_request_authority.py:219`
 - `tests/test_request_authority.py:412`
 
-## `seal_task_authority` — function, line 625
+## `seal_task_authority` — function, line 653
 - **called from:**
 - `routes/task/task_routes.py:34`
 - `src/task_scheduler.py:2714`
@@ -828,7 +828,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_task_scheduler_endpoint_authority.py:63`
 - `tests/test_wave3_local_control.py:131`
 
-## `restore_task_authority` — function, line 656
+## `restore_task_authority` — function, line 684
 - **called from:**
 - `src/task_scheduler.py:1382`
 - `src/task_scheduler.py:2075`
@@ -843,19 +843,19 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_resource_identity.py:407`
 - `tests/test_wave3_local_control.py:132`
 
-## `_background_path` — function, line 666
+## `_background_path` — function, line 694
 - **called from:**
-- `src/agent_runtime/authority.py:677`
-- `src/agent_runtime/authority.py:682`
+- `src/agent_runtime/authority.py:705`
+- `src/agent_runtime/authority.py:710`
 
-## `save_background_authority` — function, line 673
+## `save_background_authority` — function, line 701
 - **called from:**
 - `src/bg_jobs.py:179`
 - `tests/process_resource_helpers.py:65`
 - `tests/test_request_authority.py:229`
 - `tests/test_resource_identity.py:402`
 
-## `restore_background_authority` — function, line 680
+## `restore_background_authority` — function, line 708
 - **called from:**
 - `src/bg_monitor.py:169`
 - `tests/test_background_resource_identity.py:145`

@@ -26,7 +26,7 @@
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`
@@ -158,9 +158,9 @@
 - **called from:**
 - `static/js/chat.js:1527`
 - `static/js/chat.js:4314`
-- `static/js/chat.js:4452`
-- `static/js/chat.js:4918`
-- `static/js/chat.js:5063`
+- `static/js/chat.js:4441`
+- `static/js/chat.js:4889`
+- `static/js/chat.js:5034`
 - `static/js/chatRenderer.js:1372`
 - `static/js/editor/tools/pen-selection.js:28`
 - `static/js/editor/tools/pen-selection.js:51`
@@ -176,7 +176,7 @@
 - `mcp_servers/email_server.py:4696`
 - `mcp_servers/email_server.py:4697`
 - `services/search/core.py:521`
-- `src/agent_runtime/authority.py:554`
+- `src/agent_runtime/authority.py:582`
 - `src/agent_runtime/journal.py:157`
 - `src/agent_runtime/journal.py:158`
 - `src/agent_runtime/journal.py:237`
@@ -262,32 +262,32 @@
 - `routes/chat_helpers.py:1096`
 - `routes/chat_routes.py:1442`
 - `routes/chat_routes.py:1493`
-- `routes/chat_routes.py:3580`
-- `routes/chat_routes.py:3639`
-- `routes/chat_routes.py:3651`
-- `routes/chat_routes.py:3669`
-- `routes/chat_routes.py:3685`
-- `routes/chat_routes.py:3687`
-- `routes/chat_routes.py:3690`
-- `routes/chat_routes.py:3692`
-- `routes/chat_routes.py:3694`
-- `routes/chat_routes.py:3697`
-- `routes/chat_routes.py:3705`
+- `routes/chat_routes.py:3599`
+- `routes/chat_routes.py:3658`
+- `routes/chat_routes.py:3670`
+- `routes/chat_routes.py:3688`
+- `routes/chat_routes.py:3704`
+- `routes/chat_routes.py:3706`
+- `routes/chat_routes.py:3709`
+- `routes/chat_routes.py:3711`
 - `routes/chat_routes.py:3713`
-- `routes/chat_routes.py:3717`
-- `routes/chat_routes.py:3721`
+- `routes/chat_routes.py:3716`
+- `routes/chat_routes.py:3724`
 - `routes/chat_routes.py:3732`
-- `routes/chat_routes.py:3735`
-- `routes/chat_routes.py:3742`
-- `routes/chat_routes.py:3826`
-- `routes/chat_routes.py:3835`
-- `routes/chat_routes.py:3839`
-- `routes/chat_routes.py:4025`
-- `routes/chat_routes.py:4439`
-- `routes/chat_routes.py:4680`
+- `routes/chat_routes.py:3736`
+- `routes/chat_routes.py:3740`
+- `routes/chat_routes.py:3751`
+- `routes/chat_routes.py:3754`
+- `routes/chat_routes.py:3761`
+- `routes/chat_routes.py:3845`
+- `routes/chat_routes.py:3854`
+- `routes/chat_routes.py:3858`
+- `routes/chat_routes.py:4044`
+- `routes/chat_routes.py:4458`
 - `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:5001`
-- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:4718`
+- `routes/chat_routes.py:5020`
+- `routes/chat_routes.py:5024`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -306,7 +306,7 @@
 - `routes/email/email_routes.py:5506`
 - `routes/email/email_routes.py:5511`
 - `routes/email/email_routes.py:6640`
-- … +548 more (grep the name in repo)
+- … +547 more (grep the name in repo)
 
 ## `flush` — method?, line 191
 - **called from:**
@@ -337,10 +337,10 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3659`
-- `src/llm_core.py:3677`
-- `src/llm_core.py:3961`
-- `src/llm_core.py:4298`
+- `src/llm_core.py:3669`
+- `src/llm_core.py:3687`
+- `src/llm_core.py:3971`
+- `src/llm_core.py:4308`
 - `src/task_scheduler.py:2849`
 - `src/upload_handler.py:799`
 - `tests/smoke/stub_provider.py:136`
@@ -364,19 +364,21 @@
 - `app.py:1470`
 - `routes/editor_agent_routes.py:1414`
 - `routes/email/email_routes.py:6869`
+- `routes/history/history_routes.py:613`
 - `routes/shell_routes.py:957`
 - `routes/shell_routes.py:1342`
 - `services/research/research_handler.py:140`
 - `services/research/research_handler.py:143`
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
-- `src/agent_loop.py:26017`
-- `src/agent_loop.py:34321`
+- `src/agent_loop.py:26037`
+- `src/agent_loop.py:34341`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
 - `src/agent_runs.py:249`
 - `src/agent_runs.py:298`
+- `src/agent_runs.py:315`
 - `src/ai_interaction.py:1822`
 - `src/ai_interaction.py:2094`
 - `src/clean_agent_preview.py:5609`
@@ -418,6 +420,4 @@
 - `tests/test_nested_invocation_ownership.py:93`
 - `tests/test_nested_invocation_ownership.py:96`
 - `tests/test_nested_invocation_ownership.py:448`
-- `tests/test_nested_invocation_ownership.py:453`
-- `tests/test_review_calendar_invitation.py:135`
-- … +82 more (grep the name in repo)
+- … +84 more (grep the name in repo)

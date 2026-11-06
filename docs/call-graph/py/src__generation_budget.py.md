@@ -18,8 +18,8 @@
 - **called from:**
 - `src/clean_agent_preview.py:5548`
 - `src/generation_budget.py:151`
-- `src/llm_core.py:4625`
-- `src/llm_core.py:4706`
+- `src/llm_core.py:4635`
+- `src/llm_core.py:4716`
 - `tests/test_generation_budget.py:18`
 
 ## `estimate_tool_schema_tokens` — function, line 78
@@ -27,16 +27,16 @@
 - `src/clean_agent_preview.py:5544`
 - `src/generation_budget.py:120`
 - `src/generation_budget.py:148`
-- `src/llm_core.py:4613`
-- `src/llm_core.py:4677`
+- `src/llm_core.py:4623`
+- `src/llm_core.py:4687`
 - `tests/test_generation_budget.py:34`
 
 ## `estimate_multimodal_image_tokens` — function, line 90
 - **called from:**
 - `src/clean_agent_preview.py:5545`
 - `src/generation_budget.py:119`
-- `src/llm_core.py:4618`
-- `src/llm_core.py:4697`
+- `src/llm_core.py:4628`
+- `src/llm_core.py:4707`
 - `tests/test_generation_budget.py:52`
 - `tests/test_generation_budget.py:279`
 
@@ -46,14 +46,14 @@
 
 ## `fit_output_token_budget` — function, line 124
 - **called from:**
-- `src/agent_loop.py:26948`
-- `src/agent_loop.py:27044`
-- `src/agent_loop.py:28517`
-- `src/agent_loop.py:30650`
-- `src/agent_loop.py:32692`
+- `src/agent_loop.py:26968`
+- `src/agent_loop.py:27064`
+- `src/agent_loop.py:28537`
+- `src/agent_loop.py:30670`
+- `src/agent_loop.py:32712`
 - `src/generation_budget.py:248`
-- `src/llm_core.py:3033`
-- `src/llm_core.py:4982`
+- `src/llm_core.py:3043`
+- `src/llm_core.py:4992`
 - `tests/test_generation_budget.py:32`
 - `tests/test_generation_budget.py:50`
 - `tests/test_generation_budget.py:66`
@@ -74,7 +74,7 @@
 ## `plan_context_recovery` — function, line 188
 - **called from:**
 - `src/clean_agent_preview.py:5567`
-- `src/llm_core.py:4661`
+- `src/llm_core.py:4671`
 - `tests/test_generation_budget.py:111`
 - `tests/test_generation_budget.py:123`
 - `tests/test_generation_budget.py:143`

@@ -112,7 +112,7 @@
 - `src/agent_loop.py:1829`
 - `src/agent_loop.py:5596`
 - `src/agent_loop.py:5597`
-- `src/agent_loop.py:35746`
+- `src/agent_loop.py:35766`
 - `src/user_time.py:107`
 
 ## `now_user_local` — function, line 101
@@ -184,7 +184,7 @@
 - `src/agent_loop.py:16395`
 - `src/agent_loop.py:16485`
 - `src/agent_loop.py:16511`
-- `src/llm_core.py:2307`
+- `src/llm_core.py:2317`
 - `tests/test_temporal_grounding_stamps.py:120`
 
 ## `current_datetime_line` — function, line 266

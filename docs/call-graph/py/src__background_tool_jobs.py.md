@@ -110,7 +110,7 @@
 - `tests/test_background_tool_jobs.py:203`
 - `tests/test_background_tool_jobs.py:218`
 - `static/js/chat.js:1395`
-- `static/js/chat.js:5120`
+- `static/js/chat.js:5091`
 - `static/js/cookbook-hwfit.js:2772`
 - `static/js/research/panel.js:1047`
 - `static/js/research/panel.js:1055`

@@ -713,7 +713,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_read_cache_key` — function, line 1824
 - **called from:**
-- `routes/chat_routes.py:2929`
+- `routes/chat_routes.py:2948`
 - `routes/email/email_routes.py:4004`
 - `routes/email/email_routes.py:4062`
 
@@ -870,7 +870,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_read_cache_get` — function, line 2002
 - **called from:**
-- `routes/chat_routes.py:2930`
+- `routes/chat_routes.py:2949`
 - `routes/email/email_routes.py:4005`
 - `routes/email/email_routes.py:4063`
 - `routes/email/email_routes.py:4075`
@@ -1501,7 +1501,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `routes/email/email_routes.py:6871`
 - `scripts/eval_odysseus_crud.py:226`
-- `static/js/chat.js:4735`
+- `static/js/chat.js:4706`
 - `static/js/dragSort.js:212`
 - `static/js/editor/layer-panel.js:138`
 - `static/js/galleryEditor.js:10526`

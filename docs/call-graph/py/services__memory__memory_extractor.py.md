@@ -72,14 +72,14 @@
 
 ## `_message_text` — function, line 236
 - **called from:**
-- `routes/history/history_routes.py:1504`
+- `routes/history/history_routes.py:1520`
 - `routes/session_routes.py:1378`
 - `routes/session_routes.py:1429`
 - `services/memory/memory_extractor.py:338`
 
 ## `_message_role` — function, line 253
 - **called from:**
-- `routes/history/history_routes.py:1503`
+- `routes/history/history_routes.py:1519`
 - `routes/session_routes.py:818`
 - `routes/session_routes.py:868`
 - `services/memory/memory_extractor.py:336`
@@ -151,9 +151,9 @@
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -169,7 +169,7 @@
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `_dedup_tokens` — function, line 412
 - **called from:**

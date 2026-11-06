@@ -80,7 +80,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5561`
+- `routes/chat_routes.py:5580`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`
@@ -90,8 +90,8 @@
 - `tests/test_nested_invocation_ownership.py:77`
 - `tests/test_notes_native_cleanup.py:30`
 - `static/js/admin.js:1379`
-- `static/js/chat.js:6534`
-- `static/js/chat.js:6625`
+- `static/js/chat.js:6498`
+- `static/js/chat.js:6589`
 - `static/js/chatRenderer.js:543`
 - `static/js/compare/stream.js:306`
 - `static/js/compare/stream.js:343`

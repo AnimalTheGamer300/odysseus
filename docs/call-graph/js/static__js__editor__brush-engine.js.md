@@ -137,9 +137,9 @@
 - `routes/calendar_routes.py:1713`
 - `routes/chat_helpers.py:371`
 - `routes/chat_routes.py:1744`
-- `routes/chat_routes.py:3587`
-- `routes/chat_routes.py:3688`
-- `routes/chat_routes.py:3924`
+- `routes/chat_routes.py:3606`
+- `routes/chat_routes.py:3707`
+- `routes/chat_routes.py:3943`
 - `routes/chatgpt_subscription_routes.py:91`
 - `routes/chatgpt_subscription_routes.py:155`
 - `routes/chatgpt_subscription_routes.py:185`
@@ -155,7 +155,7 @@
 - `routes/cookbook_routes.py:3877`
 - `routes/cookbook_routes.py:3964`
 - `routes/copilot_routes.py:77`
-- … +2017 more (grep the name in repo)
+- … +2020 more (grep the name in repo)
 
 ## `end` — arrow, line 73
 - **called from:**
@@ -205,7 +205,7 @@
 - `src/agent_loop.py:18329`
 - `src/agent_loop.py:18331`
 - `src/agent_loop.py:18437`
-- `src/agent_loop.py:25736`
+- `src/agent_loop.py:25756`
 - `src/agent_runtime/completion.py:91`
 - `src/agent_tools/document_tools.py:384`
 - `src/agent_tools/document_tools.py:438`

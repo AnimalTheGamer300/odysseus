@@ -9,8 +9,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `handleUIControl` — function, line 45
 - **called from:**
-- `static/js/chat.js:5797`
-- `static/js/chat.js:5884`
+- `static/js/chat.js:5768`
+- `static/js/chat.js:5855`
 - `static/js/chatStream.js:45`
 
 ## `notifyStreamComplete` — function, line 279
@@ -79,7 +79,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `insertStreamDoneToast` — function, line 302
 - **called from:**
@@ -151,4 +151,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:986`
 - `static/js/chat.js:1398`
 - `static/js/chat.js:1675`
-- … +627 more (grep the name in repo)
+- … +628 more (grep the name in repo)

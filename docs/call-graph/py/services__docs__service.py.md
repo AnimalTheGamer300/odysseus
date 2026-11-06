@@ -129,7 +129,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/calendar_routes.py:593`
 - `routes/cookbook_helpers.py:325`
 - `routes/cookbook_routes.py:530`
-- `routes/history/history_routes.py:614`
+- `routes/history/history_routes.py:630`
 - `scripts/eval_exact_file_routing.py:74`
 - `scripts/eval_followup_domain_continuity.py:83`
 - `scripts/generate_env_reference.py:254`
@@ -140,7 +140,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_tools/document_tools.py:897`
 - `src/agent_tools/document_tools.py:1036`
 - `src/builtin_mcp.py:267`
-- `src/llm_core.py:1946`
+- `src/llm_core.py:1956`
 - `src/report_math.py:40`
 - `src/tools/system.py:323`
 - `src/webhook_manager.py:292`

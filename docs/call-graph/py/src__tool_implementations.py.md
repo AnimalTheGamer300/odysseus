@@ -8,7 +8,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `set_active_email` — function, line 93
 - **called from:**
-- `routes/chat_routes.py:2947`
+- `routes/chat_routes.py:2966`
 
 ## `get_active_email` — function, line 109
 - **called from:**
@@ -16,4 +16,4 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `clear_active_email` — function, line 113
 - **called from:**
-- `routes/chat_routes.py:2915`
+- `routes/chat_routes.py:2934`

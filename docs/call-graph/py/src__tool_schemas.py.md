@@ -61,7 +61,7 @@
 
 ## `slim_tool_schemas` — function, line 3242
 - **called from:**
-- `src/agent_loop.py:25842`
+- `src/agent_loop.py:25862`
 
 ## `_decode_loose_json_string` — function, line 3250
 - **called from:**

@@ -80,8 +80,8 @@
 
 ## `_resolve_research_endpoint` — function, line 141
 - **called from:**
-- `routes/chat_routes.py:2518`
-- `routes/chat_routes.py:4129`
+- `routes/chat_routes.py:2537`
+- `routes/chat_routes.py:4148`
 
 ## `_owned_enabled_endpoint` — function, line 154
 - **called from:**

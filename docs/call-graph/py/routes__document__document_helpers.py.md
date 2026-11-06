@@ -63,10 +63,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_owner_session_filter` — function, line 99
 - **called from:**
-- `routes/chat_routes.py:3355`
-- `routes/chat_routes.py:3396`
-- `routes/chat_routes.py:3404`
-- `routes/chat_routes.py:3419`
+- `routes/chat_routes.py:3374`
+- `routes/chat_routes.py:3415`
+- `routes/chat_routes.py:3423`
+- `routes/chat_routes.py:3438`
 - `routes/document/document_routes.py:547`
 - `routes/document/document_routes.py:557`
 - `routes/document/document_routes.py:566`

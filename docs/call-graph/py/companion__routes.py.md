@@ -108,7 +108,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/database.py:1590`
 - `core/database.py:1624`
 - `core/database.py:1653`
-- … +820 more (grep the name in repo)
+- … +821 more (grep the name in repo)
 
 ## `models` — function, line 110
 - **route:** `GET /models`
