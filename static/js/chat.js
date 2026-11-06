@@ -8396,8 +8396,25 @@ function _dbRowCountBefore(box, element) {
   export async function regenerateFrom(aiMsgElement) {
     const box = document.getElementById('chat-history');
     const allMsgs = Array.from(box.querySelectorAll('.msg'));
-    const aiIndex = allMsgs.indexOf(aiMsgElement);
+    let aiIndex = allMsgs.indexOf(aiMsgElement);
     if (aiIndex < 0) return;
+
+    // [SIR] (2026-11-06) Clicked a continuation bubble of a multi-round
+    // response — walk back to the response's MAIN bubble first, exactly like
+    // deleteMessage does. Without this, the orphan guard below sees the
+    // round-0 bubble (standalone by design: it IS this response) sitting
+    // between the user message and aiIndex and refuses with "the user
+    // message for this response was deleted" — regenerating any multi-round
+    // agent turn from its tail bubble was impossible.
+    if (aiMsgElement.classList.contains('msg-continuation')) {
+      for (let i = aiIndex - 1; i >= 0; i--) {
+        if (allMsgs[i].classList.contains('msg-ai') && !allMsgs[i].classList.contains('msg-continuation')) {
+          aiMsgElement = allMsgs[i];
+          aiIndex = i;
+          break;
+        }
+      }
+    }
 
     // Find the preceding user message
     let userIndex = -1;
