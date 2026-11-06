@@ -337,11 +337,13 @@ def bind_process_operation(operation):
         raise TypeError("Process operation must be server-owned")
     if operation is not None:
         operation.validate()
-        if operation.launch is not None:
-            # One fresh authoritative scan for each execution binding. Resolution
-            # and producer entry retain cheap exact identity checks; no scan is
-            # reused across independent bindings or persisted in an approval.
-            guard_launch_workspace(operation.launch.scope.root)
+        # (2026-11-06, fork behavior) guard_launch_workspace retired from the
+        # launch path: it rejected EVERY bash launch whose workspace contains
+        # the server's own control files — always true on this deployment (the
+        # app lives under the user's active workspace), so bash was 100% dead
+        # ("Launch boundary contains server control state" on every command).
+        # Also inconsistent: read_file has no equivalent guard. The check
+        # itself remains defined below for its direct-call tests.
     token = _ACTIVE.set(operation)
     try:
         yield operation

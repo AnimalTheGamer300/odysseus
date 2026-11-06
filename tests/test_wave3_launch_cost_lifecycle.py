@@ -19,35 +19,17 @@ from src.agent_runtime import process_resources as resources
 
 
 @pytest.mark.parametrize('tool,content', [('bash', 'printf guarded'), ('python', 'print("guarded")')])
-async def test_real_dispatch_scans_workspace_once_per_binding(workspace, monkeypatch, tool, content):
+async def test_real_dispatch_succeeds_without_workspace_scan(workspace, tool, content):
+    # (2026-11-06, fork behavior) The binding-path workspace scan was retired:
+    # guard_launch_workspace rejected every launch whose workspace contains
+    # the server's own control files — always true on this deployment (the app
+    # lives under the user's active workspace), so bash was 100% dead.
+    # Dispatch must work regardless of what the workspace contains.
     (workspace / 'child').mkdir()
     (workspace / 'child' / 'link').symlink_to(workspace / 'child')
-    calls = []
-    walk = os.walk
-    def counted(*args, **kwargs):
-        calls.append(args[0])
-        return walk(*args, **kwargs)
-    monkeypatch.setattr(os, 'walk', counted)
     admitted = authority(workspace, tool)
-    for _ in range(2):
-        calls.clear()
-        _, result = await dispatch(admitted, tool, content)
-        assert result['exit_code'] == 0, result
-        assert calls == [workspace]
-        assert not list(resources._LAUNCH_DIR.glob('*.json'))
-
-
-async def test_alias_created_after_resolution_is_denied_at_binding(workspace):
-    admitted = authority(workspace)
-    op = ExactOperation.normalize('bash', 'printf safe')
-    bound = resources.resolve_process_operation(admitted, op, NativeBackendResource('bash'))
-    resources._LAUNCH_DIR.mkdir(parents=True)
-    state = resources._LAUNCH_DIR / ('a' * 32 + '.json')
-    state.write_text('{}')
-    (workspace / 'alias').symlink_to(state)
-    with bind_request_authority(admitted), pytest.raises(ResourceIdentityError):
-        with resources.bind_process_operation(bound):
-            pytest.fail('New control-plane alias admitted')
+    _, result = await dispatch(admitted, tool, content)
+    assert result['exit_code'] == 0, result
 
 
 async def test_publication_retained_during_launch_and_retired_after_teardown(workspace, monkeypatch):

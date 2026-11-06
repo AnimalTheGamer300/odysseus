@@ -30685,7 +30685,17 @@ async def stream_agent_loop(
                                 or _looks_like_ody_qwen_leaked_tool_text(_synth)
                             )
                         ):
+                            logger.warning(
+                                "[agent] grace synthesis filtered (round %s, %sch looked like leaked reasoning): %r",
+                                round_num, len(_synth), _synth[:200],
+                            )
                             _synth = ""
+                        elif not _synth:
+                            logger.warning(
+                                "[agent] grace synthesis returned no visible text "
+                                "(round %s, raw_len=%s, preview=%r)",
+                                round_num, len(_raw_text), (_raw_text or "")[:200],
+                            )
                         usage_buckets.append(_usage_bucket(
                             round_num=round_num,
                             model=model,
@@ -30703,9 +30713,24 @@ async def stream_agent_loop(
                     round_response += _synth
                     full_response += _synth
                 else:
-                    _fb = ("I gathered some search results but couldn't pull a clean "
-                           "answer together. Want me to try a more specific question, "
-                           "or summarize what I did find?")
+                    # (2026-11-06) The canned line claimed "search results" even
+                    # on turns that never searched (the SCP game review died
+                    # here: bash blocked twice, guard forced a finish, the
+                    # synthesis round returned thinking-only). Be honest about
+                    # what actually happened instead.
+                    _did_web = any(
+                        isinstance(e, dict) and e.get("tool") in {"web_search", "web_fetch", "private_browser"}
+                        for e in tool_events
+                    )
+                    _fb = (
+                        "I gathered some search results but couldn't pull a clean "
+                        "answer together. Want me to try a more specific question, "
+                        "or summarize what I did find?"
+                        if _did_web else
+                        "I hit a snag writing the final answer — everything gathered "
+                        "is in context, but the reply came back empty. Resend the "
+                        "request and I'll take another pass at it."
+                    )
                     yield f'data: {json.dumps({"delta": _fb})}\n\n'
                     round_response += _fb
                     full_response += _fb
