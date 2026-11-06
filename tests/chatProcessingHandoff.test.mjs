@@ -24,7 +24,7 @@ test('processing remains until visible reply content replaces it in the same bub
       Object.assign(window, {
         roundHolder, streamSessionId: 'chat', _renderStream: null,
         sessionModule: {getCurrentSessionId: () => 'chat'},
-        _suppressThinkingForPersona: () => false, _docFenceOpened: false,
+        _docFenceOpened: false,
         uiModule: {scrollHistory() {}},
         markdownModule: {
           squashOutsideCode: text => text,

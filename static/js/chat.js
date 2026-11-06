@@ -4405,17 +4405,6 @@ function _dbRowCountBefore(box, element) {
         return markdownModule.restoreThinkTags((text || '').slice(last.index + last[0].length).trimStart());
       }
 
-      function _suppressThinkingForPersona() {
-        return !!(roundHolder?._characterName || holder?._characterName);
-      }
-
-      function _visiblePersonaReplyText(text) {
-        const normalized = markdownModule.normalizeThinkingMarkup(text || '');
-        const extracted = markdownModule.extractThinkingBlocks(normalized);
-        if (extracted && typeof extracted.content === 'string') return extracted.content.trimStart();
-        return normalized;
-      }
-
       function _isDirectEmailListingPrompt(text) {
         const q = String(text || '').toLowerCase();
         if (/\b(summarize|summarise|summary|tldr|recap|rundown|brief|how many|count|number of|total|urgent|important|priority|spam|junk|phishing|unsubscribe)\b/i.test(q)) {
@@ -4454,24 +4443,6 @@ function _dbRowCountBefore(box, element) {
           : String(displayText);
         const bodyEl = roundHolder.querySelector('.body');
         const contentEl = _ensureStreamLayout(bodyEl);
-        if (_suppressThinkingForPersona()) {
-          const visiblePersonaText = _visiblePersonaReplyText(dt);
-          if (!visiblePersonaText.trim()) {
-            contentEl.textContent = '';
-            uiModule.scrollHistory();
-            return;
-          }
-          const renderer = contentEl._streamRenderer ||
-            (contentEl._streamRenderer = createStreamRenderer(contentEl, {
-              render: (t) => markdownModule.mdToHtml(markdownModule.squashOutsideCode(t)),
-              hljs: window.hljs,
-            }));
-          renderer.update(visiblePersonaText);
-          _finishProcessingWhenVisible(contentEl);
-          uiModule.scrollHistory();
-          return;
-        }
-
         // If thinking was already collapsed in-place, only render the reply portion
         let liveReply = contentEl.querySelector('.live-reply-content');
         if (liveReply) {
@@ -6193,12 +6164,6 @@ function _dbRowCountBefore(box, element) {
 	          var _body4 = roundHolder.querySelector('.body');
 	          // Preserve sources expanded state before final render
 	          var _wasExpanded = _sourcesExpanded || !!(_body4 && _body4.querySelector('.sources-content.expanded'));
-	          if (_suppressThinkingForPersona()) {
-	            const _personaFinal = _visiblePersonaReplyText(finalDisplay);
-	            _body4.innerHTML = (_sourcesData ? _buildSourcesBox(_sourcesData, _sourcesType, _wasExpanded) : '')
-	              + (_personaFinal.trim() ? markdownModule.mdToHtml(markdownModule.squashOutsideCode(_personaFinal)) : '')
-	              + (_findingsData ? chatRenderer.buildFindingsBox(_findingsData) : '');
-	          } else {
 
           // If thinking was collapsed in-place during streaming, preserve it
           var _liveReplyEl = _body4 && _body4.querySelector('.live-reply-content');
@@ -6284,7 +6249,6 @@ function _dbRowCountBefore(box, element) {
                 }
               }
             }
-          }
           }
         } else if (_sourcesHtml) {
           var _body4b = roundHolder.querySelector('.body');
