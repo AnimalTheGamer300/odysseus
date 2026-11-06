@@ -489,6 +489,34 @@ def create_request_authority(request_text, *, owner=None, session_id=None, works
     else:
         operation = None
     tools.update(_trusted_local_mcp_request_tools(request_text, intent))
+    # (2026-11-05, user directive) Intent-text admission is retired: the model
+    # decides which tools to use, exactly as the fork always behaved. Upstream's
+    # wording gate blocked web_search for "Is it worth buying a used Tesla?"
+    # because the sentence implied no tool family (capabilities=[]). Union the
+    # intent-derived grants with every builtin + connected MCP tool —
+    # tool_policy, disabled_tools, block_all/disable_mcp and the turn contract
+    # remain the real gates downstream.
+    try:
+        from src.tool_index import ALWAYS_AVAILABLE, BUILTIN_TOOL_DESCRIPTIONS
+        tools |= set(BUILTIN_TOOL_DESCRIPTIONS.keys()) | set(ALWAYS_AVAILABLE)
+    except Exception:
+        pass
+    try:
+        from src.tool_utils import get_mcp_manager
+        _mgr = get_mcp_manager()
+        if _mgr is not None:
+            for _server, _rows in (_mgr._tools or {}).items():
+                for _row in _rows or ():
+                    _bare = _row.get("name") if isinstance(_row, dict) else None
+                    if _bare:
+                        tools.add(f"mcp__{_server}__{_bare}")
+    except Exception:
+        pass
+    # Canonicalize before building grants: canonical_tool() strips the
+    # mcp__email__ prefix, so two servers sharing a bare tool name (or an MCP
+    # tool colliding with a native one) would otherwise produce duplicate
+    # grants and trip RequestAuthority's uniqueness validation.
+    tools = {canonical_tool(name) for name in tools}
     grants = []
     for name in sorted(tools | {"ask_user", "update_plan"}):
         name = canonical_tool(name)
