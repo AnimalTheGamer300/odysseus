@@ -6380,7 +6380,8 @@ def resolve_turn_contract(*, capabilities: Iterable[str], schemas: Iterable[dict
                           always_available_tools: Iterable[str] = (),
                           warm_tools: Iterable[str] = (),
                           required_read_operation: RequiredReadOperation | None = None,
-                          message: str | None = None, history: Iterable = ()) -> TurnContract:
+                          message: str | None = None, history: Iterable = (),
+                          offer_full_inventory: bool = False) -> TurnContract:
     """Resolve selection without substituting tools for missing requirements.
 
     Callers can require action-specific tools (e.g. list_models for a catalog
@@ -6447,6 +6448,17 @@ def resolve_turn_contract(*, capabilities: Iterable[str], schemas: Iterable[dict
     if sealed_authority is not None:
         selected.update(g.tool for g in sealed_authority.grants if g.tool.startswith("mcp__"))
     selected.update(canonical_tool(n) for n in warm_tools if str(n or "").strip())
+    # (2026-11-06, fork directive) Chat turns offer the FULL executable
+    # inventory: the model decides which tools to use, exactly as the fork
+    # always behaved. The intent-family narrowing blocked edit_file on a turn
+    # where the user explicitly said "You may edit the file." — the contract
+    # offered only the core/web set, the model's probe calls were rejected
+    # twice, the agent guard fired, and the synthesis came back empty.
+    # Exact-approval narrowing (selected_tools), server-sealed reads
+    # (operation) and policy denials (the executable filter) keep their
+    # semantics; the scoped editor agent does not opt in.
+    if offer_full_inventory and selected_tools is None and operation is None:
+        selected = set(inventory.keys())
     # Controls are neutral; enabling Web is permission, never a requested family.
     if selected:
         selected.update({"ask_user", "update_plan"})

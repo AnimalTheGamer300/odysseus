@@ -3952,6 +3952,9 @@ def setup_chat_routes(
                 always_available_tools=(FAMILY_TOOLS["documents"] if active_doc else ()),
                 warm_tools=_warm_tools,
                 message=message, history=getattr(sess, "history", []) or [],
+                # The clean-preview experiment keeps its own scoped narrowing;
+                # only normal turns get the full executable inventory.
+                offer_full_inventory=not _clean_v3_preview,
             )
             _request_authority = _request_authority.restrict(_contract_policy)
             # Resolution already applies user, owner, and global policy. An

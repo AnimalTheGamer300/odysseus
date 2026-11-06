@@ -87,6 +87,10 @@ def schema_function(force_answer=False, keep_artifacts=False, guide_only=False):
         "_retrieval_query": "", "_last_user": "", "workspace": None,
         "client_runtime_context": None,
         "_apply_tool_surface_to_schemas": lambda schemas, surface: schemas,
+        # (2026-11-06) The route-schema helper now consults the slim-schemas
+        # setting; the extracted-function namespace has no settings module.
+        "get_setting": lambda *_a, **_k: False,
+        "_MCP_KEYWORDS": (),
     }
     return load_function("_tool_schemas_for_route", namespace)
 
