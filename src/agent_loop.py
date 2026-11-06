@@ -23077,6 +23077,26 @@ async def stream_agent_loop(
         # available; explicit action/domain requests follow normal retrieval.
         _relevant_tools = {"ask_user"}
         logger.info("[tool-rag] ambiguous short turn: clamped tools to ask_user")
+    if not guide_only and not _relevant_tools:
+        # (2026-08-07 fork directive, reaffirmed 2026-11-06 after the model was
+        # caught reasoning "No web search/fetch tools are actually available
+        # this turn!" on a car-history question) All-tools mode: the MODEL
+        # decides which tools to use. Loop-side RAG/keyword/domain/low-signal
+        # narrowing is retired for normal turns — ship the full builtin + MCP
+        # catalog every round. Caller-provided sets (exact-tool-approval
+        # flows) are still respected above; guide_only keeps its own gating;
+        # tool_policy / disabled_tools / the Web toggle still apply downstream.
+        _relevant_tools = set(TOOL_SECTIONS.keys())
+        try:
+            if mcp_mgr is not None:
+                for _server, _rows in (getattr(mcp_mgr, "_tools", {}) or {}).items():
+                    for _row in _rows or ():
+                        _bare = _row.get("name") if isinstance(_row, dict) else None
+                        if _bare:
+                            _relevant_tools.add(f"mcp__{_server}__{_bare}")
+        except Exception:
+            pass
+        logger.info("[tool-rag] all-tools mode: shipping full catalog (%d tools)", len(_relevant_tools))
     _t1 = time.time()
     if _relevant_tools:
         logger.info(f"[tool-rag] Using caller-provided relevant_tools ({len(_relevant_tools)} tools)")
