@@ -5390,7 +5390,14 @@ def setup_chat_routes(
                                         and not continue_assistant
                                     ),
                                 )
-                            elif not incognito:
+                            # (2026-11-07) Guard against the terminal path: when the final_response
+                            # event already saved this turn (_terminal_saved=True), the if-condition
+                            # above is False for THAT reason - and this elif used to fire anyway,
+                            # persisting a second, content-empty "reasoning-only" row 10ms after the
+                            # real one. That ghost row is the entire double-save disease (every
+                            # empty duplicate assistant row since the merge). The empty-completion
+                            # path may only run when NOTHING has been saved this turn.
+                            elif not _terminal_saved and not incognito:
                                 # Empty completion: HTTP 200 with zero text and
                                 # zero tool calls (opencode returned nothing).
                                 # Previously the turn vanished silently — no
