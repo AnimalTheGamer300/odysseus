@@ -2989,6 +2989,12 @@ async def llm_call_async(
     return_model_metadata: bool = False,
 
     thinking_mode: Optional[str] = None,
+    # (2026-11-07) Merge dropped this line while keeping the body's
+    # references (cache key, Codex delegation, _apply_explicit_nonstream_
+    # reasoning_effort) — llm_call_async NameError'd on EVERY call, silently
+    # killing the whole non-stream path: memory extraction, skill extraction,
+    # auto-titles, deep research. Restored from upstream c21980f5.
+    reasoning_effort: Optional[str] = None,
 ) -> Union[str, Tuple[str, Optional[str]]]:
     """Asynchronous LLM call using httpx with connection pooling, timeout, retry logic, and performance logging.
 
