@@ -8526,6 +8526,18 @@ function _dbRowCountBefore(box, element) {
       return;
     }
 
+    // (2026-11-07) The truncate below is id-based and the re-send reuses the
+    // user row — both need the user bubble's DB id. Without it we'd fall back
+    // to a DOM-counted keep_count, and DOM/DB drift (ghost draft rows,
+    // deleted rows) makes that count lethal — it once ate the user message
+    // plus thirteen more rows. The fork path above is untouched (it copies to
+    // a NEW session, nothing is deleted); only the destructive truncate
+    // refuses. A refresh re-stamps every bubble from history.
+    if (!(userMsgEl && userMsgEl.dataset.dbId)) {
+      if (uiModule) uiModule.showError('Cannot regenerate — the user message has no database id yet. Refresh the page and try again.');
+      return;
+    }
+
     // Save current response as a variant
     const oldRaw = aiMsgElement.dataset.raw || aiMsgElement.querySelector('.body')?.textContent || '';
     const oldHtml = aiMsgElement.querySelector('.body')?.innerHTML || '';
@@ -8536,16 +8548,21 @@ function _dbRowCountBefore(box, element) {
       variants.push({ raw: oldRaw, html: oldHtml, label: 'original' });
     }
 
-    const keepCount = _dbRowCountBefore(box, userMsgEl);
-    // Same as resend: cut at the user message's database id, because
-    // userIndex counts only the messages loaded in the page.
-    const regenBeforeId = (userMsgEl && userMsgEl.dataset.dbId) || '';
+    // (2026-11-07, fork restore) The regenerate truncate must KEEP the user
+    // message row: keep_through_id is id-based INCLUSIVE (the referenced row
+    // survives), and the re-send below appends reuse_last_user=true so the
+    // backend reuses that row instead of persisting a duplicate. The merged
+    // code regressed both halves — before_msg_id DELETES the user message,
+    // and _pendingRegenUser was never set — so a regen ate the user message
+    // plus every later row while reuse_last_user pointed at a ghost (the
+    // 8c03ca56 incident). The no-dbId refusal above guards the fallback.
+    const regenThroughId = userMsgEl.dataset.dbId;
 
     try {
       const regenTruncate = await fetch(`${API_BASE}/api/session/${sessionId}/truncate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(regenBeforeId ? { before_msg_id: regenBeforeId } : { keep_count: keepCount })
+        body: JSON.stringify({ keep_through_id: regenThroughId })
       });
       // A refused cut (e.g. a stale id) must not stack a second reply.
       if (!regenTruncate.ok) throw new Error('Server error ' + regenTruncate.status);
@@ -8567,6 +8584,10 @@ function _dbRowCountBefore(box, element) {
 
       _hideUserBubble = true;
       _regenKeptUserBubble = userMsgEl;
+      // (fork restore) The user row survived the keep_through_id truncate —
+      // tell the send to append reuse_last_user so the backend reuses it
+      // instead of persisting a duplicate row.
+      _pendingRegenUser = true;
       const messageInput = uiModule.el('message');
       messageInput.value = userText;
       const submitBtn = document.querySelector('.send-btn');

@@ -242,27 +242,44 @@ def _scenario_script(func_call_js: str, roles: list, target_index: int, confirm_
 @pytest.mark.skipif(not _HAS_NODE, reason="node binary not on PATH")
 def test_regenerate_from_last_message_skips_prompt_and_truncates():
     roles = ["user", "ai"]  # target (index 1) IS the last message
-    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=True)
+    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=True, db_ids=True)
     result = _run_node(script)
     assert result["confirmShown"] is False
     assert result["truncateCalled"] is True
-    assert result["truncateKeepCount"] == 0  # keep everything before the user turn (index 0)
+    # (2026-11-07, fork restore) id-based INCLUSIVE cut: the user message row
+    # survives (the re-send reuses it via reuse_last_user).
+    assert result["truncateBody"] == {"keep_through_id": "db-40"}
+
+
+@pytest.mark.skipif(not _HAS_NODE, reason="node binary not on PATH")
+def test_regenerate_without_user_db_id_refuses_before_confirm():
+    # (2026-11-07) No DB id on the user bubble -> no DOM-counted keep_count
+    # fallback. DOM/DB drift made that fallback lethal (it once ate the user
+    # message plus thirteen more rows), so the regen refuses before any
+    # confirm; a refresh re-stamps every bubble from history.
+    roles = ["user", "ai"]
+    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=True)
+    result = _run_node(script)
+    assert result["confirmShown"] is False
+    assert result["truncateCalled"] is False
+    assert result["truncateBody"] is None
 
 
 @pytest.mark.skipif(not _HAS_NODE, reason="node binary not on PATH")
 def test_regenerate_from_earlier_message_prompts_with_correct_count():
     roles = ["user", "ai", "user", "ai", "user", "ai"]  # target (index 1) has 4 messages after it
-    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=True)
+    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=True, db_ids=True)
     result = _run_node(script)
     assert result["confirmShown"] is True
     assert "4 messages" in result["confirmMessage"]
     assert result["truncateCalled"] is True
+    assert result["truncateBody"] == {"keep_through_id": "db-40"}
 
 
 @pytest.mark.skipif(not _HAS_NODE, reason="node binary not on PATH")
 def test_regenerate_from_earlier_message_cancel_aborts_without_truncating():
     roles = ["user", "ai", "user", "ai"]
-    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=False)
+    script = _scenario_script("chat.regenerateFrom(target)", roles, 1, confirm_resolution=False, db_ids=True)
     result = _run_node(script)
     assert result["confirmShown"] is True
     assert result["truncateCalled"] is False
@@ -452,7 +469,9 @@ def test_regenerate_truncates_before_the_user_message_by_id():
     roles = ["user", "ai", "user", "ai"]
     script = _scenario_script("chat.regenerateFrom(target)", roles, 3, True, db_ids=True)
     result = _run_node(script)
-    assert result["truncateBody"] == {"before_msg_id": "db-42"}
+    # (2026-11-07, fork restore) id-based INCLUSIVE cut — the user message row
+    # survives and is reused by the re-send (reuse_last_user).
+    assert result["truncateBody"] == {"keep_through_id": "db-42"}
 
 
 @pytest.mark.skipif(not _HAS_NODE, reason="node binary not on PATH")
