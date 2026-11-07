@@ -131,10 +131,10 @@
 - `static/js/chat.js:7900`
 - `static/js/chat.js:8046`
 - `static/js/chat.js:8077`
-- `static/js/chat.js:8605`
-- `static/js/chat.js:8703`
-- `static/js/chat.js:8872`
-- `static/js/chat.js:9355`
+- `static/js/chat.js:8643`
+- `static/js/chat.js:8741`
+- `static/js/chat.js:8910`
+- `static/js/chat.js:9393`
 - `static/js/chatRenderer.js:869`
 - `static/js/chatRenderer.js:2117`
 - `static/js/chatRenderer.js:2882`

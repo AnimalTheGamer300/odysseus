@@ -15,7 +15,7 @@
 ## `normalize` — function, line 83
 - **called from:**
 - `scripts/generate_sft_environment_expansion.py:267`
-- `src/agent_loop.py:34876`
+- `src/agent_loop.py:34918`
 - `src/agent_runtime/authority.py:532`
 - `src/agent_runtime/authority.py:647`
 - `src/agent_runtime/authority.py:649`
@@ -74,7 +74,7 @@
 - `tests/test_local_mcp_capabilities.py:989`
 - `tests/test_local_mcp_capabilities.py:1001`
 - `tests/test_local_mcp_capabilities.py:1002`
-- … +76 more (grep the name in repo)
+- … +75 more (grep the name in repo)
 
 ## `compact_seed` — function, line 88
 - **called from:**

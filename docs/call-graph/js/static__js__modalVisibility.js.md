@@ -25,10 +25,10 @@
 
 ## `finish` — arrow, line 30
 - **called from:**
-- `src/agent_loop.py:32996`
-- `src/agent_loop.py:33009`
-- `src/agent_loop.py:33017`
-- `src/agent_loop.py:34877`
+- `src/agent_loop.py:33038`
+- `src/agent_loop.py:33051`
+- `src/agent_loop.py:33059`
+- `src/agent_loop.py:34919`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`

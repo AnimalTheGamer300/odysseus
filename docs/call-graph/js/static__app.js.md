@@ -87,7 +87,7 @@
 - `static/app.js:168`
 - `static/app.js:4199`
 - `static/js/chat.js:2615`
-- `static/js/chat.js:8582`
+- `static/js/chat.js:8620`
 - `static/js/chatRenderer.js:3147`
 - `static/js/chatRenderer.js:3172`
 - `static/js/chatRenderer.js:3174`
@@ -766,12 +766,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:3845`
 - `routes/chat_routes.py:3854`
 - `routes/chat_routes.py:3858`
-- `routes/chat_routes.py:4044`
-- `routes/chat_routes.py:4458`
-- `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:4718`
-- `routes/chat_routes.py:5020`
-- `routes/chat_routes.py:5024`
+- `routes/chat_routes.py:4047`
+- `routes/chat_routes.py:4461`
+- `routes/chat_routes.py:4702`
+- `routes/chat_routes.py:4721`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5027`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`

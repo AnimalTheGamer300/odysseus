@@ -93,7 +93,7 @@
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
@@ -145,10 +145,10 @@
 
 ## `finish` — arrow, line 211
 - **called from:**
-- `src/agent_loop.py:32996`
-- `src/agent_loop.py:33009`
-- `src/agent_loop.py:33017`
-- `src/agent_loop.py:34877`
+- `src/agent_loop.py:33038`
+- `src/agent_loop.py:33051`
+- `src/agent_loop.py:33059`
+- `src/agent_loop.py:34919`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`

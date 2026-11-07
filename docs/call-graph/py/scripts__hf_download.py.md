@@ -111,12 +111,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:3845`
 - `routes/chat_routes.py:3854`
 - `routes/chat_routes.py:3858`
-- `routes/chat_routes.py:4044`
-- `routes/chat_routes.py:4458`
-- `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:4718`
-- `routes/chat_routes.py:5020`
-- `routes/chat_routes.py:5024`
+- `routes/chat_routes.py:4047`
+- `routes/chat_routes.py:4461`
+- `routes/chat_routes.py:4702`
+- `routes/chat_routes.py:4721`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5027`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -161,7 +161,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/journal.py:237`
 - `src/agent_runtime/journal.py:280`
 - `src/agent_runtime/owned_resources.py:443`
-- `src/agent_runtime/process_resources.py:349`
+- `src/agent_runtime/process_resources.py:351`
 - `src/agent_runtime/remote_resources.py:238`
 - `src/agent_runtime/resource_binding.py:218`
 - `src/agent_tools/web_tools_prewave3.py:2677`
@@ -170,7 +170,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/teacher_escalation.py:86`
 - `src/tool_execution.py:131`
 - `src/tool_execution.py:2029`
-- `src/turn_contract.py:6494`
+- `src/turn_contract.py:6506`
 - `tests/test_agent_state_dir_confinement.py:70`
 - `tests/test_agent_state_dir_confinement.py:161`
 - `tests/test_agent_state_dir_confinement.py:508`
@@ -250,7 +250,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`
@@ -362,10 +362,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4565`
-- `src/llm_core.py:4566`
-- `src/llm_core.py:4764`
-- `src/llm_core.py:5124`
+- `src/llm_core.py:4571`
+- `src/llm_core.py:4572`
+- `src/llm_core.py:4770`
+- `src/llm_core.py:5130`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`
@@ -399,7 +399,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_context_cache_per_endpoint.py:17`
 - `tests/test_context_resolution_route.py:90`
 - `tests/test_editor_generation_model_routing.py:242`
-- … +197 more (grep the name in repo)
+- … +196 more (grep the name in repo)
 
 ## `PipeTqdm.display` — method, line 117
 - **called from:**

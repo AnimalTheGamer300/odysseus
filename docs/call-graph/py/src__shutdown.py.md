@@ -4,9 +4,9 @@
 
 ## `is_shutting_down` — function, line 20
 - **called from:**
-- `routes/chat_routes.py:4232`
-- `routes/chat_routes.py:5510`
-- `routes/chat_routes.py:5756`
+- `routes/chat_routes.py:4235`
+- `routes/chat_routes.py:5513`
+- `routes/chat_routes.py:5759`
 - `routes/editor_agent_routes.py:1589`
 - `routes/email/email_routes.py:6863`
 - `routes/research/research_routes.py:668`
@@ -36,7 +36,7 @@
 - `src/agent_runtime/journal.py:237`
 - `src/agent_runtime/journal.py:280`
 - `src/agent_runtime/owned_resources.py:443`
-- `src/agent_runtime/process_resources.py:349`
+- `src/agent_runtime/process_resources.py:351`
 - `src/agent_runtime/remote_resources.py:238`
 - `src/agent_runtime/resource_binding.py:218`
 - `src/agent_tools/web_tools_prewave3.py:2677`
@@ -45,7 +45,7 @@
 - `src/teacher_escalation.py:86`
 - `src/tool_execution.py:131`
 - `src/tool_execution.py:2029`
-- `src/turn_contract.py:6494`
+- `src/turn_contract.py:6506`
 - `tests/test_agent_state_dir_confinement.py:70`
 - `tests/test_agent_state_dir_confinement.py:161`
 - `tests/test_agent_state_dir_confinement.py:508`

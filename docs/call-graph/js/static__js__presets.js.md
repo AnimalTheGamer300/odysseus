@@ -177,7 +177,7 @@
 
 ## `getShowPersonaName` — function, line 985
 - **called from:**
-- `static/js/chatRenderer.js:3558`
+- `static/js/chatRenderer.js:3569`
 - `static/js/presets.js:985`
 
 ## `getInject` — function, line 994

@@ -102,8 +102,8 @@
 - `tests/test_runtime_resource_integration.py:279`
 - `tests/test_wave3_background_followup.py:38`
 - `tests/test_wave3_background_followup.py:66`
-- `tests/test_wave3_launch_cost_lifecycle.py:130`
-- `tests/test_wave3_launch_cost_lifecycle.py:136`
+- `tests/test_wave3_launch_cost_lifecycle.py:112`
+- `tests/test_wave3_launch_cost_lifecycle.py:118`
 
 ## `_pid_alive` — function, line 73
 - **called from:**
@@ -142,7 +142,7 @@
 - `src/containment.py:518`
 - `tests/test_caldav_sync_prune_local_events.py:82`
 - `tests/test_caldav_sync_prune_local_events.py:96`
-- `tests/test_wave3_launch_cost_lifecycle.py:132`
+- `tests/test_wave3_launch_cost_lifecycle.py:114`
 
 ## `refresh` — function, line 241
 - decorator: `store_transaction(lambda: _STORE)`
@@ -182,7 +182,7 @@
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`
@@ -338,7 +338,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16891 more (grep the name in repo)
+- … +16892 more (grep the name in repo)
 
 ## `kill` — function, line 408
 - decorator: `store_transaction(lambda: _STORE)`

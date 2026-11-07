@@ -160,7 +160,7 @@
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
@@ -222,7 +222,7 @@
 - `src/agent_runtime/journal.py:237`
 - `src/agent_runtime/journal.py:280`
 - `src/agent_runtime/owned_resources.py:443`
-- `src/agent_runtime/process_resources.py:349`
+- `src/agent_runtime/process_resources.py:351`
 - `src/agent_runtime/remote_resources.py:238`
 - `src/agent_runtime/resource_binding.py:218`
 - `src/agent_tools/web_tools_prewave3.py:2677`
@@ -231,7 +231,7 @@
 - `src/teacher_escalation.py:86`
 - `src/tool_execution.py:131`
 - `src/tool_execution.py:2029`
-- `src/turn_contract.py:6494`
+- `src/turn_contract.py:6506`
 - `tests/test_agent_state_dir_confinement.py:70`
 - `tests/test_agent_state_dir_confinement.py:161`
 - `tests/test_agent_state_dir_confinement.py:508`

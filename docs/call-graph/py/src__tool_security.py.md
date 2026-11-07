@@ -19,7 +19,7 @@
 - **called from:**
 - `src/agent_loop.py:24183`
 - `src/agent_loop.py:28195`
-- `src/agent_loop.py:33907`
+- `src/agent_loop.py:33949`
 - `src/tool_execution.py:1786`
 - `src/tool_execution.py:2090`
 - `tests/test_email_registry_sync.py:76`

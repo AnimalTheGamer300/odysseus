@@ -121,10 +121,10 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3669`
-- `src/llm_core.py:3687`
-- `src/llm_core.py:3971`
-- `src/llm_core.py:4308`
+- `src/llm_core.py:3675`
+- `src/llm_core.py:3693`
+- `src/llm_core.py:3977`
+- `src/llm_core.py:4314`
 - `src/task_scheduler.py:2849`
 - `src/upload_handler.py:799`
 - `tests/smoke/stub_provider.py:136`
@@ -146,7 +146,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5580`
+- `routes/chat_routes.py:5583`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`

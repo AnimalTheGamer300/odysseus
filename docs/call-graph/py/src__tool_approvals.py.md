@@ -32,7 +32,7 @@
 
 ## `document_content_digest` — function, line 107
 - **called from:**
-- `src/agent_loop.py:34213`
+- `src/agent_loop.py:34255`
 - `src/agent_runtime/owned_resources.py:315`
 - `src/agent_tools/document_tools.py:143`
 - `tests/test_external_context_tool_gate.py:1344`
@@ -55,7 +55,7 @@
 
 ## `PendingToolApproval.public_payload` — method, line 196
 - **called from:**
-- `src/agent_loop.py:34236`
+- `src/agent_loop.py:34278`
 - `src/teacher_escalation.py:848`
 - `tests/test_remote_resource_identity.py:139`
 - `tests/test_request_authority.py:281`
@@ -146,7 +146,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_runtime/effect_adapters.py:263`
 - `src/agent_runtime/journal.py:89`
-- `src/agent_runtime/process_resources.py:422`
+- `src/agent_runtime/process_resources.py:424`
 - `src/tool_execution.py:1946`
 - `tests/test_effect_journal_persistence.py:26`
 - `tests/test_effect_journal_persistence.py:39`
@@ -300,7 +300,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/email/email_routes.py:5310`
 - `routes/email/email_routes.py:5373`
 - `scripts/demo_email/seed_demo_emails.py:318`
-- `src/agent_loop.py:34203`
+- `src/agent_loop.py:34245`
 - `src/teacher_escalation.py:837`
 - `tests/test_agent_rounds_exhausted.py:3768`
 - `tests/test_daily_brief_local_calendar.py:39`
@@ -353,14 +353,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:4058`
 - `static/js/chat.js:5951`
 - `static/js/chat.js:7292`
-- `static/js/chat.js:8808`
+- `static/js/chat.js:8846`
 - `static/js/compare/index.js:809`
 - … +31 more (grep the name in repo)
 
 ## `ToolApprovalStore.consume` — method, line 555
 - **called from:**
 - `routes/chat_routes.py:3074`
-- `routes/chat_routes.py:5103`
+- `routes/chat_routes.py:5106`
 - `routes/skills_routes.py:700`
 - `services/skills/agent_runner.py:146`
 - `services/skills/agent_runner.py:277`

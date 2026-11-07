@@ -135,7 +135,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:19520`
 - `src/agent_loop.py:19520`
 - `src/agent_loop.py:26513`
-- `src/agent_loop.py:30757`
+- `src/agent_loop.py:30782`
 - `src/agent_tools/document_tools.py:740`
 - `src/agent_tools/document_tools.py:892`
 - `src/agent_tools/document_tools.py:1030`

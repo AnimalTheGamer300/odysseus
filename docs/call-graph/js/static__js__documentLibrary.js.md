@@ -159,7 +159,7 @@
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
@@ -623,7 +623,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `scripts/sanitize_trace_artifacts.py:312`
 - `services/memory/skills.py:210`
 - `services/memory/skills.py:602`
-- `src/agent_runtime/process_resources.py:398`
+- `src/agent_runtime/process_resources.py:400`
 - `src/agent_tools/filesystem_tools.py:902`
 - `src/builtin_actions.py:2921`
 - `src/caldav_sync.py:377`
@@ -634,11 +634,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_agent_tool_budget_nonnumeric.py:22`
 - `tests/test_agent_tool_budget_nonnumeric.py:27`
 - `tests/test_agent_turn_contract_boundaries.py:14`
-- `tests/test_agent_turn_contract_boundaries.py:105`
-- `tests/test_agent_turn_contract_boundaries.py:108`
-- `tests/test_agent_turn_contract_boundaries.py:120`
-- `tests/test_agent_turn_contract_boundaries.py:122`
-- `tests/test_agent_turn_contract_boundaries.py:139`
+- `tests/test_agent_turn_contract_boundaries.py:109`
+- `tests/test_agent_turn_contract_boundaries.py:112`
+- `tests/test_agent_turn_contract_boundaries.py:124`
+- `tests/test_agent_turn_contract_boundaries.py:126`
+- `tests/test_agent_turn_contract_boundaries.py:143`
 - `tests/test_aux_llm_owner_scope.py:16`
 - `tests/test_aux_llm_owner_scope.py:23`
 - `tests/test_chat_helpers_bg_tasks_tracked.py:44`
@@ -658,7 +658,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_contract_explicit_fallback.py:14`
 - `tests/test_contract_explicit_fallback.py:16`
 - `tests/test_contract_prompt_conversation.py:135`
-- … +33 more (grep the name in repo)
+- … +32 more (grep the name in repo)
 
 ## `walkChildren` — function, line 1655
 - **called from:**

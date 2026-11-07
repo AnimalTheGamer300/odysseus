@@ -6,7 +6,7 @@
 ## `normalize` — arrow, line 7
 - **called from:**
 - `scripts/generate_sft_environment_expansion.py:267`
-- `src/agent_loop.py:34876`
+- `src/agent_loop.py:34918`
 - `src/agent_runtime/authority.py:532`
 - `src/agent_runtime/authority.py:647`
 - `src/agent_runtime/authority.py:649`
@@ -65,7 +65,7 @@
 - `tests/test_local_mcp_capabilities.py:989`
 - `tests/test_local_mcp_capabilities.py:1001`
 - `tests/test_local_mcp_capabilities.py:1002`
-- … +76 more (grep the name in repo)
+- … +75 more (grep the name in repo)
 
 ## `startsContinuationRound` — function, line 9
 - **called from:**
@@ -84,7 +84,7 @@
 - `src/agent_runtime/journal.py:241`
 - `src/agent_tools/web_tools.py:756`
 - `src/agent_tools/web_tools_prewave3.py:760`
-- `src/turn_contract.py:6504`
+- `src/turn_contract.py:6516`
 - `tests/runtime_evidence_helpers.py:23`
 - `tests/test_completion_boundary.py:201`
 - `tests/test_contract_prompt_conversation.py:87`

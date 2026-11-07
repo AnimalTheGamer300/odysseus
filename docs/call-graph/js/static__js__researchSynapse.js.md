@@ -34,7 +34,7 @@
 ## `createResearchSynapse` — function, line 24
 - **called from:**
 - `static/js/chat.js:5077`
-- `static/js/chat.js:8860`
+- `static/js/chat.js:8898`
 - `static/js/research/panel.js:1230`
 - `static/js/researchSynapse.js:24`
 
@@ -114,24 +114,24 @@
 ## `setPhase` — method?, line 301
 - **called from:**
 - `static/js/chat.js:5088`
-- `static/js/chat.js:8868`
-- `static/js/chat.js:8903`
+- `static/js/chat.js:8906`
+- `static/js/chat.js:8941`
 - `static/js/research/panel.js:1243`
 - `static/js/researchSynapse.js:301`
 
 ## `setRound` — method?, line 327
 - **called from:**
 - `static/js/chat.js:5089`
-- `static/js/chat.js:8869`
-- `static/js/chat.js:8904`
+- `static/js/chat.js:8907`
+- `static/js/chat.js:8942`
 - `static/js/research/panel.js:1244`
 - `static/js/researchSynapse.js:327`
 
 ## `setSourceCount` — method?, line 342
 - **called from:**
 - `static/js/chat.js:5090`
-- `static/js/chat.js:8870`
-- `static/js/chat.js:8905`
+- `static/js/chat.js:8908`
+- `static/js/chat.js:8943`
 - `static/js/research/panel.js:1245`
 - `static/js/researchSynapse.js:342`
 
@@ -186,10 +186,10 @@
 - `static/js/chat.js:7399`
 - `static/js/chat.js:7476`
 - `static/js/chat.js:7493`
-- `static/js/chat.js:8880`
-- `static/js/chat.js:8894`
-- `static/js/chat.js:8910`
-- `static/js/chat.js:9197`
+- `static/js/chat.js:8918`
+- `static/js/chat.js:8932`
+- `static/js/chat.js:8948`
+- `static/js/chat.js:9235`
 - `static/js/codeRunner.js:236`
 - `static/js/compare/panes.js:407`
 - `static/js/compare/stream.js:217`

@@ -116,7 +116,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `ContainmentGrant.to_dict` — method, line 252
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -124,26 +124,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -232,8 +232,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_store_path` — function, line 425
 - **called from:**
-- `src/agent_runtime/process_resources.py:388`
-- `src/agent_runtime/process_resources.py:464`
+- `src/agent_runtime/process_resources.py:390`
+- `src/agent_runtime/process_resources.py:466`
 - `src/agent_runtime/resources.py:101`
 - `src/bg_jobs.py:118`
 - `src/containment.py:431`
@@ -247,14 +247,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_background_resource_identity.py:161`
 - `tests/test_background_resource_identity.py:201`
 - `tests/test_background_resource_identity.py:254`
-- `tests/test_wave3_launch_cost_lifecycle.py:165`
-- `tests/test_wave3_launch_cost_lifecycle.py:204`
-- `tests/test_wave3_launch_cost_lifecycle.py:213`
+- `tests/test_wave3_launch_cost_lifecycle.py:147`
+- `tests/test_wave3_launch_cost_lifecycle.py:186`
+- `tests/test_wave3_launch_cost_lifecycle.py:195`
 
 ## `_load_records` — function, line 429
 - **called from:**
 - `src/agent_runtime/process_resources.py:141`
-- `src/agent_runtime/process_resources.py:500`
+- `src/agent_runtime/process_resources.py:502`
 - `src/agent_tools/subprocess_tools.py:554`
 - `src/agent_tools/subprocess_tools.py:568`
 - `src/bg_jobs.py:328`
@@ -274,8 +274,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_background_containment.py:144`
 - `tests/test_background_resource_identity.py:89`
 - `tests/test_background_resource_identity.py:198`
-- `tests/test_wave3_launch_cost_lifecycle.py:170`
-- `tests/test_wave3_launch_cost_lifecycle.py:196`
+- `tests/test_wave3_launch_cost_lifecycle.py:152`
+- `tests/test_wave3_launch_cost_lifecycle.py:178`
 
 ## `_save_records` — function, line 448
 - **called from:**
@@ -294,7 +294,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/containment.py:518`
 - `tests/test_caldav_sync_prune_local_events.py:82`
 - `tests/test_caldav_sync_prune_local_events.py:96`
-- `tests/test_wave3_launch_cost_lifecycle.py:132`
+- `tests/test_wave3_launch_cost_lifecycle.py:114`
 
 ## `_write_record` — function, line 469
 - decorator: `store_transaction(lambda: _store_path())`
@@ -783,10 +783,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `finish` — function, line 1471
 - **called from:**
-- `src/agent_loop.py:32996`
-- `src/agent_loop.py:33009`
-- `src/agent_loop.py:33017`
-- `src/agent_loop.py:34877`
+- `src/agent_loop.py:33038`
+- `src/agent_loop.py:33051`
+- `src/agent_loop.py:33059`
+- `src/agent_loop.py:34919`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -874,7 +874,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:168`
 - `static/app.js:4199`
 - `static/js/chat.js:2615`
-- `static/js/chat.js:8582`
+- `static/js/chat.js:8620`
 - `static/js/chatRenderer.js:3147`
 - `static/js/chatRenderer.js:3172`
 - `static/js/chatRenderer.js:3174`
@@ -948,7 +948,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:168`
 - `static/app.js:4199`
 - `static/js/chat.js:2615`
-- `static/js/chat.js:8582`
+- `static/js/chat.js:8620`
 - `static/js/chatRenderer.js:3147`
 - `static/js/chatRenderer.js:3172`
 - `static/js/chatRenderer.js:3174`

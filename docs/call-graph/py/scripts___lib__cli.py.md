@@ -79,7 +79,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_pdf_cmyk_image_analysis.py:83`
 - `tests/test_personal_upload_privilege.py:68`
 - `tests/test_preview_drafting_recovery.py:77`
-- … +52 more (grep the name in repo)
+- … +51 more (grep the name in repo)
 
 ## `common_parser` — function, line 84
 - **called from:**

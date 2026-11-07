@@ -46,10 +46,10 @@
 - `routes/chat_routes.py:1567`
 - `routes/chat_routes.py:1635`
 - `routes/chat_routes.py:2340`
-- `routes/chat_routes.py:4149`
-- `routes/chat_routes.py:4150`
-- `routes/chat_routes.py:4275`
-- `routes/chat_routes.py:5677`
+- `routes/chat_routes.py:4152`
+- `routes/chat_routes.py:4153`
+- `routes/chat_routes.py:4278`
+- `routes/chat_routes.py:5680`
 - `routes/cookbook_routes.py:1608`
 - `routes/cookbook_routes.py:3262`
 - `routes/cookbook_routes.py:3568`
@@ -80,7 +80,7 @@
 - `routes/email/email_helpers.py:1494`
 - `routes/email/email_helpers.py:1523`
 - `routes/email/email_helpers.py:1549`
-- … +629 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `snapshot` — function, line 50
 - **called from:**

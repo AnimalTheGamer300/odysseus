@@ -111,12 +111,12 @@
 - `routes/chat_routes.py:3845`
 - `routes/chat_routes.py:3854`
 - `routes/chat_routes.py:3858`
-- `routes/chat_routes.py:4044`
-- `routes/chat_routes.py:4458`
-- `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:4718`
-- `routes/chat_routes.py:5020`
-- `routes/chat_routes.py:5024`
+- `routes/chat_routes.py:4047`
+- `routes/chat_routes.py:4461`
+- `routes/chat_routes.py:4702`
+- `routes/chat_routes.py:4721`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5027`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -215,7 +215,7 @@
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`

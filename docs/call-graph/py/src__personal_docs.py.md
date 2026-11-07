@@ -181,7 +181,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/personal_docs.py:363`
 - `src/personal_docs.py:374`
-- `static/js/chat.js:9186`
+- `static/js/chat.js:9224`
 
 ## `PersonalDocsManager.get_indexed_directories` — method, line 384
 - **called from:**

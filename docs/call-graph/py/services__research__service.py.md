@@ -93,7 +93,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchService.get_status` — method, line 161
 - **called from:**
-- `routes/chat_routes.py:4233`
+- `routes/chat_routes.py:4236`
 - `routes/research/research_routes.py:298`
 - `routes/research/research_routes.py:669`
 - `services/research/service.py:163`
@@ -119,7 +119,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`

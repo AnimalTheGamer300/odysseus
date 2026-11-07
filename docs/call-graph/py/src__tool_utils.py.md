@@ -83,14 +83,14 @@
 - `src/agent_loop.py:27615`
 - `src/agent_loop.py:27906`
 - `src/agent_loop.py:27977`
-- `src/agent_loop.py:34623`
-- `src/agent_loop.py:34826`
-- `src/agent_loop.py:34830`
-- `src/agent_loop.py:34834`
-- `src/agent_loop.py:35948`
-- `src/agent_loop.py:35964`
-- `src/agent_loop.py:38352`
-- `src/agent_loop.py:38379`
+- `src/agent_loop.py:34665`
+- `src/agent_loop.py:34868`
+- `src/agent_loop.py:34872`
+- `src/agent_loop.py:34876`
+- `src/agent_loop.py:35990`
+- `src/agent_loop.py:36006`
+- `src/agent_loop.py:38394`
+- `src/agent_loop.py:38421`
 - `src/agent_tools/filesystem_tools.py:838`
 - `src/agent_tools/filesystem_tools.py:945`
 - `src/agent_tools/filesystem_tools.py:1351`
@@ -124,9 +124,9 @@
 
 ## `truncate_tool_output` — function, line 75
 - **called from:**
-- `src/agent_loop.py:34836`
-- `src/agent_loop.py:34838`
-- `src/agent_loop.py:34852`
+- `src/agent_loop.py:34878`
+- `src/agent_loop.py:34880`
+- `src/agent_loop.py:34894`
 
 ## `_parse_tool_args` — function, line 106
 - **called from:**

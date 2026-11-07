@@ -144,7 +144,7 @@
 - `static/app.js:3103`
 - `static/app.js:3144`
 - `static/app.js:3146`
-- … +797 more (grep the name in repo)
+- … +800 more (grep the name in repo)
 
 ## `score_case` — function, line 149
 - **called from:**

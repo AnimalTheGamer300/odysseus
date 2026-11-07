@@ -36,7 +36,7 @@
 ## `MediaArtifact.to_dict` — method, line 74
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -44,26 +44,26 @@
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -110,9 +110,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `MediaIngressResult.metadata` — method, line 88
 - **called from:**
 - `routes/chat_routes.py:230`
-- `routes/chat_routes.py:5202`
-- `routes/chat_routes.py:5246`
-- `routes/chat_routes.py:5332`
+- `routes/chat_routes.py:5205`
+- `routes/chat_routes.py:5249`
+- `routes/chat_routes.py:5335`
 - `tests/test_agent_render_ownership.py:26`
 - `tests/test_agent_render_ownership.py:36`
 - `tests/test_agent_render_ownership.py:52`
@@ -130,7 +130,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_nested_invocation_ownership.py:304`
 - `tests/test_nested_invocation_ownership.py:306`
 - `tests/test_nested_invocation_ownership.py:544`
-- `static/js/chatRenderer.js:3632`
+- `static/js/chatRenderer.js:3643`
 - `static/js/fileHandler.js:461`
 
 ## `is_supported_media_path` — function, line 96

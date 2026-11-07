@@ -149,7 +149,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5541`
+- `routes/chat_routes.py:5544`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -203,7 +203,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5580`
+- `routes/chat_routes.py:5583`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`
@@ -262,12 +262,12 @@
 - `static/js/chat.js:5105`
 - `static/js/chat.js:5107`
 - `static/js/chat.js:5109`
-- `static/js/chat.js:8817`
-- `static/js/chat.js:8819`
-- `static/js/chat.js:8823`
-- `static/js/chat.js:8825`
-- `static/js/chat.js:8827`
-- `static/js/chat.js:8829`
+- `static/js/chat.js:8855`
+- `static/js/chat.js:8857`
+- `static/js/chat.js:8861`
+- `static/js/chat.js:8863`
+- `static/js/chat.js:8865`
+- `static/js/chat.js:8867`
 - `static/js/compare/stream.js:490`
 - `static/js/compare/stream.js:492`
 - `static/js/compare/stream.js:494`
@@ -312,10 +312,10 @@
 - `static/js/chat.js:7399`
 - `static/js/chat.js:7476`
 - `static/js/chat.js:7493`
-- `static/js/chat.js:8880`
-- `static/js/chat.js:8894`
-- `static/js/chat.js:8910`
-- `static/js/chat.js:9197`
+- `static/js/chat.js:8918`
+- `static/js/chat.js:8932`
+- `static/js/chat.js:8948`
+- `static/js/chat.js:9235`
 - `static/js/codeRunner.js:236`
 - `static/js/compare/panes.js:407`
 - `static/js/compare/stream.js:217`
@@ -352,7 +352,7 @@
 - `routes/email/email_routes.py:5310`
 - `routes/email/email_routes.py:5373`
 - `scripts/demo_email/seed_demo_emails.py:318`
-- `src/agent_loop.py:34203`
+- `src/agent_loop.py:34245`
 - `src/teacher_escalation.py:837`
 - `tests/test_agent_rounds_exhausted.py:3768`
 - `tests/test_daily_brief_local_calendar.py:39`
@@ -405,7 +405,7 @@
 - `static/js/chat.js:4058`
 - `static/js/chat.js:5951`
 - `static/js/chat.js:7292`
-- `static/js/chat.js:8808`
+- `static/js/chat.js:8846`
 - `static/js/compare/index.js:809`
 - … +31 more (grep the name in repo)
 
@@ -421,7 +421,7 @@
 - `static/js/chat.js:423`
 - `static/js/chat.js:968`
 - `static/js/chat.js:5014`
-- `static/js/chat.js:9191`
+- `static/js/chat.js:9229`
 - `static/js/chatRenderer.js:524`
 - `static/js/compare/probe.js:27`
 - `static/js/cookbook-diagnosis.js:1005`

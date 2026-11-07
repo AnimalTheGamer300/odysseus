@@ -95,7 +95,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `Modalities.to_dict` — method, line 468
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -103,26 +103,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -225,7 +225,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/process_resources.py:80`
 - `src/agent_runtime/process_resources.py:89`
 - `src/agent_runtime/process_resources.py:129`
-- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/process_resources.py:477`
 - `src/agent_runtime/resources.py:238`
 - `src/agent_runtime/resources.py:275`
 - `src/agent_runtime/resources.py:531`
@@ -263,13 +263,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_resource_identity.py:660`
 - `tests/test_resource_identity.py:683`
 - `tests/test_runtime_resource_integration.py:416`
-- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- `tests/test_wave3_launch_cost_lifecycle.py:84`
 - … +1 more (grep the name in repo)
 
 ## `ModelCapability.to_dict` — method, line 534
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -277,26 +277,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -399,7 +399,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/process_resources.py:80`
 - `src/agent_runtime/process_resources.py:89`
 - `src/agent_runtime/process_resources.py:129`
-- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/process_resources.py:477`
 - `src/agent_runtime/resources.py:238`
 - `src/agent_runtime/resources.py:275`
 - `src/agent_runtime/resources.py:531`
@@ -437,13 +437,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_resource_identity.py:660`
 - `tests/test_resource_identity.py:683`
 - `tests/test_runtime_resource_integration.py:416`
-- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- `tests/test_wave3_launch_cost_lifecycle.py:84`
 - … +1 more (grep the name in repo)
 
 ## `CapabilityAssertion.to_dict` — method, line 592
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -451,26 +451,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -573,7 +573,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/process_resources.py:80`
 - `src/agent_runtime/process_resources.py:89`
 - `src/agent_runtime/process_resources.py:129`
-- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/process_resources.py:477`
 - `src/agent_runtime/resources.py:238`
 - `src/agent_runtime/resources.py:275`
 - `src/agent_runtime/resources.py:531`
@@ -611,13 +611,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_resource_identity.py:660`
 - `tests/test_resource_identity.py:683`
 - `tests/test_runtime_resource_integration.py:416`
-- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- `tests/test_wave3_launch_cost_lifecycle.py:84`
 - … +1 more (grep the name in repo)
 
 ## `DeterministicControl.to_dict` — method, line 649
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -625,26 +625,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -747,7 +747,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/process_resources.py:80`
 - `src/agent_runtime/process_resources.py:89`
 - `src/agent_runtime/process_resources.py:129`
-- `src/agent_runtime/process_resources.py:475`
+- `src/agent_runtime/process_resources.py:477`
 - `src/agent_runtime/resources.py:238`
 - `src/agent_runtime/resources.py:275`
 - `src/agent_runtime/resources.py:531`
@@ -785,7 +785,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_resource_identity.py:660`
 - `tests/test_resource_identity.py:683`
 - `tests/test_runtime_resource_integration.py:416`
-- `tests/test_wave3_launch_cost_lifecycle.py:102`
+- `tests/test_wave3_launch_cost_lifecycle.py:84`
 - … +1 more (grep the name in repo)
 
 ## `CapabilityProbeResult.to_assertion` — method, line 726
@@ -796,7 +796,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `CapabilityProbeResult.to_dict` — method, line 750
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -804,26 +804,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`

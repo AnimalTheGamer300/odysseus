@@ -305,7 +305,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`
@@ -1329,12 +1329,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -1413,8 +1413,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `openPanel` — method?, line 1913
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9369`
-- `static/js/chat.js:9410`
+- `static/js/chat.js:9407`
+- `static/js/chat.js:9448`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`

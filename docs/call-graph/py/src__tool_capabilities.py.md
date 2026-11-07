@@ -141,7 +141,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:481`
 - `src/agent_loop.py:530`
 - `src/agent_loop.py:16452`
-- `src/agent_loop.py:34224`
+- `src/agent_loop.py:34266`
 - `src/agent_runtime/effect_adapters.py:239`
 - `src/clean_agent_preview.py:3780`
 - `src/clean_agent_preview.py:3820`
@@ -220,36 +220,36 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:26435`
 - `src/agent_loop.py:26456`
 - `src/agent_loop.py:28048`
-- `src/agent_loop.py:34355`
-- `src/agent_loop.py:34422`
-- `src/agent_loop.py:34470`
-- `src/agent_loop.py:34752`
-- `src/agent_loop.py:35465`
-- `src/agent_loop.py:35696`
-- `src/agent_loop.py:35866`
-- `src/agent_loop.py:35897`
-- `src/agent_loop.py:35982`
-- `src/agent_loop.py:36001`
-- `src/agent_loop.py:36172`
-- `src/agent_loop.py:36184`
-- `src/agent_loop.py:36220`
-- `src/agent_loop.py:36258`
-- `src/agent_loop.py:36293`
-- `src/agent_loop.py:36326`
-- `src/agent_loop.py:36372`
-- `src/agent_loop.py:36393`
-- `src/agent_loop.py:36452`
-- `src/agent_loop.py:36469`
-- `src/agent_loop.py:36478`
-- `src/agent_loop.py:36496`
-- `src/agent_loop.py:36504`
-- `src/agent_loop.py:36532`
-- `src/agent_loop.py:36549`
-- `src/agent_loop.py:36572`
-- `src/agent_loop.py:36590`
-- `src/agent_loop.py:36598`
-- `src/agent_loop.py:36610`
-- `src/agent_loop.py:36628`
+- `src/agent_loop.py:34397`
+- `src/agent_loop.py:34464`
+- `src/agent_loop.py:34512`
+- `src/agent_loop.py:34794`
+- `src/agent_loop.py:35507`
+- `src/agent_loop.py:35738`
+- `src/agent_loop.py:35908`
+- `src/agent_loop.py:35939`
+- `src/agent_loop.py:36024`
+- `src/agent_loop.py:36043`
+- `src/agent_loop.py:36214`
+- `src/agent_loop.py:36226`
+- `src/agent_loop.py:36262`
+- `src/agent_loop.py:36300`
+- `src/agent_loop.py:36335`
+- `src/agent_loop.py:36368`
+- `src/agent_loop.py:36414`
+- `src/agent_loop.py:36435`
+- `src/agent_loop.py:36494`
+- `src/agent_loop.py:36511`
+- `src/agent_loop.py:36520`
+- `src/agent_loop.py:36538`
+- `src/agent_loop.py:36546`
+- `src/agent_loop.py:36574`
+- `src/agent_loop.py:36591`
+- `src/agent_loop.py:36614`
+- `src/agent_loop.py:36632`
+- `src/agent_loop.py:36640`
+- `src/agent_loop.py:36652`
+- `src/agent_loop.py:36670`
 - … +24 more (grep the name in repo)
 
 ## `tool_result_should_arm_gate` — function, line 781
@@ -401,8 +401,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ToolRunSecurityContext.decision_for` — method, line 1138
 - **called from:**
-- `src/agent_loop.py:33899`
-- `src/agent_loop.py:33977`
+- `src/agent_loop.py:33941`
+- `src/agent_loop.py:34019`
 - `src/tool_execution.py:1758`
 - `src/tool_execution.py:1967`
 - `src/tool_execution.py:1972`
@@ -468,7 +468,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:27307`
 - `src/agent_loop.py:27503`
 - `src/agent_loop.py:27625`
-- `src/agent_loop.py:34419`
+- `src/agent_loop.py:34461`
 - `src/tool_execution.py:2015`
 - `tests/test_external_context_tool_gate.py:139`
 - `tests/test_external_context_tool_gate.py:194`

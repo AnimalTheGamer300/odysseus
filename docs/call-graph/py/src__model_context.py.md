@@ -70,8 +70,8 @@
 - `scripts/dump_agent_prompt.py:303`
 - `src/context_compactor.py:670`
 - `src/context_compactor.py:747`
-- `src/llm_core.py:3045`
-- `src/llm_core.py:4994`
+- `src/llm_core.py:3051`
+- `src/llm_core.py:5000`
 - `tests/test_budget_auto_sentinel.py:82`
 - `tests/test_context_cache_per_endpoint.py:24`
 - `tests/test_context_cache_per_endpoint.py:26`
@@ -92,8 +92,8 @@
 ## `get_context_length_known` — function, line 345
 - **called from:**
 - `src/llm_core.py:2677`
-- `src/llm_core.py:3142`
-- `src/llm_core.py:3414`
+- `src/llm_core.py:3148`
+- `src/llm_core.py:3420`
 - `src/model_context.py:365`
 - `tests/test_budget_auto_sentinel.py:74`
 - `tests/test_budget_auto_sentinel.py:77`
@@ -159,9 +159,9 @@
 - `routes/chat_helpers.py:1580`
 - `routes/chat_routes.py:1417`
 - `routes/chat_routes.py:1418`
-- `routes/chat_routes.py:4645`
-- `routes/chat_routes.py:4694`
-- `routes/chat_routes.py:4783`
+- `routes/chat_routes.py:4648`
+- `routes/chat_routes.py:4697`
+- `routes/chat_routes.py:4786`
 - `routes/history/history_routes.py:1211`
 - `routes/history/history_routes.py:1501`
 - `routes/history/history_routes.py:1639`
@@ -184,9 +184,9 @@
 - `src/agent_loop.py:27132`
 - `src/agent_loop.py:27671`
 - `src/agent_loop.py:28556`
-- `src/agent_loop.py:30695`
-- `src/agent_loop.py:32737`
-- `src/agent_loop.py:38817`
+- `src/agent_loop.py:30705`
+- `src/agent_loop.py:32779`
+- `src/agent_loop.py:38871`
 - `src/context_compactor.py:425`
 - `src/context_compactor.py:482`
 - `src/context_compactor.py:502`

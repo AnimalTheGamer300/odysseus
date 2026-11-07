@@ -23,7 +23,7 @@
 ## `ActionReceipt.normalize` — method, line 37
 - **called from:**
 - `scripts/generate_sft_environment_expansion.py:267`
-- `src/agent_loop.py:34876`
+- `src/agent_loop.py:34918`
 - `src/agent_runtime/authority.py:532`
 - `src/agent_runtime/authority.py:647`
 - `src/agent_runtime/authority.py:649`
@@ -82,14 +82,14 @@
 - `tests/test_local_mcp_capabilities.py:989`
 - `tests/test_local_mcp_capabilities.py:1001`
 - `tests/test_local_mcp_capabilities.py:1002`
-- … +76 more (grep the name in repo)
+- … +75 more (grep the name in repo)
 
 ## `ActionReceipt.finish` — method, line 44
 - **called from:**
-- `src/agent_loop.py:32996`
-- `src/agent_loop.py:33009`
-- `src/agent_loop.py:33017`
-- `src/agent_loop.py:34877`
+- `src/agent_loop.py:33038`
+- `src/agent_loop.py:33051`
+- `src/agent_loop.py:33059`
+- `src/agent_loop.py:34919`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -151,7 +151,7 @@
 ## `ActionReceipt.to_dict` — method, line 60
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -159,26 +159,26 @@
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -254,7 +254,7 @@
 
 ## `ActionJournal.to_list` — method, line 132
 - **called from:**
-- `src/agent_loop.py:38903`
+- `src/agent_loop.py:38957`
 - `src/agent_runtime/completion.py:388`
 - `src/agent_runtime/completion.py:389`
 - `tests/test_agent_evidence.py:850`
@@ -338,7 +338,7 @@
 
 ## `propose_action` — function, line 165
 - **called from:**
-- `src/agent_loop.py:32978`
+- `src/agent_loop.py:33020`
 - `src/agent_runtime/journal.py:247`
 - `tests/test_runtime_evidence_contract.py:274`
 
@@ -421,7 +421,7 @@
 
 ## `execute_action` — function (async), line 229
 - **called from:**
-- `src/agent_loop.py:34291`
+- `src/agent_loop.py:34333`
 - `tests/test_nested_invocation_ownership.py:184`
 - `tests/test_runtime_evidence_contract.py:275`
 

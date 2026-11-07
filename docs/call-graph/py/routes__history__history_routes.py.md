@@ -128,9 +128,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1967`
 - `routes/chat_routes.py:1515`
 - `routes/chat_routes.py:2625`
-- `routes/chat_routes.py:4194`
-- `routes/chat_routes.py:4495`
-- `routes/chat_routes.py:5623`
+- `routes/chat_routes.py:4197`
+- `routes/chat_routes.py:4498`
+- `routes/chat_routes.py:5626`
 - `routes/history/history_routes.py:675`
 - `routes/history/history_routes.py:1127`
 - `routes/research/research_routes.py:882`

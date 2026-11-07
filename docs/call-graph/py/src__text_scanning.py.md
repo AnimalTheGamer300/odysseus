@@ -23,7 +23,7 @@
 
 ## `contains_detailed_sequence_request` — function, line 103
 - **called from:**
-- `src/agent_loop.py:31117`
+- `src/agent_loop.py:31159`
 - `src/clean_agent_preview.py:7276`
 - `tests/test_redos_core_parsers.py:311`
 - `tests/test_redos_core_parsers.py:312`
@@ -53,7 +53,7 @@
 
 ## `first_tag_content` — function, line 189
 - **called from:**
-- `src/agent_loop.py:30732`
+- `src/agent_loop.py:30757`
 - `tests/test_redos_core_parsers.py:467`
 
 ## `space_delimited_fields` — function, line 213

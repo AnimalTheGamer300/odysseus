@@ -61,12 +61,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `build_foreground_model_candidates` — function, line 155
 - **called from:**
 - `routes/chat_routes.py:2551`
-- `routes/chat_routes.py:4353`
+- `routes/chat_routes.py:4356`
 - `tests/test_foreground_model_routing.py:1721`
 - `tests/test_foreground_model_routing.py:1882`
 
 ## `build_foreground_route_descriptors` — function, line 173
 - **called from:**
 - `routes/chat_routes.py:2558`
-- `routes/chat_routes.py:4360`
+- `routes/chat_routes.py:4363`
 - `tests/test_foreground_model_routing.py:1761`

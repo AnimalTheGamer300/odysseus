@@ -116,7 +116,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/admin.js:680`
 - `static/js/admin.js:685`
-- `static/js/chatRenderer.js:3311`
+- `static/js/chatRenderer.js:3322`
 - `static/js/compare/models.js:65`
 - `static/js/compare/selector.js:403`
 - `static/js/cookbook-deps-recipes.js:71`

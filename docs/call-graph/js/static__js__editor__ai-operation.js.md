@@ -25,7 +25,7 @@
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
@@ -77,10 +77,10 @@
 
 ## `finish` — method?, line 19
 - **called from:**
-- `src/agent_loop.py:32996`
-- `src/agent_loop.py:33009`
-- `src/agent_loop.py:33017`
-- `src/agent_loop.py:34877`
+- `src/agent_loop.py:33038`
+- `src/agent_loop.py:33051`
+- `src/agent_loop.py:33059`
+- `src/agent_loop.py:34919`
 - `src/agent_runtime/journal.py:267`
 - `src/agent_runtime/journal.py:269`
 - `src/containment.py:1512`
@@ -158,12 +158,12 @@
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`

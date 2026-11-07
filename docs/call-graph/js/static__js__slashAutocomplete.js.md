@@ -253,7 +253,7 @@
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`
@@ -292,10 +292,10 @@
 - `routes/chat_routes.py:3539`
 - `routes/chat_routes.py:3547`
 - `routes/chat_routes.py:3549`
-- `routes/chat_routes.py:4077`
-- `routes/chat_routes.py:4079`
-- `routes/chat_routes.py:4165`
-- `routes/chat_routes.py:4172`
+- `routes/chat_routes.py:4080`
+- `routes/chat_routes.py:4082`
+- `routes/chat_routes.py:4168`
+- `routes/chat_routes.py:4175`
 - `routes/contacts/contacts_routes.py:902`
 - `routes/cookbook_routes.py:693`
 - `routes/history/history_routes.py:997`

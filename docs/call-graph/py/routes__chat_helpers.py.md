@@ -297,8 +297,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `accumulate_token_usage` — function, line 1628
 - **called from:**
 - `routes/chat_helpers.py:2178`
-- `routes/chat_routes.py:4751`
-- `routes/chat_routes.py:5240`
+- `routes/chat_routes.py:4754`
+- `routes/chat_routes.py:5243`
 - `tests/test_cost_tracking.py:155`
 - `tests/test_cost_tracking.py:156`
 - `tests/test_cost_tracking.py:172`
@@ -320,7 +320,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `routes/chat_routes.py:1501`
 - `routes/chat_routes.py:2603`
-- `routes/chat_routes.py:4193`
+- `routes/chat_routes.py:4196`
 - `tests/test_chat_helpers.py:67`
 - `tests/test_chat_helpers.py:385`
 - `tests/test_chat_helpers.py:396`
@@ -330,13 +330,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `save_assistant_response` — function, line 1868
 - **called from:**
-- `routes/chat_routes.py:4741`
-- `routes/chat_routes.py:4829`
-- `routes/chat_routes.py:4880`
-- `routes/chat_routes.py:5227`
-- `routes/chat_routes.py:5289`
-- `routes/chat_routes.py:5356`
-- `routes/chat_routes.py:5412`
+- `routes/chat_routes.py:4744`
+- `routes/chat_routes.py:4832`
+- `routes/chat_routes.py:4883`
+- `routes/chat_routes.py:5230`
+- `routes/chat_routes.py:5292`
+- `routes/chat_routes.py:5359`
+- `routes/chat_routes.py:5415`
 - `tests/test_chat_helpers.py:440`
 
 ## `_model_value` — function, line 1893
@@ -358,7 +358,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `run_post_response_tasks` — function, line 2049
 - **called from:**
 - `routes/chat_routes.py:2632`
-- `routes/chat_routes.py:4843`
-- `routes/chat_routes.py:5304`
-- `routes/chat_routes.py:5368`
+- `routes/chat_routes.py:4846`
+- `routes/chat_routes.py:5307`
+- `routes/chat_routes.py:5371`
 - `tests/test_kv_cache_invalidation_2927.py:325`

@@ -199,8 +199,8 @@
 - `tests/test_runtime_resource_integration.py:57`
 - `tests/test_runtime_resource_integration.py:64`
 - `tests/test_runtime_resource_integration.py:76`
-- `tests/test_wave3_launch_cost_lifecycle.py:84`
-- `tests/test_wave3_launch_cost_lifecycle.py:87`
+- `tests/test_wave3_launch_cost_lifecycle.py:66`
+- `tests/test_wave3_launch_cost_lifecycle.py:69`
 - `tests/test_workspace_artifact_tool_floor.py:2338`
 - `tests/test_workspace_artifact_tool_floor.py:2343`
 

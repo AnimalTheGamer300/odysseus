@@ -136,7 +136,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16891 more (grep the name in repo)
+- … +16892 more (grep the name in repo)
 
 ## `set` — function, line 72
 - **called from:**
@@ -180,15 +180,15 @@
 - `routes/chat_routes.py:3906`
 - `routes/chat_routes.py:3925`
 - `routes/chat_routes.py:3926`
-- `routes/chat_routes.py:5002`
-- `routes/chat_routes.py:5004`
-- `routes/chat_routes.py:5006`
-- `routes/chat_routes.py:5016`
+- `routes/chat_routes.py:5005`
+- `routes/chat_routes.py:5007`
+- `routes/chat_routes.py:5009`
 - `routes/chat_routes.py:5019`
-- `routes/chat_routes.py:5023`
-- `routes/chat_routes.py:5034`
-- `routes/chat_routes.py:5036`
-- `routes/chat_routes.py:5078`
+- `routes/chat_routes.py:5022`
+- `routes/chat_routes.py:5026`
+- `routes/chat_routes.py:5037`
+- `routes/chat_routes.py:5039`
+- `routes/chat_routes.py:5081`
 - `routes/chatgpt_subscription_routes.py:82`
 - `routes/codex_routes.py:89`
 - `routes/codex_routes.py:103`
@@ -200,7 +200,7 @@
 - `routes/cookbook_routes.py:2877`
 - `routes/cookbook_routes.py:3326`
 - `routes/cookbook_routes.py:3872`
-- … +2023 more (grep the name in repo)
+- … +2024 more (grep the name in repo)
 
 ## `remove` — function, line 83
 - **called from:**

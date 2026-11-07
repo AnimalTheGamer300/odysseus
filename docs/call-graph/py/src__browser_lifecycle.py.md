@@ -220,7 +220,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/resource_binding.py:192`
 - `src/agent_tools/web_tools_prewave3.py:2969`
 - `src/chat_helpers.py:229`
-- `src/turn_contract.py:6508`
+- `src/turn_contract.py:6520`
 - `src/url_safety.py:267`
 - `tests/cli/test_dev_cli_isolation.py:95`
 - `tests/helpers/unix_sockets.py:42`

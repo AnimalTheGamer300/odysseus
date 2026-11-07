@@ -200,8 +200,8 @@
 ## `openPanel` — function, line 238
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9369`
-- `static/js/chat.js:9410`
+- `static/js/chat.js:9407`
+- `static/js/chat.js:9448`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`
@@ -413,12 +413,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:377`
 - `routes/chat_helpers.py:399`
 - `routes/chat_helpers.py:407`
-- `routes/chat_routes.py:4442`
-- `routes/chat_routes.py:4450`
-- `routes/chat_routes.py:4502`
-- `routes/chat_routes.py:4659`
-- `routes/chat_routes.py:4704`
-- `routes/chat_routes.py:4772`
+- `routes/chat_routes.py:4445`
+- `routes/chat_routes.py:4453`
+- `routes/chat_routes.py:4505`
+- `routes/chat_routes.py:4662`
+- `routes/chat_routes.py:4707`
+- `routes/chat_routes.py:4775`
 - `routes/codex_routes.py:914`
 - `routes/cookbook_routes.py:3362`
 - `routes/cookbook_routes.py:3681`
@@ -1038,7 +1038,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`

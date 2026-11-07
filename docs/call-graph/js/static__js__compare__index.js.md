@@ -263,9 +263,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:19729`
 - `src/agent_loop.py:26160`
 - `src/agent_loop.py:26179`
-- `src/agent_loop.py:35260`
-- `src/agent_loop.py:35742`
-- `src/agent_loop.py:36487`
+- `src/agent_loop.py:35302`
+- `src/agent_loop.py:35784`
+- `src/agent_loop.py:36529`
 - `src/agent_runtime/authority.py:454`
 - `src/agent_tools/document_tools.py:726`
 - … +127 more (grep the name in repo)

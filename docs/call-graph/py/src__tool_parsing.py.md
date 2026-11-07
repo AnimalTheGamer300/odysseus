@@ -207,8 +207,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `strip_angle_tags` — function, line 1652
 - **called from:**
 - `src/agent_loop.py:6867`
-- `src/agent_loop.py:30735`
-- `src/agent_loop.py:33476`
+- `src/agent_loop.py:30760`
+- `src/agent_loop.py:33518`
 - `src/clean_agent_preview.py:4482`
 - `src/clean_agent_preview.py:4507`
 - `src/clean_agent_preview.py:4508`
@@ -270,7 +270,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `scripts/eval_qwen_tool_groups_stream.py:186`
 - `src/agent_loop.py:15791`
-- `src/agent_loop.py:38269`
+- `src/agent_loop.py:38311`
 - `src/clean_agent_preview.py:6815`
 - `tests/test_agent_external_tool_schemas.py:187`
 - `tests/test_agent_external_tool_schemas.py:188`
@@ -352,14 +352,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:30526`
 - `src/agent_loop.py:30629`
 - `src/agent_loop.py:30638`
-- `src/agent_loop.py:30767`
-- `src/agent_loop.py:35388`
-- `src/agent_loop.py:35445`
-- `src/agent_loop.py:35531`
-- `src/agent_loop.py:38080`
-- `src/agent_loop.py:38160`
-- `src/agent_loop.py:38445`
-- `src/agent_loop.py:38528`
+- `src/agent_loop.py:30792`
+- `src/agent_loop.py:35430`
+- `src/agent_loop.py:35487`
+- `src/agent_loop.py:35573`
+- `src/agent_loop.py:38122`
+- `src/agent_loop.py:38202`
+- `src/agent_loop.py:38487`
+- `src/agent_loop.py:38570`
 - `src/clean_agent_preview.py:2508`
 - `src/clean_agent_preview.py:6843`
 - `src/clean_agent_preview.py:6904`

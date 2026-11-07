@@ -214,7 +214,7 @@
 - `static/js/actionMenuOrder.js:10`
 - `static/js/calendar.js:1242`
 - `static/js/calendar.js:2883`
-- `static/js/chat.js:9375`
+- `static/js/chat.js:9413`
 - `static/js/editor/panels/panels.js:91`
 - `static/js/editor/panels/panels.js:91`
 - `static/js/editor/panels/panels.js:91`
@@ -376,7 +376,7 @@
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`

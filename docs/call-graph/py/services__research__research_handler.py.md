@@ -61,7 +61,7 @@
 
 ## `ResearchHandler.start_research` — method, line 52
 - **called from:**
-- `routes/chat_routes.py:4219`
+- `routes/chat_routes.py:4222`
 - `routes/research/research_routes.py:629`
 - `services/research/service.py:157`
 - `tests/test_research_handler_path_confinement.py:83`
@@ -137,7 +137,7 @@
 
 ## `ResearchHandler.get_status` — method, line 106
 - **called from:**
-- `routes/chat_routes.py:4233`
+- `routes/chat_routes.py:4236`
 - `routes/research/research_routes.py:298`
 - `routes/research/research_routes.py:669`
 - `services/research/service.py:163`
@@ -166,7 +166,7 @@
 
 ## `ResearchHandler.get_sources` — method, line 163
 - **called from:**
-- `routes/chat_routes.py:4253`
+- `routes/chat_routes.py:4256`
 - `routes/research/research_routes.py:339`
 - `routes/research/research_routes.py:737`
 - `routes/research/research_routes.py:779`
@@ -193,7 +193,7 @@
 
 ## `ResearchHandler.clear_result` — method, line 199
 - **called from:**
-- `routes/chat_routes.py:4264`
+- `routes/chat_routes.py:4267`
 - `routes/research/research_routes.py:348`
 - `tests/test_research_handler_path_confinement.py:70`
 

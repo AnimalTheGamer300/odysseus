@@ -77,9 +77,9 @@
 - `mcp_servers/image_gen_server.py:62`
 - `mcp_servers/image_gen_server.py:129`
 - `routes/chat_routes.py:3722`
-- `routes/chat_routes.py:4413`
-- `routes/chat_routes.py:4983`
-- `routes/chat_routes.py:4989`
+- `routes/chat_routes.py:4416`
+- `routes/chat_routes.py:4986`
+- `routes/chat_routes.py:4992`
 - `routes/editor_agent_routes.py:1699`
 - `scripts/dump_agent_prompt.py:141`
 - `services/memory/skills.py:68`
@@ -100,7 +100,7 @@
 - `src/agent_loop.py:24627`
 - `src/agent_loop.py:25860`
 - `src/agent_loop.py:26800`
-- `src/agent_loop.py:31350`
+- `src/agent_loop.py:31392`
 - `src/agent_tools/admin_tools.py:777`
 - `src/agent_tools/model_interaction_tools.py:92`
 - `src/agent_tools/spawn_agent_tools.py:112`

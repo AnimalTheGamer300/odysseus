@@ -93,7 +93,7 @@
 
 ## `ResearchHandler.synthesize_query` — method (async), line 104
 - **called from:**
-- `routes/chat_routes.py:4214`
+- `routes/chat_routes.py:4217`
 - `tests/test_research_query_fallback.py:38`
 - `tests/test_research_query_fallback.py:49`
 - `tests/test_research_query_fallback.py:60`
@@ -141,7 +141,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchHandler.start_research` — method, line 256
 - **called from:**
-- `routes/chat_routes.py:4219`
+- `routes/chat_routes.py:4222`
 - `routes/research/research_routes.py:629`
 - `services/research/service.py:157`
 - `tests/test_research_handler_path_confinement.py:83`
@@ -223,7 +223,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchHandler.get_status` — method, line 425
 - **called from:**
-- `routes/chat_routes.py:4233`
+- `routes/chat_routes.py:4236`
 - `routes/research/research_routes.py:298`
 - `routes/research/research_routes.py:669`
 - `services/research/service.py:163`
@@ -266,7 +266,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchHandler.get_sources` — method, line 529
 - **called from:**
-- `routes/chat_routes.py:4253`
+- `routes/chat_routes.py:4256`
 - `routes/research/research_routes.py:339`
 - `routes/research/research_routes.py:737`
 - `routes/research/research_routes.py:779`
@@ -275,7 +275,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchHandler.get_raw_findings` — method, line 551
 - **called from:**
-- `routes/chat_routes.py:4257`
+- `routes/chat_routes.py:4260`
 - `routes/research/research_routes.py:340`
 - `routes/research/research_routes.py:738`
 - `tests/test_research_handler_path_confinement.py:57`
@@ -363,7 +363,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchHandler.clear_result` — method, line 714
 - **called from:**
-- `routes/chat_routes.py:4264`
+- `routes/chat_routes.py:4267`
 - `routes/research/research_routes.py:348`
 - `tests/test_research_handler_path_confinement.py:70`
 
@@ -378,8 +378,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `ResearchHandler._get_session_json` — method, line 795
 - **called from:**
-- `routes/chat_routes.py:4156`
-- `routes/chat_routes.py:4204`
+- `routes/chat_routes.py:4159`
+- `routes/chat_routes.py:4207`
 - `src/research_handler.py:483`
 - `src/research_handler.py:490`
 - `src/research_handler.py:576`

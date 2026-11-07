@@ -111,7 +111,7 @@
 - `src/agent_runtime/authority.py:228`
 - `src/clean_agent_preview.py:5673`
 - `src/turn_contract.py:6365`
-- `src/turn_contract.py:6408`
+- `src/turn_contract.py:6409`
 - `tests/test_tool_policy.py:857`
 
 ## `ToolPolicy.blocks` — method, line 179
@@ -119,22 +119,22 @@
 - `routes/chat_routes.py:2503`
 - `routes/chat_routes.py:2532`
 - `routes/chat_routes.py:2533`
-- `routes/chat_routes.py:4060`
-- `routes/chat_routes.py:4061`
-- `routes/chat_routes.py:4405`
+- `routes/chat_routes.py:4063`
+- `routes/chat_routes.py:4064`
+- `routes/chat_routes.py:4408`
 - `src/agent_loop.py:616`
 - `src/agent_loop.py:17714`
 - `src/agent_loop.py:21493`
 - `src/agent_loop.py:22067`
 - `src/agent_loop.py:22151`
 - `src/agent_loop.py:22255`
-- `src/agent_loop.py:33910`
+- `src/agent_loop.py:33952`
 - `src/agent_tools/web_tools.py:420`
 - `src/agent_tools/web_tools_prewave3.py:424`
 - `src/tool_execution.py:1786`
 - `src/tool_execution.py:2140`
 - `src/turn_contract.py:6368`
-- `src/turn_contract.py:6410`
+- `src/turn_contract.py:6411`
 - `tests/test_core_agent_tool_floor.py:31`
 - `tests/test_product_turn_contract_route.py:97`
 - `tests/test_product_turn_contract_route.py:110`
@@ -153,7 +153,7 @@
 
 ## `ToolPolicy.reason_for` — method, line 184
 - **called from:**
-- `routes/chat_routes.py:4408`
+- `routes/chat_routes.py:4411`
 - `src/agent_loop.py:618`
 
 ## `detect_guide_only_turn` — function, line 192
@@ -189,7 +189,7 @@
 - `routes/chat_routes.py:3763`
 - `routes/chat_routes.py:3861`
 - `routes/chat_routes.py:3905`
-- `routes/chat_routes.py:4056`
+- `routes/chat_routes.py:4059`
 - `src/agent_runtime/authority.py:540`
 - `tests/test_chat_image_routing.py:145`
 - `tests/test_review_fixture_policy.py:39`

@@ -116,24 +116,24 @@
 - `static/js/chat.js:8333`
 - `static/js/chat.js:8346`
 - `static/js/chat.js:8392`
-- `static/js/chat.js:8426`
-- `static/js/chat.js:8439`
-- `static/js/chat.js:8482`
-- `static/js/chat.js:8494`
-- `static/js/chat.js:8507`
-- `static/js/chat.js:8561`
-- `static/js/chat.js:8720`
-- `static/js/chat.js:9064`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9150`
-- `static/js/chat.js:9169`
-- `static/js/chat.js:9311`
-- `static/js/chat.js:9416`
+- `static/js/chat.js:8443`
+- `static/js/chat.js:8456`
+- `static/js/chat.js:8499`
+- `static/js/chat.js:8511`
+- `static/js/chat.js:8524`
+- `static/js/chat.js:8537`
+- `static/js/chat.js:8599`
+- `static/js/chat.js:8758`
+- `static/js/chat.js:9102`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9188`
+- `static/js/chat.js:9207`
+- `static/js/chat.js:9349`
+- `static/js/chat.js:9454`
 - `static/js/chatRenderer.js:749`
 - `static/js/chatRenderer.js:774`
 - `static/js/chatRenderer.js:1740`
-- `static/js/chatRenderer.js:3871`
-- … +245 more (grep the name in repo)
+- … +246 more (grep the name in repo)
 
 ## `loadDirect` — arrow, line 311
 - **called from:**
@@ -224,10 +224,10 @@
 - `src/email_thread_parser.py:334`
 - `src/email_thread_parser.py:371`
 - `src/email_thread_parser.py:385`
-- `src/llm_core.py:3669`
-- `src/llm_core.py:3687`
-- `src/llm_core.py:3971`
-- `src/llm_core.py:4308`
+- `src/llm_core.py:3675`
+- `src/llm_core.py:3693`
+- `src/llm_core.py:3977`
+- `src/llm_core.py:4314`
 - `src/task_scheduler.py:2849`
 - `src/upload_handler.py:799`
 - `tests/smoke/stub_provider.py:136`

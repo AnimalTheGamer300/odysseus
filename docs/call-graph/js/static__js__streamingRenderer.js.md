@@ -24,7 +24,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5541`
+- `routes/chat_routes.py:5544`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -212,7 +212,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/journal.py:237`
 - `src/agent_runtime/journal.py:280`
 - `src/agent_runtime/owned_resources.py:443`
-- `src/agent_runtime/process_resources.py:349`
+- `src/agent_runtime/process_resources.py:351`
 - `src/agent_runtime/remote_resources.py:238`
 - `src/agent_runtime/resource_binding.py:218`
 - `src/agent_tools/web_tools_prewave3.py:2677`
@@ -221,7 +221,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/teacher_escalation.py:86`
 - `src/tool_execution.py:131`
 - `src/tool_execution.py:2029`
-- `src/turn_contract.py:6494`
+- `src/turn_contract.py:6506`
 - `tests/test_agent_state_dir_confinement.py:70`
 - `tests/test_agent_state_dir_confinement.py:161`
 - `tests/test_agent_state_dir_confinement.py:508`
@@ -302,12 +302,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:3845`
 - `routes/chat_routes.py:3854`
 - `routes/chat_routes.py:3858`
-- `routes/chat_routes.py:4044`
-- `routes/chat_routes.py:4458`
-- `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:4718`
-- `routes/chat_routes.py:5020`
-- `routes/chat_routes.py:5024`
+- `routes/chat_routes.py:4047`
+- `routes/chat_routes.py:4461`
+- `routes/chat_routes.py:4702`
+- `routes/chat_routes.py:4721`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5027`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`

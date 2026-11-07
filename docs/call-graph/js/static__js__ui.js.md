@@ -210,24 +210,24 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:8333`
 - `static/js/chat.js:8346`
 - `static/js/chat.js:8392`
-- `static/js/chat.js:8426`
-- `static/js/chat.js:8439`
-- `static/js/chat.js:8482`
-- `static/js/chat.js:8494`
-- `static/js/chat.js:8507`
-- `static/js/chat.js:8561`
-- `static/js/chat.js:8720`
-- `static/js/chat.js:9064`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9150`
-- `static/js/chat.js:9169`
-- `static/js/chat.js:9311`
-- `static/js/chat.js:9416`
+- `static/js/chat.js:8443`
+- `static/js/chat.js:8456`
+- `static/js/chat.js:8499`
+- `static/js/chat.js:8511`
+- `static/js/chat.js:8524`
+- `static/js/chat.js:8537`
+- `static/js/chat.js:8599`
+- `static/js/chat.js:8758`
+- `static/js/chat.js:9102`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9188`
+- `static/js/chat.js:9207`
+- `static/js/chat.js:9349`
+- `static/js/chat.js:9454`
 - `static/js/chatRenderer.js:749`
 - `static/js/chatRenderer.js:774`
 - `static/js/chatRenderer.js:1740`
-- `static/js/chatRenderer.js:3871`
-- … +245 more (grep the name in repo)
+- … +246 more (grep the name in repo)
 
 ## `_bindScrollIntent` — function, line 585
 - **called from:**
@@ -269,8 +269,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:7374`
 - `static/js/chat.js:7417`
 - `static/js/chat.js:7610`
-- `static/js/chat.js:8781`
-- `static/js/chat.js:9304`
+- `static/js/chat.js:8819`
+- `static/js/chat.js:9342`
 - `static/js/chatRenderer.js:2939`
 - `static/js/chatStream.js:329`
 - `static/js/group.js:754`
@@ -501,7 +501,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3296`
 - `static/js/chat.js:2850`
 - `static/js/chat.js:8252`
-- `static/js/chat.js:8976`
+- `static/js/chat.js:9014`
 - `static/js/chatRenderer.js:2185`
 - `static/js/cookbook-hwfit.js:2734`
 - `static/js/cookbook.js:2396`
@@ -560,12 +560,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -680,12 +680,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`

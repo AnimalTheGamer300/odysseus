@@ -380,7 +380,7 @@
 - **called from:**
 - `src/agent_runtime/effect_adapters.py:263`
 - `src/agent_runtime/journal.py:89`
-- `src/agent_runtime/process_resources.py:422`
+- `src/agent_runtime/process_resources.py:424`
 - `src/tool_execution.py:1946`
 - `tests/test_effect_journal_persistence.py:26`
 - `tests/test_effect_journal_persistence.py:39`
@@ -585,7 +585,7 @@
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`

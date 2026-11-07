@@ -21,7 +21,7 @@
 - `static/js/chat.js:514`
 - `static/js/chat.js:5731`
 - `static/js/chatRenderer.js:94`
-- `static/js/chatRenderer.js:3413`
+- `static/js/chatRenderer.js:3424`
 
 ## `safeDisplayImageSrc` — function, line 102
 - **called from:**
@@ -40,8 +40,8 @@
 - `static/js/chat.js:5702`
 - `static/js/chat.js:5732`
 - `static/js/chatRenderer.js:117`
-- `static/js/chatRenderer.js:3414`
-- `static/js/chatRenderer.js:3444`
+- `static/js/chatRenderer.js:3425`
+- `static/js/chatRenderer.js:3455`
 
 ## `_privateBrowserActionLabel` — function, line 126
 - **called from:**
@@ -60,7 +60,7 @@
 - `static/js/chat.js:505`
 - `static/js/chatRenderer.js:140`
 - `static/js/chatRenderer.js:339`
-- `static/js/chatRenderer.js:3415`
+- `static/js/chatRenderer.js:3426`
 
 ## `_safeExternalToolUrl` — function, line 155
 - **called from:**
@@ -187,17 +187,17 @@
 - `static/js/chat.js:7407`
 - `static/js/chat.js:7426`
 - `static/js/chatRenderer.js:328`
-- `static/js/chatRenderer.js:3450`
+- `static/js/chatRenderer.js:3461`
 
 ## `_browserPreviewHtml` — function, line 338
 - **called from:**
 - `static/js/chatRenderer.js:338`
-- `static/js/chatRenderer.js:3417`
+- `static/js/chatRenderer.js:3428`
 
 ## `_renderAssistantBody` — function, line 347
 - **called from:**
 - `static/js/chatRenderer.js:347`
-- `static/js/chatRenderer.js:3658`
+- `static/js/chatRenderer.js:3669`
 
 ## `_toolDisplayInfo` — function, line 355
 - **called from:**
@@ -205,14 +205,14 @@
 - `static/js/chat.js:5551`
 - `static/js/chat.js:5701`
 - `static/js/chatRenderer.js:355`
-- `static/js/chatRenderer.js:3448`
+- `static/js/chatRenderer.js:3459`
 
 ## `_suppressRawToolOutput` — function, line 436
 - **called from:**
 - `static/js/chat.js:4019`
 - `static/js/chat.js:5672`
 - `static/js/chatRenderer.js:436`
-- `static/js/chatRenderer.js:3410`
+- `static/js/chatRenderer.js:3421`
 
 ## `_makeActionBtn` — function, line 453
 - **called from:**
@@ -234,7 +234,7 @@
 - **called from:**
 - `static/js/chatRenderer.js:485`
 - `static/js/chatRenderer.js:630`
-- `static/js/chatRenderer.js:3710`
+- `static/js/chatRenderer.js:3721`
 
 ## `_reveal` — arrow, line 538
 - **called from:**
@@ -335,8 +335,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/chatRenderer.js:1014`
 - `static/js/chatRenderer.js:1045`
-- `static/js/chatRenderer.js:3349`
-- `static/js/chatRenderer.js:3572`
+- `static/js/chatRenderer.js:3360`
+- `static/js/chatRenderer.js:3583`
 
 ## `shortEndpointLabel` — function, line 1022
 - **called from:**
@@ -347,14 +347,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `modelRouteLabel` — function, line 1028
 - **called from:**
 - `static/js/chatRenderer.js:1028`
-- `static/js/chatRenderer.js:3337`
-- `static/js/chatRenderer.js:3545`
+- `static/js/chatRenderer.js:3348`
+- `static/js/chatRenderer.js:3556`
 
 ## `replyModelPair` — function, line 1055
 - **called from:**
 - `static/js/chatRenderer.js:1055`
-- `static/js/chatRenderer.js:3329`
-- `static/js/chatRenderer.js:3543`
+- `static/js/chatRenderer.js:3340`
+- `static/js/chatRenderer.js:3554`
 
 ## `modelColor` — function, line 1087
 - **called from:**
@@ -380,8 +380,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `applyModelColor` — function, line 1113
 - **called from:**
 - `static/js/chatRenderer.js:1113`
-- `static/js/chatRenderer.js:3356`
-- `static/js/chatRenderer.js:3576`
+- `static/js/chatRenderer.js:3367`
+- `static/js/chatRenderer.js:3587`
 - `static/js/group.js:739`
 
 ## `getModelCost` — function, line 1210
@@ -498,17 +498,17 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `roleTimestamp` — function, line 1511
 - **called from:**
-- `static/js/chat.js:8768`
+- `static/js/chat.js:8806`
 - `static/js/chatRenderer.js:1511`
-- `static/js/chatRenderer.js:3357`
-- `static/js/chatRenderer.js:3577`
-- `static/js/chatRenderer.js:3859`
+- `static/js/chatRenderer.js:3368`
+- `static/js/chatRenderer.js:3588`
+- `static/js/chatRenderer.js:3870`
 
 ## `userModePill` — function, line 1525
 - **called from:**
 - `static/js/chatRenderer.js:1525`
 - `static/js/chatRenderer.js:1548`
-- `static/js/chatRenderer.js:3563`
+- `static/js/chatRenderer.js:3574`
 
 ## `setUserModePill` — function, line 1543
 - **called from:**
@@ -520,7 +520,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:1440`
 - `static/js/chatRenderer.js:1558`
 - `static/js/chatRenderer.js:1584`
-- `static/js/chatRenderer.js:3583`
+- `static/js/chatRenderer.js:3594`
 
 ## `copyMessageText` — function, line 1582
 - **called from:**
@@ -532,17 +532,17 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/chat.js:7651`
 - `static/js/chatRenderer.js:1591`
-- `static/js/chatRenderer.js:3369`
-- `static/js/chatRenderer.js:3371`
-- `static/js/chatRenderer.js:3621`
-- `static/js/chatRenderer.js:3623`
+- `static/js/chatRenderer.js:3380`
+- `static/js/chatRenderer.js:3382`
+- `static/js/chatRenderer.js:3632`
+- `static/js/chatRenderer.js:3634`
 
 ## `buildRagSourcesBox` — function, line 1627
 - **called from:**
 - `static/js/chat.js:7655`
 - `static/js/chatRenderer.js:1627`
-- `static/js/chatRenderer.js:3378`
-- `static/js/chatRenderer.js:3630`
+- `static/js/chatRenderer.js:3389`
+- `static/js/chatRenderer.js:3641`
 
 ## `buildFindingsBox` — function, line 1646
 - **called from:**
@@ -550,11 +550,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:6215`
 - `static/js/chat.js:6228`
 - `static/js/chat.js:7652`
-- `static/js/chat.js:8754`
-- `static/js/chat.js:8925`
+- `static/js/chat.js:8792`
+- `static/js/chat.js:8963`
 - `static/js/chatRenderer.js:1646`
-- `static/js/chatRenderer.js:3374`
-- `static/js/chatRenderer.js:3626`
+- `static/js/chatRenderer.js:3385`
+- `static/js/chatRenderer.js:3637`
 
 ## `appendReportButton` — function, line 1682
 - **called from:**
@@ -570,13 +570,13 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/chatRenderer.js:1683`
 - `static/js/chatRenderer.js:1697`
-- `static/js/chatRenderer.js:3672`
+- `static/js/chatRenderer.js:3683`
 
 ## `resolveDocumentPlaceholderLinks` — function, line 1780
 - **called from:**
 - `static/js/chatRenderer.js:1780`
-- `static/js/chatRenderer.js:3308`
-- `static/js/chatRenderer.js:3585`
+- `static/js/chatRenderer.js:3319`
+- `static/js/chatRenderer.js:3596`
 
 ## `_activateEntityAnchor` — function, line 1799
 - **called from:**
@@ -607,7 +607,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `buildImageBubble` — function, line 2007
 - **called from:**
 - `static/js/chatRenderer.js:2007`
-- `static/js/chatRenderer.js:3464`
+- `static/js/chatRenderer.js:3475`
 
 ## `hideWelcomeScreen` — function, line 2229
 - **called from:**
@@ -615,7 +615,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:2618`
 - `static/app.js:3992`
 - `static/app.js:3999`
-- `static/js/chat.js:8757`
+- `static/js/chat.js:8795`
 - `static/js/chatRenderer.js:2229`
 - `static/js/chatRenderer.js:3215`
 - `static/js/sessions.js:214`
@@ -646,11 +646,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:6724`
 - `static/js/chat.js:7121`
 - `static/js/chat.js:7647`
-- `static/js/chat.js:8777`
+- `static/js/chat.js:8815`
 - `static/js/chatRenderer.js:2312`
 - `static/js/chatRenderer.js:2908`
-- `static/js/chatRenderer.js:3474`
-- `static/js/chatRenderer.js:3855`
+- `static/js/chatRenderer.js:3485`
+- `static/js/chatRenderer.js:3866`
 - `static/js/group.js:956`
 
 ## `handler` — method?, line 2338
@@ -732,7 +732,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `createUserMsgFooter` — function, line 2520
 - **called from:**
 - `static/js/chatRenderer.js:2520`
-- `static/js/chatRenderer.js:3861`
+- `static/js/chatRenderer.js:3872`
 
 ## `closeMenu` — arrow, line 2583
 - **called from:**
@@ -762,8 +762,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:7562`
 - `static/js/chat.js:7658`
 - `static/js/chatRenderer.js:2622`
-- `static/js/chatRenderer.js:3475`
-- `static/js/chatRenderer.js:3856`
+- `static/js/chatRenderer.js:3486`
+- `static/js/chatRenderer.js:3867`
 
 ## `fmtNum` — arrow, line 2797
 - **called from:**
@@ -798,7 +798,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `static/js/chat.js:5864`
 - `static/js/chatRenderer.js:3030`
-- `static/js/chatRenderer.js:3486`
+- `static/js/chatRenderer.js:3497`
 - `static/js/compare/stream.js:220`
 
 ## `emojiText` — arrow, line 3050
@@ -821,7 +821,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/app.js:168`
 - `static/app.js:4199`
 - `static/js/chat.js:2615`
-- `static/js/chat.js:8582`
+- `static/js/chat.js:8620`
 - `static/js/chatRenderer.js:3147`
 - `static/js/chatRenderer.js:3172`
 - `static/js/chatRenderer.js:3174`
@@ -858,7 +858,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_upload_handler_cleanup.py:346`
 - `tests/test_upload_handler_cleanup.py:348`
 - `tests/test_worker_runtime.py:108`
-- `static/js/chat.js:8954`
+- `static/js/chat.js:8992`
 - `static/js/chatRenderer.js:3181`
 - `static/js/document.js:9393`
 - `static/js/document.js:9416`
@@ -880,14 +880,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/sessions.js:296`
 - `static/js/sessions.js:2493`
 
-## `_renderVariant` — arrow, line 3761
+## `_renderVariant` — arrow, line 3772
 - **called from:**
-- `static/js/chatRenderer.js:3768`
-- `static/js/chatRenderer.js:3822`
+- `static/js/chatRenderer.js:3779`
+- `static/js/chatRenderer.js:3833`
 
-## `switchFn` — arrow, line 3818
+## `switchFn` — arrow, line 3829
 - **called from:**
-- `static/js/chatRenderer.js:3834`
-- `static/js/chatRenderer.js:3835`
-- `static/js/chatRenderer.js:3836`
-- `static/js/chatRenderer.js:3837`
+- `static/js/chatRenderer.js:3845`
+- `static/js/chatRenderer.js:3846`
+- `static/js/chatRenderer.js:3847`
+- `static/js/chatRenderer.js:3848`

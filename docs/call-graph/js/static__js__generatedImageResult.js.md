@@ -5,5 +5,5 @@
 
 ## `generatedImageResult` — function, line 2
 - **called from:**
-- `static/js/chatRenderer.js:3462`
+- `static/js/chatRenderer.js:3473`
 - `static/js/generatedImageResult.js:2`

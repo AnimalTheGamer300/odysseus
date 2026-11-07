@@ -102,8 +102,8 @@
 - `tests/test_runtime_resource_integration.py:279`
 - `tests/test_wave3_background_followup.py:38`
 - `tests/test_wave3_background_followup.py:66`
-- `tests/test_wave3_launch_cost_lifecycle.py:130`
-- `tests/test_wave3_launch_cost_lifecycle.py:136`
+- `tests/test_wave3_launch_cost_lifecycle.py:112`
+- `tests/test_wave3_launch_cost_lifecycle.py:118`
 
 ## `_load_for_user` — function, line 30
 - **called from:**

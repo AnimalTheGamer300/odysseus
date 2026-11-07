@@ -220,7 +220,7 @@
 ## `selected_tools_for_request` — function, line 1016
 - **called from:**
 - `routes/chat_routes.py:3866`
-- `routes/chat_routes.py:5026`
+- `routes/chat_routes.py:5029`
 - `src/agent_loop.py:23564`
 - `src/agent_runtime/authority.py:362`
 - `src/turn_contract.py:3076`
@@ -501,7 +501,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/turn_contract.py:4310`
 - `src/turn_contract.py:5569`
 - `src/turn_contract.py:6170`
-- `src/turn_contract.py:6402`
+- `src/turn_contract.py:6403`
 - `tests/test_turn_contract.py:211`
 - `tests/test_turn_contract.py:440`
 - `tests/test_turn_contract.py:718`
@@ -638,7 +638,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/turn_contract.py:6365`
 - `src/turn_contract.py:6367`
 - `src/turn_contract.py:6369`
-- `src/turn_contract.py:6408`
+- `src/turn_contract.py:6409`
 - … +18 more (grep the name in repo)
 
 ## `recently_executed_families` — function, line 4442
@@ -850,7 +850,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `dataclass(frozen=True)`
 - **called from:**
 - `src/turn_contract.py:6371`
-- `src/turn_contract.py:6476`
+- `src/turn_contract.py:6488`
 - `tests/test_api_token_tool_authority.py:288`
 - `tests/test_nested_invocation_ownership.py:200`
 - `tests/test_runtime_behavior_regressions.py:86`
@@ -862,7 +862,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `TurnContract.permits` — method, line 6328
 - **called from:**
-- `routes/chat_routes.py:4046`
+- `routes/chat_routes.py:4049`
 - `src/agent_loop.py:497`
 - `src/agent_loop.py:521`
 - `src/agent_loop.py:600`
@@ -870,12 +870,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:22033`
 - `src/agent_loop.py:22066`
 - `src/agent_loop.py:23575`
-- `src/agent_loop.py:33083`
-- `src/agent_loop.py:33920`
+- `src/agent_loop.py:33125`
+- `src/agent_loop.py:33962`
 - `src/agent_runtime/authority.py:223`
 - `src/agent_runtime/local_model_control.py:58`
 - `src/agent_runtime/owned_resources.py:419`
-- `src/agent_runtime/process_resources.py:371`
+- `src/agent_runtime/process_resources.py:373`
 - `src/agent_tools/web_tools.py:421`
 - `src/agent_tools/web_tools_prewave3.py:425`
 - `src/browser_identity.py:627`
@@ -1022,8 +1022,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `resolve_full_inventory_contract` — function, line 6347
 - **called from:**
-- `routes/chat_routes.py:3990`
-- `routes/chat_routes.py:4033`
+- `routes/chat_routes.py:3993`
+- `routes/chat_routes.py:4036`
 - `scripts/eval_followup_domain_continuity.py:105`
 - `scripts/probe_browser_budget.py:31`
 - `scripts/probe_empty_search_recovery.py:46`
@@ -1148,7 +1148,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_turn_contract_read_operations.py:18`
 - … +3 more (grep the name in repo)
 
-## `active_turn_contract` — function, line 6484
+## `active_turn_contract` — function, line 6496
 - **called from:**
 - `src/agent_tools/web_tools.py:415`
 - `src/agent_tools/web_tools_prewave3.py:419`
@@ -1192,12 +1192,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_turn_contract_integration.py:319`
 - `tests/test_turn_contract_integration.py:325`
 
-## `bind_turn_contract` — function, line 6489
+## `bind_turn_contract` — function, line 6501
 - decorator: `contextmanager`
 - **called from:**
 - `routes/chat_routes.py:858`
 - `scripts/probe_browser_budget.py:59`
-- `src/turn_contract.py:6510`
+- `src/turn_contract.py:6522`
 - `tests/test_request_authority.py:43`
 - `tests/test_review_fixture_policy.py:41`
 - `tests/test_spec_contract_security.py:43`
@@ -1218,11 +1218,11 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_turn_contract_integration.py:323`
 - `tests/test_turn_contract_integration.py:343`
 
-## `with_turn_contract` — function, line 6497
+## `with_turn_contract` — function, line 6509
 - **called from:**
 - `tests/test_turn_contract_integration.py:294`
 
-## `wrapped` — function (async), line 6507
+## `wrapped` — function (async), line 6519
 - decorator: `wraps(func)`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_

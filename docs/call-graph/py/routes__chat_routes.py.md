@@ -54,7 +54,7 @@
 
 ## `_AgentRenderState` — class, line 189
 - **called from:**
-- `routes/chat_routes.py:4287`
+- `routes/chat_routes.py:4290`
 - `tests/test_foreground_model_routing.py:48`
 - `tests/test_runtime_evidence_contract.py:205`
 
@@ -104,7 +104,7 @@
 ## `_AgentRenderState.consume` — method, line 197
 - **called from:**
 - `routes/chat_routes.py:3074`
-- `routes/chat_routes.py:5103`
+- `routes/chat_routes.py:5106`
 - `routes/skills_routes.py:700`
 - `services/skills/agent_runner.py:146`
 - `services/skills/agent_runner.py:277`
@@ -162,9 +162,9 @@
 ## `_AgentRenderState.metadata` — method, line 222
 - **called from:**
 - `routes/chat_routes.py:230`
-- `routes/chat_routes.py:5202`
-- `routes/chat_routes.py:5246`
-- `routes/chat_routes.py:5332`
+- `routes/chat_routes.py:5205`
+- `routes/chat_routes.py:5249`
+- `routes/chat_routes.py:5335`
 - `tests/test_agent_render_ownership.py:26`
 - `tests/test_agent_render_ownership.py:36`
 - `tests/test_agent_render_ownership.py:52`
@@ -182,14 +182,14 @@
 - `tests/test_nested_invocation_ownership.py:304`
 - `tests/test_nested_invocation_ownership.py:306`
 - `tests/test_nested_invocation_ownership.py:544`
-- `static/js/chatRenderer.js:3632`
+- `static/js/chatRenderer.js:3643`
 - `static/js/fileHandler.js:461`
 
 ## `_AgentRenderState.message_saved` — method, line 229
 - **called from:**
-- `routes/chat_routes.py:5243`
-- `routes/chat_routes.py:5303`
-- `routes/chat_routes.py:5366`
+- `routes/chat_routes.py:5246`
+- `routes/chat_routes.py:5306`
+- `routes/chat_routes.py:5369`
 - `tests/test_agent_render_ownership.py:27`
 - `tests/test_agent_render_ownership.py:39`
 - `tests/test_agent_render_ownership.py:40`
@@ -199,16 +199,16 @@
 
 ## `_visible_response_text_for_save` — function, line 233
 - **called from:**
-- `routes/chat_routes.py:4816`
-- `routes/chat_routes.py:4818`
-- `routes/chat_routes.py:4825`
-- `routes/chat_routes.py:5269`
-- `routes/chat_routes.py:5271`
-- `routes/chat_routes.py:5276`
-- `routes/chat_routes.py:5336`
-- `routes/chat_routes.py:5338`
-- `routes/chat_routes.py:5342`
-- `routes/chat_routes.py:5350`
+- `routes/chat_routes.py:4819`
+- `routes/chat_routes.py:4821`
+- `routes/chat_routes.py:4828`
+- `routes/chat_routes.py:5272`
+- `routes/chat_routes.py:5274`
+- `routes/chat_routes.py:5279`
+- `routes/chat_routes.py:5339`
+- `routes/chat_routes.py:5341`
+- `routes/chat_routes.py:5345`
+- `routes/chat_routes.py:5353`
 - `tests/test_foreground_model_routing.py:38`
 - `tests/test_foreground_model_routing.py:39`
 - `tests/test_foreground_model_routing.py:40`
@@ -276,7 +276,7 @@
 
 ## `_prefers_structured_document_tools` — function, line 352
 - **called from:**
-- `routes/chat_routes.py:3980`
+- `routes/chat_routes.py:3983`
 - `tests/test_chat_route_tool_policy.py:111`
 - `tests/test_chat_route_tool_policy.py:114`
 - `tests/test_chat_route_tool_policy.py:117`
@@ -368,7 +368,7 @@
 
 ## `_external_execution_bridge` — function, line 811
 - **called from:**
-- `routes/chat_routes.py:5052`
+- `routes/chat_routes.py:5055`
 - `tests/test_remote_resource_identity.py:282`
 
 ## `route_tool` — function (async), line 826
@@ -377,25 +377,25 @@
 
 ## `_stream_agent_with_execution_bridge` — function (async), line 857
 - **called from:**
-- `routes/chat_routes.py:5051`
+- `routes/chat_routes.py:5054`
 - `tests/test_turn_contract_integration.py:120`
 - `tests/test_turn_contract_integration.py:161`
 
 ## `_should_detach_chat_stream` — function, line 868
 - **called from:**
-- `routes/chat_routes.py:5532`
+- `routes/chat_routes.py:5535`
 - `tests/test_compare_stop_disconnect_poll.py:485`
 
 ## `_post_response_extraction_allowed` — function, line 894
 - **called from:**
-- `routes/chat_routes.py:4850`
-- `routes/chat_routes.py:5317`
-- `routes/chat_routes.py:5382`
+- `routes/chat_routes.py:4853`
+- `routes/chat_routes.py:5320`
+- `routes/chat_routes.py:5385`
 - `tests/test_compare_stop_disconnect_poll.py:518`
 
 ## `_client_runtime_context_system_message` — function, line 920
 - **called from:**
-- `routes/chat_routes.py:4068`
+- `routes/chat_routes.py:4071`
 - `tests/test_client_tool_routing.py:1007`
 - `tests/test_client_tool_routing.py:1059`
 - `tests/test_client_tool_routing.py:1149`
@@ -413,14 +413,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_agent_turn_cwd` — function, line 1139
 - **called from:**
-- `routes/chat_routes.py:5084`
+- `routes/chat_routes.py:5087`
 - `tests/test_client_tool_routing.py:605`
 - `tests/test_client_tool_routing.py:611`
 - `tests/test_client_tool_routing.py:612`
 
 ## `_effective_agent_rounds` — function, line 1159
 - **called from:**
-- `routes/chat_routes.py:4988`
+- `routes/chat_routes.py:4991`
 - `tests/test_client_tool_routing.py:1017`
 - `tests/test_client_tool_routing.py:1018`
 - `tests/test_client_tool_routing.py:1019`
@@ -436,7 +436,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_effective_native_output_tokens` — function, line 1222
 - **called from:**
-- `routes/chat_routes.py:4995`
+- `routes/chat_routes.py:4998`
 - `tests/test_tui_round_cap.py:151`
 - `tests/test_tui_round_cap.py:152`
 - `tests/test_tui_round_cap.py:155`
@@ -444,12 +444,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_annotate_chat_cost` — function, line 1255
 - **called from:**
-- `routes/chat_routes.py:4660`
-- `routes/chat_routes.py:4808`
+- `routes/chat_routes.py:4663`
+- `routes/chat_routes.py:4811`
 
 ## `_stream_failure_status` — function, line 1283
 - **called from:**
-- `routes/chat_routes.py:4670`
+- `routes/chat_routes.py:4673`
 - `tests/test_foreground_model_routing.py:136`
 
 ## `_reject_delegated_tool_approval` — function, line 1297
@@ -471,7 +471,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `_chat_candidate_request_factory` — function, line 1378
 - **called from:**
 - `routes/chat_routes.py:2576`
-- `routes/chat_routes.py:4376`
+- `routes/chat_routes.py:4379`
 
 ## `factory` — function (async), line 1395
 - **called from:**
@@ -543,26 +543,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_stream_set` — function, line 1432
 - **called from:**
-- `routes/chat_routes.py:4265`
-- `routes/chat_routes.py:4563`
-- `routes/chat_routes.py:4753`
-- `routes/chat_routes.py:4760`
-- `routes/chat_routes.py:4894`
-- `routes/chat_routes.py:4903`
-- `routes/chat_routes.py:5124`
-- `routes/chat_routes.py:5134`
-- `routes/chat_routes.py:5241`
-- `routes/chat_routes.py:5424`
-- `routes/chat_routes.py:5433`
+- `routes/chat_routes.py:4268`
+- `routes/chat_routes.py:4566`
+- `routes/chat_routes.py:4756`
+- `routes/chat_routes.py:4763`
+- `routes/chat_routes.py:4897`
+- `routes/chat_routes.py:4906`
+- `routes/chat_routes.py:5127`
+- `routes/chat_routes.py:5137`
+- `routes/chat_routes.py:5244`
+- `routes/chat_routes.py:5427`
+- `routes/chat_routes.py:5436`
 
 ## `_persist_stream_partial` — function, line 1445
 - **called from:**
-- `routes/chat_routes.py:4914`
-- `routes/chat_routes.py:4932`
-- `routes/chat_routes.py:4949`
-- `routes/chat_routes.py:5444`
-- `routes/chat_routes.py:5469`
-- `routes/chat_routes.py:5490`
+- `routes/chat_routes.py:4917`
+- `routes/chat_routes.py:4935`
+- `routes/chat_routes.py:4952`
+- `routes/chat_routes.py:5447`
+- `routes/chat_routes.py:5472`
+- `routes/chat_routes.py:5493`
 - `tests/test_partial_tool_events.py:59`
 - `tests/test_partial_tool_events.py:73`
 
@@ -572,10 +572,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_sink_tool_state` — function, line 1556
 - **called from:**
-- `routes/chat_routes.py:4339`
-- `routes/chat_routes.py:5442`
-- `routes/chat_routes.py:5463`
-- `routes/chat_routes.py:5485`
+- `routes/chat_routes.py:4342`
+- `routes/chat_routes.py:5445`
+- `routes/chat_routes.py:5466`
+- `routes/chat_routes.py:5488`
 - `tests/test_partial_tool_events.py:34`
 - `tests/test_partial_tool_events.py:35`
 - `tests/test_partial_tool_events.py:44`
@@ -583,7 +583,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_checkpoint_draft` — function, line 1574
 - **called from:**
-- `routes/chat_routes.py:4344`
+- `routes/chat_routes.py:4347`
 
 ## `_message_plain_text` — function, line 1601
 - **called from:**
@@ -596,7 +596,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_ensure_current_request_is_latest_user` — function, line 1622
 - **called from:**
-- `routes/chat_routes.py:4277`
+- `routes/chat_routes.py:4280`
 
 ## `_recent_session_text` — function, line 1688
 - **called from:**
@@ -698,7 +698,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `_first_image_attachment` — function, line 2030
 - **called from:**
-- `routes/chat_routes.py:4401`
+- `routes/chat_routes.py:4404`
 
 ## `_ts_or_zero` — function, line 2053
 - **called from:**
@@ -766,85 +766,85 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `stream_with_save` — function (async), line 4087
+## `stream_with_save` — function (async), line 4090
 - **called from:**
-- `routes/chat_routes.py:5509`
+- `routes/chat_routes.py:5512`
 
-## `_on_research_done` — function, line 4179
-- **called from:**
-_no local callers found (framework-called, dynamic, or dead — check before deleting)_
-
-## `_checkpoint` — function, line 4309
-- **called from:**
-- `routes/chat_routes.py:4900`
-- `routes/chat_routes.py:5430`
-
-## `_image_progress_callback` — function (async), line 4424
+## `_on_research_done` — function, line 4182
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `_commit_chat_compaction` — function, line 4510
+## `_checkpoint` — function, line 4312
 - **called from:**
-- `routes/chat_routes.py:4542`
-- `routes/chat_routes.py:4575`
-- `routes/chat_routes.py:4584`
-- `routes/chat_routes.py:4598`
-- `routes/chat_routes.py:4740`
-- `routes/chat_routes.py:4811`
+- `routes/chat_routes.py:4903`
+- `routes/chat_routes.py:5433`
 
-## `_safe_stream` — function (async), line 5505
+## `_image_progress_callback` — function (async), line 4427
 - **called from:**
-- `routes/chat_routes.py:5536`
-- `routes/chat_routes.py:5541`
+_no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `chat_resume` — function (async), line 5557
+## `_commit_chat_compaction` — function, line 4513
+- **called from:**
+- `routes/chat_routes.py:4545`
+- `routes/chat_routes.py:4578`
+- `routes/chat_routes.py:4587`
+- `routes/chat_routes.py:4601`
+- `routes/chat_routes.py:4743`
+- `routes/chat_routes.py:4814`
+
+## `_safe_stream` — function (async), line 5508
+- **called from:**
+- `routes/chat_routes.py:5539`
+- `routes/chat_routes.py:5544`
+
+## `chat_resume` — function (async), line 5560
 - **route:** `GET /api/chat/resume/{session_id}`
 - decorator: `router.get("/api/chat/resume/{session_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `chat_stop` — function (async), line 5577
+## `chat_stop` — function (async), line 5580
 - **route:** `POST /api/chat/stop/{session_id}`
 - decorator: `router.post("/api/chat/stop/{session_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `chat_finish` — function (async), line 5584
+## `chat_finish` — function (async), line 5587
 - **route:** `POST /api/chat/finish/{session_id}`
 - decorator: `router.post("/api/chat/finish/{session_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `chat_stream_status` — function (async), line 5595
+## `chat_stream_status` — function (async), line 5598
 - **route:** `GET /api/chat/stream_status/{session_id}`
 - decorator: `router.get("/api/chat/stream_status/{session_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `inject_context` — function (async), line 5618
+## `inject_context` — function (async), line 5621
 - **route:** `POST /api/inject_context/{session_id}`
 - decorator: `router.post("/api/inject_context/{session_id}")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `search_messages` — function (async), line 5633
+## `search_messages` — function (async), line 5636
 - **route:** `GET /api/search`
 - decorator: `router.get("/api/search")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `reasoning_control` — function (async), line 5657
+## `reasoning_control` — function (async), line 5660
 - **route:** `GET /api/chat/reasoning-control`
 - decorator: `router.get("/api/chat/reasoning-control")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `rewrite_message` — function (async), line 5703
+## `rewrite_message` — function (async), line 5706
 - **route:** `POST /api/rewrite`
 - decorator: `router.post("/api/rewrite")`
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `stream_rewrite` — function (async), line 5740
+## `stream_rewrite` — function (async), line 5743
 - **called from:**
-- `routes/chat_routes.py:5814`
+- `routes/chat_routes.py:5817`

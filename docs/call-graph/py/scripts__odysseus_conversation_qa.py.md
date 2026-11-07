@@ -327,8 +327,8 @@
 - `services/memory/skills.py:122`
 - `src/agent_jobs.py:111`
 - `src/agent_runtime/authority.py:705`
-- `src/agent_runtime/process_resources.py:423`
-- `src/agent_runtime/process_resources.py:519`
+- `src/agent_runtime/process_resources.py:425`
+- `src/agent_runtime/process_resources.py:521`
 - `src/bg_jobs.py:70`
 - `src/builtin_actions.py:3662`
 - `src/containment.py:450`
@@ -353,9 +353,9 @@
 - `tests/test_background_resource_identity.py:92`
 - `tests/test_background_resource_identity.py:201`
 - `tests/test_background_resource_identity.py:254`
-- `tests/test_wave3_launch_cost_lifecycle.py:149`
-- `tests/test_wave3_launch_cost_lifecycle.py:165`
-- `tests/test_wave3_launch_cost_lifecycle.py:213`
+- `tests/test_wave3_launch_cost_lifecycle.py:131`
+- `tests/test_wave3_launch_cost_lifecycle.py:147`
+- `tests/test_wave3_launch_cost_lifecycle.py:195`
 
 ## `judge_replayed_flows` — function, line 1244
 - **called from:**

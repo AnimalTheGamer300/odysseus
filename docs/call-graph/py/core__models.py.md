@@ -27,9 +27,9 @@
 - `routes/chat_routes.py:1512`
 - `routes/chat_routes.py:1515`
 - `routes/chat_routes.py:2625`
-- `routes/chat_routes.py:4194`
-- `routes/chat_routes.py:4495`
-- `routes/chat_routes.py:5623`
+- `routes/chat_routes.py:4197`
+- `routes/chat_routes.py:4498`
+- `routes/chat_routes.py:5626`
 - `routes/history/history_routes.py:403`
 - `routes/history/history_routes.py:674`
 - `routes/history/history_routes.py:1127`
@@ -84,7 +84,7 @@
 ## `ChatMessage.to_dict` — method, line 85
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -92,26 +92,26 @@
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -207,7 +207,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16891 more (grep the name in repo)
+- … +16892 more (grep the name in repo)
 
 ## `Session` — class, line 98
 - decorator: `dataclass`
@@ -296,9 +296,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1967`
 - `routes/chat_routes.py:1515`
 - `routes/chat_routes.py:2625`
-- `routes/chat_routes.py:4194`
-- `routes/chat_routes.py:4495`
-- `routes/chat_routes.py:5623`
+- `routes/chat_routes.py:4197`
+- `routes/chat_routes.py:4498`
+- `routes/chat_routes.py:5626`
 - `routes/history/history_routes.py:675`
 - `routes/history/history_routes.py:1127`
 - `routes/research/research_routes.py:882`
@@ -446,7 +446,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16891 more (grep the name in repo)
+- … +16892 more (grep the name in repo)
 
 ## `Session.__getitem__` — method, line 219
 - **called from:**

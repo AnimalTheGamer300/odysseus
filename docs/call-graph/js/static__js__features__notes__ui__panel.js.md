@@ -35,8 +35,8 @@
 ## `openPanel` — function, line 104
 - **called from:**
 - `static/app.js:1221`
-- `static/js/chat.js:9369`
-- `static/js/chat.js:9410`
+- `static/js/chat.js:9407`
+- `static/js/chat.js:9448`
 - `static/js/document.js:7387`
 - `static/js/document.js:11837`
 - `static/js/document.js:12046`

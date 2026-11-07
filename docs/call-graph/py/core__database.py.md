@@ -163,7 +163,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - decorator: `property`
 - **called from:**
 - `app.py:1225`
-- `routes/chat_routes.py:5604`
+- `routes/chat_routes.py:5607`
 - `routes/session_routes.py:242`
 - `src/agent_jobs.py:295`
 - `src/bg_monitor.py:161`
@@ -171,7 +171,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `Session.to_dict` — method, line 261
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -179,26 +179,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -242,9 +242,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:1512`
 - `routes/chat_routes.py:1515`
 - `routes/chat_routes.py:2625`
-- `routes/chat_routes.py:4194`
-- `routes/chat_routes.py:4495`
-- `routes/chat_routes.py:5623`
+- `routes/chat_routes.py:4197`
+- `routes/chat_routes.py:4498`
+- `routes/chat_routes.py:5626`
 - `routes/history/history_routes.py:403`
 - `routes/history/history_routes.py:674`
 - `routes/history/history_routes.py:1127`
@@ -1021,8 +1021,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `set_session_mode` — function, line 3076
 - **called from:**
-- `routes/chat_routes.py:4085`
-- `routes/chat_routes.py:4164`
+- `routes/chat_routes.py:4088`
+- `routes/chat_routes.py:4167`
 - `tests/test_session_mode_helpers.py:55`
 - `tests/test_session_mode_helpers.py:65`
 

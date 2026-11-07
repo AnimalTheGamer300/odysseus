@@ -215,14 +215,14 @@
 - `static/js/chat.js:7414`
 - `static/js/chat.js:8104`
 - `static/js/chat.js:8110`
-- `static/js/chat.js:8462`
-- `static/js/chat.js:8519`
-- `static/js/chat.js:8591`
-- `static/js/chat.js:9000`
-- `static/js/chat.js:9001`
-- `static/js/chat.js:9018`
-- `static/js/chat.js:9019`
-- `static/js/chat.js:9026`
+- `static/js/chat.js:8479`
+- `static/js/chat.js:8548`
+- `static/js/chat.js:8629`
+- `static/js/chat.js:9038`
+- `static/js/chat.js:9039`
+- `static/js/chat.js:9056`
+- `static/js/chat.js:9057`
+- `static/js/chat.js:9064`
 - … +954 more (grep the name in repo)
 
 ## `sep` — arrow, line 67

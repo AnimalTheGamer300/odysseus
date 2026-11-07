@@ -122,7 +122,7 @@
 - **called from:**
 - `core/auth.py:563`
 - `core/auth.py:599`
-- `src/agent_runtime/process_resources.py:480`
+- `src/agent_runtime/process_resources.py:482`
 - `src/bg_jobs.py:253`
 - `src/bg_jobs.py:324`
 - `src/bg_jobs.py:465`

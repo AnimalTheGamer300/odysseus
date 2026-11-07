@@ -421,7 +421,7 @@
 - `core/auth.py:205`
 - `core/auth.py:232`
 - `core/auth.py:244`
-- … +16891 more (grep the name in repo)
+- … +16892 more (grep the name in repo)
 
 ## `UsageCache.put` — method, line 717
 - **called from:**
@@ -460,8 +460,8 @@
 - `services/shell/service.py:121`
 - `src/agent_loop.py:25996`
 - `src/agent_loop.py:26013`
-- `src/agent_loop.py:34262`
-- `src/agent_loop.py:34316`
+- `src/agent_loop.py:34304`
+- `src/agent_loop.py:34358`
 - `src/agent_tools/filesystem_tools.py:128`
 - `src/agent_tools/filesystem_tools.py:151`
 - `src/agent_tools/filesystem_tools.py:158`
@@ -528,10 +528,10 @@
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4565`
-- `src/llm_core.py:4566`
-- `src/llm_core.py:4764`
-- `src/llm_core.py:5124`
+- `src/llm_core.py:4571`
+- `src/llm_core.py:4572`
+- `src/llm_core.py:4770`
+- `src/llm_core.py:5130`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`
@@ -565,7 +565,7 @@
 - `tests/test_context_cache_per_endpoint.py:17`
 - `tests/test_context_resolution_route.py:90`
 - `tests/test_editor_generation_model_routing.py:242`
-- … +197 more (grep the name in repo)
+- … +196 more (grep the name in repo)
 
 ## `get_account_usage` — function, line 740
 - **called from:**

@@ -80,7 +80,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5580`
+- `routes/chat_routes.py:5583`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`

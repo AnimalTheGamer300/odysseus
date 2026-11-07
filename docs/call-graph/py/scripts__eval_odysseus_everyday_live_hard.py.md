@@ -14,7 +14,7 @@
 - `scripts/run_sft_overnight_fixture_flows.py:499`
 - `static/js/calendar.js:3526`
 - `static/js/chat.js:5689`
-- `static/js/chatRenderer.js:3435`
+- `static/js/chatRenderer.js:3446`
 - `static/js/cookbookRunning.js:3485`
 
 ## `_replace_marker_placeholders` — function, line 43

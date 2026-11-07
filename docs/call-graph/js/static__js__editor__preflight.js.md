@@ -327,7 +327,7 @@
 - `tests/test_background_resource_identity.py:106`
 - `tests/test_background_resource_identity.py:245`
 - `tests/test_runtime_resource_integration.py:251`
-- `static/js/chatRenderer.js:3852`
+- `static/js/chatRenderer.js:3863`
 - `static/js/chatStream.js:172`
 - `static/js/cookbookDownload.js:181`
 - `static/js/document.js:6424`
@@ -385,10 +385,10 @@
 - `static/js/chat.js:7399`
 - `static/js/chat.js:7476`
 - `static/js/chat.js:7493`
-- `static/js/chat.js:8880`
-- `static/js/chat.js:8894`
-- `static/js/chat.js:8910`
-- `static/js/chat.js:9197`
+- `static/js/chat.js:8918`
+- `static/js/chat.js:8932`
+- `static/js/chat.js:8948`
+- `static/js/chat.js:9235`
 - `static/js/codeRunner.js:236`
 - `static/js/compare/panes.js:407`
 - `static/js/compare/stream.js:217`

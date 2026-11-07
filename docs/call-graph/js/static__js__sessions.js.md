@@ -765,7 +765,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:6686`
 - `static/js/chat.js:6875`
 - `static/js/chat.js:8278`
-- `static/js/chat.js:9384`
+- `static/js/chat.js:9422`
 - `static/js/chatRenderer.js:1733`
 - `static/js/document.js:12354`
 - `static/js/documentLibrary.js:2557`
@@ -900,7 +900,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:2774`
 - `static/js/chat.js:2785`
 - `static/js/chat.js:2821`
-- `static/js/chat.js:9459`
+- `static/js/chat.js:9497`
 - `static/js/document.js:12323`
 - `static/js/documentLibrary.js:1261`
 - `static/js/documentLibrary.js:1278`
@@ -1024,8 +1024,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:5927`
 - `static/js/chat.js:6088`
 - `static/js/chat.js:7275`
-- `static/js/chat.js:8765`
-- `static/js/chat.js:8801`
+- `static/js/chat.js:8803`
+- `static/js/chat.js:8839`
 - `static/js/chatStream.js:313`
 - `static/js/documentLibrary.js:1267`
 - `static/js/group.js:141`
@@ -1154,7 +1154,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `markResearching` — function, line 3113
 - **called from:**
 - `static/js/chat.js:5051`
-- `static/js/chat.js:8835`
+- `static/js/chat.js:8873`
 - `static/js/sessions.js:3113`
 
 ## `clearResearching` — function, line 3120
@@ -1162,10 +1162,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:5121`
 - `static/js/chat.js:5128`
 - `static/js/chat.js:5149`
-- `static/js/chat.js:8734`
-- `static/js/chat.js:8742`
-- `static/js/chat.js:8897`
-- `static/js/chat.js:8913`
+- `static/js/chat.js:8772`
+- `static/js/chat.js:8780`
+- `static/js/chat.js:8935`
+- `static/js/chat.js:8951`
 - `static/js/sessions.js:3120`
 
 ## `markStreaming` — function, line 3126

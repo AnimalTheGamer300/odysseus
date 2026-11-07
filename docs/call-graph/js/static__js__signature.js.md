@@ -187,10 +187,10 @@
 - `src/agent_tools/web_tools.py:2711`
 - `src/chatgpt_subscription.py:734`
 - `src/email_thread_parser.py:318`
-- `src/llm_core.py:4565`
-- `src/llm_core.py:4566`
-- `src/llm_core.py:4764`
-- `src/llm_core.py:5124`
+- `src/llm_core.py:4571`
+- `src/llm_core.py:4572`
+- `src/llm_core.py:4770`
+- `src/llm_core.py:5130`
 - `src/shutdown.py:34`
 - `src/skill_index.py:116`
 - `src/task_scheduler.py:581`
@@ -224,7 +224,7 @@
 - `tests/test_context_cache_per_endpoint.py:17`
 - `tests/test_context_resolution_route.py:90`
 - `tests/test_editor_generation_model_routing.py:242`
-- … +197 more (grep the name in repo)
+- … +196 more (grep the name in repo)
 
 ## `undo` — method?, line 261
 - **called from:**

@@ -14,8 +14,8 @@
 ## `prune_multimodal_images` — function, line 45
 - **called from:**
 - `src/clean_agent_preview.py:6302`
-- `src/llm_core.py:4619`
-- `src/llm_core.py:4693`
+- `src/llm_core.py:4625`
+- `src/llm_core.py:4699`
 - `tests/test_context_compactor.py:296`
 
 ## `_image_turn_label` — function, line 98
@@ -61,13 +61,13 @@
 - `src/agent_loop.py:30526`
 - `src/agent_loop.py:30629`
 - `src/agent_loop.py:30638`
-- `src/agent_loop.py:31257`
-- `src/agent_loop.py:31390`
-- `src/agent_loop.py:32268`
-- `src/agent_loop.py:37709`
-- `src/agent_loop.py:38080`
-- `src/agent_loop.py:38160`
-- `src/agent_loop.py:38527`
+- `src/agent_loop.py:31299`
+- `src/agent_loop.py:31432`
+- `src/agent_loop.py:32310`
+- `src/agent_loop.py:37751`
+- `src/agent_loop.py:38122`
+- `src/agent_loop.py:38202`
+- `src/agent_loop.py:38569`
 - `src/context_compactor.py:308`
 - `tests/test_context_compactor.py:309`
 - `tests/test_context_compactor.py:316`
@@ -143,8 +143,8 @@
 - `src/agent_loop.py:24659`
 - `src/clean_agent_preview.py:5546`
 - `src/context_compactor.py:697`
-- `src/llm_core.py:4630`
-- `src/llm_core.py:4711`
+- `src/llm_core.py:4636`
+- `src/llm_core.py:4717`
 - `tests/test_context_compactor.py:86`
 - `tests/test_context_compactor.py:111`
 - `tests/test_context_compactor.py:129`
@@ -211,7 +211,7 @@
 ## `apply_compaction_state` — function, line 1007
 - **called from:**
 - `routes/chat_routes.py:2596`
-- `routes/chat_routes.py:4511`
+- `routes/chat_routes.py:4514`
 - `src/agent_loop.py:27083`
 - `src/context_compactor.py:1060`
 - `tests/test_context_compactor.py:749`

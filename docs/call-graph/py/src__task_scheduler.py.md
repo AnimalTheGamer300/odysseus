@@ -337,7 +337,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5541`
+- `routes/chat_routes.py:5544`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -391,7 +391,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5580`
+- `routes/chat_routes.py:5583`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`

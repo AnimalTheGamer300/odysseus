@@ -22,15 +22,15 @@
 - `src/agent_runtime/process_resources.py:298`
 - `src/agent_runtime/process_resources.py:300`
 - `src/agent_runtime/process_resources.py:318`
-- `src/agent_runtime/process_resources.py:368`
+- `src/agent_runtime/process_resources.py:370`
 
 ## `launch_path` — function, line 41
 - **called from:**
 - `src/agent_runtime/process_resources.py:130`
-- `src/agent_runtime/process_resources.py:415`
-- `src/agent_runtime/process_resources.py:436`
-- `src/agent_runtime/process_resources.py:482`
-- `src/agent_runtime/process_resources.py:501`
+- `src/agent_runtime/process_resources.py:417`
+- `src/agent_runtime/process_resources.py:438`
+- `src/agent_runtime/process_resources.py:484`
+- `src/agent_runtime/process_resources.py:503`
 - `src/bg_jobs.py:181`
 - `tests/test_background_resource_identity.py:160`
 - `tests/test_background_resource_identity.py:276`
@@ -40,21 +40,21 @@
 - `tests/test_runtime_resource_integration.py:501`
 - `tests/test_wave3_background_followup.py:71`
 - `tests/test_wave3_background_followup.py:80`
-- `tests/test_wave3_launch_cost_lifecycle.py:59`
-- `tests/test_wave3_launch_cost_lifecycle.py:86`
-- `tests/test_wave3_launch_cost_lifecycle.py:100`
-- `tests/test_wave3_launch_cost_lifecycle.py:112`
+- `tests/test_wave3_launch_cost_lifecycle.py:41`
+- `tests/test_wave3_launch_cost_lifecycle.py:68`
+- `tests/test_wave3_launch_cost_lifecycle.py:82`
+- `tests/test_wave3_launch_cost_lifecycle.py:94`
+- `tests/test_wave3_launch_cost_lifecycle.py:113`
+- `tests/test_wave3_launch_cost_lifecycle.py:115`
+- `tests/test_wave3_launch_cost_lifecycle.py:128`
+- `tests/test_wave3_launch_cost_lifecycle.py:130`
 - `tests/test_wave3_launch_cost_lifecycle.py:131`
 - `tests/test_wave3_launch_cost_lifecycle.py:133`
-- `tests/test_wave3_launch_cost_lifecycle.py:146`
-- `tests/test_wave3_launch_cost_lifecycle.py:148`
-- `tests/test_wave3_launch_cost_lifecycle.py:149`
 - `tests/test_wave3_launch_cost_lifecycle.py:151`
-- `tests/test_wave3_launch_cost_lifecycle.py:169`
+- `tests/test_wave3_launch_cost_lifecycle.py:159`
 - `tests/test_wave3_launch_cost_lifecycle.py:177`
-- `tests/test_wave3_launch_cost_lifecycle.py:195`
-- `tests/test_wave3_launch_cost_lifecycle.py:206`
-- `tests/test_wave3_launch_cost_lifecycle.py:217`
+- `tests/test_wave3_launch_cost_lifecycle.py:188`
+- `tests/test_wave3_launch_cost_lifecycle.py:199`
 
 ## `seal_launch_scopes` — function, line 47
 - **called from:**
@@ -90,7 +90,7 @@
 - `src/agent_runtime/authority.py:713`
 - `src/agent_runtime/process_resources.py:175`
 - `src/agent_runtime/process_resources.py:270`
-- `src/agent_runtime/process_resources.py:535`
+- `src/agent_runtime/process_resources.py:537`
 - `src/bg_jobs.py:380`
 - `src/bg_jobs.py:394`
 - `src/bg_jobs.py:396`
@@ -101,7 +101,7 @@
 - `tests/test_background_resource_identity.py:56`
 - `tests/test_background_resource_identity.py:65`
 - `tests/test_wave3_background_followup.py:48`
-- `tests/test_wave3_launch_cost_lifecycle.py:138`
+- `tests/test_wave3_launch_cost_lifecycle.py:120`
 
 ## `validate_job_receipt` — function, line 107
 - **called from:**
@@ -185,7 +185,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - **called from:**
 - `src/agent_runtime/effect_adapters.py:263`
 - `src/agent_runtime/journal.py:89`
-- `src/agent_runtime/process_resources.py:422`
+- `src/agent_runtime/process_resources.py:424`
 - `src/tool_execution.py:1946`
 - `tests/test_effect_journal_persistence.py:26`
 - `tests/test_effect_journal_persistence.py:39`
@@ -279,8 +279,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_runtime/process_resources.py:272`
 - `src/agent_runtime/process_resources.py:326`
 - `src/agent_runtime/process_resources.py:339`
-- `src/agent_runtime/process_resources.py:357`
-- `src/agent_runtime/process_resources.py:412`
+- `src/agent_runtime/process_resources.py:359`
+- `src/agent_runtime/process_resources.py:414`
 - `src/agent_runtime/remote_resources.py:219`
 - `src/agent_runtime/resource_binding.py:66`
 - `src/agent_runtime/resource_binding.py:81`
@@ -324,7 +324,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `BoundProcessOperation.to_dict` — method, line 274
 - **called from:**
 - `core/models.py:175`
-- `routes/chat_routes.py:5643`
+- `routes/chat_routes.py:5646`
 - `services/memory/builtin_skills.py:66`
 - `services/memory/builtin_skills.py:73`
 - `services/memory/skills.py:280`
@@ -332,26 +332,26 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `services/memory/skills.py:501`
 - `src/agent_evidence.py:1270`
 - `src/agent_loop.py:28809`
-- `src/agent_loop.py:31336`
-- `src/agent_loop.py:31809`
-- `src/agent_loop.py:32074`
-- `src/agent_loop.py:32114`
-- `src/agent_loop.py:32145`
-- `src/agent_loop.py:32198`
-- `src/agent_loop.py:32326`
-- `src/agent_loop.py:32658`
-- `src/agent_loop.py:34878`
-- `src/agent_loop.py:36887`
-- `src/agent_loop.py:37210`
-- `src/agent_loop.py:37423`
-- `src/agent_loop.py:37478`
-- `src/agent_loop.py:37535`
-- `src/agent_loop.py:37869`
-- `src/agent_loop.py:37881`
-- `src/agent_loop.py:37987`
-- `src/agent_loop.py:38909`
-- `src/agent_loop.py:38910`
-- `src/agent_loop.py:38915`
+- `src/agent_loop.py:31378`
+- `src/agent_loop.py:31851`
+- `src/agent_loop.py:32116`
+- `src/agent_loop.py:32156`
+- `src/agent_loop.py:32187`
+- `src/agent_loop.py:32240`
+- `src/agent_loop.py:32368`
+- `src/agent_loop.py:32700`
+- `src/agent_loop.py:34920`
+- `src/agent_loop.py:36929`
+- `src/agent_loop.py:37252`
+- `src/agent_loop.py:37465`
+- `src/agent_loop.py:37520`
+- `src/agent_loop.py:37577`
+- `src/agent_loop.py:37911`
+- `src/agent_loop.py:37923`
+- `src/agent_loop.py:38029`
+- `src/agent_loop.py:38963`
+- `src/agent_loop.py:38964`
+- `src/agent_loop.py:38969`
 - `src/agent_runtime/authority.py:282`
 - `src/agent_runtime/authority.py:283`
 - `src/agent_runtime/authority.py:284`
@@ -409,19 +409,18 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_runtime_resource_integration.py:363`
 - `tests/test_runtime_resource_integration.py:396`
 - `tests/test_runtime_resource_integration.py:468`
-- `tests/test_wave3_launch_cost_lifecycle.py:43`
-- `tests/test_wave3_launch_cost_lifecycle.py:78`
-- `tests/test_wave3_launch_cost_lifecycle.py:162`
-- `tests/test_wave3_launch_cost_lifecycle.py:192`
-- `tests/test_wave3_launch_cost_lifecycle.py:202`
-- `tests/test_wave3_launch_cost_lifecycle.py:211`
+- `tests/test_wave3_launch_cost_lifecycle.py:60`
+- `tests/test_wave3_launch_cost_lifecycle.py:144`
+- `tests/test_wave3_launch_cost_lifecycle.py:174`
+- `tests/test_wave3_launch_cost_lifecycle.py:184`
+- `tests/test_wave3_launch_cost_lifecycle.py:193`
 
 ## `active_process_operation` — function, line 330
 - **called from:**
 - `src/agent_runtime/effect_adapters.py:59`
-- `src/agent_runtime/process_resources.py:353`
-- `src/agent_runtime/process_resources.py:418`
-- `src/agent_runtime/process_resources.py:523`
+- `src/agent_runtime/process_resources.py:355`
+- `src/agent_runtime/process_resources.py:420`
+- `src/agent_runtime/process_resources.py:525`
 - `src/agent_tools/bg_job_tools.py:85`
 - `src/bg_jobs.py:95`
 - `src/tool_execution.py:1249`
@@ -432,7 +431,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_runtime_resource_integration.py:197`
 - `tests/test_runtime_resource_integration.py:198`
 - `tests/test_runtime_resource_integration.py:203`
-- `tests/test_wave3_launch_cost_lifecycle.py:58`
+- `tests/test_wave3_launch_cost_lifecycle.py:40`
 
 ## `bind_process_operation` — function, line 335
 - decorator: `contextmanager`
@@ -444,37 +443,35 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_runtime_resource_integration.py:75`
 - `tests/test_runtime_resource_integration.py:189`
 - `tests/test_runtime_resource_integration.py:196`
-- `tests/test_wave3_launch_cost_lifecycle.py:49`
-- `tests/test_wave3_launch_cost_lifecycle.py:82`
-- `tests/test_wave3_launch_cost_lifecycle.py:91`
+- `tests/test_wave3_launch_cost_lifecycle.py:64`
+- `tests/test_wave3_launch_cost_lifecycle.py:73`
 
-## `require_launch` — function, line 352
+## `require_launch` — function, line 354
 - **called from:**
 - `src/agent_tools/subprocess_tools.py:529`
 - `src/agent_tools/subprocess_tools.py:638`
 - `src/agent_tools/subprocess_tools.py:934`
 - `src/bg_jobs.py:94`
 
-## `require_process_admission` — function, line 365
+## `require_process_admission` — function, line 367
 - **called from:**
-- `src/agent_runtime/process_resources.py:356`
-- `src/agent_runtime/process_resources.py:526`
+- `src/agent_runtime/process_resources.py:358`
+- `src/agent_runtime/process_resources.py:528`
 - `src/agent_tools/bg_job_tools.py:92`
 
-## `guard_launch_workspace` — function, line 379
+## `guard_launch_workspace` — function, line 381
 - **called from:**
-- `src/agent_runtime/process_resources.py:344`
 - `tests/test_background_resource_identity.py:176`
 - `tests/test_background_resource_identity.py:179`
 - `tests/test_browser_resource_identity.py:247`
-- `tests/test_wave3_launch_cost_lifecycle.py:184`
-- `tests/test_wave3_launch_cost_lifecycle.py:187`
+- `tests/test_wave3_launch_cost_lifecycle.py:166`
+- `tests/test_wave3_launch_cost_lifecycle.py:169`
 
-## `unresolved` — function, line 395
+## `unresolved` — function, line 397
 - **called from:**
 _no local callers found (framework-called, dynamic, or dead — check before deleting)_
 
-## `publish_launch` — function, line 410
+## `publish_launch` — function, line 412
 - decorator: `store_transaction(lambda: _LAUNCH_DIR / "publication")`
 - **called from:**
 - `src/agent_tools/subprocess_tools.py:541`
@@ -483,31 +480,31 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_runtime_resource_integration.py:367`
 - `tests/test_runtime_resource_integration.py:400`
 - `tests/test_runtime_resource_integration.py:472`
-- `tests/test_wave3_launch_cost_lifecycle.py:164`
-- `tests/test_wave3_launch_cost_lifecycle.py:193`
-- `tests/test_wave3_launch_cost_lifecycle.py:203`
-- `tests/test_wave3_launch_cost_lifecycle.py:212`
+- `tests/test_wave3_launch_cost_lifecycle.py:146`
+- `tests/test_wave3_launch_cost_lifecycle.py:175`
+- `tests/test_wave3_launch_cost_lifecycle.py:185`
+- `tests/test_wave3_launch_cost_lifecycle.py:194`
 
-## `retire_launch` — function, line 429
+## `retire_launch` — function, line 431
 - decorator: `store_transaction(lambda: _LAUNCH_DIR / "publication")`
 - **called from:**
 - `src/agent_tools/subprocess_tools.py:573`
 - `src/bg_jobs.py:227`
-- `tests/test_wave3_launch_cost_lifecycle.py:103`
-- `tests/test_wave3_launch_cost_lifecycle.py:145`
-- `tests/test_wave3_launch_cost_lifecycle.py:150`
+- `tests/test_wave3_launch_cost_lifecycle.py:85`
+- `tests/test_wave3_launch_cost_lifecycle.py:127`
+- `tests/test_wave3_launch_cost_lifecycle.py:132`
 
-## `prune_foreground_publications` — function, line 451
+## `prune_foreground_publications` — function, line 453
 - decorator: `store_transaction(lambda: _LAUNCH_DIR / "publication")`
 - **called from:**
 - `src/process_reaper.py:292`
-- `tests/test_wave3_launch_cost_lifecycle.py:168`
+- `tests/test_wave3_launch_cost_lifecycle.py:150`
+- `tests/test_wave3_launch_cost_lifecycle.py:158`
 - `tests/test_wave3_launch_cost_lifecycle.py:176`
-- `tests/test_wave3_launch_cost_lifecycle.py:194`
-- `tests/test_wave3_launch_cost_lifecycle.py:205`
-- `tests/test_wave3_launch_cost_lifecycle.py:216`
+- `tests/test_wave3_launch_cost_lifecycle.py:187`
+- `tests/test_wave3_launch_cost_lifecycle.py:198`
 
-## `attach_containment_processes` — function, line 496
+## `attach_containment_processes` — function, line 498
 - decorator: `store_transaction(lambda: _LAUNCH_DIR / "publication")`
 - **called from:**
 - `src/agent_tools/subprocess_tools.py:549`
@@ -515,6 +512,6 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `tests/test_runtime_resource_integration.py:413`
 - `tests/test_runtime_resource_integration.py:495`
 
-## `expected_job` — function, line 522
+## `expected_job` — function, line 524
 - **called from:**
 - `src/agent_tools/bg_job_tools.py:107`

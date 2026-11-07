@@ -81,10 +81,10 @@
 - `routes/chat_routes.py:1567`
 - `routes/chat_routes.py:1635`
 - `routes/chat_routes.py:2340`
-- `routes/chat_routes.py:4149`
-- `routes/chat_routes.py:4150`
-- `routes/chat_routes.py:4275`
-- `routes/chat_routes.py:5677`
+- `routes/chat_routes.py:4152`
+- `routes/chat_routes.py:4153`
+- `routes/chat_routes.py:4278`
+- `routes/chat_routes.py:5680`
 - `routes/cookbook_routes.py:1608`
 - `routes/cookbook_routes.py:3262`
 - `routes/cookbook_routes.py:3568`
@@ -115,7 +115,7 @@
 - `routes/email/email_helpers.py:1494`
 - `routes/email/email_helpers.py:1523`
 - `routes/email/email_helpers.py:1549`
-- … +629 more (grep the name in repo)
+- … +628 more (grep the name in repo)
 
 ## `notify` — function, line 71
 - **called from:**
@@ -293,7 +293,7 @@
 - `src/agent_runtime/journal.py:237`
 - `src/agent_runtime/journal.py:280`
 - `src/agent_runtime/owned_resources.py:443`
-- `src/agent_runtime/process_resources.py:349`
+- `src/agent_runtime/process_resources.py:351`
 - `src/agent_runtime/remote_resources.py:238`
 - `src/agent_runtime/resource_binding.py:218`
 - `src/agent_tools/web_tools_prewave3.py:2677`
@@ -302,7 +302,7 @@
 - `src/teacher_escalation.py:86`
 - `src/tool_execution.py:131`
 - `src/tool_execution.py:2029`
-- `src/turn_contract.py:6494`
+- `src/turn_contract.py:6506`
 - `tests/test_agent_state_dir_confinement.py:70`
 - `tests/test_agent_state_dir_confinement.py:161`
 - `tests/test_agent_state_dir_confinement.py:508`
@@ -347,8 +347,8 @@
 
 ## `subscribe` — function, line 166
 - **called from:**
-- `routes/chat_routes.py:5543`
-- `routes/chat_routes.py:5563`
+- `routes/chat_routes.py:5546`
+- `routes/chat_routes.py:5566`
 - `tests/test_agent_runs_terminal_order.py:19`
 - `tests/test_agent_runs_terminal_order.py:49`
 - `tests/test_compare_stop_disconnect_poll.py:88`

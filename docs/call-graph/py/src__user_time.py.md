@@ -112,7 +112,7 @@
 - `src/agent_loop.py:1829`
 - `src/agent_loop.py:5596`
 - `src/agent_loop.py:5597`
-- `src/agent_loop.py:35766`
+- `src/agent_loop.py:35808`
 - `src/user_time.py:107`
 
 ## `now_user_local` — function, line 101

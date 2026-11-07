@@ -155,8 +155,8 @@
 ## `neutralizeStrayThinkTags` — function, line 461
 - **called from:**
 - `static/js/chat.js:4836`
-- `static/js/chatRenderer.js:3319`
-- `static/js/chatRenderer.js:3645`
+- `static/js/chatRenderer.js:3330`
+- `static/js/chatRenderer.js:3656`
 - `static/js/markdown.js:461`
 - `static/js/markdown.js:585`
 
@@ -257,7 +257,7 @@
 - `static/js/chat.js:4452`
 - `static/js/chat.js:4895`
 - `static/js/chat.js:7363`
-- `static/js/chat.js:9263`
+- `static/js/chat.js:9301`
 - `static/js/chatRenderer.js:3245`
 - `static/js/markdown.js:567`
 - `static/js/markdown.js:581`
@@ -276,8 +276,8 @@
 - `static/js/chat.js:6259`
 - `static/js/chatRenderer.js:1584`
 - `static/js/chatRenderer.js:3245`
-- `static/js/chatRenderer.js:3301`
-- `static/js/chatRenderer.js:3651`
+- `static/js/chatRenderer.js:3312`
+- `static/js/chatRenderer.js:3662`
 - `static/js/markdown.js:663`
 - `static/js/markdown.js:885`
 
@@ -324,7 +324,7 @@
 
 ## `createCollapsible` — function, line 869
 - **called from:**
-- `static/js/chatRenderer.js:3524`
+- `static/js/chatRenderer.js:3535`
 - `static/js/markdown.js:869`
 
 ## `processWithThinking` — function, line 884
@@ -338,16 +338,16 @@
 - `static/js/chat.js:6263`
 - `static/js/chat.js:6378`
 - `static/js/chat.js:7369`
-- `static/js/chat.js:8771`
-- `static/js/chat.js:8926`
-- `static/js/chat.js:9134`
-- `static/js/chat.js:9245`
-- `static/js/chat.js:9281`
+- `static/js/chat.js:8809`
+- `static/js/chat.js:8964`
+- `static/js/chat.js:9172`
+- `static/js/chat.js:9283`
+- `static/js/chat.js:9319`
 - `static/js/chatRenderer.js:352`
-- `static/js/chatRenderer.js:3380`
-- `static/js/chatRenderer.js:3653`
-- `static/js/chatRenderer.js:3692`
-- `static/js/chatRenderer.js:3762`
+- `static/js/chatRenderer.js:3391`
+- `static/js/chatRenderer.js:3664`
+- `static/js/chatRenderer.js:3703`
+- `static/js/chatRenderer.js:3773`
 - `static/js/compare/stream.js:324`
 - `static/js/compare/stream.js:414`
 - `static/js/compare/stream.js:559`
@@ -462,14 +462,14 @@
 - `static/js/chat.js:6227`
 - `static/js/chat.js:6379`
 - `static/js/chat.js:7367`
-- `static/js/chat.js:8772`
-- `static/js/chat.js:8927`
-- `static/js/chat.js:9134`
-- `static/js/chat.js:9246`
-- `static/js/chat.js:9282`
-- `static/js/chatRenderer.js:3380`
-- `static/js/chatRenderer.js:3583`
-- `static/js/chatRenderer.js:3762`
+- `static/js/chat.js:8810`
+- `static/js/chat.js:8965`
+- `static/js/chat.js:9172`
+- `static/js/chat.js:9284`
+- `static/js/chat.js:9320`
+- `static/js/chatRenderer.js:3391`
+- `static/js/chatRenderer.js:3594`
+- `static/js/chatRenderer.js:3773`
 - `static/js/compare/stream.js:325`
 - `static/js/compare/stream.js:415`
 - `static/js/compare/stream.js:560`
@@ -492,8 +492,8 @@
 ## `renderMermaid` — function, line 1601
 - **called from:**
 - `static/js/chat.js:6280`
-- `static/js/chatRenderer.js:3481`
-- `static/js/chatRenderer.js:3866`
+- `static/js/chatRenderer.js:3492`
+- `static/js/chatRenderer.js:3877`
 - `static/js/document.js:16178`
 - `static/js/group.js:955`
 - `static/js/markdown.js:1601`
@@ -554,7 +554,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5541`
+- `routes/chat_routes.py:5544`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -640,7 +640,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5541`
+- `routes/chat_routes.py:5544`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`

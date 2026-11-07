@@ -73,14 +73,14 @@
 ## `is_active` — function, line 100
 - **called from:**
 - `app.py:1225`
-- `routes/chat_routes.py:5604`
+- `routes/chat_routes.py:5607`
 - `routes/session_routes.py:242`
 - `src/agent_jobs.py:295`
 - `src/bg_monitor.py:161`
 
 ## `get_status` — function, line 105
 - **called from:**
-- `routes/chat_routes.py:4233`
+- `routes/chat_routes.py:4236`
 - `routes/research/research_routes.py:298`
 - `routes/research/research_routes.py:669`
 - `services/research/service.py:163`
@@ -103,7 +103,7 @@
 
 ## `get_active_run` — function, line 116
 - **called from:**
-- `routes/chat_routes.py:5559`
+- `routes/chat_routes.py:5562`
 
 ## `_drain` — function (async), line 122
 - **called from:**
@@ -139,7 +139,7 @@
 - `routes/chat_helpers.py:1777`
 - `routes/chat_helpers.py:1778`
 - `routes/chat_helpers.py:1779`
-- `routes/chat_routes.py:5541`
+- `routes/chat_routes.py:5544`
 - `routes/cookbook_routes.py:3584`
 - `routes/email/email_helpers.py:399`
 - `routes/email/email_routes.py:1130`
@@ -191,8 +191,8 @@
 
 ## `subscribe` — function (async), line 217
 - **called from:**
-- `routes/chat_routes.py:5543`
-- `routes/chat_routes.py:5563`
+- `routes/chat_routes.py:5546`
+- `routes/chat_routes.py:5566`
 - `tests/test_agent_runs_terminal_order.py:19`
 - `tests/test_agent_runs_terminal_order.py:49`
 - `tests/test_compare_stop_disconnect_poll.py:88`
@@ -212,7 +212,7 @@
 - **called from:**
 - `app.py:1477`
 - `launcher.py:96`
-- `routes/chat_routes.py:5580`
+- `routes/chat_routes.py:5583`
 - `tests/smoke/stub_provider.py:172`
 - `tests/test_client_tool_routing.py:88`
 - `tests/test_compare_stop_disconnect_poll.py:147`
@@ -270,7 +270,7 @@
 - `services/shell/service.py:163`
 - `services/skills/job_coordinator.py:215`
 - `src/agent_loop.py:26037`
-- `src/agent_loop.py:34341`
+- `src/agent_loop.py:34383`
 - `src/agent_runs.py:86`
 - `src/agent_runs.py:207`
 - `src/agent_runs.py:210`
@@ -322,7 +322,7 @@
 
 ## `request_finish` — function, line 320
 - **called from:**
-- `routes/chat_routes.py:5588`
+- `routes/chat_routes.py:5591`
 - `tests/test_agent_runs_terminal_order.py:44`
 - `tests/test_agent_runs_terminal_order.py:46`
 - `tests/test_nested_invocation_ownership.py:78`

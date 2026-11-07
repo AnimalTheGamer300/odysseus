@@ -386,7 +386,7 @@
 - `routes/chat_helpers.py:825`
 - `routes/chat_helpers.py:2033`
 - `routes/chat_helpers.py:2041`
-- `routes/chat_routes.py:4251`
+- `routes/chat_routes.py:4254`
 - `routes/cookbook_routes.py:1593`
 - `routes/email/email_pollers.py:1514`
 - `routes/email/email_pollers.py:1577`

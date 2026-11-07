@@ -93,6 +93,6 @@
 ## `apply_request_headers` — function, line 248
 - **called from:**
 - `src/llm_core.py:2687`
-- `src/llm_core.py:3153`
-- `src/llm_core.py:3478`
+- `src/llm_core.py:3159`
+- `src/llm_core.py:3484`
 - `tests/test_copilot.py:106`

@@ -63,7 +63,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 
 ## `strip_thinking` — function, line 194
 - **called from:**
-- `routes/chat_routes.py:5781`
+- `routes/chat_routes.py:5784`
 - `src/background_tool_jobs.py:162`
 - `src/deep_research.py:640`
 - `src/deep_research.py:1758`

@@ -11,7 +11,7 @@
 
 ## `WebRecoveryBudget.admit` — method, line 12
 - **called from:**
-- `src/agent_loop.py:34281`
+- `src/agent_loop.py:34323`
 - `tests/test_web_recovery_budget.py:6`
 - `tests/test_web_recovery_budget.py:7`
 - `tests/test_web_recovery_budget.py:8`
@@ -27,7 +27,7 @@
 
 ## `WebRecoveryBudget.instruction` — method, line 30
 - **called from:**
-- `src/agent_loop.py:31917`
-- `src/agent_loop.py:34289`
-- `src/agent_loop.py:34662`
+- `src/agent_loop.py:31959`
+- `src/agent_loop.py:34331`
+- `src/agent_loop.py:34704`
 - `tests/test_web_recovery_budget.py:17`

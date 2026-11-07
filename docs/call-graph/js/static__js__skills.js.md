@@ -229,7 +229,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:7991`
 - `static/js/chat.js:7991`
 - `static/js/chat.js:8152`
-- `static/js/chat.js:9088`
+- `static/js/chat.js:9126`
 - `static/js/chatRenderer.js:786`
 - `static/js/chatRenderer.js:798`
 - `static/js/chatRenderer.js:2112`
@@ -779,12 +779,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`

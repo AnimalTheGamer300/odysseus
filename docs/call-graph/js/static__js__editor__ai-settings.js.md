@@ -196,10 +196,10 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:7399`
 - `static/js/chat.js:7476`
 - `static/js/chat.js:7493`
-- `static/js/chat.js:8880`
-- `static/js/chat.js:8894`
-- `static/js/chat.js:8910`
-- `static/js/chat.js:9197`
+- `static/js/chat.js:8918`
+- `static/js/chat.js:8932`
+- `static/js/chat.js:8948`
+- `static/js/chat.js:9235`
 - `static/js/codeRunner.js:236`
 - `static/js/compare/panes.js:407`
 - `static/js/compare/stream.js:217`

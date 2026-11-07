@@ -4,7 +4,7 @@
 
 ## `request_teacher_takeover` — function, line 42
 - **called from:**
-- `src/agent_loop.py:38926`
+- `src/agent_loop.py:38980`
 - `tests/test_nested_invocation_ownership.py:273`
 - `tests/test_nested_invocation_ownership.py:383`
 

@@ -28,7 +28,7 @@
 - `routes/chat_helpers.py:1459`
 - `routes/chat_routes.py:113`
 - `routes/chat_routes.py:2541`
-- `routes/chat_routes.py:5622`
+- `routes/chat_routes.py:5625`
 - `services/skills/job_coordinator.py:85`
 - `services/skills/prompts.py:36`
 - `src/agent_loop.py:4497`

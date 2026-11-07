@@ -571,9 +571,9 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `src/agent_loop.py:27559`
 - `src/agent_loop.py:27871`
 - `src/agent_loop.py:27942`
-- `src/agent_loop.py:34610`
-- `src/agent_loop.py:35921`
-- `src/agent_loop.py:38316`
+- `src/agent_loop.py:34652`
+- `src/agent_loop.py:35963`
+- `src/agent_loop.py:38358`
 - `src/clean_agent_preview.py:7170`
 - `src/clean_agent_preview.py:7875`
 - `tests/test_api_token_tool_authority.py:33`
@@ -639,8 +639,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 ## `format_tool_result` — function, line 2646
 - **called from:**
 - `src/agent_loop.py:26415`
-- `src/agent_loop.py:36431`
-- `src/agent_loop.py:38362`
+- `src/agent_loop.py:36473`
+- `src/agent_loop.py:38404`
 - `tests/test_agent_loop_tool_output_truncation.py:50`
 - `tests/test_agent_loop_tool_output_truncation.py:60`
 - `tests/test_document_read_pagination.py:48`

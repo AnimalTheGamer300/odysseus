@@ -8,7 +8,6 @@
 - `static/js/chat.js:44`
 - `static/js/chat.js:8197`
 - `static/js/chat.js:8364`
-- `static/js/chat.js:8522`
 
 ## `_imageDimensionsAllowed` — function, line 85
 - **called from:**
@@ -97,8 +96,8 @@
 - `static/js/chat.js:5702`
 - `static/js/chat.js:5732`
 - `static/js/chatRenderer.js:117`
-- `static/js/chatRenderer.js:3414`
-- `static/js/chatRenderer.js:3444`
+- `static/js/chatRenderer.js:3425`
+- `static/js/chatRenderer.js:3455`
 
 ## `_privateBrowserActionLabel` — function, line 389
 - **called from:**
@@ -117,7 +116,7 @@
 - `static/js/chat.js:505`
 - `static/js/chatRenderer.js:140`
 - `static/js/chatRenderer.js:339`
-- `static/js/chatRenderer.js:3415`
+- `static/js/chatRenderer.js:3426`
 
 ## `_mountPrivateBrowserSpinner` — function, line 418
 - **called from:**
@@ -206,7 +205,7 @@
 - `static/js/chat.js:1147`
 - `static/js/chat.js:1172`
 - `static/js/chat.js:1188`
-- `static/js/chat.js:9456`
+- `static/js/chat.js:9494`
 
 ## `_resolveCurrentSessionId` — function, line 670
 - **called from:**
@@ -350,7 +349,7 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:1159`
 - `static/js/chat.js:1168`
 - `static/js/chat.js:5445`
-- `static/js/chat.js:9461`
+- `static/js/chat.js:9499`
 - `static/js/modelPicker.js:747`
 - `static/js/sessions.js:2397`
 - `static/js/sessions.js:2720`
@@ -498,16 +497,16 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:5125`
 - `static/js/chat.js:5147`
 - `static/js/chat.js:6820`
-- `static/js/chat.js:8881`
-- `static/js/chat.js:8895`
-- `static/js/chat.js:8911`
+- `static/js/chat.js:8919`
+- `static/js/chat.js:8933`
+- `static/js/chat.js:8949`
 
 ## `_appendViewReportLink` — function, line 1405
 - **called from:**
 - `static/js/chat.js:1405`
 - `static/js/chat.js:6316`
-- `static/js/chat.js:8778`
-- `static/js/chat.js:8930`
+- `static/js/chat.js:8816`
+- `static/js/chat.js:8968`
 
 ## `_stripDocumentFenceForChat` — function, line 1410
 - **called from:**
@@ -562,8 +561,8 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:6670`
 - `static/js/chat.js:7024`
 - `static/js/chat.js:7663`
-- `static/js/chat.js:9060`
-- `static/js/chat.js:9136`
+- `static/js/chat.js:9098`
+- `static/js/chat.js:9174`
 
 ## `_tabSyncPostDelta` — function, line 1562
 - **called from:**
@@ -1120,12 +1119,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `routes/chat_routes.py:3845`
 - `routes/chat_routes.py:3854`
 - `routes/chat_routes.py:3858`
-- `routes/chat_routes.py:4044`
-- `routes/chat_routes.py:4458`
-- `routes/chat_routes.py:4699`
-- `routes/chat_routes.py:4718`
-- `routes/chat_routes.py:5020`
-- `routes/chat_routes.py:5024`
+- `routes/chat_routes.py:4047`
+- `routes/chat_routes.py:4461`
+- `routes/chat_routes.py:4702`
+- `routes/chat_routes.py:4721`
+- `routes/chat_routes.py:5023`
+- `routes/chat_routes.py:5027`
 - `routes/cookbook_routes.py:3264`
 - `routes/cookbook_routes.py:3268`
 - `routes/cookbook_routes.py:3271`
@@ -1350,14 +1349,14 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:5551`
 - `static/js/chat.js:5701`
 - `static/js/chatRenderer.js:355`
-- `static/js/chatRenderer.js:3448`
+- `static/js/chatRenderer.js:3459`
 
 ## `_suppressRawToolOutput` — function, line 4019
 - **called from:**
 - `static/js/chat.js:4019`
 - `static/js/chat.js:5672`
 - `static/js/chatRenderer.js:436`
-- `static/js/chatRenderer.js:3410`
+- `static/js/chatRenderer.js:3421`
 
 ## `_thinkingLabel` — function, line 4036
 - **called from:**
@@ -1614,12 +1613,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -1851,20 +1850,20 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:8182`
 - `static/js/chat.js:8249`
 - `static/js/chat.js:8354`
-- `static/js/chat.js:8448`
+- `static/js/chat.js:8465`
 
 ## `_forkSessionAt` — function, line 8267
 - **called from:**
 - `static/js/chat.js:8267`
 - `static/js/chat.js:8287`
-- `static/js/chat.js:8717`
+- `static/js/chat.js:8755`
 
 ## `_forkAndSend` — function, line 8286
 - **called from:**
 - `static/js/chat.js:8188`
 - `static/js/chat.js:8286`
 - `static/js/chat.js:8359`
-- `static/js/chat.js:8503`
+- `static/js/chat.js:8520`
 
 ## `resendUserMessage` — function, line 8298
 - **called from:**
@@ -1877,75 +1876,75 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/chat.js:8396`
 - `static/js/chatRenderer.js:2340`
 
-## `_pendingRegenAttachmentIds` — function, line 8572
-- **called from:**
-- `static/js/chat.js:8572`
-
-## `_attachVariantNav` — function, line 8584
-- **called from:**
-- `static/js/chat.js:6364`
-- `static/js/chat.js:8584`
-
-## `_variantTagText` — function, line 8610
+## `_pendingRegenAttachmentIds` — function, line 8610
 - **called from:**
 - `static/js/chat.js:8610`
-- `static/js/chat.js:8636`
 
-## `_renderVariantNav` — function, line 8614
+## `_attachVariantNav` — function, line 8622
 - **called from:**
-- `static/js/chat.js:8596`
-- `static/js/chat.js:8614`
-- `static/js/chat.js:8694`
-- `static/js/chat.js:9301`
+- `static/js/chat.js:6364`
+- `static/js/chat.js:8622`
 
-## `_switchVariant` — function, line 8684
+## `_variantTagText` — function, line 8648
 - **called from:**
-- `static/js/chat.js:8644`
+- `static/js/chat.js:8648`
+- `static/js/chat.js:8674`
+
+## `_renderVariantNav` — function, line 8652
+- **called from:**
+- `static/js/chat.js:8634`
 - `static/js/chat.js:8652`
-- `static/js/chat.js:8664`
-- `static/js/chat.js:8672`
-- `static/js/chat.js:8684`
+- `static/js/chat.js:8732`
+- `static/js/chat.js:9339`
 
-## `forkFrom` — function, line 8707
+## `_switchVariant` — function, line 8722
 - **called from:**
-- `static/js/chat.js:8707`
+- `static/js/chat.js:8682`
+- `static/js/chat.js:8690`
+- `static/js/chat.js:8702`
+- `static/js/chat.js:8710`
+- `static/js/chat.js:8722`
+
+## `forkFrom` — function, line 8745
+- **called from:**
+- `static/js/chat.js:8745`
 - `static/js/chatRenderer.js:2359`
 
-## `checkPendingResearch` — function, line 8729
+## `checkPendingResearch` — function, line 8767
 - **called from:**
-- `static/js/chat.js:8729`
+- `static/js/chat.js:8767`
 - `static/js/sessions.js:2539`
 
-## `updateSpinnerFromProgress` — function, line 8813
+## `updateSpinnerFromProgress` — function, line 8851
 - **called from:**
-- `static/js/chat.js:8813`
-- `static/js/chat.js:8833`
-- `static/js/chat.js:8901`
+- `static/js/chat.js:8851`
+- `static/js/chat.js:8871`
+- `static/js/chat.js:8939`
 
-## `setDisplayOverride` — function, line 8950
+## `setDisplayOverride` — function, line 8988
 - **called from:**
-- `static/js/chat.js:8950`
+- `static/js/chat.js:8988`
 
-## `setHideUserBubble` — function, line 8955
+## `setHideUserBubble` — function, line 8993
 - **called from:**
-- `static/js/chat.js:8955`
+- `static/js/chat.js:8993`
 
-## `setPendingContinue` — function, line 8960
+## `setPendingContinue` — function, line 8998
 - **called from:**
-- `static/js/chat.js:8960`
+- `static/js/chat.js:8998`
 
-## `deleteMessage` — function, line 8974
+## `deleteMessage` — function, line 9012
 - **called from:**
-- `static/js/chat.js:8974`
+- `static/js/chat.js:9012`
 - `static/js/chatRenderer.js:2363`
 - `static/js/chatRenderer.js:2534`
 
-## `editAIMessage` — function, line 9071
+## `editAIMessage` — function, line 9109
 - **called from:**
-- `static/js/chat.js:9071`
+- `static/js/chat.js:9109`
 - `static/js/chatRenderer.js:2331`
 
-## `cleanup` — function, line 9103
+## `cleanup` — function, line 9141
 - **called from:**
 - `tests/test_browser_producer_live_contract.py:41`
 - `tests/test_ca_trust.py:43`
@@ -1955,12 +1954,12 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/calendar.js:3369`
 - `static/js/calendar.js:3378`
 - `static/js/chat.js:7595`
-- `static/js/chat.js:9103`
-- `static/js/chat.js:9111`
-- `static/js/chat.js:9117`
-- `static/js/chat.js:9120`
-- `static/js/chat.js:9123`
-- `static/js/chat.js:9146`
+- `static/js/chat.js:9141`
+- `static/js/chat.js:9149`
+- `static/js/chat.js:9155`
+- `static/js/chat.js:9158`
+- `static/js/chat.js:9161`
+- `static/js/chat.js:9184`
 - `static/js/codeRunner.js:273`
 - `static/js/codeRunner.js:294`
 - `static/js/compare/selector.js:102`
@@ -2009,31 +2008,31 @@ _no local callers found (framework-called, dynamic, or dead — check before del
 - `static/js/galleryEditor.js:8375`
 - … +33 more (grep the name in repo)
 
-## `rewriteWith` — function, line 9160
+## `rewriteWith` — function, line 9198
 - **called from:**
-- `static/js/chat.js:9160`
+- `static/js/chat.js:9198`
 - `static/js/chatRenderer.js:2351`
 - `static/js/chatRenderer.js:2355`
 
-## `_killRwSpin` — arrow, line 9197
+## `_killRwSpin` — arrow, line 9235
 - **called from:**
-- `static/js/chat.js:9243`
-- `static/js/chat.js:9308`
+- `static/js/chat.js:9281`
+- `static/js/chat.js:9346`
 
-## `_stripThink` — arrow, line 9262
+## `_stripThink` — arrow, line 9300
 - **called from:**
-- `static/js/chat.js:9268`
+- `static/js/chat.js:9306`
 
-## `continueFrom` — function, line 9318
+## `continueFrom` — function, line 9356
 - **called from:**
-- `static/js/chat.js:9318`
+- `static/js/chat.js:9356`
 
-## `_attachLang` — function, line 9335
+## `_attachLang` — function, line 9373
 - **called from:**
-- `static/js/chat.js:9335`
-- `static/js/chat.js:9403`
+- `static/js/chat.js:9373`
+- `static/js/chat.js:9441`
 
-## `openAttachment` — function, line 9345
+## `openAttachment` — function, line 9383
 - **called from:**
-- `static/js/chat.js:9345`
+- `static/js/chat.js:9383`
 - `static/js/chatRenderer.js:600`
