@@ -19936,26 +19936,63 @@ def _false_unavailable_tool_claim(text: str, selected_tools: Optional[Set[str]])
     if not text or not selected_tools:
         return ""
     plain = _strip_think_blocks(strip_tool_blocks(str(text))).lower()
+    # (2026-11-07) Bidirectional + the isn't/aren't/won't forms, and the
+    # window no longer crosses sentence ends — "The calendar tool isn't
+    # available" died at this gate before the claim patterns ever ran.
+    _gate_neg = r"(?:don'?t|do\s+not|can'?t|cannot|couldn'?t|unable|no|isn'?t|aren'?t|won'?t)\b"
+    _gate_tool = r"\b(?:tool|tools|access|available|loaded|enabled|integration)\b"
     if not re.search(
-        r"\b(?:don'?t|do not|can'?t|cannot|unable|no)\b.{0,90}"
-        r"\b(?:tool|tools|access|available|loaded|enabled|integration)\b",
+        _gate_neg + r"[^.!?\n]{0,90}" + _gate_tool
+        + r"|" + _gate_tool + r"[^.!?\n]{0,90}" + _gate_neg,
         plain,
-        re.I | re.S,
+        re.I,
     ):
         return ""
     checks = (
-        ("manage_calendar", r"\b(?:calendar|event|meeting|appointment|schedule|reminder)\b"),
-        ("manage_notes", r"\b(?:note|notes|todo|checklist)\b"),
-        ("manage_tasks", r"\b(?:task|scheduled|recurring|automation|job)\b"),
-        ("web_search", r"\b(?:web|search|internet|online|look\s+up)\b"),
-        ("web_fetch", r"\b(?:url|website|page|fetch|link)\b"),
-        ("private_browser", r"\b(?:browser|browse|click|screenshot|page)\b"),
-        ("manage_documents", r"\b(?:document|documents|doc|library)\b"),
-        ("manage_memory", r"\b(?:memory|memories|remembered)\b"),
+        ("manage_calendar", r"calendar|event|meeting|appointment|schedule|reminder"),
+        ("manage_notes", r"note|notes|todo|checklist"),
+        ("manage_tasks", r"task|scheduled|recurring|automation|job"),
+        ("web_search", r"web|search|internet|online|look\s+up"),
+        ("web_fetch", r"url|website|page|fetch|link"),
+        ("private_browser", r"browser|browse|click|screenshot|page"),
+        ("manage_documents", r"document|documents|doc|library"),
+        ("manage_memory", r"memory|memories|remembered"),
     )
     selected = set(selected_tools or set())
+    # (2026-11-07) The claim must tie the DOMAIN to unavailability: a negation
+    # with BOTH the domain keyword and an availability word in the same breath
+    # ("no calendar tool", "can't access events", "events aren't loaded"). A
+    # bare domain mention anywhere in an otherwise-complete summary must not
+    # fire — a game-design doc saying "no loudspeaker ... Alpha-1 Access
+    # Gating ... fatigue events" read as a calendar unavailability claim and
+    # the nudge discarded a completed response the user had watched stream
+    # (session 8c03ca56).
+    _neg = r"(?:don'?t|do\s+not|can'?t|cannot|couldn'?t|unable|no|isn'?t|aren'?t|won'?t)\b"
+    _avail = r"(?:tool|tools|access|available|loaded|enabled|integration)\b"
     for tool, domain_re in checks:
-        if tool in selected and re.search(domain_re, plain, re.I):
+        if tool not in selected:
+            continue
+        # All four orders, with the windows barred from crossing sentence
+        # ends AND paren/bracket boundaries (a ")" closes the clause — the
+        # 8c03ca56 near-miss "fatigue events) and the Alpha-1 Access Gating"
+        # must not fuse game mechanics into a tool claim). The domain
+        # fragment MUST be group-wrapped: its inner "|" would otherwise
+        # alternate at the outer pattern level and reduce every domain word
+        # to a context-free match (the bug that kept the incident firing).
+        #   neg ... domain ... avail   ("can't schedule events with the calendar tool")
+        #   neg ... avail ... domain   ("no access to events this turn")
+        #   avail ... domain ... neg   ("The browser tool isn't available")
+        #   domain ... avail ... neg   ("The calendar tool isn't available")
+        _w = r"[^.!?\n()\[\]]"
+        _dom = r"(?:" + domain_re + r")"
+        _claim = (
+            _neg + _w + r"{0,60}(?:"
+            + _dom + _w + r"{0,25}" + _avail
+            + r"|" + _avail + _w + r"{0,25}" + _dom + r")"
+            + r"|" + _avail + _w + r"{0,25}" + _dom + _w + r"{0,60}" + _neg
+            + r"|" + _dom + _w + r"{0,25}" + _avail + _w + r"{0,60}" + _neg
+        )
+        if re.search(_claim, plain, re.I):
             return tool
     if selected & {
         "list_emails",
@@ -31529,6 +31566,11 @@ async def stream_agent_loop(
                 and not guide_only
             ):
                 _intent_nudge_count += 1
+                # (2026-11-07) Drop the RAW round text — _drop_rejected_round_response
+                # matches exact substrings of the accumulated raw text; the cleaned
+                # variant can silently fail to match, leaving the discarded answer
+                # fused in front of the nudge's re-run (the 8c03ca56 double-response).
+                full_response = _drop_rejected_round_response(full_response, round_response or cleaned_round)
                 if round_texts:
                     round_texts.pop()
                 if round_models:
@@ -31537,7 +31579,6 @@ async def stream_agent_loop(
                     round_endpoint_ids.pop()
                 if round_endpoint_labels:
                     round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
                 logger.info(
                     "[agent] false-unavailable tool claim for selected tool %s; nudging round %s",
                     _false_missing_tool,

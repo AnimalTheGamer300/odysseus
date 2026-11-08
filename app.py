@@ -1,6 +1,7 @@
 # app.py — slim orchestrator
 import mimetypes
 import os
+import re
 import sys
 import asyncio
 import time
@@ -122,6 +123,25 @@ except Exception as e:
     _root_logger.warning(f"Failed to initialize file logging handler (falling back to console-only): {e}")
 
 logger = logging.getLogger(__name__)
+
+# (2026-11-07) The UI polls several status endpoints every few seconds; their
+# access lines drowned the terminal (and konsole truncates history). Drop
+# access records for the polling endpoints — every other request still logs.
+_ACCESS_POLL_RE = re.compile(
+    r"GET /api/(?:email/(?:unread-state|urgency-state)|research/(?:active|chat-jobs/)"
+    r"|tasks/notifications|activity/heartbeat)"
+)
+
+
+class _PollAccessFilter(logging.Filter):
+    def filter(self, record):
+        args = record.args
+        if args and len(args) >= 3:
+            return not _ACCESS_POLL_RE.search(f"{args[1]} {args[2]}")
+        return True
+
+
+logging.getLogger("uvicorn.access").addFilter(_PollAccessFilter())
 
 # ========= APP =========
 # Lifespan is defined below (after all helpers it references are in scope)

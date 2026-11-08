@@ -43,6 +43,18 @@ from src.url_safety import OutboundAddressBlocked, connect_outbound_tcp
 
 logger = logging.getLogger(__name__)
 
+# (2026-11-07) The status endpoints re-check email config every poll (~30s);
+# the not-configured warnings fired on EVERY check and drowned the logs.
+_EMAIL_UNCONFIGURED_WARNED: set = set()
+
+
+def _warn_unconfigured_once(kind: str, key: str, message: str) -> None:
+    flag = f"{kind}:{key}"
+    if flag in _EMAIL_UNCONFIGURED_WARNED:
+        return
+    _EMAIL_UNCONFIGURED_WARNED.add(flag)
+    logger.warning(message)
+
 
 class EmailNotConfiguredError(RuntimeError):
     """Raised when an IMAP operation is attempted on an account that has no
@@ -1227,9 +1239,9 @@ def _get_email_config(account_id: str | None = None, owner: str = "") -> dict:
                 }
                 is_oauth = bool(cfg.get("oauth_provider"))
                 if not is_oauth and not (cfg["smtp_host"] and cfg["smtp_user"] and cfg["smtp_password"]):
-                    logger.warning(f"SMTP not configured for account {row.name!r}")
+                    _warn_unconfigured_once(str(row.name), "smtp", f"SMTP not configured for account {row.name!r} (further notices suppressed)")
                 if not is_oauth and not (cfg["imap_host"] and cfg["imap_user"] and cfg["imap_password"]):
-                    logger.warning(f"IMAP not configured for account {row.name!r}")
+                    _warn_unconfigured_once(str(row.name), "imap", f"IMAP not configured for account {row.name!r} (further notices suppressed)")
                 return cfg
         finally:
             db.close()
@@ -1257,10 +1269,8 @@ def _get_email_config(account_id: str | None = None, owner: str = "") -> dict:
         "imap_starttls": settings.get("imap_starttls", True),
         "from_address": settings.get("email_from", os.environ.get("EMAIL_FROM", "")),
     }
-    if not (cfg["smtp_host"] and cfg["smtp_user"] and cfg["smtp_password"]):
-        logger.warning("SMTP not configured — add an Email Account in Settings or set env vars")
-    if not (cfg["imap_host"] and cfg["imap_user"] and cfg["imap_password"]):
-        logger.warning("IMAP not configured — add an Email Account in Settings or set env vars")
+    _warn_unconfigured_once("legacy", "smtp", "SMTP not configured — add an Email Account in Settings or set env vars (further notices suppressed)")
+    _warn_unconfigured_once("legacy", "imap", "IMAP not configured — add an Email Account in Settings or set env vars (further notices suppressed)")
     return cfg
 
 
