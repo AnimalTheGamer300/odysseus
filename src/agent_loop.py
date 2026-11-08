@@ -30913,15 +30913,26 @@ async def stream_agent_loop(
             # session 8c03ca56). If the drop still fails, keep cleaned_round
             # so round_texts stays consistent with full_response.
             _preamble_raw = round_response or cleaned_round
+            _pre_drop_len = len(full_response)
             full_response = _drop_rejected_round_response(full_response, _preamble_raw)
+            _dropped_chars = _pre_drop_len - len(full_response)
             if _preamble_raw.strip() and _preamble_raw.strip() in full_response:
                 # Drop failed: the preamble is still in full_response. Keep
                 # the round text too — clearing only round_texts is what
                 # garbled the saved round structure.
-                pass
+                logger.info(
+                    "[agent] tool-preamble drop FAILED round=%s raw_len=%s "
+                    "dropped_chars=%d — keeping round text (round_texts/full_response "
+                    "will both carry it)",
+                    round_num, len(_preamble_raw), max(0, _dropped_chars),
+                )
             else:
                 cleaned_round = ""
                 _dropped_tool_preamble_from_stream = True
+                logger.info(
+                    "[agent] tool-preamble dropped round=%s raw_len=%s dropped_chars=%d",
+                    round_num, len(_preamble_raw), max(0, _dropped_chars),
+                )
         round_texts.append(cleaned_round)
         round_models.append(_round_actual_model)
         round_endpoint_ids.append(_round_actual_endpoint_id)
@@ -38906,8 +38917,19 @@ async def stream_agent_loop(
                     _fr = full_response.strip()
                     if _earlier_join and _fr.startswith(_earlier_join):
                         round_texts[_idx] = _fr[len(_earlier_join):].strip()
-                    else:
+                    elif not _earlier_join:
+                        # Single-round turn: the full response IS this round's
+                        # text (post-linkify) — safe to sync.
                         round_texts[_idx] = _fr
+                    # else (2026-11-07): multi-round with a mismatched prefix —
+                    # a dropped/modified earlier round's text still sits in
+                    # full_response, so the join can't match. Overwriting the
+                    # last round with the FULL response smushed every earlier
+                    # round's prose into the final block (session 8c03ca56:
+                    # six rounds streamed 172+353+198+82+95+1851 = 2751ch, the
+                    # last entry became the whole accumulation). Leave the
+                    # round's own text — the linkify decoration is cosmetic;
+                    # the smushing was not.
                     break
 
     if (
