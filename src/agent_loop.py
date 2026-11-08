@@ -29095,32 +29095,15 @@ async def stream_agent_loop(
             and not re.search(r"\b(?:calendar|events?|meeting|appointment|reservation)\b", _last_user, re.IGNORECASE)
         ):
             _qwen_explicit_tool, _qwen_explicit_args = _explicit_recurring_task_request
-        elif (
-            _explicit_task_state_request
-            and "manage_tasks" not in disabled_tools
-            and re.search(r"\b(?:tasks?|reminders?|scheduled\s+tasks?)\b", _last_user, re.IGNORECASE)
-        ):
-            _qwen_explicit_tool = _explicit_task_state_request.tool_type
-            _qwen_explicit_args = _explicit_task_state_request.content
-        elif (
-            _explicit_memory_state_request
-            and "manage_memory" not in disabled_tools
-        ):
-            _qwen_explicit_tool = _explicit_memory_state_request.tool_type
-            _qwen_explicit_args = _explicit_memory_state_request.content
-        elif (
-            _explicit_memory_add_text
-            and "manage_memory" not in disabled_tools
-            and re.search(r"\b(?:remember\s+this|remember\s+that|save\s+this\s+as\s+(?:a\s+)?memory|add\s+to\s+memory)\b", _last_user, re.IGNORECASE)
-        ):
-            _qwen_explicit_tool = "manage_memory"
-            _qwen_explicit_args = "add\n" + _explicit_memory_add_text
-        elif (
-            _explicit_memory_lookup_request
-            and "manage_memory" not in disabled_tools
-        ):
-            _qwen_explicit_tool = _explicit_memory_lookup_request.tool_type
-            _qwen_explicit_args = _explicit_memory_lookup_request.content
+        # (2026-11-08, Sir's call) The state-manager branches (task-state,
+        # memory-state, memory-lookup) are RETIRED from this chain — the same
+        # intent-detection family as the retired nudges and the forced-state
+        # injection. The SCP game-design messages (mentioning "Research
+        # Points", "MemoryStore", the game's task system) tripped the
+        # memory-state parser — which has NO text gate — and the injection
+        # wiped the model's response to execute manage_memory searches with
+        # the user's own message as the query. The explicit memory-ADD
+        # command ("remember this: X") stays: a deliberate user command.
         elif (
             _explicit_skill_request
             and "manage_skills" not in disabled_tools
@@ -31571,63 +31554,15 @@ async def stream_agent_loop(
                     "[agent] false-unavailable tool claim for selected tool %s (passive — nudges retired)",
                     _false_missing_tool,
                 )
-            _forced_state_block = None
-            if _state_tool == "manage_tasks":
-                _forced_state_block = _parse_explicit_task_state_request(_last_user)
-            elif _state_tool == "manage_memory":
-                _forced_state_block = _parse_explicit_memory_state_request(
-                    _last_user,
-                    messages,
-                    history_session,
-                )
-                if not _forced_state_block:
-                    _forced_state_block = _parse_explicit_memory_lookup_request(_last_user)
-                if not _forced_state_block and {"add", "create", "save"} & _state_actions:
-                    _memory_text_from_user = _extract_memory_add_text_from_user(_last_user)
-                    if _memory_text_from_user:
-                        _forced_state_block = ToolBlock(
-                            "manage_memory",
-                            "add\n" + _memory_text_from_user,
-                        )
-            elif _state_tool == "manage_skills":
-                _skill_request = _parse_explicit_skill_request(_last_user)
-                if _skill_request:
-                    _forced_state_block = ToolBlock(
-                        "manage_skills",
-                        json.dumps(_skill_request),
-                    )
-            if (
-                _forced_state_block
-                and not _has_successful_state_manager_evidence(
-                    tool_events,
-                    _forced_state_block.tool_type,
-                    _state_actions,
-                )
-                and not guide_only
-            ):
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
-                # (2026-11-07) Drop the RAW round text — the cleaned variant
-                # can silently fail to match and fuse the discarded answer
-                # into the replacement (the 13204ch five-round fusion).
-                full_response = _drop_rejected_round_response(full_response, round_response or cleaned_round)
-                cleaned_round = ""
-                round_response = ""
-                tool_blocks = [_forced_state_block]
-                native_tool_calls = []
-                converted_calls = []
-                used_native = False
-                logger.info(
-                    "[agent] normalized explicit %s request to deterministic manager call",
-                    _forced_state_block.tool_type,
-                )
-                # Fall through to the normal tool execution path below.
+            # (2026-11-08, Sir's call) The forced-state-block deterministic
+            # injection is RETIRED along with the nudge family. It discarded
+            # the model's response and executed a manage_* tool call the
+            # model never made — the SCP game-design messages (mentioning
+            # "Research Points" and memory-adjacent mechanics) triggered
+            # three manage_memory searches in five minutes, each with a
+            # chunk of the user's own message as the query. The stream is
+            # the truth: the model's tool calls are the model's. The
+            # passive detectors above still log the finding.
             # (2026-11-08) Passive — intent nudges retired, see the
             # active-document note above.
             if _state_tool and not _has_successful_state_manager_evidence(
