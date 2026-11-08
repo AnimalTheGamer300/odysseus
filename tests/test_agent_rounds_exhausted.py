@@ -931,32 +931,18 @@ def test_same_round_duplicate_tool_calls_are_deduplicated_without_merging_distin
     assert [call["id"] for call in converted] == ["a", "c"]
 
 
-def test_actionable_request_gets_one_nudge_after_clarification_only_response(monkeypatch):
+def test_actionable_request_clarification_only_response_completes_without_nudge(monkeypatch):
+    # (2026-11-08, Sir's call) Intent nudges are retired: a clarification-only
+    # response completes the turn as-is — no correction round, no re-run.
     _patch_common(monkeypatch)
     seen = []
 
     async def _fake_stream(_candidates, messages, **kwargs):
         seen.append(messages)
-        if len(seen) == 1:
-            yield 'data: {"delta":"Sure — what would you like me to do?"}\n\n'
-        elif len(seen) == 2:
-            yield "data: " + json.dumps({
-                "type": "tool_calls",
-                "calls": [{
-                    "id": "call-1",
-                    "name": "host_shell",
-                    "arguments": json.dumps({"command": "pwd"}),
-                }],
-            }) + "\n\n"
-        else:
-            yield 'data: {"delta":"The workspace is ready."}\n\n'
+        yield 'data: {"delta":"Sure — what would you like me to do?"}\n\n'
         yield "data: [DONE]\n\n"
 
-    async def _fake_exec(block, *args, **kwargs):
-        return (block.tool_type, {"output": "/home/tester/project", "exit_code": 0})
-
     monkeypatch.setattr(al, "stream_llm_with_fallback", _fake_stream, raising=False)
-    monkeypatch.setattr(al, "execute_tool_block", _fake_exec, raising=False)
     events = _types(_collect(al.stream_agent_loop(
         "http://x/v1", "m",
         [{"role": "user", "content": "Inspect the active workspace and tell me which file is present."}],
@@ -965,8 +951,8 @@ def test_actionable_request_gets_one_nudge_after_clarification_only_response(mon
         workspace="/workspace",
     )))
 
-    assert len(seen) == 3
-    assert any(e.get("delta") == "The workspace is ready." for e in events)
+    assert len(seen) == 1
+    assert any(e.get("delta") == "Sure — what would you like me to do?" for e in events)
 
 
 def test_empty_workspace_nudge_names_only_tools_in_active_schema(monkeypatch):

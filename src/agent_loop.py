@@ -25665,10 +25665,6 @@ async def stream_agent_loop(
     # Supervisor: how many times we've nudged the model after it announced
     # an action without emitting the tool call. Capped to prevent a model
     # that *can't* call the tool from looping forever.
-    _intent_nudge_count = 0
-    _MAX_INTENT_NUDGES = 2
-    _clarification_nudge_count = 0
-    _MAX_CLARIFICATION_NUDGES = 1
     _unattended_final_nudge_sent = False
     _empty_action_nudge_count = 0
     _local_media_detail_nudge_sent = False
@@ -31489,15 +31485,14 @@ async def stream_agent_loop(
                     # never re-verify an unchanged state in a loop.
                     _effectful_used = False
                     continue
-            # ── Intent-without-action supervisor ─────────────────────
-            # Catch "Let me tail the output" / "I'll check the logs" /
-            # "Let me investigate" patterns where the model announces an
-            # action but emits no tool_call. The bug shows up most on
-            # smaller models trained to verbalize plans before acting.
-            # We inject one sharp nudge ("you said you would X — call the
-            # actual tool now") and loop again. Capped at
-            # _MAX_INTENT_NUDGES so a model that genuinely cannot use the
-            # tool doesn't pin us in a forever loop.
+            # ── Unattended clarification handler ─────────────────────
+            # In an unattended (scheduled/background) run nobody can answer
+            # a clarification question. When the model responds with one,
+            # discard the question round and force a tool-free final answer
+            # from the evidence already collected. (The intent-based nudge
+            # family this block once shared machinery with was retired
+            # 2026-11-08 — see the active-document note in the round-end
+            # processing.)
             _intent_text = _strip_think_blocks(cleaned_round).strip()
             if (
                 _unattended_native_runtime
@@ -31559,75 +31554,23 @@ async def stream_agent_loop(
                 )
             ):
                 _state_tool, _state_actions = "", set()
-            if (
-                _active_document_mutation_turn
-                and not _has_successful_active_document_mutation(tool_events)
-                and _intent_nudge_count < _MAX_INTENT_NUDGES
-                and not guide_only
-            ):
-                _intent_nudge_count += 1
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
+            # (2026-11-08, Sir's call) Intent nudges are RETIRED. The round-discard +
+            # re-run machinery caused the calendar/Research-Point false positives and
+            # the multi-round fusions (the "remake" incidents). The stream is the
+            # truth: thinking -> the thinking section, prose -> the block, tools ->
+            # the cards. The finding is logged; the round's text stays; the turn
+            # completes normally; the end-of-turn guards label passively.
+            if _active_document_mutation_turn and not _has_successful_active_document_mutation(tool_events):
                 logger.info(
-                    "[agent] active document mutation answered without editor tool evidence; nudging round %s",
-                    round_num,
+                    "[agent] active document mutation answered without editor tool evidence (passive — nudges retired)"
                 )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        "The user requested a change to the document currently open in "
-                        "the editor. Do not describe or invent a completed edit. Call "
-                        "`edit_document`, `update_document`, or `suggest_document` now. "
-                        "If the requested change is genuinely missing a necessary detail, "
-                        "call `ask_user` once instead."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
-            if (
-                _false_missing_tool
-                and not _force_answer
-                and _intent_nudge_count < _MAX_INTENT_NUDGES
-                and not guide_only
-            ):
-                _intent_nudge_count += 1
-                # (2026-11-07) Drop the RAW round text — _drop_rejected_round_response
-                # matches exact substrings of the accumulated raw text; the cleaned
-                # variant can silently fail to match, leaving the discarded answer
-                # fused in front of the nudge's re-run (the 8c03ca56 double-response).
-                full_response = _drop_rejected_round_response(full_response, round_response or cleaned_round)
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
+            # (2026-11-08) Passive — intent nudges retired, see the
+            # active-document note above.
+            if _false_missing_tool:
                 logger.info(
-                    "[agent] false-unavailable tool claim for selected tool %s; nudging round %s",
+                    "[agent] false-unavailable tool claim for selected tool %s (passive — nudges retired)",
                     _false_missing_tool,
-                    round_num,
                 )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        f"You claimed `{_false_missing_tool}` or its domain was unavailable, "
-                        "but it is available in this turn's selected tool surface. "
-                        "Do not ask the user to resend. Emit the actual tool call now. "
-                        "For calendar event changes, use manage_calendar; if a required "
-                        "target or date is genuinely ambiguous, call ask_user once."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
             _forced_state_block = None
             if _state_tool == "manage_tasks":
                 _forced_state_block = _parse_explicit_task_state_request(_last_user)
@@ -31685,144 +31628,51 @@ async def stream_agent_loop(
                     _forced_state_block.tool_type,
                 )
                 # Fall through to the normal tool execution path below.
-            elif (
-                _state_tool
-                and not _has_successful_state_manager_evidence(
-                    tool_events,
+            # (2026-11-08) Passive — intent nudges retired, see the
+            # active-document note above.
+            if _state_tool and not _has_successful_state_manager_evidence(
+                tool_events,
+                _state_tool,
+                _state_actions,
+            ):
+                logger.info(
+                    "[agent] explicit %s request answered without matching tool evidence (passive — nudges retired)",
                     _state_tool,
-                    _state_actions,
                 )
-                and _intent_nudge_count < _MAX_INTENT_NUDGES
-                and not guide_only
-            ):
-                _intent_nudge_count += 1
-                # (2026-11-07) Drop the RAW round text — the cleaned variant
-                # can silently fail to match (the 13204ch five-round fusion:
-                # every discarded response fused into the re-run's content).
-                full_response = _drop_rejected_round_response(full_response, round_response or cleaned_round)
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
+            # (2026-11-08) Passive — intent nudges retired, see the
+            # active-document note above.
+            if _calendar_lookup_requires_fresh_tool(
+                _last_user,
+                _intent_domains,
+                _relevant_tools,
+                messages,
+                history_session,
+            ) and not _has_successful_calendar_list_evidence(tool_events):
                 logger.info(
-                    "[agent] explicit %s request answered without matching tool evidence; nudging round %s",
-                    _state_tool,
-                    round_num,
+                    "[agent] calendar lookup answered without fresh manage_calendar list (passive — nudges retired)"
                 )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        f"The user's request requires a fresh `{_state_tool}` call in "
-                        "this turn. Do not claim the item was listed, saved, edited, "
-                        "paused, resumed, opened, or deleted from chat context alone. "
-                        "Emit the matching tool call now, then answer from the tool "
-                        "result."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
-            if (
-                _calendar_lookup_requires_fresh_tool(
-                    _last_user,
-                    _intent_domains,
-                    _relevant_tools,
-                    messages,
-                    history_session,
-                )
-                and not _has_successful_calendar_list_evidence(tool_events)
-                and _intent_nudge_count < _MAX_INTENT_NUDGES
-                and not guide_only
+            # (2026-11-08) Passive — intent nudges retired, see the
+            # active-document note above.
+            if _notes_request_requires_fresh_tool(_last_user, _intent_domains, _relevant_tools) and not _has_successful_notes_action_evidence(
+                tool_events,
+                _notes_expected_actions(_last_user),
             ):
-                _intent_nudge_count += 1
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
                 logger.info(
-                    "[agent] calendar lookup answered without fresh manage_calendar list; nudging round %s",
-                    round_num,
+                    "[agent] notes request answered without matching manage_notes action (passive — nudges retired)"
                 )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        "The user's request is a calendar lookup or availability question. "
-                        "Do not answer from prior chat context alone. Call `manage_calendar` "
-                        "with action `list_events` for the requested date/range now, then "
-                        "answer from that fresh tool result."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
-            if (
-                _notes_request_requires_fresh_tool(_last_user, _intent_domains, _relevant_tools)
-                and not _has_successful_notes_action_evidence(
-                    tool_events,
-                    _notes_expected_actions(_last_user),
-                )
-                and _intent_nudge_count < _MAX_INTENT_NUDGES
-                and not guide_only
-            ):
-                _intent_nudge_count += 1
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
-                logger.info(
-                    "[agent] notes request answered without matching manage_notes action; nudging round %s",
-                    round_num,
-                )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        "The user's request is a notes/checklist/reminder lookup or "
-                        "mutation. Do not answer from prior chat context alone and "
-                        "do not invent `#note-...` links. Call `manage_notes` now "
-                        "with the matching action: list/search/view for reads, add "
-                        "for new notes/reminders, update/toggle_item for edits, and "
-                        "delete for removals. Then answer from the fresh tool result."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
             # A weak model may treat a concrete task as a new conversation and
             # answer with "what would you like me to do?". That is not a real
             # clarification when the user already supplied an action and
             # target. Give it one bounded chance to act before accepting the
             # response as the final answer.
-            if (
-                _clarification_nudge_count < _MAX_CLARIFICATION_NUDGES
-                and _looks_like_actionable_user_request(_last_user)
-                and _CLARIFICATION_ONLY_RESPONSE_RE.search(_intent_text)
-            ):
-                _clarification_nudge_count += 1
+            # (2026-11-08) Passive — intent nudges retired, see the
+            # active-document note above.
+            if _looks_like_actionable_user_request(_last_user) and _CLARIFICATION_ONLY_RESPONSE_RE.search(_intent_text):
                 logger.info(
-                    "[agent] actionable request received clarification-only response; nudging action"
+                    "[agent] actionable request received clarification-only response (passive — nudges retired)"
                 )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        "The user already gave a concrete action and target. Do not ask "
-                        "what they want again. Perform the most useful next tool call "
-                        "now; if a required detail is genuinely missing, make one "
-                        "reasonable assumption and state it briefly."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
+            # (2026-11-08) Passive — intent nudges retired, see the
+            # active-document note above.
             if (
                 _fabricated_calendar_event_anchor_without_tool(_intent_text, _relevant_tools)
                 and not (
@@ -31833,38 +31683,10 @@ async def stream_agent_loop(
                     tool_events,
                     _calendar_expected_mutation_actions(_last_user),
                 )
-                and _intent_nudge_count < _MAX_INTENT_NUDGES
-                and not guide_only
             ):
-                _intent_nudge_count += 1
-                if round_texts:
-                    round_texts.pop()
-                if round_models:
-                    round_models.pop()
-                if round_endpoint_ids:
-                    round_endpoint_ids.pop()
-                if round_endpoint_labels:
-                    round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
                 logger.info(
-                    "[agent] rejected fabricated calendar event anchor without matching manage_calendar action; nudging round %s",
-                    round_num,
+                    "[agent] fabricated calendar event anchor without matching manage_calendar action (passive — nudges retired)"
                 )
-                messages.append({
-                    "role": "system",
-                    "content": (
-                        "You wrote a calendar event link (`#event-...`) without "
-                        "creating, updating, deleting, or finding that event through "
-                        "`manage_calendar`. "
-                        "Those links must use real UIDs returned by the calendar tool. "
-                        "Call `manage_calendar` now to perform the user's exact calendar "
-                        "request; if the date depends on the previous event, use the "
-                        "recent calendar tool context to resolve it. A setup call such "
-                        "as `list_calendars` is not enough for add, move, or delete."
-                    ),
-                })
-                yield f'data: {json.dumps({"type": "agent_step", "round": round_num + 1})}\n\n'
-                continue
             if (
                 _artifact_recovery_enabled
                 and _completion_requirements.required_artifacts
