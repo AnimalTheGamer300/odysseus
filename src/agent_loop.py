@@ -15880,6 +15880,10 @@ def _resolve_tool_blocks(
             logger.info(f"Agent round {round_num}: {len(tool_blocks)} fenced tool block(s) detected")
 
     resp_preview = round_response[:200].replace('\n', '\\n') if round_response else "(empty)"
+    logger.info(
+        "[agent-round-state] round=%s STREAM_END round_response=%sch",
+        round_num, len(round_response),
+    )
     logger.info(f"Agent round {round_num} summary: {len(round_response)} chars, "
                 f"{len(native_tool_calls)} native calls, "
                 f"{len(tool_blocks)} tool blocks. Preview: {resp_preview}")
@@ -30916,6 +30920,11 @@ async def stream_agent_loop(
         round_models.append(_round_actual_model)
         round_endpoint_ids.append(_round_actual_endpoint_id)
         round_endpoint_labels.append(_round_actual_endpoint_label)
+        logger.info(
+            "[agent-round-state] round=%s PROCESSED cleaned_round=%sch full_response=%sch round_texts=%s",
+            round_num, len(cleaned_round), len(full_response),
+            [len(t or "") for t in round_texts],
+        )
         if _should_emit_buffered_qwen_round(
             odysseus_finetune=_ody_qwen_finetune_model,
             tool_router=_qwen38_tool_router,
@@ -38661,6 +38670,7 @@ async def stream_agent_loop(
         full_response = _linkify_email_titles_from_tool_events(full_response, tool_events)
         full_response = _linkify_calendar_titles_from_tool_events(full_response, tool_events)
         if round_texts and full_response.strip():
+            _decision = "none"
             for _idx in range(len(round_texts) - 1, -1, -1):
                 if _visible_response_text(str(round_texts[_idx] or "")):
                     # (2026-11-06) Prefix-aware sync: when an earlier round's
@@ -38672,11 +38682,13 @@ async def stream_agent_loop(
                         str(t or "") for _j, t in enumerate(round_texts) if _j < _idx
                     ).strip()
                     _fr = full_response.strip()
+                    _decision = "split"
                     if _earlier_join and _fr.startswith(_earlier_join):
                         round_texts[_idx] = _fr[len(_earlier_join):].strip()
                     elif not _earlier_join:
                         # Single-round turn: the full response IS this round's
                         # text (post-linkify) — safe to sync.
+                        _decision = "full-sync"
                         round_texts[_idx] = _fr
                     # else (2026-11-07): multi-round with a mismatched prefix —
                     # a dropped/modified earlier round's text still sits in
@@ -38687,7 +38699,20 @@ async def stream_agent_loop(
                     # last entry became the whole accumulation). Leave the
                     # round's own text — the linkify decoration is cosmetic;
                     # the smushing was not.
+                    _decision = "left-unchanged"
+                    logger.info(
+                        "[agent-round-reconcile] idx=%s earlier_join=%sch fr=%sch "
+                        "decision=%s round_texts_after=%s",
+                        _idx, len(_earlier_join), len(_fr), _decision,
+                        [len(t or "") for t in round_texts],
+                    )
                     break
+            logger.info(
+                "[agent-round-reconcile] idx=%s earlier_join=%sch fr=%sch "
+                "decision=%s round_texts_after=%s",
+                _idx, len(_earlier_join), len(_fr), _decision,
+                [len(t or "") for t in round_texts],
+            )
 
     if (
         not _preemptive_calendar_final_emitted
