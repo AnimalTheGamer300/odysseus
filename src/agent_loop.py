@@ -2044,6 +2044,12 @@ def _state_manager_expected_action(
             return {"edit", "update", "change", "rename", "modify", "pause", "resume", "enable", "disable"}
         if re.search(r"\b(?:delete|remove|clear|trash|cancel)\b", candidate):
             return {"delete", "remove", "clear", "trash", "cancel"}
+        # (2026-11-07) Research verbs map to the read family — without this,
+        # "Research how SCP:RP handles X" produced empty actions and the
+        # early return killed the manage_research request before its own
+        # check ever ran.
+        if re.search(r"\b(?:research|look\s+(?:up|into)|deep\s+(?:research|dive))\b", candidate):
+            return {"search", "find", "read"}
         if re.search(
             r"\b(?:list|show|view|open|find|search)\b|(?<!-)\bread\b(?!-)",
             candidate,
@@ -2089,7 +2095,22 @@ def _state_manager_expected_action(
         if actions & {"add", "create", "save"}:
             return "", set()
         return "manage_documents", actions
-    if "manage_research" in tools and re.search(r"\b(?:research|reports?)\b", positive_value):
+    if "manage_research" in tools and re.search(
+        # (2026-11-07) "research" must be a REQUEST, not a mere mention: the
+        # SCP game-design feedback said "this whole Research Point thingy"
+        # (the game's currency) and the bare-word match read it as an
+        # explicit research request — nudging away two completed responses
+        # (session 8c03ca56). Clause-start/request-prefix + research (not
+        # followed by "points"), or an explicit research-job phrasing.
+        r"(?:^|[.!?;\n]\s*|\b(?:please|pls|can\s+you|could\s+you|would\s+you"
+        r"|I\s+(?:want|need)\s+(?:you\s+)?to)\s*)"
+        r"\bresearch\b(?!\s*(?:points?|rp)\b)"
+        r"|\bdo\s+(?:some\s+)?research\b"
+        r"|\b(?:look\s+(?:up|into)|deep\s+(?:research|dive))\b"
+        r"|\bsearch\s+(?:the\s+(?:web|internet)|online)\b",
+        positive_value,
+        re.I,
+    ):
         return "manage_research", actions
     if "ui_control" in tools and re.search(r"\b(?:open|show|switch)\b.{0,30}\b(?:panel|settings|theme|calendar|notes?|tasks?|skills?|cookbook|email|inbox|memories)\b", positive_value):
         return "ui_control", actions
@@ -31638,7 +31659,10 @@ async def stream_agent_loop(
                     round_endpoint_ids.pop()
                 if round_endpoint_labels:
                     round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
+                # (2026-11-07) Drop the RAW round text — the cleaned variant
+                # can silently fail to match and fuse the discarded answer
+                # into the replacement (the 13204ch five-round fusion).
+                full_response = _drop_rejected_round_response(full_response, round_response or cleaned_round)
                 cleaned_round = ""
                 round_response = ""
                 tool_blocks = [_forced_state_block]
@@ -31661,6 +31685,10 @@ async def stream_agent_loop(
                 and not guide_only
             ):
                 _intent_nudge_count += 1
+                # (2026-11-07) Drop the RAW round text — the cleaned variant
+                # can silently fail to match (the 13204ch five-round fusion:
+                # every discarded response fused into the re-run's content).
+                full_response = _drop_rejected_round_response(full_response, round_response or cleaned_round)
                 if round_texts:
                     round_texts.pop()
                 if round_models:
@@ -31669,7 +31697,6 @@ async def stream_agent_loop(
                     round_endpoint_ids.pop()
                 if round_endpoint_labels:
                     round_endpoint_labels.pop()
-                full_response = _drop_rejected_round_response(full_response, cleaned_round)
                 logger.info(
                     "[agent] explicit %s request answered without matching tool evidence; nudging round %s",
                     _state_tool,
